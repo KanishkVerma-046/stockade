@@ -14,7 +14,7 @@ const EQUITY_CURVE = (() => {
 
 const TRADES = Array.from({ length: 24 }, (_, i) => {
   const pnl = (Math.random() - 0.38) * 800;
-  const symbols = ['AAPL', 'TSLA', 'NVDA', 'MSFT', 'BTC', 'ETH', 'SOL'];
+  const symbols = ['APXL', 'TRXL', 'NVOX', 'MXFT', 'BLTC', 'ETHX', 'SLAX'];
   return {
     id: String(i),
     symbol: symbols[Math.floor(Math.random() * symbols.length)],

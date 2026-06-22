@@ -54,15 +54,72 @@
   --spacing-5xl: 128px;
 }
 
+/* ── Theme CSS variables ──────────────────────────────────────────────── */
+
+:root {
+  --c-bg:           #0a0a0a;
+  --c-bg-soft:      #111111;
+  --c-bg-subtle:    #0d0d0d;
+  --c-bg-muted:     #1a1a1a;
+  --c-surface:      #1e1e1e;
+  --c-surface-2:    #252525;
+  --c-border:       #2a2a2a;
+  --c-border-strong:#3a3a3a;
+  --c-text:         #f5f5f5;
+  --c-text-muted:   #a1a1a1;
+  --c-text-subtle:  #666666;
+  --c-text-faint:   #444444;
+  --c-text-fainter: #333333;
+  --c-green-bg:     #0a1f0f;
+  --c-green-dim:    #14532d;
+  --c-green-hover:  #0d2e14;
+  --c-red-bg:       #1f0a0a;
+  --c-red-dim:      #7f1d1d;
+  --c-red-hover:    #2e0d0d;
+  --c-amber-bg:     #1c1308;
+  --c-amber-dim:    #f59e0b33;
+  --c-overlay:      rgb(13 13 13 / 0.82);
+}
+
+html.light {
+  --c-bg:           #f8f9fa;
+  --c-bg-soft:      #f0f1f3;
+  --c-bg-subtle:    #f4f5f7;
+  --c-bg-muted:     #e8eaed;
+  --c-surface:      #ffffff;
+  --c-surface-2:    #ebebeb;
+  --c-border:       #d0d3d8;
+  --c-border-strong:#b0b4bb;
+  --c-text:         #0f0f0f;
+  --c-text-muted:   #4b5563;
+  --c-text-subtle:  #6b7280;
+  --c-text-faint:   #9ca3af;
+  --c-text-fainter: #d1d5db;
+  --c-green-bg:     #f0fdf4;
+  --c-green-dim:    #16a34a;
+  --c-green-hover:  #dcfce7;
+  --c-red-bg:       #fef2f2;
+  --c-red-dim:      #dc2626;
+  --c-red-hover:    #fee2e2;
+  --c-amber-bg:     #fffbeb;
+  --c-amber-dim:    #f59e0b55;
+  --c-overlay:      rgb(244 245 247 / 0.88);
+}
+
+/* ── Navbar bg (handles /90 opacity variant) ── */
+.navbar-bg { background-color: rgb(10 10 10 / 0.9); }
+html.light .navbar-bg { background-color: rgb(248 249 250 / 0.9); }
+
 @layer base {
   * {
     box-sizing: border-box;
   }
 
   html {
-    background-color: #0a0a0a;
-    color: #f5f5f5;
+    background-color: var(--c-bg);
+    color: var(--c-text);
     scroll-behavior: smooth;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   body {
@@ -83,14 +140,14 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #111111;
+    background: var(--c-bg-soft);
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
+    background: var(--c-border);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a3a3a;
+    background: var(--c-border-strong);
   }
 
   .font-mono,
@@ -136,18 +193,18 @@
 
   /* ── Hairline border ── */
   .hairline {
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--c-border);
   }
 
   /* ── Card surface ── */
   .card {
-    background: #1e1e1e;
-    border: 1px solid #2a2a2a;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
     border-radius: 8px;
   }
   .card-soft {
-    background: #111111;
-    border: 1px solid #2a2a2a;
+    background: var(--c-bg-soft);
+    border: 1px solid var(--c-border);
     border-radius: 8px;
   }
 
@@ -157,7 +214,7 @@
       radial-gradient(ellipse 80% 60% at 20% 40%, #f59e0b18, transparent),
       radial-gradient(ellipse 60% 50% at 80% 20%, #22c55e14, transparent),
       radial-gradient(ellipse 50% 70% at 50% 80%, #3b82f610, transparent),
-      #0a0a0a;
+      var(--c-bg);
   }
 
   /* ── Glowing border ── */
@@ -170,18 +227,18 @@
 
   /* ── Up/Down badge ── */
   .badge-up {
-    background: #0a1f0f;
+    background: var(--c-green-bg);
     color: #22c55e;
-    border: 1px solid #14532d;
+    border: 1px solid var(--c-green-dim);
   }
   .badge-down {
-    background: #1f0a0a;
+    background: var(--c-red-bg);
     color: #ef4444;
-    border: 1px solid #7f1d1d;
+    border: 1px solid var(--c-red-dim);
   }
   .badge-neutral {
-    background: #1e1e1e;
-    color: #a1a1a1;
-    border: 1px solid #2a2a2a;
+    background: var(--c-surface);
+    color: var(--c-text-muted);
+    border: 1px solid var(--c-border);
   }
 }

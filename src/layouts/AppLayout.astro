@@ -29,8 +29,16 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <!-- Apply saved theme before render to avoid flash -->
+    <script is:inline>
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light');
+        }
+      } catch {}
+    </script>
   </head>
-  <body class="bg-[#0a0a0a] text-[#f5f5f5] h-screen flex flex-col overflow-hidden">
+  <body class="bg-[var(--c-bg)] text-[var(--c-text)] h-screen flex flex-col overflow-hidden">
     <Navbar compact />
     <main class="flex-1 overflow-hidden">
       <slot />

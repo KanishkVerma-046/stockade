@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import TradingChart, { type Candle } from './TradingChart';
 
 const LIVE_ASSETS = [
-  { symbol: 'AAPL', name: 'Apple Inc.',   price: 187.42 },
-  { symbol: 'TSLA', name: 'Tesla Inc.',   price: 248.11 },
-  { symbol: 'NVDA', name: 'NVIDIA Corp.', price: 875.63 },
-  { symbol: 'BTC',  name: 'Bitcoin',      price: 67843  },
-  { symbol: 'ETH',  name: 'Ethereum',     price: 3412   },
-  { symbol: 'SOL',  name: 'Solana',       price: 168.22 },
+  { symbol: 'APXL', name: 'Apexlar Technologies', price: 187.42 },
+  { symbol: 'TRXL', name: 'Traxel Motors',        price: 248.11 },
+  { symbol: 'NVOX', name: 'Novex Semiconductor',  price: 875.63 },
+  { symbol: 'BLTC', name: 'Bullethon',            price: 67843  },
+  { symbol: 'ETHX', name: 'Etherax',              price: 3412   },
+  { symbol: 'SLAX', name: 'Solaxis',              price: 168.22 },
 ];
 
 function fmtPrice(p: number) {
@@ -18,62 +18,79 @@ function fmtPrice(p: number) {
 function seedCandles(basePrice: number, count = 100): Candle[] {
   const out: Candle[] = [];
   let price = basePrice;
+  let trend = (Math.random() - 0.5) * 0.3;
   const now = Date.now();
-  const CANDLE_INTERVAL = 60_000; // 1-minute candles
+
   for (let i = count; i >= 0; i--) {
-    const vol  = basePrice * 0.006;
-    const open = price;
-    const move = (Math.random() - 0.48) * vol;
-    const close = Math.max(open + move, 0.01);
-    const high  = Math.max(open, close) + Math.random() * vol * 0.3;
-    const low   = Math.min(open, close) - Math.random() * vol * 0.3;
-    out.push({ time: now - i * CANDLE_INTERVAL, open, high, low, close, volume: Math.floor(Math.random() * 400_000 + 50_000) });
+    trend = trend * 0.93 + (Math.random() - 0.5) * 0.1;
+    trend = Math.max(-0.5, Math.min(0.5, trend));
+
+    const vol   = basePrice * 0.006;
+    const open  = price;
+    const body  = (trend + (Math.random() - 0.5)) * vol;
+    const close = Math.max(open + body, 0.01);
+
+    const bodyHigh = Math.max(open, close);
+    const bodyLow  = Math.min(open, close);
+    const bodySize = Math.abs(body) || vol * 0.1;
+    const high = bodyHigh + Math.random() * bodySize * 1.2;
+    const low  = Math.max(bodyLow - Math.random() * bodySize * 1.2, 0.01);
+
+    out.push({ time: now - i * 60_000, open, high, low, close, volume: Math.floor(Math.random() * 400_000 + 50_000) });
     price = close;
   }
   return out;
 }
 
 export default function LiveSimulator() {
-  const [selected, setSelected]   = useState(LIVE_ASSETS[0]);
-  const [candles, setCandles]     = useState<Record<string, Candle[]>>(() =>
+  const [selected, setSelected] = useState(LIVE_ASSETS[0]);
+  const [candles, setCandles]   = useState<Record<string, Candle[]>>(() =>
     Object.fromEntries(LIVE_ASSETS.map(a => [a.symbol, seedCandles(a.price)]))
   );
-  const [qty, setQty]             = useState('100');
-  const [balance, setBalance]     = useState(100_000);
-  const [position, setPosition]   = useState<{ side: 'long' | 'short'; qty: number; avg: number } | null>(null);
-  const [trades, setTrades]       = useState<{ side: string; qty: number; price: number; pnl: number | null }[]>([]);
-  const newCandleTimerRef = useRef<number>(0);
+  const [qty, setQty]           = useState('100');
+  const [balance, setBalance]   = useState(100_000);
+  const [position, setPosition] = useState<{ side: 'long' | 'short'; qty: number; avg: number } | null>(null);
+  const [trades, setTrades]     = useState<{ side: string; qty: number; price: number; pnl: number | null }[]>([]);
 
-  const sym     = selected.symbol;
+  // Per-asset trend bias refs
+  const trendRefs     = useRef<Record<string, number>>(Object.fromEntries(LIVE_ASSETS.map(a => [a.symbol, 0])));
+  const candleStartRef = useRef<Record<string, number>>(Object.fromEntries(LIVE_ASSETS.map(a => [a.symbol, Date.now()])));
+
+  const sym      = selected.symbol;
   const symCandles = candles[sym] ?? [];
-  const last    = symCandles[symCandles.length - 1];
-  const prev    = symCandles[symCandles.length - 2];
-  const current = last?.close ?? selected.price;
-  const change  = prev ? current - prev.close : 0;
+  const last     = symCandles[symCandles.length - 1];
+  const prev     = symCandles[symCandles.length - 2];
+  const current  = last?.close ?? selected.price;
+  const change   = prev ? current - prev.close : 0;
   const changePct = prev ? (change / prev.close) * 100 : 0;
-  const upnl    = position
+  const upnl     = position
     ? (position.side === 'long' ? 1 : -1) * (current - position.avg) * position.qty
     : 0;
 
-  // Live tick simulation — updates last candle, occasionally opens a new one
+  // Live tick — time-based candle formation with momentum
   useEffect(() => {
     const id = setInterval(() => {
-      setCandles(prev => {
-        const next = { ...prev };
+      setCandles(prevState => {
+        const next = { ...prevState };
         for (const a of LIVE_ASSETS) {
-          const arr = prev[a.symbol];
+          const arr = prevState[a.symbol];
           if (!arr.length) continue;
-          const last = arr[arr.length - 1];
-          const vol  = last.close * 0.005;
-          const move = (Math.random() - 0.49) * vol;
-          const close = Math.max(last.close + move, 0.01);
-          const high  = Math.max(last.high, close);
-          const low   = Math.min(last.low,  close);
-          const updatedLast: Candle = { ...last, close, high, low, volume: last.volume + Math.floor(Math.random() * 5000) };
+          const lastCandle = arr[arr.length - 1];
 
-          // New 1-minute candle when ~60s elapsed
-          const elapsed = Date.now() - last.time;
-          if (elapsed >= 60_000) {
+          // Evolve trend bias
+          trendRefs.current[a.symbol] = (trendRefs.current[a.symbol] ?? 0) * 0.96 + (Math.random() - 0.5) * 0.07;
+          trendRefs.current[a.symbol] = Math.max(-0.5, Math.min(0.5, trendRefs.current[a.symbol]));
+
+          const vol   = lastCandle.close * 0.005;
+          const move  = (trendRefs.current[a.symbol] + (Math.random() - 0.5)) * vol;
+          const close = Math.max(lastCandle.close + move, 0.01);
+          const high  = Math.max(lastCandle.high, close);
+          const low   = Math.min(lastCandle.low, close);
+          const updatedLast: Candle = { ...lastCandle, close, high, low, volume: lastCandle.volume + Math.floor(Math.random() * 5000) };
+
+          // New candle every ~10 seconds
+          if (Date.now() - (candleStartRef.current[a.symbol] ?? 0) >= 10_000) {
+            candleStartRef.current[a.symbol] = Date.now();
             const newCandle: Candle = { time: Date.now(), open: close, high: close, low: close, close, volume: 0 };
             next[a.symbol] = [...arr.slice(-199), updatedLast, newCandle];
           } else {
@@ -110,12 +127,12 @@ export default function LiveSimulator() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#0a0a0a] text-[#f5f5f5]">
+    <div className="h-full flex flex-col bg-[var(--c-bg)] text-[var(--c-text)]">
       {/* Header */}
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-[#2a2a2a] bg-[#111111] overflow-x-auto shrink-0">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
         <span className="text-[11px] font-mono text-[#f59e0b] uppercase tracking-widest shrink-0 mr-2">Live Mode</span>
         {LIVE_ASSETS.map(a => {
-          const arr = candles[a.symbol];
+          const arr  = candles[a.symbol];
           const last = arr?.[arr.length - 1];
           const prevC = arr?.[arr.length - 2];
           const up = last && prevC ? last.close >= prevC.close : true;
@@ -125,11 +142,11 @@ export default function LiveSimulator() {
               onClick={() => switchSymbol(a)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors shrink-0 ${
                 sym === a.symbol
-                  ? 'border-[#f59e0b] bg-[#1c1308]'
-                  : 'border-[#2a2a2a] bg-[#1a1a1a] hover:border-[#3a3a3a]'
+                  ? 'border-[#f59e0b] bg-[var(--c-amber-bg)]'
+                  : 'border-[var(--c-border)] bg-[var(--c-bg-muted)] hover:border-[var(--c-border-strong)]'
               }`}
             >
-              <span className="text-[12px] font-mono font-semibold text-[#f5f5f5]">{a.symbol}</span>
+              <span className="text-[12px] font-mono font-semibold text-[var(--c-text)]">{a.symbol}</span>
               <span className={`text-[11px] font-mono ${up ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                 ${fmtPrice(last?.close ?? a.price)}
               </span>
@@ -143,21 +160,21 @@ export default function LiveSimulator() {
         {/* Chart area */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Price header */}
-          <div className="flex items-center gap-4 px-4 py-3 border-b border-[#2a2a2a] shrink-0">
+          <div className="flex items-center gap-4 px-4 py-3 border-b border-[var(--c-border)] shrink-0">
             <div>
-              <span className="text-[11px] font-mono text-[#666666] uppercase tracking-widest mr-3">{sym} · 1M</span>
-              <span className="text-2xl font-mono font-bold text-[#f5f5f5]">${fmtPrice(current)}</span>
+              <span className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-widest mr-3">{sym} · 1M</span>
+              <span className="text-2xl font-mono font-bold text-[var(--c-text)]">${fmtPrice(current)}</span>
               <span className={`ml-3 text-[13px] font-mono ${change >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                 {change >= 0 ? '+' : ''}{fmtPrice(Math.abs(change))} ({changePct >= 0 ? '+' : ''}{changePct.toFixed(2)}%)
               </span>
             </div>
-            <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0a1f0f] border border-[#14532d] text-[#22c55e] text-[11px] font-mono">
+            <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] text-[#22c55e] text-[11px] font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse"></span>
               LIVE
             </div>
           </div>
 
-          {/* Lightweight-charts chart */}
+          {/* Chart */}
           <div className="flex-1 overflow-hidden">
             <TradingChart
               candles={symCandles}
@@ -168,19 +185,19 @@ export default function LiveSimulator() {
           </div>
 
           {/* Account strip */}
-          <div className="flex gap-3 flex-wrap px-4 py-3 border-t border-[#2a2a2a] shrink-0">
+          <div className="flex gap-3 flex-wrap px-4 py-3 border-t border-[var(--c-border)] shrink-0">
             {[
-              { label: 'Balance',        value: '$' + balance.toLocaleString('en-US', { minimumFractionDigits: 0 }), color: '#f5f5f5' },
-              { label: 'Unrealized P&L', value: (upnl >= 0 ? '+$' : '-$') + Math.abs(upnl).toFixed(2),              color: upnl >= 0 ? '#22c55e' : '#ef4444' },
+              { label: 'Balance',        value: '$' + balance.toLocaleString('en-US', { minimumFractionDigits: 0 }), color: 'var(--c-text)' },
+              { label: 'Unrealized P&L', value: (upnl >= 0 ? '+$' : '-$') + Math.abs(upnl).toFixed(2), color: upnl >= 0 ? '#22c55e' : '#ef4444' },
             ].map(s => (
-              <div key={s.label} className="bg-[#111111] rounded-lg border border-[#2a2a2a] px-4 py-2">
-                <div className="text-[10px] font-mono text-[#666666] uppercase tracking-wider">{s.label}</div>
+              <div key={s.label} className="bg-[var(--c-bg-soft)] rounded-lg border border-[var(--c-border)] px-4 py-2">
+                <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{s.label}</div>
                 <div className="text-[15px] font-mono font-semibold" style={{ color: s.color }}>{s.value}</div>
               </div>
             ))}
             {position && (
-              <div className="bg-[#111111] rounded-lg border border-[#f59e0b33] px-4 py-2">
-                <div className="text-[10px] font-mono text-[#666666] uppercase tracking-wider">Position</div>
+              <div className="bg-[var(--c-bg-soft)] rounded-lg border border-[var(--c-amber-dim)] px-4 py-2">
+                <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">Position</div>
                 <div className={`text-[14px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                   {position.side.toUpperCase()} {position.qty} @ ${fmtPrice(position.avg)}
                 </div>
@@ -190,46 +207,46 @@ export default function LiveSimulator() {
         </div>
 
         {/* Order panel */}
-        <div className="w-[200px] shrink-0 border-l border-[#2a2a2a] bg-[#0d0d0d] p-3 flex flex-col gap-3">
-          <div className="text-[11px] font-mono uppercase tracking-widest text-[#666666]">Order</div>
+        <div className="w-[200px] shrink-0 border-l border-[var(--c-border)] bg-[var(--c-bg-subtle)] p-3 flex flex-col gap-3">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">Order</div>
 
           <div>
-            <label className="text-[10px] font-mono text-[#666666] uppercase tracking-wider block mb-1">Qty</label>
+            <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">Qty</label>
             <input
               type="number"
               value={qty}
               onChange={e => setQty(e.target.value)}
-              className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded px-2 py-1.5 text-[13px] font-mono text-[#f5f5f5] focus:border-[#f59e0b] outline-none"
+              className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none"
             />
           </div>
 
           <div className="flex gap-1">
             <button onClick={() => execOrder('buy')}
-              className="flex-1 py-2 bg-[#0a1f0f] border border-[#14532d] text-[#22c55e] text-[12px] font-mono font-bold rounded hover:bg-[#0d2e14] transition-colors">
+              className="flex-1 py-2 bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] text-[#22c55e] text-[12px] font-mono font-bold rounded hover:brightness-110 transition-all">
               BUY
             </button>
             <button onClick={() => execOrder('sell')}
-              className="flex-1 py-2 bg-[#1f0a0a] border border-[#7f1d1d] text-[#ef4444] text-[12px] font-mono font-bold rounded hover:bg-[#2e0d0d] transition-colors">
+              className="flex-1 py-2 bg-[var(--c-red-bg)] border border-[var(--c-red-dim)] text-[#ef4444] text-[12px] font-mono font-bold rounded hover:brightness-110 transition-all">
               SELL
             </button>
           </div>
           <button onClick={() => execOrder('flatten')} disabled={!position}
-            className="py-1.5 bg-[#1a1a1a] border border-[#2a2a2a] text-[#a1a1a1] text-[11px] font-mono rounded hover:bg-[#252525] disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+            className="py-1.5 bg-[var(--c-bg-muted)] border border-[var(--c-border)] text-[var(--c-text-muted)] text-[11px] font-mono rounded hover:bg-[var(--c-surface-2)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
             FLATTEN
           </button>
 
           {/* Recent trades */}
-          <div className="border-t border-[#2a2a2a] pt-3 flex-1 overflow-y-auto">
-            <div className="text-[10px] font-mono text-[#666666] uppercase tracking-wider mb-2">Recent</div>
+          <div className="border-t border-[var(--c-border)] pt-3 flex-1 overflow-y-auto">
+            <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-2">Recent</div>
             {trades.length === 0 ? (
-              <p className="text-[11px] font-mono text-[#444444]">No trades yet.</p>
+              <p className="text-[11px] font-mono text-[var(--c-text-faint)]">No trades yet.</p>
             ) : (
               <div className="space-y-1">
                 {trades.map((t, i) => (
-                  <div key={i} className="bg-[#1a1a1a] rounded p-2 text-[11px] font-mono border border-[#2a2a2a]">
+                  <div key={i} className="bg-[var(--c-bg-muted)] rounded p-2 text-[11px] font-mono border border-[var(--c-border)]">
                     <div className="flex justify-between">
                       <span className={t.side === 'buy' ? 'text-[#22c55e]' : 'text-[#ef4444]'}>{t.side.toUpperCase()}</span>
-                      <span className="text-[#a1a1a1]">{t.qty}</span>
+                      <span className="text-[var(--c-text-muted)]">{t.qty}</span>
                     </div>
                     {t.pnl !== null && (
                       <div className={t.pnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}>

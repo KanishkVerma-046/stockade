@@ -12,7 +12,7 @@ interface FeedItem {
 }
 
 const TRADERS = ['trader_x99', 'apex_whale', 'algo_ghost', 'scalp_hunter', 'momo_rider', 'vol_king', 'tape_reader', 'night_owl', 'gap_trader', 'breakout_bob'];
-const SYMBOLS  = ['AAPL', 'TSLA', 'NVDA', 'MSFT', 'AMZN', 'BTC', 'ETH', 'SOL', 'META', 'AMD'];
+const SYMBOLS  = ['APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON', 'BLTC', 'ETHX', 'SLAX', 'MXTA', 'AXMD'];
 
 function generateTrade(): FeedItem {
   const actions = ['BUY', 'SELL', 'FLATTEN'] as const;
