@@ -9,9 +9,6 @@ import LiveStats from '../components/landing/LiveStats.tsx';
 <Layout>
   <Navbar />
 
-  <!-- Ticker tape (live) -->
-  <TickerTape client:load />
-
   <!-- ── Hero ── -->
   <section class="relative overflow-hidden mesh-gradient">
     <!-- Grid overlay -->
@@ -244,5 +241,11 @@ import LiveStats from '../components/landing/LiveStats.tsx';
     </div>
   </section>
 
+  <div class="h-10"></div>
   <Footer />
+
+  <!-- Ticker tape — fixed at bottom of viewport -->
+  <div class="fixed bottom-0 left-0 right-0 z-30 border-t border-[var(--c-border)]">
+    <TickerTape client:load />
+  </div>
 </Layout>

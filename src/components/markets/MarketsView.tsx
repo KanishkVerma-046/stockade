@@ -172,7 +172,7 @@ export default function MarketsView() {
                 <td className="py-3 px-4 text-[13px] font-mono text-[var(--c-text-subtle)]">{a.mktCap}</td>
                 <td className="py-3 px-4">
                   <a
-                    href="/simulator"
+                    href={`/simulator?symbol=${encodeURIComponent(a.symbol)}`}
                     className="px-2.5 py-1 rounded bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] text-[#f59e0b] text-[11px] font-mono hover:bg-[#f59e0b] hover:text-[#0a0a0a] transition-colors"
                   >
                     Trade

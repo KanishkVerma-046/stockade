@@ -38,16 +38,21 @@ interface OrderForm {
   takeProfit: string;
 }
 
-const SYMBOLS = [
-  'APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON',
-  'GLPH', 'MXTA', 'BLTC', 'ETHX', 'SLAX',
-  'RXBT', 'STRX', 'AXMD',
+const SYMBOL_GROUPS = [
+  { label: 'Stocks',  syms: ['APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON', 'GLPH', 'MXTA', 'STRX', 'AXMD', 'CNBX', 'RXBT', 'PLZM', 'QVNT', 'VORX'] },
+  { label: 'Crypto',  syms: ['BLTC', 'ETHX', 'SLAX', 'XBEN', 'AVXL', 'DRLN', 'FLOX', 'NXVR'] },
+  { label: 'Forex',   syms: ['EUR/USD', 'GBP/USD', 'USD/JPY'] },
+  { label: 'Futures', syms: ['/ES', '/NQ', '/CL', '/GC'] },
 ];
 
 const SYMBOL_PRICES: Record<string, number> = {
-  APXL: 187,   TRXL: 248,   NVOX: 876,   MXFT: 415,   VXON: 193,
-  GLPH: 177,   MXTA: 508,   BLTC: 67843, ETHX: 3412,  SLAX: 168,
-  RXBT: 124,   STRX: 686,   AXMD: 157,
+  APXL: 187.42, TRXL: 248.11, NVOX: 875.63, MXFT: 415.22, VXON: 192.77,
+  GLPH: 176.88, MXTA: 508.44, STRX: 685.90, AXMD: 156.74, CNBX: 228.44,
+  RXBT: 124.33, PLZM: 89.15,  QVNT: 312.88, VORX: 548.20,
+  BLTC: 67843,  ETHX: 3412,   SLAX: 168.22, XBEN: 608.14, AVXL: 35.84,
+  DRLN: 8.42,   FLOX: 2.17,   NXVR: 0.4812,
+  'EUR/USD': 1.0872, 'GBP/USD': 1.2714, 'USD/JPY': 157.42,
+  '/ES': 5248.75, '/NQ': 18421.25, '/CL': 78.34, '/GC': 2341.40,
 };
 
 function generateCandles(basePrice: number, count = 200): Candle[] {
@@ -78,10 +83,19 @@ function fmtPct(n: number) { return (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
 function fmtMoney(n: number) {
   return '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+function fmtSym(price: number, sym: string): string {
+  if (price < 1 || sym === 'NXVR') return price.toFixed(4);
+  if (sym === 'EUR/USD' || sym === 'GBP/USD') return price.toFixed(4);
+  if (price >= 1000) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return price.toFixed(2);
+}
+function symPrefix(sym: string): string {
+  return (sym === 'EUR/USD' || sym === 'GBP/USD' || sym === 'USD/JPY') ? '' : '$';
+}
 
 function DisclaimerBanner({ onDismiss }: { onDismiss: () => void }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[var(--c-amber-bg)] border-t border-[var(--c-amber-dim)] px-4 py-3 flex items-center gap-4">
+    <div className="absolute bottom-0 left-0 right-0 z-50 bg-[var(--c-amber-bg)] border-t border-[var(--c-amber-dim)] px-4 py-3 flex items-center gap-4">
       <svg className="shrink-0 text-[#f59e0b]" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M8 1L15 14H1L8 1Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
         <path d="M8 6v3M8 11v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -94,9 +108,17 @@ function DisclaimerBanner({ onDismiss }: { onDismiss: () => void }) {
   );
 }
 
+function initSymbol(): string {
+  if (typeof window !== 'undefined') {
+    const p = new URLSearchParams(window.location.search).get('symbol');
+    if (p && p in SYMBOL_PRICES) return p;
+  }
+  return 'APXL';
+}
+
 export default function TradingSimulator() {
-  const [symbol, setSymbol]     = useState('APXL');
-  const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(187));
+  const [symbol, setSymbol]     = useState<string>(initSymbol);
+  const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(SYMBOL_PRICES[initSymbol()] ?? 187));
   const [balance, setBalance]   = useState(100_000);
   const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
   const [trades, setTrades]     = useState<Trade[]>([]);
@@ -257,8 +279,9 @@ export default function TradingSimulator() {
       {order.type === 'limit' && (
         <div>
           <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">Limit Price</label>
-          <input type="number" value={order.limitPrice} placeholder={fmt2(currentPrice)}
+          <input type="number" value={order.limitPrice} placeholder={fmtSym(currentPrice, symbol)}
             onChange={e => setOrder(o => ({ ...o, limitPrice: e.target.value }))}
+
             className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
         </div>
       )}
@@ -316,7 +339,7 @@ export default function TradingSimulator() {
           <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
             {position.side.toUpperCase()} {position.qty}
           </div>
-          <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ ${fmt2(position.avgPrice)}</div>
+          <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
           <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
             {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
           </div>
@@ -351,26 +374,31 @@ export default function TradingSimulator() {
   );
 
   return (
-    <div className="flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
+    <div className="relative flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
       {disclaimer && <DisclaimerBanner onDismiss={() => setDisclaimer(false)} />}
 
       {/* ── Top toolbar ── */}
       <div className="flex items-center gap-3 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
-        <div className="flex gap-1">
-          {SYMBOLS.map(sym => (
-            <button key={sym} onClick={() => changeSymbol(sym)}
-              className={`px-2.5 py-1 rounded text-[12px] font-mono whitespace-nowrap transition-colors ${
-                sym === symbol
-                  ? 'bg-[#f59e0b] text-[#0a0a0a] font-semibold'
-                  : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)]'
-              }`}>{sym}</button>
+        <div className="flex items-center gap-3">
+          {SYMBOL_GROUPS.map(group => (
+            <div key={group.label} className="flex items-center gap-1 shrink-0">
+              <span className="hidden sm:block text-[9px] font-mono text-[var(--c-text-faint)] uppercase tracking-wider pr-1.5 mr-0.5 border-r border-[var(--c-border)]">{group.label}</span>
+              {group.syms.map(sym => (
+                <button key={sym} onClick={() => changeSymbol(sym)}
+                  className={`px-2 py-1 rounded text-[11px] font-mono whitespace-nowrap transition-colors ${
+                    sym === symbol
+                      ? 'bg-[#f59e0b] text-[#0a0a0a] font-semibold'
+                      : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)]'
+                  }`}>{sym}</button>
+              ))}
+            </div>
           ))}
         </div>
         <div className="ml-auto flex items-center gap-4 shrink-0">
           <div>
-            <span className="text-lg font-mono font-semibold">${fmt2(currentPrice)}</span>
+            <span className="text-lg font-mono font-semibold">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</span>
             <span className={`ml-2 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-              {priceChange >= 0 ? '+' : ''}{fmt2(priceChange)} ({fmtPct(pricePct)})
+              {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)} ({fmtPct(pricePct)})
             </span>
           </div>
         </div>
@@ -399,7 +427,7 @@ export default function TradingSimulator() {
               <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                 {position.side.toUpperCase()} {position.qty}
               </div>
-              <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ ${fmt2(position.avgPrice)}</div>
+              <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
               <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                 {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
               </div>
@@ -436,7 +464,7 @@ export default function TradingSimulator() {
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
               style={{ backgroundColor: 'var(--c-overlay)' }}>
               <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbol} · 1M</div>
-              <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">${fmt2(currentPrice)}</div>
+              <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</div>
               <div className={`text-[12px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>{fmtPct(pricePct)}</div>
             </div>
           </div>

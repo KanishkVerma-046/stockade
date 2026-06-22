@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/layout/Navbar.astro';
+import TickerTape from '../components/landing/TickerTape.tsx';
 
 interface Props {
   title?: string;
@@ -43,5 +44,8 @@ const {
     <main class="flex-1 overflow-hidden">
       <slot />
     </main>
+    <div class="shrink-0 border-t border-[var(--c-border)]">
+      <TickerTape client:load />
+    </div>
   </body>
 </html>
