@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import MarketsView from '../components/markets/MarketsView.tsx';
+---
+
+<Layout title="Markets — Stockade" description="Real-time market overview: stocks, crypto, forex, and futures.">
+  <Navbar />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Markets</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[#f5f5f5]">Market Overview</h1>
+      <p class="mt-2 text-[#666666] text-[14px]">Simulated prices updated every 2 seconds.</p>
+    </div>
+    <MarketsView client:load />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
+---
+
+<Layout title="Analytics — Stockade" description="Track your trading performance with detailed analytics.">
+  <Navbar />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analytics</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[#f5f5f5]">Performance Dashboard</h1>
+      <p class="mt-2 text-[#666666] text-[14px]">Your simulated trading statistics and metrics.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+  </main>
+  <Footer />
+</Layout>

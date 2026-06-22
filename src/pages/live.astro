@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import LiveSimulator from '../components/trading/LiveSimulator.tsx';
+---
+
+<AppLayout title="Live Mode — Stockade" description="Trade against simulated live market prices.">
+  <LiveSimulator client:load />
+</AppLayout>

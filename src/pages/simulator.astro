@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import TradingSimulator from '../components/trading/TradingSimulator.tsx';
+---
+
+<AppLayout title="Simulator — Stockade" description="Free stock market trading simulator. Practice day trading with $100,000 virtual money.">
+  <TradingSimulator client:load />
+</AppLayout>
