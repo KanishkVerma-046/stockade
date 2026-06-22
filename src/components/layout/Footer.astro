@@ -57,9 +57,9 @@ const year = new Date().getFullYear();
         <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">Legal</p>
         <ul class="space-y-2">
           {[
-            { href: '#', label: 'Privacy' },
-            { href: '#', label: 'Terms' },
-            { href: '#', label: 'Disclaimer' },
+            { href: '/privacy',    label: 'Privacy' },
+            { href: '/terms',      label: 'Terms' },
+            { href: '/disclaimer', label: 'Disclaimer' },
           ].map(l => (
             <li>
               <a href={l.href} class="text-[13px] text-[#a1a1a1] hover:text-[#f5f5f5] transition-colors">{l.label}</a>

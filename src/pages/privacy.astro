@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="Privacy Policy — Stockade"
+  description="Learn how Stockade handles your data. We collect no personal information — all simulation state is stored locally in your browser."
+>
+  <Navbar />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Legal</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Privacy Policy</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Last updated: June 22, 2026</p>
+    </div>
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Overview</h2>
+        <p>
+          Stockade ("we", "us", or "our") operates the website stockade.io (the "Service"). This page
+          informs you of our policies regarding the collection, use, and disclosure of personal data when
+          you use our Service. We are committed to protecting your privacy. In short: <strong>we collect
+          no personally identifiable information</strong> and have no user accounts.
+        </p>
+      </section>
+
+      <section>
+        <h2>Data We Collect</h2>
+
+        <h3>No Account Required</h3>
+        <p>
+          Stockade requires no registration, login, or email address. You can use every feature of the
+          platform without providing any personal information to us.
+        </p>
+
+        <h3>Local Storage (Client-Side Only)</h3>
+        <p>
+          Your trading simulation state — including your virtual portfolio balance, trade history,
+          preferences such as dark/light mode, and other settings — is stored exclusively in your
+          browser's <code>localStorage</code>. This data never leaves your device and is never
+          transmitted to our servers. You can clear it at any time by clearing your browser's site data.
+        </p>
+
+        <h3>Usage Data</h3>
+        <p>
+          We may collect anonymised, aggregated usage data (such as page views and session counts)
+          through standard web analytics tools. This data cannot be used to identify you and is used
+          solely to understand how the Service is used and to improve it.
+        </p>
+      </section>
+
+      <section>
+        <h2>Third-Party Services</h2>
+
+        <h3>Google Fonts</h3>
+        <p>
+          Stockade uses fonts (Inter and JetBrains Mono) served by Google Fonts. When your browser
+          requests these fonts, your IP address is sent to Google's servers. Please refer to
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google's Privacy Policy
+          </a> for details on how they handle that data.
+        </p>
+
+        <h3>Hosting</h3>
+        <p>
+          The site is hosted on a third-party web hosting provider. Standard web server logs (IP
+          address, browser type, referring URL, timestamp) may be retained by the hosting provider in
+          accordance with their own privacy policy.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cookies</h2>
+        <p>
+          Stockade does not use tracking cookies or advertising cookies. Your theme preference is stored
+          in <code>localStorage</code>, not in a cookie. If future features require session cookies, this
+          policy will be updated accordingly.
+        </p>
+      </section>
+
+      <section>
+        <h2>Children's Privacy</h2>
+        <p>
+          Our Service does not address anyone under the age of 13. We do not knowingly collect personally
+          identifiable information from children under 13. If you are a parent or guardian and believe
+          your child has provided us with personal data, please contact us.
+        </p>
+      </section>
+
+      <section>
+        <h2>Links to Other Sites</h2>
+        <p>
+          Our Service may contain links to third-party websites. We have no control over and assume no
+          responsibility for the content, privacy policies, or practices of any third-party sites or
+          services.
+        </p>
+      </section>
+
+      <section>
+        <h2>Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. We will notify you of any changes by
+          updating the "Last updated" date at the top of this page. You are advised to review this page
+          periodically.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          If you have any questions about this Privacy Policy, please contact us at
+          <a href="mailto:hello@stockade.io">hello@stockade.io</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--c-bg-muted);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    color: var(--c-text);
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="Disclaimer — Stockade"
+  description="Stockade is a trading simulator for educational purposes only. All trading uses virtual money. This is not financial advice. Read our full disclaimer."
+>
+  <Navbar />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Legal</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Disclaimer</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Last updated: June 22, 2026</p>
+    </div>
+
+    <!-- Highlighted notice -->
+    <div class="mb-10 rounded-xl border border-[var(--c-amber-dim)] bg-[var(--c-amber-bg)] px-6 py-5 flex gap-4">
+      <svg class="shrink-0 mt-0.5 text-[#f59e0b]" width="20" height="20" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L15 14H1L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M8 6v3M8 11v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="text-[14px] text-[#f59e0b] leading-relaxed">
+        <strong>Important:</strong> Stockade is a paper-trading simulation platform. All trading is
+        performed with virtual money only. Nothing on this website constitutes financial advice.
+        Never invest real money based on results or strategies observed within a simulator.
+      </p>
+    </div>
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Simulation Only — No Real Money</h2>
+        <p>
+          Stockade provides a simulated trading environment using <strong>fictional price data generated
+          algorithmically</strong>. All balances, profits, and losses displayed within the platform are
+          entirely virtual and have no monetary value. No real stocks, cryptocurrencies, foreign
+          exchange pairs, futures contracts, or any other financial instruments are bought or sold
+          through this Service.
+        </p>
+        <p>
+          Any virtual profits earned within Stockade cannot be withdrawn, converted to real currency,
+          or used to purchase any goods or services.
+        </p>
+      </section>
+
+      <section>
+        <h2>Not Financial Advice</h2>
+        <p>
+          The information, tools, strategies, indicators, and simulated results provided on Stockade
+          are for <strong>educational and entertainment purposes only</strong>. They do not constitute
+          and should not be construed as:
+        </p>
+        <ul>
+          <li>Financial, investment, or trading advice</li>
+          <li>A recommendation to buy or sell any financial instrument</li>
+          <li>Legal or tax advice</li>
+          <li>An endorsement of any particular trading strategy or approach</li>
+        </ul>
+        <p>
+          Always seek the advice of a qualified, licensed financial professional before making any
+          real investment or trading decisions.
+        </p>
+      </section>
+
+      <section>
+        <h2>Simulated Performance ≠ Real Results</h2>
+        <p>
+          Simulated or hypothetical trading results have known limitations. Unlike actual trading,
+          simulated results do not account for real-world factors such as:
+        </p>
+        <ul>
+          <li>Market liquidity and slippage</li>
+          <li>Brokerage commissions, spreads, and fees</li>
+          <li>Psychological pressure of trading with real capital</li>
+          <li>Execution delays, partial fills, and order rejection</li>
+          <li>Real-time price discovery and market impact</li>
+        </ul>
+        <p>
+          <strong>Past simulated performance is not indicative of future real-world results.</strong>
+          A strategy that performs well in a simulator may perform significantly differently — or
+          produce losses — when applied to live markets with real money.
+        </p>
+      </section>
+
+      <section>
+        <h2>Risk Disclosure</h2>
+        <p>
+          Trading and investing in real financial markets involves <strong>substantial risk of loss</strong>,
+          including the possible loss of all invested capital. Leveraged products such as futures and
+          forex can amplify both gains and losses and may not be suitable for all investors.
+        </p>
+        <p>
+          You should carefully consider your financial situation, risk tolerance, and investment
+          objectives before trading real financial instruments. Stockade accepts no responsibility
+          for any real financial losses incurred by users who apply strategies or techniques
+          practised within the simulator to live markets.
+        </p>
+      </section>
+
+      <section>
+        <h2>Accuracy of Information</h2>
+        <p>
+          While we strive to provide an accurate and realistic simulation experience, Stockade makes
+          no representations or warranties about the accuracy, completeness, or suitability of the
+          information and materials on this platform. Price data, market mechanics, and asset behaviour
+          within the simulator are approximations and may differ materially from real market conditions.
+        </p>
+      </section>
+
+      <section>
+        <h2>Third-Party Links</h2>
+        <p>
+          This website may contain links to external sites or resources. Stockade has no control over
+          the content of those sites and accepts no responsibility for them or for any loss or damage
+          that may arise from your use of them.
+        </p>
+      </section>
+
+      <section>
+        <h2>Changes to This Disclaimer</h2>
+        <p>
+          We reserve the right to update this Disclaimer at any time. Changes will be reflected by
+          updating the "Last updated" date above. Your continued use of the Service after any changes
+          constitutes your acceptance of the revised Disclaimer.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          For questions about this Disclaimer, please contact us at
+          <a href="mailto:hello@stockade.io">hello@stockade.io</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>
