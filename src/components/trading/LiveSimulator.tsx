@@ -42,6 +42,8 @@ function seedCandles(basePrice: number, count = 100): Candle[] {
   return out;
 }
 
+type MobileTab = 'chart' | 'order';
+
 export default function LiveSimulator() {
   const [selected, setSelected] = useState(LIVE_ASSETS[0]);
   const [candles, setCandles]   = useState<Record<string, Candle[]>>(() =>
@@ -51,6 +53,7 @@ export default function LiveSimulator() {
   const [balance, setBalance]   = useState(100_000);
   const [position, setPosition] = useState<{ side: 'long' | 'short'; qty: number; avg: number } | null>(null);
   const [trades, setTrades]     = useState<{ side: string; qty: number; price: number; pnl: number | null }[]>([]);
+  const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
 
   // Per-asset trend bias refs
   const trendRefs     = useRef<Record<string, number>>(Object.fromEntries(LIVE_ASSETS.map(a => [a.symbol, 0])));
@@ -155,10 +158,22 @@ export default function LiveSimulator() {
         })}
       </div>
 
+      {/* Mobile tab bar */}
+      <div className="md:hidden flex shrink-0 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)]">
+        {(['chart', 'order'] as MobileTab[]).map(t => (
+          <button key={t} onClick={() => setMobileTab(t)}
+            className={`flex-1 py-2.5 text-[12px] font-mono capitalize border-b-2 transition-colors ${
+              mobileTab === t ? 'border-[#f59e0b] text-[var(--c-text)]' : 'border-transparent text-[var(--c-text-subtle)]'
+            }`}>
+            {t}
+          </button>
+        ))}
+      </div>
+
       {/* Main */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden min-h-0">
         {/* Chart area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className={`flex-1 flex-col overflow-hidden min-w-0 ${mobileTab !== 'chart' ? 'hidden md:flex' : 'flex'}`}>
           {/* Price header */}
           <div className="flex items-center gap-4 px-4 py-3 border-b border-[var(--c-border)] shrink-0">
             <div>
@@ -175,7 +190,7 @@ export default function LiveSimulator() {
           </div>
 
           {/* Chart */}
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-hidden min-h-0">
             <TradingChart
               candles={symCandles}
               symbol={sym}
@@ -206,8 +221,8 @@ export default function LiveSimulator() {
           </div>
         </div>
 
-        {/* Order panel */}
-        <div className="w-[200px] shrink-0 border-l border-[var(--c-border)] bg-[var(--c-bg-subtle)] p-3 flex flex-col gap-3">
+        {/* Order panel — desktop always visible, mobile only when order tab */}
+        <div className={`shrink-0 border-l border-[var(--c-border)] bg-[var(--c-bg-subtle)] p-3 flex-col gap-3 md:w-[200px] md:flex ${mobileTab !== 'order' ? 'hidden' : 'flex w-full'}`}>
           <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">Order</div>
 
           <div>

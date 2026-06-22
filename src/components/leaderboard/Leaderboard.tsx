@@ -50,26 +50,28 @@ export default function Leaderboard() {
               key={t.rank}
               className={`rounded-xl border p-4 text-center ${
                 isFirst
-                  ? 'bg-[#1c1308] border-[#f59e0b33] glow-amber'
-                  : 'bg-[#111111] border-[#2a2a2a]'
+                  ? 'bg-[var(--c-amber-bg)] border-[var(--c-amber-dim)]'
+                  : 'bg-[var(--c-bg-soft)] border-[var(--c-border)]'
               }`}
               style={isFirst ? { transform: 'translateY(-8px)' } : {}}
             >
               <div className="text-2xl mb-1">{medal(t.rank)}</div>
-              <div className="text-[13px] font-mono font-semibold text-[#f5f5f5] truncate">{t.name}</div>
+              <div className="text-[13px] font-mono font-semibold text-[var(--c-text)] truncate">{t.name}</div>
               <div className="text-[12px] font-mono text-[#f59e0b] mt-1">+${t.pnl.toLocaleString()}</div>
-              <div className="text-[11px] font-mono text-[#666666]">WR {t.wr}%</div>
+              <div className="text-[11px] font-mono text-[var(--c-text-subtle)]">WR {t.wr}%</div>
             </div>
           );
         })}
       </div>
 
       {/* Sort tabs */}
-      <div className="flex gap-1 border-b border-[#2a2a2a] mb-4">
+      <div className="flex gap-1 border-b border-[var(--c-border)] mb-4">
         {TABS.map(tab => (
           <button key={tab.key} onClick={() => setSortKey(tab.key)}
             className={`px-4 py-2 text-[12px] font-mono border-b-2 transition-colors ${
-              sortKey === tab.key ? 'border-[#f59e0b] text-[#f5f5f5]' : 'border-transparent text-[#666666] hover:text-[#a1a1a1]'
+              sortKey === tab.key
+                ? 'border-[#f59e0b] text-[var(--c-text)]'
+                : 'border-transparent text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
             }`}>
             {tab.label}
           </button>
@@ -77,43 +79,46 @@ export default function Leaderboard() {
       </div>
 
       {/* Full table */}
-      <div className="bg-[#111111] border border-[#2a2a2a] rounded-xl overflow-hidden">
+      <div className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl overflow-hidden">
         <table className="w-full border-collapse min-w-[600px]">
           <thead>
-            <tr className="border-b border-[#2a2a2a]">
+            <tr className="border-b border-[var(--c-border)]">
               {['#', 'Trader', 'P&L', 'Return', 'Win Rate', 'Profit Factor', 'Trades', 'Streak'].map(h => (
-                <th key={h} className="py-3 px-4 text-left text-[11px] font-mono uppercase tracking-wider text-[#666666]">{h}</th>
+                <th key={h} className="py-3 px-4 text-left text-[11px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)]">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {sorted.map(t => (
-              <tr key={t.name} className="border-b border-[#1a1a1a] hover:bg-[#1a1a1a] transition-colors">
+              <tr key={t.name} className="border-b border-[var(--c-border)] hover:bg-[var(--c-bg-muted)] transition-colors">
                 <td className="py-3 px-4">
                   <span className={`text-[14px] font-mono font-bold ${
-                    t.rank === 1 ? 'text-[#f59e0b]' : t.rank === 2 ? 'text-[#a1a1a1]' : t.rank === 3 ? 'text-[#92400e]' : 'text-[#444444]'
+                    t.rank === 1 ? 'text-[#f59e0b]'
+                    : t.rank === 2 ? 'text-[var(--c-text-muted)]'
+                    : t.rank === 3 ? 'text-[#92400e]'
+                    : 'text-[var(--c-text-faint)]'
                   }`}>
                     {medal(t.rank) || t.rank}
                   </span>
                 </td>
-                <td className="py-3 px-4 text-[13px] font-mono font-semibold text-[#f5f5f5]">{t.name}</td>
+                <td className="py-3 px-4 text-[13px] font-mono font-semibold text-[var(--c-text)]">{t.name}</td>
                 <td className="py-3 px-4 text-[13px] font-mono font-semibold text-[#22c55e]">+${t.pnl.toLocaleString()}</td>
                 <td className="py-3 px-4 text-[13px] font-mono text-[#22c55e]">+{t.pct}%</td>
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 rounded-full bg-[#1a1a1a] max-w-[80px]">
+                    <div className="flex-1 h-1.5 rounded-full bg-[var(--c-bg-muted)] max-w-[80px]">
                       <div className="h-full rounded-full bg-[#22c55e]" style={{ width: `${t.wr}%` }}></div>
                     </div>
-                    <span className="text-[12px] font-mono text-[#f5f5f5]">{t.wr}%</span>
+                    <span className="text-[12px] font-mono text-[var(--c-text)]">{t.wr}%</span>
                   </div>
                 </td>
                 <td className="py-3 px-4 text-[13px] font-mono text-[#f59e0b]">{t.pf}x</td>
-                <td className="py-3 px-4 text-[13px] font-mono text-[#a1a1a1]">{t.trades}</td>
+                <td className="py-3 px-4 text-[13px] font-mono text-[var(--c-text-muted)]">{t.trades}</td>
                 <td className="py-3 px-4">
                   {t.streak > 0 ? (
                     <span className="text-[12px] font-mono text-[#22c55e]">🔥 {t.streak}</span>
                   ) : (
-                    <span className="text-[12px] font-mono text-[#444444]">—</span>
+                    <span className="text-[12px] font-mono text-[var(--c-text-faint)]">—</span>
                   )}
                 </td>
               </tr>
@@ -122,7 +127,7 @@ export default function Leaderboard() {
         </table>
       </div>
 
-      <p className="mt-4 text-[12px] text-[#444444] font-mono">
+      <p className="mt-4 text-[12px] text-[var(--c-text-faint)] font-mono">
         * Rankings based on simulated trading. Virtual money only. Updated every hour.
       </p>
     </div>
