@@ -70,7 +70,7 @@ const SYMBOL_PRICES: Record<string, number> = {
   '/ES': 5248.75, '/NQ': 18421.25, '/CL': 78.34, '/GC': 2341.40,
 };
 
-function generateCandles(basePrice: number, count = 200): Candle[] {
+function generateCandles(basePrice: number, count = 500): Candle[] {
   const candles: Candle[] = [];
   let price = basePrice;
   let trend = (Math.random() - 0.5) * 0.4;
@@ -93,7 +93,7 @@ function generateCandles(basePrice: number, count = 200): Candle[] {
   return candles;
 }
 
-function generateReplaySession(basePrice: number, count = 300): Candle[] {
+function generateReplaySession(basePrice: number, count = 600): Candle[] {
   // Candles timestamped as a past session (count minutes ago → now)
   const sessionStart = Date.now() - (count + 1) * 60_000;
   const candles: Candle[] = [];
@@ -264,7 +264,7 @@ export default function TradingSimulator() {
         } catch {}
         if (Date.now() - candleStartRef.current >= 10_000) {
           candleStartRef.current = Date.now();
-          return [...prev.slice(-199), updated, { time: Date.now(), open: close, high: close, low: close, close, volume: Math.floor(Math.random() * 500_000) }];
+          return [...prev.slice(-499), updated, { time: Date.now(), open: close, high: close, low: close, close, volume: Math.floor(Math.random() * 500_000) }];
         }
         return [...prev.slice(0, -1), updated];
       });
