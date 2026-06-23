@@ -5,6 +5,7 @@ import { $activeTick } from '../../stores/priceStore';
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
 type MobileTab = 'chart' | 'order' | 'trades';
+type SimMode = 'live' | 'replay';
 
 interface Candle {
   time: number;
@@ -92,6 +93,34 @@ function generateCandles(basePrice: number, count = 200): Candle[] {
   return candles;
 }
 
+function generateReplaySession(basePrice: number, count = 300): Candle[] {
+  // Candles timestamped as a past session (count minutes ago → now)
+  const sessionStart = Date.now() - (count + 1) * 60_000;
+  const candles: Candle[] = [];
+  let price = basePrice;
+  let trend = (Math.random() - 0.5) * 0.3;
+  for (let i = 0; i < count; i++) {
+    trend = trend * 0.93 + (Math.random() - 0.5) * 0.1;
+    trend = Math.max(-0.6, Math.min(0.6, trend));
+    const vol = price * 0.008;
+    const open = price;
+    const body = (trend + (Math.random() - 0.5) * 0.5) * vol;
+    const close = Math.max(open + body, 0.01);
+    const bodyHigh = Math.max(open, close);
+    const bodyLow  = Math.min(open, close);
+    const bodySize = Math.abs(body) || vol * 0.15;
+    const high = bodyHigh + Math.random() * bodySize * (Math.random() < 0.12 ? 2.5 : 0.8);
+    const low  = Math.max(bodyLow - Math.random() * bodySize * (Math.random() < 0.12 ? 2.5 : 0.8), 0.01);
+    candles.push({
+      time: sessionStart + i * 60_000,
+      open, high, low, close,
+      volume: Math.floor(Math.random() * 600_000 + 80_000),
+    });
+    price = close;
+  }
+  return candles;
+}
+
 function getBasePrice(sym: string): number {
   try {
     const stored = localStorage.getItem('stockade_prices');
@@ -164,6 +193,8 @@ function initSymbol(): string {
   return 'APXL';
 }
 
+const REPLAY_START_IDX = 60; // initial candles revealed in replay mode
+
 export default function TradingSimulator() {
   const [symbol, setSymbol]     = useState<string>(initSymbol);
   const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
@@ -174,12 +205,27 @@ export default function TradingSimulator() {
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
 
+  // Replay state
+  const [mode, setMode]               = useState<SimMode>('live');
+  const [replayIdx, setReplayIdx]     = useState(0);
+  const [replayTotal, setReplayTotal] = useState(0);
+  const [replayPlaying, setReplayPlaying] = useState(false);
+  const [replaySpeed, setReplaySpeed] = useState(1);
+  const [chartResetKey, setChartResetKey] = useState(0);
+
   const rootRef        = useRef<HTMLDivElement>(null);
   const intervalRef    = useRef<ReturnType<typeof setInterval> | null>(null);
   const trendBiasRef   = useRef(0);
   const candleStartRef = useRef(Date.now());
   const positionRef    = useRef(position);
   const orderRef       = useRef(order);
+
+  // Replay refs
+  const replaySessionRef  = useRef<Candle[]>([]);
+  const replayIdxRef      = useRef(0);
+  const replayIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const modeRef           = useRef<SimMode>('live');
+
   useEffect(() => { positionRef.current = position; }, [position]);
   useEffect(() => { orderRef.current = order; }, [order]);
   useEffect(() => { try { localStorage.setItem('stockade_balance', String(balance)); } catch {} }, [balance]);
@@ -193,8 +239,10 @@ export default function TradingSimulator() {
     $activeTick.set({ symbol, price: currentPrice });
   }, [symbol, currentPrice]);
 
+  // Live tick interval — skipped in replay mode
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
+    if (modeRef.current !== 'live') return;
     trendBiasRef.current = 0;
     candleStartRef.current = Date.now();
     intervalRef.current = setInterval(() => {
@@ -222,14 +270,37 @@ export default function TradingSimulator() {
       });
     }, 800);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [symbol]);
+  }, [symbol, mode]); // mode in deps so the effect re-evaluates on mode change
 
+  // Replay autoplay interval
+  useEffect(() => {
+    if (replayIntervalRef.current) clearInterval(replayIntervalRef.current);
+    if (mode !== 'replay' || !replayPlaying) return;
+    const delay = Math.max(50, Math.round(1000 / replaySpeed));
+    replayIntervalRef.current = setInterval(() => {
+      const session = replaySessionRef.current;
+      const idx = replayIdxRef.current;
+      if (idx >= session.length - 1) {
+        setReplayPlaying(false);
+        clearInterval(replayIntervalRef.current!);
+        return;
+      }
+      const next = idx + 1;
+      replayIdxRef.current = next;
+      setReplayIdx(next);
+      setCandles(session.slice(0, next + 1));
+    }, delay);
+    return () => { if (replayIntervalRef.current) clearInterval(replayIntervalRef.current); };
+  }, [mode, replayPlaying, replaySpeed]);
+
+  // Unrealized P&L update
   useEffect(() => {
     if (!position.side) return;
     const mult = position.side === 'long' ? 1 : -1;
     setPosition(p => ({ ...p, unrealizedPnl: mult * (currentPrice - p.avgPrice) * p.qty }));
   }, [currentPrice, position.side, position.avgPrice, position.qty]);
 
+  // SL/TP auto-close
   useEffect(() => {
     const pos = positionRef.current;
     const ord = orderRef.current;
@@ -251,11 +322,77 @@ export default function TradingSimulator() {
     }
   }, [currentPrice]);
 
+  // ── Replay management ─────────────────────────────────────────────────────────
+
+  function enterReplay() {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (replayIntervalRef.current) clearInterval(replayIntervalRef.current);
+    setReplayPlaying(false);
+    const session = generateReplaySession(getBasePrice(symbol));
+    replaySessionRef.current = session;
+    setReplayTotal(session.length);
+    const startIdx = Math.min(REPLAY_START_IDX, session.length - 1);
+    replayIdxRef.current = startIdx;
+    setReplayIdx(startIdx);
+    setCandles(session.slice(0, startIdx + 1));
+    modeRef.current = 'replay';
+    setMode('replay');
+    setChartResetKey(k => k + 1);
+    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+  }
+
+  function enterLive() {
+    if (replayIntervalRef.current) clearInterval(replayIntervalRef.current);
+    setReplayPlaying(false);
+    modeRef.current = 'live';
+    setMode('live');
+    setCandles(generateCandles(getBasePrice(symbol)));
+    setChartResetKey(k => k + 1);
+    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+  }
+
+  function stepReplay() {
+    const session = replaySessionRef.current;
+    const idx = replayIdxRef.current;
+    if (idx >= session.length - 1) return;
+    const next = idx + 1;
+    replayIdxRef.current = next;
+    setReplayIdx(next);
+    setCandles(session.slice(0, next + 1));
+  }
+
+  function resetReplay() {
+    if (replayIntervalRef.current) clearInterval(replayIntervalRef.current);
+    setReplayPlaying(false);
+    const session = generateReplaySession(getBasePrice(symbol));
+    replaySessionRef.current = session;
+    setReplayTotal(session.length);
+    const startIdx = Math.min(REPLAY_START_IDX, session.length - 1);
+    replayIdxRef.current = startIdx;
+    setReplayIdx(startIdx);
+    setCandles(session.slice(0, startIdx + 1));
+    setChartResetKey(k => k + 1);
+    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+  }
+
   function changeSymbol(sym: string) {
     setSymbol(sym);
-    setCandles(generateCandles(getBasePrice(sym)));
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
     trendBiasRef.current = 0;
+    if (modeRef.current === 'live') {
+      setCandles(generateCandles(getBasePrice(sym)));
+    } else {
+      if (replayIntervalRef.current) clearInterval(replayIntervalRef.current);
+      setReplayPlaying(false);
+      const session = generateReplaySession(getBasePrice(sym));
+      replaySessionRef.current = session;
+      setReplayTotal(session.length);
+      const startIdx = Math.min(REPLAY_START_IDX, session.length - 1);
+      replayIdxRef.current = startIdx;
+      setReplayIdx(startIdx);
+      setCandles(session.slice(0, startIdx + 1));
+    }
+    setChartResetKey(k => k + 1);
   }
 
   const execOrder = useCallback((action: 'buy' | 'sell' | 'flatten') => {
@@ -314,6 +451,11 @@ export default function TradingSimulator() {
       if (e.key === 'b' || e.key === 'B') execOrder('buy');
       if (e.key === 's' || e.key === 'S') execOrder('sell');
       if (e.key === 'f' || e.key === 'F') execOrder('flatten');
+      // Space = step one candle in replay mode
+      if ((e.key === ' ' || e.key === 'ArrowRight') && modeRef.current === 'replay') {
+        e.preventDefault();
+        stepReplay();
+      }
     }
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
@@ -369,7 +511,6 @@ export default function TradingSimulator() {
           <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">Limit Price</label>
           <input type="number" value={order.limitPrice} placeholder={fmtSym(currentPrice, symbol)}
             onChange={e => setOrder(o => ({ ...o, limitPrice: e.target.value }))}
-
             className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
         </div>
       )}
@@ -461,12 +602,43 @@ export default function TradingSimulator() {
     </div>
   );
 
+  const replayAtEnd = replayIdx >= replayTotal - 1;
+
   return (
     <div ref={rootRef} className="relative flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
       {disclaimer && <DisclaimerBanner onDismiss={() => setDisclaimer(false)} />}
 
       {/* ── Top toolbar ── */}
-      <div className="flex items-center gap-3 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
+
+        {/* Mode toggle */}
+        <div className="flex items-center gap-1 shrink-0 border-r border-[var(--c-border)] pr-2.5 mr-0.5">
+          <button
+            onClick={enterLive}
+            title="Live simulation — prices tick in real time"
+            className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono transition-colors ${
+              mode === 'live'
+                ? 'bg-[var(--c-green-bg)] text-[#22c55e] border border-[var(--c-green-dim)] font-semibold'
+                : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-transparent'
+            }`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full bg-[#22c55e] ${mode === 'live' ? 'animate-pulse' : 'opacity-40'}`} />
+            LIVE
+          </button>
+          <button
+            onClick={enterReplay}
+            title="Replay mode — step through a session candle by candle"
+            className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono transition-colors ${
+              mode === 'replay'
+                ? 'bg-[#3b82f620] text-[#3b82f6] border border-[#3b82f640] font-semibold'
+                : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-transparent'
+            }`}
+          >
+            ⏪ REPLAY
+          </button>
+        </div>
+
+        {/* Symbol groups */}
         <div className="flex items-center gap-3">
           {SYMBOL_GROUPS.map(group => (
             <div key={group.label} className="flex items-center gap-1 shrink-0">
@@ -483,6 +655,82 @@ export default function TradingSimulator() {
           ))}
         </div>
       </div>
+
+      {/* ── Replay controls bar ── */}
+      {mode === 'replay' && (
+        <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-subtle)] shrink-0 overflow-x-auto">
+
+          {/* New session */}
+          <button
+            onClick={resetReplay}
+            title="Generate a new random session"
+            className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-[var(--c-border)] transition-colors shrink-0"
+          >
+            ↺ New
+          </button>
+
+          <div className="w-px h-4 bg-[var(--c-border)] shrink-0" />
+
+          {/* Play / Pause */}
+          <button
+            onClick={() => setReplayPlaying(p => !p)}
+            disabled={replayAtEnd}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded text-[11px] font-mono font-semibold transition-colors shrink-0 disabled:opacity-40 disabled:cursor-not-allowed ${
+              replayPlaying
+                ? 'bg-[var(--c-amber-bg)] text-[#f59e0b] border border-[var(--c-amber-dim)]'
+                : 'bg-[#3b82f620] text-[#3b82f6] border border-[#3b82f640] hover:bg-[#3b82f630]'
+            }`}
+          >
+            {replayPlaying ? '⏸ Pause' : '▶ Play'}
+          </button>
+
+          {/* Step */}
+          <button
+            onClick={stepReplay}
+            disabled={replayAtEnd}
+            title="Reveal next candle (Space / →)"
+            className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-[var(--c-border)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
+          >
+            ▶| Step
+          </button>
+
+          <div className="w-px h-4 bg-[var(--c-border)] shrink-0" />
+
+          {/* Speed */}
+          <div className="flex items-center gap-1 shrink-0">
+            <span className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase mr-0.5">Speed</span>
+            {([1, 2, 5, 10] as const).map(s => (
+              <button
+                key={s}
+                onClick={() => setReplaySpeed(s)}
+                className={`px-1.5 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                  replaySpeed === s
+                    ? 'text-[#f59e0b] bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)]'
+                    : 'text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)] border border-transparent'
+                }`}
+              >
+                {s}x
+              </button>
+            ))}
+          </div>
+
+          {/* Progress */}
+          <div className="flex items-center gap-2 ml-auto shrink-0">
+            {replayAtEnd && (
+              <span className="text-[10px] font-mono text-[#f59e0b]">Session complete</span>
+            )}
+            <span className="text-[10px] font-mono text-[var(--c-text-subtle)]">
+              {replayIdx + 1} / {replayTotal}
+            </span>
+            <div className="w-24 h-1 bg-[var(--c-bg-muted)] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#3b82f6] rounded-full transition-all duration-75"
+                style={{ width: `${replayTotal > 1 ? (replayIdx / (replayTotal - 1)) * 100 : 0}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Main grid ── */}
       <div className="flex flex-1 overflow-hidden min-h-0">
@@ -533,15 +781,17 @@ export default function TradingSimulator() {
             ))}
           </div>
 
-          {/* Chart area — full on desktop, conditional on mobile */}
+          {/* Chart area */}
           <div className={`flex-1 overflow-hidden bg-[var(--c-bg-subtle)] relative min-h-0 ${mobileTab !== 'chart' ? 'hidden lg:flex lg:flex-col' : 'flex flex-col'}`}>
             <div className="w-full h-full">
               <TradingChart
-                candles={candles} symbol={symbol}
+                candles={candles}
+                symbol={symbol}
                 entryPrice={position.side ? position.avgPrice : null}
                 positionSide={position.side}
                 stopLoss={!isNaN(slVal) && slVal > 0 ? slVal : null}
                 takeProfit={!isNaN(tpVal) && tpVal > 0 ? tpVal : null}
+                resetKey={chartResetKey}
               />
             </div>
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
@@ -550,6 +800,12 @@ export default function TradingSimulator() {
               <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</div>
               <div className={`text-[12px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>{fmtPct(pricePct)}</div>
             </div>
+            {/* Replay hint */}
+            {mode === 'replay' && (
+              <div className="absolute bottom-3 left-3 text-[10px] font-mono text-[var(--c-text-faint)] pointer-events-none">
+                Space / → to step · B buy · S sell · F flatten
+              </div>
+            )}
           </div>
 
           {/* Mobile: Order tab */}

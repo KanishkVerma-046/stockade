@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="500 — Server Error | Stockade"
+  description="Something went wrong on our end. The Stockade team has been notified. Please try again shortly."
+>
+  <Navbar />
+
+  <main class="min-h-[calc(100vh-7rem)] flex items-center justify-center px-6 py-24">
+    <div class="text-center max-w-[480px]">
+
+      <!-- Error code -->
+      <div class="text-[96px] font-mono font-bold leading-none tracking-tight text-[var(--c-border)] mb-2 select-none">
+        500
+      </div>
+
+      <!-- Red accent line -->
+      <div class="w-12 h-0.5 bg-[#ef4444] mx-auto mb-8"></div>
+
+      <h1 class="text-2xl font-bold text-[var(--c-text)] mb-3">Something went wrong</h1>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-10">
+        We hit an unexpected error on our end. Please try refreshing the page or come back in a
+        moment. If the problem persists,
+        <a href="/contact" class="text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2">
+          let us know
+        </a>.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <button
+          onclick="window.location.reload()"
+          class="px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors cursor-pointer"
+        >
+          Try again →
+        </button>
+        <a
+          href="/"
+          class="px-5 py-2.5 rounded-full bg-[var(--c-bg-soft)] text-[var(--c-text)] font-semibold text-[14px] border border-[var(--c-border)] hover:bg-[var(--c-bg-muted)] transition-colors"
+        >
+          Go Home
+        </a>
+      </div>
+
+      <!-- Status note -->
+      <div class="mt-12 pt-8 border-t border-[var(--c-border)]">
+        <p class="text-[12px] font-mono text-[var(--c-text-subtle)] leading-relaxed">
+          Error code: 500 · Internal Server Error<br />
+          If this keeps happening, contact us at
+          <a href="mailto:hello@stockademarketsim.com" class="text-[#f59e0b] hover:text-[#fbbf24]">
+            hello@stockademarketsim.com
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

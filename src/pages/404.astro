@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="404 — Page Not Found | Stockade"
+  description="The page you're looking for doesn't exist. Head back to the Stockade trading simulator."
+>
+  <Navbar />
+
+  <main class="min-h-[calc(100vh-7rem)] flex items-center justify-center px-6 py-24">
+    <div class="text-center max-w-[480px]">
+
+      <!-- Error code -->
+      <div class="text-[96px] font-mono font-bold leading-none tracking-tight text-[var(--c-border)] mb-2 select-none">
+        404
+      </div>
+
+      <!-- Amber accent line -->
+      <div class="w-12 h-0.5 bg-[#f59e0b] mx-auto mb-8"></div>
+
+      <h1 class="text-2xl font-bold text-[var(--c-text)] mb-3">Page not found</h1>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-10">
+        The page you're looking for doesn't exist or has been moved.
+        Let's get you back to the markets.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="/simulator"
+          class="px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
+        >
+          Open Simulator →
+        </a>
+        <a
+          href="/"
+          class="px-5 py-2.5 rounded-full bg-[var(--c-bg-soft)] text-[var(--c-text)] font-semibold text-[14px] border border-[var(--c-border)] hover:bg-[var(--c-bg-muted)] transition-colors"
+        >
+          Go Home
+        </a>
+      </div>
+
+      <!-- Quick links -->
+      <div class="mt-12 pt-8 border-t border-[var(--c-border)]">
+        <p class="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-4">
+          Popular pages
+        </p>
+        <div class="flex flex-wrap justify-center gap-2">
+          {[
+            { href: '/markets',    label: 'Markets' },
+            { href: '/analytics',  label: 'Analytics' },
+            { href: '/leaderboard',label: 'Leaderboard' },
+            { href: '/feed',       label: 'Trade Feed' },
+          ].map(l => (
+            <a
+              href={l.href}
+              class="px-3 py-1.5 rounded-md bg-[var(--c-bg-soft)] border border-[var(--c-border)] text-[13px] text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:border-[var(--c-border-strong)] transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

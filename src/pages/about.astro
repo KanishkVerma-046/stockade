@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="About Stockade — Free Stock Market Simulator"
+  description="Learn about Stockade, the free browser-based stock market simulator built for traders who want to practice without risk. No signup, no money, no limits."
+  canonical="https://stockademarketsim.com/about"
+>
+  <Navbar />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">About</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Built for traders who want to learn, not gamble.
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade is a free, browser-based stock market simulator that lets anyone practice trading
+        stocks, crypto, forex, and futures with $100,000 in virtual money — no signup, no credit
+        card, no risk.
+      </p>
+    </div>
+
+    <!-- Mission -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Our mission</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Most trading simulators are either too simplified to be useful or locked behind paywalls and
+        mandatory account creation. We built Stockade because we believe that access to professional
+        trading tools shouldn't cost anything — and learning the market shouldn't require risking
+        real money first.
+      </p>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Our goal is simple: give every aspiring trader the same professional-grade environment the
+        pros use, completely free, right in the browser, instantly.
+      </p>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">What Stockade gives you</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            title: 'Real candlestick charts',
+            desc: 'Full OHLCV candlestick charts with volume histograms — the same chart type used by professional traders worldwide.',
+          },
+          {
+            title: 'Professional indicators',
+            desc: 'EMA 9/20/50, VWAP, RSI, and MACD overlays built in. No subscriptions, no extras required.',
+          },
+          {
+            title: 'Complete order panel',
+            desc: 'Market, limit, stop-loss, take-profit, and OCO bracket orders — every order type a real broker offers.',
+          },
+          {
+            title: 'Performance analytics',
+            desc: 'Equity curve, win rate, profit factor, average win/loss, max drawdown, and a time-of-day heatmap.',
+          },
+          {
+            title: 'Multi-asset coverage',
+            desc: 'Trade 22+ assets: equities, BTC/ETH crypto, major forex pairs, and futures (NQ, ES, CL, GC).',
+          },
+          {
+            title: 'Global leaderboard',
+            desc: 'Compete anonymously against traders worldwide, ranked by P&L, win rate, and profit factor.',
+          },
+          {
+            title: 'Live & historical modes',
+            desc: '800ms live ticks for real-time practice, or replay historical sessions candle-by-candle at your own pace.',
+          },
+          {
+            title: '100% free, forever',
+            desc: 'No trials, no freemium tiers, no upsells. Every feature is included at no cost, always.',
+          },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+            <h3 class="text-[14px] font-semibold text-[var(--c-text)] mb-1.5">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Not financial advice</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade is an educational and entertainment platform only. All trading is conducted with
+        virtual money that has no real-world value. Nothing on this site constitutes financial,
+        investment, legal, or tax advice. Past simulated performance does not indicate future
+        real-world results. Please consult a licensed financial adviser before making any real
+        investment decisions.
+      </p>
+    </section>
+
+    <!-- Contact CTA -->
+    <section>
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Get in touch</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-5">
+        Have a question, suggestion, or found a bug? We'd love to hear from you.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
+      >
+        Contact us →
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

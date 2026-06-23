@@ -1,4 +1,4 @@
----
+﻿---
 import '../styles/global.css';
 import Navbar from '../components/layout/Navbar.astro';
 import TickerTape from '../components/landing/TickerTape.tsx';
@@ -19,7 +19,7 @@ const {
   canonical,
 } = Astro.props;
 
-const siteUrl = 'https://stockade.io';
+const siteUrl = 'https://stockademarketsim.com';
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---

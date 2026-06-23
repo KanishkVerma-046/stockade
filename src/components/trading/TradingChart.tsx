@@ -28,6 +28,7 @@ interface Props {
   positionSide?: 'long' | 'short' | null;
   stopLoss?: number | null;
   takeProfit?: number | null;
+  resetKey?: number;
 }
 
 const EMA_CONFIGS = [
@@ -150,13 +151,14 @@ function chartColors(isDark: boolean) {
   };
 }
 
-export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit }: Props) {
+export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
   const volumeRef     = useRef<ISeriesApi<'Histogram'> | null>(null);
   const emaRefs       = useRef<Partial<Record<EmaPeriod, ISeriesApi<'Line'>>>>({});
   const symbolRef     = useRef(symbol);
+  const resetKeyRef   = useRef<number | undefined>(resetKey);
   const entryLineRef  = useRef<ReturnType<ISeriesApi<'Candlestick'>['createPriceLine']> | null>(null);
   const slLineRef     = useRef<ReturnType<ISeriesApi<'Candlestick'>['createPriceLine']> | null>(null);
   const tpLineRef     = useRef<ReturnType<ISeriesApi<'Candlestick'>['createPriceLine']> | null>(null);
@@ -326,14 +328,17 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     });
   }, [isDark]);
 
-  // ── Data updates (ticks + symbol changes) ─────────────────────────────────────
+  // ── Data updates (ticks + symbol changes + replay resets) ────────────────────
   useEffect(() => {
     if (!candleRef.current || !volumeRef.current || candles.length === 0) return;
 
     const norm = normalize(candles);
     const last = norm[norm.length - 1];
 
-    if (symbol !== symbolRef.current) {
+    const forceReset = resetKey !== undefined && resetKey !== resetKeyRef.current;
+    if (forceReset) resetKeyRef.current = resetKey;
+
+    if (symbol !== symbolRef.current || forceReset) {
       symbolRef.current = symbol;
       candleRef.current.setData(norm.map(toCandleBar));
       volumeRef.current.setData(norm.map(toVolBar));
@@ -369,7 +374,7 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     macdLineRef.current?.setData(macd);
     macdSigRef.current?.setData(signal);
     macdHistRef.current?.setData(hist);
-  }, [candles, symbol]);
+  }, [candles, symbol, resetKey]);
 
   // Track prevEmaRef on new candle
   useEffect(() => {
