@@ -122,6 +122,16 @@ function loadStoredBalance(): number {
   try { const v = localStorage.getItem('stockade_balance'); return v ? parseFloat(v) : 100_000; } catch { return 100_000; }
 }
 
+function loadStoredTrades(): Trade[] {
+  try {
+    const raw = localStorage.getItem('stockade_trades');
+    const arr: StoredTrade[] = raw ? JSON.parse(raw) : [];
+    return arr
+      .sort((a, b) => b.closedAt - a.closedAt)
+      .map(t => ({ id: t.id, side: t.side === 'LONG' ? 'sell' : 'buy' as 'buy' | 'sell', qty: t.qty, price: t.exit, time: t.closedAt, pnl: t.pnl }));
+  } catch { return []; }
+}
+
 function appendStoredTrade(trade: StoredTrade) {
   try {
     const raw = localStorage.getItem('stockade_trades');
@@ -159,7 +169,7 @@ export default function TradingSimulator() {
   const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
   const [balance, setBalance]   = useState(() => typeof window !== 'undefined' ? loadStoredBalance() : 100_000);
   const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
-  const [trades, setTrades]     = useState<Trade[]>([]);
+  const [trades, setTrades]     = useState<Trade[]>(() => typeof window !== 'undefined' ? loadStoredTrades() : []);
   const [disclaimer, setDisclaimer] = useState(true);
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
