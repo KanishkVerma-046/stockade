@@ -51,7 +51,7 @@ export default function LiveSimulator() {
   );
   const [qty, setQty]           = useState('100');
   const [balance, setBalance]   = useState(100_000);
-  const [position, setPosition] = useState<{ side: 'long' | 'short'; qty: number; avg: number } | null>(null);
+  const [position, setPosition] = useState<{ side: 'long' | 'short'; qty: number; avg: number; openedAt: number } | null>(null);
   const [trades, setTrades]     = useState<{ side: string; qty: number; price: number; pnl: number | null }[]>([]);
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
 
@@ -112,13 +112,21 @@ export default function LiveSimulator() {
     if (side === 'flatten' && position) {
       const mult = position.side === 'long' ? 1 : -1;
       const pnl  = mult * (price - position.avg) * position.qty;
+      const closedAt = Date.now();
+      try {
+        const raw = localStorage.getItem('stockade_trades');
+        const arr = raw ? JSON.parse(raw) : [];
+        arr.push({ id: crypto.randomUUID(), symbol: sym, side: position.side === 'long' ? 'LONG' : 'SHORT', entry: position.avg, exit: price, qty: position.qty, pnl, openedAt: position.openedAt, closedAt });
+        localStorage.setItem('stockade_trades', JSON.stringify(arr));
+        localStorage.setItem('stockade_balance', String(balance + pnl));
+      } catch {}
       setBalance(b => b + pnl);
       setTrades(t => [{ side: 'flatten', qty: position.qty, price, pnl }, ...t.slice(0, 19)]);
       setPosition(null);
       return;
     }
     if (!position) {
-      setPosition({ side: side === 'buy' ? 'long' : 'short', qty: q, avg: price });
+      setPosition({ side: side === 'buy' ? 'long' : 'short', qty: q, avg: price, openedAt: Date.now() });
       setBalance(b => side === 'buy' ? b - price * q : b + price * q);
       setTrades(t => [{ side, qty: q, price, pnl: null }, ...t.slice(0, 19)]);
     }

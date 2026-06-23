@@ -20,6 +20,7 @@ interface Position {
   qty: number;
   avgPrice: number;
   unrealizedPnl: number;
+  openedAt: number;
 }
 
 interface Trade {
@@ -29,6 +30,18 @@ interface Trade {
   price: number;
   time: number;
   pnl: number | null;
+}
+
+interface StoredTrade {
+  id: string;
+  symbol: string;
+  side: 'LONG' | 'SHORT';
+  entry: number;
+  exit: number;
+  qty: number;
+  pnl: number;
+  openedAt: number;
+  closedAt: number;
 }
 
 interface OrderForm {
@@ -105,6 +118,19 @@ function symPrefix(sym: string): string {
   return (sym === 'EUR/USD' || sym === 'GBP/USD' || sym === 'USD/JPY') ? '' : '$';
 }
 
+function loadStoredBalance(): number {
+  try { const v = localStorage.getItem('stockade_balance'); return v ? parseFloat(v) : 100_000; } catch { return 100_000; }
+}
+
+function appendStoredTrade(trade: StoredTrade) {
+  try {
+    const raw = localStorage.getItem('stockade_trades');
+    const arr: StoredTrade[] = raw ? JSON.parse(raw) : [];
+    arr.push(trade);
+    localStorage.setItem('stockade_trades', JSON.stringify(arr));
+  } catch {}
+}
+
 function DisclaimerBanner({ onDismiss }: { onDismiss: () => void }) {
   return (
     <div className="absolute bottom-0 left-0 right-0 z-50 bg-[var(--c-amber-bg)] border-t border-[var(--c-amber-dim)] px-4 py-3 flex items-center gap-4">
@@ -131,8 +157,8 @@ function initSymbol(): string {
 export default function TradingSimulator() {
   const [symbol, setSymbol]     = useState<string>(initSymbol);
   const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
-  const [balance, setBalance]   = useState(100_000);
-  const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
+  const [balance, setBalance]   = useState(() => typeof window !== 'undefined' ? loadStoredBalance() : 100_000);
+  const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
   const [trades, setTrades]     = useState<Trade[]>([]);
   const [disclaimer, setDisclaimer] = useState(true);
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
@@ -146,6 +172,7 @@ export default function TradingSimulator() {
   const orderRef       = useRef(order);
   useEffect(() => { positionRef.current = position; }, [position]);
   useEffect(() => { orderRef.current = order; }, [order]);
+  useEffect(() => { try { localStorage.setItem('stockade_balance', String(balance)); } catch {} }, [balance]);
 
   const currentPrice = candles[candles.length - 1]?.close ?? 100;
   const prevPrice    = candles[candles.length - 2]?.close ?? currentPrice;
@@ -204,9 +231,12 @@ export default function TradingSimulator() {
     const tpHit = !isNaN(tp) && tp > 0 && ((isLong && currentPrice >= tp) || (!isLong && currentPrice <= tp));
     if (slHit || tpHit) {
       const pnl = (isLong ? 1 : -1) * (currentPrice - pos.avgPrice) * pos.qty;
+      const id = crypto.randomUUID();
+      const closedAt = Date.now();
+      appendStoredTrade({ id, symbol, side: isLong ? 'LONG' : 'SHORT', entry: pos.avgPrice, exit: currentPrice, qty: pos.qty, pnl, openedAt: pos.openedAt, closedAt });
       setBalance(b => isLong ? b + currentPrice * pos.qty : b - currentPrice * pos.qty);
-      setTrades(t => [{ id: crypto.randomUUID(), side: isLong ? 'sell' : 'buy', qty: pos.qty, price: currentPrice, time: Date.now(), pnl }, ...t.slice(0, 99)]);
-      setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
+      setTrades(t => [{ id, side: isLong ? 'sell' : 'buy', qty: pos.qty, price: currentPrice, time: closedAt, pnl }, ...t.slice(0, 99)]);
+      setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
       setOrder(o => ({ ...o, stopLoss: '', takeProfit: '' }));
     }
   }, [currentPrice]);
@@ -214,7 +244,7 @@ export default function TradingSimulator() {
   function changeSymbol(sym: string) {
     setSymbol(sym);
     setCandles(generateCandles(getBasePrice(sym)));
-    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
+    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
     trendBiasRef.current = 0;
   }
 
@@ -225,9 +255,12 @@ export default function TradingSimulator() {
     if (action === 'flatten') {
       if (!position.side) return;
       const pnl = (position.side === 'long' ? 1 : -1) * (price - position.avgPrice) * position.qty;
+      const id = crypto.randomUUID();
+      const closedAt = Date.now();
+      appendStoredTrade({ id, symbol, side: position.side === 'long' ? 'LONG' : 'SHORT', entry: position.avgPrice, exit: price, qty: position.qty, pnl, openedAt: position.openedAt, closedAt });
       setBalance(b => position.side === 'long' ? b + price * position.qty : b - price * position.qty);
-      setTrades(t => [{ id: crypto.randomUUID(), side: position.side === 'long' ? 'sell' : 'buy', qty: position.qty, price, time: Date.now(), pnl }, ...t.slice(0, 99)]);
-      setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
+      setTrades(t => [{ id, side: position.side === 'long' ? 'sell' : 'buy', qty: position.qty, price, time: closedAt, pnl }, ...t.slice(0, 99)]);
+      setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
       return;
     }
 
@@ -235,7 +268,7 @@ export default function TradingSimulator() {
     if (action === 'buy' && cost > balance) return;
 
     if (!position.side) {
-      setPosition({ side: action === 'buy' ? 'long' : 'short', qty, avgPrice: price, unrealizedPnl: 0 });
+      setPosition({ side: action === 'buy' ? 'long' : 'short', qty, avgPrice: price, unrealizedPnl: 0, openedAt: Date.now() });
       setBalance(b => action === 'buy' ? b - cost : b + cost);
     } else {
       const sameDir = (action === 'buy' && position.side === 'long') || (action === 'sell' && position.side === 'short');
@@ -247,17 +280,23 @@ export default function TradingSimulator() {
         const pnl = (position.side === 'long' ? 1 : -1) * (price - position.avgPrice) * Math.min(qty, position.qty);
         setBalance(b => b + (action === 'buy' ? -cost : cost));
         if (qty >= position.qty) {
-          setTrades(t => [{ id: crypto.randomUUID(), side: action, qty: position.qty, price, time: Date.now(), pnl }, ...t.slice(0, 99)]);
+          const id = crypto.randomUUID();
+          const closedAt = Date.now();
+          appendStoredTrade({ id, symbol, side: position.side === 'long' ? 'LONG' : 'SHORT', entry: position.avgPrice, exit: price, qty: position.qty, pnl, openedAt: position.openedAt, closedAt });
+          setTrades(t => [{ id, side: action, qty: position.qty, price, time: closedAt, pnl }, ...t.slice(0, 99)]);
           setPosition(qty > position.qty
-            ? { side: action === 'buy' ? 'long' : 'short', qty: qty - position.qty, avgPrice: price, unrealizedPnl: 0 }
-            : { side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
+            ? { side: action === 'buy' ? 'long' : 'short', qty: qty - position.qty, avgPrice: price, unrealizedPnl: 0, openedAt: closedAt }
+            : { side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
         } else {
+          const id = crypto.randomUUID();
+          const closedAt = Date.now();
+          appendStoredTrade({ id, symbol, side: position.side === 'long' ? 'LONG' : 'SHORT', entry: position.avgPrice, exit: price, qty, pnl, openedAt: position.openedAt, closedAt });
           setPosition(p => ({ ...p, qty: p.qty - qty }));
-          setTrades(t => [{ id: crypto.randomUUID(), side: action, qty, price, time: Date.now(), pnl }, ...t.slice(0, 99)]);
+          setTrades(t => [{ id, side: action, qty, price, time: closedAt, pnl }, ...t.slice(0, 99)]);
         }
       }
     }
-  }, [order, currentPrice, balance, position]);
+  }, [order, currentPrice, balance, position, symbol]);
 
   useEffect(() => {
     function handler(e: KeyboardEvent) {
@@ -281,6 +320,19 @@ export default function TradingSimulator() {
   const tpVal     = parseFloat(order.takeProfit);
 
   // ── Shared sub-renders ─────────────────────────────────────────────────────
+
+  const pricePanelJSX = (
+    <div className="px-4 pt-4 pb-3 border-b border-[var(--c-border)] shrink-0">
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{symbol} · 1M</div>
+      <div className="text-[26px] font-mono font-bold text-[var(--c-text)] leading-none">
+        {symPrefix(symbol)}{fmtSym(currentPrice, symbol)}
+      </div>
+      <div className={`mt-1.5 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
+        {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)}
+        <span className="ml-1 text-[12px]">({fmtPct(pricePct)})</span>
+      </div>
+    </div>
+  );
 
   const orderFormJSX = (
     <div className="p-3 space-y-2">
@@ -405,12 +457,6 @@ export default function TradingSimulator() {
 
       {/* ── Top toolbar ── */}
       <div className="flex items-center gap-3 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
-        <div className="shrink-0 border-r border-[var(--c-border)] pr-3 mr-1">
-          <span className="text-lg font-mono font-semibold">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</span>
-          <span className={`ml-2 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-            {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)} ({fmtPct(pricePct)})
-          </span>
-        </div>
         <div className="flex items-center gap-3">
           {SYMBOL_GROUPS.map(group => (
             <div key={group.label} className="flex items-center gap-1 shrink-0">
@@ -432,31 +478,34 @@ export default function TradingSimulator() {
       <div className="flex flex-1 overflow-hidden min-h-0">
 
         {/* Left stats — desktop only */}
-        <div className="hidden lg:flex w-[180px] shrink-0 flex-col border-r border-[var(--c-border)] bg-[var(--c-bg-subtle)] p-3 gap-3 overflow-y-auto">
-          {[
-            { label: 'Equity',    value: fmtMoney(equity),   color: equity >= 100000 ? '#22c55e' : '#ef4444' },
-            { label: 'Cash',      value: fmtMoney(balance),  color: 'var(--c-text)' },
-            { label: 'Total P&L', value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
-            { label: 'Win Rate',  value: winRate.toFixed(0) + '%', color: '#f59e0b' },
-            { label: 'Trades',    value: trades.length.toString(), color: 'var(--c-text-muted)' },
-          ].map(s => (
-            <div key={s.label} className="bg-[var(--c-bg-muted)] rounded p-2.5 border border-[var(--c-border)]">
-              <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-1">{s.label}</div>
-              <div className="text-[15px] font-mono font-semibold" style={{ color: s.color }}>{s.value}</div>
-            </div>
-          ))}
-          {position.side && (
-            <div className={`rounded p-2.5 border ${position.side === 'long' ? 'bg-[var(--c-green-bg)] border-[var(--c-green-dim)]' : 'bg-[var(--c-red-bg)] border-[var(--c-red-dim)]'}`}>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">Position</div>
-              <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-                {position.side.toUpperCase()} {position.qty}
+        <div className="hidden lg:flex w-[180px] shrink-0 flex-col border-r border-[var(--c-border)] bg-[var(--c-bg-subtle)] overflow-y-auto">
+          <div className="p-3 flex flex-col gap-3 shrink-0">
+            {[
+              { label: 'Equity',    value: fmtMoney(equity),   color: equity >= 100000 ? '#22c55e' : '#ef4444' },
+              { label: 'Cash',      value: fmtMoney(balance),  color: 'var(--c-text)' },
+              { label: 'Total P&L', value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+            ].map(s => (
+              <div key={s.label} className="bg-[var(--c-bg-muted)] rounded p-2.5 border border-[var(--c-border)]">
+                <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-1">{s.label}</div>
+                <div className="text-[15px] font-mono font-semibold" style={{ color: s.color }}>{s.value}</div>
               </div>
-              <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
-              <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-                {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
+            ))}
+            {position.side && (
+              <div className={`rounded p-2.5 border ${position.side === 'long' ? 'bg-[var(--c-green-bg)] border-[var(--c-green-dim)]' : 'bg-[var(--c-red-bg)] border-[var(--c-red-dim)]'}`}>
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">Position</div>
+                <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
+                  {position.side.toUpperCase()} {position.qty}
+                </div>
+                <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
+                <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
+                  {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+          <div className="border-t border-[var(--c-border)] flex-1 overflow-y-auto">
+            {tradesListJSX}
+          </div>
         </div>
 
         {/* Center: chart + mobile content */}
@@ -495,6 +544,7 @@ export default function TradingSimulator() {
 
           {/* Mobile: Order tab */}
           <div className={`lg:hidden flex-1 overflow-y-auto bg-[var(--c-bg-subtle)] min-h-0 ${mobileTab !== 'order' ? 'hidden' : ''}`}>
+            {pricePanelJSX}
             {orderFormJSX}
           </div>
 
@@ -506,10 +556,8 @@ export default function TradingSimulator() {
 
         {/* Right panel — desktop only */}
         <div className="hidden lg:flex w-[220px] shrink-0 border-l border-[var(--c-border)] bg-[var(--c-bg-subtle)] flex-col overflow-y-auto">
+          {pricePanelJSX}
           {orderFormJSX}
-          <div className="border-t border-[var(--c-border)] flex-1 overflow-y-auto">
-            {tradesListJSX}
-          </div>
         </div>
       </div>
     </div>

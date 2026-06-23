@@ -185,6 +185,7 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
         textColor:   col.text,
         fontFamily:  "'JetBrains Mono', monospace",
         fontSize:    11,
+        attributionLogo: false,
       },
       grid: {
         vertLines: { color: col.grid },
