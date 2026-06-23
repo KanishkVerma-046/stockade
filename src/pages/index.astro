@@ -282,52 +282,6 @@ import LiveStats from '../components/landing/LiveStats.tsx';
     </div>
   </section>
 
-  <!-- ── Comparison table ── -->
-  <section class="py-24 px-6 bg-[var(--c-bg)]">
-    <div class="max-w-[800px] mx-auto">
-      <div class="text-center mb-12">
-        <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Comparison</div>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)]">Built better.</h2>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full border-collapse">
-          <thead>
-            <tr class="border-b border-[var(--c-border)]">
-              <th class="text-left py-3 px-4 text-[12px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">Feature</th>
-              <th class="py-3 px-4 text-[12px] font-mono text-[#f59e0b] uppercase tracking-wider">Stockade</th>
-              <th class="py-3 px-4 text-[12px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">Others</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              ['No signup required',         true,  false],
-              ['Completely free',             true,  false],
-              ['Candlestick charts',          true,  true ],
-              ['Multiple indicators',         true,  false],
-              ['Bracket orders (OCO)',        true,  false],
-              ['Historical session replay',   true,  false],
-              ['Analytics dashboard',         true,  false],
-              ['Mobile responsive',           true,  false],
-              ['Keyboard shortcuts',          true,  false],
-              ['Multi-asset (stock+crypto)',  true,  false],
-              ['Global leaderboard',          true,  true ],
-            ].map(([feat, us, them]) => (
-              <tr class="border-b border-[var(--c-border)] hover:bg-[var(--c-bg-soft)] transition-colors">
-                <td class="py-3 px-4 text-[14px] text-[var(--c-text-muted)]">{feat as string}</td>
-                <td class="py-3 px-4 text-center">
-                  <span class={us ? 'text-[#22c55e]' : 'text-[#ef4444]'}>{us ? '✓' : '✗'}</span>
-                </td>
-                <td class="py-3 px-4 text-center">
-                  <span class={them ? 'text-[#22c55e]' : 'text-[#ef4444]'}>{them ? '✓' : '✗'}</span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
   <!-- ── SEO Content ── -->
   <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)]">
     <div class="max-w-[800px] mx-auto">
