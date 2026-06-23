@@ -5,13 +5,18 @@ import Footer from '../components/layout/Footer.astro';
 import Leaderboard from '../components/leaderboard/Leaderboard.tsx';
 ---
 
-<Layout title="Leaderboard — Stockade" description="Top traders on the Stockade simulator.">
+<Layout
+  title="Global Leaderboard — Top Paper Traders Ranked | Stockade Simulator"
+  description="See the top-ranked paper traders on Stockade's free stock market simulator game. Compete against traders worldwide, ranked by P&L, win rate, and profit factor."
+  keywords="stock market simulator game, stock market simulator & game, stock market simulator game online, trading simulator, free stock market simulator, online stock market simulator"
+  canonical="https://stockade.io/leaderboard"
+>
   <Navbar />
   <main class="max-w-[1100px] mx-auto px-4 py-8">
     <div class="mb-8">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Rankings</div>
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Global Leaderboard</h1>
-      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Top performers ranked by simulated profit factor this week.</p>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Top performers ranked by simulated profit factor this week. Can you climb to #1?</p>
     </div>
     <Leaderboard client:load />
   </main>

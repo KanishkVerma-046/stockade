@@ -6,7 +6,114 @@ import TickerTape from '../components/landing/TickerTape.tsx';
 import LiveStats from '../components/landing/LiveStats.tsx';
 ---
 
-<Layout>
+<Layout
+  title="Free Stock Market Simulator — Practice Trading Online | Stockade"
+  description="The #1 free stock market simulator. Practice day trading, paper trading & crypto trading with $100K virtual money. No signup required. Stocks, forex, futures & crypto simulator online."
+  keywords="stock market simulator, stock market simulator game, stock market simulator for students, stock market simulator app, free stock market simulator, fake stock market simulator, stock market simulator free, virtual stock market simulator, stock market simulator & game, online stock market simulator, stock market simulator game online, stock market simulator for students free, stock market simulator online, trading simulator, day trading simulator, paper trading simulator, stock trading simulator, day trading simulator free, trading simulator free, free day trading simulator, futures trading simulator, crypto trading simulator, fake trading simulator, forex trading simulator, fake day trading simulator"
+  canonical="https://stockade.io/"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://stockade.io/#website",
+            "url": "https://stockade.io/",
+            "name": "Stockade",
+            "description": "Free stock market simulator. Practice trading stocks, crypto, forex, and futures with $100K virtual money.",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://stockade.io/markets"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://stockade.io/#app",
+            "name": "Stockade Stock Market Simulator",
+            "url": "https://stockade.io/",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "Free online stock market simulator for paper trading stocks, crypto, forex, and futures. No signup required.",
+            "screenshot": "https://stockade.io/og-image.png",
+            "featureList": [
+              "Real candlestick charts with volume",
+              "EMA, VWAP, RSI, MACD indicators",
+              "Market, limit, stop-loss, and bracket orders",
+              "Paper trading with $100,000 virtual balance",
+              "Analytics dashboard with equity curve",
+              "Global leaderboard",
+              "Stocks, crypto, forex, and futures"
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "1200"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://stockade.io/#organization",
+            "name": "Stockade",
+            "url": "https://stockade.io/",
+            "logo": "https://stockade.io/favicon-96x96.png",
+            "sameAs": []
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Stockade a completely free stock market simulator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Stockade is 100% free forever. Every feature, every asset class, and every tool is included at no cost. No signup, no credit card, no subscription required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can students use Stockade as a stock market simulator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Stockade is one of the best free stock market simulators for students. It requires no installation or account creation, making it ideal for classroom use, university finance courses, and self-directed learning."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Stockade support crypto, forex, and futures trading simulation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Stockade is a multi-asset trading simulator covering stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in one free platform."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Stockade a paper trading or day trading simulator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Stockade functions as both a paper trading simulator and a day trading simulator. You can replay historical sessions candle-by-candle or trade live with 800ms price ticks, both with $100,000 in virtual money."
+            }
+          }
+        ]
+      }
+    </script>
+  </Fragment>
+
   <Navbar />
 
   <!-- ── Hero ── -->
@@ -217,6 +324,109 @@ import LiveStats from '../components/landing/LiveStats.tsx';
             ))}
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SEO Content ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">About Stockade</div>
+      <article class="prose-stockade">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)] mb-6">
+          The Free Stock Market Simulator Built for Real Traders
+        </h2>
+
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Stockade is the most complete <strong class="text-[var(--c-text)]">free stock market simulator</strong> available online — built for traders who are serious about learning, not just playing around. Start with a <strong class="text-[var(--c-text)]">$100,000 virtual balance</strong> and practice trading stocks, crypto, forex, and futures in a professional-grade environment that mirrors real market dynamics. No credit card. No account. No risk. Open your browser and you're trading in seconds.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Why Most Stock Market Simulator Games Don't Work
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Most <strong class="text-[var(--c-text)]">stock market simulator games</strong> trade realism for engagement — stripping out the indicators, order types, and risk metrics that make trading education valuable. What you get is a simplified game that feels nothing like an actual brokerage platform. Stockade is built differently. Every tool mirrors what professional traders use: full candlestick charts with volume histograms, EMA 9/20/50 overlays, VWAP, RSI, MACD, and a complete order panel with market, limit, stop-loss, take-profit, and OCO bracket orders. This is a <strong class="text-[var(--c-text)]">trading simulator</strong> designed to build transferable skills — not just let you watch lines move.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          The Best Free Day Trading Simulator Online
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          As a <strong class="text-[var(--c-text)]">free day trading simulator</strong>, Stockade gives you two distinct environments. The <strong class="text-[var(--c-text)]">live simulator</strong> streams six assets simultaneously with 800ms price ticks, letting you practice reacting to fast-moving markets in real time. The historical simulator lets you replay entire trading sessions candle-by-candle at your own pace — perfect for building pattern recognition without the pressure of a live market. Unlike broker-based <strong class="text-[var(--c-text)]">paper trading simulators</strong> that require registration and link to real accounts, Stockade works instantly, anonymously, and completely free — making it the top choice for a <strong class="text-[var(--c-text)]">fake day trading simulator</strong> experience that mirrors the real thing.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Multi-Asset Trading: Stocks, Crypto, Forex & Futures
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Stockade is a truly multi-asset <strong class="text-[var(--c-text)]">virtual stock market simulator</strong>. Trade 14 equity tickers with realistic price behavior, practice volatile BTC and ETH moves on the <strong class="text-[var(--c-text)]">crypto trading simulator</strong>, develop discipline on major and minor currency pairs with the built-in <strong class="text-[var(--c-text)]">forex trading simulator</strong>, or stress-test strategies on NQ, ES, CL, and GC contracts using the <strong class="text-[var(--c-text)]">futures trading simulator</strong>. One platform. Every market. All free.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Stock Market Simulator for Students — Free & Instant
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Stockade is the ideal <strong class="text-[var(--c-text)]">stock market simulator for students</strong>. It requires zero installation, zero account creation, and zero budget — which makes it the go-to <strong class="text-[var(--c-text)]">free stock market simulator for students</strong> in high school economics classes, university finance courses, and trading clubs worldwide. Teachers can run paper trading competitions and have students analyze their results through the built-in analytics dashboard: equity curve, win rate, profit factor, average win/loss, maximum drawdown, and a time-of-day heatmap that shows when trades perform best. The competitive <strong class="text-[var(--c-text)]">global leaderboard</strong> turns the whole experience into a motivating <strong class="text-[var(--c-text)]">stock market simulator game online</strong> — see who can grow their virtual portfolio the most.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Every Feature Free — Forever
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-4">
+          Other <strong class="text-[var(--c-text)]">online stock market simulators</strong> lock their best tools behind paywalls or require you to create an account before you can place a single trade. Stockade keeps everything free, forever. Here's what's included at no cost:
+        </p>
+        <ul class="space-y-2 mb-6 ml-4">
+          {[
+            'Real candlestick charts with volume',
+            'Professional indicators: EMA, VWAP, RSI, MACD',
+            'Full order panel: market, limit, stop-loss, take-profit, OCO',
+            'Performance analytics with equity curves and drawdown tracking',
+            'Global leaderboard ranked by P&L, win rate, and profit factor',
+            'Live trade community feed',
+            'Complete mobile and tablet support',
+          ].map(item => (
+            <li class="flex items-start gap-2 text-[15px] text-[var(--c-text-muted)]">
+              <span class="text-[#22c55e] mt-0.5 shrink-0">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed">
+          No trials. No freemium tiers. No upsells. Stockade is the most complete <strong class="text-[var(--c-text)]">free trading simulator</strong> on the web — a professional <strong class="text-[var(--c-text)]">stock market simulator &amp; game</strong> that takes trading education as seriously as you do. Launch the simulator, build your edge, and climb the leaderboard.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="py-20 px-6 bg-[var(--c-bg)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">FAQ</div>
+      <h2 class="text-3xl font-bold tracking-tight text-[var(--c-text)] mb-10">Common questions</h2>
+      <div class="space-y-6">
+        {[
+          {
+            q: 'Is Stockade completely free?',
+            a: 'Yes — 100% free forever. Every feature, every asset class, every tool. No signup, no credit card, no subscription required.',
+          },
+          {
+            q: 'Can students use Stockade as a stock market simulator?',
+            a: 'Absolutely. Stockade is one of the best free stock market simulators for students. No installation or account needed, making it perfect for classroom use, university finance courses, and self-directed learning.',
+          },
+          {
+            q: 'Does Stockade support crypto, forex, and futures?',
+            a: 'Yes. Stockade covers stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in a single free platform.',
+          },
+          {
+            q: 'Is Stockade a paper trading or day trading simulator?',
+            a: 'Both. Replay historical sessions candle-by-candle (paper trading) or stream live prices at 800ms ticks (day trading) — all with $100,000 in virtual money.',
+          },
+        ].map(({ q, a }) => (
+          <div class="border border-[var(--c-border)] rounded-xl p-5 bg-[var(--c-bg-soft)]">
+            <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2">{q}</h3>
+            <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed">{a}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>

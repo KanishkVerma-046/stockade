@@ -5,13 +5,18 @@ import Footer from '../components/layout/Footer.astro';
 import MarketsView from '../components/markets/MarketsView.tsx';
 ---
 
-<Layout title="Markets — Stockade" description="Real-time market overview: stocks, crypto, forex, and futures.">
+<Layout
+  title="Markets — Stocks, Crypto, Forex & Futures Prices | Stockade Simulator"
+  description="Monitor 22+ simulated assets including stocks, crypto, forex, and futures on our free online stock market simulator. Prices update every 2 seconds. No signup required."
+  keywords="online stock market simulator, virtual stock market simulator, stock market simulator online, stock market simulator app, trading simulator, crypto trading simulator, forex trading simulator, futures trading simulator"
+  canonical="https://stockade.io/markets"
+>
   <Navbar />
   <main class="max-w-[1400px] mx-auto px-4 py-8">
     <div class="mb-8">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Markets</div>
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Market Overview</h1>
-      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Simulated prices updated every 2 seconds.</p>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Simulated prices updated every 2 seconds across stocks, crypto, forex, and futures.</p>
     </div>
     <MarketsView client:load />
   </main>

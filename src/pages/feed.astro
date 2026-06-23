@@ -5,13 +5,18 @@ import Footer from '../components/layout/Footer.astro';
 import TradeFeed from '../components/feed/TradeFeed.tsx';
 ---
 
-<Layout title="Trade Feed — Stockade" description="See what other traders are doing in real time.">
+<Layout
+  title="Live Trade Feed — Real-Time Simulated Trades | Stockade"
+  description="Watch live simulated trades from the Stockade community. See what assets virtual traders are buying and selling right now on our free online stock market simulator."
+  keywords="stock market simulator, trading simulator, virtual stock market simulator, online stock market simulator, stock market simulator game online, free stock market simulator"
+  canonical="https://stockade.io/feed"
+>
   <Navbar />
   <main class="max-w-[860px] mx-auto px-4 py-8">
     <div class="mb-8">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Community</div>
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Live Trade Feed</h1>
-      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">See what traders are doing right now.</p>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">See what traders are doing right now in the virtual stock market simulator.</p>
     </div>
     <TradeFeed client:load />
   </main>

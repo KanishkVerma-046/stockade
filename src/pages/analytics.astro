@@ -5,13 +5,18 @@ import Footer from '../components/layout/Footer.astro';
 import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
 ---
 
-<Layout title="Analytics — Stockade" description="Track your trading performance with detailed analytics.">
+<Layout
+  title="Trading Analytics Dashboard — Track Your Paper Trading Performance | Stockade"
+  description="Analyze your paper trading performance with equity curves, win rates, drawdown metrics, profit factor, and trade journals on Stockade's free stock market simulator."
+  keywords="paper trading simulator, trading simulator, stock market simulator, day trading simulator, free trading simulator, stock trading simulator"
+  canonical="https://stockade.io/analytics"
+>
   <Navbar />
   <main class="max-w-[1400px] mx-auto px-4 py-8">
     <div class="mb-8">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analytics</div>
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Performance Dashboard</h1>
-      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Your simulated trading statistics and metrics.</p>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Your simulated trading statistics — equity curve, win rate, drawdown, and trade journal.</p>
     </div>
     <AnalyticsDashboard client:load />
   </main>
