@@ -62,6 +62,21 @@ function isActive(href: string) {
         Live
       </div>
 
+      <!-- Fullscreen toggle -->
+      <button
+        id="fullscreen-toggle"
+        aria-label="Toggle fullscreen"
+        title="Toggle fullscreen"
+        class="p-1.5 rounded-md text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] transition-colors"
+      >
+        <svg id="fs-icon-expand" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 5V1h4M15 5V1h-4M1 11v4h4M15 11v4h-4"/>
+        </svg>
+        <svg id="fs-icon-compress" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" class="hidden">
+          <path d="M5 1v4H1M11 1v4h4M5 15v-4H1M11 15v-4h4"/>
+        </svg>
+      </button>
+
       <!-- Theme toggle -->
       <button
         id="theme-toggle"
@@ -122,6 +137,24 @@ function isActive(href: string) {
 </nav>
 
 <script>
+  // Fullscreen toggle
+  const fsBtn      = document.getElementById('fullscreen-toggle');
+  const fsExpand   = document.getElementById('fs-icon-expand');
+  const fsCompress = document.getElementById('fs-icon-compress');
+
+  function updateFsIcons() {
+    const full = !!document.fullscreenElement;
+    fsExpand?.classList.toggle('hidden', full);
+    fsCompress?.classList.toggle('hidden', !full);
+  }
+
+  fsBtn?.addEventListener('click', () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  });
+
+  document.addEventListener('fullscreenchange', updateFsIcons);
+
   // Mobile menu
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');

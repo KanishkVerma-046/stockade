@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import TradingChart from './TradingChart';
+import { $activeTick } from '../../stores/priceStore';
 
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
@@ -78,6 +79,17 @@ function generateCandles(basePrice: number, count = 200): Candle[] {
   return candles;
 }
 
+function getBasePrice(sym: string): number {
+  try {
+    const stored = localStorage.getItem('stockade_prices');
+    if (stored) {
+      const map: Record<string, number> = JSON.parse(stored);
+      if (map[sym] !== undefined) return map[sym];
+    }
+  } catch {}
+  return SYMBOL_PRICES[sym] ?? 100;
+}
+
 function fmt2(n: number) { return n.toFixed(2); }
 function fmtPct(n: number) { return (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
 function fmtMoney(n: number) {
@@ -118,7 +130,7 @@ function initSymbol(): string {
 
 export default function TradingSimulator() {
   const [symbol, setSymbol]     = useState<string>(initSymbol);
-  const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(SYMBOL_PRICES[initSymbol()] ?? 187));
+  const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
   const [balance, setBalance]   = useState(100_000);
   const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
   const [trades, setTrades]     = useState<Trade[]>([]);
@@ -126,6 +138,7 @@ export default function TradingSimulator() {
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
 
+  const rootRef        = useRef<HTMLDivElement>(null);
   const intervalRef    = useRef<ReturnType<typeof setInterval> | null>(null);
   const trendBiasRef   = useRef(0);
   const candleStartRef = useRef(Date.now());
@@ -138,6 +151,10 @@ export default function TradingSimulator() {
   const prevPrice    = candles[candles.length - 2]?.close ?? currentPrice;
   const priceChange  = currentPrice - prevPrice;
   const pricePct     = (priceChange / prevPrice) * 100;
+
+  useEffect(() => {
+    $activeTick.set({ symbol, price: currentPrice });
+  }, [symbol, currentPrice]);
 
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -154,6 +171,12 @@ export default function TradingSimulator() {
         const high  = Math.max(last.high, close);
         const low   = Math.min(last.low, close);
         const updated = { ...last, close, high, low };
+        try {
+          const raw = localStorage.getItem('stockade_prices');
+          const map = raw ? JSON.parse(raw) : {};
+          map[symbol] = close;
+          localStorage.setItem('stockade_prices', JSON.stringify(map));
+        } catch {}
         if (Date.now() - candleStartRef.current >= 10_000) {
           candleStartRef.current = Date.now();
           return [...prev.slice(-199), updated, { time: Date.now(), open: close, high: close, low: close, close, volume: Math.floor(Math.random() * 500_000) }];
@@ -181,7 +204,7 @@ export default function TradingSimulator() {
     const tpHit = !isNaN(tp) && tp > 0 && ((isLong && currentPrice >= tp) || (!isLong && currentPrice <= tp));
     if (slHit || tpHit) {
       const pnl = (isLong ? 1 : -1) * (currentPrice - pos.avgPrice) * pos.qty;
-      setBalance(b => b + pnl);
+      setBalance(b => isLong ? b + currentPrice * pos.qty : b - currentPrice * pos.qty);
       setTrades(t => [{ id: crypto.randomUUID(), side: isLong ? 'sell' : 'buy', qty: pos.qty, price: currentPrice, time: Date.now(), pnl }, ...t.slice(0, 99)]);
       setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
       setOrder(o => ({ ...o, stopLoss: '', takeProfit: '' }));
@@ -190,7 +213,7 @@ export default function TradingSimulator() {
 
   function changeSymbol(sym: string) {
     setSymbol(sym);
-    setCandles(generateCandles(SYMBOL_PRICES[sym] ?? 100));
+    setCandles(generateCandles(getBasePrice(sym)));
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
     trendBiasRef.current = 0;
   }
@@ -202,7 +225,7 @@ export default function TradingSimulator() {
     if (action === 'flatten') {
       if (!position.side) return;
       const pnl = (position.side === 'long' ? 1 : -1) * (price - position.avgPrice) * position.qty;
-      setBalance(b => b + pnl);
+      setBalance(b => position.side === 'long' ? b + price * position.qty : b - price * position.qty);
       setTrades(t => [{ id: crypto.randomUUID(), side: position.side === 'long' ? 'sell' : 'buy', qty: position.qty, price, time: Date.now(), pnl }, ...t.slice(0, 99)]);
       setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0 });
       return;
@@ -222,7 +245,7 @@ export default function TradingSimulator() {
         setBalance(b => action === 'buy' ? b - cost : b + cost);
       } else {
         const pnl = (position.side === 'long' ? 1 : -1) * (price - position.avgPrice) * Math.min(qty, position.qty);
-        setBalance(b => b + pnl + (action === 'buy' ? -cost : cost));
+        setBalance(b => b + (action === 'buy' ? -cost : cost));
         if (qty >= position.qty) {
           setTrades(t => [{ id: crypto.randomUUID(), side: action, qty: position.qty, price, time: Date.now(), pnl }, ...t.slice(0, 99)]);
           setPosition(qty > position.qty
@@ -248,7 +271,10 @@ export default function TradingSimulator() {
   }, [execOrder]);
 
   const totalPnl  = trades.reduce((s, t) => s + (t.pnl ?? 0), 0);
-  const equity    = balance + (position.side ? position.unrealizedPnl : 0);
+  const equity    = balance
+    + (position.side === 'long'  ?  currentPrice * position.qty
+       : position.side === 'short' ? -currentPrice * position.qty
+       : 0);
   const winTrades = trades.filter(t => (t.pnl ?? 0) > 0);
   const winRate   = trades.length ? (winTrades.length / trades.length) * 100 : 0;
   const slVal     = parseFloat(order.stopLoss);
@@ -374,11 +400,17 @@ export default function TradingSimulator() {
   );
 
   return (
-    <div className="relative flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
+    <div ref={rootRef} className="relative flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
       {disclaimer && <DisclaimerBanner onDismiss={() => setDisclaimer(false)} />}
 
       {/* ── Top toolbar ── */}
       <div className="flex items-center gap-3 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
+        <div className="shrink-0 border-r border-[var(--c-border)] pr-3 mr-1">
+          <span className="text-lg font-mono font-semibold">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</span>
+          <span className={`ml-2 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
+            {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)} ({fmtPct(pricePct)})
+          </span>
+        </div>
         <div className="flex items-center gap-3">
           {SYMBOL_GROUPS.map(group => (
             <div key={group.label} className="flex items-center gap-1 shrink-0">
@@ -393,14 +425,6 @@ export default function TradingSimulator() {
               ))}
             </div>
           ))}
-        </div>
-        <div className="ml-auto flex items-center gap-4 shrink-0">
-          <div>
-            <span className="text-lg font-mono font-semibold">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</span>
-            <span className={`ml-2 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-              {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)} ({fmtPct(pricePct)})
-            </span>
-          </div>
         </div>
       </div>
 

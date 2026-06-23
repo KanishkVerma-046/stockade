@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { $activeTick } from '../../stores/priceStore';
 
 const TICKERS = [
   { symbol: 'APXL',  price: 187.42,  change: 1.23,   pct: 0.66  },
@@ -18,20 +19,82 @@ const TICKERS = [
   { symbol: 'AVXL',  price: 35.84,   change: 1.12,   pct: 3.23  },
 ];
 
+const INITIAL_PRICES = Object.fromEntries(TICKERS.map(t => [t.symbol, t.price]));
+
+function readStoredPrices(): Record<string, number> {
+  try {
+    const raw = localStorage.getItem('stockade_prices');
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return {};
+}
+
 export default function TickerTape() {
   const [prices, setPrices] = useState(TICKERS);
 
   useEffect(() => {
+    const stored = readStoredPrices();
+    if (Object.keys(stored).length > 0) {
+      setPrices(prev => prev.map(t => {
+        if (stored[t.symbol] === undefined) return t;
+        const newPrice     = stored[t.symbol];
+        const initialPrice = INITIAL_PRICES[t.symbol] ?? newPrice;
+        return { ...t, price: newPrice, change: newPrice - initialPrice, pct: ((newPrice - initialPrice) / initialPrice) * 100 };
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    function onStorage(e: StorageEvent) {
+      if (e.key !== 'stockade_prices' || !e.newValue) return;
+      try {
+        const map: Record<string, number> = JSON.parse(e.newValue);
+        setPrices(prev => prev.map(t => {
+          if (map[t.symbol] === undefined) return t;
+          const newPrice     = map[t.symbol];
+          const initialPrice = INITIAL_PRICES[t.symbol] ?? newPrice;
+          return { ...t, price: newPrice, change: newPrice - initialPrice, pct: ((newPrice - initialPrice) / initialPrice) * 100 };
+        }));
+      } catch {}
+    }
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+
+  // Instant same-page sync: subscribe to the simulator's nanostores atom
+  useEffect(() => {
+    return $activeTick.subscribe(tick => {
+      if (!tick) return;
+      setPrices(prev => prev.map(t => {
+        if (t.symbol !== tick.symbol) return t;
+        const ip = INITIAL_PRICES[t.symbol] ?? tick.price;
+        return { ...t, price: tick.price, change: tick.price - ip, pct: ((tick.price - ip) / ip) * 100 };
+      }));
+    });
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      setPrices(prev =>
-        prev.map(t => {
-          const delta    = (Math.random() - 0.5) * t.price * 0.003;
-          const newPrice = Math.max(t.price + delta, 0.01);
-          const newChange = t.change + delta;
-          const newPct   = (newChange / (newPrice - newChange)) * 100;
-          return { ...t, price: newPrice, change: newChange, pct: newPct };
-        })
-      );
+      setPrices(prev => {
+        const latestMap = readStoredPrices();
+        const activeSym = $activeTick.get()?.symbol;
+        const next = prev.map(t => {
+          if (t.symbol === activeSym) return t; // driven by simulator via nanostores
+          const currentPrice  = latestMap[t.symbol] ?? t.price;
+          const delta         = (Math.random() - 0.5) * currentPrice * 0.003;
+          const newPrice      = Math.max(currentPrice + delta, 0.01);
+          const initialPrice  = INITIAL_PRICES[t.symbol] ?? currentPrice;
+          const change        = newPrice - initialPrice;
+          const pct           = (change / initialPrice) * 100;
+          return { ...t, price: newPrice, change, pct };
+        });
+        try {
+          const map: Record<string, number> = {};
+          next.forEach(t => { map[t.symbol] = t.price; });
+          localStorage.setItem('stockade_prices', JSON.stringify(map));
+        } catch {}
+        return next;
+      });
     }, 2000);
     return () => clearInterval(interval);
   }, []);

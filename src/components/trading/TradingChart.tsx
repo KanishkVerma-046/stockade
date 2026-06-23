@@ -72,6 +72,58 @@ function calcEMA(candles: Candle[], period: number): LineData[] {
   return out;
 }
 
+function calcVWAP(candles: Candle[]): LineData[] {
+  let tpv = 0, vol = 0;
+  return candles.map(c => {
+    const tp = (c.high + c.low + c.close) / 3;
+    tpv += tp * c.volume;
+    vol += c.volume;
+    return { time: toSecs(c.time), value: vol > 0 ? tpv / vol : tp };
+  });
+}
+
+function calcRSI(candles: Candle[], period = 14): LineData[] {
+  if (candles.length < period + 1) return [];
+  const changes = candles.slice(1).map((c, i) => c.close - candles[i].close);
+  let avgGain = changes.slice(0, period).reduce((s, v) => s + Math.max(v, 0), 0) / period;
+  let avgLoss = changes.slice(0, period).reduce((s, v) => s + Math.max(-v, 0), 0) / period;
+  const out: LineData[] = [];
+  for (let i = period; i < changes.length; i++) {
+    avgGain = (avgGain * (period - 1) + Math.max(changes[i], 0)) / period;
+    avgLoss = (avgLoss * (period - 1) + Math.max(-changes[i], 0)) / period;
+    const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
+    out.push({ time: toSecs(candles[i + 1].time), value: 100 - 100 / (1 + rs) });
+  }
+  return out;
+}
+
+function emaArr(values: number[], period: number): number[] {
+  if (values.length < period) return [];
+  const k = 2 / (period + 1);
+  let ema = values.slice(0, period).reduce((a, b) => a + b, 0) / period;
+  const out = [ema];
+  for (let i = period; i < values.length; i++) { ema = values[i] * k + ema * (1 - k); out.push(ema); }
+  return out;
+}
+
+function calcMACD(candles: Candle[]): { macd: LineData[]; signal: LineData[]; hist: HistogramData[] } {
+  if (candles.length < 35) return { macd: [], signal: [], hist: [] };
+  const closes  = candles.map(c => c.close);
+  const ema12   = emaArr(closes, 12);
+  const ema26   = emaArr(closes, 26);
+  const offset  = ema12.length - ema26.length; // 14
+  const macdNums = ema26.map((e26, i) => ema12[offset + i] - e26);
+  const sigNums  = emaArr(macdNums, 9);
+  const ms = 25, ss = ms + 8;
+  const macd   = macdNums.map((v, i) => ({ time: toSecs(candles[ms + i].time), value: v })) as LineData[];
+  const signal = sigNums.map((v, i)  => ({ time: toSecs(candles[ss + i].time), value: v })) as LineData[];
+  const hist   = sigNums.map((sig, i) => {
+    const diff = macdNums[8 + i] - sig;
+    return { time: toSecs(candles[ss + i].time), value: diff, color: diff >= 0 ? '#22c55e60' : '#ef444460' } as HistogramData;
+  });
+  return { macd, signal, hist };
+}
+
 function useIsDark() {
   const [isDark, setIsDark] = useState(() =>
     typeof document !== 'undefined'
@@ -110,7 +162,15 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
   const tpLineRef     = useRef<ReturnType<ISeriesApi<'Candlestick'>['createPriceLine']> | null>(null);
   const prevEmaRef    = useRef<Partial<Record<EmaPeriod, number>>>({});
 
-  const [emaVisible, setEmaVisible] = useState<Record<EmaPeriod, boolean>>({ 9: true, 20: true, 50: false });
+  const [emaVisible,       setEmaVisible]       = useState<Record<EmaPeriod, boolean>>({ 9: true, 20: true, 50: false });
+  const [showVWAP,         setShowVWAP]         = useState(false);
+  const [bottomIndicator,  setBottomIndicator]  = useState<'vol' | 'rsi' | 'macd'>('vol');
+
+  const vwapRef     = useRef<ISeriesApi<'Line'> | null>(null);
+  const rsiRef      = useRef<ISeriesApi<'Line'> | null>(null);
+  const macdLineRef = useRef<ISeriesApi<'Line'> | null>(null);
+  const macdSigRef  = useRef<ISeriesApi<'Line'> | null>(null);
+  const macdHistRef = useRef<ISeriesApi<'Histogram'> | null>(null);
 
   const isDark = useIsDark();
 
@@ -178,10 +238,33 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
       emaMap[cfg.period] = s;
     }
 
+    const vwapSeries = chart.addSeries(LineSeries, {
+      color: '#e879f9', lineWidth: 1, lineStyle: 2,
+      priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, visible: false,
+    });
+    const rsiSeries = chart.addSeries(LineSeries, {
+      color: '#f59e0b', lineWidth: 1, priceScaleId: 'vol',
+      priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false, visible: false,
+    });
+    const macdLineSeries = chart.addSeries(LineSeries, {
+      color: '#3b82f6', lineWidth: 1, priceScaleId: 'vol',
+      priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, visible: false,
+    });
+    const macdSigSeries = chart.addSeries(LineSeries, {
+      color: '#f59e0b', lineWidth: 1, priceScaleId: 'vol',
+      priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false, visible: false,
+    });
+    const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'vol', visible: false });
+
     chartRef.current  = chart;
     candleRef.current = candleSeries;
     volumeRef.current = volumeSeries;
     emaRefs.current   = emaMap;
+    vwapRef.current     = vwapSeries;
+    rsiRef.current      = rsiSeries;
+    macdLineRef.current = macdLineSeries;
+    macdSigRef.current  = macdSigSeries;
+    macdHistRef.current = macdHistSeries;
 
     const norm = normalize(candles);
     candleSeries.setData(norm.map(toCandleBar));
@@ -193,6 +276,14 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
         prevEmaRef.current[cfg.period] = (emaData[emaData.length - 2] as LineData & { value: number }).value;
       }
     }
+    vwapSeries.setData(calcVWAP(norm));
+    rsiSeries.setData(calcRSI(norm));
+    rsiSeries.createPriceLine({ price: 70, color: '#ef444450', lineWidth: 1, lineStyle: 2, axisLabelVisible: false, title: '' });
+    rsiSeries.createPriceLine({ price: 30, color: '#22c55e50', lineWidth: 1, lineStyle: 2, axisLabelVisible: false, title: '' });
+    const { macd: macd0, signal: signal0, hist: hist0 } = calcMACD(norm);
+    macdLineSeries.setData(macd0);
+    macdSigSeries.setData(signal0);
+    macdHistSeries.setData(hist0);
     chart.timeScale().fitContent();
 
     const ro = new ResizeObserver(() => {
@@ -212,6 +303,11 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
       candleRef.current = null;
       volumeRef.current = null;
       emaRefs.current   = {};
+      vwapRef.current     = null;
+      rsiRef.current      = null;
+      macdLineRef.current = null;
+      macdSigRef.current  = null;
+      macdHistRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -265,6 +361,13 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
         series.update({ time: toSecs(last.time), value: newEma });
       }
     }
+    // VWAP / RSI / MACD — recompute from full normalised set
+    vwapRef.current?.setData(calcVWAP(norm));
+    rsiRef.current?.setData(calcRSI(norm));
+    const { macd, signal, hist } = calcMACD(norm);
+    macdLineRef.current?.setData(macd);
+    macdSigRef.current?.setData(signal);
+    macdHistRef.current?.setData(hist);
   }, [candles, symbol]);
 
   // Track prevEmaRef on new candle
@@ -289,6 +392,21 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
       emaRefs.current[cfg.period]?.applyOptions({ visible: emaVisible[cfg.period] });
     }
   }, [emaVisible]);
+
+  // VWAP visibility
+  useEffect(() => {
+    vwapRef.current?.applyOptions({ visible: showVWAP });
+  }, [showVWAP]);
+
+  // Bottom indicator visibility
+  useEffect(() => {
+    volumeRef.current?.applyOptions({ visible: bottomIndicator === 'vol' });
+    rsiRef.current?.applyOptions({ visible: bottomIndicator === 'rsi' });
+    const macdOn = bottomIndicator === 'macd';
+    macdLineRef.current?.applyOptions({ visible: macdOn });
+    macdSigRef.current?.applyOptions({ visible: macdOn });
+    macdHistRef.current?.applyOptions({ visible: macdOn });
+  }, [bottomIndicator]);
 
   // ── Entry price line ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -355,31 +473,40 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     <div className="relative w-full h-full">
       <div ref={containerRef} className="w-full h-full" />
 
-      {/* EMA legend / toggles */}
-      <div className="absolute top-2 right-2 flex items-center gap-1 z-10 pointer-events-auto">
-        {EMA_CONFIGS.map(cfg => {
-          const on = emaVisible[cfg.period];
-          return (
-            <button
-              key={cfg.period}
-              onClick={() => toggleEma(cfg.period)}
-              title={on ? `Hide ${cfg.label}` : `Show ${cfg.label}`}
-              className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono border transition-all"
-              style={{
-                borderColor:     cfg.color,
-                color:           on ? cfg.color : 'var(--c-text-faint)',
-                backgroundColor: on ? `${cfg.color}14` : 'transparent',
-              }}
-            >
-              <span
-                className="inline-block w-3 h-0.5 rounded-full"
-                style={{ backgroundColor: on ? cfg.color : 'var(--c-text-faint)' }}
-              />
-              {cfg.label}
+      {/* Indicator toggles */}
+      <div className="absolute top-2 right-[68px] flex flex-col items-end gap-1 z-10 pointer-events-auto">
+        <div className="flex items-center gap-1">
+          {EMA_CONFIGS.map(cfg => {
+            const on = emaVisible[cfg.period];
+            return (
+              <button key={cfg.period} onClick={() => toggleEma(cfg.period)}
+                title={on ? `Hide ${cfg.label}` : `Show ${cfg.label}`}
+                className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono border transition-all"
+                style={{ borderColor: cfg.color, color: on ? cfg.color : 'var(--c-text-faint)', backgroundColor: on ? `${cfg.color}14` : 'transparent' }}>
+                <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: on ? cfg.color : 'var(--c-text-faint)' }} />
+                {cfg.label}
+              </button>
+            );
+          })}
+          <button onClick={() => setShowVWAP(v => !v)}
+            className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono border transition-all"
+            style={{ borderColor: '#e879f9', color: showVWAP ? '#e879f9' : 'var(--c-text-faint)', backgroundColor: showVWAP ? '#e879f914' : 'transparent' }}>
+            <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: showVWAP ? '#e879f9' : 'var(--c-text-faint)' }} />
+            VWAP
+          </button>
+        </div>
+        <div className="flex items-center gap-1">
+          {(['vol', 'rsi', 'macd'] as const).map(ind => (
+            <button key={ind} onClick={() => setBottomIndicator(ind)}
+              className={`px-1.5 py-0.5 rounded text-[10px] font-mono uppercase transition-all border ${
+                bottomIndicator === ind
+                  ? 'border-[var(--c-border-strong)] text-[var(--c-text)] bg-[var(--c-surface-2)]'
+                  : 'border-transparent text-[var(--c-text-faint)] hover:text-[var(--c-text-muted)]'
+              }`}>
+              {ind}
             </button>
-          );
-        })}
-        <span className="text-[9px] font-mono text-[var(--c-text-fainter)] ml-1 select-none">VOL ✓</span>
+          ))}
+        </div>
       </div>
     </div>
   );
