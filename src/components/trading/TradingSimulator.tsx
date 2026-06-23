@@ -204,6 +204,8 @@ export default function TradingSimulator() {
   const [disclaimer, setDisclaimer] = useState(true);
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
+  const [orderFlash, setOrderFlash] = useState<string | null>(null);
+  const orderFlashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Replay state
   const [mode, setMode]               = useState<SimMode>('live');
@@ -395,6 +397,16 @@ export default function TradingSimulator() {
     setChartResetKey(k => k + 1);
   }
 
+  function clearHistory() {
+    try { localStorage.removeItem('stockade_trades'); } catch {}
+    setTrades([]);
+  }
+
+  function resetBalance() {
+    setBalance(100_000);
+    setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+  }
+
   const execOrder = useCallback((action: 'buy' | 'sell' | 'flatten') => {
     const qty = parseInt(order.qty, 10) || 100;
     const price = order.type === 'limit' && order.limitPrice ? parseFloat(order.limitPrice) : currentPrice;
@@ -412,7 +424,12 @@ export default function TradingSimulator() {
     }
 
     const cost = price * qty;
-    if (action === 'buy' && cost > balance) return;
+    if (action === 'buy' && cost > balance) {
+      if (orderFlashTimer.current) clearTimeout(orderFlashTimer.current);
+      setOrderFlash(`Insufficient balance — need ${fmtMoney(cost)} but have ${fmtMoney(balance)}`);
+      orderFlashTimer.current = setTimeout(() => setOrderFlash(null), 3000);
+      return;
+    }
 
     if (!position.side) {
       setPosition({ side: action === 'buy' ? 'long' : 'short', qty, avgPrice: price, unrealizedPnl: 0, openedAt: Date.now() });
@@ -533,6 +550,12 @@ export default function TradingSimulator() {
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#22c55e] outline-none" />
       </div>
 
+      {orderFlash && (
+        <div className="px-2 py-1.5 rounded bg-[#ef444415] border border-[#ef444430] text-[11px] font-mono text-[#ef4444] leading-snug">
+          {orderFlash}
+        </div>
+      )}
+
       <div className="flex gap-1">
         <button onClick={() => execOrder('buy')}
           className="flex-1 py-2.5 bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] text-[#22c55e] text-[13px] font-mono font-semibold rounded hover:brightness-110 transition-all">
@@ -560,6 +583,10 @@ export default function TradingSimulator() {
             <span className="text-[12px] font-mono" style={{ color: s.color }}>{s.value}</span>
           </div>
         ))}
+        <button onClick={resetBalance}
+          className="w-full mt-1 py-1 text-[11px] font-mono text-[var(--c-text-subtle)] border border-[var(--c-border)] rounded hover:border-[#f59e0b] hover:text-[#f59e0b] transition-colors">
+          Reset Balance to $100,000
+        </button>
       </div>
 
       {position.side && (
@@ -579,7 +606,15 @@ export default function TradingSimulator() {
 
   const tradesListJSX = (
     <div className="p-3">
-      <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">Trade History</div>
+      <div className="flex items-center justify-between mb-2">
+        <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">Trade History</div>
+        {trades.length > 0 && (
+          <button onClick={clearHistory}
+            className="text-[10px] font-mono text-[var(--c-text-subtle)] hover:text-[#ef4444] transition-colors">
+            Clear
+          </button>
+        )}
+      </div>
       {trades.length === 0 ? (
         <p className="text-[11px] text-[var(--c-text-faint)] font-mono">No trades yet.</p>
       ) : (
