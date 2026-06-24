@@ -25,6 +25,7 @@ interface MarkerSpec {
   text?: string; size?: number; patternId?: string;
 }
 interface OhlcvData { open: number; high: number; low: number; close: number; volume: number; }
+interface CandleSpec { o: number; h: number; l: number; c: number; col?: string; }
 
 // ── Symbols & Timeframes ──────────────────────────────────────────────────────
 
@@ -257,6 +258,39 @@ const PATTERNS: PatternDef[] = [
     characteristics: ['Both candles have nearly equal high prices (within ~3% of average range)', 'Most reliable after an uptrend', 'The shared high becomes a defined resistance level', 'Stronger when the high coincides with a prior key level or round number'],
   },
 ];
+
+// ── Candle Diagrams ───────────────────────────────────────────────────────────
+// Values 0–1: 0 = bottom of price range, 1 = top. col overrides auto green/red.
+
+const PATTERN_CANDLES: Record<string, CandleSpec[]> = {
+  // ── Single candles ──────────────────────────────────────────────────────────
+  doji:               [{ o: .50, h: .82, l: .18, c: .50, col: '#f59e0b' }],
+  dragonfly_doji:     [{ o: .84, h: .87, l: .10, c: .84, col: '#22c55e' }],
+  gravestone_doji:    [{ o: .16, h: .90, l: .13, c: .16, col: '#ef4444' }],
+  spinning_top:       [{ o: .56, h: .82, l: .20, c: .44, col: '#f59e0b' }],
+  hammer:             [{ o: .76, h: .88, l: .10, c: .84 }],
+  hanging_man:        [{ o: .82, h: .90, l: .10, c: .76 }],
+  inverted_hammer:    [{ o: .22, h: .90, l: .16, c: .28 }],
+  shooting_star:      [{ o: .28, h: .90, l: .16, c: .22 }],
+  marubozu_bull:      [{ o: .10, h: .90, l: .10, c: .90 }],
+  marubozu_bear:      [{ o: .90, h: .90, l: .10, c: .10 }],
+  // ── Two candles ─────────────────────────────────────────────────────────────
+  bullish_engulfing:  [{ o: .65, h: .68, l: .42, c: .45 }, { o: .38, h: .82, l: .32, c: .78 }],
+  bearish_engulfing:  [{ o: .35, h: .60, l: .32, c: .55 }, { o: .62, h: .68, l: .18, c: .22 }],
+  piercing_line:      [{ o: .72, h: .78, l: .25, c: .28 }, { o: .18, h: .65, l: .15, c: .62 }],
+  dark_cloud:         [{ o: .28, h: .72, l: .25, c: .68 }, { o: .78, h: .82, l: .30, c: .34 }],
+  harami_bull:        [{ o: .80, h: .85, l: .15, c: .20 }, { o: .40, h: .56, l: .38, c: .54 }],
+  harami_bear:        [{ o: .20, h: .85, l: .15, c: .80 }, { o: .62, h: .66, l: .46, c: .48 }],
+  tweezer_bottom:     [{ o: .70, h: .75, l: .15, c: .26 }, { o: .26, h: .68, l: .15, c: .65 }],
+  tweezer_top:        [{ o: .30, h: .85, l: .28, c: .74 }, { o: .74, h: .85, l: .28, c: .32 }],
+  // ── Three candles ───────────────────────────────────────────────────────────
+  morning_star:       [{ o: .78, h: .82, l: .40, c: .42 }, { o: .32, h: .38, l: .25, c: .30, col: '#f59e0b' }, { o: .35, h: .82, l: .32, c: .78 }],
+  evening_star:       [{ o: .22, h: .62, l: .20, c: .58 }, { o: .66, h: .72, l: .63, c: .68, col: '#f59e0b' }, { o: .65, h: .68, l: .22, c: .24 }],
+  three_white_soldiers: [{ o: .15, h: .44, l: .13, c: .42 }, { o: .30, h: .62, l: .28, c: .60 }, { o: .50, h: .88, l: .48, c: .85 }],
+  three_black_crows:  [{ o: .85, h: .88, l: .57, c: .60 }, { o: .70, h: .72, l: .40, c: .43 }, { o: .52, h: .55, l: .14, c: .18 }],
+  three_inside_up:    [{ o: .80, h: .85, l: .15, c: .20 }, { o: .38, h: .56, l: .36, c: .54 }, { o: .46, h: .88, l: .44, c: .85 }],
+  three_inside_down:  [{ o: .20, h: .85, l: .15, c: .80 }, { o: .62, h: .66, l: .46, c: .48 }, { o: .56, h: .60, l: .12, c: .15 }],
+};
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -508,6 +542,34 @@ function useIsDark() {
     return () => obs.disconnect();
   }, []);
   return isDark;
+}
+
+// ── CandleDiagram ─────────────────────────────────────────────────────────────
+
+function CandleDiagram({ candles }: { candles: CandleSpec[] }) {
+  const VW = 120, VH = 90, PAD = 8, H = VH - PAD * 2;
+  const n = candles.length;
+  const xs  = n === 1 ? [60]        : n === 2 ? [36, 84]     : [22, 60, 98];
+  const bw  = n === 1 ? 22          : n === 2 ? 18            : 16;
+  const y   = (v: number) => PAD + H * (1 - v);
+
+  return (
+    <svg viewBox={`0 0 ${VW} ${VH}`} width={VW} height={VH} style={{ display: 'block' }}>
+      {candles.map((c, i) => {
+        const cx  = xs[i];
+        const col = c.col ?? (c.c >= c.o ? '#22c55e' : '#ef4444');
+        const bt  = y(Math.max(c.o, c.c));
+        const bb  = y(Math.min(c.o, c.c));
+        const bh  = Math.max(bb - bt, 1.5);
+        return (
+          <g key={i}>
+            <line x1={cx} y1={y(c.h)} x2={cx} y2={y(c.l)} stroke={col} strokeWidth={1.5} />
+            <rect x={cx - bw / 2} y={bt} width={bw} height={bh} fill={col} rx={1} />
+          </g>
+        );
+      })}
+    </svg>
+  );
 }
 
 // ── SimChart ──────────────────────────────────────────────────────────────────
@@ -904,6 +966,13 @@ export default function ChartSimulator() {
       </div>
       <div className="flex-1 overflow-y-auto">
         <div className="p-4 space-y-4">
+
+          {/* Candle Diagram */}
+          {PATTERN_CANDLES[activeDef.id] && (
+            <div className="rounded border border-[var(--c-border)] bg-[var(--c-bg-muted)] flex justify-center py-3">
+              <CandleDiagram candles={PATTERN_CANDLES[activeDef.id]} />
+            </div>
+          )}
 
           {/* Signal */}
           <div className="px-3 py-2.5 rounded border text-[11px] font-mono leading-relaxed"
