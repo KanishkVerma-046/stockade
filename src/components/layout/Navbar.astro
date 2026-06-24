@@ -6,11 +6,12 @@ const { compact = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/simulator', label: 'Simulator' },
-  { href: '/markets',   label: 'Markets' },
-  { href: '/analytics', label: 'Analytics' },
-  { href: '/leaderboard', label: 'Leaderboard' },
-  { href: '/feed',      label: 'Feed' },
+  { href: '/simulator',       label: 'Trading Simulator' },
+  { href: '/chart-simulator', label: 'Chart Simulator'   },
+  { href: '/markets',         label: 'Markets'           },
+  { href: '/analytics',       label: 'Analytics'         },
+  { href: '/leaderboard',     label: 'Leaderboard'       },
+  { href: '/feed',            label: 'Feed'              },
 ];
 
 function isActive(href: string) {
