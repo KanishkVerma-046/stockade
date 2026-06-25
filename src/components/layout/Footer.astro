@@ -38,21 +38,6 @@ const year = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Community -->
-      <div>
-        <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">Community</p>
-        <ul class="space-y-2">
-          {[
-            { href: '/leaderboard', label: 'Leaderboard' },
-            { href: '/feed',        label: 'Trade Feed' },
-          ].map(l => (
-            <li>
-              <a href={l.href} class="text-[13px] text-[#a1a1a1] hover:text-[#f5f5f5] transition-colors">{l.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <!-- Company -->
       <div>
         <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">Company</p>

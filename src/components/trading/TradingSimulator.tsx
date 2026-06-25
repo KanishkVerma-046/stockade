@@ -71,24 +71,26 @@ const SYMBOL_PRICES: Record<string, number> = {
 };
 
 function generateCandles(basePrice: number, count = 500): Candle[] {
+  // Walk backwards from basePrice so the newest candle always closes at basePrice,
+  // keeping the simulator in sync with the ticker tape.
   const candles: Candle[] = [];
   let price = basePrice;
   let trend = (Math.random() - 0.5) * 0.4;
   const now = Date.now();
-  for (let i = count; i >= 0; i--) {
+  for (let i = 0; i <= count; i++) {
     trend = trend * 0.94 + (Math.random() - 0.5) * 0.1;
     trend = Math.max(-0.55, Math.min(0.55, trend));
     const vol = basePrice * 0.007;
-    const open = price;
+    const close = price;
     const body = (trend + (Math.random() - 0.5)) * vol;
-    const close = Math.max(open + body, 0.01);
+    const open = Math.max(close - body, 0.01);
     const bodyHigh = Math.max(open, close);
     const bodyLow  = Math.min(open, close);
     const bodySize = Math.abs(body) || vol * 0.15;
     const high = bodyHigh + Math.random() * bodySize * (Math.random() < 0.15 ? 2.5 : 1.0);
     const low  = Math.max(bodyLow - Math.random() * bodySize * (Math.random() < 0.15 ? 2.5 : 1.0), 0.01);
-    candles.push({ time: now - i * 60_000, open, high, low, close, volume: Math.floor(Math.random() * 600_000 + 80_000) });
-    price = close;
+    candles.unshift({ time: now - i * 60_000, open, high, low, close, volume: Math.floor(Math.random() * 600_000 + 80_000) });
+    price = open;
   }
   return candles;
 }
