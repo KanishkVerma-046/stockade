@@ -38,7 +38,7 @@ All tickers are simulated and do not represent real tradable instruments.
 | Styling | Tailwind CSS v4 via `@tailwindcss/vite` (configured in `astro.config.mjs`) |
 | Charts | [lightweight-charts 5.2](https://github.com/tradingview/lightweight-charts) |
 | Cross-island state | [nanostores](https://github.com/nanostores/nanostores) + `@nanostores/react` |
-| Deployment | Cloudflare Workers via Wrangler |
+| Deployment | Cloudflare Pages via Wrangler |
 
 ## Project structure
 
@@ -95,10 +95,12 @@ Start-Job -ScriptBlock { Set-Location "<path-to-repo>"; npm run preview }
 
 ## Deployment
 
-The site deploys to Cloudflare Workers. A `wrangler.toml` is included.
+The site deploys to [Cloudflare Pages](https://pages.cloudflare.com). A `wrangler.toml` is included.
+
+**Live URL:** https://stockade.pages.dev
 
 ```bash
-npm run deploy   # builds and runs wrangler deploy
+npm run deploy   # builds and deploys to Cloudflare Pages
 ```
 
 ## Design tokens
