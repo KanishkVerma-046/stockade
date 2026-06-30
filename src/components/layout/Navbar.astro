@@ -117,7 +117,7 @@ function isActive(href: string) {
   <!-- Mobile drawer -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden border-t border-[var(--c-border)] bg-[var(--c-bg)] px-4 py-3 flex flex-col gap-1"
+    class="hidden md:hidden border-t border-[var(--c-border)] bg-[var(--c-bg)] px-4 py-3 flex-col gap-1"
   >
     {navLinks.map(link => (
       <a
@@ -157,7 +157,10 @@ function isActive(href: string) {
   // Mobile menu
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  btn?.addEventListener('click', () => {
+    const nowHidden = menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex', !nowHidden);
+  });
 
   // Theme toggle
   const toggle = document.getElementById('theme-toggle');
