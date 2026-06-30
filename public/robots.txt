@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /404
-Disallow: /500
 
 Sitemap: https://stockademarketsim.com/sitemap.xml
