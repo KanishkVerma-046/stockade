@@ -97,7 +97,7 @@ Start-Job -ScriptBlock { Set-Location "<path-to-repo>"; npm run preview }
 
 The site deploys to [Cloudflare Pages](https://pages.cloudflare.com). A `wrangler.toml` is included.
 
-**Live URL:** https://stockade.pages.dev
+**Live URL:** https://stockademarketsim.com
 
 ```bash
 npm run deploy   # builds and deploys to Cloudflare Pages

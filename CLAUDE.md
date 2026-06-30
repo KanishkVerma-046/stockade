@@ -2,7 +2,7 @@
 
 **Stockade** — free live stock & crypto trading simulator. No signup, no backend, all state in localStorage/React state.
 
-- Domain: stockade.io | Tagline: "Practice the market. Master the game."
+- Domain: stockademarketsim.com | Tagline: "Practice the market. Master the game."
 - GitHub: https://github.com/KanishkVerma-046/stockade
 
 ## Stack
