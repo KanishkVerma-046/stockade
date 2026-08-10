@@ -59,11 +59,11 @@ The simulator's charts are candlestick charts with a volume histogram underneath
 
 Most people start with six indicators and end with two. A simulator is where you can afford to discover that.
 
-The Markets page carries 22 instruments: equities, BTC and ETH, major forex pairs, and futures including NQ, ES, CL, and GC. They sit at very different price levels, which is worth practising against — sizing a forex pair quoted to four decimals is a different mental exercise from sizing an index future trading in the thousands, and misplacing the decimal point is a classic beginner mistake that costs nothing here.
+The Markets page carries 29 instruments: 14 equities, 8 crypto tokens, 3 forex pairs, and 4 futures (/NQ, /ES, /CL, /GC). The equities and tokens are invented tickers, not real companies or coins; only the forex pairs and futures use real-world names. They sit at very different price levels, which is worth practising against — sizing a forex pair quoted to four decimals is a different mental exercise from sizing an index future trading in the thousands, and misplacing the decimal point is a classic beginner mistake that costs nothing here.
 
-One caveat: the generated prices do not reproduce each instrument's real-world personality. Crude oil and a large-cap stock genuinely behave differently in live markets, and a simulator running one volatility model across every symbol will not teach you that. What you learn here is the arithmetic and the workflow.
+The generated prices also do not reproduce real-world instrument personality: a single volatility model runs across every symbol. What you learn here is the arithmetic and the workflow.
 
-For deliberate practice, the Chart Simulator at `/chart-simulator` replays a chart session candle by candle, so you step forward one bar at a time and commit to a decision without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, closer to the real pace and the real pressure.
+For deliberate practice, the Chart Simulator at `/chart-simulator` replays a chart session candle by candle, so you step forward one bar at a time without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, closer to the real pace and the real pressure.
 
 ## What the statistics tell you that your memory will not
 
