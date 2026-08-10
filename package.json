@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy ./dist --project-name stockade --branch main"
+    "deploy": "astro build && wrangler pages deploy ./dist --project-name stockade --branch main",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -26,6 +27,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "vitest": "^4.1.10",
     "wrangler": "^4.104.0"
   }
 }
