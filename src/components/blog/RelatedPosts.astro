@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { pickRelated } from '../../lib/related-posts';
+
+interface Props {
+  current: CollectionEntry<'blog'>;
+  all: CollectionEntry<'blog'>[];
+}
+
+const { current, all } = Astro.props;
+const related = pickRelated(current, all, 3);
+---
+
+{related.length > 0 && (
+  <section class="mt-16 pt-10 border-t border-[var(--c-border)]">
+    <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">Keep learning</h2>
+    <div class="grid sm:grid-cols-3 gap-4">
+      {related.map(post => (
+        <a
+          href={`/blog/${post.id}`}
+          class="block bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5 hover:border-[var(--c-border-strong)] transition-colors"
+        >
+          <div class="text-[10px] font-mono uppercase tracking-wider text-[#f59e0b] mb-2">
+            {post.data.tags[0]}
+          </div>
+          <h3 class="text-[14px] font-semibold text-[var(--c-text)] leading-snug">
+            {post.data.title}
+          </h3>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
