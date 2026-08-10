@@ -1432,26 +1432,42 @@ git commit -m "Add article style brief and articles 2-6"
 - Consumes: the style brief from Task 10.
 - Produces: five articles.
 
-- [ ] **Step 1: Dispatch five parallel subagents**
+- [ ] **Step 1: Dispatch five parallel subagents** (controller-run — subagents cannot spawn subagents)
 
 One per article for rows 7–11 of the table in the style brief. Each prompt contains the full brief text plus that article's row.
 
 - [ ] **Step 2: Verify word counts**
 
-Run the word-count command from Task 10 Step 3. Every new file must land in range.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $words = (Get-Content $_.FullName -Raw) -split '\s+' | Where-Object { $_ } | Measure-Object
+  "{0}: {1}" -f $_.Name, $words.Count
+}
+```
+
+Expected: every file between roughly 1,250 and 2,100. Rewrite any article outside 1,200–2,000 body words.
 
 - [ ] **Step 3: Verify no body h1 and CTA present**
 
-Run the check from Task 10 Step 4. Expected `h1=0`, `cta>=1` for every file.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $body = (Get-Content $_.FullName -Raw) -replace '(?s)^---.*?---', ''
+  $h1 = [regex]::Matches($body, '(?m)^# ').Count
+  $cta = [regex]::Matches($body, '\(/simulator\)').Count
+  "{0}: h1={1} cta={2}" -f $_.Name, $h1, $cta
+}
+```
+
+Expected: `h1=0` and `cta` at least `1` for every file.
 
 - [ ] **Step 4: Build to validate frontmatter**
 
 Run: `npm run build`
-Expected: PASS.
+Expected: PASS. A Zod error naming a file and the `description` field means that description exceeded 160 characters.
 
 - [ ] **Step 5: Read each article and fix voice**
 
-Same review criteria as Task 10 Step 6. Pay particular attention to overlap between `stop-loss-orders-explained` and `oco-and-bracket-orders` — these two topics genuinely adjoin, so each must carry its own weight and cross-link rather than repeat.
+Fix duplicated explanations across articles, hype language, invented Stockade features, broken cross-links, and vague section titles. Pay particular attention to overlap between `stop-loss-orders-explained` and `oco-and-bracket-orders` — these two topics genuinely adjoin, so each must carry its own weight and cross-link rather than repeat.
 
 - [ ] **Step 6: Commit**
 
@@ -1475,17 +1491,33 @@ git commit -m "Add articles 7-11"
 - Consumes: the style brief from Task 10.
 - Produces: five articles.
 
-- [ ] **Step 1: Dispatch five parallel subagents**
+- [ ] **Step 1: Dispatch five parallel subagents** (controller-run — subagents cannot spawn subagents)
 
 One per article for rows 12–16. Each prompt contains the full brief text plus that article's row.
 
 - [ ] **Step 2: Verify word counts**
 
-Run the word-count command from Task 10 Step 3.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $words = (Get-Content $_.FullName -Raw) -split '\s+' | Where-Object { $_ } | Measure-Object
+  "{0}: {1}" -f $_.Name, $words.Count
+}
+```
+
+Expected: every file between roughly 1,250 and 2,100.
 
 - [ ] **Step 3: Verify no body h1 and CTA present**
 
-Run the check from Task 10 Step 4.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $body = (Get-Content $_.FullName -Raw) -replace '(?s)^---.*?---', ''
+  $h1 = [regex]::Matches($body, '(?m)^# ').Count
+  $cta = [regex]::Matches($body, '\(/simulator\)').Count
+  "{0}: h1={1} cta={2}" -f $_.Name, $h1, $cta
+}
+```
+
+Expected: `h1=0` and `cta` at least `1` for every file.
 
 - [ ] **Step 4: Build to validate frontmatter**
 
@@ -1494,7 +1526,7 @@ Expected: PASS.
 
 - [ ] **Step 5: Read each article and fix voice**
 
-Same criteria as Task 10 Step 6. `paper-trading-guide` overlaps `what-is-a-stock-market-simulator` by topic — the first article defines what a simulator is, this one must be about *how to practice deliberately* (session structure, journaling, what to measure). Enforce that split.
+Fix duplicated explanations, hype language, invented features, broken cross-links, and vague section titles. `paper-trading-guide` overlaps `what-is-a-stock-market-simulator` by topic — the first article defines what a simulator is, this one must be about *how to practice deliberately* (session structure, journaling, what to measure). Enforce that split.
 
 - [ ] **Step 6: Commit**
 
@@ -1517,17 +1549,33 @@ git commit -m "Add articles 12-16"
 - Consumes: the style brief from Task 10.
 - Produces: the final four articles, bringing the collection to 20.
 
-- [ ] **Step 1: Dispatch four parallel subagents**
+- [ ] **Step 1: Dispatch four parallel subagents** (controller-run — subagents cannot spawn subagents)
 
 One per article for rows 17–20.
 
 - [ ] **Step 2: Verify word counts**
 
-Run the word-count command from Task 10 Step 3.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $words = (Get-Content $_.FullName -Raw) -split '\s+' | Where-Object { $_ } | Measure-Object
+  "{0}: {1}" -f $_.Name, $words.Count
+}
+```
+
+Expected: every file between roughly 1,250 and 2,100.
 
 - [ ] **Step 3: Verify no body h1 and CTA present**
 
-Run the check from Task 10 Step 4.
+```powershell
+Get-ChildItem src/content/blog/*.md | ForEach-Object {
+  $body = (Get-Content $_.FullName -Raw) -replace '(?s)^---.*?---', ''
+  $h1 = [regex]::Matches($body, '(?m)^# ').Count
+  $cta = [regex]::Matches($body, '\(/simulator\)').Count
+  "{0}: h1={1} cta={2}" -f $_.Name, $h1, $cta
+}
+```
+
+Expected: `h1=0` and `cta` at least `1` for every file.
 
 - [ ] **Step 4: Build to validate frontmatter**
 
@@ -1536,7 +1584,7 @@ Expected: PASS.
 
 - [ ] **Step 5: Read each article and fix voice**
 
-Same criteria as Task 10 Step 6. `analyze-trading-performance-metrics` must tie directly to the real `/analytics` page metrics — equity curve, win rate, profit factor, average win/loss, max drawdown, time-of-day heatmap — and not list metrics Stockade does not compute.
+Fix duplicated explanations, hype language, invented features, broken cross-links, and vague section titles. `analyze-trading-performance-metrics` must tie directly to the real `/analytics` page metrics — equity curve, win rate, profit factor, average win/loss, max drawdown, time-of-day heatmap — and not list metrics Stockade does not compute.
 
 - [ ] **Step 6: Commit**
 
