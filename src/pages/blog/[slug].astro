@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  // Drafts are filtered here rather than only on the index, so no page is
+  // generated for them at all. That also keeps them out of the sitemap,
+  // which lists built routes.
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  // Every article declares a frontmatter `slug`, which the glob loader
+  // uses as the entry id — so `post.id` IS the URL segment.
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+// Also filtered, so a draft can never surface as a related-post link.
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const { Content, headings } = await render(post);
+---
+
+<BlogPost post={post} posts={posts} headings={headings}>
+  <Content />
+</BlogPost>

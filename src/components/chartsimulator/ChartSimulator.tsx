@@ -30,17 +30,17 @@ interface CandleSpec { o: number; h: number; l: number; c: number; col?: string;
 // ── Symbols & Timeframes ──────────────────────────────────────────────────────
 
 const SYMBOLS = [
-  { id: 'AAPL',  label: 'AAPL',    basePrice: 187.42,  group: 'Stocks' },
-  { id: 'TSLA',  label: 'TSLA',    basePrice: 248.11,  group: 'Stocks' },
-  { id: 'MSFT',  label: 'MSFT',    basePrice: 415.22,  group: 'Stocks' },
-  { id: 'NVDA',  label: 'NVDA',    basePrice: 875.63,  group: 'Stocks' },
-  { id: 'AMZN',  label: 'AMZN',    basePrice: 192.77,  group: 'Stocks' },
-  { id: 'GOOGL', label: 'GOOGL',   basePrice: 175.98,  group: 'Stocks' },
-  { id: 'BTC',   label: 'BTC/USD', basePrice: 67843,   group: 'Crypto' },
-  { id: 'ETH',   label: 'ETH/USD', basePrice: 3412,    group: 'Crypto' },
-  { id: 'EUR',   label: 'EUR/USD', basePrice: 1.0872,  group: 'Forex'  },
-  { id: 'GBP',   label: 'GBP/USD', basePrice: 1.2714,  group: 'Forex'  },
-  { id: 'SPX',   label: 'SPX',     basePrice: 5248.75, group: 'Index'  },
+  { id: 'APXL',  label: 'APXL',    basePrice: 187.42,  group: 'Stocks'  },
+  { id: 'TRXL',  label: 'TRXL',    basePrice: 248.11,  group: 'Stocks'  },
+  { id: 'MXFT',  label: 'MXFT',    basePrice: 415.22,  group: 'Stocks'  },
+  { id: 'NVOX',  label: 'NVOX',    basePrice: 875.63,  group: 'Stocks'  },
+  { id: 'VXON',  label: 'VXON',    basePrice: 192.77,  group: 'Stocks'  },
+  { id: 'GLPH',  label: 'GLPH',    basePrice: 176.88,  group: 'Stocks'  },
+  { id: 'BLTC',  label: 'BLTC',    basePrice: 67843,   group: 'Crypto'  },
+  { id: 'ETHX',  label: 'ETHX',    basePrice: 3412,    group: 'Crypto'  },
+  { id: 'EUR',   label: 'EUR/USD', basePrice: 1.0872,  group: 'Forex'   },
+  { id: 'GBP',   label: 'GBP/USD', basePrice: 1.2714,  group: 'Forex'   },
+  { id: 'ES',    label: '/ES',     basePrice: 5248.75, group: 'Futures' },
 ] as const;
 
 const TIMEFRAMES = [
@@ -768,7 +768,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
 // ── ChartSimulator ────────────────────────────────────────────────────────────
 
 export default function ChartSimulator() {
-  const [symbolId,   setSymbolId]   = useState('AAPL');
+  const [symbolId,   setSymbolId]   = useState('APXL');
   const [tfId,       setTfId]       = useState('1D');
   const [session,    setSession]    = useState<Candle[]>([]);
   const [revealed,   setRevealed]   = useState(0);
@@ -1060,7 +1060,7 @@ export default function ChartSimulator() {
           </button>
           {symOpen && (
             <div className="absolute top-full left-0 mt-1 z-50 w-44 rounded border border-[var(--c-border)] bg-[var(--c-bg-soft)] shadow-xl overflow-hidden">
-              {['Stocks', 'Crypto', 'Forex', 'Index'].map(grp => {
+              {['Stocks', 'Crypto', 'Forex', 'Futures'].map(grp => {
                 const items = SYMBOLS.filter(s => s.group === grp);
                 if (!items.length) return null;
                 return (
