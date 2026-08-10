@@ -20,7 +20,14 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://stockademarketsim.com';
-const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+
+// Cloudflare Pages serves the directory form (/about/) and 308-redirects the
+// slashless form to it, so a canonical without the trailing slash points at a
+// URL that redirects. Normalising here covers all three sources — the pathname
+// fallback, the explicit `canonical` props pages pass, and BlogPost's computed
+// one — so individual pages do not each have to remember the slash.
+const rawCanonical = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+const canonicalUrl = rawCanonical.endsWith('/') ? rawCanonical : `${rawCanonical}/`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 

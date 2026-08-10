@@ -20,7 +20,13 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://stockademarketsim.com';
-const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+
+// Cloudflare Pages serves the directory form (/simulator/) and 308-redirects
+// the slashless form to it, so a canonical without the trailing slash points
+// at a URL that redirects. Kept in sync with the same normalisation in
+// Layout.astro.
+const rawCanonical = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+const canonicalUrl = rawCanonical.endsWith('/') ? rawCanonical : `${rawCanonical}/`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 
