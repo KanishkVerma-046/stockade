@@ -115,6 +115,24 @@ and each has already been caught in a draft, so check your own copy against them
   movement DOES exist on `/simulator` via the 800ms simulated ticks, so if you want to describe
   watching a candle form, attribute it to `/simulator`, not `/chart-simulator`.
 
+### 4a-iii. How fills actually work — be precise about this
+
+"Frictionless fills" is a useful shorthand but it is not exactly right, and articles about order
+types need the precise version:
+
+- **No bid-ask spread is modeled.** There is a single price, not a bid and an ask. So a market
+  order never costs you the spread.
+- **No partial fills.** Orders fill in full or not at all.
+- **Stop-loss and take-profit fills are NOT guaranteed at the trigger price.** Verified in
+  `TradingSimulator.tsx:315-321`: the trigger condition is `currentPrice <= stopLoss` (for a long),
+  but the position closes at `currentPrice` — the tick that crossed the level, not the level
+  itself. Since ticks arrive every 800ms and move in discrete jumps, a stop can fill slightly
+  beyond where you placed it.
+
+So the honest framing is: Stockade has no spread and no partial fills, and its stop fills carry
+only the small slippage that tick granularity produces — far less than a real fast market, but not
+literally zero. Do not write that a simulated stop "fills exactly at the price you typed."
+
 ### 4b. The Chart Simulator does NOT replay historical data
 
 `/chart-simulator` **generates** a session and plays it back candle-by-candle at your chosen pace.
