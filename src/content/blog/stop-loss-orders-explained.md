@@ -91,11 +91,13 @@ The trade-off is that a trailing stop always gives back the trail distance. You 
 
 **Moving a stop further away is how a small loss becomes a catastrophic one.** That original $499.50 becomes $1,798.20 if you slide the stop from 185.90 to 182.00 on 333 shares. Slide it to 175.00 and it is $4,129.20 — more than eight times the loss you agreed to take. A stop may be moved in the direction of your profit. Moving it away from profit is not risk management; it is a refusal to be wrong, expressed in dollars.
 
-## What Stockade's frictionless fills do not show you
+## What Stockade's near-frictionless fills do not show you
 
-Stockade supports stop-loss and take-profit levels on the `/simulator` order ticket: enter them alongside your order, and the position closes automatically when price reaches the level. But every fill on Stockade is frictionless — no slippage, no partial fills, no spread cost, and the generated price series never gaps, because each candle opens exactly where the previous one closed. Your simulated stop closes you out at the level you typed, every single time.
+Stockade supports stop-loss and take-profit levels on the `/simulator` order ticket: enter them alongside your order, and the position closes automatically when price reaches the level. Fills there carry far less friction than real ones, but not none. There is no bid-ask spread — a single quoted price serves as both bid and offer — and there are no partial fills, so the whole position always closes at once. The generated price series never gaps either, because each candle opens exactly where the previous one closed.
 
-Real stops do not behave that way. Use the simulator for the parts it models honestly — choosing an invalidation level, sizing the position to it, leaving the stop alone once set — and assume real exits will be worse than simulated ones. Stockade prices are also entirely synthetic, generated in your browser, not a feed from any exchange.
+What the simulator does not give you is the exact price you typed. It checks your stop against a new price every 800 milliseconds, and price moves in discrete jumps between those checks. When a tick finally comes in at or below your 185.90 stop, the exit is booked at *that* tick — 185.87, 185.82, wherever the jump landed — not at 185.90. The gap is small, but it is one-directional and always against you, which is the same shape real slippage has at a fraction of the size.
+
+Real stops are far worse than that. Use the simulator for the parts it models honestly — choosing an invalidation level, sizing the position to it, leaving the stop alone once set — and assume real exits will be worse than simulated ones. Stockade prices are also entirely synthetic, generated in your browser, not a feed from any exchange.
 
 ## Practice this on the simulator
 

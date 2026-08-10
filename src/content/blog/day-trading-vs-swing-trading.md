@@ -34,7 +34,7 @@ That single difference, holding period, drives everything else: which chart time
 
 Day trading is not a chart you glance at. The tradeable part of a US session is concentrated in the first ninety minutes and the last hour, and those are precisely the hours most people are at work. You need to be at the screen, undistracted, during a fixed window you do not control. If your job involves meetings, you cannot day trade well — you will take the setups that happen to fall between meetings, which is a selection method with no relationship to quality.
 
-Swing trading asks for a different kind of time: twenty to forty minutes of chart review in the evening, orders placed for the following day, and the discipline not to peek during working hours. Fewer decisions, spread further apart, made when the market is closed and nothing is moving under you. For most people with jobs that is the only honest option — and it is a real option, not a consolation prize. A swing plan executed properly beats a day-trading plan executed in stolen minutes, every time.
+Swing trading asks for a different kind of time: twenty to forty minutes of chart review in the evening, orders placed for the following day, and the discipline not to peek during working hours. Fewer decisions, spread further apart, made when the market is closed and nothing is moving under you. For most people with jobs that is the only honest option — and it is a real option, not a consolation prize. A swing plan executed properly will usually beat a day-trading plan executed in stolen minutes.
 
 ## Capital, the US pattern day trader rule, and account minimums
 
@@ -72,7 +72,7 @@ That share count is also where costs bite. Suppose the bid-ask spread is 0.02 an
 - Day trader: 1,250 × 0.02 = **$25 per round trip**. Four trades a day over 250 sessions is 1,000 round trips — **$25,000 a year**, half the account, before commissions or a single losing trade.
 - Swing trader: 125 × 0.02 = **$2.50 per round trip**. Six trades a month over a year is 72 round trips — **$180**.
 
-The assumptions are illustrative, but the shape is not: frequency multiplies friction. A day trader's strategy has to clear a hurdle a swing trader never meets. And note that simulator fills are frictionless — Stockade does not charge you spread or slippage, so its results are flattering by exactly this amount.
+The assumptions are illustrative, but the shape is not: frequency multiplies friction. A day trader's strategy has to clear a hurdle a swing trader never meets. And note that Stockade never charges you this spread — a single price serves as both bid and offer — so its results are flattering by exactly this amount.
 
 ## Fast feedback, slow feedback, and how each shapes you
 

@@ -17,7 +17,7 @@ That single click is the difference between the two order types every platform p
 
 This belongs up front, not in a footnote.
 
-Stockade's fills are frictionless. There is no bid-ask spread, no slippage, no partial fill, and no order book in the simulator. A market order fills at exactly the price on screen. A limit order fills immediately at whatever price you type into the box — it does not wait for the market to reach your level, it does not queue, and it never goes unfilled. All prices on Stockade are generated in your browser, so there is no venue and no counterparty to negotiate with.
+Stockade's fills carry almost no friction. There is no bid-ask spread, no partial fill, and no order book in the simulator. A market order fills at exactly the price on screen. A limit order fills immediately at whatever price you type into the box — it does not wait for the market to reach your level, it does not queue, and it never goes unfilled. The one exception is a stop-loss or take-profit exit: those are checked against a new price every 800 milliseconds and booked at the tick that crossed your level, so they fill slightly past it rather than on it. All prices on Stockade are generated in your browser, so there is no venue and no counterparty to negotiate with.
 
 You can still practice the **mechanics**: choosing an order type before you click, deciding a limit price in advance instead of improvising, attaching a stop-loss and take-profit to an entry. Those habits transfer.
 
