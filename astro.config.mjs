@@ -55,6 +55,7 @@ function singleFileSitemap() {
 
 export default defineConfig({
   site: 'https://stockademarketsim.com',
+  trailingSlash: 'never',
   integrations: [
     react(),
     sitemap({
