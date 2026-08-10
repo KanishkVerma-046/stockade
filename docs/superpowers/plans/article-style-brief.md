@@ -133,6 +133,19 @@ So the honest framing is: Stockade has no spread and no partial fills, and its s
 only the small slippage that tick granularity produces — far less than a real fast market, but not
 literally zero. Do not write that a simulated stop "fills exactly at the price you typed."
 
+### 4a-iv. Two more verified constraints
+
+- **ONE position at a time.** `TradingSimulator.tsx:204` holds a single `Position` object, and
+  `changeSymbol` (`:383-385`) discards any open position when you switch symbols. You cannot hold
+  simultaneous positions in different instruments, so portfolio effects — correlation, diversification,
+  aggregate exposure — cannot be practised on Stockade at all. Teach them as real-market concepts only.
+- **Volume uses TWO different formulas.** Seeded history: `Math.floor(Math.random() * 600_000 + 80_000)`
+  (`:92`, `:119`) — range 80k–680k, mean ~380k. Candles created LIVE during a session:
+  `Math.floor(Math.random() * 500_000)` (`:271`) — range 0–500k, mean ~250k. If you quote the formula
+  or an expected value, say which one you mean. Both are uniformly random and uncorrelated with price.
+- Related: live candles close every **10 seconds** (`:269`, `>= 10_000`). The 800ms figure is the
+  tick interval within a forming candle, not the candle interval. Do not conflate them.
+
 ### 4b. The Chart Simulator does NOT replay historical data
 
 `/chart-simulator` **generates** a session and plays it back candle-by-candle at your chosen pace.

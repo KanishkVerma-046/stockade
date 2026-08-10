@@ -89,7 +89,7 @@ An unwritten plan cannot be violated, only reinterpreted, and reinterpretation i
 
 ## The costs you forget to subtract
 
-Commissions and spread feel trivial per trade and are decisive in aggregate. Take a $30,000 account, 6 round trips a day, 250 trading days, and roughly $8 of all-in cost per round trip once commission and crossing the spread on a few hundred shares are counted. That is **$12,000 a year** — 40% of the account, and 40R against a $300 risk unit. Your strategy must produce 40R of gross profit annually just to break even.
+Commissions and spread feel trivial per trade and are decisive in aggregate. Take a $30,000 account, 6 round trips a day, 250 trading days, and roughly $8 of all-in cost per round trip once commission and crossing the spread on a few hundred shares are counted. The assumptions there are illustrative — your broker, your size, and your instrument all move that $8 — but the shape of the result does not change. That is **$12,000 a year** — 40% of the account, and 40R against a $300 risk unit. Your strategy must produce 40R of gross profit annually just to break even.
 
 **The rule:** log fees and estimated spread cost on every trade and subtract them before calling a strategy profitable. Net figures only.
 
