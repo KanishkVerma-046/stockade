@@ -110,6 +110,6 @@ And the 24/7 clock is a psychological trap as much as a structural one. Equities
 
 ## Practice this on the simulator
 
-Stockade's `/markets` and `/simulator` pages carry eight crypto-labeled instruments — BLTC, ETHX, SLAX, XBEN, AVXL, DRLN, FLOX, NXVR — which are invented tokens, not Bitcoin or Ethereum. The separate `/chart-simulator` page does list BTC/USD and ETH/USD by name, but it is candle-by-candle playback of a generated session, not a trading screen. All prices on the site are synthetic, and Stockade's crypto instruments do not move differently from its stocks: no modeled 24/7 clock, no weekend session, no exchange risk.
+Stockade's `/markets` and `/simulator` pages carry eight crypto-labeled instruments — BLTC, ETHX, SLAX, XBEN, AVXL, DRLN, FLOX, NXVR — which are invented tokens, not Bitcoin or Ethereum. The separate `/chart-simulator` page carries BLTC and ETHX as well, there as candle-by-candle playback of a generated session rather than a trading screen. Nothing anywhere on the site is labeled with a real coin's ticker. All prices are synthetic, and Stockade's crypto instruments do not move differently from its stocks: no modeled 24/7 clock, no weekend session, no exchange risk.
 
 What you can rehearse is the mechanics — computing a position from a wide percentage stop, and placing a bracket so an exit exists whether or not you are watching. Run that arithmetic on a few trades in the [simulator](/simulator) until it is automatic, then take it to a market where nobody rings a bell for you.
