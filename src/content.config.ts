@@ -14,6 +14,10 @@ const blog = defineCollection({
     author: z.string().default('Stockade Team'),
     tags: z.array(z.string()).min(1),
     slug: z.string(),
+    // Omit the field to publish. Set `draft: true` to keep a post out of
+    // the index, the sitemap, related posts, and route generation — the
+    // page is not built at all, so there is no unlisted URL to stumble on.
+    draft: z.boolean().default(false),
   }),
 });
 
