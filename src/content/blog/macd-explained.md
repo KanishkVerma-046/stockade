@@ -45,7 +45,7 @@ Because the histogram is defined as that difference, it crosses zero on exactly 
 
 ## Why the settings are 12, 26, and 9
 
-These numbers are convention, not mathematics. Gerald Appel built MACD in the late 1970s, when a trading week was six days and a month roughly 26 sessions. Twelve bars was about two weeks, twenty-six about a month, nine a week and a half of smoothing on top. That is the entire derivation. No property of markets makes 12 and 26 special.
+These numbers are convention, not mathematics. Gerald Appel chose them when he built MACD in the late 1970s, and they have been the default ever since. There is no derivation to recover: no property of markets makes 12 and 26 special, and you will find no calculation that lands on them. Neat-sounding origin stories circulate — that they map onto some tidy count of weeks or sessions — but they are folklore invented after the fact to explain a choice that was simply a choice. What matters is what the numbers control: 12 and 26 set how fast and how slow the two averages are, and 9 sets how much smoothing sits on top.
 
 They matter now mostly because so many people use them. A default that millions of screens display becomes mildly self-fulfilling: when a widely watched cross prints, some traders act on it, putting real orders behind an arbitrary number. That is a weak effect, not a law, but it beats any claim that the settings are optimal.
 

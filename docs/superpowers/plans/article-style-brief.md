@@ -96,6 +96,25 @@ and it had to be corrected before publication. Do not repeat it.
 This also constrains the phrase "live". The 800ms live ticks are *simulated* ticks arriving on a
 timer. Describe them as live updates to a simulated market, never as a live market feed.
 
+### 4a-ii. What the generated data does NOT do
+
+Three specific behaviors a reader might assume are present but are not. Each was verified in source
+and each has already been caught in a draft, so check your own copy against them:
+
+- **No price gaps, ever.** Each candle's open is set equal to the previous candle's close by
+  construction (`TradingSimulator.tsx` — `const open = price` / `price = open`). Generated sessions
+  are perfectly continuous. Do not claim gaps, gap-ups, gap-downs, opening gaps, or overnight gaps
+  appear on Stockade. You may teach what gaps are in real markets; just do not say you can practice
+  them here.
+- **Volatility does not cluster.** `vol` is a fixed fraction of the instrument's base price
+  (`basePrice * 0.007`), constant for every candle. Only `trend` varies. There are no calm periods
+  and volatile periods. Do not claim volatility clustering, volatility regimes, or expanding and
+  contracting ranges are modeled.
+- **The Chart Simulator shows completed candles only.** It reveals `session.slice(0, revealed + 1)`
+  — whole candles, one at a time. There is no intra-bar formation to watch there. Intra-bar
+  movement DOES exist on `/simulator` via the 800ms simulated ticks, so if you want to describe
+  watching a candle form, attribute it to `/simulator`, not `/chart-simulator`.
+
 ### 4b. The Chart Simulator does NOT replay historical data
 
 `/chart-simulator` **generates** a session and plays it back candle-by-candle at your chosen pace.
