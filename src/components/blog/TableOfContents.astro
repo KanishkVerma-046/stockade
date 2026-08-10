@@ -53,8 +53,12 @@ const items = headings.filter(h => h.depth === 2 || h.depth === 3);
   const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
 
   if (links.length > 0) {
-    const bySlug = new Map<string, HTMLAnchorElement>();
-    links.forEach(link => bySlug.set(link.dataset.tocLink!, link));
+    const bySlug = new Map<string, HTMLAnchorElement[]>();
+    links.forEach(link => {
+      const slug = link.dataset.tocLink!;
+      if (!bySlug.has(slug)) bySlug.set(slug, []);
+      bySlug.get(slug)!.push(link);
+    });
 
     const headings = Array.from(bySlug.keys())
       .map(slug => document.getElementById(slug))
@@ -83,9 +87,12 @@ const items = headings.filter(h => h.depth === 2 || h.depth === 3);
         }
       }
 
-      bySlug.forEach((link, slug) => {
-        if (slug === active) link.setAttribute('data-toc-active', '');
-        else link.removeAttribute('data-toc-active');
+      bySlug.forEach((links, slug) => {
+        if (slug === active) {
+          links.forEach(link => link.setAttribute('data-toc-active', ''));
+        } else {
+          links.forEach(link => link.removeAttribute('data-toc-active'));
+        }
       });
     }
 
