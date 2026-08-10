@@ -7,6 +7,16 @@ describe('readingTime', () => {
     expect(readingTime('word '.repeat(450))).toBe(2);
   });
 
+  it('rounds up past the half-minute boundary', () => {
+    // 338 words => 1.502 minutes, should round to 2
+    expect(readingTime('word '.repeat(338))).toBe(2);
+  });
+
+  it('rounds down below the half-minute boundary', () => {
+    // 300 words => 1.333 minutes, should round to 1
+    expect(readingTime('word '.repeat(300))).toBe(1);
+  });
+
   it('returns at least 1 minute for very short content', () => {
     expect(readingTime('three little words')).toBe(1);
   });
@@ -17,7 +27,9 @@ describe('readingTime', () => {
   });
 
   it('does not count repeated whitespace as words', () => {
-    expect(readingTime('one     two\n\n\nthree')).toBe(1);
+    // 450 words separated by multi-character whitespace => 2 minutes
+    const body = Array(450).fill('word').join('  \n\n ');
+    expect(readingTime(body)).toBe(2);
   });
 
   it('scales to longer articles', () => {
