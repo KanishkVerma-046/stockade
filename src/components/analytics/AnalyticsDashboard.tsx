@@ -34,18 +34,21 @@ function fmtDuration(ms: number): string {
   return m > 0 ? `${h}h ${m}m` : `${h}h`;
 }
 
-function heatBg(wr: number, hasData: boolean) {
+// Cells are coloured by net P&L, not win rate. A high win rate with small
+// winners and large losers is a losing hour, and colouring it green would
+// point traders at exactly the sessions costing them money.
+function heatBg(net: number, hasData: boolean) {
   if (!hasData) return 'var(--c-bg-muted)';
-  if (wr >= 65) return 'var(--c-green-bg)';
-  if (wr >= 50) return 'var(--c-bg-muted)';
-  return 'var(--c-red-bg)';
+  if (net > 0) return 'var(--c-green-bg)';
+  if (net < 0) return 'var(--c-red-bg)';
+  return 'var(--c-bg-muted)';
 }
 
-function heatText(wr: number, hasData: boolean) {
+function heatText(net: number, hasData: boolean) {
   if (!hasData) return 'var(--c-text-faint)';
-  if (wr >= 65) return '#22c55e';
-  if (wr >= 50) return 'var(--c-text-muted)';
-  return '#ef4444';
+  if (net > 0) return '#22c55e';
+  if (net < 0) return '#ef4444';
+  return 'var(--c-text-muted)';
 }
 
 const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -114,10 +117,14 @@ export default function AnalyticsDashboard() {
       const dayIdx = DAY_INDICES[di];
       const cell = trades.filter(t => {
         const d = new Date(t.closedAt);
-        return d.getDay() === dayIdx && d.getHours() === hour;
+        // UTC so a slot means the same thing regardless of the viewer's
+        // timezone, and so cells don't shift if they travel.
+        return d.getUTCDay() === dayIdx && d.getUTCHours() === hour;
       });
+      // Only pnl > 0 is a win, so a trade closing exactly flat counts as a loss.
       const wr = cell.length ? (cell.filter(t => t.pnl > 0).length / cell.length) * 100 : 0;
-      return { day, hour, wr, hasData: cell.length > 0, count: cell.length };
+      const net = cell.reduce((s, t) => s + t.pnl, 0);
+      return { day, hour, wr, net, hasData: cell.length > 0, count: cell.length };
     })
   );
 
@@ -254,8 +261,8 @@ export default function AnalyticsDashboard() {
       {/* Heatmap */}
       {activeTab === 'heatmap' && (
         <div className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
-          <h2 className="text-[14px] font-semibold text-[var(--c-text)] mb-1">Win Rate by Time of Day</h2>
-          <p className="text-[12px] text-[var(--c-text-subtle)] mb-5">Green = high win rate · Red = low win rate · — = no trades in that slot</p>
+          <h2 className="text-[14px] font-semibold text-[var(--c-text)] mb-1">Performance by Time of Day</h2>
+          <p className="text-[12px] text-[var(--c-text-subtle)] mb-5">Colour = net P&L · Number = win rate · Hover a cell for net P&L · Hours are UTC · — = no trades in that slot</p>
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center h-[100px] text-center">
               <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades to display</p>
@@ -273,11 +280,12 @@ export default function AnalyticsDashboard() {
                     {HOURS.map(hour => {
                       const cell = heatmap.find(c => c.day === day && c.hour === hour);
                       const wr = cell?.wr ?? 0;
+                      const net = cell?.net ?? 0;
                       const hasData = cell?.hasData ?? false;
                       return (
-                        <div key={hour} className="rounded p-2 text-center" style={{ backgroundColor: heatBg(wr, hasData) }}
-                          title={hasData ? `${cell?.count} trade${cell?.count !== 1 ? 's' : ''} · ${wr.toFixed(0)}% win` : 'No trades'}>
-                          <span className="text-[11px] font-mono" style={{ color: heatText(wr, hasData) }}>
+                        <div key={hour} className="rounded p-2 text-center" style={{ backgroundColor: heatBg(net, hasData) }}
+                          title={hasData ? `${cell?.count} trade${cell?.count !== 1 ? 's' : ''} · ${wr.toFixed(0)}% win · net ${fmtMoney(net)}` : 'No trades'}>
+                          <span className="text-[11px] font-mono" style={{ color: heatText(net, hasData) }}>
                             {hasData ? `${wr.toFixed(0)}%` : '—'}
                           </span>
                         </div>
