@@ -163,13 +163,18 @@ generated session.
 | Forex | 3 | EUR/USD, GBP/USD, USD/JPY | Real names |
 | Futures | 4 | /ES (S&P 500), /NQ (Nasdaq 100), /CL (Crude Oil), /GC (Gold) | Real names |
 
-**`/chart-simulator` is separate and carries 11 instruments, all with real-world names:**
-AAPL, TSLA, MSFT, NVDA, AMZN, GOOGL, BTC/USD, ETH/USD, EUR/USD, GBP/USD, SPX.
+**`/chart-simulator` carries 11 instruments, now using the same naming scheme:**
+APXL, TRXL, MXFT, NVOX, VXON, GLPH (Stocks); BLTC, ETHX (Crypto); EUR/USD, GBP/USD (Forex); /ES (Futures).
 
-So: you may say a reader can pull up AAPL or BTC/USD **on the Chart Simulator**. You may **not**
-say they can trade Bitcoin, Ethereum, Apple, or Tesla on `/simulator` or `/markets` — those carry
-BLTC/Bullethon and ETHX/Etherax instead. In every case, a real ticker *label* never implies real
-*data*.
+**UPDATED 2026-08-11:** the Chart Simulator previously used real-world names (AAPL, TSLA, MSFT,
+NVDA, AMZN, GOOGL, BTC/USD, ETH/USD, SPX). Those were renamed to the invented tickers so the whole
+site is consistent. No page anywhere on Stockade now labels generated data with a real equity or
+crypto ticker. Do NOT write that a reader can pull up AAPL or BTC on the Chart Simulator — that is
+no longer true.
+
+Real-world names remain only for forex pairs (EUR/USD, GBP/USD, USD/JPY) and futures
+(/ES, /NQ, /CL, /GC), which is deliberate and consistent across `/markets`, `/simulator`, and
+`/chart-simulator`.
 
 Do not claim asset-class-specific price behavior. Volatility is driven by a price-tier factor,
 not by whether something is a stock, a coin, or a currency pair. Crypto on Stockade does not move
