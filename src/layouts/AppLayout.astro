@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import Navbar from '../components/layout/Navbar.astro';
 import TickerTape from '../components/landing/TickerTape.tsx';
+import ConsentScripts from '../components/layout/ConsentScripts.astro';
+import CookieConsent from '../components/layout/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -79,17 +81,8 @@ const hasBelow = Astro.slots.has('below');
     />
     <title>{title}</title>
     <slot name="head" />
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QG3J79W2NY" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-QG3J79W2NY');
-    </script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6181047851191158"
-     crossorigin="anonymous" is:inline></script>
+    <!-- Google Analytics + AdSense, loaded only after cookie consent -->
+    <ConsentScripts />
     <!-- Apply saved theme before render to avoid flash -->
     <script is:inline>
       try {
@@ -116,5 +109,6 @@ const hasBelow = Astro.slots.has('below');
     <div class="shrink-0 border-t border-[var(--c-border)]">
       <TickerTape client:load />
     </div>
+    <CookieConsent />
   </body>
 </html>

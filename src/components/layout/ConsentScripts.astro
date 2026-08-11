@@ -1,0 +1,96 @@
+---
+// Google Consent Mode v2 wiring for Analytics and AdSense.
+//
+// Rather than blocking the tags outright, both load with every consent signal
+// defaulted to "denied" — Google's recommended EEA setup. In that state
+// AdSense serves only non-personalised ads and Analytics sets no cookies, so
+// nothing non-essential is stored until the visitor accepts. Clicking Accept
+// in the banner fires a consent update; Reject leaves the denied defaults in
+// place permanently.
+//
+// Ordering matters and is load-bearing:
+//   1. consent defaults pushed to dataLayer  (this inline block)
+//   2. gtag.js
+//   3. adsbygoogle.js
+// A default pushed after a tag reads the dataLayer is a default that tag never
+// saw. Keep this component in <head>, above everything else it configures, and
+// ahead of CookieConsent.astro so window.stockadeConsent exists by the time
+// the banner script runs.
+---
+
+<script is:inline>
+  (function () {
+    var KEY = 'stockade-cookie-consent';
+    var GA_ID = 'G-QG3J79W2NY';
+
+    function read() {
+      try {
+        return localStorage.getItem(KEY);
+      } catch (e) {
+        // Private mode / storage disabled: treat as "no choice made yet", which
+        // keeps consent denied. The banner reappears each visit — the safe
+        // direction to fail.
+        return null;
+      }
+    }
+
+    function write(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+
+    function signals(state) {
+      return {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+      };
+    }
+
+    var stored = read();
+    var granted = stored === 'accepted';
+    var defaults = signals(granted ? 'granted' : 'denied');
+
+    // Only a visitor who has not chosen yet can flip these mid-page, so only
+    // they need the tags to hold off before firing.
+    if (!stored) defaults.wait_for_update = 500;
+
+    gtag('consent', 'default', defaults);
+    // Strips ad click identifiers from requests while ad_storage is denied.
+    gtag('set', 'ads_data_redaction', !granted);
+    gtag('set', 'url_passthrough', true);
+
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+
+    window.stockadeConsent = {
+      get: read,
+      accept: function () {
+        write('accepted');
+        gtag('consent', 'update', signals('granted'));
+        gtag('set', 'ads_data_redaction', false);
+      },
+      reject: function () {
+        write('rejected');
+        // Already the default, but sent explicitly so the tags stop waiting on
+        // wait_for_update instead of sitting out the full timeout.
+        gtag('consent', 'update', signals('denied'));
+      },
+    };
+  })();
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QG3J79W2NY" is:inline></script>
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6181047851191158"
+  crossorigin="anonymous"
+  is:inline></script>
