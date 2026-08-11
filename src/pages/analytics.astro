@@ -8,7 +8,6 @@ import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
 <Layout
   title="Trading Analytics Dashboard | Stockade"
   description="Analyze your paper trading performance with equity curves, win rates, drawdown metrics & trade journals on Stockade's free simulator."
-  keywords="paper trading simulator, trading simulator, stock market simulator, day trading simulator, free trading simulator, stock trading simulator"
   canonical="https://stockademarketsim.com/analytics"
 >
   <Navbar />
@@ -19,6 +18,90 @@ import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Your simulated trading statistics — equity curve, win rate, drawdown, and trade journal.</p>
     </div>
     <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Understanding Your Trading Metrics
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Every number on this dashboard is calculated from the trades you have closed in the Stockade
+        simulator and stored locally in your browser. Knowing what each figure actually measures is
+        the difference between reviewing your trading and admiring the P&amp;L.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Headline statistics</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Total P&amp;L</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            The sum of realised profit and loss across every closed trade. Open positions are not
+            counted until you close them, so a flattering total can hide a losing position still on
+            the books.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Equity</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Your current account value — the $100,000 starting balance plus total P&amp;L.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Win rate</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            The share of closed trades that finished in profit. A high win rate is reassuring but means
+            little on its own: a strategy that wins 80% of the time still loses money if the 20% of
+            losers are large enough.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Profit factor</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Gross profit divided by gross loss. Anything above 1.0× means you took out more than you
+            gave back, and 1.5× or better is generally considered solid. It answers the question win
+            rate cannot — how much you earn per unit of loss absorbed.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Average win</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            The mean profit on your winning trades. Read it against your average loss: if your average
+            win is the smaller of the two, you need a correspondingly high win rate simply to break
+            even.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Maximum drawdown</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            The largest peak-to-trough fall in your equity, expressed as a percentage. This is the pain
+            metric. It estimates the worst stretch you would have had to sit through — in real trading,
+            usually what ends a strategy long before the maths does.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Equity curve</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        The equity curve plots your account value after each closed trade. Its shape matters more than
+        its endpoint: a steady climb points to a process you can repeat, while a flat line broken by
+        one or two enormous jumps usually points to luck.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Trade journal</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        The journal lists every closed trade with its symbol, direction, entry and exit price, size,
+        P&amp;L and holding time. The average duration figure is a useful reality check: many traders
+        discover they are holding losers far longer than winners, or trading a much shorter timeframe
+        than they intended.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Time heatmap</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        The heatmap breaks your results down by day of the week and hour of the day, colouring each
+        cell by net P&amp;L. Given enough trades it can show that one particular session is quietly
+        responsible for most of your losses. Treat a thin sample with suspicion — a single cell needs
+        dozens of trades behind it before the colour means anything.
+      </p>
+    </section>
   </main>
   <Footer />
 </Layout>

@@ -1,4 +1,4 @@
-﻿---
+---
 import AppLayout from '../layouts/AppLayout.astro';
 import TradingSimulator from '../components/trading/TradingSimulator.tsx';
 ---
@@ -6,11 +6,103 @@ import TradingSimulator from '../components/trading/TradingSimulator.tsx';
 <AppLayout
   title="Paper Trading Simulator | Stockade"
   description="Practice paper trading with our free stock market simulator. Candlestick charts, EMA indicators & $100K virtual balance. No signup required."
-  keywords="stock market simulator, paper trading simulator, day trading simulator free, free day trading simulator, stock trading simulator, trading simulator free, fake stock market simulator, fake trading simulator, stock market simulator free"
   canonical="https://stockademarketsim.com/simulator"
 >
-  <h1 id="simulator-h1" class="sr-only">Paper Trading Simulator</h1>
-  <TradingSimulator client:load />
+  <div class="flex flex-col h-full">
+    <h1 id="simulator-h1" class="sr-only">Paper Trading Simulator</h1>
+    <p
+      class="shrink-0 px-4 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] text-[12px] leading-relaxed text-[var(--c-text-muted)]"
+    >
+      Trade 29 simulated stocks, crypto pairs, forex and futures with a
+      <span class="font-mono text-[var(--c-text)]">$100,000</span> virtual balance — market and limit orders,
+      stop-loss and take-profit, live candlesticks. No signup, no real money.
+      <a href="#how-to-use" class="text-[#f59e0b] hover:underline">How it works ↓</a>
+    </p>
+    <div class="flex-1 min-h-0">
+      <TradingSimulator client:load />
+    </div>
+  </div>
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            How to Use This Simulator
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Stockade's paper trading simulator gives you a $100,000 virtual account, a live-ticking
+            candlestick chart, and a full order ticket — no signup and no real money at risk. Your
+            balance and trade history are saved in your browser, so you can pick up where you left off.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Reading the interface
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            The chart fills the centre of the screen. The top bar holds the symbol selector — 29
+            simulated tickers grouped into stocks, crypto, forex and futures — along with timeframe
+            buttons and toggles for the EMA 9, EMA 20 and EMA 50 overlays. A volume histogram runs
+            along the bottom of the chart. The right-hand panel is your account: current balance, any
+            open position with its unrealised P&amp;L, and a running log of every fill. On narrow
+            screens those panels collapse into the Chart, Order and Trades tabs.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Placing an order
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Enter a quantity, then choose an order type. A market order fills immediately at the last
+            traded price; a limit order rests until price trades through the level you set. The
+            optional stop-loss and take-profit fields close the position automatically when either
+            level is hit. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> opens a long,
+            <strong class="text-[var(--c-text)] font-semibold">Sell</strong> opens a short, and
+            <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> closes everything at the
+            current price. Once the page has focus you can trade from the keyboard:
+            <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> to buy,
+            <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> to sell,
+            <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> to flatten.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Tips for getting started
+          </h3>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>Risk a fixed 1–2% of your account per trade rather than sizing by gut feel.</li>
+            <li>Set a stop loss before you enter, not after the trade has moved against you.</li>
+            <li>
+              Switch to replay mode to step through candles at your own pace — the spacebar advances one
+              bar.
+            </li>
+            <li>
+              Stick with one symbol for a stretch; repeated exposure teaches more than jumping between
+              all 29.
+            </li>
+            <li>
+              Review your results on the <a href="/analytics" class="text-[#f59e0b] hover:underline">Analytics
+              dashboard</a> — win rate and profit factor say more than one lucky trade.
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
 </AppLayout>
 
 <script>
