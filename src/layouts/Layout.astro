@@ -4,7 +4,6 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  keywords?: string;
   ogImage?: string;
   ogType?: string;
   canonical?: string;
@@ -13,7 +12,6 @@ interface Props {
 const {
   title = 'Free Stock Market Simulator | Stockade',
   description = 'A free stock market simulator. Practice day trading, paper & crypto trading with $100K virtual money. No signup required. Stocks, forex, futures & crypto.',
-  keywords = 'stock market simulator, stock market simulator game, free stock market simulator, paper trading simulator, day trading simulator, trading simulator, stock trading simulator, online stock market simulator, virtual stock market simulator',
   ogImage = '/web-app-manifest-512x512.png',
   ogType = 'website',
   canonical,
@@ -37,7 +35,6 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
     <meta name="robots" content="index, follow" />
     <meta name="indexnow-key" content="e3d888ea66514206832e8e56e27eed7d" />
     <meta name="generator" content={Astro.generator} />
