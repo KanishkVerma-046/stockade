@@ -8,9 +8,9 @@
 // (the SoftwareApplication on the home page, the Article on each blog post)
 // refers back to these nodes, and a consumer merges nodes sharing an @id.
 //
-// Deliberately no Person/founder node — the project is published anonymously,
-// so there is no named individual to attach one to. Organization here means
-// "the site as publisher", not a company or a team.
+// Deliberately no Person/founder node — nobody is named publicly, so there is
+// no individual to attach one to. Organization here means "the site as
+// publisher" and makes no claim about how many people are behind it.
 
 const siteUrl = 'https://stockademarketsim.com';
 
@@ -23,7 +23,7 @@ const schema = {
       name: 'Stockade',
       url: `${siteUrl}/`,
       description:
-        'Independent solo-built project publishing a free stock market simulator and trading education articles. Not affiliated with any brokerage, exchange, or financial institution.',
+        'Independent project publishing a free stock market simulator and trading education articles. Not affiliated with any brokerage, exchange, or financial institution.',
       logo: {
         '@type': 'ImageObject',
         '@id': `${siteUrl}/#logo`,
