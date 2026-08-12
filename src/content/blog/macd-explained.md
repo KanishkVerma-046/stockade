@@ -2,7 +2,7 @@
 title: "MACD Explained: How to Read and Trade With MACD"
 description: "MACD is two moving averages, their difference, and a smoothed copy of that difference. Here is how to compute each part, read it, and know when it lies."
 date: 2026-04-27
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Indicators"]
 slug: "macd-explained"
 ---

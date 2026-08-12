@@ -11,10 +11,9 @@ const blog = defineCollection({
     // meta description is invisible until it is already live.
     description: z.string().max(160),
     date: z.coerce.date(),
-    // The site is written by one anonymous person, so this names the site as
-    // publisher rather than an individual. It feeds structured data and the
-    // article:author meta tag; the visible byline is fixed in BlogPost.astro.
-    author: z.string().default('Stockade'),
+    // Names the site as publisher rather than an individual. Drives the
+    // visible byline and the article:author meta tag.
+    author: z.string().default('Stockade Team'),
     tags: z.array(z.string()).min(1),
     slug: z.string(),
     // Omit the field to publish. Set `draft: true` to keep a post out of

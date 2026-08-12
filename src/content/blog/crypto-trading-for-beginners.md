@@ -2,7 +2,7 @@
 title: "Crypto Trading for Beginners: How Digital Asset Markets Work"
 description: "Crypto trades 24/7 with no circuit breakers, weak protections, and inflated volume. What actually differs from equities, and how to size for it."
 date: 2026-07-20
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Crypto", "Basics"]
 slug: "crypto-trading-for-beginners"
 ---

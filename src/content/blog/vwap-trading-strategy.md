@@ -2,7 +2,7 @@
 title: "VWAP Trading Strategy: What It Is and How Traders Use It"
 description: "VWAP is cumulative typical price times volume, divided by cumulative volume. Here is the arithmetic, why institutions track it, and where it fails."
 date: 2026-05-04
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Indicators", "Strategy"]
 slug: "vwap-trading-strategy"
 ---

@@ -2,7 +2,7 @@
 title: "Market Orders vs Limit Orders: When to Use Each"
 description: "A market order guarantees execution but not price. A limit order guarantees price but not execution. Every other consideration flows from that."
 date: 2026-05-11
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Order Types", "Basics"]
 slug: "market-orders-vs-limit-orders"
 ---

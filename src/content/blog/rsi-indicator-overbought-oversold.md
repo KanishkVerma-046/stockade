@@ -2,7 +2,7 @@
 title: "RSI Indicator: How to Identify Overbought and Oversold Conditions"
 description: "RSI above 70 is not a sell signal. Here is what RSI actually measures, why overbought means strong, and how to read divergence without fooling yourself."
 date: 2026-04-20
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Indicators"]
 slug: "rsi-indicator-overbought-oversold"
 ---

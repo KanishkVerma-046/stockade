@@ -2,7 +2,7 @@
 title: "Day Trading vs Swing Trading: Which Style Fits You"
 description: "Neither style is better. Here is how time, capital, gap risk, transaction costs and feedback speed actually differ, and how to tell which one fits you."
 date: 2026-06-01
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Strategy", "Basics"]
 slug: "day-trading-vs-swing-trading"
 ---

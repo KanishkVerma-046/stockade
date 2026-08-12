@@ -2,7 +2,7 @@
 title: "Futures Trading Explained: Contracts, Margin, and Leverage"
 description: "What a futures contract really is, how tick size and multipliers work, why margin is a performance bond rather than a loan, and how leverage cuts both ways."
 date: 2026-07-27
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Futures", "Risk Management"]
 slug: "futures-trading-explained"
 ---

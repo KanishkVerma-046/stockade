@@ -2,7 +2,7 @@
 title: "Common Day Trading Mistakes and How to Avoid Them"
 description: "Oversizing, moved stops, revenge trades, averaging down. What each mistake looks like, why your brain produces it, and a checkable rule that stops it."
 date: 2026-07-06
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Psychology", "Risk Management"]
 slug: "common-day-trading-mistakes"
 ---

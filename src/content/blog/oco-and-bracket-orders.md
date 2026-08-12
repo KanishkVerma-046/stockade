@@ -2,7 +2,7 @@
 title: "What Are OCO and Bracket Orders and How Do They Work"
 description: "How OCO and bracket orders link a stop and a target so that filling one cancels the other, plus the quantity mistakes beginners make."
 date: 2026-05-25
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Order Types"]
 slug: "oco-and-bracket-orders"
 ---

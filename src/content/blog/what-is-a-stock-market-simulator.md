@@ -2,7 +2,7 @@
 title: "What Is a Stock Market Simulator and Why Should You Use One"
 description: "A stock market simulator lets you trade real market mechanics with virtual money. Here is how they work and what they can and cannot teach you."
 date: 2026-03-23
-author: "Stockade"
+author: "Stockade Team"
 tags: ["Basics"]
 slug: "what-is-a-stock-market-simulator"
 ---
