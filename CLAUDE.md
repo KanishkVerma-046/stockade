@@ -16,13 +16,43 @@
 
 | Route | Component | Notes |
 |---|---|---|
-| `/` | `src/pages/index.astro` | Landing: TickerTape + LiveStats React islands |
-| `/simulator` | `TradingSimulator.tsx` | Paper trading, keyboard shortcuts B/S/F |
-| `/live` | `LiveSimulator.tsx` | 6 assets, 800ms live ticks |
-| `/markets` | `MarketsView.tsx` | 22 assets, filterable/sortable |
+| `/` | `src/pages/index.astro` | Landing: TickerTape + LiveStats islands; SoftwareApplication + FAQPage JSON-LD |
+| `/simulator` | `TradingSimulator.tsx` | Paper trading, keyboard B/S/F; 800ms live ticks or candle-by-candle replay |
+| `/chart-simulator` | `ChartSimulator.tsx` | Candlestick-pattern replay, 20+ detected patterns |
+| `/markets` | `MarketsView.tsx` | 29 assets, filterable/sortable |
 | `/analytics` | `AnalyticsDashboard.tsx` | Equity curve, trade journal, heatmap |
-| `/leaderboard` | `Leaderboard.tsx` | 15 simulated traders, sortable |
-| `/feed` | `TradeFeed.tsx` | Auto-generating feed, 3s interval |
+| `/blog`, `/blog/[slug]` | `BlogPost.astro` | Content collection, 20 posts |
+| `/about` `/contact` `/privacy` `/terms` `/disclaimer` `/404` `/500` | — | Static pages |
+
+`LiveSimulator.tsx` exists but is not routed or imported anywhere — dead code.
+
+## Layouts
+
+- `Layout.astro` — content pages; the page supplies its own Navbar/Footer
+- `AppLayout.astro` — full-height app shells (`/simulator`, `/chart-simulator`, `/markets`, `/analytics`); brings its own Navbar + TickerTape, optional `below` slot for static prose under the app
+- **`<head>` edits must be made in BOTH** — there is no shared head partial
+- `SiteSchema.astro` emits WebSite + Organization JSON-LD with stable `@id`s on every page; page-level schema references those by `@id` instead of restating them
+- `trailingSlash: 'always'`; both layouts normalise `canonical` to end in `/`
+
+## Content
+
+Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
+
+- `description` is capped at 160 chars — **exceeding it is a hard build failure**, on purpose
+- `draft: true` drops the post from the index, sitemap, related posts, and routing
+- `author` is the publisher name for structured data (`"Stockade"`); the visible byline is a constant in `BlogPost.astro`, identical on every post
+
+## Testing
+
+`npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`).
+
+`npx astro check` reports 1 pre-existing error at `ChartSimulator.tsx:670` (lightweight-charts marker generics). Exit 1 is expected; treat anything beyond that one as new.
+
+## Editorial
+
+Product copy is held to what the code actually does — fabricated ratings, unverifiable adoption claims, and overstated order-type claims have all been removed. `/simulator` documents what the engine does *not* model (slippage, partial fills, queue position, buying-power reservation on resting orders); keep that list current when order handling changes.
+
+The site is built by one anonymous person: singular first person throughout, never "we"/"our team", and no name, photo, or avatar anywhere — including the legal pages.
 
 ## Design tokens (`src/styles/global.css`)
 
@@ -45,6 +75,14 @@ font-mono:   JetBrains Mono  ← all prices, tickers, numbers
 - Symbol switch → `series.setData()`; live tick → `series.update(lastPoint)` only
 - `normalize()` deduplicates candles by timestamp to prevent "time must be greater" errors
 
+## Order engine (`src/components/trading/TradingSimulator.tsx`)
+
+- Every fill — immediate or resting — goes through one `fillOrder()`; it returns `false` on rejection. Keep both paths on it so they cannot drift apart
+- Non-marketable limits rest in `pending` and fill via an effect on `currentPrice`, at the **limit price**, not the tick price. Marketable limits fill at once at the prevailing price
+- `handledPendingRef` ids stay marked after filling — clearing them reopens a double-fill window under StrictMode's double-invoked effects
+- Resting orders are cleared on symbol change and any live/replay switch, and are never persisted: the price series is regenerated on mount
+- Fill predicates live in `src/lib/limit-orders.ts` so they are testable without a JSX transform
+
 ## Development
 
 `astro dev --background` fails on Windows ("Failed to spawn background dev server process").
@@ -58,6 +96,10 @@ Invoke-WebRequest http://localhost:4321/simulator -UseBasicParsing
 ```
 
 Stop preview: `Get-Job | Stop-Job`
+
+**`Start-Job` does not survive between PowerShell tool calls** — each call gets a fresh shell, so the job is gone by the next command. For a server that must stay up across turns, use the Bash tool with `run_in_background` instead.
+
+**Deploy:** `npm run deploy` — builds, then `wrangler pages deploy ./dist` to Cloudflare Pages (project `stockade`, branch `main`). Verify against `https://stockademarketsim.com` after; the printed `*.pages.dev` URL is a per-deploy alias.
 
 ## Documentation
 
