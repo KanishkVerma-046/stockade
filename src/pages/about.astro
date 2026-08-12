@@ -25,18 +25,55 @@ import Footer from '../components/layout/Footer.astro';
       </p>
     </div>
 
-    <!-- Mission -->
+    <!-- Who built this -->
     <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
-      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Our mission</h2>
+      <div class="flex items-center gap-3 mb-5">
+        <div
+          class="shrink-0 w-9 h-9 rounded-lg bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <!-- Generic graduation cap — the project is published anonymously, so
+               there is deliberately no photo, avatar, or name anywhere here. -->
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L18.5 7L10 11L1.5 7L10 3Z" />
+            <path d="M5 9v4.5c0 1.1 2.24 2 5 2s5-.9 5-2V9" />
+            <path d="M18.5 7v4.5" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-[var(--c-text)]">About this project</h2>
+      </div>
+
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
-        Most trading simulators are either too simplified to be useful or locked behind paywalls and
-        mandatory account creation. We built Stockade because we believe that access to professional
-        trading tools shouldn't cost anything — and learning the market shouldn't require risking
-        real money first.
+        Stockade is built and maintained by a university student studying Computer Science and
+        Engineering, with an interest in financial markets and trading systems. The project started
+        as a way to practice trading strategies without financial risk, after finding that most
+        existing simulators were either paywalled, cluttered with real-money brokerage upsells, or
+        too simplistic to reflect how actual markets behave — and has grown into a full practice
+        environment for learning to trade.
       </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        The site covers four areas: a stock market simulator with realistic order types (market,
+        limit, stop-loss, OCO/bracket orders), a chart replay tool for practicing technical analysis
+        on historical-style price action, an analytics dashboard for reviewing trade performance and
+        identifying behavioral patterns, and a growing library of educational articles on trading
+        concepts, indicators, and strategy. All trading data — tickers, prices, and market movement —
+        is simulated rather than pulled from real markets, and this is stated clearly wherever it
+        could otherwise be mistaken for live data.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Where a feature has real limitations — for instance, the simulator does not currently model
+        slippage or partial fills the way a live exchange would — that's noted directly on the
+        relevant page rather than left implied. Educational content is written to be accurate to real
+        trading concepts even though the practice environment itself is simulated, and calculation
+        logic (like P&amp;L and performance metrics) is checked against standard trading formulas
+        during development.
+      </p>
+
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-        Our goal is simple: give every aspiring trader the same professional-grade environment the
-        pros use, completely free, right in the browser, instantly.
+        This is an independent, solo-built project and is not affiliated with any brokerage,
+        exchange, or financial institution. Nothing on this site constitutes financial advice.
       </p>
     </section>
 
@@ -55,7 +92,7 @@ import Footer from '../components/layout/Footer.astro';
           },
           {
             title: 'Complete order panel',
-            desc: 'Market, limit, stop-loss, take-profit, and OCO bracket orders — every order type a real broker offers.',
+            desc: 'Market and limit entries, plus optional stop-loss and take-profit levels that work as an OCO bracket — whichever level price reaches first closes the position and cancels the other.',
           },
           {
             title: 'Performance analytics',
@@ -98,13 +135,14 @@ import Footer from '../components/layout/Footer.astro';
     <section>
       <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Get in touch</h2>
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-5">
-        Have a question, suggestion, or found a bug? We'd love to hear from you.
+        Have a question, suggestion, or found a bug? Feedback goes straight to the person who builds
+        the site, and it genuinely shapes what gets worked on next.
       </p>
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
       >
-        Contact us →
+        Send feedback →
       </a>
     </section>
 
