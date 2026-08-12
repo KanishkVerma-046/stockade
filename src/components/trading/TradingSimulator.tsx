@@ -544,10 +544,14 @@ export default function TradingSimulator() {
     const hit = pending.find(o => !handledPendingRef.current.has(o.id) && isTriggered(o, currentPrice));
     if (!hit) return;
 
+    // Marked before the fill and left marked: the id stays in the set for the
+    // rest of the session so a second invocation carrying the same (not yet
+    // committed) `pending` array cannot fill the order twice. Clearing it here
+    // would reopen exactly the window the guard exists to close, and React
+    // double-invokes effects under StrictMode in development.
     handledPendingRef.current.add(hit.id);
     const filled = fillOrder(hit.action, hit.limitPrice, hit.qty);
     setPending(p => p.filter(o => o.id !== hit.id));
-    handledPendingRef.current.delete(hit.id);
     flash(
       filled
         ? `Limit ${hit.action} filled at ${symPrefix(symbol)}${fmtSym(hit.limitPrice, symbol)}`
