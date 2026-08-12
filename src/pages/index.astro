@@ -12,25 +12,13 @@ import LiveStats from '../components/landing/LiveStats.tsx';
   canonical="https://stockademarketsim.com/"
 >
   <Fragment slot="head">
+    <!-- The WebSite and Organization entities live in SiteSchema.astro and are
+         emitted on every page by the base layout. Only the home-page-specific
+         SoftwareApplication node is declared here; it points back at those by @id. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://stockademarketsim.com/#website",
-            "url": "https://stockademarketsim.com/",
-            "name": "Stockade",
-            "description": "Free stock market simulator. Practice trading stocks, crypto, forex, and futures with $100K virtual money.",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://stockademarketsim.com/markets"
-              },
-              "query-input": "required name=search_term_string"
-            }
-          },
           {
             "@type": "SoftwareApplication",
             "@id": "https://stockademarketsim.com/#app",
@@ -46,26 +34,15 @@ import LiveStats from '../components/landing/LiveStats.tsx';
             "description": "Free online stock market simulator for paper trading stocks, crypto, forex, and futures. No signup required.",
             "screenshot": "https://stockademarketsim.com/web-app-manifest-512x512.png",
             "featureList": [
-              "Real candlestick charts with volume",
+              "Simulated candlestick charts with volume",
               "EMA, VWAP, RSI, MACD indicators",
-              "Market, limit, stop-loss, and bracket orders",
+              "Market and limit orders with stop-loss / take-profit OCO brackets",
               "Paper trading with $100,000 virtual balance",
               "Analytics dashboard with equity curve",
               "Stocks, crypto, forex, and futures"
             ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "ratingCount": "1200"
-            }
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://stockademarketsim.com/#organization",
-            "name": "Stockade",
-            "url": "https://stockademarketsim.com/",
-            "logo": "https://stockademarketsim.com/favicon-96x96.png",
-            "sameAs": []
+            "publisher": { "@id": "https://stockademarketsim.com/#organization" },
+            "isPartOf": { "@id": "https://stockademarketsim.com/#website" }
           }
         ]
       }
@@ -356,7 +333,7 @@ import LiveStats from '../components/landing/LiveStats.tsx';
           Why most trading games fall flat
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          A lot of simulators optimize for engagement instead of realism. They strip out the indicators, the order types, and the risk metrics, and what's left is a game about watching a number go up — fun for an afternoon, and it teaches you almost nothing that survives contact with a real brokerage. We went the other way. Stockade gives you candlestick charts with volume histograms, EMA 9/20/50 overlays, VWAP, RSI, and MACD, plus a complete order panel with market, limit, stop-loss, take-profit, and OCO bracket orders. The point is that the habits you build here still work when you switch to a real platform.
+          A lot of simulators optimize for engagement instead of realism. They strip out the indicators, the order types, and the risk metrics, and what's left is a game about watching a number go up — fun for an afternoon, and it teaches you almost nothing that survives contact with a real brokerage. Stockade goes the other way. You get candlestick charts with volume histograms, EMA 9/20/50 overlays, VWAP, RSI, and MACD, plus an order panel with market and limit entries and stop-loss / take-profit levels that work as an OCO bracket. The point is that the habits you build here still work when you switch to a real platform.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -390,7 +367,7 @@ import LiveStats from '../components/landing/LiveStats.tsx';
           {[
             'Real candlestick charts with volume',
             'Professional indicators: EMA, VWAP, RSI, MACD',
-            'Full order panel: market, limit, stop-loss, take-profit, OCO',
+            'Order panel: market and limit entries, stop-loss / take-profit OCO brackets',
             'Performance analytics with equity curves and drawdown tracking',
             'Complete mobile and tablet support',
           ].map(item => (
