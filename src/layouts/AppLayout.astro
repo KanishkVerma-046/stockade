@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar.astro';
 import TickerTape from '../components/landing/TickerTape.tsx';
 import ConsentScripts from '../components/layout/ConsentScripts.astro';
 import CookieConsent from '../components/layout/CookieConsent.astro';
+import SiteSchema from '../components/layout/SiteSchema.astro';
 
 interface Props {
   title?: string;
@@ -80,6 +81,10 @@ const hasBelow = Astro.slots.has('below');
       rel="stylesheet"
     />
     <title>{title}</title>
+
+    <!-- Site-wide WebSite + Organization entities. Kept in sync with the same
+         include in Layout.astro so both shells emit one consistent graph. -->
+    <SiteSchema />
     <slot name="head" />
     <!-- Google Analytics + AdSense, loaded only after cookie consent -->
     <ConsentScripts />

@@ -2,7 +2,7 @@
 title: "Paper Trading: How to Practice Without Risking Real Money"
 description: "Most paper trading builds nothing. Here is how to structure practice sessions, journal your reasoning, and measure whether you are actually improving."
 date: 2026-06-08
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Basics", "Psychology"]
 slug: "paper-trading-guide"
 ---

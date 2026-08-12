@@ -2,7 +2,7 @@
 title: "How to Build a Trading Plan: Step-by-Step for Beginners"
 description: "A trading plan is a document, not an intention. Every section it needs, a fully worked setup example, and the rule for when you may change it."
 date: 2026-06-15
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Strategy", "Risk Management"]
 slug: "how-to-build-a-trading-plan"
 ---

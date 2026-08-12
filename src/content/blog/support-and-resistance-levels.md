@@ -2,7 +2,7 @@
 title: "Understanding Support and Resistance Levels in Trading"
 description: "Support and resistance are zones of resting orders, not exact prices. How to find them, why your stop gets wicked out, and what a real break looks like."
 date: 2026-04-06
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Technical Analysis"]
 slug: "support-and-resistance-levels"
 ---

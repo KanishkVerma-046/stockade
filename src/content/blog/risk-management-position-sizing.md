@@ -2,7 +2,7 @@
 title: "Risk Management 101: Position Sizing and the 1% Rule"
 description: "Position size is an output of your stop distance, not a number you pick. The sizing formula, the 1% rule, drawdown recovery math, and R-multiples."
 date: 2026-06-29
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Risk Management"]
 slug: "risk-management-position-sizing"
 ---

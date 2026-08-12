@@ -1,0 +1,56 @@
+---
+// Site-wide JSON-LD: the WebSite and Organization entities that identify who
+// publishes Stockade. Rendered on every page through both base layouts
+// (Layout.astro and AppLayout.astro) so the entity graph is consistent
+// regardless of which shell a page uses.
+//
+// The @ids are stable and page-independent on purpose: page-level schema
+// (the SoftwareApplication on the home page, the Article on each blog post)
+// refers back to these nodes, and a consumer merges nodes sharing an @id.
+//
+// Deliberately no Person/founder node — the project is published anonymously,
+// so there is no named individual to attach one to. Organization here means
+// "the site as publisher", not a company or a team.
+
+const siteUrl = 'https://stockademarketsim.com';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: 'Stockade',
+      url: `${siteUrl}/`,
+      description:
+        'Independent solo-built project publishing a free stock market simulator and trading education articles. Not affiliated with any brokerage, exchange, or financial institution.',
+      logo: {
+        '@type': 'ImageObject',
+        '@id': `${siteUrl}/#logo`,
+        url: `${siteUrl}/web-app-manifest-512x512.png`,
+        width: 512,
+        height: 512,
+        caption: 'Stockade',
+      },
+      // No sameAs profiles are claimed until real ones exist.
+      sameAs: [],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'Stockade',
+      description:
+        'Free stock market simulator. Practice trading stocks, crypto, forex, and futures with $100,000 in virtual money — no signup, no real money, and all price data simulated.',
+      publisher: { '@id': `${siteUrl}/#organization` },
+      inLanguage: 'en-US',
+    },
+  ],
+};
+
+// Escaping "<" prevents a stray "</script>" inside any string from
+// terminating the JSON-LD block early.
+const schemaJson = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={schemaJson} />

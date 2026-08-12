@@ -35,6 +35,11 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 });
 
+// Every post is written by the same anonymous solo creator, so the visible
+// byline is fixed here rather than pulled per-post from frontmatter. The
+// `author` field still carries the site-as-publisher name for structured data.
+const BYLINE = 'Written by the Stockade creator';
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -44,20 +49,11 @@ const articleSchema = {
   // No updatedDate field exists in the collection schema, so modified
   // mirrors published rather than claiming a false edit date.
   dateModified: published,
-  author: {
-    '@type': 'Organization',
-    name: author,
-    url: siteUrl,
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'Stockade',
-    url: siteUrl,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${siteUrl}/web-app-manifest-512x512.png`,
-    },
-  },
+  // No named individual exists to credit, so both author and publisher point
+  // at the site-level Organization node emitted by SiteSchema.astro.
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  isPartOf: { '@id': `${siteUrl}/#website` },
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': canonical,
@@ -115,7 +111,7 @@ const schemaJson = JSON.stringify(articleSchema).replace(/</g, '\\u003c');
       </p>
 
       <div class="flex flex-wrap items-center gap-2 text-[12px] font-mono text-[var(--c-text-subtle)] pb-6 border-b border-[var(--c-border)]">
-        <span class="text-[var(--c-text-muted)]">{author}</span>
+        <span class="text-[var(--c-text-muted)]">{BYLINE}</span>
         <span class="text-[var(--c-text-faint)]">·</span>
         <time datetime={published}>{dateFmt.format(date)}</time>
         <span class="text-[var(--c-text-faint)]">·</span>

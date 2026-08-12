@@ -2,7 +2,7 @@
 title: "Understanding Trading Volume and What It Tells You"
 description: "Volume measures participation, not direction. How to read relative volume, breakout confirmation, and capitulation spikes — and where volume data lies."
 date: 2026-06-22
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Technical Analysis", "Indicators"]
 slug: "understanding-trading-volume"
 ---

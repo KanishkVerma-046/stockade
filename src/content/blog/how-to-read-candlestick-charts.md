@@ -2,7 +2,7 @@
 title: "How to Read Candlestick Charts: A Beginner's Complete Guide"
 description: "Every candle packs four prices into one shape. Learn what the body and wicks encode, the patterns worth knowing, and why context beats pattern spotting."
 date: 2026-03-30
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Basics", "Technical Analysis"]
 slug: "how-to-read-candlestick-charts"
 ---

@@ -2,7 +2,7 @@
 title: "Moving Averages Explained: EMA vs SMA and How to Use Them"
 description: "SMA and EMA differ by one multiplier. Here is the arithmetic, why 9/20/50 are standard, how to use them as support, and why they always lag."
 date: 2026-04-13
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Indicators", "Technical Analysis"]
 slug: "moving-averages-ema-vs-sma"
 ---

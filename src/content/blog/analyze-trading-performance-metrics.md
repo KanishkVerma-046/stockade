@@ -2,7 +2,7 @@
 title: "How to Analyze Your Trading Performance: Key Metrics That Matter"
 description: "Win rate alone can mislead you badly. Learn expectancy, profit factor, payoff ratio, drawdown and sample size using Stockade's analytics page."
 date: 2026-08-03
-author: "Stockade Team"
+author: "Stockade"
 tags: ["Analytics", "Risk Management"]
 slug: "analyze-trading-performance-metrics"
 ---

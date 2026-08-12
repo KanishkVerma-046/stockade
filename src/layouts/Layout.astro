@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import ConsentScripts from '../components/layout/ConsentScripts.astro';
 import CookieConsent from '../components/layout/CookieConsent.astro';
+import SiteSchema from '../components/layout/SiteSchema.astro';
 
 interface Props {
   title?: string;
@@ -78,6 +79,10 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
       rel="stylesheet"
     />
     <title>{title}</title>
+
+    <!-- Site-wide WebSite + Organization entities. Page-level schema arrives
+         through the `head` slot below and refers back to these by @id. -->
+    <SiteSchema />
     <slot name="head" />
     <!-- Google Analytics + AdSense, loaded only after cookie consent -->
     <ConsentScripts />
