@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import TradingChart from './TradingChart';
 import { $activeTick } from '../../stores/priceStore';
+import { isMarketable, isTriggered, type PendingOrder } from '../../lib/limit-orders';
 
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
@@ -52,6 +53,7 @@ interface OrderForm {
   stopLoss: string;
   takeProfit: string;
 }
+
 
 const SYMBOL_GROUPS = [
   { label: 'Stocks',  syms: ['APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON', 'GLPH', 'MXTA', 'STRX', 'AXMD', 'CNBX', 'RXBT', 'PLZM', 'QVNT', 'VORX'] },
@@ -208,6 +210,7 @@ export default function TradingSimulator() {
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
   const [orderFlash, setOrderFlash] = useState<string | null>(null);
   const orderFlashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [pending, setPending] = useState<PendingOrder[]>([]);
 
   // Replay state
   const [mode, setMode]               = useState<SimMode>('live');
@@ -229,6 +232,25 @@ export default function TradingSimulator() {
   const replayIdxRef      = useRef(0);
   const replayIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const modeRef           = useRef<SimMode>('live');
+
+  // Ids of resting orders the fill effect has already acted on. The effect can
+  // re-run before the matching `setPending` has committed, so this guards
+  // against filling the same order twice inside that window.
+  const handledPendingRef = useRef<Set<string>>(new Set());
+
+  const flash = useCallback((msg: string) => {
+    if (orderFlashTimer.current) clearTimeout(orderFlashTimer.current);
+    setOrderFlash(msg);
+    orderFlashTimer.current = setTimeout(() => setOrderFlash(null), 3000);
+  }, []);
+
+  // Resting orders are scoped to one symbol and one price series, so anything
+  // that swaps either out (symbol change, live/replay switch, replay restart)
+  // has to clear them rather than let them fire against unrelated prices.
+  const clearPending = useCallback(() => {
+    handledPendingRef.current.clear();
+    setPending([]);
+  }, []);
 
   useEffect(() => { positionRef.current = position; }, [position]);
   useEffect(() => { orderRef.current = order; }, [order]);
@@ -343,6 +365,7 @@ export default function TradingSimulator() {
     setMode('replay');
     setChartResetKey(k => k + 1);
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+    clearPending();
   }
 
   function enterLive() {
@@ -353,6 +376,7 @@ export default function TradingSimulator() {
     setCandles(generateCandles(getBasePrice(symbol)));
     setChartResetKey(k => k + 1);
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+    clearPending();
   }
 
   function stepReplay() {
@@ -377,11 +401,13 @@ export default function TradingSimulator() {
     setCandles(session.slice(0, startIdx + 1));
     setChartResetKey(k => k + 1);
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+    clearPending();
   }
 
   function changeSymbol(sym: string) {
     setSymbol(sym);
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
+    clearPending();
     trendBiasRef.current = 0;
     if (modeRef.current === 'live') {
       setCandles(generateCandles(getBasePrice(sym)));
@@ -409,12 +435,17 @@ export default function TradingSimulator() {
     setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
   }
 
-  const execOrder = useCallback((action: 'buy' | 'sell' | 'flatten') => {
-    const qty = parseInt(order.qty, 10) || 100;
-    const price = order.type === 'limit' && order.limitPrice ? parseFloat(order.limitPrice) : currentPrice;
+  // Applies a fill at an explicit price and quantity. Both the immediate path
+  // (market orders and marketable limits) and the resting path go through here
+  // so the two cannot drift apart. Returns false when the fill was rejected.
+  const fillOrder = useCallback((
+    action: 'buy' | 'sell' | 'flatten',
+    price: number,
+    qty: number,
+  ): boolean => {
 
     if (action === 'flatten') {
-      if (!position.side) return;
+      if (!position.side) return false;
       const pnl = (position.side === 'long' ? 1 : -1) * (price - position.avgPrice) * position.qty;
       const id = crypto.randomUUID();
       const closedAt = Date.now();
@@ -422,15 +453,13 @@ export default function TradingSimulator() {
       setBalance(b => position.side === 'long' ? b + price * position.qty : b - price * position.qty);
       setTrades(t => [{ id, side: position.side === 'long' ? 'sell' : 'buy', qty: position.qty, price, time: closedAt, pnl }, ...t.slice(0, 99)]);
       setPosition({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
-      return;
+      return true;
     }
 
     const cost = price * qty;
     if (action === 'buy' && cost > balance) {
-      if (orderFlashTimer.current) clearTimeout(orderFlashTimer.current);
-      setOrderFlash(`Insufficient balance — need ${fmtMoney(cost)} but have ${fmtMoney(balance)}`);
-      orderFlashTimer.current = setTimeout(() => setOrderFlash(null), 3000);
-      return;
+      flash(`Insufficient balance — need ${fmtMoney(cost)} but have ${fmtMoney(balance)}`);
+      return false;
     }
 
     if (!position.side) {
@@ -462,7 +491,69 @@ export default function TradingSimulator() {
         }
       }
     }
-  }, [order, currentPrice, balance, position, symbol]);
+    return true;
+  }, [balance, position, symbol, flash]);
+
+  // Placement. A market order fills at the last traded price. A limit order
+  // fills immediately only if it is already marketable — otherwise it rests
+  // until the market trades through its price (see the fill effect below).
+  const execOrder = useCallback((action: 'buy' | 'sell' | 'flatten') => {
+    const qty = parseInt(order.qty, 10) || 100;
+
+    if (action === 'flatten' || order.type !== 'limit') {
+      fillOrder(action, currentPrice, qty);
+      return;
+    }
+
+    const limitPrice = parseFloat(order.limitPrice);
+    if (isNaN(limitPrice) || limitPrice <= 0) {
+      flash('Enter a limit price, or switch to a market order.');
+      return;
+    }
+
+    if (isMarketable(action, limitPrice, currentPrice)) {
+      // Marketable on arrival: fills at the prevailing price, which is at
+      // least as good for the trader as the limit they asked for.
+      if (fillOrder(action, currentPrice, qty)) {
+        flash(`Limit ${action} filled immediately at ${symPrefix(symbol)}${fmtSym(currentPrice, symbol)}`);
+      }
+      return;
+    }
+
+    setPending(p => [
+      ...p,
+      { id: crypto.randomUUID(), action, qty, limitPrice, placedAt: Date.now() },
+    ]);
+    flash(
+      `Limit ${action} for ${qty} resting at ${symPrefix(symbol)}${fmtSym(limitPrice, symbol)} — ` +
+      `fills when price ${action === 'buy' ? 'falls to' : 'rises to'} that level.`
+    );
+  }, [order, currentPrice, symbol, fillOrder, flash]);
+
+  function cancelPending(id: string) {
+    handledPendingRef.current.delete(id);
+    setPending(p => p.filter(o => o.id !== id));
+  }
+
+  // Resting-order fill. Runs on every price change and triggers any order the
+  // market has reached. Fills at the order's limit price rather than the tick
+  // price, so a synthetic gap through the level cannot hand out a better fill
+  // than the trader actually asked for.
+  useEffect(() => {
+    if (pending.length === 0) return;
+    const hit = pending.find(o => !handledPendingRef.current.has(o.id) && isTriggered(o, currentPrice));
+    if (!hit) return;
+
+    handledPendingRef.current.add(hit.id);
+    const filled = fillOrder(hit.action, hit.limitPrice, hit.qty);
+    setPending(p => p.filter(o => o.id !== hit.id));
+    handledPendingRef.current.delete(hit.id);
+    flash(
+      filled
+        ? `Limit ${hit.action} filled at ${symPrefix(symbol)}${fmtSym(hit.limitPrice, symbol)}`
+        : `Limit ${hit.action} cancelled at ${symPrefix(symbol)}${fmtSym(hit.limitPrice, symbol)} — not enough balance.`
+    );
+  }, [currentPrice, pending, fillOrder, flash, symbol]);
 
   useEffect(() => {
     function handler(e: KeyboardEvent) {
@@ -531,6 +622,10 @@ export default function TradingSimulator() {
           <input type="number" value={order.limitPrice} placeholder={fmtSym(currentPrice, symbol)}
             onChange={e => setOrder(o => ({ ...o, limitPrice: e.target.value }))}
             className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
+          <p className="mt-1 text-[10px] font-mono text-[var(--c-text-faint)] leading-snug">
+            Buy below {symPrefix(symbol)}{fmtSym(currentPrice, symbol)} or sell above it to rest the
+            order until price reaches your level.
+          </p>
         </div>
       )}
 
@@ -590,6 +685,35 @@ export default function TradingSimulator() {
           Reset Balance to $100,000
         </button>
       </div>
+
+      {pending.length > 0 && (
+        <div className="rounded p-2.5 border border-[var(--c-border)] bg-[var(--c-bg-muted)]">
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1.5">
+            Working Orders
+          </div>
+          <div className="space-y-1.5">
+            {pending.map(o => (
+              <div key={o.id} className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <div className={`text-[12px] font-mono font-semibold ${o.action === 'buy' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
+                    {o.action.toUpperCase()} {o.qty} @ {symPrefix(symbol)}{fmtSym(o.limitPrice, symbol)}
+                  </div>
+                  <div className="text-[10px] font-mono text-[var(--c-text-faint)]">
+                    resting · fills {o.action === 'buy' ? '≤' : '≥'} {symPrefix(symbol)}{fmtSym(o.limitPrice, symbol)}
+                  </div>
+                </div>
+                <button
+                  onClick={() => cancelPending(o.id)}
+                  title="Cancel this resting order"
+                  className="shrink-0 text-[10px] font-mono text-[var(--c-text-subtle)] hover:text-[#ef4444] transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {position.side && (
         <div className={`rounded p-2.5 border ${position.side === 'long' ? 'bg-[var(--c-green-bg)] border-[var(--c-green-dim)]' : 'bg-[var(--c-red-bg)] border-[var(--c-red-dim)]'}`}>

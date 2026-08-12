@@ -5,7 +5,7 @@ import TradingSimulator from '../components/trading/TradingSimulator.tsx';
 
 <AppLayout
   title="Paper Trading Simulator | Stockade"
-  description="Practice paper trading with our free stock market simulator. Candlestick charts, EMA indicators & $100K virtual balance. No signup required."
+  description="Practice paper trading with a free stock market simulator. Candlestick charts, EMA indicators & $100K virtual balance. No signup required."
   canonical="https://stockademarketsim.com/simulator"
 >
   <div class="flex flex-col h-full">
@@ -69,15 +69,61 @@ import TradingSimulator from '../components/trading/TradingSimulator.tsx';
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
             Enter a quantity, then choose an order type. A market order fills immediately at the last
-            traded price; a limit order rests until price trades through the level you set. The
-            optional stop-loss and take-profit fields close the position automatically when either
-            level is hit. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> opens a long,
+            traded price. A limit order rests until the market reaches your price — a buy placed
+            below the market fills when price falls to it, a sell placed above the market fills when
+            price rises to it — and resting orders appear under Working Orders, where you can cancel
+            them. A limit placed on the wrong side of the market is already marketable, so it fills
+            straight away at the better prevailing price. The optional stop-loss and take-profit
+            fields work as an OCO bracket — whichever level price reaches first closes the position
+            and clears the other. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> opens a long,
             <strong class="text-[var(--c-text)] font-semibold">Sell</strong> opens a short, and
             <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> closes everything at the
             current price. Once the page has focus you can trade from the keyboard:
             <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> to buy,
             <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> to sell,
             <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> to flatten.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            What this simulator does not model
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-3">
+            Fills here are simpler than a live exchange, and it is worth knowing exactly how before
+            you read too much into a result:
+          </p>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">No slippage.</strong> Every order
+              fills at the exact price shown, with no spread and no commission. In a real market a
+              fast move or a thin book routinely fills you worse than the price you clicked.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">No partial fills.</strong> Orders
+              fill in full and instantly, whatever the size. A real venue can fill a large order in
+              pieces at several prices, or leave part of it unfilled.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">No queue position.</strong> A
+              resting limit order fills the moment price reaches its level, as if it were first in
+              line. On a real book you sit behind everyone who posted at that price ahead of you, and
+              price can touch your level without filling you at all.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Resting orders don't reserve
+              buying power.</strong> Balance is only checked when a resting order actually fills, so
+              an order can be cancelled at that moment for insufficient funds rather than being
+              blocked when you place it.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Prices are generated, not real.</strong>
+              All 29 tickers are fictional and their price movement is synthetic. Nothing here is
+              live market data, and no symbol represents a real security.
+            </li>
+          </ul>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
+            The upshot: treat the results as practice for process — entries, exits, sizing, and
+            discipline — rather than as a forecast of what the same strategy would earn with real
+            money.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
