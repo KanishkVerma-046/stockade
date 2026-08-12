@@ -40,7 +40,7 @@ Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
 
 - `description` is capped at 160 chars — **exceeding it is a hard build failure**, on purpose
 - `draft: true` drops the post from the index, sitemap, related posts, and routing
-- `author` is the publisher name for structured data (`"Stockade"`); the visible byline is a constant in `BlogPost.astro`, identical on every post
+- `author` (default `"Stockade Team"`) drives both the visible byline and the `article:author` meta tag; Article JSON-LD credits the shared Organization node by `@id` instead, so no individual is named
 
 ## Testing
 
@@ -52,7 +52,11 @@ Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
 
 Product copy is held to what the code actually does — fabricated ratings, unverifiable adoption claims, and overstated order-type claims have all been removed. `/simulator` documents what the engine does *not* model (slippage, partial fills, queue position, buying-power reservation on resting orders); keep that list current when order handling changes.
 
-The site is built by one anonymous person: singular first person throughout, never "we"/"our team", and no name, photo, or avatar anywhere — including the legal pages.
+**Voice:** plural editorial "we"/"our"/"us" throughout, including the legal pages. Blog byline is "Stockade Team", from each post's frontmatter `author`.
+
+**Attribution is headcount-neutral.** Nobody is identified — no name, photo, avatar, or initials anywhere. Do not claim a team either: the About page says "a developer with a Computer Science and Engineering background", which asserts nothing about how many people build the site. Plural voice is an editorial convention here, not a factual claim, so keep prose from turning it into one ("our team", "we're a group of…").
+
+Copy in `SiteSchema.astro` renders into **every page on the site**, so voice or claims left stale there leak site-wide — check it whenever site-level wording changes.
 
 ## Design tokens (`src/styles/global.css`)
 
