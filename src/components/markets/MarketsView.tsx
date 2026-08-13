@@ -50,6 +50,20 @@ const INITIAL: Asset[] = [
 const CATEGORIES = ['all', 'stock', 'crypto', 'forex', 'futures'] as const;
 type Category = typeof CATEGORIES[number];
 
+// The Volume column carries a different unit per asset class — bare share and
+// contract counts for stocks and futures, dollar-prefixed notional for crypto
+// and forex. That is the right convention per class but reads as one column, so
+// the unit is spelled out beside the table. With a class selected the note names
+// that one unit; on "all" it lists the mapping. Keep in step with the `volume`
+// strings in INITIAL above: those are what the column actually renders.
+const VOLUME_UNITS: Record<Category, string> = {
+  all:     'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
+  stock:   'Volume is shares traded.',
+  crypto:  'Volume is US dollars traded.',
+  forex:   'Volume is US dollars traded.',
+  futures: 'Volume is contracts traded.',
+};
+
 function fmt(price: number) {
   if (price >= 1000) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   if (price >= 1)    return price.toFixed(2);
@@ -128,6 +142,13 @@ export default function MarketsView() {
         </div>
       </div>
 
+      {/* Volume unit legend. Sits outside the horizontal scroll container so it
+          stays readable on narrow screens instead of scrolling off with the
+          table, and is wired to the Volume header via aria-describedby. */}
+      <p id="volume-units" className="mb-3 text-[12px] leading-relaxed text-[var(--c-text-subtle)]">
+        {VOLUME_UNITS[category]}
+      </p>
+
       {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-[var(--c-border)]">
         <table className="w-full border-collapse min-w-[640px]">
@@ -138,12 +159,13 @@ export default function MarketsView() {
                 { key: null,     label: 'Name' },
                 { key: 'price',  label: 'Price' },
                 { key: 'pct',    label: 'Change' },
-                { key: null,     label: 'Volume' },
+                { key: null,     label: 'Volume', describedBy: 'volume-units' },
                 { key: null,     label: 'Mkt Cap' },
                 { key: null,     label: 'Action' },
               ].map(col => (
                 <th
                   key={col.label}
+                  aria-describedby={(col as { describedBy?: string }).describedBy}
                   onClick={col.key ? () => toggleSort(col.key as typeof sortKey) : undefined}
                   className={`py-3 px-4 text-left text-[11px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] ${col.key ? 'cursor-pointer hover:text-[var(--c-text-muted)]' : ''}`}
                 >

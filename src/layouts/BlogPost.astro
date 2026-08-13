@@ -23,7 +23,12 @@ const { post, posts, headings } = Astro.props;
 const { title, description, date, author, tags } = post.data;
 
 const siteUrl = 'https://stockademarketsim.com';
-const canonical = `${siteUrl}/blog/${post.id}`;
+// Trailing slash matters here: this value is both the `<link rel=canonical>`
+// and the Article JSON-LD `mainEntityOfPage['@id']`. Without it the @id named a
+// URL that 308s while the canonical tag named the resolved one, so the two
+// disagreed about the page's identity. Unlike the static pages, this one keeps
+// its explicit `canonical` prop so both uses stay derived from one string.
+const canonical = `${siteUrl}/blog/${post.id}/`;
 // Only feeds the Article JSON-LD below — the og:image meta tag comes from
 // Layout.astro's default. Kept pointing at the same 1200x630 file so the
 // structured data and the social card do not disagree.

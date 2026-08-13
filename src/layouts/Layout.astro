@@ -26,9 +26,9 @@ const siteUrl = 'https://stockademarketsim.com';
 
 // Cloudflare Pages serves the directory form (/about/) and 308-redirects the
 // slashless form to it, so a canonical without the trailing slash points at a
-// URL that redirects. Normalising here covers all three sources — the pathname
-// fallback, the explicit `canonical` props pages pass, and BlogPost's computed
-// one — so individual pages do not each have to remember the slash.
+// URL that redirects. `trailingSlash: 'always'` means the pathname fallback is
+// already slashed and static pages just use it; the normalisation stays as the
+// guard for any explicit `canonical` a page passes (currently only BlogPost).
 const rawCanonical = canonical ?? `${siteUrl}${Astro.url.pathname}`;
 const canonicalUrl = rawCanonical.endsWith('/') ? rawCanonical : `${rawCanonical}/`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
