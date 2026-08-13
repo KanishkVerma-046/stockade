@@ -1,2 +1,5 @@
-/live      /simulator  301
-/live/     /simulator  301
+# /live was retired; the trading simulator opens in live-tick mode by default.
+# Target the trailing-slash form directly — `trailingSlash: 'always'` means
+# /simulator would itself 308 to /simulator/, making this a two-hop chain.
+/live      /simulator/  301
+/live/     /simulator/  301

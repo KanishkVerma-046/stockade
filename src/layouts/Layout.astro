@@ -15,7 +15,9 @@ interface Props {
 const {
   title = 'Free Stock Market Simulator | Stockade',
   description = 'A free stock market simulator. Practice day trading, paper & crypto trading with $100K virtual money. No signup required. Stocks, forex, futures & crypto.',
-  ogImage = '/web-app-manifest-512x512.png',
+  // 1200x630, matching the og:image:width/height declared below. The 512x512
+  // manifest icon was used here before and did not match those dimensions.
+  ogImage = '/og-image.png',
   ogType = 'website',
   canonical,
 } = Astro.props;

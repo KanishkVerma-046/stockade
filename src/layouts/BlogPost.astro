@@ -24,7 +24,10 @@ const { title, description, date, author, tags } = post.data;
 
 const siteUrl = 'https://stockademarketsim.com';
 const canonical = `${siteUrl}/blog/${post.id}`;
-const ogImageUrl = `${siteUrl}/web-app-manifest-512x512.png`;
+// Only feeds the Article JSON-LD below — the og:image meta tag comes from
+// Layout.astro's default. Kept pointing at the same 1200x630 file so the
+// structured data and the social card do not disagree.
+const ogImageUrl = `${siteUrl}/og-image.png`;
 const published = date.toISOString();
 const minutes = readingTime(post.body ?? '');
 

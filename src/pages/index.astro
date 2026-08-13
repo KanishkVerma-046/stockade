@@ -4,6 +4,75 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import TickerTape from '../components/landing/TickerTape.tsx';
 import LiveStats from '../components/landing/LiveStats.tsx';
+
+// Single source of truth for the FAQ: the visible section below and the
+// FAQPage JSON-LD are both generated from this array.
+//
+// Google only grants FAQ rich results when the schema text matches what a
+// visitor can actually see, word for word. These were previously two separate
+// hand-written copies and all 11 pairs had drifted apart, which disqualified
+// the block. Generating both from one array makes that drift impossible.
+const faqs = [
+  {
+    q: 'Is Stockade completely free?',
+    a: 'Yes — 100% free forever. Every feature, every asset class, every tool. No signup, no credit card, no subscription required.',
+  },
+  {
+    q: 'Can students use Stockade as a stock market simulator?',
+    a: 'Absolutely. Stockade is one of the best free stock market simulators for students. No installation or account needed, making it perfect for classroom use, university finance courses, and self-directed learning.',
+  },
+  {
+    q: 'Does Stockade support crypto, forex, and futures?',
+    a: 'Yes. Stockade covers stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in a single free platform.',
+  },
+  {
+    q: 'Is Stockade a paper trading or day trading simulator?',
+    a: 'Both. Step through a full session candle-by-candle at your own pace (paper trading) or stream live prices at 800ms ticks (day trading) — all with $100,000 in virtual money.',
+  },
+  {
+    q: 'What is a stock market simulator?',
+    a: 'A stock market simulator is a virtual trading platform that replicates real market conditions using fake money, letting you practice buying and selling stocks, crypto, forex, and futures without financial risk. Stockade gives you $100,000 in virtual capital and professional-grade tools — candlestick charts, technical indicators, and multiple order types — right in your browser, no signup required.',
+  },
+  {
+    q: 'What can I do with a stock market simulator?',
+    a: 'Practice buying and selling stocks, crypto, forex pairs, and futures contracts; test strategies against simulated price action; track your performance with equity curves, win rate, and drawdown metrics; and build the pattern recognition and discipline needed for real markets — all risk-free.',
+  },
+  {
+    q: 'Is the stock market simulator real or fake?',
+    a: 'The money is entirely virtual — you start with $100,000 in paper capital, so there is zero financial risk. The prices and charts use realistic simulated market data modeled on real brokerage behavior, so the trading mechanics, chart patterns, and order types mirror what you\'d use in an actual platform. The skill-building is genuine even though the money is not.',
+  },
+  {
+    q: 'How does a stock market simulator work?',
+    a: 'Stockade generates realistic price data for 29 assets across stocks, crypto, forex, and futures. You place orders through a full order panel — market, limit, stop-loss, take-profit, and OCO bracket orders — and the simulator fills them instantly. Your virtual P&L, equity curve, win rate, and performance metrics are tracked automatically in your browser with no account required.',
+  },
+  {
+    q: 'What are the risks of using a stock market simulator?',
+    a: 'The main risk is developing habits that don\'t account for real-market factors like slippage, liquidity constraints, brokerage fees, and the psychological pressure of real money. Stockade is built for skill-building and education, not as a guarantee of live-trading results. When you transition to real markets, start with small position sizes to adjust for the emotional and execution differences.',
+  },
+  {
+    q: 'What are the limitations of the simulator?',
+    a: 'Stockade uses simulated price data rather than a live market feed, so exact real-world spreads, slippage, and after-hours gaps are approximated rather than precisely reproduced. It also cannot fully replicate the psychological pressure of risking real capital. Think of it as a training ground that covers all the technical skills while acknowledging that emotional discipline further develops in live markets.',
+  },
+  {
+    q: 'What is the main advantage of a simulator?',
+    a: 'Zero financial risk while developing real trading skills. You can test strategies, make mistakes, and build discipline without losing money. Stockade gives you $100,000 in virtual capital and professional tools — candlestick charts, EMA/VWAP/RSI/MACD, a full order panel, and a detailed analytics dashboard — the same environment as a real brokerage, completely free and consequence-free.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://stockademarketsim.com/#faq',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+
+// Escaping "<" prevents a stray "</script>" inside any string from
+// terminating the JSON-LD block early.
+const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
 ---
 
 <Layout
@@ -47,102 +116,9 @@ import LiveStats from '../components/landing/LiveStats.tsx';
         ]
       }
     </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is Stockade a completely free stock market simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Stockade is 100% free forever. Every feature, every asset class, and every tool is included at no cost. No signup, no credit card, no subscription required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can students use Stockade as a stock market simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Absolutely. Stockade is one of the best free stock market simulators for students. It requires no installation or account creation, making it ideal for classroom use, university finance courses, and self-directed learning."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does Stockade support crypto, forex, and futures trading simulation?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Stockade is a multi-asset trading simulator covering stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in one free platform."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is Stockade a paper trading or day trading simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Stockade functions as both a paper trading simulator and a day trading simulator. You can step through a full session candle-by-candle at your own pace or trade live with 800ms price ticks, both with $100,000 in virtual money."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is a stock market simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A stock market simulator is a virtual trading platform that replicates real market conditions using fake money, so you can practice buying and selling stocks, crypto, forex, and futures without any financial risk. Stockade gives you $100,000 in virtual capital and professional-grade tools — candlestick charts, technical indicators, and multiple order types — all in your browser with no signup required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What can I do with a stock market simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "With Stockade you can practice buying and selling stocks, crypto, forex pairs, and futures contracts; test trading strategies against simulated price action; track performance through an analytics dashboard with equity curves, win rate, and drawdown metrics; and build the pattern recognition and discipline needed for real markets — all completely risk-free."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the stock market simulator real or fake?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The money is entirely virtual — you start with $100,000 in paper capital so there is zero financial risk. The prices and charts use realistic simulated market data designed to mirror real brokerage behavior. The trading mechanics, chart patterns, indicators, and order types are all modeled on real-world platforms, so the skill-building is genuine even though the money is not."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does a stock market simulator work?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Stockade generates realistic price data for 29 assets across stocks, crypto, forex, and futures. You place orders through a full order panel — market, limit, stop-loss, take-profit, and OCO bracket orders — and the simulator fills them instantly. Your virtual P&L, equity curve, win rate, and performance metrics are tracked automatically in your browser with no account or installation required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What are the risks of using a stock market simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The main risk is developing habits that don't fully account for real-market factors such as slippage, liquidity constraints, brokerage fees, and the psychological pressure of trading real money. Stockade is designed for skill-building and education, not as a guarantee of live-trading results. When you transition to real markets, always start with small position sizes to account for the emotional and execution differences."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What are the limitations of the simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Stockade uses simulated price data rather than a live market feed, so exact real-world spreads, slippage, and after-hours gaps are approximated rather than precisely reproduced. It also cannot fully replicate the psychological pressure that comes with risking real capital — an important variable in live-trading performance. Think of it as a training ground that covers all the technical skills while acknowledging that emotional discipline develops further in live markets."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the main advantage of a simulator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The main advantage is zero financial risk while developing real trading skills. You can test strategies, make expensive mistakes, and build discipline without losing any money. Stockade provides $100,000 in virtual capital alongside professional tools — candlestick charts, EMA/VWAP/RSI/MACD indicators, a full order panel, and a detailed analytics dashboard — the same environment you'd find in a real brokerage, but completely free and consequence-free."
-            }
-          }
-        ]
-      }
-    </script>
+    {/* Generated from the `faqs` array in the frontmatter, the same source the
+        visible FAQ section renders from, so the two cannot drift apart. */}
+    <script type="application/ld+json" is:inline set:html={faqSchemaJson} />
   </Fragment>
 
   <Navbar />
@@ -390,52 +366,7 @@ import LiveStats from '../components/landing/LiveStats.tsx';
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">FAQ</div>
       <h2 class="text-3xl font-bold tracking-tight text-[var(--c-text)] mb-10">Common questions</h2>
       <div class="space-y-6">
-        {[
-          {
-            q: 'Is Stockade completely free?',
-            a: 'Yes — 100% free forever. Every feature, every asset class, every tool. No signup, no credit card, no subscription required.',
-          },
-          {
-            q: 'Can students use Stockade as a stock market simulator?',
-            a: 'Absolutely. Stockade is one of the best free stock market simulators for students. No installation or account needed, making it perfect for classroom use, university finance courses, and self-directed learning.',
-          },
-          {
-            q: 'Does Stockade support crypto, forex, and futures?',
-            a: 'Yes. Stockade covers stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in a single free platform.',
-          },
-          {
-            q: 'Is Stockade a paper trading or day trading simulator?',
-            a: 'Both. Step through a full session candle-by-candle at your own pace (paper trading) or stream live prices at 800ms ticks (day trading) — all with $100,000 in virtual money.',
-          },
-          {
-            q: 'What is a stock market simulator?',
-            a: 'A stock market simulator is a virtual trading platform that replicates real market conditions using fake money, letting you practice buying and selling stocks, crypto, forex, and futures without financial risk. Stockade gives you $100,000 in virtual capital and professional-grade tools — candlestick charts, technical indicators, and multiple order types — right in your browser, no signup required.',
-          },
-          {
-            q: 'What can I do with a stock market simulator?',
-            a: 'Practice buying and selling stocks, crypto, forex pairs, and futures contracts; test strategies against simulated price action; track your performance with equity curves, win rate, and drawdown metrics; and build the pattern recognition and discipline needed for real markets — all risk-free.',
-          },
-          {
-            q: 'Is the stock market simulator real or fake?',
-            a: 'The money is entirely virtual — you start with $100,000 in paper capital, so there is zero financial risk. The prices and charts use realistic simulated market data modeled on real brokerage behavior, so the trading mechanics, chart patterns, and order types mirror what you\'d use in an actual platform. The skill-building is genuine even though the money is not.',
-          },
-          {
-            q: 'How does a stock market simulator work?',
-            a: 'Stockade generates realistic price data for 29 assets across stocks, crypto, forex, and futures. You place orders through a full order panel — market, limit, stop-loss, take-profit, and OCO bracket orders — and the simulator fills them instantly. Your virtual P&L, equity curve, win rate, and performance metrics are tracked automatically in your browser with no account required.',
-          },
-          {
-            q: 'What are the risks of using a stock market simulator?',
-            a: 'The main risk is developing habits that don\'t account for real-market factors like slippage, liquidity constraints, brokerage fees, and the psychological pressure of real money. Stockade is built for skill-building and education, not as a guarantee of live-trading results. When you transition to real markets, start with small position sizes to adjust for the emotional and execution differences.',
-          },
-          {
-            q: 'What are the limitations of the simulator?',
-            a: 'Stockade uses simulated price data rather than a live market feed, so exact real-world spreads, slippage, and after-hours gaps are approximated rather than precisely reproduced. It also cannot fully replicate the psychological pressure of risking real capital. Think of it as a training ground that covers all the technical skills while acknowledging that emotional discipline further develops in live markets.',
-          },
-          {
-            q: 'What is the main advantage of a simulator?',
-            a: 'Zero financial risk while developing real trading skills. You can test strategies, make mistakes, and build discipline without losing money. Stockade gives you $100,000 in virtual capital and professional tools — candlestick charts, EMA/VWAP/RSI/MACD, a full order panel, and a detailed analytics dashboard — the same environment as a real brokerage, completely free and consequence-free.',
-          },
-        ].map(({ q, a }) => (
+        {faqs.map(({ q, a }) => (
           <div class="border border-[var(--c-border)] rounded-xl p-5 bg-[var(--c-bg-soft)]">
             <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2">{q}</h3>
             <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed">{a}</p>
