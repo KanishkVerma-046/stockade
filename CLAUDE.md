@@ -33,6 +33,14 @@
 - **`<head>` edits must be made in BOTH** — there is no shared head partial
 - `SiteSchema.astro` emits WebSite + Organization JSON-LD with stable `@id`s on every page; page-level schema references those by `@id` instead of restating them
 - `trailingSlash: 'always'`; both layouts normalise `canonical` to end in `/`
+- `public/og-image.png` (1200×630) is the social card for every page — the `ogImage` default in both layouts plus the Article JSON-LD image in `BlogPost.astro`. `web-app-manifest-512x512.png` is the PWA/maskable icon and the Organization `logo` only; never the og:image
+
+## Astro gotchas
+
+- **`compressHTML` deletes a whitespace run containing a newline at a tag boundary.** A space before/after `<strong>`/`<em>` must sit on the *same line* as the tag, or the words render joined ("long,Sell"). Invisible in source — check `dist/`
+- **An HTML comment directly before a `set:html` script inside `<Fragment slot="head">` fails to compile** (`[CompilerError] Unexpected token`). Use `{/* … */}` instead
+- `src/pages/index.astro` has four `{[ … ].map()` blocks — anchor scripted edits to the enclosing `<section>`, never the first match
+- git restores these files with CRLF; any script doing text surgery must normalise line endings first
 
 ## Content
 
@@ -42,11 +50,15 @@ Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
 - `draft: true` drops the post from the index, sitemap, related posts, and routing
 - `author` (default `"Stockade Team"`) drives both the visible byline and the `article:author` meta tag; Article JSON-LD credits the shared Organization node by `@id` instead, so no individual is named
 
+The home page FAQ lives in **one `faqs` array** in `index.astro` frontmatter that renders both the visible section and the FAQPage JSON-LD. Google only grants FAQ rich results on a verbatim match, so never hand-write a second copy.
+
 ## Testing
 
 `npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`).
 
 `npx astro check` reports 1 pre-existing error at `ChartSimulator.tsx:670` (lightweight-charts marker generics). Exit 1 is expected; treat anything beyond that one as new.
+
+Verify content/SEO claims against **built HTML in `dist/`** (or production), never source alone — reported "bugs" here have repeatedly turned out to be already correct in source, and the whitespace gotcha above does not exist until built.
 
 ## Editorial
 
@@ -104,6 +116,12 @@ Stop preview: `Get-Job | Stop-Job`
 **`Start-Job` does not survive between PowerShell tool calls** — each call gets a fresh shell, so the job is gone by the next command. For a server that must stay up across turns, use the Bash tool with `run_in_background` instead.
 
 **Deploy:** `npm run deploy` — builds, then `wrangler pages deploy ./dist` to Cloudflare Pages (project `stockade`, branch `main`). Verify against `https://stockademarketsim.com` after; the printed `*.pages.dev` URL is a per-deploy alias.
+
+A **brand-new asset path can 404 on the custom domain right after deploy** (stale edge negative-cache) while returning 200 on the `*.pages.dev` alias — re-request with a `?v=…` cache-buster before concluding the upload failed.
+
+**IndexNow:** `npm run indexnow` — builds, then submits every URL in `dist/sitemap.xml` to Bing. The list is derived from the sitemap, not hand-maintained; `node submit-indexnow.mjs --dry-run` prints it without submitting.
+
+**`public/_redirects` targets must carry the trailing slash** (`/simulator/`, not `/simulator`) — `trailingSlash: 'always'` makes the slashless form 308, turning one redirect into a two-hop chain.
 
 ## Documentation
 

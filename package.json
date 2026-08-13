@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy ./dist --project-name stockade --branch main",
+    "indexnow": "astro build && node submit-indexnow.mjs",
     "test": "vitest run"
   },
   "dependencies": {
