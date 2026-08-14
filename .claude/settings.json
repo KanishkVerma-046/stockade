@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl *)",
+      "Bash(npm test *)",
+      "Bash(awk *)",
+      "PowerShell(Get-Job *)",
+      "mcp__astro-docs__search_astro_docs"
+    ]
+  }
+}
