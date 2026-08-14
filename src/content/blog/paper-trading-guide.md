@@ -9,7 +9,7 @@ slug: "paper-trading-guide"
 
 You have been paper trading for six weeks. The virtual balance is up. And if someone asked what you do better now than in week one, you would not have an answer.
 
-That is the normal outcome, and not because paper trading is useless. Clicking buy and sell repeatedly is not practice, it is repetition — a pianist who plays their favourite piece a hundred times gets a hundred repetitions of the same mistakes. Deliberate practice needs three things repetition alone does not supply: an objective for each session, a record of what you did, and a review that judges the decision rather than the result. (If you are still deciding whether a simulator is worth your time at all, [start here instead](/blog/what-is-a-stock-market-simulator).)
+That is the normal outcome, and not because paper trading is useless. Clicking buy and sell repeatedly is not practice, it is repetition — a pianist who plays their favourite piece a hundred times gets a hundred repetitions of the same mistakes. Deliberate practice needs three things repetition alone does not supply: an objective for each session, a record of what you did, and a review that judges the decision rather than the result. (If you are still deciding whether Stockade's paper trading simulator is worth your time at all, [start here instead](/blog/what-is-a-stock-market-simulator).)
 
 ## Why most paper trading produces nothing
 
@@ -108,4 +108,4 @@ So read a clean simulator record correctly: it is evidence your process is sound
 
 Pick one setup and one objective, cap yourself at five trades, and write the reason for each entry before you click. Use `F` to flatten the moment your invalidation prints instead of negotiating with it. Then open `/analytics`, compare the trade journal's actual entries and exits against what your notes said you intended, and count how many followed the plan. Repeat until that compliance number stops moving — then start caring about the equity curve.
 
-[Start on the simulator](/simulator)
+[Start on Stockade's paper trading simulator](/simulator)

@@ -108,4 +108,4 @@ What it is useful for is rehearsing the *process* against futures-shaped price a
 
 Pull up /ES on the simulator and, before placing anything, write down the multiplier, the tick value, and the notional at the current price. Then take a position and translate every move into contract dollars in your head — 2.5 points is $125, ten points is $500 — until the conversion is automatic. Do the same on /CL, where a penny is $10, so the reflex transfers rather than attaching to one symbol. Then run the leverage check: at 20:1, how far can this market move before 40% of a posted deposit is gone?
 
-Start on the [simulator](/simulator) with that arithmetic written down, not estimated.
+Start on [Stockade's paper trading simulator](/simulator) with that arithmetic written down, not estimated.

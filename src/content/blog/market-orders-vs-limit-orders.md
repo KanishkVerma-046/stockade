@@ -17,7 +17,7 @@ That single click is the difference between the two order types every platform p
 
 This belongs up front, not in a footnote.
 
-Stockade's fills carry almost no friction. There is no bid-ask spread, no partial fill, and no order book in the simulator. A market order fills at exactly the price on screen. A limit order fills immediately at whatever price you type into the box — it does not wait for the market to reach your level, it does not queue, and it never goes unfilled. The one exception is a stop-loss or take-profit exit: those are checked against a new price every 800 milliseconds and booked at the tick that crossed your level, so they fill slightly past it rather than on it. All prices on Stockade are generated in your browser, so there is no venue and no counterparty to negotiate with.
+Stockade's fills carry almost no friction. There is no bid-ask spread, no partial fill, and no order book in Stockade's paper trading simulator. A market order fills at exactly the price on screen. A limit order fills immediately at whatever price you type into the box — it does not wait for the market to reach your level, it does not queue, and it never goes unfilled. The one exception is a stop-loss or take-profit exit: those are checked against a new price every 800 milliseconds and booked at the tick that crossed your level, so they fill slightly past it rather than on it. All prices on Stockade are generated in your browser, so there is no venue and no counterparty to negotiate with.
 
 You can still practice the **mechanics**: choosing an order type before you click, deciding a limit price in advance instead of improvising, attaching a stop-loss and take-profit to an entry. Those habits transfer.
 
@@ -110,4 +110,4 @@ That is not an argument against limit orders. It is an argument against pricing 
 
 ## Practice the decision on the simulator
 
-Stockade's fills are perfect, so you cannot practice paying a spread there — but you can practice the decision that determines whether you pay one. Open [the simulator](/simulator), switch the order ticket from market to limit before every entry, and write down the limit price you would use against a real book. Then reserve market orders for flattening — the F key exists for exactly that. Carry that reflex to a real platform and the spread will be the only new thing to learn.
+Stockade's fills are perfect, so you cannot practice paying a spread there — but you can practice the decision that determines whether you pay one. Open [Stockade's free stock market simulator](/simulator), switch the order ticket from market to limit before every entry, and write down the limit price you would use against a real book. Then reserve market orders for flattening — the F key exists for exactly that. Carry that reflex to a real platform and the spread will be the only new thing to learn.

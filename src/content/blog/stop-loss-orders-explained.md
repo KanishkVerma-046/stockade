@@ -101,4 +101,4 @@ Real stops are far worse than that. Use the simulator for the parts it models ho
 
 ## Practice this on the simulator
 
-Take twenty trades where you write down the invalidation price *before* you write down the share count, then let the arithmetic set the size. Enter the stop level on the ticket at the same moment you open the position, and do not touch it afterwards — the discipline of leaving it alone is the skill, and it is far harder with real money than with virtual capital. Then check `/analytics` to see whether your losses cluster near your planned risk or run well past it. Start on the [Stockade simulator](/simulator).
+Take twenty trades where you write down the invalidation price *before* you write down the share count, then let the arithmetic set the size. Enter the stop level on the ticket at the same moment you open the position, and do not touch it afterwards — the discipline of leaving it alone is the skill, and it is far harder with real money than with virtual capital. Then check `/analytics` to see whether your losses cluster near your planned risk or run well past it. Start on [Stockade's paper trading simulator](/simulator).

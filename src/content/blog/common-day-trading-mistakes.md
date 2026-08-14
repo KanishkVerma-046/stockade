@@ -109,4 +109,4 @@ Two caveats. Stockade's prices are synthetic, generated in your browser rather t
 
 ## Practice this on the simulator
 
-Pick the two mistakes you recognize most, write their rules on a card, and run twenty trades with the single goal of not breaking them — ignore the P&L entirely. Use the B, S, and F keyboard shortcuts so your rule is the slow step rather than your typing. Then compare average win against average loss in the analytics view to see whether the rules actually held. Start at [the simulator](/simulator).
+Pick the two mistakes you recognize most, write their rules on a card, and run twenty trades with the single goal of not breaking them — ignore the P&L entirely. Use the B, S, and F keyboard shortcuts so your rule is the slow step rather than your typing. Then compare average win against average loss in the analytics view to see whether the rules actually held. Start at [Stockade's day trading simulator](/simulator).
