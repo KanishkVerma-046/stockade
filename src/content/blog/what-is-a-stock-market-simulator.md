@@ -27,13 +27,13 @@ Before any strategy question there is a layer of pure plumbing that trips up alm
 
 A **market order** buys or sells immediately at whatever price is currently available. It guarantees you get filled; it does not guarantee the price.
 
-A **limit order** sets a maximum you will pay or a minimum you will accept. Place a limit buy on a stock at $47.50 while it trades at $48.20 and nothing happens until the price comes to you. It guarantees the price; it does not guarantee you get filled at all.
+A **limit order** sets a maximum you will pay or a minimum you will accept. Place a limit buy on a stock at $47.50 while it trades at $48.20 and nothing happens until the price comes to you. It guarantees the price; it does not guarantee you get filled at all. ([Market orders vs. limit orders](/blog/market-orders-vs-limit-orders) goes deeper on when each one fits.)
 
 A **stop-loss** is a resting order that becomes active when price moves against you past a level you chose. It is the mechanism that turns "I should probably cut this" into something that happens whether or not you are watching.
 
 A **take-profit** is the same idea in the other direction — an order that closes your position once it reaches a target.
 
-An **OCO bracket** ("one cancels the other") pairs a stop-loss and a take-profit around an open position. Whichever fills first cancels the other, so you cannot end up with a dangling order that opens a new position after you have already exited.
+An **OCO bracket** ("one cancels the other") pairs a stop-loss and a take-profit around an open position. Whichever fills first cancels the other, so you cannot end up with a dangling order that opens a new position after you have already exited. See [OCO and bracket orders explained](/blog/oco-and-bracket-orders) for the full mechanics.
 
 Stockade supports all five. Placing a hundred of them with fake money is how the vocabulary becomes muscle memory. The keyboard shortcuts help: `B` to buy, `S` to sell, `F` to flatten (close everything). When your hands know the exit key, hesitation stops being a factor.
 
@@ -51,7 +51,7 @@ That is a $26,000 position (500 × $52.00) on a $100,000 account. Notice what ha
 
 Now change one input. Same stock, same $52.00 entry, but you decide the level that invalidates your idea is $51.00 instead. Risk per share is $1.00, so the size becomes $1,000 ÷ $1.00 = **1,000 shares** — a $52,000 position, twice as large, with the same $1,000 at risk. A tighter stop does not mean less risk; it means a bigger position and a higher chance of being stopped out by ordinary noise.
 
-Run that arithmetic thirty times in a simulator and it becomes automatic. Learn it on a live account and each repetition has a price tag.
+Run that arithmetic thirty times in a simulator and it becomes automatic. Learn it on a live account and each repetition has a price tag. [Position sizing and the 1% rule](/blog/risk-management-position-sizing) covers the formula in full, including drawdown recovery math.
 
 ## Reading the chart is a separate skill
 
@@ -59,17 +59,17 @@ The simulator's charts are candlestick charts with a volume histogram underneath
 
 Most people start with six indicators and end with two. A simulator is where you can afford to discover that.
 
-The Markets page carries 29 instruments: 14 equities, 8 crypto tokens, 3 forex pairs, and 4 futures (/NQ, /ES, /CL, /GC). The equities and tokens are invented tickers, not real companies or coins; only the forex pairs and futures use real-world names. They sit at very different price levels, which is worth practising against — sizing a forex pair quoted to four decimals is a different mental exercise from sizing an index future trading in the thousands, and misplacing the decimal point is a classic beginner mistake that costs nothing here.
+The [Markets page](/markets) carries 29 instruments: 14 equities, 8 crypto tokens, 3 forex pairs, and 4 futures (/NQ, /ES, /CL, /GC). The equities and tokens are invented tickers, not real companies or coins; only the forex pairs and futures use real-world names. They sit at very different price levels, which is worth practising against — sizing a forex pair quoted to four decimals is a different mental exercise from sizing an index future trading in the thousands, and misplacing the decimal point is a classic beginner mistake that costs nothing here.
 
 The generated prices also do not reproduce real-world instrument personality: a single volatility model runs across every symbol. What you learn here is the arithmetic and the workflow.
 
-For deliberate practice, the Chart Simulator at `/chart-simulator` replays a chart session candle by candle, so you step forward one bar at a time without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, closer to the real pace and the real pressure.
+For deliberate practice, the [Chart Simulator](/chart-simulator) replays a chart session candle by candle, so you step forward one bar at a time without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, closer to the real pace and the real pressure.
 
 ## What the statistics tell you that your memory will not
 
 Memory is a bad record-keeper for trading. You will remember the trade that ran 8% in your favour and forget the four small losses that paid for it.
 
-The Analytics page keeps the record instead: equity curve, trade journal, win rate, profit factor, average win and average loss, max drawdown, and a time-of-day heatmap.
+The [Analytics page](/analytics) keeps the record instead: equity curve, trade journal, win rate, profit factor, average win and average loss, max drawdown, and a time-of-day heatmap.
 
 Two of those deserve explanation:
 
@@ -97,7 +97,7 @@ The correct way to read a good simulator result is: "my mechanics are sound and 
 
 Treat the virtual balance as if it were real. The moment you start taking $40,000 positions "to see what happens," the practice stops being practice.
 
-Trade one size and one setup until you have 40 or 50 entries in the journal, then look at the statistics rather than your recollection. Write down why you entered before you enter, not after you exit. And when you move to real money, cut your size until a full loss is genuinely boring — at that point you are no longer testing the strategy, you are testing yourself.
+Trade one size and one setup until you have 40 or 50 entries in the journal, then look at the statistics rather than your recollection. Write down why you entered before you enter, not after you exit. And when you move to real money, cut your size until a full loss is genuinely boring — at that point you are no longer testing the strategy, you are testing yourself. [The paper trading guide](/blog/paper-trading-guide) covers that transition in more detail.
 
 ## Practice this on the simulator
 

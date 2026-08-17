@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'Does Stockade support crypto, forex, and futures?',
-    a: 'Yes. Stockade covers stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — all in a single free platform.',
+    a: 'Yes. Stockade covers stocks, cryptocurrency, forex pairs, and futures contracts (NQ, ES, CL, GC) — browse them all on the <a href="/markets">Markets page</a>.',
   },
   {
     q: 'Is Stockade a paper trading or day trading simulator?',
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: 'What can I do with a stock market simulator?',
-    a: 'Practice buying and selling stocks, crypto, forex pairs, and futures contracts; test strategies against simulated price action; track your performance with equity curves, win rate, and drawdown metrics; and build the pattern recognition and discipline needed for real markets — all risk-free.',
+    a: 'Practice buying and selling stocks, crypto, forex pairs, and futures contracts; test strategies against simulated price action; <a href="/blog/analyze-trading-performance-metrics">track your performance</a> with equity curves, win rate, and drawdown metrics; and build the pattern recognition and discipline needed for real markets — all risk-free.',
   },
   {
     q: 'Is the stock market simulator real or fake?',
@@ -59,6 +59,11 @@ const faqs = [
   },
 ];
 
+// A couple of answers link out to relevant pages (see the `a` values above).
+// Google's FAQ rich-result match is on the rendered text, not the markup, so
+// the schema strips those tags rather than restating a second plain copy.
+const stripTags = (html: string) => html.replace(/<[^>]+>/g, '');
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -66,7 +71,7 @@ const faqSchema = {
   mainEntity: faqs.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(a) },
   })),
 };
 
@@ -301,35 +306,35 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
         </h2>
 
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Stockade is a stock market simulator you open in a browser tab and start using about ten seconds later. You get <strong class="text-[var(--c-text)]">$100,000 in virtual money</strong> and a full trading environment covering stocks, crypto, forex, and futures. There's no account to create, no card to enter, and nothing to install. Make a terrible trade and the only thing you lose is a number on a screen — that's what practice trading is for.
+Stockade is a <a href="/simulator" class="text-[#f59e0b] hover:underline">stock market simulator</a> you open in a browser tab and start using about ten seconds later. You get <strong class="text-[var(--c-text)]">$100,000 in virtual money</strong> and a full trading environment covering stocks, crypto, forex, and futures. There's no account to create, no card to enter, and nothing to install. Make a terrible trade and the only thing you lose is a number on a screen — that's what practice trading is for.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Why most trading games fall flat
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          A lot of simulators optimize for engagement instead of realism. They strip out the indicators, the order types, and the risk metrics, and what's left is a game about watching a number go up — fun for an afternoon, and it teaches you almost nothing that survives contact with a real brokerage. We went the other way. Stockade gives you candlestick charts with volume histograms, EMA 9/20/50 overlays, VWAP, RSI, and MACD, plus an order panel with market and limit entries and stop-loss / take-profit levels that work as an OCO bracket. The point is that the habits you build here still work when you switch to a real platform.
+          A lot of simulators optimize for engagement instead of realism. They strip out the indicators, the order types, and the risk metrics, and what's left is a game about watching a number go up — fun for an afternoon, and it teaches you almost nothing that survives contact with a real brokerage. We went the other way. Stockade gives you candlestick charts with volume histograms, EMA 9/20/50 overlays, VWAP, RSI, and MACD, plus an order panel with market and limit entries and stop-loss / take-profit levels that work as an OCO bracket. The point is that the habits you build here still work when you switch to a real platform — see <a href="/blog/paper-trading-guide" class="text-[#f59e0b] hover:underline">the paper trading guide</a> for how to make that transfer stick.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Two ways to practice: live and replay
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Live mode streams six assets at once with prices updating every 800 milliseconds, so you can practice day trading against a fast tape and find out how you actually behave under pressure. Replay mode does the opposite — you step through a full session one candle at a time, taking as long as you want on each decision. Most people use live mode to build reflexes and replay to build pattern recognition. Broker-run paper trading simulators usually want registration and a linked real account before they'll let you place a single order. Here, you just open the page.
+          Live mode streams six assets at once with prices updating every 800 milliseconds, so you can practice day trading against a fast tape and find out how you actually behave under pressure. Replay mode does the opposite — you step through a full session one candle at a time, taking as long as you want on each decision. Most people use live mode to build reflexes and replay to build pattern recognition — for practice focused purely on reading formations rather than P&amp;L, the <a href="/chart-simulator" class="text-[#f59e0b] hover:underline">Chart Simulator</a> steps through candlestick patterns the same way. Broker-run paper trading simulators usually want registration and a linked real account before they'll let you place a single order. Here, you just open the page.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Stocks, crypto, forex, and futures in one place
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          There are 14 equity tickers with realistic price behavior, 8 crypto assets that move with the volatility you'd expect from the real thing, major and minor currency pairs, and four futures contracts — NQ, ES, CL, and GC. That range matters more than it sounds: a strategy that looks brilliant on a slow-moving equity often falls apart on a currency pair or a futures contract, and having everything on one platform makes that easy to find out.
+          There are 14 equity tickers with realistic price behavior, 8 crypto assets that move with the volatility you'd expect from the real thing, major and minor currency pairs, and four futures contracts — NQ, ES, CL, and GC. That range matters more than it sounds: a strategy that looks brilliant on a slow-moving equity often falls apart on a currency pair or a futures contract, and having everything on <a href="/markets" class="text-[#f59e0b] hover:underline">one platform</a> makes that easy to find out.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Review what actually happened
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Placing trades is the easy half; the useful half is picking apart the results afterward. The analytics dashboard reads your trade history and reports equity curve, win rate, profit factor, average win and loss, maximum drawdown, and a heatmap showing which hours of the day your trades actually worked. Because there's nothing to install and no sign-up wall, that whole loop runs in a browser tab — which also makes it workable for a classroom or study group, where getting everyone through a registration form is usually the hard part.
+          Placing trades is the easy half; the useful half is picking apart the results afterward. The <a href="/analytics" class="text-[#f59e0b] hover:underline">analytics dashboard</a> reads your trade history and reports equity curve, win rate, profit factor, average win and loss, maximum drawdown, and a heatmap showing which hours of the day your trades actually worked. Because there's nothing to install and no sign-up wall, that whole loop runs in a browser tab — which also makes it workable for a classroom or study group, where getting everyone through a registration form is usually the hard part.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -368,7 +373,7 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
         {faqs.map(({ q, a }) => (
           <div class="border border-[var(--c-border)] rounded-xl p-5 bg-[var(--c-bg-soft)]">
             <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2">{q}</h3>
-            <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed">{a}</p>
+            <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed [&_a]:text-[#f59e0b] [&_a]:hover:underline" set:html={a} />
           </div>
         ))}
       </div>

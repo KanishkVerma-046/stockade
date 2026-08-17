@@ -69,16 +69,13 @@ import TradingSimulator from '../components/trading/TradingSimulator.tsx';
             traded price. A limit order rests until the market reaches your price — a buy placed
             below the market fills when price falls to it, a sell placed above the market fills when
             price rises to it — and resting orders appear under Working Orders, where you can cancel
-            them. A limit placed on the wrong side of the market is already marketable, so it fills
-            straight away at the better prevailing price. The optional stop-loss and take-profit
-            fields work as an OCO bracket — whichever level price reaches first closes the position
+            them. (<a href="/blog/market-orders-vs-limit-orders" class="text-[#f59e0b] hover:underline">Market orders vs. limit orders</a> goes deeper on when to use each.) A limit placed
+            on the wrong side of the market is already marketable, so it fills straight away at the
+            better prevailing price. The optional <a href="/blog/stop-loss-orders-explained" class="text-[#f59e0b] hover:underline">stop-loss</a> and take-profit fields work as an <a href="/blog/oco-and-bracket-orders" class="text-[#f59e0b] hover:underline">OCO bracket</a> — whichever level price reaches first closes the position
             and clears the other. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> opens
             a long, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> opens a short,
             and <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> closes everything
-            at the current price. Once the page has focus you can trade from the keyboard:
-            <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> to buy,
-            <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> to sell,
-            <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> to flatten.
+            at the current price. Once the page has focus you can trade from the keyboard: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> to buy, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> to sell, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> to flatten.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">

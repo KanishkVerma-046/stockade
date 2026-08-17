@@ -11,7 +11,7 @@ You finish a week of practice trading, open the analytics page, and see a win ra
 good. Then you look at total P&L and it is negative. Nothing is broken — you have just discovered that
 the number most traders quote first is the one that tells you the least.
 
-Stockade's `/analytics` page computes six headline figures from your closed trades: total P&L, equity,
+Stockade's [analytics page](/analytics) computes six headline figures from your closed trades: total P&L, equity,
 win rate, profit factor, average win, and max drawdown. Underneath sit three tabs — an equity curve, a
 trade journal, and a win-rate-by-hour heatmap. Here is what each one means and which ones can lie to you.
 

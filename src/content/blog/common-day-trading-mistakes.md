@@ -101,7 +101,7 @@ Commissions and spread feel trivial per trade and are decisive in aggregate. Tak
 
 ## What a simulator fixes and what it cannot touch
 
-Stockade helps with the mechanical half. The $100,000 paper account lets you rehearse the loop — size calculated before entry, an OCO bracket submitted so exits exist the moment the position does, stop never touched — until it is automatic rather than effortful. The analytics view reports average win against average loss, which is where the disposition effect becomes visible: if your average win is the smaller number, you are cutting winners, whatever you believe about your discipline.
+Stockade helps with the mechanical half. The $100,000 paper account lets you rehearse the loop — size calculated before entry, an OCO bracket submitted so exits exist the moment the position does, stop never touched — until it is automatic rather than effortful. The [analytics view](/analytics) reports average win against average loss, which is where the disposition effect becomes visible: if your average win is the smaller number, you are cutting winners, whatever you believe about your discipline.
 
 What a simulator cannot do is reproduce the pressure that causes these mistakes. The money is not real, so a loss does not register as a threat, so the impulse to move the stop never fires. Traders who hold their rules perfectly for a month on paper routinely abandon them in week one with funded capital. No simulator closes that gap — see [how to practice deliberately](/blog/paper-trading-guide) for what practice can and cannot deliver.
 

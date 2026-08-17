@@ -39,7 +39,7 @@ A fourth failure is subtler: unlimited size. Paper trading in $80,000 clips beca
 
 ## What to write down for every trade
 
-Stockade's trade journal on `/analytics` records what happened: symbol, side, entry, exit, quantity, P&L, duration, date. That is the objective half. It does not record *why* you entered — no platform can, because the reason lived in your head. Keep a notebook or spreadsheet for the half that teaches you something.
+Stockade's [trade journal](/analytics) records what happened: symbol, side, entry, exit, quantity, P&L, duration, date. That is the objective half. It does not record *why* you entered — no platform can, because the reason lived in your head. Keep a notebook or spreadsheet for the half that teaches you something.
 
 Before every entry, write:
 

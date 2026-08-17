@@ -53,10 +53,10 @@ import Footer from '../components/layout/Footer.astro';
       </p>
 
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
-        The site covers four areas: a stock market simulator with realistic order types (market,
-        limit, stop-loss, OCO/bracket orders), a chart replay tool for practicing technical analysis
-        on historical-style price action, an analytics dashboard for reviewing trade performance and
-        identifying behavioral patterns, and a growing library of educational articles on trading
+        The site covers four areas: a <a href="/simulator" class="text-[#f59e0b] hover:underline">stock market simulator</a> with realistic order types (market,
+        limit, stop-loss, OCO/bracket orders), a <a href="/chart-simulator" class="text-[#f59e0b] hover:underline">chart replay tool</a> for practicing technical analysis
+        on historical-style price action, an <a href="/analytics" class="text-[#f59e0b] hover:underline">analytics dashboard</a> for reviewing trade performance and
+        identifying behavioral patterns, and a growing <a href="/blog" class="text-[#f59e0b] hover:underline">library of educational articles</a> on trading
         concepts, indicators, and strategy. All trading data — tickers, prices, and market movement —
         is simulated rather than pulled from real markets, and this is stated clearly wherever it
         could otherwise be mistaken for live data.
@@ -100,7 +100,7 @@ import Footer from '../components/layout/Footer.astro';
           },
           {
             title: 'Multi-asset coverage',
-            desc: 'Trade 29 simulated assets: 14 equity tickers, 8 crypto tokens, major forex pairs, and futures (NQ, ES, CL, GC).',
+            desc: 'Trade <a href="/markets" class="text-[#f59e0b] hover:underline">29 simulated assets</a>: 14 equity tickers, 8 crypto tokens, major forex pairs, and futures (NQ, ES, CL, GC).',
           },
           {
             title: 'Live & replay modes',
@@ -113,7 +113,7 @@ import Footer from '../components/layout/Footer.astro';
         ].map(f => (
           <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
             <h3 class="text-[14px] font-semibold text-[var(--c-text)] mb-1.5">{f.title}</h3>
-            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">{f.desc}</p>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed" set:html={f.desc} />
           </div>
         ))}
       </div>
