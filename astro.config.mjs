@@ -6,6 +6,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { LOCALES, toSitemapLocaleMap } from './src/i18n/locales.ts';
 
 /**
  * @astrojs/sitemap always writes `sitemap-index.xml` plus numbered chunk
@@ -56,9 +57,18 @@ function singleFileSitemap() {
 export default defineConfig({
   site: 'https://stockademarketsim.com',
   trailingSlash: 'always',
+  i18n: {
+    defaultLocale: 'en',
+    locales: LOCALES.map(l => l.code),
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     react(),
     sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: toSitemapLocaleMap(),
+      },
       // robots.txt disallows these; they should not be advertised either.
       filter: page => !/\/(404|500)\/?$/.test(page),
       serialize(item) {
