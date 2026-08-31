@@ -1,9 +1,27 @@
-export default function LiveStats() {
+interface Labels {
+  startingBalance: string;
+  tradableAssets: string;
+  assetClasses: string;
+  costToStart: string;
+}
+
+const DEFAULT_LABELS: Labels = {
+  startingBalance: 'Starting Balance',
+  tradableAssets: 'Tradable Assets',
+  assetClasses: 'Asset Classes',
+  costToStart: 'Cost to Start',
+};
+
+interface Props {
+  labels?: Labels;
+}
+
+export default function LiveStats({ labels = DEFAULT_LABELS }: Props) {
   const stats = [
-    { label: 'Starting Balance', value: '$100,000' },
-    { label: 'Tradable Assets',  value: '29'       },
-    { label: 'Asset Classes',    value: '4'         },
-    { label: 'Cost to Start',    value: '$0'        },
+    { label: labels.startingBalance, value: '$100,000' },
+    { label: labels.tradableAssets,  value: '29'       },
+    { label: labels.assetClasses,    value: '4'         },
+    { label: labels.costToStart,     value: '$0'        },
   ];
 
   return (
