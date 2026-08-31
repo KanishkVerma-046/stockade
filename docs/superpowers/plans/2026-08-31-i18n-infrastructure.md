@@ -218,11 +218,6 @@ export type UiKey =
   | 'footer.product'
   | 'footer.company'
   | 'footer.legal'
-  | 'footer.about'
-  | 'footer.contact'
-  | 'footer.privacy'
-  | 'footer.terms'
-  | 'footer.disclaimer'
   | 'footer.rights'
   | 'footer.disclaimerText'
   | 'cookie.text'
@@ -252,11 +247,6 @@ const en: Dictionary = {
   'footer.product': 'Product',
   'footer.company': 'Company',
   'footer.legal': 'Legal',
-  'footer.about': 'About',
-  'footer.contact': 'Contact',
-  'footer.privacy': 'Privacy',
-  'footer.terms': 'Terms',
-  'footer.disclaimer': 'Disclaimer',
   'footer.rights': 'All rights reserved.',
   'footer.disclaimerText':
     'Stockade is a simulation platform only. All trading is done with virtual money. This is not financial advice. Past simulated performance does not indicate future real results.',
@@ -287,11 +277,6 @@ const es: Dictionary = {
   'footer.product': 'Producto',
   'footer.company': 'Empresa',
   'footer.legal': 'Legal',
-  'footer.about': 'Acerca de',
-  'footer.contact': 'Contacto',
-  'footer.privacy': 'Privacidad',
-  'footer.terms': 'Términos',
-  'footer.disclaimer': 'Aviso legal',
   'footer.rights': 'Todos los derechos reservados.',
   'footer.disclaimerText':
     'Stockade es únicamente una plataforma de simulación. Todas las operaciones se realizan con dinero virtual. Esto no es asesoramiento financiero. El rendimiento simulado pasado no indica resultados reales futuros.',
