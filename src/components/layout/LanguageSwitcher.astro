@@ -1,0 +1,47 @@
+---
+import { getLocaleMeta, type Locale } from '../../i18n/locales';
+
+interface Props {
+  alternates?: Partial<Record<Locale, string>>;
+}
+
+const { alternates } = Astro.props;
+const entries = alternates ? (Object.entries(alternates) as [Locale, string][]) : [];
+const currentLocale = getLocaleMeta(Astro.currentLocale).code;
+---
+
+{entries.length > 1 && (
+  <details class="relative">
+    <summary
+      class="list-none cursor-pointer p-1.5 rounded-md text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] transition-colors flex items-center gap-1"
+      aria-label="Change language"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6.5" />
+        <path d="M1.5 8h13M8 1.5c1.8 1.8 2.8 4.2 2.8 6.5s-1 4.7-2.8 6.5c-1.8-1.8-2.8-4.2-2.8-6.5S6.2 3.3 8 1.5z" />
+      </svg>
+    </summary>
+    <ul class="absolute right-0 mt-1 w-40 rounded-md border border-[var(--c-border)] bg-[var(--c-bg)] shadow-lg py-1 z-50">
+      {entries.map(([code, path]) => {
+        const meta = getLocaleMeta(code);
+        const isActive = code === currentLocale;
+        return (
+          <li>
+            <a
+              href={path}
+              class:list={[
+                'block px-3 py-1.5 text-[13px] transition-colors',
+                isActive
+                  ? 'text-[var(--c-text)] bg-[var(--c-surface)]'
+                  : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)]',
+              ]}
+              aria-current={isActive ? 'true' : undefined}
+            >
+              {meta.nativeName}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </details>
+)}
