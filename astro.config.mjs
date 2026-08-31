@@ -6,7 +6,13 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import { LOCALES, toSitemapLocaleMap } from './src/i18n/locales.ts';
+import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.ts';
+
+// Non-default locale codes, for stripping the locale prefix off a sitemap
+// item's path before matching it against the branches below — /es/simulator
+// should get the same priority as /simulator, not fall into the catch-all.
+const localeCodes = LOCALES.map(l => l.code).filter(c => c !== DEFAULT_LOCALE);
+const localePrefixPattern = new RegExp(`^/(${localeCodes.join('|')})(?=/|$)`);
 
 /**
  * @astrojs/sitemap always writes `sitemap-index.xml` plus numbered chunk
@@ -72,7 +78,8 @@ export default defineConfig({
       // robots.txt disallows these; they should not be advertised either.
       filter: page => !/\/(404|500)\/?$/.test(page),
       serialize(item) {
-        const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
+        const rawPath = new URL(item.url).pathname.replace(/\/$/, '') || '/';
+        const path = rawPath.replace(localePrefixPattern, '') || '/';
 
         if (path === '/') {
           item.changefreq = ChangeFreqEnum.WEEKLY;

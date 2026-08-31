@@ -90,19 +90,21 @@ const liveStatsLabels = {
 >
   <Fragment slot="head">
     <!-- The WebSite and Organization entities live in SiteSchema.astro and are
-         emitted on every page by the base layout. This SoftwareApplication node
-         reuses the same @id/url as the English page — it describes one entity
-         (the app), the same way SiteSchema's shared nodes do regardless of
-         which locale renders them — with description/featureList translated. -->
+         emitted on every page by the base layout — those stay shared across
+         locales. This SoftwareApplication node's content (name/description/
+         featureList) genuinely differs per locale, so — like the FAQPage node
+         below — it gets its own page-specific @id/url rather than reusing the
+         English page's. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "SoftwareApplication",
-            "@id": "https://stockademarketsim.com/#app",
+            "@id": "https://stockademarketsim.com/es/#app",
             "name": "Simulador de Mercado de Valores Stockade",
-            "url": "https://stockademarketsim.com/",
+            "url": "https://stockademarketsim.com/es/",
+            "inLanguage": "es",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Web Browser",
             "offers": {
