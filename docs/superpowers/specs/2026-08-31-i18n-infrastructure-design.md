@@ -86,10 +86,28 @@ Single source of truth for locale metadata:
 Exports a typed `Locale` union, an ordered `LOCALES` array of `{ code, nativeName, hreflang,
 ogLocale }`, and `DEFAULT_LOCALE = 'en'`.
 
+`hreflang` values are **bare language codes** (`es`, `ja`, `fr`, `de`, `ko`, `it`) except
+`pt`, which is `pt-BR` — a deliberate exception, since "Portuguese" without a region is
+ambiguous and Brazilian was explicitly chosen. This is the single source of truth for
+hreflang specificity: every consumer (page `<link>` tags, the sitemap, `<html lang>`) reads
+`hreflang` from this table rather than hand-typing its own locale-code map, so they cannot
+drift out of sync with each other the way the sitemap example did in an earlier draft of this
+doc.
+
+`ogLocale` values are always region-tagged (`es_ES`, `ja_JP`, ...) because the Open Graph
+`og:locale` field has no bare-language form — the spec's format is always `language_TERRITORY`.
+**`es_ES` here is a placeholder for infra-testing purposes only, not a considered decision.**
+Which Spanish variant (Iberian vs. Latin American) to actually target is a content/SEO call
+that belongs to the future Spanish-translation phase, once real copy and keyword targeting are
+being decided — this infra spec deliberately does not make that call. Whoever picks it up next
+should treat `es_ES` as unconfirmed and revisit it deliberately rather than assume it was
+chosen on purpose.
+
 ### 3. hreflang — `src/components/layout/HreflangLinks.astro`
 
 Included in both `Layout.astro` and `AppLayout.astro`'s `<head>`. Prop: `alternates?:
-Record<Locale, string>` (locale → site-relative path). For each entry emits:
+Record<Locale, string>` (locale → site-relative path). For each entry, the component looks up
+that locale's `hreflang` value from `LOCALES` (§2) and emits:
 
 ```html
 <link rel="alternate" hreflang="{hreflang}" href="{absolute url}" />
@@ -116,21 +134,30 @@ touched again.
 
 ### 5. Sitemap
 
-`@astrojs/sitemap` gets an `i18n` option:
+`@astrojs/sitemap` gets an `i18n` option, built **from the `LOCALES` registry (§2)** rather
+than a second hand-typed map — this is the fix for the mismatch flagged in review, where an
+earlier draft had the sitemap using fully region-tagged values (`es-ES`, `ja-JP`, ...) while
+the page `<link>` tags used bare codes, so the same URL pair would have advertised two
+different specificities for the same locale:
 
 ```js
+import { LOCALES } from './src/i18n/locales.ts';
+
+const sitemapLocales = Object.fromEntries(LOCALES.map(l => [l.code, l.hreflang]));
+// { en: 'en', es: 'es', ja: 'ja', fr: 'fr', de: 'de', pt: 'pt-BR', ko: 'ko', it: 'it' }
+
 sitemap({
   i18n: {
     defaultLocale: 'en',
-    locales: { en: 'en-US', es: 'es-ES', ja: 'ja-JP', fr: 'fr-FR', de: 'de-DE',
-               pt: 'pt-BR', ko: 'ko-KR', it: 'it-IT' },
+    locales: sitemapLocales,
   },
   // ...existing filter/serialize
 })
 ```
 
 so `sitemap.xml` auto-emits `xhtml:link` alternates for translated URL pairs it recognizes,
-without hand-written sitemap logic. Verify against built `dist/sitemap.xml`.
+using the exact same hreflang values as `HreflangLinks.astro`. Verify against built
+`dist/sitemap.xml` that these values match the per-page `<link>` tags exactly.
 
 ### 6. Shared chrome translation — `src/i18n/ui.ts`
 
@@ -162,7 +189,13 @@ name, linking to its URL, current locale marked active/disabled. Mounted inside 
 `Layout.astro` and `AppLayout.astro` both gain an `alternates?: Record<Locale, string>` prop,
 threaded to `HreflangLinks` and `Navbar`. Both also:
 
-- Switch `<html lang="en">` to `<html lang={Astro.currentLocale}>`.
+- Switch `<html lang="en">` to `<html lang={currentHreflang}>`, where `currentHreflang` is
+  looked up from `LOCALES` (§2) by `Astro.currentLocale` — **not** `Astro.currentLocale`
+  used directly. `Astro.currentLocale` resolves to the bare config code (`pt` for Portuguese),
+  which would mismatch the `pt-BR` already used in hreflang links and `og:locale`. Routing the
+  lookup through the same registry entry everything else reads means Portuguese gets
+  `lang="pt-BR"` automatically, with no locale-specific special case hardcoded in the layout —
+  it falls out of the one table by construction, the same way the sitemap fix above does.
 - Add `<meta property="og:locale:alternate" content="{ogLocale}">` per alternate, alongside
   the existing single `og:locale`.
 
