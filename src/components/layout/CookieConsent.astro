@@ -8,23 +8,27 @@
 // No geo gating: the site is a static Cloudflare Pages build, so there is no
 // request-time header (CF-IPCountry etc.) available at render. Showing the
 // banner to everyone is the safe, simpler option.
+
+import { t } from '../../i18n/ui';
+import { getLocaleMeta } from '../../i18n/locales';
+
+const locale = getLocaleMeta(Astro.currentLocale).code;
 ---
 
 <div
   id="cookie-consent"
   role="dialog"
-  aria-label="Cookie consent"
+  aria-label={t(locale, 'cookie.ariaLabel')}
   aria-live="polite"
   hidden
   class="fixed bottom-0 inset-x-0 z-[9999] border-t border-[var(--c-border)] bg-[var(--c-bg-soft)] px-4 py-3 sm:px-6"
 >
   <div class="mx-auto flex max-w-[1400px] flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
     <p class="text-[13px] leading-relaxed text-[var(--c-text-muted)]">
-      We use cookies to improve your experience and serve relevant ads. By using this site, you agree
-      to our use of cookies. Read our <a
+      {t(locale, 'cookie.text')} <a
         href="/privacy/"
         class="text-[#f59e0b] underline underline-offset-2 hover:text-[#fbbf24] transition-colors"
-        >Privacy Policy</a
+        >{t(locale, 'cookie.privacyLinkText')}</a
       >.
     </p>
 
@@ -34,14 +38,14 @@
         data-consent="reject"
         class="rounded-md border border-[var(--c-border)] bg-transparent px-3 py-1.5 text-[12px] font-medium text-[var(--c-text-muted)] transition-colors hover:border-[var(--c-border-strong)] hover:text-[var(--c-text)]"
       >
-        Reject non-essential
+        {t(locale, 'cookie.reject')}
       </button>
       <button
         type="button"
         data-consent="accept"
         class="rounded-md bg-[#f59e0b] px-4 py-1.5 text-[12px] font-semibold text-[#0a0a0a] transition-colors hover:bg-[#fbbf24]"
       >
-        Accept
+        {t(locale, 'cookie.accept')}
       </button>
     </div>
   </div>
