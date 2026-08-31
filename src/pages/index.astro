@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import TickerTape from '../components/landing/TickerTape.tsx';
 import LiveStats from '../components/landing/LiveStats.tsx';
+import { HOME_ALTERNATES } from '../i18n/alternates';
 
 // Single source of truth for the FAQ: the visible section below and the
 // FAQPage JSON-LD are both generated from this array.
@@ -83,6 +84,7 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
 <Layout
   title="Stockade | Free Stock Market Simulator"
   description="A free stock market simulator with fake money. Practice day & paper trading with $100K virtual funds — stocks, crypto, forex, futures. No signup required."
+  alternates={HOME_ALTERNATES}
 >
   <Fragment slot="head">
     <!-- The WebSite and Organization entities live in SiteSchema.astro and are
@@ -125,7 +127,7 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
     <script type="application/ld+json" is:inline set:html={faqSchemaJson} />
   </Fragment>
 
-  <Navbar />
+  <Navbar alternates={HOME_ALTERNATES} />
 
   <!-- ── Hero ── -->
   <section class="relative overflow-hidden mesh-gradient">
