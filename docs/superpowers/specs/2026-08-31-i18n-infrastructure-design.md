@@ -223,3 +223,69 @@ the language switcher, the shared-chrome fallback dictionary, and `lang`/`og:loc
    output, English chrome via fallback).
 7. `npx astro check` — no new errors beyond the pre-existing `ChartSimulator.tsx:670` one.
 8. No deploy step. Build/preview only.
+
+## Phase 2 addenda (2026-09-01) — About, Contact, Markets, Analytics, Simulator, Chart Simulator → Spanish
+
+Phase 2 translated the 6 remaining non-legal, non-blog static/marketing pages into Spanish
+using this same architecture, with no changes to routing, hreflang, or the sitemap i18n config.
+Three things surfaced during that work that change or refine what's documented above:
+
+### `localizedHref()` — Navbar/Footer nav links are not automatically locale-aware
+
+§7-8 above didn't cover this: `Navbar.astro` and `Footer.astro` originally hardcoded their nav
+link `href`s to unprefixed English paths (`/simulator`, `/markets`, ...), and `Footer.astro`'s
+link *labels* were hardcoded English string literals, never routed through `t()`. This meant
+that even on the phase-1 homepage, a Spanish visitor's primary navigation pointed back to
+English pages regardless of page-body translation.
+
+Fixed in phase 2 via `localizedHref(enPath, locale)` in `src/i18n/alternates.ts`: given an
+English site-relative path, it returns the matching locale path if one is registered, else the
+English path unchanged. `Navbar`/`Footer` now call it per link instead of hardcoding hrefs;
+`Footer`'s link arrays now read labels via `t()` (new `footer.nav.{about,contact,privacy,terms,
+disclaimer}` keys — `simulator`/`chartSimulator`/`markets`/`analytics`/`learn` already existed).
+
+**This adds a step future translation work must not skip:** a page's `X_ALTERNATES` constant
+existing in `alternates.ts` is not sufficient on its own. It must also be added to the `REGISTRY`
+array in that same file, or `localizedHref()` keeps resolving to the English URL sitewide even
+after the Spanish page is live — the page itself works fine if visited directly, but every nav
+link *to* it, on every page, silently keeps sending Spanish visitors to English. Per-page
+checklist going forward: alternates constant **+ registry entry**, new `es/X.astro` file, English
+page's `alternates` prop, and a pass over existing `/es/*` pages for stale links to `X`'s English
+URL that should now point at its Spanish sibling.
+
+Internal in-body prose links between Spanish pages follow the same rule: link to the Spanish
+sibling wherever one exists (checked against `REGISTRY`), falling back to the English URL only
+for content that stays untranslated (blog posts, legal pages). This was applied retroactively to
+`es/index.astro`'s original links to `/simulator`, `/markets`, `/analytics`, `/chart-simulator`,
+which phase 1 necessarily pointed at English pages since no Spanish siblings existed yet.
+
+### `nav.analytics`: "Analítica" → "Análisis"
+
+Phase 1's `ui.ts` used "Analítica" for the Analytics nav label — a direct cognate of the English
+word, not checked against how real Spanish-language trading products label the same feature.
+Phase 2 spot-checked this: IG España's own performance-review tool is named "análisis de
+trading," and eToro's Spanish help content describes the same kind of feature as "análisis de
+rendimiento de cartera" — both favor the noun "análisis," not "analítica," for this category.
+Corrected `nav.analytics` to "Análisis" and swept every other homepage occurrence of
+"analítica"/"Analítica" referring to this same feature (FAQ answer, the SoftwareApplication
+JSON-LD `featureList`, a feature-card title, SEO prose, a feature bullet) to match, so the term
+doesn't mean two things in two places. Any future locale's analytics nav label should get the
+same spot-check against real products in that language rather than defaulting to the nearest
+cognate.
+
+### Accepted limitation: translated page copy wraps an untranslated React app
+
+`markets.astro`/`analytics.astro`/`simulator.astro`/`chart-simulator.astro` each embed a React
+island (`MarketsView`, `AnalyticsDashboard`, `TradingSimulator`, `ChartSimulator`) that takes zero
+props and renders its own internal UI entirely in English — table headers, buttons, tooltips,
+pattern names, panel labels — per the existing non-goal against translating island internals.
+Phase 2 confirmed this boundary is structurally clean (no prop channel exists for page-level
+translation to leak into or out of island territory), but the practical result is: a Spanish
+visitor on any of these four `/es/` pages sees translated surrounding copy — headings, intro
+prose, the how-to-use sections — wrapped around an English-language interactive app. The
+how-to-use prose on `simulator.astro`/`chart-simulator.astro` deliberately keeps certain terms in
+English for this reason (button labels `Buy`/`Sell`/`Flatten`, the `Working Orders` panel,
+keyboard shortcuts B/S/F, the `Patterns` panel, and every candlestick pattern name like Doji or
+Bullish Engulfing) — those are literal quotes of what's actually on screen, not translation
+gaps. This is documented as an accepted limitation of the current phase, not a bug to fix later
+without a broader decision to translate the island UIs themselves.

@@ -1,9 +1,30 @@
 ﻿---
 import { t } from '../../i18n/ui';
 import { getLocaleMeta } from '../../i18n/locales';
+import { localizedHref } from '../../i18n/alternates';
 
 const year = new Date().getFullYear();
 const locale = getLocaleMeta(Astro.currentLocale).code;
+const homeHref = localizedHref('/', locale);
+
+const productLinks = [
+  { href: localizedHref('/simulator', locale),       label: t(locale, 'nav.simulator') },
+  { href: localizedHref('/chart-simulator', locale), label: t(locale, 'nav.chartSimulator') },
+  { href: localizedHref('/markets', locale),         label: t(locale, 'nav.markets') },
+  { href: localizedHref('/analytics', locale),       label: t(locale, 'nav.analytics') },
+  { href: localizedHref('/blog', locale),             label: t(locale, 'nav.learn') },
+];
+
+const companyLinks = [
+  { href: localizedHref('/about', locale),   label: t(locale, 'footer.nav.about') },
+  { href: localizedHref('/contact', locale), label: t(locale, 'footer.nav.contact') },
+];
+
+const legalLinks = [
+  { href: localizedHref('/privacy', locale),    label: t(locale, 'footer.nav.privacy') },
+  { href: localizedHref('/terms', locale),      label: t(locale, 'footer.nav.terms') },
+  { href: localizedHref('/disclaimer', locale), label: t(locale, 'footer.nav.disclaimer') },
+];
 ---
 
 <footer class="border-t border-[#2a2a2a] bg-[#0a0a0a] mt-auto">
@@ -11,7 +32,7 @@ const locale = getLocaleMeta(Astro.currentLocale).code;
     <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
       <!-- Brand -->
       <div class="col-span-2">
-        <a href="/" class="flex items-center gap-2 mb-4">
+        <a href={homeHref} class="flex items-center gap-2 mb-4">
           <div class="w-7 h-7 rounded-md bg-[#f59e0b] flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M2 12L6 7L10 9L14 3" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -29,13 +50,7 @@ const locale = getLocaleMeta(Astro.currentLocale).code;
       <div>
         <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">{t(locale, 'footer.product')}</p>
         <ul class="space-y-2">
-          {[
-            { href: '/simulator',       label: 'Trading Simulator' },
-            { href: '/chart-simulator', label: 'Chart Simulator'   },
-            { href: '/markets',         label: 'Markets'           },
-            { href: '/analytics',       label: 'Analytics'         },
-            { href: '/blog',            label: 'Learn'             },
-          ].map(l => (
+          {productLinks.map(l => (
             <li>
               <a href={l.href} class="text-[13px] text-[#a1a1a1] hover:text-[#f5f5f5] transition-colors">{l.label}</a>
             </li>
@@ -47,10 +62,7 @@ const locale = getLocaleMeta(Astro.currentLocale).code;
       <div>
         <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">{t(locale, 'footer.company')}</p>
         <ul class="space-y-2">
-          {[
-            { href: '/about',   label: 'About' },
-            { href: '/contact', label: 'Contact' },
-          ].map(l => (
+          {companyLinks.map(l => (
             <li>
               <a href={l.href} class="text-[13px] text-[#a1a1a1] hover:text-[#f5f5f5] transition-colors">{l.label}</a>
             </li>
@@ -62,11 +74,7 @@ const locale = getLocaleMeta(Astro.currentLocale).code;
       <div>
         <p class="text-[11px] font-mono uppercase tracking-widest text-[#666666] mb-3">{t(locale, 'footer.legal')}</p>
         <ul class="space-y-2">
-          {[
-            { href: '/privacy',    label: 'Privacy' },
-            { href: '/terms',      label: 'Terms' },
-            { href: '/disclaimer', label: 'Disclaimer' },
-          ].map(l => (
+          {legalLinks.map(l => (
             <li>
               <a href={l.href} class="text-[13px] text-[#a1a1a1] hover:text-[#f5f5f5] transition-colors">{l.label}</a>
             </li>

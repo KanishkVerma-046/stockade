@@ -17,6 +17,11 @@ export type UiKey =
   | 'footer.legal'
   | 'footer.rights'
   | 'footer.disclaimerText'
+  | 'footer.nav.about'
+  | 'footer.nav.contact'
+  | 'footer.nav.privacy'
+  | 'footer.nav.terms'
+  | 'footer.nav.disclaimer'
   | 'cookie.text'
   | 'cookie.privacyLinkText'
   | 'cookie.reject'
@@ -47,6 +52,11 @@ const en: Dictionary = {
   'footer.rights': 'All rights reserved.',
   'footer.disclaimerText':
     'Stockade is a simulation platform only. All trading is done with virtual money. This is not financial advice. Past simulated performance does not indicate future real results.',
+  'footer.nav.about': 'About',
+  'footer.nav.contact': 'Contact',
+  'footer.nav.privacy': 'Privacy',
+  'footer.nav.terms': 'Terms',
+  'footer.nav.disclaimer': 'Disclaimer',
   'cookie.text':
     'We use cookies to improve your experience and serve relevant ads. By using this site, you agree to our use of cookies. Read our',
   'cookie.privacyLinkText': 'Privacy Policy',
@@ -63,7 +73,7 @@ const es: Dictionary = {
   'nav.simulator': 'Simulador de Trading',
   'nav.chartSimulator': 'Simulador de Gráficos',
   'nav.markets': 'Mercados',
-  'nav.analytics': 'Analítica',
+  'nav.analytics': 'Análisis',
   'nav.learn': 'Aprender',
   'nav.live': 'En vivo',
   'nav.toggleFullscreen': 'Alternar pantalla completa',
@@ -77,6 +87,11 @@ const es: Dictionary = {
   'footer.rights': 'Todos los derechos reservados.',
   'footer.disclaimerText':
     'Stockade es únicamente una plataforma de simulación. Todas las operaciones se realizan con dinero virtual. Esto no es asesoramiento financiero. El rendimiento simulado pasado no indica resultados reales futuros.',
+  'footer.nav.about': 'Acerca de',
+  'footer.nav.contact': 'Contacto',
+  'footer.nav.privacy': 'Privacidad',
+  'footer.nav.terms': 'Términos',
+  'footer.nav.disclaimer': 'Descargo de Responsabilidad',
   'cookie.text':
     'Utilizamos cookies para mejorar tu experiencia y mostrar anuncios relevantes. Al usar este sitio, aceptas nuestro uso de cookies. Lee nuestra',
   'cookie.privacyLinkText': 'Política de Privacidad',

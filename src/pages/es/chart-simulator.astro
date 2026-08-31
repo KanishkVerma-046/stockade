@@ -1,0 +1,79 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="Simulador de Patrones de Velas | Stockade"
+  description="Aprende patrones de velas con nuestro simulador de gráficos interactivo y gratuito. Explora más de 20 patrones: Doji, Hammer, Engulfing, Morning Star y más."
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">Simulador de Patrones de Velas</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            Cómo Usar el Simulador de Gráficos
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            El Simulador de Gráficos es una herramienta de repetición de velas. Genera una nueva
+            serie de precios sintética cada vez que lo cargas, analiza esa serie en busca de
+            patrones de velas clásicos, y marca cada uno en el gráfico — para que puedas ver cómo
+            se forma un patrón vela por vela, en lugar de encontrarlo ya terminado en un diagrama
+            de libro de texto.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Ejecutando una repetición
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Presiona play — o la barra espaciadora — para revelar las velas de una en una. La barra de progreso ámbar debajo de la barra de herramientas muestra qué tan avanzado estás en la serie. Los botones de velocidad ejecutan la repetición a 1×, 2×, 5× o 10×. Para moverte manualmente, usa las flechas de retroceso y avance o las teclas <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> y <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, y los botones de salto para ir directo al inicio o al final. El botón de actualizar genera un nuevo gráfico con un conjunto diferente de patrones.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Eligiendo qué graficar
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            El menú desplegable de símbolo cubre acciones, cripto, forex y futuros, y los botones
+            de marco temporal reagregan la misma serie en velas más largas o más cortas. Superpón
+            EMA 9, EMA 20, EMA 50 o VWAP desde la barra de herramientas, y cambia el panel
+            inferior entre volumen, RSI y MACD.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Qué buscar
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            El panel de <strong class="text-[var(--c-text)] font-semibold">Patterns</strong>, a la izquierda, enumera cada formación que el simulador reconoce — Doji, Hammer, Bullish y Bearish Engulfing, Harami, Morning y Evening Star, Three White Soldiers, Tweezer tops y bottoms, y más (<a href="/blog/how-to-read-candlestick-charts" class="text-[#f59e0b] hover:underline">cómo leer gráficos de velas</a> cubre la anatomía detrás de cada uno).
+            Haz clic en un patrón para resaltar solo sus ocurrencias, o haz clic en un marcador
+            en el gráfico para abrir su explicación, incluyendo la psicología de mercado detrás del
+            patrón y qué lo confirma o invalida. El hábito más útil: pausa en un marcador, predice
+            la siguiente vela, y luego avanza para comprobarlo. El contexto importa más que la
+            forma — un patrón de reversión solo significa algo después de una tendencia real, y el
+            volumen detrás de la vela de señal separa un giro genuino del ruido.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

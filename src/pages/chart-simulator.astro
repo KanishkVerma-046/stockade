@@ -1,11 +1,13 @@
 ---
 import AppLayout from '../layouts/AppLayout.astro';
 import ChartSimulator from '../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../i18n/alternates';
 ---
 
 <AppLayout
   title="Candlestick Pattern Simulator | Stockade"
   description="Learn candlestick patterns with our free interactive chart simulator. Explore 20+ patterns: Doji, Hammer, Engulfing, Morning Star & more."
+  alternates={CHART_SIMULATOR_ALTERNATES}
 >
   <h1 class="sr-only">Candlestick Pattern Simulator</h1>
   <ChartSimulator client:load />

@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Panel de Análisis de Trading | Stockade"
+  description="Analiza el rendimiento de tu paper trading con curvas de capital, tasas de acierto, métricas de drawdown y diarios de operaciones en el simulador gratuito de Stockade."
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Análisis</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Panel de Rendimiento</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Tus estadísticas de trading simuladas — curva de capital, tasa de acierto, drawdown y diario de operaciones.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Entendiendo tus métricas de trading
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Cada número en este panel se calcula a partir de las operaciones que has cerrado en el
+        simulador de paper trading de Stockade, y se almacena localmente en tu navegador. Saber
+        qué mide realmente cada cifra es la diferencia entre revisar tu trading y simplemente
+        admirar las ganancias y pérdidas — <a href="/blog/analyze-trading-performance-metrics" class="text-[#f59e0b] hover:underline">analizando tu rendimiento de trading</a> profundiza en la
+        tasa de acierto, el factor de beneficio y el drawdown.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Estadísticas principales</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">G/P Total</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La suma de las ganancias y pérdidas realizadas en todas las operaciones cerradas. Las
+            posiciones abiertas no se cuentan hasta que las cierras, por lo que un total favorable
+            puede ocultar una posición perdedora que sigue abierta.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Capital</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            El valor actual de tu cuenta — el saldo inicial de $100,000 más el G/P total.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Tasa de Acierto</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            El porcentaje de operaciones cerradas que terminaron en ganancia. Una tasa de acierto
+            alta es alentadora, pero por sí sola dice poco: una estrategia que gana el 80% de las
+            veces igual puede perder dinero si el 20% de las operaciones perdedoras es lo bastante
+            grande.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Factor de Beneficio</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La ganancia bruta dividida entre la pérdida bruta. Cualquier valor por encima de 1.0×
+            significa que retiraste más de lo que perdiste, y 1.5× o más generalmente se considera
+            sólido. Responde la pregunta que la tasa de acierto no puede — cuánto ganas por cada
+            unidad de pérdida absorbida.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Ganancia Promedio</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La ganancia media de tus operaciones ganadoras. Compárala con tu pérdida promedio: si
+            tu ganancia promedio es la menor de las dos, necesitas una tasa de acierto
+            correspondientemente alta solo para llegar al punto de equilibrio.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Drawdown Máximo</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La mayor caída de pico a valle en tu capital, expresada como porcentaje. Esta es la
+            métrica del dolor. Estima el peor tramo que habrías tenido que soportar — en el
+            trading real, generalmente es lo que termina con una estrategia mucho antes de que lo
+            haga la matemática. <a href="/blog/risk-management-position-sizing" class="text-[#f59e0b] hover:underline">El tamaño de posición y la regla del 1%</a> explica la matemática de
+            recuperación detrás de por qué el drawdown importa tanto.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Curva de capital</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La curva de capital grafica el valor de tu cuenta después de cada operación cerrada. Su
+        forma importa más que su punto final: un ascenso constante indica un proceso que puedes
+        repetir, mientras que una línea plana interrumpida por uno o dos saltos enormes
+        generalmente indica suerte.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Diario de operaciones</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        El diario enumera cada operación cerrada con su símbolo, dirección, precio de entrada y
+        salida, tamaño, G/P y tiempo de posición. La duración promedio es una verificación de
+        realidad útil: muchos traders descubren que mantienen sus operaciones perdedoras mucho más
+        tiempo que las ganadoras, o que operan en un marco temporal mucho más corto del que
+        pretendían.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Mapa de calor por horario</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        El mapa de calor desglosa tus resultados por día de la semana y hora del día, coloreando
+        cada celda según el G/P neto. Con suficientes operaciones, puede mostrar que una sesión en
+        particular es responsable de la mayoría de tus pérdidas. Desconfía de una muestra pequeña
+        — una sola celda necesita docenas de operaciones detrás para que el color signifique algo.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

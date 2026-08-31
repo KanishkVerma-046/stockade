@@ -1,6 +1,7 @@
 ---
 import { t } from '../../i18n/ui';
 import { getLocaleMeta, type Locale } from '../../i18n/locales';
+import { localizedHref } from '../../i18n/alternates';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -12,12 +13,15 @@ const currentPath = Astro.url.pathname;
 const locale = getLocaleMeta(Astro.currentLocale).code;
 
 const navLinks = [
-  { href: '/simulator',       label: t(locale, 'nav.simulator') },
-  { href: '/chart-simulator', label: t(locale, 'nav.chartSimulator') },
-  { href: '/markets',         label: t(locale, 'nav.markets') },
-  { href: '/analytics',       label: t(locale, 'nav.analytics') },
-  { href: '/blog',            label: t(locale, 'nav.learn') },
+  { href: localizedHref('/simulator', locale),       label: t(locale, 'nav.simulator') },
+  { href: localizedHref('/chart-simulator', locale), label: t(locale, 'nav.chartSimulator') },
+  { href: localizedHref('/markets', locale),         label: t(locale, 'nav.markets') },
+  { href: localizedHref('/analytics', locale),       label: t(locale, 'nav.analytics') },
+  { href: localizedHref('/blog', locale),             label: t(locale, 'nav.learn') },
 ];
+
+const homeHref = localizedHref('/', locale);
+const startTradingHref = localizedHref('/simulator', locale);
 
 function isActive(href: string) {
   return currentPath === href || (href !== '/' && currentPath.startsWith(href));
@@ -32,7 +36,7 @@ function isActive(href: string) {
 >
   <div class="max-w-[1400px] mx-auto px-4 h-full flex items-center gap-6">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 shrink-0 group">
+    <a href={homeHref} class="flex items-center gap-2 shrink-0 group">
       <div class="w-7 h-7 rounded-md bg-[#f59e0b] flex items-center justify-center">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M2 12L6 7L10 9L14 3" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -104,7 +108,7 @@ function isActive(href: string) {
       <LanguageSwitcher alternates={alternates} />
 
       <a
-        href="/simulator"
+        href={startTradingHref}
         class="px-3 py-1.5 rounded-md bg-[#f59e0b] text-[#0a0a0a] text-[13px] font-semibold hover:bg-[#fbbf24] transition-colors whitespace-nowrap"
       >
         {t(locale, 'nav.startTrading')}

@@ -3,13 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../i18n/alternates';
 ---
 
 <Layout
   title="Trading Analytics Dashboard | Stockade"
   description="Analyze your paper trading performance with equity curves, win rates, drawdown metrics & trade journals on Stockade's free simulator."
+  alternates={ANALYTICS_ALTERNATES}
 >
-  <Navbar />
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
   <main class="max-w-[1400px] mx-auto px-4 py-8">
     <div class="mb-8">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analytics</div>

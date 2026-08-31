@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import { ABOUT_ALTERNATES } from '../i18n/alternates';
 ---
 
 <Layout
   title="About Stockade | Trading Simulator for Beginners"
   description="Learn about Stockade, the free browser-based stock market simulator built for traders who want to practice without risk. No signup, no money, no limits."
+  alternates={ABOUT_ALTERNATES}
 >
-  <Navbar />
+  <Navbar alternates={ABOUT_ALTERNATES} />
 
   <main class="max-w-[760px] mx-auto px-6 py-16">
 

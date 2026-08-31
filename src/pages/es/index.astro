@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: '¿Stockade admite cripto, forex y futuros?',
-    a: 'Sí. Stockade cubre acciones, criptomonedas, pares de forex y contratos de futuros (NQ, ES, CL, GC) — explóralos todos en la <a href="/markets">página de Mercados</a>.',
+    a: 'Sí. Stockade cubre acciones, criptomonedas, pares de forex y contratos de futuros (NQ, ES, CL, GC) — explóralos todos en la <a href="/es/markets/">página de Mercados</a>.',
   },
   {
     q: '¿Stockade es un simulador de paper trading o de day trading?',
@@ -56,7 +56,7 @@ const faqs = [
   },
   {
     q: '¿Cuál es la principal ventaja de un simulador?',
-    a: 'Riesgo financiero cero mientras desarrollas habilidades de trading reales. Puedes probar estrategias, cometer errores y desarrollar disciplina sin perder dinero. Stockade te da $100,000 en capital virtual y herramientas profesionales — gráficos de velas, EMA/VWAP/RSI/MACD, un panel de órdenes completo y un panel de analítica detallado — el mismo entorno que un bróker real, totalmente gratis y sin consecuencias.',
+    a: 'Riesgo financiero cero mientras desarrollas habilidades de trading reales. Puedes probar estrategias, cometer errores y desarrollar disciplina sin perder dinero. Stockade te da $100,000 en capital virtual y herramientas profesionales — gráficos de velas, EMA/VWAP/RSI/MACD, un panel de órdenes completo y un panel de análisis detallado — el mismo entorno que un bróker real, totalmente gratis y sin consecuencias.',
   },
 ];
 
@@ -119,7 +119,7 @@ const liveStatsLabels = {
               "Indicadores EMA, VWAP, RSI, MACD",
               "Órdenes de mercado y límite con brackets OCO de stop-loss / take-profit",
               "Paper trading con $100,000 de saldo virtual",
-              "Panel de analítica con curva de capital",
+              "Panel de análisis con curva de capital",
               "Acciones, cripto, forex y futuros"
             ],
             "publisher": { "@id": "https://stockademarketsim.com/#organization" },
@@ -160,13 +160,13 @@ const liveStatsLabels = {
 
       <div class="flex flex-wrap justify-center gap-3 mb-16">
         <a
-          href="/simulator"
+          href="/es/simulator/"
           class="px-6 py-3 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[15px] hover:bg-[#fbbf24] transition-colors"
         >
           Empezar a Operar Gratis →
         </a>
         <a
-          href="/markets"
+          href="/es/markets/"
           class="px-6 py-3 rounded-full bg-[var(--c-bg-muted)] text-[var(--c-text)] font-semibold text-[15px] border border-[var(--c-border)] hover:bg-[var(--c-surface-2)] transition-colors"
         >
           Ver Mercados
@@ -253,7 +253,7 @@ const liveStatsLabels = {
           { icon: '📈', title: 'Gráficos de Velas Reales', desc: 'Velas completas con volumen e indicadores EMA, VWAP, RSI y MACD — las mismas herramientas que usan los profesionales.' },
           { icon: '⚡', title: 'Ejecución Instantánea de Órdenes', desc: 'Órdenes de mercado, límite, stop-loss, take-profit y OCO ejecutadas al instante.' },
           { icon: '⌨️', title: 'Atajos de Teclado', desc: 'B para comprar, S para vender, F para cerrar posición. Opera a la velocidad del pensamiento sin tocar el mouse.' },
-          { icon: '📊', title: 'Panel de Analítica', desc: 'Tasa de acierto, factor de beneficio, ganancia/pérdida promedio, curva de capital, drawdown y mapas de calor por hora del día.' },
+          { icon: '📊', title: 'Panel de Análisis', desc: 'Tasa de acierto, factor de beneficio, ganancia/pérdida promedio, curva de capital, drawdown y mapas de calor por hora del día.' },
           { icon: '💼', title: 'Multi-Activo', desc: 'Acciones, criptomonedas, pares de forex y futuros — todo en un solo simulador.' },
           { icon: '📱', title: 'Optimizado para Móvil', desc: 'Totalmente responsive. Opera desde tu teléfono, tablet o computadora con las mismas funciones.' },
           { icon: '🆓', title: '100% Gratis para Siempre', desc: 'Todas las funciones. Todos los activos. Sin registro. Sin pruebas. Sin suscripciones. Solo empieza.' },
@@ -305,7 +305,7 @@ const liveStatsLabels = {
         </h2>
 
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-Stockade es un <a href="/simulator" class="text-[#f59e0b] hover:underline">simulador de mercado de valores</a> que abres en una pestaña del navegador y empiezas a usar unos diez segundos después. Recibes <strong class="text-[var(--c-text)]">$100,000 en dinero virtual</strong> y un entorno de trading completo que cubre acciones, cripto, forex y futuros. No hay cuenta que crear, ni tarjeta que ingresar, ni nada que instalar. Si haces una operación desastrosa, lo único que pierdes es un número en la pantalla — para eso sirve practicar.
+Stockade es un <a href="/es/simulator/" class="text-[#f59e0b] hover:underline">simulador de mercado de valores</a> que abres en una pestaña del navegador y empiezas a usar unos diez segundos después. Recibes <strong class="text-[var(--c-text)]">$100,000 en dinero virtual</strong> y un entorno de trading completo que cubre acciones, cripto, forex y futuros. No hay cuenta que crear, ni tarjeta que ingresar, ni nada que instalar. Si haces una operación desastrosa, lo único que pierdes es un número en la pantalla — para eso sirve practicar.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -319,21 +319,21 @@ Stockade es un <a href="/simulator" class="text-[#f59e0b] hover:underline">simul
           Dos formas de practicar: en vivo y repetición
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          El modo en vivo transmite seis activos a la vez con precios que se actualizan cada 800 milisegundos, para que puedas practicar day trading contra una cinta rápida y descubrir cómo reaccionas realmente bajo presión. El modo repetición hace lo contrario — avanzas por una sesión completa vela por vela, tomándote el tiempo que quieras en cada decisión. La mayoría usa el modo en vivo para desarrollar reflejos y el modo repetición para reconocer patrones — para practicar enfocado únicamente en leer formaciones en lugar de en las ganancias y pérdidas, el <a href="/chart-simulator" class="text-[#f59e0b] hover:underline">Simulador de Gráficos</a> avanza por patrones de velas de la misma manera. Los simuladores de paper trading de los brókers suelen exigir registro y una cuenta real vinculada antes de dejarte colocar una sola orden. Aquí, simplemente abres la página.
+          El modo en vivo transmite seis activos a la vez con precios que se actualizan cada 800 milisegundos, para que puedas practicar day trading contra una cinta rápida y descubrir cómo reaccionas realmente bajo presión. El modo repetición hace lo contrario — avanzas por una sesión completa vela por vela, tomándote el tiempo que quieras en cada decisión. La mayoría usa el modo en vivo para desarrollar reflejos y el modo repetición para reconocer patrones — para practicar enfocado únicamente en leer formaciones en lugar de en las ganancias y pérdidas, el <a href="/es/chart-simulator/" class="text-[#f59e0b] hover:underline">Simulador de Gráficos</a> avanza por patrones de velas de la misma manera. Los simuladores de paper trading de los brókers suelen exigir registro y una cuenta real vinculada antes de dejarte colocar una sola orden. Aquí, simplemente abres la página.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Acciones, cripto, forex y futuros en un solo lugar
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Hay 14 tickers de acciones con un comportamiento de precio realista, 8 activos cripto que se mueven con la volatilidad que esperarías del activo real, pares de divisas mayores y menores, y cuatro contratos de futuros — NQ, ES, CL y GC. Ese rango importa más de lo que parece: una estrategia que se ve brillante en una acción de movimiento lento a menudo se desmorona en un par de divisas o un contrato de futuros, y tener todo en <a href="/markets" class="text-[#f59e0b] hover:underline">una sola plataforma</a> hace que sea fácil descubrirlo.
+          Hay 14 tickers de acciones con un comportamiento de precio realista, 8 activos cripto que se mueven con la volatilidad que esperarías del activo real, pares de divisas mayores y menores, y cuatro contratos de futuros — NQ, ES, CL y GC. Ese rango importa más de lo que parece: una estrategia que se ve brillante en una acción de movimiento lento a menudo se desmorona en un par de divisas o un contrato de futuros, y tener todo en <a href="/es/markets/" class="text-[#f59e0b] hover:underline">una sola plataforma</a> hace que sea fácil descubrirlo.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Revisa lo que realmente pasó
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Colocar operaciones es la mitad fácil; la mitad útil es analizar los resultados después. El <a href="/analytics" class="text-[#f59e0b] hover:underline">panel de analítica</a> lee tu historial de operaciones e informa la curva de capital, la tasa de acierto, el factor de beneficio, la ganancia y pérdida promedio, el drawdown máximo, y un mapa de calor que muestra en qué horas del día tus operaciones realmente funcionaron. Como no hay nada que instalar ni una barrera de registro, todo ese ciclo ocurre en una pestaña del navegador — lo que también lo hace viable para un salón de clases o un grupo de estudio, donde hacer que todos completen un formulario de registro suele ser la parte difícil.
+          Colocar operaciones es la mitad fácil; la mitad útil es analizar los resultados después. El <a href="/es/analytics/" class="text-[#f59e0b] hover:underline">panel de análisis</a> lee tu historial de operaciones e informa la curva de capital, la tasa de acierto, el factor de beneficio, la ganancia y pérdida promedio, el drawdown máximo, y un mapa de calor que muestra en qué horas del día tus operaciones realmente funcionaron. Como no hay nada que instalar ni una barrera de registro, todo ese ciclo ocurre en una pestaña del navegador — lo que también lo hace viable para un salón de clases o un grupo de estudio, donde hacer que todos completen un formulario de registro suele ser la parte difícil.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -347,7 +347,7 @@ Stockade es un <a href="/simulator" class="text-[#f59e0b] hover:underline">simul
             'Gráficos de velas completos con volumen',
             'Indicadores profesionales: EMA, VWAP, RSI, MACD',
             'Panel de órdenes: entradas de mercado y límite, brackets OCO de stop-loss / take-profit',
-            'Analítica de rendimiento con curvas de capital y seguimiento de drawdown',
+            'Análisis de rendimiento con curvas de capital y seguimiento de drawdown',
             'Soporte completo para móvil y tablet',
           ].map(item => (
             <li class="flex items-start gap-2 text-[15px] text-[var(--c-text-muted)]">
@@ -389,7 +389,7 @@ Stockade es un <a href="/simulator" class="text-[#f59e0b] hover:underline">simul
         Sin tarjeta de crédito. Sin registro. $100,000 en saldo virtual esperándote.
       </p>
       <a
-        href="/simulator"
+        href="/es/simulator/"
         class="inline-block px-8 py-4 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-bold text-[16px] hover:bg-[#fbbf24] transition-colors"
       >
         Iniciar el Simulador →

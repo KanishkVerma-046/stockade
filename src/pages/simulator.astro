@@ -1,11 +1,13 @@
 ---
 import AppLayout from '../layouts/AppLayout.astro';
 import TradingSimulator from '../components/trading/TradingSimulator.tsx';
+import { SIMULATOR_ALTERNATES } from '../i18n/alternates';
 ---
 
 <AppLayout
   title="Paper Trading Simulator | Stockade"
   description="Practice paper trading with our free stock market simulator. Candlestick charts, EMA indicators & $100K virtual balance. No signup required."
+  alternates={SIMULATOR_ALTERNATES}
 >
   <div class="flex flex-col h-full">
     <h1 id="simulator-h1" class="sr-only">Paper Trading Simulator</h1>
