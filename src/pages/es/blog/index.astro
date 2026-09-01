@@ -1,16 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/layout/Navbar.astro';
-import Footer from '../../components/layout/Footer.astro';
-import { readingTime } from '../../lib/reading-time';
-import { BLOG_ALTERNATES } from '../../i18n/alternates';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/layout/Navbar.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import { readingTime } from '../../../lib/reading-time';
+import { BLOG_ALTERNATES } from '../../../i18n/alternates';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+const posts = (await getCollection('blogEs', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 
-const dateFmt = new Intl.DateTimeFormat('en-US', {
+const dateFmt = new Intl.DateTimeFormat('es-ES', {
   year: 'numeric',
   month: 'short',
   day: 'numeric',
@@ -19,8 +19,8 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
 ---
 
 <Layout
-  title="Trading Learning Center | Stockade"
-  description="Free, in-depth guides to candlestick charts, indicators, order types, and risk management — written for traders learning to practice with purpose."
+  title="Centro de Aprendizaje de Trading | Stockade"
+  description="Guías gratuitas y detalladas sobre gráficos de velas, indicadores, tipos de órdenes y gestión de riesgo — para traders que aprenden practicando con propósito."
   alternates={BLOG_ALTERNATES}
 >
   <Navbar alternates={BLOG_ALTERNATES} />
@@ -28,14 +28,15 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
   <main class="max-w-[1000px] mx-auto px-6 py-16">
     <div class="mb-12">
       <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">
-        Learning Center
+        Centro de Aprendizaje
       </div>
       <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
-        Learn to trade before you risk a dollar.
+        Aprende a operar antes de arriesgar un dólar.
       </h1>
       <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed max-w-[680px]">
-        Practical guides to reading charts, using indicators, sizing positions, and
-        managing risk — each one built to be practiced immediately on the simulator.
+        Guías prácticas para leer gráficos, usar indicadores, dimensionar posiciones y
+        gestionar el riesgo — cada una pensada para ponerse en práctica de inmediato en
+        el simulador.
       </p>
     </div>
 
@@ -51,7 +52,7 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
           </div>
 
           <h2 class="text-[17px] font-semibold text-[var(--c-text)] leading-snug mb-2">
-            <a href={`/blog/${post.id}`} class="hover:text-[#f59e0b] transition-colors">
+            <a href={`/es/blog/${post.id}`} class="hover:text-[#f59e0b] transition-colors">
               {post.data.title}
             </a>
           </h2>
@@ -67,7 +68,7 @@ const dateFmt = new Intl.DateTimeFormat('en-US', {
               {dateFmt.format(post.data.date)}
             </time>
             <span class="text-[var(--c-text-faint)]">·</span>
-            <span>{readingTime(post.body ?? '')} min read</span>
+            <span>{readingTime(post.body ?? '')} min de lectura</span>
           </div>
         </article>
       ))}

@@ -38,6 +38,14 @@ export const CHART_SIMULATOR_ALTERNATES = {
   es: '/es/chart-simulator/',
 } as const;
 
+// Covers only the /blog/ index — individual post alternates are computed
+// per-post in the [slug] routes (only some posts have a translated sibling
+// at any given time) rather than hand-listed here.
+export const BLOG_ALTERNATES = {
+  en: '/blog/',
+  es: '/es/blog/',
+} as const;
+
 // Every page-alternates constant above, in one place, so shared chrome
 // (Navbar/Footer) can look up "does this destination have a translation for
 // the current locale" without hand-maintaining a second list that could drift
@@ -53,6 +61,7 @@ const REGISTRY: Partial<Record<Locale, string>>[] = [
   ANALYTICS_ALTERNATES,
   SIMULATOR_ALTERNATES,
   CHART_SIMULATOR_ALTERNATES,
+  BLOG_ALTERNATES,
 ];
 
 /**

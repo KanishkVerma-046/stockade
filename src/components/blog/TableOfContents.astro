@@ -1,4 +1,7 @@
 ---
+import { t } from '../../i18n/ui';
+import { getLocaleMeta } from '../../i18n/locales';
+
 interface Heading {
   depth: number;
   slug: string;
@@ -10,6 +13,7 @@ interface Props {
 }
 
 const { headings } = Astro.props;
+const locale = getLocaleMeta(Astro.currentLocale).code;
 
 // Only h2/h3 make a useful outline. h4 is too granular and deep nesting
 // makes the rail unreadable at this width.
@@ -17,9 +21,9 @@ const items = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
 {items.length > 0 && (
-  <nav aria-label="Table of contents" class="toc">
+  <nav aria-label={t(locale, 'blog.tableOfContents')} class="toc">
     <p class="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-3">
-      On this page
+      {t(locale, 'blog.onThisPage')}
     </p>
     <ul class="space-y-1 border-l border-[var(--c-border)]">
       {items.map(item => (

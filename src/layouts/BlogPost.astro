@@ -1,11 +1,12 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
 import RelatedPosts from '../components/blog/RelatedPosts.astro';
 import { readingTime } from '../lib/reading-time';
+import { t } from '../i18n/ui';
+import { getLocaleMeta, DEFAULT_LOCALE, type Locale } from '../i18n/locales';
 
 interface Heading {
   depth: number;
@@ -13,22 +14,40 @@ interface Heading {
   text: string;
 }
 
-interface Props {
-  post: CollectionEntry<'blog'>;
-  posts: CollectionEntry<'blog'>[];
-  headings: Heading[];
+// Deliberately not `CollectionEntry<'blog'>` — this layout renders posts
+// from either the `blog` or `blogEs` collection, which share a schema but
+// are nominally distinct collection types. Structural typing lets either in.
+interface BlogEntry {
+  id: string;
+  body?: string;
+  data: {
+    title: string;
+    description: string;
+    date: Date;
+    author: string;
+    tags: string[];
+  };
 }
 
-const { post, posts, headings } = Astro.props;
+interface Props {
+  post: BlogEntry;
+  posts: BlogEntry[];
+  headings: Heading[];
+  alternates?: Partial<Record<Locale, string>>;
+}
+
+const { post, posts, headings, alternates } = Astro.props;
 const { title, description, date, author, tags } = post.data;
 
 const siteUrl = 'https://stockademarketsim.com';
+const locale = getLocaleMeta(Astro.currentLocale).code;
+const basePath = locale === DEFAULT_LOCALE ? '/blog' : `/${locale}/blog`;
 // Trailing slash matters here: this value is both the `<link rel=canonical>`
 // and the Article JSON-LD `mainEntityOfPage['@id']`. Without it the @id named a
 // URL that 308s while the canonical tag named the resolved one, so the two
 // disagreed about the page's identity. Unlike the static pages, this one keeps
 // its explicit `canonical` prop so both uses stay derived from one string.
-const canonical = `${siteUrl}/blog/${post.id}/`;
+const canonical = `${siteUrl}${basePath}/${post.id}/`;
 // Only feeds the Article JSON-LD below — the og:image meta tag comes from
 // Layout.astro's default. Kept pointing at the same 1200x630 file so the
 // structured data and the social card do not disagree.
@@ -36,7 +55,7 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 const published = date.toISOString();
 const minutes = readingTime(post.body ?? '');
 
-const dateFmt = new Intl.DateTimeFormat('en-US', {
+const dateFmt = new Intl.DateTimeFormat(locale === DEFAULT_LOCALE ? 'en-US' : 'es-ES', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -63,7 +82,9 @@ const articleSchema = {
   },
   image: ogImageUrl,
   keywords: tags.join(', '),
-  inLanguage: 'en-US',
+  // Same dash-joined form as og:locale (es_ES -> es-ES), rather than the
+  // bare hreflang code, to match schema.org's language_TERRITORY convention.
+  inLanguage: getLocaleMeta(locale).ogLocale.replace('_', '-'),
 };
 
 // Escaping "<" prevents a stray "</script>" inside any string from
@@ -76,6 +97,7 @@ const schemaJson = JSON.stringify(articleSchema).replace(/</g, '\\u003c');
   description={description}
   canonical={canonical}
   ogType="article"
+  alternates={alternates}
 >
   <Fragment slot="head">
     <meta property="article:published_time" content={published} />
@@ -86,14 +108,14 @@ const schemaJson = JSON.stringify(articleSchema).replace(/</g, '\\u003c');
     <script type="application/ld+json" is:inline set:html={schemaJson} />
   </Fragment>
 
-  <Navbar />
+  <Navbar alternates={alternates} />
 
   <main class="max-w-[1100px] mx-auto px-6 py-14">
     <a
-      href="/blog"
+      href={`${basePath}/`}
       class="inline-block text-[12px] font-mono text-[var(--c-text-subtle)] hover:text-[#f59e0b] transition-colors mb-8"
     >
-      ← Learning Center
+      ← {t(locale, 'blog.learningCenter')}
     </a>
 
     <header class="mb-10">
@@ -118,7 +140,7 @@ const schemaJson = JSON.stringify(articleSchema).replace(/</g, '\\u003c');
         <span class="text-[var(--c-text-faint)]">·</span>
         <time datetime={published}>{dateFmt.format(date)}</time>
         <span class="text-[var(--c-text-faint)]">·</span>
-        <span>{minutes} min read</span>
+        <span>{minutes} {t(locale, 'blog.minRead')}</span>
       </div>
     </header>
 

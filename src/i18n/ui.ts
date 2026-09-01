@@ -30,7 +30,12 @@ export type UiKey =
   | 'home.stats.startingBalance'
   | 'home.stats.tradableAssets'
   | 'home.stats.assetClasses'
-  | 'home.stats.costToStart';
+  | 'home.stats.costToStart'
+  | 'blog.onThisPage'
+  | 'blog.tableOfContents'
+  | 'blog.learningCenter'
+  | 'blog.minRead'
+  | 'blog.keepLearning';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -67,6 +72,11 @@ const en: Dictionary = {
   'home.stats.tradableAssets': 'Tradable Assets',
   'home.stats.assetClasses': 'Asset Classes',
   'home.stats.costToStart': 'Cost to Start',
+  'blog.onThisPage': 'On this page',
+  'blog.tableOfContents': 'Table of contents',
+  'blog.learningCenter': 'Learning Center',
+  'blog.minRead': 'min read',
+  'blog.keepLearning': 'Keep learning',
 };
 
 const es: Dictionary = {
@@ -102,6 +112,11 @@ const es: Dictionary = {
   'home.stats.tradableAssets': 'Activos Negociables',
   'home.stats.assetClasses': 'Clases de Activos',
   'home.stats.costToStart': 'Costo para Empezar',
+  'blog.onThisPage': 'En esta página',
+  'blog.tableOfContents': 'Tabla de contenidos',
+  'blog.learningCenter': 'Centro de Aprendizaje',
+  'blog.minRead': 'min de lectura',
+  'blog.keepLearning': 'Sigue aprendiendo',
 };
 
 export const translations: Record<Locale, Dictionary> = {

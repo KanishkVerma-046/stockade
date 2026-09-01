@@ -1,23 +1,34 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import { pickRelated } from '../../lib/related-posts';
+import { t } from '../../i18n/ui';
+import { getLocaleMeta, DEFAULT_LOCALE } from '../../i18n/locales';
+
+// Deliberately not `CollectionEntry<'blog'>` — this component renders posts
+// from either the `blog` or `blogEs` collection, which share a schema but
+// are nominally distinct collection types. Structural typing lets either in.
+interface RelatedPostEntry {
+  id: string;
+  data: { title: string; tags: string[]; date: Date };
+}
 
 interface Props {
-  current: CollectionEntry<'blog'>;
-  all: CollectionEntry<'blog'>[];
+  current: RelatedPostEntry;
+  all: RelatedPostEntry[];
 }
 
 const { current, all } = Astro.props;
 const related = pickRelated(current, all, 3);
+const locale = getLocaleMeta(Astro.currentLocale).code;
+const basePath = locale === DEFAULT_LOCALE ? '/blog' : `/${locale}/blog`;
 ---
 
 {related.length > 0 && (
   <section class="mt-16 pt-10 border-t border-[var(--c-border)]">
-    <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">Keep learning</h2>
+    <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">{t(locale, 'blog.keepLearning')}</h2>
     <div class="grid sm:grid-cols-3 gap-4">
       {related.map(post => (
         <a
-          href={`/blog/${post.id}`}
+          href={`${basePath}/${post.id}/`}
           class="block bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5 hover:border-[var(--c-border-strong)] transition-colors"
         >
           <div class="text-[10px] font-mono uppercase tracking-wider text-[#f59e0b] mb-2">

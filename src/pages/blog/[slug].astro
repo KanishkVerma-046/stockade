@@ -7,20 +7,35 @@ export async function getStaticPaths() {
   // generated for them at all. That also keeps them out of the sitemap,
   // which lists built routes.
   const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const esPosts = await getCollection('blogEs', ({ data }) => !data.draft);
+  // Spanish posts use localized slugs, so they're matched to the English
+  // post they translate via `translationOf` (the English post's id) rather
+  // than by sharing an id/filename.
+  const esByTranslationOf = new Map(esPosts.map(p => [p.data.translationOf, p]));
   // Every article declares a frontmatter `slug`, which the glob loader
   // uses as the entry id — so `post.id` IS the URL segment.
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts.map(post => {
+    const esPost = esByTranslationOf.get(post.id);
+    return {
+      params: { slug: post.id },
+      // Only advertise hreflang alternates once a Spanish translation
+      // actually exists, same as every other page in this project.
+      props: {
+        post,
+        alternates: esPost
+          ? { en: `/blog/${post.id}/`, es: `/es/blog/${esPost.id}/` }
+          : undefined,
+      },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, alternates } = Astro.props;
 // Also filtered, so a draft can never surface as a related-post link.
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 const { Content, headings } = await render(post);
 ---
 
-<BlogPost post={post} posts={posts} headings={headings}>
+<BlogPost post={post} posts={posts} headings={headings} alternates={alternates}>
   <Content />
 </BlogPost>
