@@ -52,6 +52,23 @@ Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
 
 The home page FAQ lives in **one `faqs` array** in `index.astro` frontmatter that renders both the visible section and the FAQPage JSON-LD. Google only grants FAQ rich results on a verbatim match, so never hand-write a second copy.
 
+## i18n
+
+Spanish (`es`) is **complete**: the homepage, all 6 static/app pages (about, contact, markets, analytics, simulator, chart-simulator), and all 20 blog posts. Only `/privacy`, `/terms`, `/disclaimer` (professional-review track, not started — see the design doc's rollout-strategy note before starting them) and the explicit non-goals `/404`/`/500` remain English-only. Infra also registers ja/fr/de/pt/ko/it but no content exists in them yet. Full architecture and per-batch history: `docs/superpowers/specs/2026-08-31-i18n-infrastructure-design.md`.
+
+`astro.config.mjs`'s sitemap `serialize()` reads every `blog-es/*.md`'s `slug`/`translationOf` frontmatter directly (outside the content-layer runtime, so a small regex read stands in for `astro:content`) to inject correct `xhtml:link` hreflang alternates for blog post pairs in `sitemap.xml` — `@astrojs/sitemap`'s own i18n auto-pairing only works when a URL's path is byte-identical across locales after stripping the locale prefix, which localized slugs break by design. Any future page type with per-locale-independent slugs needs the same manual override; see the design doc's §5 caveat.
+
+Translated blog posts live in a mirrored `blogEs` content collection (`src/content/blog-es/*.md`, same schema as `blog` plus a required `translationOf` field, defined in `src/content.config.ts`) with its own routes at `src/pages/es/blog/index.astro` and `src/pages/es/blog/[slug].astro` — not a `locale` field on the English collection. **Spanish posts use localized slugs** (the filename/id, e.g. `guia-de-paper-trading`, is independently chosen for the Spanish keyword, not copied from English) — `translationOf` names the id of the English post being translated, and the `[slug]` routes match on that field to compute per-post hreflang alternates only once both sides exist. `BlogPost.astro`, `RelatedPosts.astro`, and `TableOfContents.astro` are shared between both locales and read `Astro.currentLocale` directly for their chrome text (via `ui.ts`) rather than taking a locale prop. `RelatedPosts` is deliberately locale-scoped with no minimum tag-overlap threshold and no cross-language fallback — it shows whatever other posts exist in the current locale's collection (ranked by shared tags, degrading to most-recent when none), and disappears only when there are zero others.
+
+**Checklist for adding any translated page** (skipping step 2 is the one mistake that's bitten this project before — the page renders fine standalone, but every nav link *to* it, on every page, keeps silently sending that locale's visitors to the English URL):
+1. Add a `{PAGE}_ALTERNATES` constant to `src/i18n/alternates.ts`.
+2. Add that constant to the `REGISTRY` array in the same file — this is what makes `localizedHref()` (used by `Navbar`/`Footer`) resolve to the translated URL instead of falling back to English.
+3. Create `src/pages/{locale}/{page}.astro` with the translated content, passing the same `alternates` prop to `<Layout>`/`<AppLayout>`.
+4. Add the `alternates={…}` prop to the existing English page's `<Layout>`/`<AppLayout>` too, so hreflang/switcher are reciprocal.
+5. Sweep existing `/{locale}/*` pages for in-body prose links to this page's English URL that should now point at the new translated sibling instead.
+
+**Rollout order (decided — not to be re-litigated per session):** Spanish is now complete site-wide except the legal pages. Do the legal pages (professional review, not AI translation) before starting any of the other 6 registered-but-unused languages.
+
 ## Testing
 
 `npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`).

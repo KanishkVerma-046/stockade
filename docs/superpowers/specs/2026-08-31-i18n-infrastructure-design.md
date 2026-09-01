@@ -159,6 +159,16 @@ so `sitemap.xml` auto-emits `xhtml:link` alternates for translated URL pairs it 
 using the exact same hreflang values as `HreflangLinks.astro`. Verify against built
 `dist/sitemap.xml` that these values match the per-page `<link>` tags exactly.
 
+**Caveat found in the Batch 5 addendum below, after the blog corpus was complete:** "recognizes"
+here means *identical path after stripping the locale prefix* — `@astrojs/sitemap`'s own i18n
+matching cannot pair two sitemap entries whose paths differ, which every localized-slug blog post
+does by design (§ blog slugs are chosen independently per locale, linked via a `translationOf`
+field rather than a shared path). `astro.config.mjs`'s `serialize()` now overrides this for every
+`/blog/*` URL using that same `translationOf` data, read directly from `blog-es/*.md` frontmatter.
+Any *other* future page type with locale-independent slugs will need the same treatment — this
+auto-detection only works out of the box when the path is identical across locales, as it is for
+every static page and app shell today.
+
 ### 6. Shared chrome translation — `src/i18n/ui.ts`
 
 Dictionary: `translations: Record<Locale, Record<UiKey, string>>` covering nav labels, the
@@ -289,3 +299,214 @@ keyboard shortcuts B/S/F, the `Patterns` panel, and every candlestick pattern na
 Bullish Engulfing) — those are literal quotes of what's actually on screen, not translation
 gaps. This is documented as an accepted limitation of the current phase, not a bug to fix later
 without a broader decision to translate the island UIs themselves.
+
+## Phase 3 addenda (2026-09-01) — blog i18n infrastructure + 2-post Spanish checkpoint
+
+Phase 3 scoped and began translating the 20-post blog corpus into Spanish, starting with
+infrastructure plus a 2-post checkpoint — a conceptual/prose-heavy post and a technical/
+jargon-dense one, translated as `guia-de-paper-trading` and
+`indicador-rsi-sobrecompra-sobreventa` — before batching the remaining 18. Legal pages (`/privacy`,
+`/terms`, `/disclaimer`) were scoped as a separate, higher-stakes track: the user chose a
+professional/reviewed translation over the same AI-translation process used for marketing copy
+and the blog, and declined a "this translation is not authoritative" notice — legal translation
+work has not started as of this addendum.
+
+**Blog structure:** a mirrored `blogEs` content collection (`src/content/blog-es/*.md`, schema
+shared with `blog` via a factored-out `blogSchema` in `src/content.config.ts`, plus a required
+`translationOf` field) with its own routes at `src/pages/es/blog/index.astro` and
+`src/pages/es/blog/[slug].astro`, chosen over adding a `locale` field to the existing `blog`
+collection — consistent with how every other translated page in this project is a separate file
+per locale, and it leaves the schema the other 18 English posts already rely on untouched.
+
+**Slugs are localized, not copied from English** — a course-correction from this addendum's first
+draft, which reused the English filename/id for the Spanish post (`/es/blog/paper-trading-guide/`)
+purely as a matching-key convenience. Caught before deploy, while only 2 posts existed: unlocalized
+slugs mean Spanish search terms never appear in the URL, which costs ranking and how other
+Spanish-language sites would naturally link to these pages — worth fixing immediately since the
+cost of changing it only grows with every post translated under the old scheme. Each Spanish post's
+id is now an independently-chosen Spanish slug; `translationOf` names the id of the English post it
+translates, and that field — not filename equality — is what the `[slug]` routes match on to
+compute per-post hreflang alternates, only once both sides exist. No manual per-post bookkeeping
+elsewhere is required as more posts get translated; each new post just needs `translationOf` set
+correctly in its own frontmatter.
+
+**Shared blog chrome had to become locale-aware.** `BlogPost.astro`, `RelatedPosts.astro`, and
+`TableOfContents.astro` render for both `/blog/*` and `/es/blog/*` from the same component, unlike
+the static pages (which are wholly separate files per locale). Each now reads
+`Astro.currentLocale` directly and calls `t()` for its chrome strings ("On this page", "Learning
+Center", "min read", "Keep learning", plus the `<nav aria-label>`) — four new `blog.*` keys added
+to `ui.ts` — rather than taking a `locale` prop threaded down from the page. `BlogPost.astro`'s
+canonical URL, Article JSON-LD `inLanguage` (schema.org `language-TERRITORY` form, e.g. `es-ES`,
+derived from the same `LOCALES` table as `og:locale` — not a second hardcoded map), and the "Keep
+learning"/related-post links all switch on that same locale lookup rather than assuming `/blog/`.
+Both `post`/`posts` prop types across these three files were also changed from
+`CollectionEntry<'blog'>` to a local structural interface, since a Spanish page passes
+`CollectionEntry<'blogEs'>` entries through the same components — matching the structural-typing
+approach `src/lib/related-posts.ts`'s `pickRelated()` already used, for the same reason (also keeps
+these files free of an `astro:content` import, so `pickRelated` itself needed no changes).
+
+**RelatedPosts policy (confirmed deliberate, not incidental):** the component is strictly
+locale-scoped — it only ever ranks posts from the current page's own collection (`blogEs` on
+`/es/blog/*`, `blog` on `/blog/*`), never falling back to the other language. There is no minimum
+tag-overlap threshold: with only 2 Spanish posts sharing zero tags, `pickRelated()`'s documented
+"no shared tags degrades to most-recent" behavior still surfaces the other one as "Sigue
+aprendiendo" — accepted as correct for now rather than suppressed, since quality improves on its
+own as the corpus grows and a language-mixed fallback would undercut the point of translating in
+the first place. The section still disappears entirely when zero other posts exist in that locale.
+
+**Registry:** `BLOG_ALTERNATES = { en: '/blog/', es: '/es/blog/' }` was added to
+`src/i18n/alternates.ts`'s `REGISTRY` per the standing checklist (now in `CLAUDE.md`) — this alone
+made the existing `nav.learn` link in `Navbar`/`Footer` resolve to `/es/blog/` for Spanish visitors
+without any change to those two files. Per-post alternates are deliberately **not** added to
+`REGISTRY` — only the blog index needs a nav-link-resolvable entry there; individual post alternates
+are page-specific and computed dynamically as described above.
+
+**Terminology notes for future blog posts:** indicator/pattern names and loanwords already
+established on the static pages carried over directly — RSI, MACD, EMA, VWAP, and "paper trading"
+and "drawdown" stay in English; "win rate" → "tasa de acierto", "profit factor" → "factor de
+beneficio", "equity curve" → "curva de capital", "trade journal" → "diario de operaciones",
+"position sizing" → "tamaño de posición" (confirmed against `es/analytics.astro`'s existing link
+text), "overbought"/"oversold" → "sobrecompra"/"sobreventa", order type names (market/limit/
+stop-loss/OCO/bracket) follow `es/about.astro`'s existing precedent (stop-loss and OCO/bracket stay
+in English, market → "mercado", limit → "límite"). Blog frontmatter `tags` are translated per post
+(e.g. "Basics" → "Fundamentos") since the tag pills are locale-specific UI, not a cross-collection
+taxonomy — `pickRelated()` only ever compares tags within one locale's own post list.
+
+**Batch 1 (2026-09-01):** macd-explained → `macd-explicado`, moving-averages-ema-vs-sma →
+`medias-moviles-ema-vs-sma`, understanding-trading-volume → `entendiendo-el-volumen-de-trading`,
+vwap-trading-strategy → `estrategia-vwap` — the indicator/technical-analysis cluster, chosen to
+extend the RSI checkpoint's terminology directly. Caught and fixed one drift before it spread:
+the paper-trading-guide checkpoint had used "llenados parciales" for "partial fills", but
+`es/simulator.astro` had already established "ejecuciones parciales" for the same concept — fixed
+in both the published checkpoint post and the still-unpublished legal disclaimer draft. 6 of 20
+posts now translated; batches 2-5 remain (charting/analytics, strategy/psychology, order
+mechanics, asset-class intros — see the batching plan in conversation history for the full
+grouping and rationale).
+
+**Batch 2 (2026-09-01):** how-to-read-candlestick-charts → `como-leer-graficos-de-velas`,
+support-and-resistance-levels → `soporte-y-resistencia`, analyze-trading-performance-metrics →
+`analiza-tus-metricas-de-rendimiento`, risk-management-position-sizing →
+`gestion-de-riesgo-y-tamano-de-posicion` — the charting/analytics cluster. Two things worth
+recording:
+
+Candlestick pattern names (Doji, Hammer, Shooting star, Marubozu, Bullish/Bearish engulfing,
+Harami, Morning/Evening star, hanging man) were kept in English throughout
+`como-leer-graficos-de-velas.md`, deliberately not translated to "Martillo"/"Envolvente
+alcista"/etc. — `es/chart-simulator.astro` had already established these same pattern names stay
+in English there, since they're literal labels in the chart simulator's Patterns panel (an
+untranslated React island, per the accepted-limitation note above). Translating them in the blog
+post would have described the same on-screen patterns two different ways in the same language.
+
+Before translating `analiza-tus-metricas-de-rendimiento.md`, `es/analytics.astro` was read first —
+it already had a detailed Spanish explanation of every metric this post covers (G/P Total,
+Capital, Tasa de Acierto, Factor de Beneficio, Ganancia Promedio, Drawdown Máximo, Curva de
+capital, Diario de operaciones, Mapa de calor por horario), written when that page was translated
+in phase 2. Those exact labels were reused rather than re-derived. Also swept during this batch:
+two stale links missed at checkpoint/Batch-1 time (`es/index.astro` still pointed to
+`/blog/paper-trading-guide` instead of its now-live Spanish sibling, `es/markets.astro` likewise
+for `understanding-trading-volume`) — a reminder that the stale-link sweep needs to check **every**
+existing `/es/*` page after every batch, not just the pages touched by that batch.
+
+10 of 20 posts now translated; batches 3-5 remain (strategy/psychology, order mechanics,
+asset-class intros).
+
+**Batch 3 (2026-09-01):** how-to-build-a-trading-plan → `como-construir-un-plan-de-trading`,
+common-day-trading-mistakes → `errores-comunes-de-day-trading`, day-trading-vs-swing-trading kept
+its own slug unchanged (both terms are already-established loanwords, so the English slug already
+reads as the natural Spanish search phrase), what-is-a-stock-market-simulator →
+`que-es-un-simulador-de-mercado-de-valores` — the strategy/psychology cluster. Two things worth
+recording:
+
+Before translating `que-es-un-simulador-de-mercado-de-valores.md`, `es/index.astro`'s FAQ array was
+read first, per an explicit instruction — the FAQ already has a canonical answer to "¿Qué es un
+simulador de mercado de valores?" plus adjacent Q&As on risks, limitations, and the main advantage
+of using one. That established phrasing (e.g. "una plataforma de trading virtual que replica las
+condiciones reales del mercado usando dinero ficticio... sin riesgo financiero", "$100,000 en
+capital virtual", the risks list — slippage, comisiones del bróker, presión psicológica del dinero
+real) was reused verbatim in the blog post's definitional and limitations sections rather than
+re-derived, so the homepage and this post describe "what a simulator is" the same way in Spanish.
+
+Full sweep of every `/es/*` page (not just topically related ones, per the fix from Batch 2)
+turned up no new stale links this round — the two found last batch were the only ones outstanding.
+
+14 of 20 posts now translated; Batches 4-5 remain (order mechanics, asset-class intros).
+
+**Batch 4 (2026-09-01):** market-orders-vs-limit-orders → `ordenes-de-mercado-vs-ordenes-limite`,
+stop-loss-orders-explained → `ordenes-stop-loss-explicadas`, oco-and-bracket-orders →
+`ordenes-oco-y-bracket` — the order-mechanics cluster, new terminology territory as anticipated
+going in. `es/simulator.astro`'s actual order-panel copy was read first (per an explicit
+instruction) and supplied several exact phrases that carried straight into these three posts
+rather than being re-derived: "orden de mercado"/"orden límite", "órdenes en espera",
+"orden límite ejecutable" (for "marketable limit order" — `es/simulator.astro` already uses
+"ejecutable" for this exact concept), "bracket OCO", "spread entre compra y venta", "ejecuciones
+parciales", "posición en la cola" (queue position), and the whole "what Stockade's near-frictionless
+fills don't model" framing (no slippage, no partial fills, checked against a new price every 800ms,
+booked at the crossing tick). Order type names that stay in English on the actual order ticket
+(stop-loss, take-profit, Buy/Sell/Flatten, Working Orders) stay in English in the prose too, same
+rule as the candlestick pattern names in Batch 2. "bid"/"ask" had no prior precedent anywhere on
+the site — kept as English loanwords, consistent with how RSI/MACD/VWAP/stop-loss/take-profit are
+handled, rather than translating to "precio de compra"/"precio de venta".
+
+Full `/es/*` sweep found three stale links this round, all in `es/simulator.astro` (its own
+order-panel walkthrough links to all three of this batch's posts) — fixed.
+
+17 of 20 posts now translated; Batch 5 (asset-class intros: crypto-trading-for-beginners,
+forex-trading-for-beginners, futures-trading-explained) remains, then the corpus is complete.
+
+**Batch 5 (2026-09-01) — final batch, blog corpus complete:** crypto-trading-for-beginners →
+`trading-de-cripto-para-principiantes`, forex-trading-for-beginners →
+`trading-de-forex-para-principiantes`, futures-trading-explained →
+`trading-de-futuros-explicado` — the asset-class intro cluster. Terminology already established on
+`es/markets.astro`/`es/about.astro`/`es/index.astro` carried over directly: "cripto", "forex",
+"futuros", "par(es) de forex/divisas", "contrato(s) de futuros", ticker groups quoted with their
+literal slash prefixes (/NQ, /ES, /CL, /GC) matching the on-screen symbols. All 20 posts are now
+translated. Full verification: build, `astro check` (only the pre-existing known error),
+`npm test` (34/34), a live preview spot-check of all three new routes plus `/es/blog/` and
+`/sitemap.xml`, and a complete `/es/*` stale-link sweep (clean — nothing referenced any of these
+three posts by English URL from elsewhere on the site).
+
+**Sitemap hreflang bug found and fixed.** Confirming all 20 English posts had reciprocal
+`hreflang="es"` on their own pages (they did) surfaced a separate, previously-unnoticed gap:
+`@astrojs/sitemap`'s built-in i18n auto-pairing (`node_modules/@astrojs/sitemap/dist/utils/
+parse-i18n-url.js`) only links two sitemap entries as alternates when their paths are **identical**
+after stripping the locale prefix. Every localized-slug post pair therefore got zero `xhtml:link`
+alternates in `sitemap.xml` — only `day-trading-vs-swing-trading` (the one post that happened to
+keep an unlocalized slug) was ever auto-paired. This was silent: each page's own `<link
+rel="alternate">` tags were correct throughout (those come from our `alternates` prop via
+`HreflangLinks.astro`, computed independently via `translationOf`), so nothing in the earlier
+per-batch verification passes would have caught it — the gap was sitemap-only. `astro.config.mjs`
+now reads every `blog-es/*.md`'s `slug`/`translationOf` frontmatter directly at build time (outside
+the Vite/content-layer runtime, so `astro:content` isn't available in config code — a small regex
+read was simpler than routing around that) to build an en↔es slug map, and `serialize()` injects
+the correct `xhtml:link` pair for every blog post URL, overriding whatever `@astrojs/sitemap`'s own
+matching did or didn't produce. Verified after the fix: all 40 blog URLs (20 en + 20 es) carry
+alternates in `sitemap.xml`, and spot-checked values match the per-page `<link>` tags exactly. This
+was a real, if secondary, SEO signal gap — per-page hreflang is the primary signal search engines
+use, but the sitemap-level signal is meant to reinforce it, not silently disagree by omission.
+
+**Slug-naming guideline for future posts:** pick a natural Spanish rendering of the English slug's
+subject, keeping established loanwords/acronyms as-is (`guia-de-paper-trading`, not
+`guia-de-comercio-en-papel`; `indicador-rsi-...`, not translating "RSI"). No formal keyword
+research was done for the 2 checkpoint slugs — this is a reasonable-default naming pass, not an SEO
+audit — but the id must always be set as the frontmatter `translationOf` value on the matching
+English post's id, never left to be inferred.
+
+## Rollout strategy (current decision — not dated history, keep this section updated)
+
+Spanish is complete across every page in scope: the homepage, all 6 non-legal static/app pages, and
+all 20 blog posts (finished 2026-09-01). The only English-only content left on the site is the two
+explicit non-goals (`/404`, `/500`) and the legal pages (`/privacy`, `/terms`, `/disclaimer`),
+which are intentionally on a separate, professional-review track — see the Phase 3 addenda above
+for that status.
+
+Before any of the other 6 registered-but-unused languages (ja, fr, de, pt, ko, it) get a single
+translated page, revisit legal pages first (professional review, not the AI-translation process
+used for the rest of the site). This was a deliberate sequencing decision, not an oversight: one
+fully-translated language is more valuable (and easier to keep consistent) than partial coverage
+spread thin across seven. Do not re-open "should we start language N instead" per-session —
+revisit this only if the user explicitly asks to change strategy.
+
+The permanent, non-dated checklist for adding any translated page (registry step included) now
+lives in the project's `CLAUDE.md` under `## i18n`, since that file is loaded into every session
+automatically — treat it as the source of truth for the mechanical steps, and this doc as the
+source of truth for architecture and decision history.
