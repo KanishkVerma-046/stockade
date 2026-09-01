@@ -1,5 +1,6 @@
 // @ts-check
 import { rename, readdir, rm } from 'node:fs/promises';
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { defineConfig } from 'astro/config';
@@ -13,6 +14,31 @@ import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.
 // should get the same priority as /simulator, not fall into the catch-all.
 const localeCodes = LOCALES.map(l => l.code).filter(c => c !== DEFAULT_LOCALE);
 const localePrefixPattern = new RegExp(`^/(${localeCodes.join('|')})(?=/|$)`);
+
+// @astrojs/sitemap's own i18n auto-pairing only matches sitemap entries whose
+// path is IDENTICAL after stripping the locale prefix — see
+// node_modules/@astrojs/sitemap/dist/utils/parse-i18n-url.js. Translated blog
+// posts use localized slugs (e.g. /blog/paper-trading-guide/ <->
+// /es/blog/guia-de-paper-trading/), so that auto-pairing silently produces no
+// xhtml:link alternates for any of them — the one exception being any post
+// that happens to keep an identical slug in both locales. Read each
+// translated post's `translationOf` frontmatter field directly (the same
+// field the [slug] routes use for hreflang) to build the en<->es slug map
+// ourselves, and inject the links manually in `serialize()` below. This
+// duplicates the `translationOf` read that content.config.ts's schema
+// enforces, but astro.config.mjs runs outside the Vite/content-layer
+// runtime, so `astro:content` isn't available here — reading the frontmatter
+// directly with a small regex is simpler than routing around that.
+const blogEsDir = fileURLToPath(new URL('./src/content/blog-es', import.meta.url));
+const enSlugToEsSlug = new Map();
+for (const file of readdirSync(blogEsDir).filter(f => f.endsWith('.md'))) {
+  const raw = readFileSync(join(blogEsDir, file), 'utf-8');
+  const slugMatch = raw.match(/^slug:\s*"([^"]+)"/m);
+  const translationOfMatch = raw.match(/^translationOf:\s*"([^"]+)"/m);
+  if (slugMatch && translationOfMatch) {
+    enSlugToEsSlug.set(translationOfMatch[1], slugMatch[1]);
+  }
+}
 
 /**
  * @astrojs/sitemap always writes `sitemap-index.xml` plus numbered chunk
@@ -80,6 +106,36 @@ export default defineConfig({
       serialize(item) {
         const rawPath = new URL(item.url).pathname.replace(/\/$/, '') || '/';
         const path = rawPath.replace(localePrefixPattern, '') || '/';
+
+        // Override whatever (if anything) @astrojs/sitemap's own identical-path
+        // i18n matching produced for this URL — see the comment above
+        // enSlugToEsSlug — with alternates computed from `translationOf`, which
+        // is correct even when the en/es slugs differ. Checked against
+        // `rawPath` (locale prefix intact), not the locale-stripped `path`
+        // below — both an English and a Spanish blog post reduce to the same
+        // `/blog/{slug}` shape once stripped, so stripping first would make
+        // the two indistinguishable here.
+        if (rawPath.startsWith('/es/blog/') && rawPath !== '/es/blog') {
+          const esSlug = rawPath.slice('/es/blog/'.length);
+          const enSlug = [...enSlugToEsSlug.entries()].find(([, es]) => es === esSlug)?.[0];
+          item.links = enSlug
+            ? [
+                { url: `https://stockademarketsim.com/blog/${enSlug}/`, lang: 'en' },
+                { url: `https://stockademarketsim.com/es/blog/${esSlug}/`, lang: 'es' },
+              ]
+            : undefined;
+        } else {
+          const enBlogMatch = rawPath.match(/^\/blog\/([a-z0-9-]+)$/);
+          if (enBlogMatch) {
+            const esSlug = enSlugToEsSlug.get(enBlogMatch[1]);
+            item.links = esSlug
+              ? [
+                  { url: `https://stockademarketsim.com/blog/${enBlogMatch[1]}/`, lang: 'en' },
+                  { url: `https://stockademarketsim.com/es/blog/${esSlug}/`, lang: 'es' },
+                ]
+              : undefined;
+          }
+        }
 
         if (path === '/') {
           item.changefreq = ChangeFreqEnum.WEEKLY;
