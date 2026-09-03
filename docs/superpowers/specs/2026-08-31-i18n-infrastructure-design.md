@@ -494,19 +494,28 @@ English post's id, never left to be inferred.
 ## Rollout strategy (current decision — not dated history, keep this section updated)
 
 Spanish is complete across every page in scope: the homepage, all 6 non-legal static/app pages, and
-all 20 blog posts (finished 2026-09-01). The only English-only content left on the site is the two
+all 20 blog posts (finished 2026-09-01). Portuguese (pt-BR) reached the same completeness on
+2026-09-03: homepage, all 6 non-legal static/app pages, and all 20 blog posts, via the same
+AI-translation process used for Spanish. The only English-only content left on the site is the two
 explicit non-goals (`/404`, `/500`) and the legal pages (`/privacy`, `/terms`, `/disclaimer`),
 which are intentionally on a separate, professional-review track — see the Phase 3 addenda above
 for that status.
 
-Before any of the other 6 registered-but-unused languages (ja, fr, de, pt, ko, it) get a single
-translated page, revisit legal pages first (professional review, not the AI-translation process
-used for the rest of the site). This was a deliberate sequencing decision, not an oversight: one
-fully-translated language is more valuable (and easier to keep consistent) than partial coverage
-spread thin across seven. Do not re-open "should we start language N instead" per-session —
-revisit this only if the user explicitly asks to change strategy.
+**2026-09-03 sequencing note:** the previous version of this section said to do the legal pages
+before starting any new language, and to treat that as settled. The user explicitly asked to skip
+ahead to the next language instead (initially assumed to be French by the assistant — actually
+Japanese by registry order — then explicitly redirected to Portuguese), overriding that decision
+for this round. That override does not retroactively make the original reasoning wrong (one
+complete language over thin partial coverage is still the right default), but it means the
+"do not re-litigate" instruction did not survive an explicit, direct user request to change course
+— which is exactly the exception that instruction always carved out. Before starting ja, fr, de,
+ko, or it, or before starting the legal pages, ask rather than assume which the user wants next;
+do not treat either the original policy or the 2026-09-03 override as binding on a future session
+by default.
 
 The permanent, non-dated checklist for adding any translated page (registry step included) now
 lives in the project's `CLAUDE.md` under `## i18n`, since that file is loaded into every session
 automatically — treat it as the source of truth for the mechanical steps, and this doc as the
-source of truth for architecture and decision history.
+source of truth for architecture and decision history. The sitemap `serialize()` hreflang logic in
+`astro.config.mjs` was generalized from Spanish-only to loop over a `translatedBlogLocales` array
+when Portuguese was added — see the `## i18n` section in `CLAUDE.md` for where to extend it next.

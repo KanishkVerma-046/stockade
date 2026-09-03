@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { CONTACT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Contato | Stockade"
+  description="Compartilhe seu feedback sobre o Stockade, nosso simulador gratuito de mercado de ações. Avalie sua experiência e nos conte sobre bugs, ideias ou qualquer coisa."
+  alternates={CONTACT_ALTERNATES}
+>
+  <Navbar alternates={CONTACT_ALTERNATES} />
+
+  <main class="max-w-[680px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Contato</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Conte-nos o que você pensa</h1>
+      <p class="text-[16px] text-[var(--c-text-muted)] leading-relaxed">
+        Avalie sua experiência e deixe comentários, relatos de bugs ou ideias no campo abaixo —
+        lemos todos os envios.
+      </p>
+    </div>
+
+    <!-- Google Form embed -->
+    <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-2 sm:p-3 mb-12">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA5TEf_AHaCuygyjHEOOZm3LFKrziqaoKJCn1s8CAvbsVXWQ/viewform?embedded=true"
+        title="Formulário de feedback do Stockade"
+        width="100%"
+        height="700"
+        style="border: 0; border-radius: 0.5rem;"
+        loading="lazy"
+      >Carregando…</iframe>
+    </div>
+
+    <!-- FAQ nudge -->
+    <div class="mt-8 bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+      <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
+        Procurando respostas rápidas? Confira a seção de <a href="/pt/#faq" class="text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2">Perguntas Frequentes</a>
+        na página inicial — ela cobre as dúvidas mais comuns sobre como o simulador funciona.
+      </p>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

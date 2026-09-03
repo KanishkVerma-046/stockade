@@ -6,36 +6,43 @@ import { DEFAULT_LOCALE, type Locale } from './locales';
 export const HOME_ALTERNATES = {
   en: '/',
   es: '/es/',
+  pt: '/pt/',
 } as const;
 
 export const CONTACT_ALTERNATES = {
   en: '/contact/',
   es: '/es/contact/',
+  pt: '/pt/contact/',
 } as const;
 
 export const MARKETS_ALTERNATES = {
   en: '/markets/',
   es: '/es/markets/',
+  pt: '/pt/markets/',
 } as const;
 
 export const ABOUT_ALTERNATES = {
   en: '/about/',
   es: '/es/about/',
+  pt: '/pt/about/',
 } as const;
 
 export const ANALYTICS_ALTERNATES = {
   en: '/analytics/',
   es: '/es/analytics/',
+  pt: '/pt/analytics/',
 } as const;
 
 export const SIMULATOR_ALTERNATES = {
   en: '/simulator/',
   es: '/es/simulator/',
+  pt: '/pt/simulator/',
 } as const;
 
 export const CHART_SIMULATOR_ALTERNATES = {
   en: '/chart-simulator/',
   es: '/es/chart-simulator/',
+  pt: '/pt/chart-simulator/',
 } as const;
 
 // Covers only the /blog/ index — individual post alternates are computed
@@ -44,6 +51,7 @@ export const CHART_SIMULATOR_ALTERNATES = {
 export const BLOG_ALTERNATES = {
   en: '/blog/',
   es: '/es/blog/',
+  pt: '/pt/blog/',
 } as const;
 
 // Every page-alternates constant above, in one place, so shared chrome
@@ -52,7 +60,7 @@ export const BLOG_ALTERNATES = {
 // from the per-page constants themselves. A page's alternates constant existing
 // above is not enough on its own — it must be added here too, or
 // localizedHref() will keep resolving to the English URL even after the
-// Spanish page is live.
+// translated page is live.
 const REGISTRY: Partial<Record<Locale, string>>[] = [
   HOME_ALTERNATES,
   CONTACT_ALTERNATES,

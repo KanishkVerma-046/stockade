@@ -41,4 +41,14 @@ const blogEs = defineCollection({
   }),
 });
 
-export const collections = { blog, blogEs };
+// Portuguese translations, mirroring blogEs — same reasoning: a separate
+// collection with localized (pt-BR) slugs and a `translationOf` link back to
+// the English post, rather than a `locale` field on `blog`.
+const blogPt = defineCollection({
+  loader: glob({ base: './src/content/blog-pt', pattern: '**/*.md' }),
+  schema: blogSchema.extend({
+    translationOf: z.string(),
+  }),
+});
+
+export const collections = { blog, blogEs, blogPt };

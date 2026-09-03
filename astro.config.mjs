@@ -23,21 +23,51 @@ const localePrefixPattern = new RegExp(`^/(${localeCodes.join('|')})(?=/|$)`);
 // xhtml:link alternates for any of them — the one exception being any post
 // that happens to keep an identical slug in both locales. Read each
 // translated post's `translationOf` frontmatter field directly (the same
-// field the [slug] routes use for hreflang) to build the en<->es slug map
-// ourselves, and inject the links manually in `serialize()` below. This
-// duplicates the `translationOf` read that content.config.ts's schema
-// enforces, but astro.config.mjs runs outside the Vite/content-layer
-// runtime, so `astro:content` isn't available here — reading the frontmatter
-// directly with a small regex is simpler than routing around that.
-const blogEsDir = fileURLToPath(new URL('./src/content/blog-es', import.meta.url));
-const enSlugToEsSlug = new Map();
-for (const file of readdirSync(blogEsDir).filter(f => f.endsWith('.md'))) {
-  const raw = readFileSync(join(blogEsDir, file), 'utf-8');
-  const slugMatch = raw.match(/^slug:\s*"([^"]+)"/m);
-  const translationOfMatch = raw.match(/^translationOf:\s*"([^"]+)"/m);
-  if (slugMatch && translationOfMatch) {
-    enSlugToEsSlug.set(translationOfMatch[1], slugMatch[1]);
+// field the [slug] routes use for hreflang) to build an en<->localized slug
+// map per translated-blog locale ourselves, and inject the links manually in
+// `serialize()` below. This duplicates the `translationOf` read that
+// content.config.ts's schema enforces, but astro.config.mjs runs outside the
+// Vite/content-layer runtime, so `astro:content` isn't available here —
+// reading the frontmatter directly with a small regex is simpler than
+// routing around that.
+//
+// Add a locale here only once its `blog-{code}` content directory exists —
+// this list is what makes translated-blog hreflang pairing work at all, not
+// just a performance nicety.
+const translatedBlogLocales = ['es', 'pt'];
+const sitemapLocaleMap = toSitemapLocaleMap();
+const blogSlugMaps = Object.fromEntries(
+  translatedBlogLocales.map(locale => {
+    const dir = fileURLToPath(new URL(`./src/content/blog-${locale}`, import.meta.url));
+    const map = new Map();
+    for (const file of readdirSync(dir).filter(f => f.endsWith('.md'))) {
+      const raw = readFileSync(join(dir, file), 'utf-8');
+      const slugMatch = raw.match(/^slug:\s*"([^"]+)"/m);
+      const translationOfMatch = raw.match(/^translationOf:\s*"([^"]+)"/m);
+      if (slugMatch && translationOfMatch) {
+        map.set(translationOfMatch[1], slugMatch[1]);
+      }
+    }
+    return [locale, map];
+  })
+);
+
+// Builds the full xhtml:link set for a blog post given its English slug —
+// the English link plus one per translated-blog locale that has a sibling
+// for it. Returns undefined (no links) when no translation exists at all,
+// same behavior as before this was generalized past Spanish-only.
+function buildBlogLinks(/** @type {string} */ enSlug) {
+  const links = [{ url: `https://stockademarketsim.com/blog/${enSlug}/`, lang: sitemapLocaleMap.en }];
+  for (const locale of translatedBlogLocales) {
+    const localizedSlug = blogSlugMaps[locale].get(enSlug);
+    if (localizedSlug) {
+      links.push({
+        url: `https://stockademarketsim.com/${locale}/blog/${localizedSlug}/`,
+        lang: sitemapLocaleMap[locale],
+      });
+    }
   }
+  return links.length > 1 ? links : undefined;
 }
 
 /**
@@ -109,31 +139,24 @@ export default defineConfig({
 
         // Override whatever (if anything) @astrojs/sitemap's own identical-path
         // i18n matching produced for this URL — see the comment above
-        // enSlugToEsSlug — with alternates computed from `translationOf`, which
-        // is correct even when the en/es slugs differ. Checked against
+        // blogSlugMaps — with alternates computed from `translationOf`, which
+        // is correct even when the en/localized slugs differ. Checked against
         // `rawPath` (locale prefix intact), not the locale-stripped `path`
-        // below — both an English and a Spanish blog post reduce to the same
-        // `/blog/{slug}` shape once stripped, so stripping first would make
-        // the two indistinguishable here.
-        if (rawPath.startsWith('/es/blog/') && rawPath !== '/es/blog') {
-          const esSlug = rawPath.slice('/es/blog/'.length);
-          const enSlug = [...enSlugToEsSlug.entries()].find(([, es]) => es === esSlug)?.[0];
-          item.links = enSlug
-            ? [
-                { url: `https://stockademarketsim.com/blog/${enSlug}/`, lang: 'en' },
-                { url: `https://stockademarketsim.com/es/blog/${esSlug}/`, lang: 'es' },
-              ]
-            : undefined;
+        // below — an English, Spanish, and Portuguese blog post all reduce to
+        // the same `/blog/{slug}` shape once stripped, so stripping first
+        // would make them indistinguishable here.
+        const translatedBlogMatch = translatedBlogLocales
+          .map(locale => ({ locale, prefix: `/${locale}/blog/` }))
+          .find(({ prefix }) => rawPath.startsWith(prefix) && rawPath !== prefix.slice(0, -1));
+        if (translatedBlogMatch) {
+          const { locale, prefix } = translatedBlogMatch;
+          const localizedSlug = rawPath.slice(prefix.length);
+          const enSlug = [...blogSlugMaps[locale].entries()].find(([, s]) => s === localizedSlug)?.[0];
+          item.links = enSlug ? buildBlogLinks(enSlug) : undefined;
         } else {
           const enBlogMatch = rawPath.match(/^\/blog\/([a-z0-9-]+)$/);
           if (enBlogMatch) {
-            const esSlug = enSlugToEsSlug.get(enBlogMatch[1]);
-            item.links = esSlug
-              ? [
-                  { url: `https://stockademarketsim.com/blog/${enBlogMatch[1]}/`, lang: 'en' },
-                  { url: `https://stockademarketsim.com/es/blog/${esSlug}/`, lang: 'es' },
-                ]
-              : undefined;
+            item.links = buildBlogLinks(enBlogMatch[1]);
           }
         }
 

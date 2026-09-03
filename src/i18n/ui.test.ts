@@ -27,4 +27,11 @@ describe('t', () => {
       expect(translations.es[key]).toBeDefined();
     }
   });
+
+  it('has a complete Portuguese translation for every English key', () => {
+    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
+    for (const key of keys) {
+      expect(translations.pt[key]).toBeDefined();
+    }
+  });
 });

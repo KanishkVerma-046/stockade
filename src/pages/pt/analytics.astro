@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Painel de Análises de Trading | Stockade"
+  description="Analise seu desempenho de paper trading com curvas de capital, taxas de acerto, métricas de drawdown e diários de operações no simulador gratuito da Stockade."
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Análises</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Painel de Desempenho</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Suas estatísticas de trading simuladas — curva de capital, taxa de acerto, drawdown e diário de operações.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Entendendo suas métricas de trading
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Cada número neste painel é calculado a partir das operações que você fechou no simulador de
+        paper trading da Stockade, e armazenado localmente no seu navegador. Saber o que cada valor
+        realmente mede é a diferença entre revisar seu trading e simplesmente admirar o lucro e a
+        perda — <a href="/pt/blog/analise-suas-metricas-de-desempenho/" class="text-[#f59e0b] hover:underline">analisando seu desempenho de trading</a> aprofunda a
+        taxa de acerto, o fator de lucro e o drawdown.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Estatísticas principais</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">L/P Total</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            A soma do lucro e prejuízo realizados em todas as operações fechadas. Posições abertas
+            não são contadas até que você as feche, então um total favorável pode esconder uma
+            posição perdedora que ainda está aberta.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Capital</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            O valor atual da sua conta — o saldo inicial de $100.000 mais o L/P total.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Taxa de Acerto</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            A porcentagem de operações fechadas que terminaram com lucro. Uma taxa de acerto alta é
+            animadora, mas sozinha diz pouco: uma estratégia que ganha 80% das vezes ainda pode
+            perder dinheiro se os 20% de perdas forem grandes o suficiente.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Fator de Lucro</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            O lucro bruto dividido pela perda bruta. Qualquer valor acima de 1,0× significa que você
+            retirou mais do que devolveu, e 1,5× ou mais geralmente é considerado sólido. Ele
+            responde à pergunta que a taxa de acerto não responde — quanto você ganha por unidade de
+            perda absorvida.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Ganho Médio</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            O lucro médio das suas operações vencedoras. Compare com sua perda média: se seu ganho
+            médio for o menor dos dois, você precisa de uma taxa de acerto correspondentemente alta
+            só para empatar.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Drawdown Máximo</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            A maior queda de pico a vale no seu capital, expressa em porcentagem. Esta é a métrica da
+            dor. Ela estima o pior trecho que você teria que suportar — no trading real, geralmente é
+            o que encerra uma estratégia bem antes de a matemática o fazer. <a href="/pt/blog/gestao-de-risco-e-dimensionamento-de-posicao/" class="text-[#f59e0b] hover:underline">Dimensionamento de posição e a regra de 1%</a> explica a
+            matemática de recuperação por trás de por que o drawdown importa tanto.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Curva de capital</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        A curva de capital plota o valor da sua conta após cada operação fechada. Sua forma importa
+        mais do que o ponto final: uma subida constante indica um processo repetível, enquanto uma
+        linha plana interrompida por um ou dois saltos enormes geralmente indica sorte.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Diário de operações</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        O diário lista cada operação fechada com seu símbolo, direção, preço de entrada e saída,
+        tamanho, L/P e tempo de posição. A duração média é uma boa checagem de realidade: muitos
+        traders descobrem que mantêm perdas por muito mais tempo que ganhos, ou operam em um
+        período muito mais curto do que pretendiam.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Mapa de calor por horário</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        O mapa de calor detalha seus resultados por dia da semana e horário do dia, colorindo cada
+        célula pelo L/P líquido. Com operações suficientes, ele pode mostrar que uma sessão em
+        particular é silenciosamente responsável pela maioria das suas perdas. Desconfie de uma
+        amostra pequena — uma única célula precisa de dezenas de operações por trás para que a cor
+        signifique algo.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
