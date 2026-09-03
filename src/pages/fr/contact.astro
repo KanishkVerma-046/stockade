@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { CONTACT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Contact | Stockade"
+  description="Partagez votre avis sur Stockade, notre simulateur de marché boursier gratuit. Signalez des bugs, des idées, ou toute autre remarque — en quelques secondes."
+  alternates={CONTACT_ALTERNATES}
+>
+  <Navbar alternates={CONTACT_ALTERNATES} />
+
+  <main class="max-w-[680px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Contact</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Dites-nous ce que vous en pensez</h1>
+      <p class="text-[16px] text-[var(--c-text-muted)] leading-relaxed">
+        Évaluez votre expérience et laissez-nous vos commentaires, rapports de bugs ou idées
+        ci-dessous — nous lisons chaque message.
+      </p>
+    </div>
+
+    <!-- Google Form embed -->
+    <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-2 sm:p-3 mb-12">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA5TEf_AHaCuygyjHEOOZm3LFKrziqaoKJCn1s8CAvbsVXWQ/viewform?embedded=true"
+        title="Formulaire de retour Stockade"
+        width="100%"
+        height="700"
+        style="border: 0; border-radius: 0.5rem;"
+        loading="lazy"
+      >Chargement…</iframe>
+    </div>
+
+    <!-- FAQ nudge -->
+    <div class="mt-8 bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+      <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
+        Vous cherchez une réponse rapide ? Consultez la section <a href="/fr/#faq" class="text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2">FAQ</a>
+        de la page d'accueil — elle couvre les questions les plus fréquentes sur le fonctionnement du simulateur.
+      </p>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

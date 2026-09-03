@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MarketsView from '../../components/markets/MarketsView.tsx';
+import { MARKETS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Marchés actions, cryptomonnaies, forex et contrats à terme | Stockade"
+  description="Suivez 29 actifs simulés — actions, cryptomonnaies, forex et contrats à terme — sur notre simulateur de marché boursier gratuit en ligne. Sans inscription."
+  alternates={MARKETS_ALTERNATES}
+>
+  <Navbar alternates={MARKETS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Marchés</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Vue d'ensemble des marchés</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Cette vue d'ensemble des marchés se met à jour toutes les 2 secondes sur 29 actifs simulés — actions, cryptomonnaies, forex et contrats à terme. Utilisez-la comme liste de suivi pour un simulateur de trading crypto, comme scanner pour un simulateur de forex, ou simplement pour vérifier rapidement les prix avant de trader. Triez par variation de prix pour voir les actifs les plus actifs, et jetez un œil à la colonne du volume juste à côté — voir <a href="/blog/understanding-trading-volume/" class="text-[#f59e0b] hover:underline">comprendre le volume de trading</a> pour savoir ce que ce chiffre indique vraiment. Pour des cotations en direct toutes les 800 ms, utilisez le <a href="/fr/simulator/" class="text-[#f59e0b] hover:underline">simulateur de trading</a>.</p>
+    </div>
+    <MarketsView client:load />
+  </main>
+  <Footer />
+</Layout>

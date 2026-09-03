@@ -1,0 +1,66 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="Simulateur de figures en chandeliers | Stockade"
+  description="Apprenez les figures en chandeliers avec notre simulateur de graphiques interactif gratuit. Découvrez plus de 20 figures: Doji, Hammer, Engulfing, Morning Star et bien plus."
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">Simulateur de figures en chandeliers</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            Comment utiliser le simulateur de graphiques
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le simulateur de graphiques est un outil de relecture de chandeliers. Il génère une nouvelle série de prix synthétique à chaque chargement, analyse cette série pour y détecter les figures en chandeliers classiques, et marque chacune d'elles sur le graphique — vous pouvez ainsi observer une figure se former chandelier par chandelier plutôt que de la découvrir déjà achevée dans un schéma de manuel.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Lancer une relecture
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Appuyez sur lecture — ou sur la barre d'espace — pour révéler les chandeliers un par un. La barre de progression ambrée sous la barre d'outils indique où vous en êtes dans la série. Les boutons de vitesse permettent de lire la relecture en 1×, 2×, 5× ou 10×. Pour vous déplacer manuellement, utilisez les flèches de retour et d'avance ou les touches <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> et <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, et les boutons de saut pour aller directement au début ou à la fin. Le bouton d'actualisation génère un nouveau graphique avec un ensemble différent de figures.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Choisir ce qui s'affiche
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le menu déroulant des symboles couvre les actions, les cryptomonnaies, le forex et les contrats à terme, et les boutons d'unité de temps ré-agrègent la même série en barres plus longues ou plus courtes. Superposez EMA 9, EMA 20, EMA 50 ou VWAP depuis la barre d'outils, et basculez le panneau inférieur entre volume, RSI et MACD.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Ce qu'il faut observer
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le panneau <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> à gauche répertorie toutes les formations que le simulateur reconnaît — Doji, Hammer, Engulfing haussier et baissier, Harami, Morning et Evening Star, Three White Soldiers, sommets et creux en Tweezer, et bien d'autres (<a href="/blog/how-to-read-candlestick-charts/" class="text-[#f59e0b] hover:underline">comment lire un graphique en chandeliers</a> détaille l'anatomie de chacune). Cliquez sur une figure pour ne mettre en évidence que ses occurrences, ou cliquez sur un marqueur du graphique pour ouvrir son explication, incluant la psychologie de marché derrière la configuration et ce qui la confirme ou l'invalide. L'habitude la plus utile: mettre en pause sur un marqueur, prédire le prochain chandelier, puis avancer et vérifier. Le contexte compte plus que la forme — une figure de retournement n'a de sens qu'après une véritable tendance, et le volume derrière le chandelier signal permet de distinguer un retournement réel du bruit.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

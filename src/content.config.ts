@@ -59,4 +59,12 @@ const blogJa = defineCollection({
   }),
 });
 
-export const collections = { blog, blogEs, blogPt, blogJa };
+// French translations, mirroring blogEs/blogPt/blogJa.
+const blogFr = defineCollection({
+  loader: glob({ base: './src/content/blog-fr', pattern: '**/*.md' }),
+  schema: blogSchema.extend({
+    translationOf: z.string(),
+  }),
+});
+
+export const collections = { blog, blogEs, blogPt, blogJa, blogFr };

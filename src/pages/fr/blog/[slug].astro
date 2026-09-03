@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blogFr', ({ data }) => !data.draft);
+  const enPosts = await getCollection('blog', ({ data }) => !data.draft);
+  const esPosts = await getCollection('blogEs', ({ data }) => !data.draft);
+  const ptPosts = await getCollection('blogPt', ({ data }) => !data.draft);
+  const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
+  const enIds = new Set(enPosts.map(p => p.id));
+  // A translated post's `translationOf` names the id of the English post it
+  // translates — its own id/slug is independently localized, so the two are
+  // matched via this field rather than by sharing a filename.
+  const esByTranslationOf = new Map(esPosts.map(p => [p.data.translationOf, p]));
+  const ptByTranslationOf = new Map(ptPosts.map(p => [p.data.translationOf, p]));
+  const jaByTranslationOf = new Map(jaPosts.map(p => [p.data.translationOf, p]));
+  return posts.map(post => {
+    const alternates: Record<string, string> = {};
+    if (enIds.has(post.data.translationOf)) {
+      alternates.en = `/blog/${post.data.translationOf}/`;
+      alternates.fr = `/fr/blog/${post.id}/`;
+    }
+    const esPost = esByTranslationOf.get(post.data.translationOf);
+    if (esPost) alternates.es = `/es/blog/${esPost.id}/`;
+    const ptPost = ptByTranslationOf.get(post.data.translationOf);
+    if (ptPost) alternates.pt = `/pt/blog/${ptPost.id}/`;
+    const jaPost = jaByTranslationOf.get(post.data.translationOf);
+    if (jaPost) alternates.ja = `/ja/blog/${jaPost.id}/`;
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        alternates: Object.keys(alternates).length > 0 ? alternates : undefined,
+      },
+    };
+  });
+}
+
+const { post, alternates } = Astro.props;
+const posts = await getCollection('blogFr', ({ data }) => !data.draft);
+const { Content, headings } = await render(post);
+---
+
+<BlogPost post={post} posts={posts} headings={headings} alternates={alternates}>
+  <Content />
+</BlogPost>

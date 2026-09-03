@@ -1,0 +1,125 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
+import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="Simulateur de paper trading | Stockade"
+  description="Entraînez-vous au paper trading avec notre simulateur de marché boursier gratuit. Graphiques en chandeliers, indicateurs EMA et 100 000 $ d'argent virtuel. Sans inscription."
+  alternates={SIMULATOR_ALTERNATES}
+>
+  <div class="flex flex-col h-full">
+    <h1 id="simulator-h1" class="sr-only">Simulateur de paper trading</h1>
+    <p
+      class="shrink-0 px-4 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] text-[12px] leading-relaxed text-[var(--c-text-muted)]"
+    >
+      Négociez 29 actions, paires de cryptomonnaies, devises forex et contrats à terme simulés avec un solde virtuel de <span class="font-mono text-[var(--c-text)]">100 000 $</span> — ordres au marché et à cours limité, stop-loss et take-profit, chandeliers en direct. Sans inscription, sans argent réel. <a href="#how-to-use" class="text-[#f59e0b] hover:underline">Comment ça marche ↓</a>
+    </p>
+    <div class="flex-1 min-h-0">
+      <TradingSimulator client:load />
+    </div>
+  </div>
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            Comment utiliser ce simulateur
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le simulateur de paper trading de Stockade vous offre un compte virtuel de 100 000 $, un graphique en chandeliers mis à jour en temps réel, et un carnet d'ordres complet — sans inscription et sans risque d'argent réel. Votre solde et votre historique de trades sont enregistrés dans votre navigateur, vous pouvez donc reprendre là où vous vous étiez arrêté.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Lire l'interface
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le graphique occupe le centre de l'écran. La barre supérieure contient le sélecteur de symbole — 29 tickers simulés regroupés en actions, cryptomonnaies, forex et contrats à terme — ainsi que les boutons d'unité de temps et les options de superposition EMA 9, EMA 20 et EMA 50. Un histogramme de volume s'affiche en bas du graphique. Le panneau de droite est votre compte: solde actuel, position ouverte avec son P&amp;L latent, et un journal continu de chaque exécution. Sur les écrans étroits, ces panneaux se replient dans les onglets Graphique, Ordre et Trades.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Passer un ordre
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Saisissez une quantité, puis choisissez un type d'ordre. Un ordre au marché s'exécute immédiatement au dernier prix négocié. Un ordre à cours limité reste en attente jusqu'à ce que le marché atteigne votre prix — un ordre d'achat placé sous le marché s'exécute quand le prix baisse jusqu'à ce niveau, un ordre de vente placé au-dessus du marché s'exécute quand le prix monte jusqu'à ce niveau — et les ordres en attente apparaissent dans les <strong class="text-[var(--c-text)] font-semibold">Working Orders</strong>, où vous pouvez les annuler. (<a href="/blog/market-orders-vs-limit-orders/" class="text-[#f59e0b] hover:underline">Ordre au marché vs. ordre à cours limité</a> détaille quand utiliser chacun.) Un ordre à cours limité placé du mauvais côté du marché est déjà exécutable, il s'exécute donc immédiatement au meilleur prix en vigueur. Les niveaux optionnels de <a href="/blog/stop-loss-orders-explained/" class="text-[#f59e0b] hover:underline">stop-loss</a> et de take-profit fonctionnent comme un <a href="/blog/oco-and-bracket-orders/" class="text-[#f59e0b] hover:underline">ordre bracket (OCO)</a> — le niveau atteint en premier clôture la position et annule l'autre. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> ouvre une position longue, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> ouvre une position courte, et <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> clôture tout au prix actuel. Une fois la page en focus, vous pouvez trader au clavier: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> pour acheter, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> pour vendre, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> pour clôturer.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Ce que ce simulateur ne modélise pas
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-3">
+            Les exécutions ici sont plus simples que sur une véritable place de marché, et il vaut la peine de savoir exactement en quoi avant de tirer trop de conclusions d'un résultat:
+          </p>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Aucun slippage.</strong>
+              Chaque ordre s'exécute exactement au prix affiché, sans écart de cours ni commission. Sur un marché réel, un mouvement rapide ou un carnet peu profond vous fait régulièrement obtenir un prix moins favorable que celui sur lequel vous avez cliqué.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Aucune exécution partielle.</strong>
+              Les ordres s'exécutent intégralement et instantanément, quelle que soit leur taille. Sur une véritable place de marché, un ordre important peut être exécuté en plusieurs fois à des prix différents, ou rester partiellement non exécuté.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Aucune position dans la file d'attente.</strong>
+              Un ordre à cours limité en attente s'exécute dès que le prix atteint son niveau, comme s'il était le premier dans la file. Sur un vrai carnet d'ordres, vous êtes placé derrière tous ceux qui ont posté à ce prix avant vous, et le prix peut toucher votre niveau sans jamais vous exécuter.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Les ordres en attente ne réservent pas de pouvoir d'achat.</strong>
+              Le solde n'est vérifié qu'au moment où un ordre en attente s'exécute réellement, si bien qu'un ordre peut être annulé à ce moment-là faute de fonds suffisants, au lieu d'être bloqué au moment où vous le passez.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Les prix sont générés, pas réels.</strong>
+              Les 29 tickers sont tous fictifs et leur mouvement de prix est simulé — des données synthétiques générées dans votre navigateur, jamais issues d'un flux en direct. Aucun symbole ne représente un titre réel.
+            </li>
+          </ul>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
+            En résumé: considérez les résultats comme un entraînement au processus — entrées, sorties, dimensionnement et discipline — plutôt que comme une prévision de ce que la même stratégie rapporterait avec de l'argent réel.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Conseils pour démarrer
+          </h3>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>Risquez un montant fixe de 1 à 2 % de votre compte par trade plutôt que de dimensionner au feeling.</li>
+            <li>Placez un stop-loss avant d'entrer en position, pas après que le trade a évolué contre vous.</li>
+            <li>
+              Passez en mode relecture pour avancer chandelier par chandelier à votre propre rythme — la barre d'espace avance d'une barre.
+            </li>
+            <li>
+              Restez sur un même symbole pendant un moment; une exposition répétée enseigne plus qu'un passage constant entre les 29 actifs.
+            </li>
+            <li>
+              Analysez vos résultats sur le <a href="/fr/analytics/" class="text-[#f59e0b] hover:underline">tableau de bord analytique</a> — le taux de réussite et le facteur de profit en disent bien plus qu'un trade chanceux isolé.
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>
+
+<script>
+  const symbol = new URLSearchParams(window.location.search).get('symbol');
+  if (symbol) {
+    const h1 = document.getElementById('simulator-h1');
+    if (h1) h1.textContent = `Trader ${symbol.toUpperCase()} — Simulateur de paper trading`;
+  }
+</script>

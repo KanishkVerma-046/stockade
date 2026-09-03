@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Tableau de bord d'analyse de trading | Stockade"
+  description="Analysez vos performances de paper trading avec des courbes d'équité, des taux de réussite, des indicateurs de drawdown et un journal de trading sur le simulateur gratuit Stockade."
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analyse</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Tableau de bord de performance</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Vos statistiques de trading simulé — courbe d'équité, taux de réussite, drawdown et journal de trading.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Comprendre vos indicateurs de trading
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Chaque chiffre de ce tableau de bord est calculé à partir des trades que vous avez clôturés dans le simulateur de paper trading de Stockade et stocké localement dans votre navigateur. Savoir ce que mesure réellement chaque indicateur fait toute la différence entre analyser son trading et simplement contempler son P&amp;L — <a href="/blog/analyze-trading-performance-metrics/" class="text-[#f59e0b] hover:underline">analyser la performance de votre trading</a> détaille davantage le taux de réussite, le facteur de profit et le drawdown.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Statistiques principales</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">P&amp;L total</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La somme des profits et pertes réalisés sur tous les trades clôturés. Les positions ouvertes ne sont pas comptabilisées tant qu'elles ne sont pas clôturées, si bien qu'un total flatteur peut cacher une position perdante encore ouverte.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Capitaux propres</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La valeur actuelle de votre compte — le solde de départ de 100 000 $ plus le P&amp;L total.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Taux de réussite</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La part des trades clôturés terminés en profit. Un taux de réussite élevé est rassurant mais dit peu de choses à lui seul: une stratégie qui gagne 80 % du temps peut quand même perdre de l'argent si les 20 % de pertes sont assez importantes.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Facteur de profit</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le profit brut divisé par la perte brute. Toute valeur supérieure à 1,0x signifie que vous avez gagné plus que vous n'avez perdu, et 1,5x ou plus est généralement considéré comme solide. Il répond à une question à laquelle le taux de réussite ne peut pas répondre — combien vous gagnez par unité de perte encaissée.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Gain moyen</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le profit moyen de vos trades gagnants. Comparez-le à votre perte moyenne: si votre gain moyen est le plus petit des deux, il vous faut un taux de réussite proportionnellement élevé simplement pour atteindre l'équilibre.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Drawdown maximal</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La plus grande chute de vos capitaux propres entre un sommet et un creux, exprimée en pourcentage. C'est l'indicateur de la douleur. Dans le trading réel, c'est souvent ce qui met fin à une stratégie bien avant que les mathématiques ne le fassent. <a href="/blog/risk-management-position-sizing/" class="text-[#f59e0b] hover:underline">Le dimensionnement de position et la règle des 1 %</a> explique la logique de récupération qui rend le drawdown si important.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Courbe d'équité</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La courbe d'équité trace la valeur de votre compte après chaque trade clôturé. Sa forme compte plus que son point final: une montée régulière indique un processus reproductible, tandis qu'une ligne plate interrompue par un ou deux bonds énormes indique généralement de la chance.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Journal de trading</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Le journal répertorie chaque trade clôturé avec son symbole, sa direction, ses prix d'entrée et de sortie, sa taille, son P&amp;L et sa durée de détention. La durée moyenne est un bon test de réalité: de nombreux traders découvrent qu'ils conservent leurs positions perdantes bien plus longtemps que leurs positions gagnantes, ou qu'ils tradent sur une échelle de temps bien plus courte que prévu.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Carte de chaleur horaire</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La carte de chaleur répartit vos résultats par jour de la semaine et par heure de la journée, en colorant chaque cellule selon le P&amp;L net. Avec suffisamment de trades, elle peut révéler qu'une session en particulier est discrètement responsable de la majorité de vos pertes. Méfiez-vous d'un échantillon trop faible — une seule cellule a besoin de dizaines de trades derrière elle avant que sa couleur ne signifie quelque chose.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
