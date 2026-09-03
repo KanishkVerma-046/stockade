@@ -1,0 +1,66 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="ローソク足パターンシミュレーター | Stockade"
+  description="無料のインタラクティブなチャートシミュレーターでローソク足パターンを学ぼう。Doji、Hammer、Engulfing、Morning Starなど20種類以上のパターンを解説。"
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">ローソク足パターンシミュレーター</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            チャートシミュレーターの使い方
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            チャートシミュレーターは、ローソク足のリプレイツールです。読み込むたびに新しい合成価格系列を生成し、その系列を分析して代表的なローソク足パターンを検出し、それぞれをチャート上にマークします — 教科書の図でできあがったパターンを見るのではなく、パターンが1本ずつローソク足で形成されていく様子を観察できます。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            リプレイを実行する
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            再生ボタン（またはスペースバー）を押すと、ローソク足が1本ずつ表示されます。ツールバー下部のアンバー色のプログレスバーで、系列内のどこまで進んだかがわかります。速度ボタンでリプレイを1倍・2倍・5倍・10倍で再生できます。手動で移動するには、前後の矢印ボタンまたは<kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd>・<kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>キーを使い、ジャンプボタンで最初や最後に直接移動できます。更新ボタンを押すと、異なるパターンの組み合わせで新しいチャートが生成されます。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            表示する内容を選ぶ
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            銘柄のドロップダウンメニューは株式・暗号資産・FX・先物をカバーしており、時間足ボタンで同じ系列をより長い、あるいはより短いローソク足に再集計できます。ツールバーからEMA 9、EMA 20、EMA 50、VWAPをオーバーレイでき、下部パネルは出来高・RSI・MACDを切り替えられます。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            注目すべきポイント
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            左側の<strong class="text-[var(--c-text)] font-semibold">Patterns</strong>パネルには、シミュレーターが認識するすべてのフォーメーション — Doji、Hammer、Bullish・Bearish Engulfing、Harami、Morning・Evening Star、Three White Soldiers、Tweezerのtop・bottomなど — が一覧表示されます（それぞれの構造については<a href="/ja/blog/rousokuashi-no-yomikata/" class="text-[#f59e0b] hover:underline">ローソク足チャートの読み方</a>で解説しています）。パターンをクリックするとその出現箇所だけをハイライトでき、チャート上のマーカーをクリックすると、そのパターンの背後にある市場心理や、何がそれを裏付け・無効化するのかを含む解説が開きます。最も役立つ習慣は、マーカーで一時停止して次のローソク足を予測し、それから進めて答え合わせをすることです。形よりも文脈が重要です — 反転パターンは実際のトレンドの後にしか意味を持たず、シグナルとなるローソク足の背後にある出来高が、本物の転換をノイズと区別してくれます。
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

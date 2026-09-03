@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import TickerTape from '../../components/landing/TickerTape.tsx';
+import LiveStats from '../../components/landing/LiveStats.tsx';
+import { HOME_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+
+const locale = 'ja' as const;
+
+// Single source of truth for the FAQ: the visible section below and the
+// FAQPage JSON-LD are both generated from this array. Mirrors the structure
+// of the English src/pages/index.astro — see that file for why the schema is
+// generated rather than hand-duplicated.
+const faqs = [
+  {
+    q: 'Stockadeは完全に無料ですか？',
+    a: 'はい — 永久に100%無料です。すべての機能、すべての資産クラス、すべてのツールが無料でご利用いただけます。登録も、クレジットカードも、サブスクリプションも不要です。',
+  },
+  {
+    q: '学生でもStockadeを株式市場シミュレーターとして使えますか？',
+    a: 'もちろんです。Stockadeは学生向けの無料株式市場シミュレーターとして最適な選択肢の一つです。インストールもアカウント登録も不要なため、授業での利用、大学のファイナンス講義、自主学習に最適です。',
+  },
+  {
+    q: 'Stockadeは暗号資産、FX、先物にも対応していますか？',
+    a: 'はい。Stockadeは株式、暗号資産、FXペア、先物契約（NQ、ES、CL、GC）に対応しています — <a href="/ja/markets/">マーケットページ</a>ですべて確認できます。',
+  },
+  {
+    q: 'Stockadeはペーパートレーディング用ですか、それともデイトレード用ですか？',
+    a: 'その両方です。自分のペースでセッション全体をローソク足ごとに進める（ペーパートレーディング）ことも、800ミリ秒間隔のライブ価格を追いかける（デイトレード）こともできます — すべて$100,000の仮想資金で。',
+  },
+  {
+    q: '株式市場シミュレーターとは何ですか？',
+    a: '株式市場シミュレーターとは、仮想の資金を使って実際の市場環境を再現し、金銭的リスクなしに株式・暗号資産・FX・先物の売買を練習できる仮想トレーディングプラットフォームです。Stockadeでは$100,000の仮想資金と、ローソク足チャート、テクニカルインジケーター、複数の注文タイプといったプロ仕様のツールを、登録不要でブラウザ上からすぐに利用できます。',
+  },
+  {
+    q: '株式市場シミュレーターでは何ができますか？',
+    a: '株式、暗号資産、FXペア、先物契約の売買を練習したり、シミュレーションされた値動きに対して戦略をテストしたり、<a href="/ja/blog/pafomansu-shihyo-no-bunseki/">資産曲線・勝率・ドローダウンなどの指標でパフォーマンスを追跡</a>したり、実際の市場で必要となるパターン認識力と規律を養ったりできます — すべてリスクなしで。',
+  },
+  {
+    q: 'この株式市場シミュレーターは本物ですか、それとも架空のものですか？',
+    a: 'お金は架空のものです — $100,000から始まる完全に仮想の資金なので、金銭的リスクはゼロです。価格やチャートは実際の証券会社の値動きをモデルにしたリアルなシミュレーションデータを使用しているため、取引の仕組み、チャートパターン、注文タイプは実際のプラットフォームで使うものと同じです。お金は本物ではなくても、身につくスキルは本物です。',
+  },
+  {
+    q: '株式市場シミュレーターはどのように機能しますか？',
+    a: 'Stockadeは株式・暗号資産・FX・先物の29銘柄について、リアルな価格データを生成します。成行・指値・逆指値・利益確定・OCOブラケット注文を備えたフル機能の注文パネルから注文を出すと、シミュレーターが即座に約定します。仮想の損益、資産曲線、勝率、パフォーマンス指標は、アカウント不要でブラウザ上に自動的に記録されます。',
+  },
+  {
+    q: '株式市場シミュレーターを使うリスクは何ですか？',
+    a: '主なリスクは、スリッページ、流動性の制約、証券会社の手数料、実際のお金による心理的プレッシャーといった、実際の市場要因を考慮しない習慣が身についてしまうことです。Stockadeはスキル習得と教育のために作られており、実際の取引結果を保証するものではありません。実際の市場に移行する際は、感情面や執行面の違いに慣れるため、小さなポジションサイズから始めましょう。',
+  },
+  {
+    q: 'このシミュレーターの限界は何ですか？',
+    a: 'Stockadeはライブの市場フィードではなく、シミュレーションされた価格データを使用しているため、実際のスプレッド、スリッページ、時間外のギャップは正確に再現されるのではなく、近似的に表現されます。また、実際の資金を危険にさらす心理的プレッシャーを完全に再現することもできません。技術的なスキルはすべて身につけられる練習の場としつつ、感情面の規律は実際の市場でさらに磨かれていくものと捉えてください。',
+  },
+  {
+    q: 'シミュレーターを使う最大のメリットは何ですか？',
+    a: '本物のトレーディングスキルを身につけながら、金銭的リスクがゼロであることです。お金を失うことなく、戦略をテストし、失敗し、規律を身につけられます。Stockadeでは$100,000の仮想資金と、ローソク足チャート、EMA/VWAP/RSI/MACD、フル機能の注文パネル、詳細な分析ダッシュボードといったプロ仕様のツールを — 実際の証券会社と同じ環境で、完全に無料かつノーリスクで利用できます。',
+  },
+];
+
+const stripTags = (html: string) => html.replace(/<[^>]+>/g, '');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://stockademarketsim.com/ja/#faq',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(a) },
+  })),
+};
+
+const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
+
+const liveStatsLabels = {
+  startingBalance: t(locale, 'home.stats.startingBalance'),
+  tradableAssets: t(locale, 'home.stats.tradableAssets'),
+  assetClasses: t(locale, 'home.stats.assetClasses'),
+  costToStart: t(locale, 'home.stats.costToStart'),
+};
+---
+
+<Layout
+  title="Stockade | 無料の株式市場シミュレーター"
+  description="無料の株式市場シミュレーター。$100,000の仮想資金でデイトレード・ペーパートレーディングを練習 — 株式、暗号資産、FX、先物。登録不要。"
+  alternates={HOME_ALTERNATES}
+>
+  <Fragment slot="head">
+    <!-- The WebSite and Organization entities live in SiteSchema.astro and are
+         emitted on every page by the base layout — those stay shared across
+         locales. This SoftwareApplication node's content (name/description/
+         featureList) genuinely differs per locale, so — like the FAQPage node
+         below — it gets its own page-specific @id/url rather than reusing the
+         English page's. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://stockademarketsim.com/ja/#app",
+            "name": "Stockade 株式市場シミュレーター",
+            "url": "https://stockademarketsim.com/ja/",
+            "inLanguage": "ja-JP",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "株式、暗号資産、FX、先物のペーパートレーディングができる無料のオンライン株式市場シミュレーター。登録不要。",
+            "screenshot": "https://stockademarketsim.com/web-app-manifest-512x512.png",
+            "featureList": [
+              "出来高付きのシミュレーションローソク足チャート",
+              "EMA、VWAP、RSI、MACDインジケーター",
+              "逆指値/利益確定のOCOブラケットを備えた成行・指値注文",
+              "$100,000の仮想資金でのペーパートレーディング",
+              "資産曲線を含む分析ダッシュボード",
+              "株式、暗号資産、FX、先物"
+            ],
+            "publisher": { "@id": "https://stockademarketsim.com/#organization" },
+            "isPartOf": { "@id": "https://stockademarketsim.com/#website" }
+          }
+        ]
+      }
+    </script>
+    {/* Generated from the `faqs` array above — see index.astro for why. */}
+    <script type="application/ld+json" is:inline set:html={faqSchemaJson} />
+  </Fragment>
+
+  <Navbar alternates={HOME_ALTERNATES} />
+
+  <!-- ── Hero ── -->
+  <section class="relative overflow-hidden mesh-gradient">
+    <div
+      class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(var(--c-text) 1px, transparent 1px), linear-gradient(90deg, var(--c-text) 1px, transparent 1px); background-size: 40px 40px;"
+    ></div>
+
+    <div class="relative max-w-[1100px] mx-auto px-6 pt-24 pb-28 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] text-[#f59e0b] text-[12px] font-mono mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse"></span>
+        無料 · 登録不要 · $100,000の仮想資金
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
+        マーケットを練習する。
+        <br />
+        <span class="gradient-text">ゲームを制覇する。</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
+        リアルなシミュレーション相場データを使った、無料の株式・暗号資産トレーディングシミュレーター。
+        登録不要。リスクなし。仮想トレーディングだけ。
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-16">
+        <a
+          href="/ja/simulator/"
+          class="px-6 py-3 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[15px] hover:bg-[#fbbf24] transition-colors"
+        >
+          無料で取引を始める →
+        </a>
+        <a
+          href="/ja/markets/"
+          class="px-6 py-3 rounded-full bg-[var(--c-bg-muted)] text-[var(--c-text)] font-semibold text-[15px] border border-[var(--c-border)] hover:bg-[var(--c-surface-2)] transition-colors"
+        >
+          マーケットを見る
+        </a>
+      </div>
+
+      <LiveStats client:load labels={liveStatsLabels} />
+    </div>
+  </section>
+
+  <!-- ── App preview ── -->
+  <section class="border-y border-[var(--c-border)] bg-[var(--c-bg-soft)] px-6 py-16">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="rounded-xl overflow-hidden border border-[var(--c-border)] shadow-2xl">
+        <div class="flex items-center gap-2 px-4 py-3 bg-[var(--c-bg-muted)] border-b border-[var(--c-border)]">
+          <span class="w-3 h-3 rounded-full bg-[#ef4444]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#f59e0b]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#22c55e]"></span>
+          <span class="ml-3 text-[12px] font-mono text-[var(--c-text-subtle)]">stockademarketsim.com/simulator — APXL 1M</span>
+          <span class="ml-auto text-[10px] font-mono text-[var(--c-text-subtle)] border border-[var(--c-border)] px-2 py-0.5 rounded tracking-wider">サンプルプレビュー</span>
+        </div>
+        <div class="bg-[var(--c-bg-subtle)] relative overflow-hidden" style="height: 320px;">
+          <svg viewBox="0 0 1200 320" class="w-full h-full" preserveAspectRatio="none">
+            <line x1="0" y1="64" x2="1200" y2="64" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="128" x2="1200" y2="128" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="192" x2="1200" y2="192" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="256" x2="1200" y2="256" stroke="var(--c-border)" stroke-width="1"/>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#22c55e" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,240 C80,220 160,200 240,195 S400,165 480,150 S640,125 720,118 S900,100 960,95 S1100,80 1200,70"
+              stroke="#22c55e" stroke-width="2" fill="none" opacity="0.9"/>
+            <path d="M0,240 C80,220 160,200 240,195 S400,165 480,150 S640,125 720,118 S900,100 960,95 S1100,80 1200,70 V320 H0 Z"
+              fill="url(#g1)"/>
+          </svg>
+
+          <div class="absolute top-4 left-4 rounded-lg px-3 py-2 border border-[var(--c-border)] backdrop-blur-sm" style="background-color: var(--c-overlay);">
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-widest mb-0.5">APXL · 1M</div>
+            <div class="text-[22px] font-mono font-semibold text-[var(--c-text)]">$187.42</div>
+            <div class="text-[13px] font-mono text-[#22c55e]">+1.23 (+0.66%)</div>
+          </div>
+
+          <div class="absolute top-4 right-4 w-[160px] rounded-lg border border-[var(--c-border)] p-3" style="background-color: var(--c-overlay);">
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-widest mb-2">注文</div>
+            <div class="flex gap-1 mb-2">
+              <div class="flex-1 py-1.5 bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] text-[#22c55e] text-[11px] font-mono text-center rounded">買い</div>
+              <div class="flex-1 py-1.5 bg-[var(--c-bg-muted)] border border-[var(--c-border)] text-[var(--c-text-subtle)] text-[11px] font-mono text-center rounded">売り</div>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] mb-1">資産</div>
+            <div class="text-[14px] font-mono font-semibold text-[#22c55e]">$102,340</div>
+          </div>
+
+          <div class="absolute bottom-4 left-4 flex gap-2">
+            <div class="bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] rounded px-2.5 py-1.5">
+              <div class="text-[10px] font-mono text-[var(--c-text-subtle)]">損益</div>
+              <div class="text-[15px] font-mono font-semibold text-[#22c55e]">+$2,340</div>
+            </div>
+            <div class="bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] rounded px-2.5 py-1.5">
+              <div class="text-[10px] font-mono text-[var(--c-text-subtle)]">勝率</div>
+              <div class="text-[15px] font-mono font-semibold text-[#f59e0b]">68%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg)]">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="text-center mb-14">
+        <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Stockadeが選ばれる理由</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)]">本格的なトレーダーに必要なすべて。</h2>
+        <p class="mt-4 text-[var(--c-text-muted)] text-lg max-w-[480px] mx-auto">
+          ゲーム化ではなく、学びのために作られています。プロ仕様のツールを、無料で。
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { icon: '📈', title: '本格的なローソク足チャート', desc: '出来高付きのローソク足チャートに、EMA・VWAP・RSI・MACDのインジケーターを搭載 — プロと同じツールです。' },
+          { icon: '⚡', title: '即時約定',                 desc: '成行・指値・逆指値・利益確定・OCOブラケット注文が即座に約定します。' },
+          { icon: '⌨️', title: 'キーボードショートカット',   desc: 'Bで買い、Sで売り、Fで決済。マウスに触れず、考えるスピードでトレードできます。' },
+          { icon: '📊', title: '分析ダッシュボード',         desc: '勝率、プロフィットファクター、平均損益、資産曲線、ドローダウン、時間帯別ヒートマップを確認できます。' },
+          { icon: '💼', title: 'マルチアセット対応',         desc: '株式、暗号資産、FXペア、先物 — すべてを1つのシミュレーターで。' },
+          { icon: '📱', title: 'モバイルファースト',         desc: '完全レスポンシブ対応。スマートフォン、タブレット、パソコンのどこからでも同じ機能でトレードできます。' },
+          { icon: '🆓', title: '永久に100%無料',             desc: 'すべての機能。すべての資産。登録不要、お試し期間なし、サブスクリプションなし。今すぐ始められます。' },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5 hover:border-[var(--c-border-strong)] transition-colors group">
+            <div class="text-2xl mb-3">{f.icon}</div>
+            <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2 group-hover:text-[#f59e0b] transition-colors">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Asset coverage ── -->
+  <section class="py-20 px-6 bg-[var(--c-bg-soft)] border-y border-[var(--c-border)]">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="text-center mb-12">
+        <div class="text-[11px] font-mono uppercase tracking-widest text-[#22c55e] mb-3">対応資産</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)]">あらゆる資産を取引しよう。</h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          { label: '株式',   sub: '現物株 · 14銘柄',             icon: '📈', color: '#3b82f6' },
+          { label: '暗号資産', sub: 'トークン・コイン · 8銘柄',   icon: '🪙', color: '#f59e0b' },
+          { label: 'FX',    sub: 'EUR/USD · GBP/USD · USD/JPY', icon: '💱', color: '#22c55e' },
+          { label: '先物',   sub: 'NQ · ES · CL · GC',           icon: '🔮', color: '#8b5cf6' },
+        ].map(a => (
+          <div class="bg-[var(--c-bg)] border border-[var(--c-border)] rounded-xl p-5 text-center hover:border-[var(--c-border-strong)] transition-colors">
+            <div class="text-3xl mb-3">{a.icon}</div>
+            <div class="text-[16px] font-semibold mb-1" style={`color: ${a.color}`}>{a.label}</div>
+            <div class="text-[12px] font-mono text-[var(--c-text-subtle)]" set:html={a.sub}></div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-[11px] font-mono text-[var(--c-text-subtle)] mt-6">
+        すべての銘柄は架空のシミュレーション資産であり、実在の有価証券、暗号資産、取引可能な金融商品を示すものではありません。
+      </p>
+    </div>
+  </section>
+
+  <!-- ── SEO Content ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">Stockadeについて</div>
+      <article class="prose-stockade">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)] mb-6">
+          お金をかけずにマーケットを練習しよう
+        </h2>
+
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+Stockadeはブラウザのタブで開いて、10秒ほどで使い始められる<a href="/ja/simulator/" class="text-[#f59e0b] hover:underline">株式市場シミュレーター</a>です。<strong class="text-[var(--c-text)]">$100,000の仮想資金</strong>と、株式・暗号資産・FX・先物をカバーする本格的なトレーディング環境が手に入ります。アカウント作成もカード入力も、インストールも必要ありません。どんなにひどい取引をしても、失うのは画面上の数字だけ — それが練習トレードの意味です。
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          多くのトレーディングゲームがうまくいかない理由
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          多くのシミュレーターは、リアリズムよりもエンゲージメントを優先しています。インジケーターも注文タイプもリスク指標も削ぎ落とされ、残るのは数字が上がっていくのを眺めるだけのゲーム — 午後の暇つぶしにはなっても、実際の証券会社で通用することはほとんど学べません。私たちは逆の道を選びました。Stockadeは出来高ヒストグラム付きのローソク足チャート、EMA 9/20/50のオーバーレイ、VWAP、RSI、MACDに加え、成行・指値注文と、OCOブラケットとして機能する逆指値・利益確定レベルを備えた注文パネルを提供します。ここで身につけた習慣が、実際のプラットフォームに切り替えても通用することが重要です — その移行を定着させる方法は<a href="/ja/blog/peipa-toreido-gaido/" class="text-[#f59e0b] hover:underline">ペーパートレーディングガイド</a>をご覧ください。
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          2つの練習方法: ライブとリプレイ
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          ライブモードは6銘柄を同時に配信し、価格が800ミリ秒ごとに更新されるため、速いテープに合わせてデイトレードを練習し、プレッシャーの中で自分が実際にどう行動するかを確認できます。リプレイモードはその逆で、1セッション全体をローソク足1本ずつ、好きなだけ時間をかけて進めていきます。多くの人はライブモードで反射神経を鍛え、リプレイモードでパターン認識を鍛えます — 損益ではなくフォーメーションの読み取りだけに集中して練習したい場合は、<a href="/ja/chart-simulator/" class="text-[#f59e0b] hover:underline">チャートシミュレーター</a>でも同じようにローソク足パターンを1つずつ進められます。証券会社のペーパートレーディングシミュレーターは、通常、1件の注文を出す前に登録や実口座の連携を求めます。Stockadeなら、ページを開くだけです。
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          株式・暗号資産・FX・先物をひとつの場所で
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          リアルな値動きをする株式銘柄が14種類、実際の資産さながらのボラティリティで動く暗号資産が8種類、主要・マイナー通貨ペア、そしてNQ・ES・CL・GCの4つの先物契約があります。この幅広さは見た目以上に重要です — 値動きの緩やかな株式で優秀に見える戦略も、通貨ペアや先物契約では簡単に崩れることがよくあります。すべてを<a href="/ja/markets/" class="text-[#f59e0b] hover:underline">1つのプラットフォーム</a>で試せることで、それを簡単に見極められます。
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          実際に何が起きたかを振り返る
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          取引を出すのは簡単な方の半分で、役に立つのはその後、結果を分析する半分です。<a href="/ja/analytics/" class="text-[#f59e0b] hover:underline">分析ダッシュボード</a>が取引履歴を読み取り、資産曲線、勝率、プロフィットファクター、平均損益、最大ドローダウン、そして実際にどの時間帯の取引がうまくいったかを示すヒートマップを表示します。インストールも登録の壁もないため、この一連の流れがブラウザのタブだけで完結します — そのため、みんなに登録フォームを通させるのが大変な教室やスタディグループでも活用しやすくなっています。
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          課金なし、プレミアムプランなし
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-4">
+          多くのプラットフォームは、最良のツールをサブスクリプションの奥に隠したり、1件の取引を出す前にメールアドレスの提供を求めたりします。Stockadeは違います。ここではすべてが、永久に無料で含まれています:
+        </p>
+        <ul class="space-y-2 mb-6 ml-4">
+          {[
+            '出来高付きの本格的なローソク足チャート',
+            'プロ仕様のインジケーター: EMA、VWAP、RSI、MACD',
+            '注文パネル: 成行・指値注文、逆指値/利益確定のOCOブラケット',
+            '資産曲線とドローダウン追跡を含むパフォーマンス分析',
+            'スマートフォン・タブレットに完全対応',
+          ].map(item => (
+            <li class="flex items-start gap-2 text-[15px] text-[var(--c-text-muted)]">
+              <span class="text-[#22c55e] mt-0.5 shrink-0">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed">
+          お試し期間も、フリーミアムプランも、アップセルも、メール収集もありません。シミュレーターを開いて、取引を始めましょう。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="py-20 px-6 bg-[var(--c-bg)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">FAQ</div>
+      <h2 class="text-3xl font-bold tracking-tight text-[var(--c-text)] mb-10">よくある質問</h2>
+      <div class="space-y-6">
+        {faqs.map(({ q, a }) => (
+          <div class="border border-[var(--c-border)] rounded-xl p-5 bg-[var(--c-bg-soft)]">
+            <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2">{q}</h3>
+            <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed [&_a]:text-[#f59e0b] [&_a]:hover:underline" set:html={a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA band ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)] text-center mesh-gradient">
+    <div class="max-w-[640px] mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-5 text-[var(--c-text)]">
+        取引を始める準備はできましたか？
+      </h2>
+      <p class="text-[var(--c-text-muted)] text-lg mb-8">
+        クレジットカード不要。登録不要。$100,000の仮想資金が待っています。
+      </p>
+      <a
+        href="/ja/simulator/"
+        class="inline-block px-8 py-4 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-bold text-[16px] hover:bg-[#fbbf24] transition-colors"
+      >
+        シミュレーターを起動する →
+      </a>
+    </div>
+  </section>
+
+  <div class="h-10"></div>
+  <Footer />
+
+  <div class="fixed bottom-0 left-0 right-0 z-30 border-t border-[var(--c-border)]">
+    <TickerTape client:load />
+  </div>
+</Layout>

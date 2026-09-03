@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { CONTACT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="お問い合わせ | Stockade"
+  description="無料の株式市場シミュレーターStockadeについてのご意見をお聞かせください。ご感想、不具合の報告、ご提案などお気軽にどうぞ。"
+  alternates={CONTACT_ALTERNATES}
+>
+  <Navbar alternates={CONTACT_ALTERNATES} />
+
+  <main class="max-w-[680px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">お問い合わせ</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">ご意見をお聞かせください</h1>
+      <p class="text-[16px] text-[var(--c-text-muted)] leading-relaxed">
+        ご感想、不具合の報告、ご提案などを下記のフォームからお寄せください —
+        いただいたご意見はすべて拝見しています。
+      </p>
+    </div>
+
+    <!-- Google Form embed -->
+    <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-2 sm:p-3 mb-12">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA5TEf_AHaCuygyjHEOOZm3LFKrziqaoKJCn1s8CAvbsVXWQ/viewform?embedded=true"
+        title="Stockadeフィードバックフォーム"
+        width="100%"
+        height="700"
+        style="border: 0; border-radius: 0.5rem;"
+        loading="lazy"
+      >読み込み中…</iframe>
+    </div>
+
+    <!-- FAQ nudge -->
+    <div class="mt-8 bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+      <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
+        すぐに答えを知りたい方は、トップページの<a href="/ja/#faq" class="text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2">よくある質問</a>
+        セクションをご覧ください — シミュレーターの使い方に関するよくある疑問をまとめています。
+      </p>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

@@ -51,4 +51,12 @@ const blogPt = defineCollection({
   }),
 });
 
-export const collections = { blog, blogEs, blogPt };
+// Japanese translations, mirroring blogEs/blogPt.
+const blogJa = defineCollection({
+  loader: glob({ base: './src/content/blog-ja', pattern: '**/*.md' }),
+  schema: blogSchema.extend({
+    translationOf: z.string(),
+  }),
+});
+
+export const collections = { blog, blogEs, blogPt, blogJa };

@@ -491,31 +491,94 @@ research was done for the 2 checkpoint slugs — this is a reasonable-default na
 audit — but the id must always be set as the frontmatter `translationOf` value on the matching
 English post's id, never left to be inferred.
 
+## Phase 4 addenda (2026-09-03) — Japanese (ja) rollout, full site in one pass
+
+Unlike the Spanish/Portuguese rollouts (infra → homepage → 6 pages → 5 blog batches, each a
+separate reviewed step), Japanese was translated in two larger passes: infra + all 7 pages
+(homepage plus the 6 static/app pages) verified first, then all 20 blog posts translated together.
+The user explicitly asked for this — "start with the full thing at once, rather than sending me
+verification messages again and again" — plus a constraint of one subagent active at a time and no
+deploy. The blog batch was delegated to a background subagent (a same-context fork); its first
+attempt returned a status message without doing any work (0 tool calls), and its second attempt did
+complete all 20 posts but was cut off by a session rate limit before its planned CLAUDE.md/design-doc
+update finished — the coordinating session resumed the doc updates and ran full verification
+(build, `astro check`, `npm test`, plus a manual stale-link and quality sweep) itself rather than
+trusting the subagent's own completion claim. Two things worth recording for future locale rollouts
+that lean on a subagent this way:
+
+**A subagent's inline status report is not evidence of a finished task — verify independently.**
+The 0-tool-call turn looked superficially like progress ("running now, I'll report back") but had
+touched nothing; only re-reading the actual filesystem state (`git status`, a fresh build) after the
+notification confirmed what had and hadn't happened. This matters more than usual for i18n work
+because a subagent can plausibly claim "N posts translated" while the reviewer has no cheap way to
+spot a bad claim without checking dates, frontmatter, and a build.
+
+**Japanese slugs are Hepburn romaji, not copied English and not Japanese-script paths** — a new
+decision this rollout needed that Spanish/Portuguese didn't, since neither of those languages
+raised the question (both use the Latin alphabet natively). Established English/katakana loanwords
+that stay loanwords in the prose (RSI, MACD, paper trading, etc.) keep their Latin/katakana-romaji
+form in the slug too rather than being re-transliterated a second way. The subagent's independent
+slug choices for posts beyond the first batch were consistent with this rule except two
+romanization errors, caught and fixed during verification: `narigyoi-vs-sashine` → corrected to
+`nariyuki-vs-sashine` (成行 romanizes to "nariyuki", not "narigyoi") and `kurypto-toreedo-nyumon` →
+corrected to `angoushisan-toreedo-nyumon` (aligned to the already-established term 暗号資産 rather
+than an odd transliteration of "crypto"). Renaming required updating the file, its own `slug:`
+frontmatter field, and the one static-page cross-link that had already been swept to point at it
+(`ja/simulator.astro`) — the sitemap's `serialize()` picks up slug changes automatically since it
+reads frontmatter at build time, no separate update needed there.
+
+Terminology established for this rollout (extending the pattern from the es/pt terminology notes):
+market order = 成行注文, limit order = 指値注文, stop-loss = 逆指値(注文), take-profit = 利益確定,
+OCO bracket = OCOブラケット, win rate = 勝率, profit factor = プロフィットファクター, equity curve =
+資産曲線, trade journal = トレード日記, drawdown = ドローダウン, position sizing = ポジションサイジング,
+slippage = スリッページ, partial fill(s) = 部分約定, queue position = キューポジション, bid/ask = 買い
+気配/売り気配, crypto = 暗号資産, forex = FX, futures = 先物, paper trading = ペーパートレーディング,
+day trading = デイトレード, swing trading = スイングトレード. Buy/Sell/Flatten, the "Working Orders"
+panel label, and candlestick pattern names (Doji, Hammer, Bullish/Bearish Engulfing, etc.) stay
+literally in English, same rule as es/pt, since those are the actual on-screen labels in the
+untranslated React islands. `nav.analytics`/analytics-page label uses 分析 (not アナリティクス),
+chosen the same way the es rollout picked "Análisis" over "Analítica" — a plain, commonly-used noun
+rather than the nearest cognate/loanword.
+
+`BlogPost.astro` had two pre-existing bugs surfaced and fixed while wiring ja blog chrome, both of
+which had been silently affecting Portuguese too: the date formatter (`dateFmt`) hardcoded `es-ES`
+for *any* non-English locale instead of deriving the right tag per locale, so Portuguese post dates
+were already rendering with Spanish month names; and the mobile table-of-contents `<summary>` text
+("On this page") was a hardcoded English literal never wired through `t()`, despite the
+`blog.onThisPage` key already existing and being populated for es/pt. Both fixed by routing through
+the same `LOCALES`-table lookup already used for `inLanguage` two lines below the date formatter.
+
+All 20 posts pass the schema's 160-char description cap (a hard build failure otherwise), full
+build/`astro check`/`npm test` verification is clean (only the known pre-existing
+`ChartSimulator.tsx:670` error), and a stale-link sweep across every `/ja/*` page found one
+remaining gap beyond what the subagent had already fixed: `ja/about.astro`'s "growing library of
+educational content" link still pointed at the English `/blog` index rather than `/ja/blog/`,
+corrected during verification. No deploy — per instruction, build/preview only.
+
 ## Rollout strategy (current decision — not dated history, keep this section updated)
 
 Spanish is complete across every page in scope: the homepage, all 6 non-legal static/app pages, and
 all 20 blog posts (finished 2026-09-01). Portuguese (pt-BR) reached the same completeness on
-2026-09-03: homepage, all 6 non-legal static/app pages, and all 20 blog posts, via the same
-AI-translation process used for Spanish. The only English-only content left on the site is the two
-explicit non-goals (`/404`, `/500`) and the legal pages (`/privacy`, `/terms`, `/disclaimer`),
-which are intentionally on a separate, professional-review track — see the Phase 3 addenda above
-for that status.
+2026-09-03, and Japanese (ja) reached it the same day (Phase 4 above) — homepage, all 6 non-legal
+static/app pages, and all 20 blog posts, via the same AI-translation process used for Spanish and
+Portuguese. The only English-only content left on the site is the two explicit non-goals (`/404`,
+`/500`) and the legal pages (`/privacy`, `/terms`, `/disclaimer`), which are intentionally on a
+separate, professional-review track — see the Phase 3 addenda above for that status.
 
 **2026-09-03 sequencing note:** the previous version of this section said to do the legal pages
 before starting any new language, and to treat that as settled. The user explicitly asked to skip
 ahead to the next language instead (initially assumed to be French by the assistant — actually
 Japanese by registry order — then explicitly redirected to Portuguese), overriding that decision
-for this round. That override does not retroactively make the original reasoning wrong (one
-complete language over thin partial coverage is still the right default), but it means the
-"do not re-litigate" instruction did not survive an explicit, direct user request to change course
-— which is exactly the exception that instruction always carved out. Before starting ja, fr, de,
-ko, or it, or before starting the legal pages, ask rather than assume which the user wants next;
-do not treat either the original policy or the 2026-09-03 override as binding on a future session
-by default.
+for that round. Later the same day the user asked to skip ahead again, this time to the next
+language by registry order (confirmed as Japanese rather than assumed, learning from the earlier
+mis-assumption) — a second instance of the same override, not a reversal of the underlying policy.
+Before starting fr, de, ko, or it, or before starting the legal pages, ask rather than assume which
+the user wants next; do not treat any prior override as binding on a future session by default.
 
 The permanent, non-dated checklist for adding any translated page (registry step included) now
 lives in the project's `CLAUDE.md` under `## i18n`, since that file is loaded into every session
 automatically — treat it as the source of truth for the mechanical steps, and this doc as the
 source of truth for architecture and decision history. The sitemap `serialize()` hreflang logic in
 `astro.config.mjs` was generalized from Spanish-only to loop over a `translatedBlogLocales` array
-when Portuguese was added — see the `## i18n` section in `CLAUDE.md` for where to extend it next.
+when Portuguese was added, and `ja` was appended to that same array when Japanese was added — see
+the `## i18n` section in `CLAUDE.md` for where to extend it next.

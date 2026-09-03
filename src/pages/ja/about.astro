@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { ABOUT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Stockadeについて | 初心者向けトレーディングシミュレーター"
+  description="初心者向けの無料ブラウザ株式市場シミュレーターStockadeをご紹介します。リスクなしで練習したいトレーダーのために作られました。登録不要、カード不要。"
+  alternates={ABOUT_ALTERNATES}
+>
+  <Navbar alternates={ABOUT_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">会社概要</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        賭けたい人ではなく、学びたいトレーダーのために。
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockadeは、誰でも$100,000の仮想資金で株式・暗号資産・FX・先物のトレーディングを練習できる、
+        無料のブラウザ型ペーパートレーディングシミュレーターです — 登録不要、クレジットカード不要、リスクなし。
+      </p>
+    </div>
+
+    <!-- Who built this -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <div class="flex items-center gap-3 mb-5">
+        <div
+          class="shrink-0 w-9 h-9 rounded-lg bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <!-- Generic graduation cap. No photo, avatar, initials, or name is
+               used here — the people behind the project stay unidentified. -->
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L18.5 7L10 11L1.5 7L10 3Z" />
+            <path d="M5 9v4.5c0 1.1 2.24 2 5 2s5-.9 5-2V9" />
+            <path d="M18.5 7v4.5" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-[var(--c-text)]">このプロジェクトについて</h2>
+      </div>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Stockadeは、コンピューターサイエンスとエンジニアリングのバックグラウンドを持ち、金融市場とトレーディングシステムに関心を持つ開発者によって開発・運営されています。このプロジェクトは、既存のシミュレーターの多くが有料の壁の向こうにあったり、実口座の証券会社の宣伝だらけだったり、実際の市場の動きを反映するにはシンプルすぎたりすることに気づいたことをきっかけに、金銭的リスクなしでトレーディング戦略を練習する方法として始まりました — そして、取引を学ぶための本格的な練習環境へと成長しました。トレーディング初心者向けのシミュレーターとしても、すでに実際のトレーディング経験があるトレーダー向けのサンドボックスとしても機能するように設計されています。
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        このサイトは4つの領域をカバーしています: リアルな注文タイプ（成行、指値、逆指値、OCO/ブラケット注文）を備えた<a href="/ja/simulator/" class="text-[#f59e0b] hover:underline">株式市場シミュレーター</a>、ヒストリカルなプライスアクションでテクニカル分析を練習できる<a href="/ja/chart-simulator/" class="text-[#f59e0b] hover:underline">チャートリプレイツール</a>、取引のパフォーマンスを振り返り行動パターンを見つけるための<a href="/ja/analytics/" class="text-[#f59e0b] hover:underline">分析ダッシュボード</a>、そしてトレーディングの概念、インジケーター、戦略についての<a href="/ja/blog/" class="text-[#f59e0b] hover:underline">拡大し続ける教育コンテンツのライブラリ</a>です。銘柄、価格、値動きなど、すべての取引データは実際の市場からのものではなくシミュレーションされたものであり、ライブデータと誤解される可能性がある箇所ではその旨が明確に記載されています。
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        ある機能に実際の制約がある場合 — たとえば、このシミュレーターは現在、実際の取引所のようにスリッページや部分約定をモデル化していません — それは暗黙のままにするのではなく、該当ページで直接明記しています。練習環境自体はシミュレーションであっても、教育コンテンツは実際のトレーディングの概念について正確であるように書かれており、計算ロジック（損益やパフォーマンス指標など）は開発時に標準的なトレーディングの計算式と照合して検証されています。
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        これは独立したプロジェクトであり、いかなる証券会社、取引所、金融機関とも提携していません。このサイトの内容は、いかなる投資助言も構成するものではありません。
+      </p>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">Stockadeが提供するもの</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            title: '本格的なローソク足チャート',
+            desc: '出来高ヒストグラム付きの本格的なOHLCVローソク足チャート — 世界中のプロトレーダーが使うのと同じタイプのチャートです。',
+          },
+          {
+            title: 'プロ仕様のインジケーター',
+            desc: 'EMA 9/20/50、VWAP、RSI、MACDのオーバーレイを標準搭載。サブスクリプションも追加購入も不要です。',
+          },
+          {
+            title: 'フル機能の注文パネル',
+            desc: '成行・指値注文に加え、OCOブラケットとして機能する任意の逆指値・利益確定レベルを設定可能 — 価格が先に到達した方でポジションが決済され、もう一方はキャンセルされます。',
+          },
+          {
+            title: 'パフォーマンス分析',
+            desc: '資産曲線、勝率、プロフィットファクター、平均損益、最大ドローダウン、時間帯別ヒートマップを確認できます。',
+          },
+          {
+            title: 'マルチアセット対応',
+            desc: '<a href="/ja/markets/" class="text-[#f59e0b] hover:underline">29種類のシミュレーション資産</a>を取引できます: 株式14銘柄、暗号資産トークン8種類、主要FXペア、そして先物（NQ、ES、CL、GC）。',
+          },
+          {
+            title: 'ライブモードとリプレイモード',
+            desc: 'リアルタイム練習には800ミリ秒間隔のライブティック、または自分のペースでセッション全体をローソク足ごとに進めることもできます。',
+          },
+          {
+            title: '永久に100%無料',
+            desc: 'お試し期間も、フリーミアムプランも、アップセルもありません。すべての機能を、いつでも無料でご利用いただけます。',
+          },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+            <h3 class="text-[14px] font-semibold text-[var(--c-text)] mb-1.5">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed" set:html={f.desc} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">これは投資助言ではありません</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockadeは教育およびエンターテインメント目的のプラットフォームに過ぎません。すべての取引は、現実世界での価値を持たない仮想の資金で行われます。このサイトの内容は、いかなる財務、投資、法律、税務上の助言も構成するものではありません。過去のシミュレーション実績は将来の実際の結果を示すものではありません。実際の投資判断を行う前に、資格を持つファイナンシャルアドバイザーにご相談ください。
+      </p>
+    </section>
+
+    <!-- Contact CTA -->
+    <section>
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">お問い合わせ</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-5">
+        ご質問、ご提案、不具合の報告などがあれば、ぜひお聞かせください。皆様のフィードバックは、私たちが次に取り組む内容に直接影響します。
+      </p>
+      <a
+        href="/ja/contact/"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
+      >
+        お問い合わせはこちら →
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

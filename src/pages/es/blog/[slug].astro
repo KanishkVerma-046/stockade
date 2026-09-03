@@ -6,11 +6,13 @@ export async function getStaticPaths() {
   const posts = await getCollection('blogEs', ({ data }) => !data.draft);
   const enPosts = await getCollection('blog', ({ data }) => !data.draft);
   const ptPosts = await getCollection('blogPt', ({ data }) => !data.draft);
+  const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
   const enIds = new Set(enPosts.map(p => p.id));
   // A translated post's `translationOf` names the id of the English post it
   // translates — its own id/slug is independently localized, so the two are
   // matched via this field rather than by sharing a filename.
   const ptByTranslationOf = new Map(ptPosts.map(p => [p.data.translationOf, p]));
+  const jaByTranslationOf = new Map(jaPosts.map(p => [p.data.translationOf, p]));
   return posts.map(post => {
     const alternates: Record<string, string> = {};
     if (enIds.has(post.data.translationOf)) {
@@ -19,6 +21,8 @@ export async function getStaticPaths() {
     }
     const ptPost = ptByTranslationOf.get(post.data.translationOf);
     if (ptPost) alternates.pt = `/pt/blog/${ptPost.id}/`;
+    const jaPost = jaByTranslationOf.get(post.data.translationOf);
+    if (jaPost) alternates.ja = `/ja/blog/${jaPost.id}/`;
     return {
       params: { slug: post.id },
       props: {

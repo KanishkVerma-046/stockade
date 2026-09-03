@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="トレーディング分析ダッシュボード | Stockade"
+  description="無料のStockadeシミュレーターで、資産曲線、勝率、ドローダウン指標、トレード日記を使ってペーパートレーディングのパフォーマンスを分析しましょう。"
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">分析</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">パフォーマンスダッシュボード</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">あなたのシミュレーション取引統計 — 資産曲線、勝率、ドローダウン、トレード日記。</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        トレーディング指標を理解する
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        このダッシュボードの各数値は、Stockadeのペーパートレーディングシミュレーターで決済した取引から計算され、ブラウザ内にローカルで保存されます。それぞれの値が実際に何を測っているかを知ることが、トレーディングを振り返ることと、単に損益を眺めることの違いです — <a href="/ja/blog/pafomansu-shihyo-no-bunseki/" class="text-[#f59e0b] hover:underline">トレーディングパフォーマンスの分析方法</a>では、勝率、プロフィットファクター、ドローダウンについてさらに詳しく解説しています。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">主要な統計指標</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">総損益</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            すべての決済済み取引で実現した損益の合計です。未決済のポジションは決済するまでカウントされないため、プラスの合計の裏に、まだ含み損を抱えたポジションが隠れている場合があります。
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">資産</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            現在の口座残高です — 初期資金$100,000に総損益を加えたものです。
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">勝率</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            決済した取引のうち、利益で終わった割合です。勝率が高いと心強く感じますが、それだけでは多くを語りません — 80%の確率で勝つ戦略でも、残り20%の損失が十分大きければ、資金を失うことがあります。
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">プロフィットファクター</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            総利益を総損失で割った値です。1.0倍を超えていれば、失った以上に得ていることを意味し、1.5倍以上あれば一般的に堅実とされます。これは勝率では答えられない問い — 被った損失1単位あたりどれだけ得ているか — に答えてくれます。
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">平均利益</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            勝ちトレードの平均利益です。平均損失と比較してみましょう — もし平均利益の方が小さければ、収支トントンにするだけでもそれに見合った高い勝率が必要になります。
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">最大ドローダウン</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            資産のピークから底までの最大の下落幅を、パーセンテージで表したものです。これは「痛み」を測る指標です。実際のトレーディングでは、これが数学的な限界よりずっと前に戦略をやめさせる原因になることがよくあります。<a href="/ja/blog/risuku-kanri-to-pojishon-saijingu/" class="text-[#f59e0b] hover:underline">ポジションサイジングと1%ルール</a>では、ドローダウンがこれほど重要な理由の背後にある回復の数学を解説しています。
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">資産曲線</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        資産曲線は、取引を決済するたびの口座残高をプロットしたものです。最終地点よりも、その形の方が重要です — 安定した右肩上がりは再現性のあるプロセスを示し、平坦な線が1〜2回の大きな跳躍で中断されているような形は、多くの場合運によるものです。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">トレード日記</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        トレード日記には、決済した取引がそれぞれ銘柄、方向、エントリー・エグジット価格、サイズ、損益、保有時間とともに記録されます。平均保有時間は良い現実チェックになります — 多くのトレーダーは、損失ポジションを利益ポジションよりもずっと長く保有していたり、思っていたよりもずっと短い期間で取引していたりすることに気づきます。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">時間帯別ヒートマップ</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        このヒートマップは、曜日と時間帯ごとの結果を詳しく示し、各セルを純損益で色分けします。十分な数の取引があれば、特定のセッションが損失の大部分を静かに引き起こしていることが見えてくるかもしれません。サンプルが少ない場合は注意してください — 1つのセルの色が意味を持つには、その裏に数十件の取引が必要です。
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

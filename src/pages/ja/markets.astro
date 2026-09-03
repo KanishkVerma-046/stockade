@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MarketsView from '../../components/markets/MarketsView.tsx';
+import { MARKETS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="株式・暗号資産・FX・先物マーケット | Stockade"
+  description="無料のオンライン株式市場シミュレーターで29種類のシミュレーション資産（株式、暗号資産、FX、先物）をチェック。登録不要。"
+  alternates={MARKETS_ALTERNATES}
+>
+  <Navbar alternates={MARKETS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">マーケット</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">マーケット概況</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">このマーケット概況は、株式・暗号資産・FX・先物の29種類のシミュレーション資産について2秒ごとに更新されます。暗号資産トレーディングシミュレーターのウォッチリストとして、FXシミュレーターのスキャナーとして、あるいは取引前に価格をさっと確認するためにご利用ください。価格変動率で並び替えると、最も動いている資産を確認できます。隣の出来高列もチェックしてください — その数字が実際に何を示しているかは<a href="/ja/blog/dekidaka-wo-rikai-suru/" class="text-[#f59e0b] hover:underline">トレーディング出来高を理解する</a>をご覧ください。800ミリ秒間隔のライブティックを利用するには、<a href="/ja/simulator/" class="text-[#f59e0b] hover:underline">トレーディングシミュレーター</a>をお使いください。</p>
+    </div>
+    <MarketsView client:load />
+  </main>
+  <Footer />
+</Layout>

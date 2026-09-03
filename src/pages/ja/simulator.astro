@@ -1,0 +1,125 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
+import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="ペーパートレーディングシミュレーター | Stockade"
+  description="無料の株式市場シミュレーターでペーパートレーディングを練習。ローソク足チャート、EMAインジケーター、$100Kの仮想資金。登録不要。"
+  alternates={SIMULATOR_ALTERNATES}
+>
+  <div class="flex flex-col h-full">
+    <h1 id="simulator-h1" class="sr-only">ペーパートレーディングシミュレーター</h1>
+    <p
+      class="shrink-0 px-4 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] text-[12px] leading-relaxed text-[var(--c-text-muted)]"
+    >
+      <span class="font-mono text-[var(--c-text)]">$100,000</span>の仮想資金で、29種類のシミュレーション株式・暗号資産ペア・FX・先物を取引しよう — 成行・指値注文、逆指値・利益確定、ライブローソク足。登録不要、実際のお金は使いません。<a href="#how-to-use" class="text-[#f59e0b] hover:underline">使い方はこちら ↓</a>
+    </p>
+    <div class="flex-1 min-h-0">
+      <TradingSimulator client:load />
+    </div>
+  </div>
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            このシミュレーターの使い方
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Stockadeのペーパートレーディングシミュレーターは、$100,000の仮想口座、リアルタイムで更新されるローソク足チャート、そしてフル機能の注文パネルを提供します — 登録不要、実際のお金のリスクもありません。残高と取引履歴はブラウザに保存されるため、続きから再開できます。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            画面の見方
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            チャートは画面の中央に表示されます。上部のバーには銘柄セレクター — 株式・暗号資産・FX・先物にグループ分けされた29種類のシミュレーション銘柄 — と、時間足ボタン、EMA 9・EMA 20・EMA 50オーバーレイのオプションがあります。チャート下部には出来高ヒストグラムが表示されます。右側のパネルはあなたの口座です: 現在の残高、含み損益付きの保有ポジション、そしてすべての約定の継続的な記録が確認できます。画面幅が狭い場合、これらのパネルは「チャート」「注文」「取引」タブに折りたたまれます。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            注文を出す
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            数量を入力し、注文タイプを選びます。成行注文は最終取引価格で即座に約定します。指値注文は市場がその価格に到達するまで待機します — 現在価格より下に置いた買い指値は価格が下落してきたときに、現在価格より上に置いた売り指値は価格が上昇してきたときに約定します — 待機中の注文は<strong class="text-[var(--c-text)] font-semibold">Working Orders</strong>に表示され、そこでキャンセルできます。（<a href="/ja/blog/nariyuki-vs-sashine/" class="text-[#f59e0b] hover:underline">成行注文 vs. 指値注文</a>で、それぞれの使い分けを詳しく解説しています。）市場の反対側にすでに約定可能な状態で置かれた指値注文は、現在の最良価格で即座に約定します。任意で設定できる<a href="/ja/blog/gyaku-sashine-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">逆指値</a>と利益確定は<a href="/ja/blog/oco-bracket-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">OCOブラケット</a>として機能します — 価格が先に到達した方でポジションが決済され、もう一方はキャンセルされます。<strong class="text-[var(--c-text)] font-semibold">Buy</strong>で買いポジションを、<strong class="text-[var(--c-text)] font-semibold">Sell</strong>で売りポジションを開き、<strong class="text-[var(--c-text)] font-semibold">Flatten</strong>で現在価格ですべて決済します。ページにフォーカスがある状態なら、キーボードでも操作できます: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd>で買い、<kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd>で売り、<kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd>でポジションを決済します。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            このシミュレーターがモデル化していないもの
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-3">
+            ここでの約定は実際の取引所よりもシンプルです。結果から早合点する前に、具体的に何が違うのかを知っておく価値があります:
+          </p>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">スリッページなし。</strong>
+              すべての注文は、スプレッドも手数料もなく、表示された価格どおりに約定します。実際の市場では、急な値動きや薄い板の場合、クリックした価格より不利な価格になることがよくあります。
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">部分約定なし。</strong>
+              注文はサイズにかかわらず、全量が即座に約定します。実際の市場では、大口注文が複数の価格で分割約定されたり、一部が未約定のまま残ったりすることがあります。
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">キューポジションなし。</strong>
+              待機中の指値注文は、価格がその水準に到達した瞬間に、あたかも列の先頭であるかのように約定します。実際の板では、その価格にあなたより先に注文を出していた人たち全員の後ろに並ぶことになり、価格があなたの水準に触れても約定しないことがあります。
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">待機中の注文は買付余力を確保しません。</strong>
+              残高のチェックは、待機中の注文が実際に約定するときにのみ行われるため、注文を出す時点でブロックされるのではなく、約定のタイミングで資金不足によりキャンセルされることがあります。
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">価格は実際のものではなく、生成されたものです。</strong>
+              29銘柄はすべて架空のものであり、その値動きも実際のものではありません — ブラウザ内で生成される合成データであり、ライブフィードから取得されることは一切ありません。実在する資産を表す銘柄はありません。
+            </li>
+          </ul>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
+            まとめると: 結果は、同じ戦略が実際のお金でどうなるかの予測としてではなく、エントリー・エグジット・サイジング・規律といったプロセスの練習として捉えてください。
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            始めるためのヒント
+          </h3>
+          <ul class="text-[15px] text-[var(--c-text-muted)] leading-relaxed list-disc pl-5 space-y-2">
+            <li>感覚でサイズを決めるのではなく、1取引につき口座資金の1〜2%の固定額をリスクにさらしましょう。</li>
+            <li>取引があなたに不利な方向に動いてからではなく、エントリーする前に逆指値を設定しましょう。</li>
+            <li>
+              リプレイモードに切り替えて、自分のペースでローソク足を進めましょう — スペースバーで1本進みます。
+            </li>
+            <li>
+              しばらく1つの銘柄に絞りましょう。繰り返し向き合うことで、29銘柄を渡り歩くよりも多くを学べます。
+            </li>
+            <li>
+              <a href="/ja/analytics/" class="text-[#f59e0b] hover:underline">分析ダッシュボード</a>で結果を振り返りましょう — 勝率とプロフィットファクターは、たまたま運が良かった1回の取引よりも多くを語ります。
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>
+
+<script>
+  const symbol = new URLSearchParams(window.location.search).get('symbol');
+  if (symbol) {
+    const h1 = document.getElementById('simulator-h1');
+    if (h1) h1.textContent = `${symbol.toUpperCase()}を取引 — ペーパートレーディングシミュレーター`;
+  }
+</script>

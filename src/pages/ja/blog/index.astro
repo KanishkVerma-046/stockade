@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/layout/Navbar.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import { readingTime } from '../../../lib/reading-time';
+import { BLOG_ALTERNATES } from '../../../i18n/alternates';
+
+const posts = (await getCollection('blogJa', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const dateFmt = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Layout
+  title="トレーディング学習センター | Stockade"
+  description="ローソク足チャート、インジケーター、注文タイプ、リスク管理を学べる無料の詳しいガイド — 実践しながら学ぶトレーダーのために。"
+  alternates={BLOG_ALTERNATES}
+>
+  <Navbar alternates={BLOG_ALTERNATES} />
+
+  <main class="max-w-[1000px] mx-auto px-6 py-16">
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">
+        学習センター
+      </div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        リスクを負う前に、取引を学ぼう。
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed max-w-[680px]">
+        チャートの読み方、インジケーターの使い方、ポジションサイジング、リスク管理まで —
+        シミュレーターですぐに実践できる実用的なガイドです。
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+      {posts.map(post => (
+        <article class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-6 flex flex-col hover:border-[var(--c-border-strong)] transition-colors">
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            {post.data.tags.map(tag => (
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#f59e0b] bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] rounded-full px-2 py-0.5">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <h2 class="text-[17px] font-semibold text-[var(--c-text)] leading-snug mb-2">
+            <a href={`/ja/blog/${post.id}`} class="hover:text-[#f59e0b] transition-colors">
+              {post.data.title}
+            </a>
+          </h2>
+
+          <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed mb-5 grow">
+            {post.data.description}
+          </p>
+
+          <div class="flex items-center gap-2 text-[11px] font-mono text-[var(--c-text-subtle)] pt-4 border-t border-[var(--c-border)]">
+            <span>{post.data.author}</span>
+            <span class="text-[var(--c-text-faint)]">·</span>
+            <time datetime={post.data.date.toISOString()}>
+              {dateFmt.format(post.data.date)}
+            </time>
+            <span class="text-[var(--c-text-faint)]">·</span>
+            <span>{readingTime(post.body ?? '')}分で読了</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

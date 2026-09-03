@@ -7,42 +7,49 @@ export const HOME_ALTERNATES = {
   en: '/',
   es: '/es/',
   pt: '/pt/',
+  ja: '/ja/',
 } as const;
 
 export const CONTACT_ALTERNATES = {
   en: '/contact/',
   es: '/es/contact/',
   pt: '/pt/contact/',
+  ja: '/ja/contact/',
 } as const;
 
 export const MARKETS_ALTERNATES = {
   en: '/markets/',
   es: '/es/markets/',
   pt: '/pt/markets/',
+  ja: '/ja/markets/',
 } as const;
 
 export const ABOUT_ALTERNATES = {
   en: '/about/',
   es: '/es/about/',
   pt: '/pt/about/',
+  ja: '/ja/about/',
 } as const;
 
 export const ANALYTICS_ALTERNATES = {
   en: '/analytics/',
   es: '/es/analytics/',
   pt: '/pt/analytics/',
+  ja: '/ja/analytics/',
 } as const;
 
 export const SIMULATOR_ALTERNATES = {
   en: '/simulator/',
   es: '/es/simulator/',
   pt: '/pt/simulator/',
+  ja: '/ja/simulator/',
 } as const;
 
 export const CHART_SIMULATOR_ALTERNATES = {
   en: '/chart-simulator/',
   es: '/es/chart-simulator/',
   pt: '/pt/chart-simulator/',
+  ja: '/ja/chart-simulator/',
 } as const;
 
 // Covers only the /blog/ index — individual post alternates are computed
@@ -52,6 +59,7 @@ export const BLOG_ALTERNATES = {
   en: '/blog/',
   es: '/es/blog/',
   pt: '/pt/blog/',
+  ja: '/ja/blog/',
 } as const;
 
 // Every page-alternates constant above, in one place, so shared chrome

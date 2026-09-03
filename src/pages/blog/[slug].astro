@@ -9,22 +9,26 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const esPosts = await getCollection('blogEs', ({ data }) => !data.draft);
   const ptPosts = await getCollection('blogPt', ({ data }) => !data.draft);
+  const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
   // Translated posts use localized slugs, so they're matched to the English
   // post they translate via `translationOf` (the English post's id) rather
   // than by sharing an id/filename.
   const esByTranslationOf = new Map(esPosts.map(p => [p.data.translationOf, p]));
   const ptByTranslationOf = new Map(ptPosts.map(p => [p.data.translationOf, p]));
+  const jaByTranslationOf = new Map(jaPosts.map(p => [p.data.translationOf, p]));
   // Every article declares a frontmatter `slug`, which the glob loader
   // uses as the entry id — so `post.id` IS the URL segment.
   return posts.map(post => {
     const esPost = esByTranslationOf.get(post.id);
     const ptPost = ptByTranslationOf.get(post.id);
+    const jaPost = jaByTranslationOf.get(post.id);
     // Only advertise hreflang alternates once at least one translation
     // actually exists, same as every other page in this project.
     const alternates: Record<string, string> = {};
-    if (esPost || ptPost) alternates.en = `/blog/${post.id}/`;
+    if (esPost || ptPost || jaPost) alternates.en = `/blog/${post.id}/`;
     if (esPost) alternates.es = `/es/blog/${esPost.id}/`;
     if (ptPost) alternates.pt = `/pt/blog/${ptPost.id}/`;
+    if (jaPost) alternates.ja = `/ja/blog/${jaPost.id}/`;
     return {
       params: { slug: post.id },
       props: {

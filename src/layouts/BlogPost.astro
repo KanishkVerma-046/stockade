@@ -55,12 +55,15 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 const published = date.toISOString();
 const minutes = readingTime(post.body ?? '');
 
-const dateFmt = new Intl.DateTimeFormat(locale === DEFAULT_LOCALE ? 'en-US' : 'es-ES', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
+const dateFmt = new Intl.DateTimeFormat(
+  locale === DEFAULT_LOCALE ? 'en-US' : getLocaleMeta(locale).ogLocale.replace('_', '-'),
+  {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  }
+);
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -149,7 +152,7 @@ const schemaJson = JSON.stringify(articleSchema).replace(/</g, '\\u003c');
         <!-- Mobile TOC: collapsed above the article. -->
         <details class="lg:hidden mb-8 bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
           <summary class="text-[13px] font-semibold text-[var(--c-text)] cursor-pointer">
-            On this page
+            {t(locale, 'blog.onThisPage')}
           </summary>
           <div class="mt-3">
             <TableOfContents headings={headings} />
