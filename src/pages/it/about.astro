@@ -1,0 +1,155 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { ABOUT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Chi siamo | Stockade, il simulatore di trading per principianti"
+  description="Scopri Stockade, il simulatore di borsa gratuito basato su browser creato per chi vuole esercitarsi senza rischi. Nessuna registrazione, nessuna carta."
+  alternates={ABOUT_ALTERNATES}
+>
+  <Navbar alternates={ABOUT_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Chi siamo</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Creato per chi vuole imparare a fare trading, non giocare d'azzardo.
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade è un simulatore di paper trading gratuito e basato su browser che permette a chiunque
+        di esercitarsi nella compravendita di azioni, crypto, forex e futures con 100.000$ di denaro
+        virtuale — nessuna registrazione, nessuna carta di credito, nessun rischio.
+      </p>
+    </div>
+
+    <!-- Who built this -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <div class="flex items-center gap-3 mb-5">
+        <div
+          class="shrink-0 w-9 h-9 rounded-lg bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <!-- Generic graduation cap. No photo, avatar, initials, or name is
+               used here — the people behind the project stay unidentified. -->
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L18.5 7L10 11L1.5 7L10 3Z" />
+            <path d="M5 9v4.5c0 1.1 2.24 2 5 2s5-.9 5-2V9" />
+            <path d="M18.5 7v4.5" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-[var(--c-text)]">Il progetto</h2>
+      </div>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Stockade è realizzato e mantenuto da uno sviluppatore con una formazione in Informatica e
+        Ingegneria e un interesse per i mercati finanziari e i sistemi di trading. Il progetto è nato
+        come un modo per esercitarsi nelle strategie di trading senza rischio finanziario, dopo aver
+        constatato che la maggior parte dei simulatori esistenti erano a pagamento, ingombri di
+        proposte di apertura di conti reali presso broker, o troppo semplicistici per riflettere il
+        comportamento reale dei mercati — ed è cresciuto fino a diventare un ambiente di pratica
+        completo per imparare a fare trading. È pensato per funzionare sia come simulatore di trading
+        per principianti sia come sandbox per trader che hanno già esperienza reale.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Il sito copre quattro aree: un <a href="/it/simulator/" class="text-[#f59e0b] hover:underline">simulatore di borsa</a> con tipi di ordine realistici (mercato,
+        limite, stop-loss, ordini OCO/bracket), uno <a href="/it/chart-simulator/" class="text-[#f59e0b] hover:underline">strumento di replay grafico</a> per esercitarsi nell'analisi tecnica
+        su un andamento dei prezzi in stile storico, una <a href="/it/analytics/" class="text-[#f59e0b] hover:underline">dashboard di analisi</a> per rivedere le performance di trading e
+        individuare pattern comportamentali, e una <a href="/it/blog/" class="text-[#f59e0b] hover:underline">libreria di articoli didattici</a> in continua crescita su concetti
+        di trading, indicatori e strategie. Tutti i dati di trading — ticker, prezzi e movimenti di
+        mercato — sono simulati e non provengono da mercati reali, e questo viene dichiarato
+        chiaramente ovunque potrebbe essere scambiato per dati in tempo reale.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Dove una funzione presenta limiti reali — ad esempio, il simulatore al momento non riproduce
+        lo slippage o le esecuzioni parziali come farebbe una borsa reale — questo viene indicato
+        direttamente nella pagina interessata anziché lasciato sottinteso. I contenuti didattici sono
+        scritti in modo da restare fedeli ai concetti reali di trading, anche se l'ambiente di pratica
+        in sé è simulato, e la logica di calcolo (come P&amp;L e metriche di performance) viene
+        verificata rispetto alle formule di trading standard durante lo sviluppo.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Si tratta di un progetto indipendente, non affiliato ad alcun broker, borsa o istituto
+        finanziario. Nulla su questo sito costituisce consulenza finanziaria.
+      </p>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">Cosa offre Stockade</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            title: 'Grafici a candele completi',
+            desc: 'Grafici a candele OHLCV completi con istogrammi di volume — lo stesso tipo di grafico usato dai trader professionisti in tutto il mondo.',
+          },
+          {
+            title: 'Indicatori professionali',
+            desc: 'EMA 9/20/50, VWAP, RSI e overlay MACD integrati. Nessun abbonamento, nessun extra richiesto.',
+          },
+          {
+            title: 'Pannello ordini completo',
+            desc: 'Ingressi a mercato e a limite, oltre a livelli opzionali di stop-loss e take-profit che funzionano come bracket OCO — qualunque livello venga raggiunto per primo chiude la posizione e annulla l\'altro.',
+          },
+          {
+            title: 'Analisi delle performance',
+            desc: 'Curva del capitale, tasso di successo, profit factor, guadagno/perdita medi, drawdown massimo e una heatmap per fascia oraria.',
+          },
+          {
+            title: 'Copertura multi-asset',
+            desc: 'Fai trading su <a href="/it/markets/" class="text-[#f59e0b] hover:underline">29 asset simulati</a>: 14 titoli azionari, 8 token crypto, le principali coppie forex e futures (NQ, ES, CL, GC).',
+          },
+          {
+            title: 'Modalità live e replay',
+            desc: 'Tick in tempo reale ogni 800ms per la pratica dal vivo, oppure scorri un\'intera sessione candela per candela al tuo ritmo.',
+          },
+          {
+            title: '100% gratuito, per sempre',
+            desc: 'Nessuna prova, nessun livello freemium, nessun upsell. Ogni funzione è inclusa senza costi, sempre.',
+          },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+            <h3 class="text-[14px] font-semibold text-[var(--c-text)] mb-1.5">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed" set:html={f.desc} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Non è consulenza finanziaria</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade è esclusivamente una piattaforma didattica e di intrattenimento. Tutte le operazioni
+        vengono effettuate con denaro virtuale privo di valore reale. Nulla su questo sito costituisce
+        consulenza finanziaria, di investimento, legale o fiscale. Le performance simulate passate non
+        indicano risultati futuri nel mondo reale. Ti invitiamo a consultare un consulente finanziario
+        autorizzato prima di prendere qualsiasi decisione di investimento reale.
+      </p>
+    </section>
+
+    <!-- Contact CTA -->
+    <section>
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">Contattaci</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-5">
+        Hai una domanda, un suggerimento o hai trovato un bug? Ci farebbe piacere sentirti: i tuoi
+        feedback influenzano davvero le prossime funzioni su cui lavoriamo.
+      </p>
+      <a
+        href="/it/contact/"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
+      >
+        Contattaci →
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

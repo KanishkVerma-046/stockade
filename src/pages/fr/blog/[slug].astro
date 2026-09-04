@@ -10,6 +10,7 @@ export async function getStaticPaths() {
   const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
   const dePosts = await getCollection('blogDe', ({ data }) => !data.draft);
   const koPosts = await getCollection('blogKo', ({ data }) => !data.draft);
+  const itPosts = await getCollection('blogIt', ({ data }) => !data.draft);
   const enIds = new Set(enPosts.map(p => p.id));
   // A translated post's `translationOf` names the id of the English post it
   // translates — its own id/slug is independently localized, so the two are
@@ -19,6 +20,7 @@ export async function getStaticPaths() {
   const jaByTranslationOf = new Map(jaPosts.map(p => [p.data.translationOf, p]));
   const deByTranslationOf = new Map(dePosts.map(p => [p.data.translationOf, p]));
   const koByTranslationOf = new Map(koPosts.map(p => [p.data.translationOf, p]));
+  const itByTranslationOf = new Map(itPosts.map(p => [p.data.translationOf, p]));
   return posts.map(post => {
     const alternates: Record<string, string> = {};
     if (enIds.has(post.data.translationOf)) {
@@ -35,6 +37,8 @@ export async function getStaticPaths() {
     if (dePost) alternates.de = `/de/blog/${dePost.id}/`;
     const koPost = koByTranslationOf.get(post.data.translationOf);
     if (koPost) alternates.ko = `/ko/blog/${koPost.id}/`;
+    const itPost = itByTranslationOf.get(post.data.translationOf);
+    if (itPost) alternates.it = `/it/blog/${itPost.id}/`;
     return {
       params: { slug: post.id },
       props: {

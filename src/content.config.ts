@@ -83,4 +83,12 @@ const blogKo = defineCollection({
   }),
 });
 
-export const collections = { blog, blogEs, blogPt, blogJa, blogFr, blogDe, blogKo };
+// Italian translations, mirroring blogEs/blogPt/blogJa/blogFr/blogDe/blogKo.
+const blogIt = defineCollection({
+  loader: glob({ base: './src/content/blog-it', pattern: '**/*.md' }),
+  schema: blogSchema.extend({
+    translationOf: z.string(),
+  }),
+});
+
+export const collections = { blog, blogEs, blogPt, blogJa, blogFr, blogDe, blogKo, blogIt };

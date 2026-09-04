@@ -319,6 +319,46 @@ const ko: Dictionary = {
   'blog.keepLearning': '계속 학습하기',
 };
 
+const it: Dictionary = {
+  'nav.simulator': 'Simulatore di Trading',
+  'nav.chartSimulator': 'Simulatore di Grafici',
+  'nav.markets': 'Mercati',
+  'nav.analytics': 'Analisi',
+  'nav.learn': 'Impara',
+  'nav.live': 'Live',
+  'nav.toggleFullscreen': 'Attiva/disattiva schermo intero',
+  'nav.toggleTheme': 'Attiva/disattiva modalità chiara/scura',
+  'nav.startTrading': 'Inizia a Fare Trading',
+  'nav.menu': 'Menu',
+  'footer.tagline': 'Esercitati sul mercato. Domina il gioco. Trading virtuale gratuito — nessuna registrazione richiesta.',
+  'footer.product': 'Prodotto',
+  'footer.company': 'Azienda',
+  'footer.legal': 'Legale',
+  'footer.rights': 'Tutti i diritti riservati.',
+  'footer.disclaimerText':
+    'Stockade è solo una piattaforma di simulazione. Tutte le operazioni vengono effettuate con denaro virtuale. Questo non è un consiglio finanziario. Le performance simulate passate non indicano risultati reali futuri.',
+  'footer.nav.about': 'Chi siamo',
+  'footer.nav.contact': 'Contatti',
+  'footer.nav.privacy': 'Privacy',
+  'footer.nav.terms': 'Termini',
+  'footer.nav.disclaimer': 'Disclaimer',
+  'cookie.text':
+    'Utilizziamo i cookie per migliorare la tua esperienza e mostrare annunci pertinenti. Utilizzando questo sito, accetti il nostro uso dei cookie. Leggi la nostra',
+  'cookie.privacyLinkText': 'Informativa sulla Privacy',
+  'cookie.reject': 'Rifiuta non essenziali',
+  'cookie.accept': 'Accetta',
+  'cookie.ariaLabel': 'Consenso ai cookie',
+  'home.stats.startingBalance': 'Saldo Iniziale',
+  'home.stats.tradableAssets': 'Asset Negoziabili',
+  'home.stats.assetClasses': 'Classi di Asset',
+  'home.stats.costToStart': 'Costo per Iniziare',
+  'blog.onThisPage': 'In questa pagina',
+  'blog.tableOfContents': 'Indice',
+  'blog.learningCenter': 'Centro di Apprendimento',
+  'blog.minRead': 'min di lettura',
+  'blog.keepLearning': 'Continua a imparare',
+};
+
 export const translations: Record<Locale, Dictionary> = {
   en,
   es,
@@ -327,7 +367,7 @@ export const translations: Record<Locale, Dictionary> = {
   de,
   pt,
   ko,
-  it: {},
+  it,
 };
 
 export function t(locale: Locale, key: UiKey): string {

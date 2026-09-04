@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { CONTACT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Contatti | Stockade"
+  description="Condividi un feedback su Stockade, il nostro simulatore di borsa gratuito. Valuta la tua esperienza e segnalaci bug o idee — bastano pochi secondi."
+  alternates={CONTACT_ALTERNATES}
+>
+  <Navbar alternates={CONTACT_ALTERNATES} />
+
+  <main class="max-w-[680px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Contatti</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Dicci cosa ne pensi</h1>
+      <p class="text-[16px] text-[var(--c-text-muted)] leading-relaxed">
+        Valuta la tua esperienza e lascia commenti, segnalazioni di bug o idee nel modulo qui sotto —
+        leggiamo ogni segnalazione.
+      </p>
+    </div>
+
+    <!-- Google Form embed -->
+    <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-2 sm:p-3 mb-12">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfA5TEf_AHaCuygyjHEOOZm3LFKrziqaoKJCn1s8CAvbsVXWQ/viewform?embedded=true"
+        title="Modulo di feedback Stockade"
+        width="100%"
+        height="700"
+        style="border: 0; border-radius: 0.5rem;"
+        loading="lazy"
+      >Caricamento…</iframe>
+    </div>
+
+    <!-- FAQ nudge -->
+    <div class="mt-8 bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+      <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
+        Cerchi risposte rapide? Consulta la sezione <a href="/it/#faq" class="text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2">FAQ</a>
+        sulla home page — copre le domande più comuni su come funziona il simulatore.
+      </p>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

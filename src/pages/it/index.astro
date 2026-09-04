@@ -1,0 +1,411 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import TickerTape from '../../components/landing/TickerTape.tsx';
+import LiveStats from '../../components/landing/LiveStats.tsx';
+import { HOME_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+
+const locale = 'it' as const;
+
+// Single source of truth for the FAQ: the visible section below and the
+// FAQPage JSON-LD are both generated from this array. Mirrors the structure
+// of the English src/pages/index.astro — see that file for why the schema is
+// generated rather than hand-duplicated.
+const faqs = [
+  {
+    q: 'Stockade è completamente gratuito?',
+    a: 'Sì — 100% gratuito per sempre. Ogni funzione, ogni classe di asset, ogni strumento. Nessuna registrazione, nessuna carta di credito, nessun abbonamento richiesto.',
+  },
+  {
+    q: 'Gli studenti possono usare Stockade come simulatore di borsa?',
+    a: 'Assolutamente sì. Stockade è uno dei migliori simulatori di borsa gratuiti per studenti. Non richiede installazione né account, il che lo rende perfetto per l\'uso in classe, per i corsi di finanza universitari e per lo studio autonomo.',
+  },
+  {
+    q: 'Stockade supporta crypto, forex e futures?',
+    a: 'Sì. Stockade copre azioni, criptovalute, coppie forex e contratti futures (NQ, ES, CL, GC) — scoprili tutti nella <a href="/it/markets/">pagina Mercati</a>.',
+  },
+  {
+    q: 'Stockade è un simulatore di paper trading o di day trading?',
+    a: 'Entrambi. Puoi scorrere un\'intera sessione candela per candela al tuo ritmo (paper trading) oppure seguire i prezzi in diretta con aggiornamenti ogni 800ms (day trading) — il tutto con 100.000$ di capitale virtuale.',
+  },
+  {
+    q: 'Che cos\'è un simulatore di borsa?',
+    a: 'Un simulatore di borsa è una piattaforma di trading virtuale che riproduce le condizioni reali del mercato usando denaro finto, permettendoti di esercitarti nella compravendita di azioni, crypto, forex e futures senza alcun rischio finanziario. Stockade ti offre 100.000$ di capitale virtuale e strumenti di livello professionale — grafici a candele, indicatori tecnici e diversi tipi di ordine — direttamente nel browser, senza registrazione.',
+  },
+  {
+    q: 'Cosa posso fare con un simulatore di borsa?',
+    a: 'Puoi esercitarti nella compravendita di azioni, crypto, coppie forex e contratti futures; testare strategie contro un andamento di prezzo simulato; <a href="/it/blog/analizzare-le-metriche-di-performance-di-trading">monitorare le tue performance</a> con curva del capitale, tasso di successo e metriche di drawdown; e costruire la capacità di riconoscere pattern e la disciplina necessarie per i mercati reali — tutto senza rischi.',
+  },
+  {
+    q: 'Il simulatore di borsa è reale o finto?',
+    a: 'Il denaro è finto — capitale interamente virtuale, con partenza a 100.000$, quindi il rischio finanziario è pari a zero. Prezzi e grafici usano dati di mercato simulati e realistici, modellati sul comportamento reale dei broker, quindi la meccanica di trading, i pattern grafici e i tipi di ordine rispecchiano quelli di una piattaforma vera. Il denaro non è reale, ma le competenze che sviluppi sì.',
+  },
+  {
+    q: 'Come funziona un simulatore di borsa?',
+    a: 'Stockade genera dati di prezzo realistici per 29 asset tra azioni, crypto, forex e futures. Gli ordini si inseriscono tramite un pannello completo — mercato, limite, stop-loss, take-profit e ordini bracket OCO — e il simulatore li esegue istantaneamente. Il tuo P&L virtuale, la curva del capitale, il tasso di successo e le altre metriche di performance vengono tracciati automaticamente nel browser, senza bisogno di alcun account.',
+  },
+  {
+    q: 'Quali sono i rischi nell\'usare un simulatore di borsa?',
+    a: 'Il rischio principale è quello di sviluppare abitudini che non tengono conto di fattori reali come slippage, vincoli di liquidità, commissioni del broker e la pressione psicologica del denaro vero. Stockade è pensato per costruire competenze e per la formazione, non per garantire risultati nel trading reale. Quando passerai ai mercati reali, inizia con posizioni piccole per adattarti alle differenze emotive ed esecutive.',
+  },
+  {
+    q: 'Quali sono i limiti del simulatore?',
+    a: 'Stockade utilizza dati di prezzo simulati anziché un feed di mercato in tempo reale, quindi spread, slippage e gap fuori orario reali vengono approssimati anziché riprodotti con precisione. Inoltre non può replicare pienamente la pressione psicologica del rischiare capitale vero. Consideralo un campo di allenamento che copre tutte le competenze tecniche, tenendo presente che la disciplina emotiva si sviluppa ulteriormente nei mercati reali.',
+  },
+  {
+    q: 'Qual è il vantaggio principale di un simulatore?',
+    a: 'Zero rischio finanziario mentre sviluppi competenze di trading reali. Puoi testare strategie, commettere errori e costruire disciplina senza perdere denaro. Stockade ti offre 100.000$ di capitale virtuale e strumenti professionali — grafici a candele, EMA/VWAP/RSI/MACD, un pannello ordini completo e una dashboard di analisi dettagliata — lo stesso ambiente di un broker vero, completamente gratuito e senza conseguenze.',
+  },
+];
+
+// A couple of answers link out to relevant pages (see the `a` values above).
+// Google's FAQ rich-result match is on the rendered text, not the markup, so
+// the schema strips those tags rather than restating a second plain copy.
+const stripTags = (html: string) => html.replace(/<[^>]+>/g, '');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://stockademarketsim.com/it/#faq',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(a) },
+  })),
+};
+
+// Escaping "<" prevents a stray "</script>" inside any string from
+// terminating the JSON-LD block early.
+const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
+
+const liveStatsLabels = {
+  startingBalance: t(locale, 'home.stats.startingBalance'),
+  tradableAssets: t(locale, 'home.stats.tradableAssets'),
+  assetClasses: t(locale, 'home.stats.assetClasses'),
+  costToStart: t(locale, 'home.stats.costToStart'),
+};
+---
+
+<Layout
+  title="Stockade | Simulatore di Borsa Gratuito"
+  description="Un simulatore di borsa gratuito con denaro finto. Esercitati nel day trading e paper trading con 100.000$ virtuali — azioni, crypto, forex, futures. Nessuna registrazione."
+  alternates={HOME_ALTERNATES}
+>
+  <Fragment slot="head">
+    <!-- The WebSite and Organization entities live in SiteSchema.astro and are
+         emitted on every page by the base layout — those stay shared across
+         locales. This SoftwareApplication node's content (name/description/
+         featureList) genuinely differs per locale, so — like the FAQPage node
+         below — it gets its own page-specific @id/url rather than reusing the
+         English page's. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://stockademarketsim.com/it/#app",
+            "name": "Stockade Simulatore di Borsa",
+            "url": "https://stockademarketsim.com/it/",
+            "inLanguage": "it-IT",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "Simulatore di borsa online gratuito per il paper trading di azioni, crypto, forex e futures. Nessuna registrazione richiesta.",
+            "screenshot": "https://stockademarketsim.com/web-app-manifest-512x512.png",
+            "featureList": [
+              "Grafici a candele simulati con volume",
+              "Indicatori EMA, VWAP, RSI, MACD",
+              "Ordini a mercato e a limite con bracket stop-loss / take-profit OCO",
+              "Paper trading con 100.000$ di saldo virtuale",
+              "Dashboard di analisi con curva del capitale",
+              "Azioni, crypto, forex e futures"
+            ],
+            "publisher": { "@id": "https://stockademarketsim.com/#organization" },
+            "isPartOf": { "@id": "https://stockademarketsim.com/#website" }
+          }
+        ]
+      }
+    </script>
+    {/* Generated from the `faqs` array above — see index.astro for why. */}
+    <script type="application/ld+json" is:inline set:html={faqSchemaJson} />
+  </Fragment>
+
+  <Navbar alternates={HOME_ALTERNATES} />
+
+  <!-- ── Hero ── -->
+  <section class="relative overflow-hidden mesh-gradient">
+    <div
+      class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(var(--c-text) 1px, transparent 1px), linear-gradient(90deg, var(--c-text) 1px, transparent 1px); background-size: 40px 40px;"
+    ></div>
+
+    <div class="relative max-w-[1100px] mx-auto px-6 pt-24 pb-28 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] text-[#f59e0b] text-[12px] font-mono mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse"></span>
+        Gratis · Nessuna Registrazione · 100.000$ Virtuali
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
+        Fai pratica sul mercato.
+        <br />
+        <span class="gradient-text">Padroneggia il gioco.</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
+        Il simulatore di trading gratuito per azioni e crypto con dati di mercato simulati e realistici.
+        Nessuna registrazione. Nessun rischio. Solo trading virtuale.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-16">
+        <a
+          href="/it/simulator/"
+          class="px-6 py-3 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[15px] hover:bg-[#fbbf24] transition-colors"
+        >
+          Inizia a Fare Trading Gratis →
+        </a>
+        <a
+          href="/it/markets/"
+          class="px-6 py-3 rounded-full bg-[var(--c-bg-muted)] text-[var(--c-text)] font-semibold text-[15px] border border-[var(--c-border)] hover:bg-[var(--c-surface-2)] transition-colors"
+        >
+          Vedi i Mercati
+        </a>
+      </div>
+
+      <LiveStats client:load labels={liveStatsLabels} />
+    </div>
+  </section>
+
+  <!-- ── App preview ── -->
+  <section class="border-y border-[var(--c-border)] bg-[var(--c-bg-soft)] px-6 py-16">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="rounded-xl overflow-hidden border border-[var(--c-border)] shadow-2xl">
+        <div class="flex items-center gap-2 px-4 py-3 bg-[var(--c-bg-muted)] border-b border-[var(--c-border)]">
+          <span class="w-3 h-3 rounded-full bg-[#ef4444]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#f59e0b]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#22c55e]"></span>
+          <span class="ml-3 text-[12px] font-mono text-[var(--c-text-subtle)]">stockademarketsim.com/simulator — APXL 1M</span>
+          <span class="ml-auto text-[10px] font-mono text-[var(--c-text-subtle)] border border-[var(--c-border)] px-2 py-0.5 rounded tracking-wider">ANTEPRIMA</span>
+        </div>
+        <div class="bg-[var(--c-bg-subtle)] relative overflow-hidden" style="height: 320px;">
+          <svg viewBox="0 0 1200 320" class="w-full h-full" preserveAspectRatio="none">
+            <line x1="0" y1="64" x2="1200" y2="64" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="128" x2="1200" y2="128" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="192" x2="1200" y2="192" stroke="var(--c-border)" stroke-width="1"/>
+            <line x1="0" y1="256" x2="1200" y2="256" stroke="var(--c-border)" stroke-width="1"/>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#22c55e" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,240 C80,220 160,200 240,195 S400,165 480,150 S640,125 720,118 S900,100 960,95 S1100,80 1200,70"
+              stroke="#22c55e" stroke-width="2" fill="none" opacity="0.9"/>
+            <path d="M0,240 C80,220 160,200 240,195 S400,165 480,150 S640,125 720,118 S900,100 960,95 S1100,80 1200,70 V320 H0 Z"
+              fill="url(#g1)"/>
+          </svg>
+
+          <div class="absolute top-4 left-4 rounded-lg px-3 py-2 border border-[var(--c-border)] backdrop-blur-sm" style="background-color: var(--c-overlay);">
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-widest mb-0.5">APXL · 1M</div>
+            <div class="text-[22px] font-mono font-semibold text-[var(--c-text)]">$187.42</div>
+            <div class="text-[13px] font-mono text-[#22c55e]">+1.23 (+0.66%)</div>
+          </div>
+
+          <div class="absolute top-4 right-4 w-[160px] rounded-lg border border-[var(--c-border)] p-3" style="background-color: var(--c-overlay);">
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-widest mb-2">Order</div>
+            <div class="flex gap-1 mb-2">
+              <div class="flex-1 py-1.5 bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] text-[#22c55e] text-[11px] font-mono text-center rounded">ACQUISTA</div>
+              <div class="flex-1 py-1.5 bg-[var(--c-bg-muted)] border border-[var(--c-border)] text-[var(--c-text-subtle)] text-[11px] font-mono text-center rounded">VENDI</div>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--c-text-subtle)] mb-1">Capitale</div>
+            <div class="text-[14px] font-mono font-semibold text-[#22c55e]">$102,340</div>
+          </div>
+
+          <div class="absolute bottom-4 left-4 flex gap-2">
+            <div class="bg-[var(--c-green-bg)] border border-[var(--c-green-dim)] rounded px-2.5 py-1.5">
+              <div class="text-[10px] font-mono text-[var(--c-text-subtle)]">P&amp;L</div>
+              <div class="text-[15px] font-mono font-semibold text-[#22c55e]">+$2,340</div>
+            </div>
+            <div class="bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] rounded px-2.5 py-1.5">
+              <div class="text-[10px] font-mono text-[var(--c-text-subtle)]">Tasso di Successo</div>
+              <div class="text-[15px] font-mono font-semibold text-[#f59e0b]">68%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg)]">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="text-center mb-14">
+        <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">Perché Stockade</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)]">Tutto ciò che serve a un trader serio.</h2>
+        <p class="mt-4 text-[var(--c-text-muted)] text-lg max-w-[480px] mx-auto">
+          Pensato per l'apprendimento, non per la gamification. Strumenti professionali senza il prezzo da pagare.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { icon: '📈', title: 'Veri Grafici a Candele',   desc: 'Candele complete con volume ed EMA, VWAP, RSI, MACD — gli stessi strumenti usati dai professionisti.' },
+          { icon: '⚡', title: 'Esecuzione Istantanea',    desc: 'Ordini a mercato, a limite, stop-loss, take-profit e bracket OCO eseguiti all\'istante.' },
+          { icon: '⌨️', title: 'Scorciatoie da Tastiera',   desc: 'B per comprare, S per vendere, F per chiudere. Fai trading alla velocità del pensiero senza toccare il mouse.' },
+          { icon: '📊', title: 'Dashboard di Analisi',      desc: 'Tasso di successo, profit factor, guadagno/perdita medi, curva del capitale, drawdown e heatmap per fascia oraria.' },
+          { icon: '💼', title: 'Multi-Asset',               desc: 'Azioni, crypto, coppie forex e futures — tutto in un unico simulatore.' },
+          { icon: '📱', title: 'Pensato per il Mobile',     desc: 'Completamente responsive. Fai trading da smartphone, tablet o desktop con le stesse funzioni.' },
+          { icon: '🆓', title: '100% Gratuito per Sempre',  desc: 'Ogni funzione. Ogni asset. Nessuna registrazione. Nessuna prova. Nessun abbonamento. Basta iniziare.' },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5 hover:border-[var(--c-border-strong)] transition-colors group">
+            <div class="text-2xl mb-3">{f.icon}</div>
+            <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2 group-hover:text-[#f59e0b] transition-colors">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Asset coverage ── -->
+  <section class="py-20 px-6 bg-[var(--c-bg-soft)] border-y border-[var(--c-border)]">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="text-center mb-12">
+        <div class="text-[11px] font-mono uppercase tracking-widest text-[#22c55e] mb-3">Asset Disponibili</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)]">Fai trading su tutto.</h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          { label: 'Azioni',  sub: 'Azioni · 14 Titoli',              icon: '📈', color: '#3b82f6' },
+          { label: 'Crypto',  sub: 'Token &amp; Monete · 8 Asset',    icon: '🪙', color: '#f59e0b' },
+          { label: 'Forex',   sub: 'EUR/USD · GBP/USD · USD/JPY',     icon: '💱', color: '#22c55e' },
+          { label: 'Futures', sub: 'NQ · ES · CL · GC',               icon: '🔮', color: '#8b5cf6' },
+        ].map(a => (
+          <div class="bg-[var(--c-bg)] border border-[var(--c-border)] rounded-xl p-5 text-center hover:border-[var(--c-border-strong)] transition-colors">
+            <div class="text-3xl mb-3">{a.icon}</div>
+            <div class="text-[16px] font-semibold mb-1" style={`color: ${a.color}`}>{a.label}</div>
+            <div class="text-[12px] font-mono text-[var(--c-text-subtle)]" set:html={a.sub}></div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-[11px] font-mono text-[var(--c-text-subtle)] mt-6">
+        Tutti i ticker sono asset simulati e fittizi e non rappresentano titoli, criptovalute o strumenti negoziabili reali.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── SEO Content ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">Chi è Stockade</div>
+      <article class="prose-stockade">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--c-text)] mb-6">
+          Fai pratica sul mercato senza rischiare denaro vero
+        </h2>
+
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+Stockade è un <a href="/it/simulator/" class="text-[#f59e0b] hover:underline">simulatore di borsa</a> che apri in una scheda del browser e inizi a usare in circa dieci secondi. Ricevi <strong class="text-[var(--c-text)]">100.000$ di denaro virtuale</strong> e un ambiente di trading completo che copre azioni, crypto, forex e futures. Non c'è nessun account da creare, nessuna carta da inserire, niente da installare. Se fai una pessima operazione, l'unica cosa che perdi è un numero sullo schermo — ed è proprio a questo che serve fare pratica.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Perché la maggior parte dei giochi di trading delude
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Molti simulatori puntano sul coinvolgimento invece che sul realismo. Eliminano gli indicatori, i tipi di ordine e le metriche di rischio, e ciò che resta è un gioco in cui si guarda un numero salire — divertente per un pomeriggio, ma che insegna quasi nulla che sopravviva al contatto con un broker vero. Noi abbiamo scelto la strada opposta. Stockade offre grafici a candele con istogrammi di volume, overlay EMA 9/20/50, VWAP, RSI e MACD, oltre a un pannello ordini con ingressi a mercato e a limite e livelli di stop-loss / take-profit che funzionano come bracket OCO. L'obiettivo è che le abitudini che costruisci qui funzionino ancora quando passi a una piattaforma reale — consulta <a href="/it/blog/guida-al-paper-trading" class="text-[#f59e0b] hover:underline">la guida al paper trading</a> per capire come rendere duraturo questo passaggio.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Due modi di fare pratica: live e replay
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          La modalità live trasmette sei asset contemporaneamente con prezzi aggiornati ogni 800 millisecondi, così puoi esercitarti nel day trading contro un flusso veloce e scoprire come reagisci davvero sotto pressione. La modalità replay fa l'opposto — scorri un'intera sessione una candela alla volta, prendendoti tutto il tempo che vuoi per ogni decisione. La maggior parte degli utenti usa la modalità live per sviluppare i riflessi e il replay per allenare il riconoscimento dei pattern — per una pratica concentrata esclusivamente sulla lettura delle formazioni, senza pensare al P&amp;L, il <a href="/it/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> scorre i pattern a candele allo stesso modo. I simulatori di paper trading gestiti dai broker di solito richiedono registrazione e un conto reale collegato prima di lasciarti piazzare un solo ordine. Qui basta aprire la pagina.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Azioni, crypto, forex e futures in un unico posto
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Ci sono 14 titoli azionari con un comportamento di prezzo realistico, 8 asset crypto che si muovono con la volatilità che ci si aspetterebbe dal mercato reale, coppie valutarie principali e minori, e quattro contratti futures — NQ, ES, CL e GC. Questa varietà conta più di quanto sembri: una strategia che appare brillante su un'azione a movimento lento spesso crolla su una coppia valutaria o su un contratto futures, e avere tutto su <a href="/it/markets/" class="text-[#f59e0b] hover:underline">un'unica piattaforma</a> rende facile scoprirlo.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Analizza quello che è successo davvero
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
+          Piazzare gli ordini è la parte facile; la parte utile è analizzare i risultati dopo. La <a href="/it/analytics/" class="text-[#f59e0b] hover:underline">dashboard di analisi</a> legge lo storico delle tue operazioni e mostra curva del capitale, tasso di successo, profit factor, guadagno e perdita medi, drawdown massimo e una heatmap che mostra in quali ore della giornata le tue operazioni hanno funzionato davvero. Poiché non c'è nulla da installare né una barriera di registrazione, l'intero processo si svolge in una scheda del browser — il che lo rende praticabile anche per una classe o un gruppo di studio, dove far completare a tutti un modulo di registrazione è di solito la parte più difficile.
+        </p>
+
+        <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
+          Nessun paywall, nessun livello premium
+        </h3>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-4">
+          Molte piattaforme tengono i loro strumenti migliori dietro un abbonamento, o ti chiedono un indirizzo email prima di poter piazzare un solo ordine. Stockade no. Qui è tutto incluso, in modo permanente:
+        </p>
+        <ul class="space-y-2 mb-6 ml-4">
+          {[
+            'Grafici a candele completi con volume',
+            'Indicatori professionali: EMA, VWAP, RSI, MACD',
+            'Pannello ordini: ingressi a mercato e a limite, bracket OCO stop-loss / take-profit',
+            'Analisi delle performance con curve del capitale e monitoraggio del drawdown',
+            'Supporto completo per mobile e tablet',
+          ].map(item => (
+            <li class="flex items-start gap-2 text-[15px] text-[var(--c-text-muted)]">
+              <span class="text-[#22c55e] mt-0.5 shrink-0">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed">
+          Nessuna prova, nessun livello freemium, nessun upsell, nessuna raccolta email. Apri il simulatore e inizia a fare trading.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="py-20 px-6 bg-[var(--c-bg)] border-t border-[var(--c-border)]">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-4">FAQ</div>
+      <h2 class="text-3xl font-bold tracking-tight text-[var(--c-text)] mb-10">Domande frequenti</h2>
+      <div class="space-y-6">
+        {faqs.map(({ q, a }) => (
+          <div class="border border-[var(--c-border)] rounded-xl p-5 bg-[var(--c-bg-soft)]">
+            <h3 class="text-[15px] font-semibold text-[var(--c-text)] mb-2">{q}</h3>
+            <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed [&_a]:text-[#f59e0b] [&_a]:hover:underline" set:html={a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA band ── -->
+  <section class="py-24 px-6 bg-[var(--c-bg-soft)] border-t border-[var(--c-border)] text-center mesh-gradient">
+    <div class="max-w-[640px] mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-5 text-[var(--c-text)]">
+        Pronto a iniziare a fare trading?
+      </h2>
+      <p class="text-[var(--c-text-muted)] text-lg mb-8">
+        Nessuna carta di credito. Nessuna registrazione. 100.000$ di saldo virtuale ti aspettano.
+      </p>
+      <a
+        href="/it/simulator/"
+        class="inline-block px-8 py-4 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-bold text-[16px] hover:bg-[#fbbf24] transition-colors"
+      >
+        Avvia il Simulatore →
+      </a>
+    </div>
+  </section>
+
+  <div class="h-10"></div>
+  <Footer />
+
+  <div class="fixed bottom-0 left-0 right-0 z-30 border-t border-[var(--c-border)]">
+    <TickerTape client:load />
+  </div>
+</Layout>

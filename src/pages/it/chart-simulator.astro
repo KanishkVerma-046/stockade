@@ -1,0 +1,85 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="Simulatore di Pattern a Candele | Stockade"
+  description="Impara i pattern a candele con il nostro simulatore grafico interattivo gratuito. Esplora oltre 20 pattern: Doji, Hammer, Engulfing, Morning Star e altri."
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">Simulatore di Pattern a Candele</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            Come usare il Chart Simulator
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il Chart Simulator è uno strumento di replay a candele. Ogni volta che lo carichi genera
+            una nuova serie di prezzi sintetica, la analizza alla ricerca dei classici pattern a
+            candele e ne evidenzia ognuno sul grafico — così puoi osservare un setup formarsi candela
+            per candela, invece di incontrarlo già completo in uno schema da manuale.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Avviare un replay
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Premi play — o la barra spaziatrice — per rivelare le candele una alla volta. La barra di
+            avanzamento color ambra sotto la barra degli strumenti mostra a che punto sei della serie. I
+            pulsanti di velocità eseguono il replay a 1×, 2×, 5× o 10×. Per spostarti manualmente, usa
+            le frecce indietro e avanti oppure i tasti <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> e <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, e i pulsanti di salto per andare
+            direttamente all'inizio o alla fine. Il pulsante di aggiornamento genera un nuovo grafico
+            con una diversa combinazione di pattern.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Scegliere cosa visualizzare
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il menu a discesa dei simboli copre azioni, crypto, forex e futures, e i pulsanti dei
+            timeframe riaggregano la stessa serie in candele più lunghe o più corte. Sovrapponi EMA 9,
+            EMA 20, EMA 50 o VWAP dalla barra degli strumenti, e passa nel pannello inferiore tra
+            volume, RSI e MACD.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Cosa osservare
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il pannello Patterns a sinistra elenca ogni formazione riconosciuta dal simulatore — Doji,
+            Hammer, Engulfing rialzista e ribassista, Harami, Morning e Evening Star, Three White
+            Soldiers, Tweezer top e bottom, e altri ancora (<a href="/it/blog/come-leggere-i-grafici-a-candele" class="text-[#f59e0b] hover:underline">come leggere i grafici a candele</a> copre l'anatomia dietro ciascuno di essi).
+            Clicca su un pattern per evidenziare solo le sue occorrenze, oppure clicca su un marcatore
+            sul grafico per aprirne la spiegazione, inclusa la psicologia di mercato dietro il setup e
+            cosa lo conferma o lo invalida. L'abitudine più utile: fermati su un marcatore, prevedi la
+            candela successiva, poi avanza e verifica. Il contesto conta più della forma — un pattern di
+            inversione ha senso solo dopo un vero trend, e il volume dietro la candela di segnale
+            distingue un'inversione autentica dal rumore.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

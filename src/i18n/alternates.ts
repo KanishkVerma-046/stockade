@@ -11,6 +11,7 @@ export const HOME_ALTERNATES = {
   fr: '/fr/',
   de: '/de/',
   ko: '/ko/',
+  it: '/it/',
 } as const;
 
 export const CONTACT_ALTERNATES = {
@@ -21,6 +22,7 @@ export const CONTACT_ALTERNATES = {
   fr: '/fr/contact/',
   de: '/de/contact/',
   ko: '/ko/contact/',
+  it: '/it/contact/',
 } as const;
 
 export const MARKETS_ALTERNATES = {
@@ -31,6 +33,7 @@ export const MARKETS_ALTERNATES = {
   fr: '/fr/markets/',
   de: '/de/markets/',
   ko: '/ko/markets/',
+  it: '/it/markets/',
 } as const;
 
 export const ABOUT_ALTERNATES = {
@@ -41,6 +44,7 @@ export const ABOUT_ALTERNATES = {
   fr: '/fr/about/',
   de: '/de/about/',
   ko: '/ko/about/',
+  it: '/it/about/',
 } as const;
 
 export const ANALYTICS_ALTERNATES = {
@@ -51,6 +55,7 @@ export const ANALYTICS_ALTERNATES = {
   fr: '/fr/analytics/',
   de: '/de/analytics/',
   ko: '/ko/analytics/',
+  it: '/it/analytics/',
 } as const;
 
 export const SIMULATOR_ALTERNATES = {
@@ -61,6 +66,7 @@ export const SIMULATOR_ALTERNATES = {
   fr: '/fr/simulator/',
   de: '/de/simulator/',
   ko: '/ko/simulator/',
+  it: '/it/simulator/',
 } as const;
 
 export const CHART_SIMULATOR_ALTERNATES = {
@@ -71,6 +77,7 @@ export const CHART_SIMULATOR_ALTERNATES = {
   fr: '/fr/chart-simulator/',
   de: '/de/chart-simulator/',
   ko: '/ko/chart-simulator/',
+  it: '/it/chart-simulator/',
 } as const;
 
 // Covers only the /blog/ index — individual post alternates are computed
@@ -84,6 +91,7 @@ export const BLOG_ALTERNATES = {
   fr: '/fr/blog/',
   de: '/de/blog/',
   ko: '/ko/blog/',
+  it: '/it/blog/',
 } as const;
 
 // Every page-alternates constant above, in one place, so shared chrome

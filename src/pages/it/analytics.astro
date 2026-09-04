@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Dashboard di Analisi del Trading | Stockade"
+  description="Analizza le tue performance di paper trading con curve del capitale, tassi di successo, metriche di drawdown e diari di trading sul simulatore gratuito Stockade."
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analisi</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Dashboard delle Performance</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Le tue statistiche di trading simulato — curva del capitale, tasso di successo, drawdown e diario di trading.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Capire le tue metriche di trading
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Ogni numero in questa dashboard viene calcolato a partire dalle operazioni che hai chiuso nel
+        simulatore di paper trading di Stockade e salvato localmente nel tuo browser. Sapere cosa
+        misura davvero ciascun valore fa la differenza tra analizzare il proprio trading e limitarsi ad
+        ammirare il P&amp;L — <a href="/it/blog/analizzare-le-metriche-di-performance-di-trading" class="text-[#f59e0b] hover:underline">analizzare le tue performance di trading</a> approfondisce tasso di successo, profit factor e drawdown.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Statistiche principali</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">P&amp;L totale</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La somma dei profitti e delle perdite realizzati su ogni operazione chiusa. Le posizioni
+            aperte non vengono conteggiate finché non le chiudi, quindi un totale lusinghiero può
+            nascondere una posizione in perdita ancora aperta.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Capitale</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il valore attuale del tuo conto — i 100.000$ di saldo iniziale più il P&amp;L totale.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Tasso di successo</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            La percentuale di operazioni chiuse terminate in profitto. Un tasso di successo elevato è
+            rassicurante ma da solo dice poco: una strategia che vince l'80% delle volte può comunque
+            far perdere denaro se il 20% delle operazioni in perdita è abbastanza grande.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Profit factor</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il profitto lordo diviso per la perdita lorda. Qualsiasi valore superiore a 1,0× significa
+            che hai guadagnato più di quanto hai perso, e 1,5× o superiore è generalmente considerato
+            solido. Risponde alla domanda a cui il tasso di successo non può rispondere — quanto
+            guadagni per ogni unità di perdita assorbita.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Guadagno medio</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il profitto medio delle tue operazioni vincenti. Confrontalo con la tua perdita media: se il
+            tuo guadagno medio è il più piccolo dei due, ti serve un tasso di successo corrispondentemente
+            alto solo per andare in pareggio.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Drawdown massimo</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Il più grande calo dal picco al minimo del tuo capitale, espresso in percentuale. Questa è
+            la metrica del dolore. Stima il tratto peggiore che avresti dovuto attraversare — nel
+            trading reale, spesso è ciò che fa finire una strategia molto prima che lo faccia la
+            matematica. <a href="/it/blog/gestione-del-rischio-e-dimensionamento-della-posizione" class="text-[#f59e0b] hover:underline">Il dimensionamento della posizione e la regola dell'1%</a> spiega la matematica del recupero dietro al motivo per cui il drawdown conta così tanto.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Curva del capitale</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La curva del capitale traccia il valore del tuo conto dopo ogni operazione chiusa. La sua forma
+        conta più del suo punto finale: una crescita costante indica un processo ripetibile, mentre una
+        linea piatta interrotta da uno o due salti enormi di solito indica fortuna.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Diario di trading</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Il diario elenca ogni operazione chiusa con simbolo, direzione, prezzo di ingresso e di uscita,
+        dimensione, P&amp;L e tempo di detenzione. Il dato sulla durata media è un utile controllo di
+        realtà: molti trader scoprono di tenere le posizioni in perdita molto più a lungo di quelle in
+        guadagno, oppure di fare trading su un orizzonte temporale molto più breve di quanto avessero
+        intenzione.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Heatmap oraria</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La heatmap suddivide i tuoi risultati per giorno della settimana e ora del giorno, colorando
+        ogni cella in base al P&amp;L netto. Con un numero sufficiente di operazioni può rivelare che
+        una particolare sessione è silenziosamente responsabile della maggior parte delle tue perdite.
+        Diffida di un campione ridotto — una singola cella ha bisogno di decine di operazioni alle
+        spalle prima che il colore abbia un vero significato.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
