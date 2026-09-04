@@ -11,13 +11,13 @@ describe('t', () => {
   });
 
   it('falls back to English for a locale with no translations yet', () => {
-    expect(t('ko', 'nav.simulator')).toBe(translations.en['nav.simulator']);
+    expect(t('it', 'nav.simulator')).toBe(translations.en['nav.simulator']);
   });
 
   it('falls back to English for every key in an untranslated locale', () => {
     const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
     for (const key of keys) {
-      expect(t('ko', key)).toBe(translations.en[key]);
+      expect(t('it', key)).toBe(translations.en[key]);
     }
   });
 
@@ -53,6 +53,13 @@ describe('t', () => {
     const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
     for (const key of keys) {
       expect(translations.de[key]).toBeDefined();
+    }
+  });
+
+  it('has a complete Korean translation for every English key', () => {
+    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
+    for (const key of keys) {
+      expect(translations.ko[key]).toBeDefined();
     }
   });
 });

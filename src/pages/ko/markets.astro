@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MarketsView from '../../components/markets/MarketsView.tsx';
+import { MARKETS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="주식, 암호화폐, 외환, 선물 마켓 | Stockade"
+  description="무료 온라인 주식 시장 시뮬레이터에서 주식, 암호화폐, 외환, 선물 등 29개 시뮬레이션 자산을 확인하세요. 가입이 필요하지 않습니다."
+  alternates={MARKETS_ALTERNATES}
+>
+  <Navbar alternates={MARKETS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">마켓</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">마켓 개요</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">이 마켓 개요는 주식, 암호화폐, 외환, 선물 등 29개 시뮬레이션 자산에 대해 2초마다 갱신됩니다. 암호화폐 트레이딩 시뮬레이터의 관심 종목 목록으로, 외환 시뮬레이터 스캐너로, 혹은 트레이딩 전에 가격을 빠르게 확인하는 용도로 사용해보세요. 가격 변동률 기준으로 정렬해 가장 활발히 움직이는 자산을 확인하고, 바로 옆의 거래량 열도 함께 살펴보세요 — 이 숫자가 실제로 무엇을 의미하는지는 <a href="/ko/blog/georaeryang-ihaehagi" class="text-[#f59e0b] hover:underline">거래량 이해하기</a>에서 확인하실 수 있습니다. 800밀리초 간격의 실시간 시세를 원하시면 <a href="/ko/simulator/" class="text-[#f59e0b] hover:underline">트레이딩 시뮬레이터</a>를 이용하세요.</p>
+    </div>
+    <MarketsView client:load />
+  </main>
+  <Footer />
+</Layout>

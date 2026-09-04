@@ -75,4 +75,12 @@ const blogDe = defineCollection({
   }),
 });
 
-export const collections = { blog, blogEs, blogPt, blogJa, blogFr, blogDe };
+// Korean translations, mirroring blogEs/blogPt/blogJa/blogFr/blogDe.
+const blogKo = defineCollection({
+  loader: glob({ base: './src/content/blog-ko', pattern: '**/*.md' }),
+  schema: blogSchema.extend({
+    translationOf: z.string(),
+  }),
+});
+
+export const collections = { blog, blogEs, blogPt, blogJa, blogFr, blogDe, blogKo };

@@ -279,6 +279,46 @@ const de: Dictionary = {
   'blog.keepLearning': 'Weiterlernen',
 };
 
+const ko: Dictionary = {
+  'nav.simulator': '트레이딩 시뮬레이터',
+  'nav.chartSimulator': '차트 시뮬레이터',
+  'nav.markets': '마켓',
+  'nav.analytics': '분석',
+  'nav.learn': '학습',
+  'nav.live': '실시간',
+  'nav.toggleFullscreen': '전체화면 전환',
+  'nav.toggleTheme': '라이트/다크 모드 전환',
+  'nav.startTrading': '거래 시작하기',
+  'nav.menu': '메뉴',
+  'footer.tagline': '시장을 연습하세요. 게임을 정복하세요. 무료 가상 트레이딩 — 가입 불필요.',
+  'footer.product': '제품',
+  'footer.company': '회사',
+  'footer.legal': '법적 정보',
+  'footer.rights': '모든 권리 보유.',
+  'footer.disclaimerText':
+    'Stockade는 시뮬레이션 플랫폼입니다. 모든 거래는 가상 자금으로 이루어집니다. 이는 투자 자문이 아닙니다. 과거 시뮬레이션 성과는 미래의 실제 결과를 나타내지 않습니다.',
+  'footer.nav.about': '회사 소개',
+  'footer.nav.contact': '문의하기',
+  'footer.nav.privacy': '개인정보처리방침',
+  'footer.nav.terms': '이용약관',
+  'footer.nav.disclaimer': '면책조항',
+  'cookie.text':
+    '저희는 사용자 경험을 개선하고 관련 광고를 제공하기 위해 쿠키를 사용합니다. 본 사이트를 이용하면 쿠키 사용에 동의하는 것으로 간주됩니다. 자세한 내용은',
+  'cookie.privacyLinkText': '개인정보처리방침',
+  'cookie.reject': '필수 외 거부',
+  'cookie.accept': '동의',
+  'cookie.ariaLabel': '쿠키 동의',
+  'home.stats.startingBalance': '시작 자금',
+  'home.stats.tradableAssets': '거래 가능 자산',
+  'home.stats.assetClasses': '자산군',
+  'home.stats.costToStart': '시작 비용',
+  'blog.onThisPage': '이 페이지에서',
+  'blog.tableOfContents': '목차',
+  'blog.learningCenter': '학습 센터',
+  'blog.minRead': '분 읽기',
+  'blog.keepLearning': '계속 학습하기',
+};
+
 export const translations: Record<Locale, Dictionary> = {
   en,
   es,
@@ -286,7 +326,7 @@ export const translations: Record<Locale, Dictionary> = {
   fr,
   de,
   pt,
-  ko: {},
+  ko,
   it: {},
 };
 

@@ -1,0 +1,66 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="캔들스틱 패턴 시뮬레이터 | Stockade"
+  description="무료 인터랙티브 차트 시뮬레이터로 캔들스틱 패턴을 학습하세요. Doji, Hammer, Engulfing, Morning Star 등 20개 이상의 패턴을 살펴보세요."
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">캔들스틱 패턴 시뮬레이터</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            차트 시뮬레이터 사용 방법
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            차트 시뮬레이터는 캔들스틱 리플레이 도구입니다. 불러올 때마다 새로운 합성 가격 시리즈를 생성하고, 그 안에서 대표적인 캔들스틱 패턴을 찾아내 차트 위에 표시합니다 — 이미 완성된 교과서 도표로 패턴을 접하는 대신, 패턴이 캔들 단위로 형성되는 과정을 직접 지켜볼 수 있습니다.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            리플레이 실행하기
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            재생 버튼을 누르거나 스페이스바를 눌러 캔들을 한 개씩 공개하세요. 툴바 아래의 호박색 진행 바가 전체 시리즈 중 현재 위치를 보여줍니다. 속도 버튼으로 1×, 2×, 5×, 10× 배속으로 재생할 수 있습니다. 수동으로 이동하려면 뒤로/앞으로 화살표 버튼이나 <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd>, <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd> 키를 사용하고, 처음이나 끝으로 바로 이동하려면 건너뛰기 버튼을 사용하세요. 새로고침 버튼을 누르면 다른 패턴 조합으로 새 차트를 생성합니다.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            표시할 항목 선택하기
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            심볼 드롭다운은 주식, 암호화폐, 외환, 선물을 아우르며, 타임프레임 버튼은 동일한 시리즈를 더 길거나 짧은 봉으로 다시 집계합니다. 툴바에서 EMA 9, EMA 20, EMA 50, VWAP를 오버레이하고, 하단 패널을 거래량, RSI, MACD 사이에서 전환할 수 있습니다.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            무엇을 살펴봐야 할까요
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            왼쪽의 <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> 패널은 시뮬레이터가 인식하는 모든 형태를 나열합니다 — Doji, Hammer, Bullish Engulfing, Bearish Engulfing, Harami, Morning Star, Evening Star, Three White Soldiers, Tweezer Top, Tweezer Bottom 등 다양한 패턴이 있습니다(각 패턴의 구조는 <a href="/ko/blog/kaendeulseutik-chateu-ingneun-beop" class="text-[#f59e0b] hover:underline">캔들스틱 차트 읽는 법</a>에서 확인하세요). 패턴을 클릭하면 해당 패턴이 나타난 위치만 강조되고, 차트의 마커를 클릭하면 해당 패턴 뒤에 있는 시장 심리와 그 패턴을 확증하거나 무효화하는 조건을 포함한 설명이 열립니다. 가장 유용한 습관은 마커에서 잠시 멈춰 다음 캔들을 예측한 다음, 앞으로 진행해서 확인해보는 것입니다. 형태 자체보다 맥락이 더 중요합니다 — 반전 패턴은 실제 추세 뒤에 나타났을 때만 의미가 있으며, 신호 캔들 뒤의 거래량은 진짜 반전과 노이즈를 구분하는 데 도움이 됩니다.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

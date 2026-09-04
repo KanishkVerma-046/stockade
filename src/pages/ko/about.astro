@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { ABOUT_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Stockade 소개 | 초보자를 위한 트레이딩 시뮬레이터"
+  description="위험 없이 연습하고 싶은 트레이더를 위해 만들어진 무료 브라우저 기반 주식 시장 시뮬레이터, Stockade를 소개합니다. 가입도, 카드도 필요 없습니다."
+  alternates={ABOUT_ALTERNATES}
+>
+  <Navbar alternates={ABOUT_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">소개</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        도박이 아닌 학습을 원하는 트레이더를 위해 만들었습니다.
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade는 누구나 10만 달러의 가상 자금으로 주식, 암호화폐, 외환, 선물 거래를 연습할 수 있는
+        무료 브라우저 기반 모의투자 시뮬레이터입니다 — 가입도, 신용카드도, 위험도 없습니다.
+      </p>
+    </div>
+
+    <!-- Who built this -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <div class="flex items-center gap-3 mb-5">
+        <div
+          class="shrink-0 w-9 h-9 rounded-lg bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <!-- Generic graduation cap. No photo, avatar, initials, or name is
+               used here — the people behind the project stay unidentified. -->
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L18.5 7L10 11L1.5 7L10 3Z" />
+            <path d="M5 9v4.5c0 1.1 2.24 2 5 2s5-.9 5-2V9" />
+            <path d="M18.5 7v4.5" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-[var(--c-text)]">이 프로젝트에 대해</h2>
+      </div>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        Stockade는 컴퓨터공학·공학 배경을 가지고 금융 시장과 트레이딩 시스템에 관심이 있는 한 개발자가 만들고 관리하고 있습니다. 이 프로젝트는 기존 시뮬레이터 대부분이 유료이거나, 실제 자금 증권사 광고로 뒤덮여 있거나, 실제 시장의 움직임을 반영하기에는 너무 단순하다는 점을 발견하고 재정적 위험 없이 트레이딩 전략을 연습하기 위해 시작되었으며, 이후 트레이딩을 배우기 위한 완전한 연습 환경으로 성장했습니다. 초보자를 위한 트레이딩 시뮬레이터로도, 이미 실전 경험이 있는 트레이더를 위한 샌드박스로도 잘 작동하도록 설계되었습니다.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        이 사이트는 네 가지 영역을 다룹니다: 사실적인 주문 유형(시장가, 지정가, 손절매, OCO/브라켓 주문)을 갖춘 <a href="/ko/simulator/" class="text-[#f59e0b] hover:underline">주식 시장 시뮬레이터</a>, 과거 데이터풍의 가격 움직임으로 기술적 분석을 연습할 수 있는 <a href="/ko/chart-simulator/" class="text-[#f59e0b] hover:underline">차트 리플레이 도구</a>, 거래 성과를 검토하고 행동 패턴을 파악하는 <a href="/ko/analytics/" class="text-[#f59e0b] hover:underline">분석 대시보드</a>, 그리고 트레이딩 개념, 지표, 전략에 관해 계속 늘어나는 <a href="/ko/blog/" class="text-[#f59e0b] hover:underline">학습 아티클 라이브러리</a>입니다. 티커, 가격, 시장 움직임을 포함한 모든 거래 데이터는 실제 시장이 아닌 시뮬레이션 데이터이며, 실시간 데이터로 오해될 수 있는 곳에는 이 점을 명확히 밝히고 있습니다.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-4">
+        기능에 실제 한계가 있는 경우 — 예를 들어 이 시뮬레이터는 현재 실제 거래소처럼 슬리피지나 부분 체결을 반영하지 않습니다 — 이를 암묵적으로 남겨두지 않고 해당 페이지에 직접 명시하고 있습니다. 연습 환경 자체는 시뮬레이션이지만 학습 콘텐츠는 실제 트레이딩 개념에 충실하도록 작성되었으며, 손익 및 성과 지표와 같은 계산 로직은 개발 과정에서 표준 트레이딩 공식과 대조하여 검증됩니다.
+      </p>
+
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        이는 독립적인 프로젝트로, 어떠한 증권사, 거래소, 금융기관과도 제휴 관계가 없습니다. 이 사이트의 어떤 내용도 투자 자문에 해당하지 않습니다.
+      </p>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-6">Stockade가 제공하는 것</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            title: '완전한 캔들스틱 차트',
+            desc: '거래량 히스토그램을 포함한 완전한 OHLCV 캔들스틱 차트 — 전 세계 전문 트레이더들이 사용하는 것과 동일한 차트 유형입니다.',
+          },
+          {
+            title: '전문가용 지표',
+            desc: 'EMA 9/20/50, VWAP, RSI, MACD 오버레이가 기본으로 내장되어 있습니다. 구독도, 추가 옵션도 필요 없습니다.',
+          },
+          {
+            title: '완전한 주문창',
+            desc: '시장가 및 지정가 진입에 더해, OCO 브라켓처럼 작동하는 손절매·익절 수준을 선택적으로 설정할 수 있습니다 — 어느 쪽 수준에 먼저 도달하든 포지션을 청산하고 나머지 주문을 취소합니다.',
+          },
+          {
+            title: '성과 분석',
+            desc: '자본 곡선, 승률, 손익비, 평균 손익, 최대 낙폭, 시간대별 히트맵을 제공합니다.',
+          },
+          {
+            title: '멀티 자산 지원',
+            desc: '<a href="/ko/markets/" class="text-[#f59e0b] hover:underline">29개의 시뮬레이션 자산</a>을 거래하세요: 주식 14종목, 암호화폐 8종, 주요 외환 페어, 선물(NQ, ES, CL, GC).',
+          },
+          {
+            title: '실시간 & 리플레이 모드',
+            desc: '실시간 연습을 위한 800밀리초 시세 갱신, 또는 원하는 속도로 캔들 단위로 세션을 진행하는 리플레이.',
+          },
+          {
+            title: '영구 100% 무료',
+            desc: '체험판도, 프리미엄 등급도, 업셀도 없습니다. 모든 기능이 항상 무료로 제공됩니다.',
+          },
+        ].map(f => (
+          <div class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
+            <h3 class="text-[14px] font-semibold text-[var(--c-text)] mb-1.5">{f.title}</h3>
+            <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed" set:html={f.desc} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-12 pb-12 border-b border-[var(--c-border)]">
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">투자 자문이 아닙니다</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Stockade는 교육 및 오락 목적의 플랫폼일 뿐입니다. 모든 거래는 실제 가치가 없는 가상 자금으로 이루어집니다. 이 사이트의 어떤 내용도 재무, 투자, 법률, 세무 자문에 해당하지 않습니다. 과거 시뮬레이션 성과는 미래의 실제 결과를 나타내지 않습니다. 실제 투자 결정을 내리기 전에는 반드시 공인 재무 자문가와 상담하시기 바랍니다.
+      </p>
+    </section>
+
+    <!-- Contact CTA -->
+    <section>
+      <h2 class="text-xl font-bold text-[var(--c-text)] mb-4">문의하기</h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mb-5">
+        질문이나 제안이 있으신가요? 버그를 발견하셨나요? 언제든 연락 주세요 — 여러분의
+        피드백은 실제로 다음 개발 방향에 영향을 줍니다.
+      </p>
+      <a
+        href="/ko/contact/"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f59e0b] text-[#0a0a0a] font-semibold text-[14px] hover:bg-[#fbbf24] transition-colors"
+      >
+        문의하기 →
+      </a>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

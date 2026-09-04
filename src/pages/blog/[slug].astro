@@ -12,6 +12,7 @@ export async function getStaticPaths() {
   const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
   const frPosts = await getCollection('blogFr', ({ data }) => !data.draft);
   const dePosts = await getCollection('blogDe', ({ data }) => !data.draft);
+  const koPosts = await getCollection('blogKo', ({ data }) => !data.draft);
   // Translated posts use localized slugs, so they're matched to the English
   // post they translate via `translationOf` (the English post's id) rather
   // than by sharing an id/filename.
@@ -20,6 +21,7 @@ export async function getStaticPaths() {
   const jaByTranslationOf = new Map(jaPosts.map(p => [p.data.translationOf, p]));
   const frByTranslationOf = new Map(frPosts.map(p => [p.data.translationOf, p]));
   const deByTranslationOf = new Map(dePosts.map(p => [p.data.translationOf, p]));
+  const koByTranslationOf = new Map(koPosts.map(p => [p.data.translationOf, p]));
   // Every article declares a frontmatter `slug`, which the glob loader
   // uses as the entry id — so `post.id` IS the URL segment.
   return posts.map(post => {
@@ -28,15 +30,17 @@ export async function getStaticPaths() {
     const jaPost = jaByTranslationOf.get(post.id);
     const frPost = frByTranslationOf.get(post.id);
     const dePost = deByTranslationOf.get(post.id);
+    const koPost = koByTranslationOf.get(post.id);
     // Only advertise hreflang alternates once at least one translation
     // actually exists, same as every other page in this project.
     const alternates: Record<string, string> = {};
-    if (esPost || ptPost || jaPost || frPost || dePost) alternates.en = `/blog/${post.id}/`;
+    if (esPost || ptPost || jaPost || frPost || dePost || koPost) alternates.en = `/blog/${post.id}/`;
     if (esPost) alternates.es = `/es/blog/${esPost.id}/`;
     if (ptPost) alternates.pt = `/pt/blog/${ptPost.id}/`;
     if (jaPost) alternates.ja = `/ja/blog/${jaPost.id}/`;
     if (frPost) alternates.fr = `/fr/blog/${frPost.id}/`;
     if (dePost) alternates.de = `/de/blog/${dePost.id}/`;
+    if (koPost) alternates.ko = `/ko/blog/${koPost.id}/`;
     return {
       params: { slug: post.id },
       props: {
