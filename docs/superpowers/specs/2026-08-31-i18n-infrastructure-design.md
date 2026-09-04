@@ -555,15 +555,86 @@ remaining gap beyond what the subagent had already fixed: `ja/about.astro`'s "gr
 educational content" link still pointed at the English `/blog` index rather than `/ja/blog/`,
 corrected during verification. No deploy — per instruction, build/preview only.
 
+## Phase 5 addenda (2026-09-04) — Korean (ko) rollout, full site in one pass
+
+Following the same shape as the Japanese rollout (Phase 4), Korean was translated in two
+sequential passes in one session: infra + all 7 pages (homepage plus the 6 static/app pages)
+first, verified independently, then all 20 blog posts plus blog routing infra in a second
+pass, also verified independently. The user again explicitly asked for the full thing in one
+pass with no per-step confirmation, one subagent active at a time (never concurrent), and no
+deploy — consistent with the fr and de rollouts. Both passes were delegated to fresh
+general-purpose subagents (not forks) rather than done inline, and both were independently
+re-verified from the coordinating session afterward rather than trusting the subagent's own
+completion report — per the standing lesson from the Japanese rollout, a subagent's inline
+"done" claim is not evidence on its own. Verification both times included: `git status`/diff
+to confirm the actual file set touched, `npm run build`, `npx astro check` (only the known
+pre-existing `ChartSimulator.tsx:670` error both times), `npm test`, a scripted check of every
+`blog-ko/*.md`'s `description` length (≤160, hard build failure otherwise), `translationOf`
+value (must resolve to a real English post id, no duplicates, no missing posts), `slug`
+frontmatter matching the filename, reciprocal `hreflang="ko"` links on both sides, matching
+`xhtml:link` entries in `dist/sitemap.xml`, and a grep-based scan for the compressHTML
+joined-word bug across all new built pages. Both subagent runs completed cleanly with no
+retry needed — unlike the Japanese rollout's blog pass, which needed a second attempt after a
+0-tool-call false start and was then cut off by a rate limit before finishing its own
+documentation updates.
+
+**Korean slugs are Revised Romanization of Korean (the ROK official standard), not Hangul
+directly in the URL and not copied English** — the same reasoning the Japanese rollout used
+for Hepburn romaji: Korean isn't Latin-script natively, so a URL-safe, human-readable slug
+needs romanization rather than raw Hangul (which is valid but illegible when percent-encoded)
+or an English fallback (which loses the target-language keyword entirely). Established
+loanwords that stay loanwords in the Korean prose (모의투자 for "paper trading", 데이트레이딩 for
+"day trading", 스윙 트레이딩 for "swing trading", 암호화폐 for "crypto", 외환 for "forex", 선물 for
+"futures", 트레이딩 for "trading" generally) are romanized consistently in slugs too (e.g.
+`moeuituja-gaideu`, `deiteureiding-heunhan-silsu`, `amhohwapye-teureiding-ipmun`) rather than
+reverting to the English word the way the Spanish rollout kept `day-trading-vs-swing-trading`
+as a bare English slug — Spanish could do that because Spanish is already Latin-script and the
+English term reads as a natural Spanish loanword-in-place; Korean has no equivalent shortcut.
+
+Terminology established for this rollout (extending the pattern from the es/pt/ja terminology
+notes): market order = 시장가 주문, limit order = 지정가 주문, stop-loss = 손절매, take-profit = 익절,
+OCO/bracket = OCO 브라켓, win rate = 승률, profit factor = 손익비, equity curve = 자본 곡선, trade
+journal = 매매일지, drawdown/max drawdown = 낙폭/최대 낙폭, position sizing = 포지션 사이징, slippage =
+슬리피지, partial fill(s) = 부분 체결, queue position = 대기 순번, bid/ask = 매수호가/매도호가, crypto =
+암호화폐, forex = 외환, futures = 선물, paper trading = 모의투자, day trading = 데이트레이딩, swing
+trading = 스윙 트레이딩. Buy/Sell/Flatten, the "Working Orders" panel label, B/S/F keyboard
+shortcuts, the "Patterns" panel, and every candlestick pattern name (Doji, Hammer, Bullish/
+Bearish Engulfing, Harami, Morning/Evening Star, Three White Soldiers, Tweezer Top/Bottom,
+Marubozu, Hanging Man) stay literally in English, same rule as every prior locale, since those
+are the actual on-screen labels in the untranslated React islands. `nav.analytics`/the
+Analytics page label uses 분석 (plain noun) rather than an anglicized loanword, chosen the same
+way es picked "Análisis" over "Analítica" and ja picked 分析 over アナリティクス.
+
+Both subagent briefs explicitly required reading the matching already-translated Korean
+static page before translating each related blog post (`ko/analytics.astro` before the
+analytics-metrics post, `ko/simulator.astro` before the order-mechanics cluster, `ko/index.astro`'s
+FAQ before the "what is a simulator" post, `ko/markets.astro`/`ko/about.astro` before the
+asset-class posts) — this was front-loaded into the brief rather than left to be caught in
+review, per the standing cross-post terminology-consistency lesson from earlier rollouts.
+
+The chrome-link sweep found and fixed 8 stale English `/blog/...` links across the Korean
+static pages (about, analytics ×2, chart-simulator, index ×2, markets, simulator ×3) once the
+20 Korean posts existed to link to — consistent with every prior rollout's experience that the
+sweep step catches real, non-hypothetical gaps and must run after every batch, not be skipped
+as a formality.
+
+All 20 posts pass the schema's 160-char description cap, full build/`astro check`/`npm test`
+verification is clean (only the known pre-existing `ChartSimulator.tsx:670` error), and the
+coordinating session's independent frontmatter-integrity check (20/20 posts present, correct
+1:1 `translationOf` mapping to English ids, no duplicates, no drafts, slugs matching filenames)
+found zero discrepancies. No deploy — per instruction, build/preview only.
+
 ## Rollout strategy (current decision — not dated history, keep this section updated)
 
 Spanish is complete across every page in scope: the homepage, all 6 non-legal static/app pages, and
 all 20 blog posts (finished 2026-09-01). Portuguese (pt-BR) reached the same completeness on
-2026-09-03, and Japanese (ja) reached it the same day (Phase 4 above) — homepage, all 6 non-legal
-static/app pages, and all 20 blog posts, via the same AI-translation process used for Spanish and
-Portuguese. The only English-only content left on the site is the two explicit non-goals (`/404`,
-`/500`) and the legal pages (`/privacy`, `/terms`, `/disclaimer`), which are intentionally on a
-separate, professional-review track — see the Phase 3 addenda above for that status.
+2026-09-03, Japanese (ja) reached it the same day (Phase 4 above), French (fr) and German (de)
+each reached it on subsequent sessions, and Korean (ko) reached it on 2026-09-04 (Phase 5 above) —
+homepage, all 6 non-legal static/app pages, and all 20 blog posts, via the same AI-translation
+process used for every prior locale. The only English-only content left on the site is the two
+explicit non-goals (`/404`, `/500`), the legal pages (`/privacy`, `/terms`, `/disclaimer`), which
+are intentionally on a separate, professional-review track — see the Phase 3 addenda above for that
+status — and Italian (`it`), the one registry locale with no content at all yet.
 
 **2026-09-03 sequencing note:** the previous version of this section said to do the legal pages
 before starting any new language, and to treat that as settled. The user explicitly asked to skip
@@ -572,13 +643,15 @@ Japanese by registry order — then explicitly redirected to Portuguese), overri
 for that round. Later the same day the user asked to skip ahead again, this time to the next
 language by registry order (confirmed as Japanese rather than assumed, learning from the earlier
 mis-assumption) — a second instance of the same override, not a reversal of the underlying policy.
-Before starting fr, de, ko, or it, or before starting the legal pages, ask rather than assume which
-the user wants next; do not treat any prior override as binding on a future session by default.
+The fr, de, and ko rollouts each continued straight through registry order on explicit
+per-session instruction, without a fresh ask each time. Before starting `it`, or before starting
+the legal pages, ask rather than assume which the user wants next; do not treat any prior override
+as binding on a future session by default.
 
 The permanent, non-dated checklist for adding any translated page (registry step included) now
 lives in the project's `CLAUDE.md` under `## i18n`, since that file is loaded into every session
 automatically — treat it as the source of truth for the mechanical steps, and this doc as the
 source of truth for architecture and decision history. The sitemap `serialize()` hreflang logic in
 `astro.config.mjs` was generalized from Spanish-only to loop over a `translatedBlogLocales` array
-when Portuguese was added, and `ja` was appended to that same array when Japanese was added — see
-the `## i18n` section in `CLAUDE.md` for where to extend it next.
+when Portuguese was added, and `ja`, then `fr`, `de`, and `ko` were each appended to that same array
+as they landed — see the `## i18n` section in `CLAUDE.md` for where to extend it next.
