@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/layout/Navbar.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import { readingTime } from '../../../lib/reading-time';
+import { BLOG_ALTERNATES } from '../../../i18n/alternates';
+
+const posts = (await getCollection('blogDe', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const dateFmt = new Intl.DateTimeFormat('de-DE', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Layout
+  title="Trading-Lernzentrum | Stockade"
+  description="Kostenlose, ausführliche Anleitungen zu Candlestick-Charts, Indikatoren, Ordertypen und Risikomanagement — lernen Sie durch Üben."
+  alternates={BLOG_ALTERNATES}
+>
+  <Navbar alternates={BLOG_ALTERNATES} />
+
+  <main class="max-w-[1000px] mx-auto px-6 py-16">
+    <div class="mb-12">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">
+        Lernzentrum
+      </div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Lernen Sie traden, bevor Sie riskieren.
+      </h1>
+      <p class="text-[17px] text-[var(--c-text-muted)] leading-relaxed max-w-[680px]">
+        Praktische Anleitungen zum Lesen von Charts, zur Nutzung von Indikatoren, zur
+        Positionsgrößenbestimmung und zum Risikomanagement — direkt im Simulator anwendbar.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+      {posts.map(post => (
+        <article class="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-6 flex flex-col hover:border-[var(--c-border-strong)] transition-colors">
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            {post.data.tags.map(tag => (
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#f59e0b] bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] rounded-full px-2 py-0.5">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <h2 class="text-[17px] font-semibold text-[var(--c-text)] leading-snug mb-2">
+            <a href={`/de/blog/${post.id}`} class="hover:text-[#f59e0b] transition-colors">
+              {post.data.title}
+            </a>
+          </h2>
+
+          <p class="text-[14px] text-[var(--c-text-subtle)] leading-relaxed mb-5 grow">
+            {post.data.description}
+          </p>
+
+          <div class="flex items-center gap-2 text-[11px] font-mono text-[var(--c-text-subtle)] pt-4 border-t border-[var(--c-border)]">
+            <span>{post.data.author}</span>
+            <span class="text-[var(--c-text-faint)]">·</span>
+            <time datetime={post.data.date.toISOString()}>
+              {dateFmt.format(post.data.date)}
+            </time>
+            <span class="text-[var(--c-text-faint)]">·</span>
+            <span>{readingTime(post.body ?? '')} Min. Lesezeit</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

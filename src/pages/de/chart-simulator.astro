@@ -1,0 +1,66 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
+import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+---
+
+<AppLayout
+  title="Candlestick-Muster-Simulator | Stockade"
+  description="Lernen Sie Candlestick-Muster mit unserem kostenlosen interaktiven Chart-Simulator. Entdecken Sie über 20 Muster: Doji, Hammer, Engulfing, Morning Star und mehr."
+  alternates={CHART_SIMULATOR_ALTERNATES}
+>
+  <h1 class="sr-only">Candlestick-Muster-Simulator</h1>
+  <ChartSimulator client:load />
+
+  <section
+    slot="below"
+    id="how-to-use"
+    class="border-t border-[var(--c-border)] bg-[var(--c-bg-soft)]"
+  >
+    <div class="max-w-[820px] mx-auto px-6 py-12">
+      <details class="group" open>
+        <summary
+          class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        >
+          <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)]">
+            So nutzen Sie den Chart-Simulator
+          </h2>
+          <svg
+            class="shrink-0 text-[var(--c-text-subtle)] transition-transform group-open:rotate-180"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            stroke="currentColor" stroke-width="1.5" aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" />
+          </svg>
+        </summary>
+
+        <div class="mt-6">
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der Chart-Simulator ist ein Candlestick-Wiedergabe-Tool. Er erzeugt bei jedem Laden eine neue synthetische Kursreihe, analysiert sie auf klassische Candlestick-Muster und markiert jedes davon im Chart — so können Sie beobachten, wie sich ein Muster Kerze für Kerze bildet, statt es bereits fertig in einem Lehrbuchdiagramm vorzufinden.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Eine Wiedergabe starten
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Drücken Sie Play — oder die Leertaste —, um die Kerzen nacheinander aufzudecken. Der bernsteinfarbene Fortschrittsbalken unter der Symbolleiste zeigt an, wo Sie sich in der Reihe befinden. Mit den Geschwindigkeits-Schaltflächen können Sie die Wiedergabe mit 1×, 2×, 5× oder 10× abspielen. Zum manuellen Navigieren nutzen Sie die Zurück-/Vor-Pfeile oder die Tasten <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> und <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, sowie die Sprung-Schaltflächen, um direkt zum Anfang oder Ende zu springen. Die Aktualisieren-Schaltfläche erzeugt ein neues Chart mit einem anderen Satz an Mustern.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Auswählen, was angezeigt wird
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Das Symbol-Dropdown deckt Aktien, Kryptowährungen, Forex und Futures ab, und die Zeiteinheits-Schaltflächen aggregieren dieselbe Reihe zu längeren oder kürzeren Balken neu. Legen Sie EMA 9, EMA 20, EMA 50 oder VWAP aus der Symbolleiste darüber, und schalten Sie das untere Panel zwischen Volumen, RSI und MACD um.
+          </p>
+
+          <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
+            Worauf zu achten ist
+          </h3>
+          <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Das Panel <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> links listet alle Formationen auf, die der Simulator erkennt — Doji, Hammer, bullisches und bärisches Engulfing, Harami, Morning und Evening Star, Three White Soldiers, Tweezer-Hochs und -Tiefs und viele mehr (<a href="/blog/how-to-read-candlestick-charts/" class="text-[#f59e0b] hover:underline">Candlestick-Charts lesen</a> erklärt die Anatomie jedes einzelnen). Klicken Sie auf ein Muster, um nur dessen Vorkommen hervorzuheben, oder klicken Sie auf einen Marker im Chart, um dessen Erklärung zu öffnen — einschließlich der Marktpsychologie hinter der Formation und was sie bestätigt oder entkräftet. Die nützlichste Gewohnheit: bei einem Marker pausieren, die nächste Kerze vorhersagen, dann vorspulen und prüfen. Kontext zählt mehr als Form — ein Umkehrmuster ist nur nach einem echten Trend aussagekräftig, und das Volumen hinter der Signalkerze hilft, eine echte Umkehr von Rauschen zu unterscheiden.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</AppLayout>

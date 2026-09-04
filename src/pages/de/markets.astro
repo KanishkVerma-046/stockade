@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MarketsView from '../../components/markets/MarketsView.tsx';
+import { MARKETS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Aktien-, Krypto-, Forex- und Futures-Märkte | Stockade"
+  description="Verfolgen Sie 29 simulierte Assets — Aktien, Kryptowährungen, Forex und Futures — auf unserem kostenlosen Online-Börsensimulator. Keine Anmeldung."
+  alternates={MARKETS_ALTERNATES}
+>
+  <Navbar alternates={MARKETS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Märkte</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Marktübersicht</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Diese Marktübersicht aktualisiert sich alle 2 Sekunden für 29 simulierte Assets — Aktien, Kryptowährungen, Forex und Futures. Nutzen Sie sie als Watchlist für einen Krypto-Trading-Simulator, als Scanner für einen Forex-Simulator, oder um einfach schnell Kurse vor dem Trading zu prüfen. Sortieren Sie nach Kursveränderung, um die aktivsten Assets zu sehen, und werfen Sie einen Blick auf die Volumenspalte direkt daneben — siehe <a href="/blog/understanding-trading-volume/" class="text-[#f59e0b] hover:underline">Handelsvolumen verstehen</a>, um zu erfahren, was diese Zahl wirklich aussagt. Für Live-Kursupdates alle 800 ms nutzen Sie den <a href="/de/simulator/" class="text-[#f59e0b] hover:underline">Trading-Simulator</a>.</p>
+    </div>
+    <MarketsView client:load />
+  </main>
+  <Footer />
+</Layout>

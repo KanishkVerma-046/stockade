@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
+import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+---
+
+<Layout
+  title="Trading-Analyse-Dashboard | Stockade"
+  description="Analysieren Sie Ihre Paper-Trading-Performance mit Equity-Kurven, Trefferquoten, Drawdown-Kennzahlen und einem Trade-Journal im kostenlosen Stockade-Simulator."
+  alternates={ANALYTICS_ALTERNATES}
+>
+  <Navbar alternates={ANALYTICS_ALTERNATES} />
+  <main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="mb-8">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-2">Analyse</div>
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Performance-Dashboard</h1>
+      <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Ihre simulierten Trading-Statistiken — Equity-Kurve, Trefferquote, Drawdown und Trade-Journal.</p>
+    </div>
+    <AnalyticsDashboard client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Ihre Trading-Kennzahlen verstehen
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Jede Zahl in diesem Dashboard wird aus den Trades berechnet, die Sie im Stockade-Paper-Trading-Simulator geschlossen haben, und lokal in Ihrem Browser gespeichert. Zu wissen, was jede Kennzahl wirklich misst, macht den Unterschied zwischen dem Analysieren Ihres Tradings und dem bloßen Betrachten Ihres P&amp;L — <a href="/blog/analyze-trading-performance-metrics/" class="text-[#f59e0b] hover:underline">Ihre Trading-Performance analysieren</a> geht näher auf Trefferquote, Profitfaktor und Drawdown ein.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-4">Kernstatistiken</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Gesamt-P&amp;L</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Die Summe der realisierten Gewinne und Verluste über alle geschlossenen Trades. Offene Positionen zählen erst mit, wenn sie geschlossen werden, sodass eine schmeichelhafte Gesamtsumme eine noch offene Verlustposition verbergen kann.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Eigenkapital</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der aktuelle Wert Ihres Kontos — das Startguthaben von 100.000 $ plus der Gesamt-P&amp;L.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Trefferquote</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der Anteil geschlossener Trades, die mit Gewinn endeten. Eine hohe Trefferquote wirkt beruhigend, sagt aber für sich genommen wenig aus: Eine Strategie, die 80 % der Zeit gewinnt, kann trotzdem Geld verlieren, wenn die verbleibenden 20 % groß genug ausfallen.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Profitfaktor</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Bruttogewinn geteilt durch Bruttoverlust. Jeder Wert über 1,0x bedeutet, dass Sie mehr gewonnen als verloren haben, und 1,5x oder mehr gilt allgemein als solide. Er beantwortet eine Frage, die die Trefferquote nicht beantworten kann — wie viel Sie pro verlorener Einheit verdienen.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Durchschnittsgewinn</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der durchschnittliche Gewinn Ihrer profitablen Trades. Vergleichen Sie ihn mit Ihrem Durchschnittsverlust: Ist der Durchschnittsgewinn kleiner, brauchen Sie eine entsprechend hohe Trefferquote, nur um die Gewinnschwelle zu erreichen.
+          </dd>
+        </div>
+        <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Maximaler Drawdown</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der größte Rückgang Ihres Eigenkapitals von einem Hoch zu einem Tief, ausgedrückt in Prozent. Das ist die Schmerz-Kennzahl. Im realen Trading beendet sie oft eine Strategie lange bevor es die Mathematik tut. <a href="/blog/risk-management-position-sizing/" class="text-[#f59e0b] hover:underline">Positionsgrößenbestimmung und die 1-%-Regel</a> erklärt die Erholungslogik, die den Drawdown so bedeutsam macht.
+          </dd>
+        </div>
+      </dl>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Equity-Kurve</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Die Equity-Kurve zeichnet den Wert Ihres Kontos nach jedem geschlossenen Trade auf. Ihre Form zählt mehr als ihr Endpunkt: ein stetiger Anstieg deutet auf einen wiederholbaren Prozess hin, während eine flache Linie mit ein oder zwei riesigen Sprüngen meist auf Glück hindeutet.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Trade-Journal</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Das Journal listet jeden geschlossenen Trade mit Symbol, Richtung, Einstiegs- und Ausstiegspreisen, Größe, P&amp;L und Haltedauer auf. Die durchschnittliche Haltedauer ist ein guter Realitätscheck: Viele Trader stellen fest, dass sie Verlustpositionen deutlich länger halten als Gewinnpositionen, oder dass sie auf einem viel kürzeren Zeithorizont handeln als angenommen.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Zeitliche Heatmap</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Die Heatmap gliedert Ihre Ergebnisse nach Wochentag und Tageszeit und färbt jede Zelle nach dem Netto-P&amp;L ein. Bei ausreichend vielen Trades kann sie aufdecken, dass eine bestimmte Session heimlich für den Großteil Ihrer Verluste verantwortlich ist. Vorsicht bei zu kleiner Stichprobe — eine einzelne Zelle braucht Dutzende von Trades dahinter, bevor ihre Farbe etwas bedeutet.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

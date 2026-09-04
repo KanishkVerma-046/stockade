@@ -34,7 +34,7 @@ const localePrefixPattern = new RegExp(`^/(${localeCodes.join('|')})(?=/|$)`);
 // Add a locale here only once its `blog-{code}` content directory exists —
 // this list is what makes translated-blog hreflang pairing work at all, not
 // just a performance nicety.
-const translatedBlogLocales = ['es', 'pt', 'ja', 'fr'];
+const translatedBlogLocales = ['es', 'pt', 'ja', 'fr', 'de'];
 const sitemapLocaleMap = toSitemapLocaleMap();
 const blogSlugMaps = Object.fromEntries(
   translatedBlogLocales.map(locale => {

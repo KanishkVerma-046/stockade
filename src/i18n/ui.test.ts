@@ -11,13 +11,13 @@ describe('t', () => {
   });
 
   it('falls back to English for a locale with no translations yet', () => {
-    expect(t('de', 'nav.simulator')).toBe(translations.en['nav.simulator']);
+    expect(t('ko', 'nav.simulator')).toBe(translations.en['nav.simulator']);
   });
 
   it('falls back to English for every key in an untranslated locale', () => {
     const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
     for (const key of keys) {
-      expect(t('fr', key)).toBe(translations.en[key]);
+      expect(t('ko', key)).toBe(translations.en[key]);
     }
   });
 
@@ -39,6 +39,20 @@ describe('t', () => {
     const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
     for (const key of keys) {
       expect(translations.ja[key]).toBeDefined();
+    }
+  });
+
+  it('has a complete French translation for every English key', () => {
+    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
+    for (const key of keys) {
+      expect(translations.fr[key]).toBeDefined();
+    }
+  });
+
+  it('has a complete German translation for every English key', () => {
+    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
+    for (const key of keys) {
+      expect(translations.de[key]).toBeDefined();
     }
   });
 });
