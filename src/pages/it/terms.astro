@@ -1,0 +1,202 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { TERMS_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'it';
+---
+
+<Layout
+  title="Termini di Servizio | Stockade"
+  description="Leggi i Termini di Servizio di Stockade. Utilizzando il nostro simulatore di trading gratuito accetti questi termini. Nessun denaro reale, nessuna consulenza finanziaria."
+  alternates={TERMS_ALTERNATES}
+>
+  <Navbar alternates={TERMS_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Termini di Servizio</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Ultimo aggiornamento: 22 giugno 2026</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/terms/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Accettazione dei Termini</h2>
+        <p>
+          Accedendo o utilizzando Stockade ("il Servizio") su stockademarketsim.com, accetti di essere
+          vincolato da questi Termini di Servizio. Se non accetti una qualsiasi parte di questi termini, non
+          puoi utilizzare il Servizio. Ci riserviamo il diritto di aggiornare questi termini in qualsiasi
+          momento; l'uso continuato del Servizio dopo eventuali modifiche costituisce accettazione dei termini
+          rivisti.
+        </p>
+      </section>
+
+      <section>
+        <h2>Descrizione del Servizio</h2>
+        <p>
+          Stockade è un <strong>simulatore di trading di azioni e criptovalute gratuito e basato su
+          browser</strong>. Il Servizio è destinato esclusivamente a scopi didattici e di intrattenimento.
+          Tutte le operazioni su Stockade vengono effettuate utilizzando denaro virtuale simulato, privo di
+          alcun valore monetario nel mondo reale. Nessun asset, valuta o strumento finanziario reale viene
+          acquistato, venduto o trasferito tramite il Servizio.
+        </p>
+        <p>
+          Stockade non richiede registrazione e può essere utilizzato immediatamente da chiunque disponga di
+          un browser web compatibile. I dati della tua simulazione vengono memorizzati localmente nel tuo
+          browser e non sono conservati sui nostri server.
+        </p>
+      </section>
+
+      <section>
+        <h2>Non è Consulenza Finanziaria</h2>
+        <p>
+          <strong>Nulla su Stockade costituisce consulenza finanziaria, di investimento, legale o
+          fiscale.</strong> Il Servizio è progettato esclusivamente per aiutare gli utenti a conoscere le
+          meccaniche del trading in un ambiente simulato privo di rischi. Qualsiasi strategia, tecnica o
+          risultato osservato all'interno del simulatore non rappresenta un consiglio per fare trading sui
+          mercati finanziari reali, e le performance simulate passate non sono indicative di risultati futuri
+          nel mondo reale.
+        </p>
+        <p>
+          Dovresti consultare un consulente finanziario autorizzato prima di prendere qualsiasi decisione di
+          investimento reale.
+        </p>
+      </section>
+
+      <section>
+        <h2>Uso Consentito</h2>
+        <p>Puoi utilizzare il Servizio per scopi legali, personali e non commerciali. Accetti di non:</p>
+        <ul>
+          <li>Utilizzare il Servizio per scopi illegali o in violazione di leggi applicabili.</li>
+          <li>Tentare di decompilare, effettuare scraping o estrarre sistematicamente dati dal Servizio.</li>
+          <li>Introdurre malware, virus o codice dannoso nel Servizio.</li>
+          <li>Presentare in modo errato i risultati simulati come performance di trading reali per guadagno
+              commerciale o per ingannare altri.</li>
+          <li>Utilizzare bot o script automatizzati per interagire con il Servizio in modo da disturbarne il
+              normale funzionamento.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Valuta Virtuale</h2>
+        <p>
+          Il saldo virtuale (a partire dall'equivalente di 100.000$ USD) fornito all'interno del simulatore non
+          ha assolutamente alcun valore monetario e non può essere prelevato, trasferito, scambiato o convertito
+          in denaro reale o in qualsiasi altro asset. Accumulare profitti virtuali all'interno di Stockade non
+          conferisce alcun diritto o titolo finanziario di alcun tipo.
+        </p>
+      </section>
+
+      <section>
+        <h2>Esclusione di Garanzie</h2>
+        <p>
+          Il Servizio viene fornito <strong>"così com'è"</strong> e <strong>"nella misura in cui
+          disponibile"</strong> senza garanzie di alcun tipo, esplicite o implicite, incluse, a titolo
+          esemplificativo ma non esaustivo, le garanzie implicite di commerciabilità, idoneità per uno scopo
+          particolare o non violazione. Non garantiamo che il Servizio sarà ininterrotto o privo di errori.
+        </p>
+        <p>
+          I dati di prezzo simulati utilizzati in Stockade sono generati algoritmicamente e non rappresentano
+          prezzi di mercato reali. Qualsiasi somiglianza con i movimenti di mercato reali è puramente casuale.
+        </p>
+      </section>
+
+      <section>
+        <h2>Limitazione di Responsabilità</h2>
+        <p>
+          Nella misura massima consentita dalla legge, Stockade e i suoi operatori non saranno responsabili per
+          eventuali danni indiretti, incidentali, speciali, consequenziali o punitivi derivanti dall'uso o
+          dall'impossibilità di utilizzare il Servizio — incluse, a titolo esemplificativo ma non esaustivo,
+          eventuali perdite finanziarie subite sui mercati reali come risultato di strategie testate sul
+          simulatore.
+        </p>
+      </section>
+
+      <section>
+        <h2>Risoluzione</h2>
+        <p>
+          Ci riserviamo il diritto di sospendere o interrompere il Servizio in qualsiasi momento, con o senza
+          preavviso, per qualsiasi motivo, inclusi manutenzione, aggiornamenti o chiusura permanente. Poiché
+          nessun account o dato personale viene conservato sui nostri server, non ci sono dati da eliminare al
+          momento della risoluzione.
+        </p>
+      </section>
+
+      <section>
+        <h2>Legge Applicabile</h2>
+        <p>
+          Questi Termini sono regolati e interpretati in conformità con le leggi applicabili, senza riguardo ai
+          principi di conflitto di leggi. Eventuali controversie derivanti da questi Termini o dal Servizio
+          saranno soggette alla giurisdizione esclusiva dei tribunali competenti nella giurisdizione
+          applicabile.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contatti</h2>
+        <p>
+          Domande su questi Termini di Servizio possono essere inviate a <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

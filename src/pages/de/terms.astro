@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { TERMS_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'de';
+---
+
+<Layout
+  title="Nutzungsbedingungen | Stockade"
+  description="Lesen Sie die Nutzungsbedingungen von Stockade. Durch die Nutzung unseres kostenlosen Trading-Simulators stimmen Sie diesen Bedingungen zu. Kein echtes Geld, keine Finanzberatung."
+  alternates={TERMS_ALTERNATES}
+>
+  <Navbar alternates={TERMS_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Nutzungsbedingungen</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Zuletzt aktualisiert: 22. Juni 2026</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/terms/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Annahme der Bedingungen</h2>
+        <p>
+          Durch den Zugriff auf oder die Nutzung von Stockade ("der Dienst") unter stockademarketsim.com
+          erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie mit einem Teil dieser
+          Bedingungen nicht einverstanden sind, dürfen Sie den Dienst nicht nutzen. Wir behalten uns das
+          Recht vor, diese Bedingungen jederzeit zu aktualisieren; die fortgesetzte Nutzung des Dienstes nach
+          Änderungen gilt als Zustimmung zu den überarbeiteten Bedingungen.
+        </p>
+      </section>
+
+      <section>
+        <h2>Beschreibung des Dienstes</h2>
+        <p>
+          Stockade ist ein <strong>kostenloser, browserbasierter Aktien- und Kryptowährungs-Trading-Simulator</strong>.
+          Der Dienst ist ausschließlich für Bildungs- und Unterhaltungszwecke bestimmt. Der gesamte Handel auf
+          Stockade erfolgt mit virtuellem, simuliertem Geld ohne realen Geldwert. Über den Dienst werden keine
+          echten Vermögenswerte, Währungen oder Finanzinstrumente gekauft, verkauft oder übertragen.
+        </p>
+        <p>
+          Stockade erfordert keine Registrierung und kann von jedem mit einem kompatiblen Webbrowser sofort
+          genutzt werden. Ihre Simulationsdaten werden lokal in Ihrem Browser gespeichert und nicht auf
+          unseren Servern vorgehalten.
+        </p>
+      </section>
+
+      <section>
+        <h2>Keine Finanzberatung</h2>
+        <p>
+          <strong>Nichts auf Stockade stellt eine Finanz-, Anlage-, Rechts- oder Steuerberatung dar.</strong> Der
+          Dienst dient ausschließlich dazu, Nutzern zu helfen, die Mechanik des Handels in einer risikofreien
+          simulierten Umgebung kennenzulernen. Strategien, Techniken oder Ergebnisse, die innerhalb des
+          Simulators beobachtet werden, stellen keine Empfehlung dar, mit echten Finanzmärkten zu handeln, und
+          vergangene simulierte Ergebnisse lassen keine Rückschlüsse auf zukünftige reale Ergebnisse zu.
+        </p>
+        <p>
+          Sie sollten einen zugelassenen Finanzberater konsultieren, bevor Sie reale Anlageentscheidungen
+          treffen.
+        </p>
+      </section>
+
+      <section>
+        <h2>Zulässige Nutzung</h2>
+        <p>Sie dürfen den Dienst für rechtmäßige, persönliche, nicht-kommerzielle Zwecke nutzen. Sie verpflichten sich, Folgendes zu unterlassen:</p>
+        <ul>
+          <li>Die Nutzung des Dienstes für rechtswidrige Zwecke oder unter Verstoß gegen geltendes Recht.</li>
+          <li>Den Versuch, den Dienst zurückzuentwickeln (Reverse Engineering), auszulesen (Scraping) oder
+              systematisch Daten daraus zu extrahieren.</li>
+          <li>Das Einschleusen von Malware, Viren oder anderem schädlichen Code in den Dienst.</li>
+          <li>Die Darstellung simulierter Ergebnisse als reale Handelsleistung zu kommerziellen Zwecken oder
+              um andere in die Irre zu führen.</li>
+          <li>Die Nutzung automatisierter Bots oder Skripte zur Interaktion mit dem Dienst in einer Weise,
+              die dessen normalen Betrieb stört.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Virtuelle Währung</h2>
+        <p>
+          Das im Simulator bereitgestellte virtuelle Guthaben (beginnend bei einem Gegenwert von 100.000 $)
+          hat absolut keinen Geldwert und kann nicht abgehoben, übertragen, umgetauscht oder gegen echtes Geld
+          oder andere Vermögenswerte eingelöst werden. Das Ansammeln virtueller Gewinne innerhalb von Stockade
+          begründet keinerlei finanzielle Rechte oder Ansprüche.
+        </p>
+      </section>
+
+      <section>
+        <h2>Gewährleistungsausschluss</h2>
+        <p>
+          Der Dienst wird <strong>"wie besehen"</strong> und <strong>"wie verfügbar"</strong> ohne jegliche
+          Gewährleistung, weder ausdrücklich noch stillschweigend, bereitgestellt, einschließlich, aber nicht
+          beschränkt auf stillschweigende Gewährleistungen der Marktgängigkeit, der Eignung für einen
+          bestimmten Zweck oder der Nichtverletzung von Rechten Dritter. Wir gewährleisten nicht, dass der
+          Dienst unterbrechungsfrei oder fehlerfrei sein wird.
+        </p>
+        <p>
+          Die in Stockade verwendeten simulierten Kursdaten werden algorithmisch erzeugt und stellen keine
+          realen Marktpreise dar. Jede Ähnlichkeit mit tatsächlichen Marktbewegungen ist zufällig.
+        </p>
+      </section>
+
+      <section>
+        <h2>Haftungsbeschränkung</h2>
+        <p>
+          Im gesetzlich zulässigen Umfang haften Stockade und dessen Betreiber nicht für indirekte, zufällige,
+          besondere, Folge- oder Strafschäden, die sich aus Ihrer Nutzung oder Nichtnutzung des Dienstes
+          ergeben — einschließlich, aber nicht beschränkt auf finanzielle Verluste auf realen Märkten infolge
+          von im Simulator getesteten Strategien.
+        </p>
+      </section>
+
+      <section>
+        <h2>Kündigung</h2>
+        <p>
+          Wir behalten uns das Recht vor, den Dienst jederzeit mit oder ohne Vorankündigung aus beliebigem
+          Grund auszusetzen oder einzustellen, einschließlich für Wartungsarbeiten, Aktualisierungen oder eine
+          dauerhafte Schließung. Da auf unseren Servern kein Konto und keine personenbezogenen Daten
+          gespeichert werden, gibt es bei einer Beendigung keine Daten zu löschen.
+        </p>
+      </section>
+
+      <section>
+        <h2>Anwendbares Recht</h2>
+        <p>
+          Diese Bedingungen unterliegen dem geltenden Recht und sind entsprechend auszulegen, ohne Rücksicht
+          auf Kollisionsnormen des internationalen Privatrechts. Streitigkeiten, die sich aus diesen
+          Bedingungen oder dem Dienst ergeben, unterliegen der ausschließlichen Zuständigkeit der zuständigen
+          Gerichte der jeweils anwendbaren Rechtsordnung.
+        </p>
+      </section>
+
+      <section>
+        <h2>Kontakt</h2>
+        <p>
+          Fragen zu diesen Nutzungsbedingungen können an <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a> gesendet werden.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

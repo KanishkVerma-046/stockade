@@ -11,8 +11,10 @@
 
 import { t } from '../../i18n/ui';
 import { getLocaleMeta } from '../../i18n/locales';
+import { localizedHref } from '../../i18n/alternates';
 
 const locale = getLocaleMeta(Astro.currentLocale).code;
+const privacyHref = localizedHref('/privacy', locale);
 ---
 
 <div
@@ -26,7 +28,7 @@ const locale = getLocaleMeta(Astro.currentLocale).code;
   <div class="mx-auto flex max-w-[1400px] flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
     <p class="text-[13px] leading-relaxed text-[var(--c-text-muted)]">
       {t(locale, 'cookie.text')} <a
-        href="/privacy/"
+        href={privacyHref}
         class="text-[#f59e0b] underline underline-offset-2 hover:text-[#fbbf24] transition-colors"
         >{t(locale, 'cookie.privacyLinkText')}</a
       >.

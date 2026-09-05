@@ -1,0 +1,22 @@
+---
+// Shown only on translated (non-English) legal pages. Not authoritative — the
+// English page is — so this links back to it rather than restating content.
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  englishHref: string;
+}
+
+const { locale, englishHref } = Astro.props;
+---
+
+<div class="mb-10 rounded-xl border border-[var(--c-border)] bg-[var(--c-bg-soft)] px-6 py-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+  <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
+    {t(locale, 'legal.translationNotice')}
+  </p>
+  <a href={englishHref} class="text-[13px] text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2 whitespace-nowrap">
+    {t(locale, 'legal.viewEnglish')} →
+  </a>
+</div>

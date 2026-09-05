@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { PRIVACY_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'de';
+---
+
+<Layout
+  title="Datenschutzerklärung | Stockade"
+  description="Erfahren Sie, wie Stockade mit Ihren Daten umgeht. Wir erheben keine personenbezogenen Daten — der gesamte Simulationsstatus wird lokal in Ihrem Browser gespeichert."
+  alternates={PRIVACY_ALTERNATES}
+>
+  <Navbar alternates={PRIVACY_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Datenschutzerklärung</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Zuletzt aktualisiert: 11. August 2026</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/privacy/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Überblick</h2>
+        <p>
+          Stockade ("wir", "uns" oder "unser") betreibt die Website stockademarketsim.com (der "Dienst"). Diese
+          Seite informiert Sie über unsere Richtlinien zur Erhebung, Nutzung und Weitergabe personenbezogener
+          Daten, wenn Sie unseren Dienst nutzen. Wir setzen uns für den Schutz Ihrer Privatsphäre ein. Kurz
+          gesagt: <strong>wir erheben keine personenbezogenen Daten</strong> und haben keine Nutzerkonten.
+        </p>
+      </section>
+
+      <section>
+        <h2>Daten, die wir erheben</h2>
+
+        <h3>Kein Konto erforderlich</h3>
+        <p>
+          Stockade erfordert keine Registrierung, keine Anmeldung und keine E-Mail-Adresse. Sie können jede
+          Funktion der Plattform nutzen, ohne uns persönliche Informationen mitzuteilen.
+        </p>
+
+        <h3>Lokaler Speicher (nur clientseitig)</h3>
+        <p>
+          Der Status Ihrer Handelssimulation — einschließlich des Saldos Ihres virtuellen Portfolios, Ihres
+          Handelsverlaufs, Einstellungen wie des Dunkel-/Hellmodus und weiterer Präferenzen — wird ausschließlich
+          im <code>localStorage</code> Ihres Browsers gespeichert. Diese Daten verlassen niemals Ihr Gerät und
+          werden niemals an unsere Server übertragen. Sie können sie jederzeit löschen, indem Sie die
+          Website-Daten Ihres Browsers löschen.
+        </p>
+
+        <h3>Nutzungsdaten</h3>
+        <p>
+          Wir können anonymisierte, aggregierte Nutzungsdaten (wie Seitenaufrufe und Sitzungszahlen) über
+          gängige Web-Analyse-Tools erheben. Diese Daten lassen keine Identifizierung Ihrer Person zu und
+          dienen ausschließlich dazu, zu verstehen, wie der Dienst genutzt wird, und ihn zu verbessern.
+        </p>
+      </section>
+
+      <section>
+        <h2>Dienste Dritter</h2>
+
+        <h3>Google Fonts</h3>
+        <p>
+          Stockade verwendet Schriftarten (Inter und JetBrains Mono), die von Google Fonts bereitgestellt
+          werden. Wenn Ihr Browser diese Schriftarten anfordert, wird Ihre IP-Adresse an die Server von Google
+          gesendet. Weitere Informationen dazu, wie Google mit diesen Daten umgeht, finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Datenschutzerklärung von Google
+          </a>.
+        </p>
+
+        <h3>Google Analytics</h3>
+        <p>
+          Wir verwenden Google Analytics, um in aggregierter Form zu verstehen, wie der Dienst genutzt wird,
+          und melden dabei anonymisierte Kennzahlen wie Seitenaufrufe und Sitzungszahlen. Analyse-Cookies
+          werden nur gespeichert, wenn Sie dem zustimmen. Siehe die <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Datenschutzerklärung von Google
+          </a>.
+        </p>
+
+        <h3>Google AdSense</h3>
+        <p>
+          Wir verwenden Google AdSense zur Anzeige von Werbung. Werbe-Cookies werden nur gespeichert und
+          personalisierte Anzeigen nur eingeblendet, wenn Sie dem zustimmen. Siehe <a href="#advertising-and-cookies">Werbung und Cookies</a> weiter unten, um zu erfahren, wie
+          Werbe-Cookies funktionieren und wie Sie personalisierte Anzeigen deaktivieren können.
+        </p>
+
+        <h3>Google Consent Mode</h3>
+        <p>
+          Wir übermitteln Google Ihre Cookie-Entscheidung über den Google Consent Mode. Ihre Entscheidung wirkt
+          sich auf die Speicherung von Analyse- und Werbedaten, die Personalisierung von Werbung und die
+          Weitergabe von Werbe-Nutzerdaten aus. Bis Sie zustimmen, sind alle vier Einstellungen auf "abgelehnt"
+          gesetzt.
+        </p>
+
+        <h3>Hosting</h3>
+        <p>
+          Die Website wird bei einem externen Webhosting-Anbieter gehostet. Standard-Webserver-Protokolle
+          (IP-Adresse, Browsertyp, verweisende URL, Zeitstempel) können vom Hosting-Anbieter gemäß dessen
+          eigener Datenschutzerklärung gespeichert werden.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cookies</h2>
+        <p>
+          Cookies sind kleine Textdateien, die eine Website auf Ihrem Gerät speichert, um sich zwischen
+          Besuchen an Informationen über Sie zu erinnern. Ähnliche Technologien — wie <code>localStorage</code> und
+          Web-Beacons — funktionieren auf vergleichbare Weise.
+        </p>
+
+        <h3>Wesentliche Nutzung</h3>
+        <p>
+          Stockade nutzt lokalen Browserspeicher für die Funktionalität des Dienstes selbst: Ihr virtuelles
+          Portfolio, Ihren Handelsverlauf, Ihre Theme-Präferenz und Ihre Cookie-Einwilligung. Diese sind für
+          den bestimmungsgemäßen Betrieb der Website unbedingt erforderlich und werden niemals verwendet, um
+          Sie über andere Websites hinweg zu verfolgen.
+        </p>
+
+        <h3>Werbung und Analyse</h3>
+        <p>
+          Stockade verwendet außerdem Cookies für Analyse- und Werbezwecke. Diese sind für den Betrieb der
+          Website nicht wesentlich und werden daher nur gesetzt, wenn Sie zustimmen. Bei Ihrem ersten Besuch
+          wird Ihnen ein Consent-Banner angezeigt. Bis Sie zustimmen, arbeiten unsere Werbe- und
+          Analyseanbieter in einem eingeschränkten Modus, in dem sie keine Cookies auf Ihrem Gerät speichern,
+          aus Ihrer Aktivität kein Werbeprofil erstellen und ausschließlich nicht personalisierte Anzeigen
+          ausliefern.
+        </p>
+
+        <h3>Ihre Wahl</h3>
+        <p>
+          Wenn Sie ablehnen, bleibt dieser eingeschränkte Modus dauerhaft bestehen: Es werden keine Analyse-
+          oder Werbe-Cookies gespeichert und keine personalisierte Werbung angezeigt. Sie sehen möglicherweise
+          weiterhin nicht personalisierte Anzeigen, die anhand des Seiteninhalts statt anhand Ihres
+          Browserverlaufs ausgewählt werden.
+        </p>
+        <p>
+          Sie können Ihre Entscheidung jederzeit ändern, indem Sie die Website-Daten Ihres Browsers für
+          stockademarketsim.com löschen; dadurch erscheint bei Ihrem nächsten Besuch erneut das Consent-Banner.
+          Sie können Cookies auch über Ihre Browsereinstellungen blockieren oder löschen, wobei dies die
+          Funktionsweise einzelner Teile des Dienstes beeinträchtigen kann.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="advertising-and-cookies">Werbung und Cookies</h2>
+        <p>
+          Diese Website nutzt Drittanbieter, darunter Google, um Anzeigen basierend auf früheren Besuchen
+          eines Nutzers auf dieser oder anderen Websites auszuliefern. Die Nutzung von Werbe-Cookies durch
+          Google ermöglicht es Google und seinen Partnern, Ihnen Anzeigen basierend auf Ihren Besuchen auf
+          dieser und/oder anderen Websites im Internet zu zeigen.
+        </p>
+        <p>
+          Drittanbieter, darunter Google, verwenden Cookies, um Anzeigen basierend auf früheren Besuchen eines
+          Nutzers auf dieser oder anderen Websites auszuliefern. Die Nutzung von Werbe-Cookies durch Google
+          ermöglicht es Google und seinen Partnern, Nutzern Anzeigen basierend auf deren Besuch auf dieser
+          und/oder anderen Websites im Internet zu zeigen.
+        </p>
+        <p>
+          Diese Cookies ermöglichen es Werbenetzwerken, Ihren Browser oder Ihr Gerät über mehrere Besuche
+          hinweg wiederzuerkennen und anhand Ihres Surfverhaltens ein Profil Ihrer Interessen zu erstellen, um
+          Ihnen relevantere Anzeigen zu zeigen.
+        </p>
+
+        <h3>Widerspruchsmöglichkeiten</h3>
+        <p>
+          Nutzer können personalisierter Werbung widersprechen, indem sie die <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">
+            Anzeigeneinstellungen von Google
+          </a> besuchen. Alternativ können Nutzer die Verwendung von Cookies durch einige Drittanbieter für
+          personalisierte Werbung deaktivieren, indem sie <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">
+            www.aboutads.info
+          </a> oder die <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">
+            Opt-out-Seite der Network Advertising Initiative
+          </a> besuchen.
+        </p>
+
+        <h3>Geltungsbereich</h3>
+        <p>
+          Diese Datenschutzerklärung erfasst unsere eigene Verwendung von Cookies. Sie erfasst nicht die
+          Verwendung von Cookies oder anderen Tracking-Technologien durch Werbetreibende oder
+          Drittanbieter-Werbenetzwerke.
+        </p>
+      </section>
+
+      <section>
+        <h2>Datenschutz für Kinder</h2>
+        <p>
+          Unser Dienst richtet sich nicht an Personen unter 13 Jahren. Wir erheben wissentlich keine
+          personenbezogenen Daten von Kindern unter 13 Jahren. Falls Sie Elternteil oder Erziehungsberechtigter
+          sind und der Ansicht sind, dass Ihr Kind uns personenbezogene Daten mitgeteilt hat, kontaktieren Sie
+          uns bitte.
+        </p>
+      </section>
+
+      <section>
+        <h2>Links zu anderen Websites</h2>
+        <p>
+          Unser Dienst kann Links zu Websites Dritter enthalten. Wir haben keine Kontrolle über und
+          übernehmen keine Verantwortung für die Inhalte, Datenschutzrichtlinien oder Praktiken von Websites
+          oder Diensten Dritter.
+        </p>
+      </section>
+
+      <section>
+        <h2>Änderungen dieser Richtlinie</h2>
+        <p>
+          Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wir informieren Sie über
+          Änderungen, indem wir das Datum "Zuletzt aktualisiert" oben auf dieser Seite aktualisieren. Wir
+          empfehlen Ihnen, diese Seite regelmäßig zu überprüfen.
+        </p>
+      </section>
+
+      <section>
+        <h2>Kontakt</h2>
+        <p>
+          Wenn Sie Fragen zu dieser Datenschutzerklärung haben, kontaktieren Sie uns bitte unter <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--c-bg-muted);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    color: var(--c-text);
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

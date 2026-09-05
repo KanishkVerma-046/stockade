@@ -1,0 +1,203 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { DISCLAIMER_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'fr';
+---
+
+<Layout
+  title="Avertissement | Stockade"
+  description="Stockade est un simulateur de trading à des fins éducatives uniquement. Toutes les opérations utilisent de l'argent virtuel. Ceci n'est pas un conseil financier. Lisez notre avertissement complet."
+  alternates={DISCLAIMER_ALTERNATES}
+>
+  <Navbar alternates={DISCLAIMER_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Avertissement</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Dernière mise à jour : 22 juin 2026</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/disclaimer/" />
+
+    <!-- Highlighted notice -->
+    <div class="mb-10 rounded-xl border border-[var(--c-amber-dim)] bg-[var(--c-amber-bg)] px-6 py-5 flex gap-4">
+      <svg class="shrink-0 mt-0.5 text-[#f59e0b]" width="20" height="20" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L15 14H1L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M8 6v3M8 11v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="text-[14px] text-[#f59e0b] leading-relaxed">
+        <strong>Important :</strong> Stockade est une plateforme de simulation de paper trading. Toutes les
+        opérations sont effectuées uniquement avec de l'argent virtuel. Rien sur ce site ne constitue un
+        conseil financier. N'investissez jamais d'argent réel sur la base de résultats ou de stratégies
+        observés au sein d'un simulateur.
+      </p>
+    </div>
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Simulation Uniquement — Aucun Argent Réel</h2>
+        <p>
+          Stockade propose un environnement de trading simulé utilisant des <strong>données de prix fictives
+          générées de façon algorithmique</strong>. Tous les soldes, gains et pertes affichés sur la plateforme
+          sont entièrement virtuels et n'ont aucune valeur monétaire. Aucune action, cryptomonnaie, paire de
+          devises, contrat à terme ni aucun autre instrument financier réel n'est acheté ou vendu via ce
+          Service.
+        </p>
+        <p>
+          Tout gain virtuel réalisé sur Stockade ne peut être retiré, converti en monnaie réelle, ni utilisé
+          pour acheter des biens ou des services.
+        </p>
+      </section>
+
+      <section>
+        <h2>Ce n'est pas un Conseil Financier</h2>
+        <p>
+          Les informations, outils, stratégies, indicateurs et résultats simulés fournis sur Stockade sont
+          proposés à des <strong>fins éducatives et de divertissement uniquement</strong>. Ils ne constituent
+          et ne doivent en aucun cas être interprétés comme :
+        </p>
+        <ul>
+          <li>Un conseil financier, d'investissement ou de trading</li>
+          <li>Une recommandation d'achat ou de vente d'un instrument financier</li>
+          <li>Un conseil juridique ou fiscal</li>
+          <li>Une approbation d'une stratégie ou d'une approche de trading en particulier</li>
+        </ul>
+        <p>
+          Consultez toujours un professionnel de la finance qualifié et agréé avant de prendre une décision
+          réelle d'investissement ou de trading.
+        </p>
+      </section>
+
+      <section>
+        <h2>Performance Simulée ≠ Résultats Réels</h2>
+        <p>
+          Les résultats de trading simulés ou hypothétiques présentent des limites connues. Contrairement au
+          trading réel, les résultats simulés ne tiennent pas compte de facteurs concrets tels que :
+        </p>
+        <ul>
+          <li>La liquidité du marché et le slippage</li>
+          <li>Les commissions, spreads et frais de courtage</li>
+          <li>La pression psychologique liée au trading avec du capital réel</li>
+          <li>Les délais d'exécution, les exécutions partielles et le rejet d'ordres</li>
+          <li>La découverte des prix en temps réel et l'impact sur le marché</li>
+        </ul>
+        <p>
+          <strong>Les performances simulées passées ne préjugent en rien des résultats réels futurs.</strong> Une
+          stratégie qui fonctionne bien dans un simulateur peut se comporter de manière très différente — voire
+          générer des pertes — une fois appliquée à des marchés réels avec de l'argent réel.
+        </p>
+      </section>
+
+      <section>
+        <h2>Divulgation des Risques</h2>
+        <p>
+          Le trading et l'investissement sur les marchés financiers réels comportent un <strong>risque
+          important de perte</strong>, pouvant aller jusqu'à la perte totale du capital investi. Les produits à
+          effet de levier, tels que les contrats à terme et le forex, peuvent amplifier aussi bien les gains
+          que les pertes et ne conviennent pas nécessairement à tous les investisseurs.
+        </p>
+        <p>
+          Vous devez examiner attentivement votre situation financière, votre tolérance au risque et vos
+          objectifs d'investissement avant de négocier des instruments financiers réels. Stockade décline toute
+          responsabilité en cas de perte financière réelle subie par des utilisateurs qui appliqueraient sur
+          des marchés réels des stratégies ou techniques pratiquées au sein du simulateur.
+        </p>
+      </section>
+
+      <section>
+        <h2>Exactitude des Informations</h2>
+        <p>
+          Bien que nous nous efforcions d'offrir une expérience de simulation précise et réaliste, Stockade ne
+          fait aucune déclaration ni garantie quant à l'exactitude, l'exhaustivité ou la pertinence des
+          informations et des contenus de cette plateforme. Les données de prix, les mécanismes de marché et le
+          comportement des actifs au sein du simulateur sont des approximations et peuvent différer
+          sensiblement des conditions réelles du marché.
+        </p>
+      </section>
+
+      <section>
+        <h2>Liens Tiers</h2>
+        <p>
+          Ce site peut contenir des liens vers des sites ou des ressources externes. Stockade n'exerce aucun
+          contrôle sur le contenu de ces sites et décline toute responsabilité à leur égard, ainsi que pour
+          toute perte ou tout dommage pouvant résulter de leur utilisation.
+        </p>
+      </section>
+
+      <section>
+        <h2>Modifications de cet Avertissement</h2>
+        <p>
+          Nous nous réservons le droit de mettre à jour cet Avertissement à tout moment. Les modifications
+          seront répercutées par la mise à jour de la date de "Dernière mise à jour" ci-dessus. La poursuite de
+          votre utilisation du Service après toute modification vaut acceptation de l'Avertissement révisé.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          Pour toute question concernant cet Avertissement, veuillez nous contacter à <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

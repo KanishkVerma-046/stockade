@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { DISCLAIMER_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'ja';
+---
+
+<Layout
+  title="免責事項 | Stockade"
+  description="Stockadeは教育目的のみのトレーディングシミュレーターです。すべての取引は仮想資金で行われます。これは投資助言ではありません。免責事項の全文はこちら。"
+  alternates={DISCLAIMER_ALTERNATES}
+>
+  <Navbar alternates={DISCLAIMER_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">免責事項</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">最終更新日: 2026年6月22日</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/disclaimer/" />
+
+    <!-- Highlighted notice -->
+    <div class="mb-10 rounded-xl border border-[var(--c-amber-dim)] bg-[var(--c-amber-bg)] px-6 py-5 flex gap-4">
+      <svg class="shrink-0 mt-0.5 text-[#f59e0b]" width="20" height="20" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L15 14H1L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M8 6v3M8 11v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="text-[14px] text-[#f59e0b] leading-relaxed"><strong>重要:</strong> Stockadeはペーパートレーディングのシミュレーションプラットフォームです。すべての取引は仮想資金のみで行われます。本ウェブサイト上のいかなる内容も投資助言を構成するものではありません。シミュレーター内で観察した結果や戦略に基づいて、実際のお金を投資することは絶対におやめください。</p>
+    </div>
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>シミュレーションのみ — 実際のお金は使用しません</h2>
+        <p>Stockadeは、<strong>アルゴリズムによって生成された架空の価格データ</strong>を使用したシミュレーショントレーディング環境を提供します。プラットフォーム上に表示される残高、利益、損失はすべて完全に仮想のものであり、金銭的価値はありません。本サービスを通じて、実際の株式、暗号資産、外国為替ペア、先物契約、その他いかなる金融商品も売買されることはありません。</p>
+        <p>Stockade内で得た仮想の利益は、引き出したり、実際の通貨に換金したり、商品やサービスの購入に使用したりすることはできません。</p>
+      </section>
+
+      <section>
+        <h2>投資助言ではありません</h2>
+        <p>Stockadeで提供される情報、ツール、戦略、インジケーター、シミュレーション結果は、<strong>教育およびエンターテインメント目的のみ</strong>で提供されています。これらは以下のいずれにも該当せず、そのように解釈されるべきではありません:</p>
+        <ul>
+          <li>金融、投資、またはトレーディングに関する助言</li>
+          <li>いかなる金融商品の売買を推奨するもの</li>
+          <li>法律または税務に関する助言</li>
+          <li>特定のトレーディング戦略やアプローチを推奨・支持するもの</li>
+        </ul>
+        <p>実際の投資またはトレーディングの判断を行う前には、必ず資格を有するファイナンシャルプロフェッショナルにご相談ください。</p>
+      </section>
+
+      <section>
+        <h2>シミュレーション実績は実際の結果とは異なります</h2>
+        <p>シミュレーションまたは仮想のトレーディング結果には、既知の限界があります。実際のトレーディングとは異なり、シミュレーション結果は次のような現実世界の要因を考慮していません:</p>
+        <ul>
+          <li>市場の流動性とスリッページ</li>
+          <li>証券会社の手数料、スプレッド、諸費用</li>
+          <li>実際の資金で取引することによる心理的プレッシャー</li>
+          <li>約定の遅延、部分約定、注文の拒否</li>
+          <li>リアルタイムの価格発見と市場インパクト</li>
+        </ul>
+        <p><strong>過去のシミュレーション実績は、将来の実際の結果を示すものではありません。</strong>シミュレーターで良好な成績を収めた戦略であっても、実際のお金を用いたライブ市場に適用した場合、大きく異なる結果になったり、損失を生んだりする可能性があります。</p>
+      </section>
+
+      <section>
+        <h2>リスクの開示</h2>
+        <p>実際の金融市場でのトレーディングおよび投資には、投資した資金の全額を失う可能性を含む、<strong>重大な損失リスク</strong>が伴います。先物やFXなどのレバレッジ商品は、利益と損失の両方を増幅させる可能性があり、すべての投資家に適しているとは限りません。</p>
+        <p>実際の金融商品を取引する前に、ご自身の財務状況、リスク許容度、投資目的を慎重にご検討ください。Stockadeは、シミュレーター内で練習した戦略や手法をライブ市場に適用したユーザーが被った実際の金銭的損失について、一切の責任を負いません。</p>
+      </section>
+
+      <section>
+        <h2>情報の正確性</h2>
+        <p>私たちは正確でリアルなシミュレーション体験を提供するよう努めていますが、Stockadeは本プラットフォーム上の情報や資料の正確性、完全性、適合性について、いかなる表明も保証も行いません。シミュレーター内の価格データ、市場のメカニズム、資産の値動きは近似値であり、実際の市場状況とは大きく異なる場合があります。</p>
+      </section>
+
+      <section>
+        <h2>第三者リンク</h2>
+        <p>本ウェブサイトには、外部のサイトやリソースへのリンクが含まれる場合があります。Stockadeは、それらのサイトの内容について一切の管理を行わず、それらのサイトの利用から生じるいかなる損失や損害についても責任を負いません。</p>
+      </section>
+
+      <section>
+        <h2>本免責事項の変更</h2>
+        <p>私たちは、本免責事項をいつでも更新する権利を留保します。変更があった場合は、上記の「最終更新日」を更新することで反映されます。変更後も本サービスの利用を継続された場合、改定後の免責事項に同意したものとみなされます。</p>
+      </section>
+
+      <section>
+        <h2>お問い合わせ</h2>
+        <p>本免責事項に関するご質問は、<a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>までお問い合わせください。</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

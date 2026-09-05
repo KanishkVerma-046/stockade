@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { TERMS_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'ja';
+---
+
+<Layout
+  title="利用規約 | Stockade"
+  description="Stockadeの利用規約をご確認ください。無料のトレーディングシミュレーターをご利用いただくことで、本規約に同意したものとみなされます。実際のお金は使わず、投資助言でもありません。"
+  alternates={TERMS_ALTERNATES}
+>
+  <Navbar alternates={TERMS_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">利用規約</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">最終更新日: 2026年6月22日</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/terms/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>規約への同意</h2>
+        <p>stockademarketsim.comにおいてStockade（「本サービス」）にアクセスまたはこれを利用することにより、皆様は本利用規約に拘束されることに同意したものとみなされます。本規約のいずれかの部分に同意いただけない場合、本サービスをご利用いただくことはできません。私たちは本規約をいつでも更新する権利を留保します。変更後も本サービスの利用を継続された場合、改定後の規約に同意したものとみなされます。</p>
+      </section>
+
+      <section>
+        <h2>本サービスの内容</h2>
+        <p>Stockadeは<strong>無料のブラウザ型株式・暗号資産トレーディングシミュレーター</strong>です。本サービスは教育およびエンターテインメント目的でのみ提供されています。Stockade上のすべてのトレーディングは、現実世界での金銭的価値を持たない仮想のシミュレーション資金を使用して行われます。本サービスを通じて、実際の資産、通貨、金融商品が購入、売却、譲渡されることは一切ありません。</p>
+        <p>Stockadeは登録を必要とせず、対応するウェブブラウザさえあれば誰でもすぐに利用を開始できます。皆様のシミュレーションデータはお使いのブラウザにローカル保存され、当社サーバーには保持されません。</p>
+      </section>
+
+      <section>
+        <h2>投資助言ではありません</h2>
+        <p><strong>Stockade上のいかなる内容も、金融、投資、法律、税務に関する助言を構成するものではありません。</strong>本サービスは、リスクのないシミュレーション環境の中でユーザーがトレーディングの仕組みについて学ぶことのみを目的として設計されています。シミュレーター内で観察される戦略、手法、結果は、実際の金融市場で取引を行うことを推奨するものではなく、過去のシミュレーション実績は将来の実際の結果を示すものではありません。</p>
+        <p>実際の投資判断を行う前に、資格を有するファイナンシャルアドバイザーにご相談ください。</p>
+      </section>
+
+      <section>
+        <h2>許可される利用</h2>
+        <p>皆様は、適法かつ個人的な非商業目的の範囲で本サービスをご利用いただけます。皆様は以下を行わないことに同意するものとします:</p>
+        <ul>
+          <li>適用法令に違反する形で、または違法な目的のために本サービスを利用すること。</li>
+          <li>本サービスのリバースエンジニアリング、スクレイピング、または体系的なデータ抽出を試みること。</li>
+          <li>本サービスにマルウェア、ウイルス、その他の悪意のあるコードを組み込むこと。</li>
+          <li>商業的利益を得るため、または他者を欺くために、シミュレーション結果を実際のトレーディング実績であるかのように偽って表示すること。</li>
+          <li>本サービスの通常の動作を妨げるような方法で、自動化されたボットやスクリプトを用いて本サービスを操作すること。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>仮想通貨</h2>
+        <p>シミュレーター内で提供される仮想残高（100,000米ドル相当から開始）には、いかなる金銭的価値も一切なく、実際のお金や他の資産と引き出し、譲渡、交換、または換金することはできません。Stockade内で仮想の利益を積み上げても、いかなる金融上の権利や利益も一切発生しません。</p>
+      </section>
+
+      <section>
+        <h2>保証の否認</h2>
+        <p>本サービスは、明示・黙示を問わず、商品性、特定目的への適合性、非侵害性についての黙示の保証を含むいかなる保証もなく、<strong>「現状有姿」</strong>および<strong>「提供可能な範囲」</strong>で提供されます。私たちは、本サービスが中断されないこと、またはエラーがないことを保証しません。</p>
+        <p>Stockadeで使用されるシミュレーション価格データはアルゴリズムによって生成されたものであり、実際の市場価格を表すものではありません。実際の市場の値動きとの類似は偶然によるものです。</p>
+      </section>
+
+      <section>
+        <h2>責任の制限</h2>
+        <p>法律で許容される最大限の範囲において、Stockadeおよびその運営者は、本サービスの利用または利用不能から生じる、間接的、付随的、特別、結果的、または懲罰的な損害について責任を負いません。これには、シミュレーターでテストした戦略の結果として実際の市場で被った金銭的損失も含まれますが、これに限定されません。</p>
+      </section>
+
+      <section>
+        <h2>サービスの終了</h2>
+        <p>私たちは、メンテナンス、更新、または恒久的な閉鎖を含むいかなる理由であっても、通知の有無にかかわらず、いつでも本サービスを停止または終了する権利を留保します。当社サーバーにはアカウントや個人データが一切保持されていないため、サービス終了時に削除すべきデータは存在しません。</p>
+      </section>
+
+      <section>
+        <h2>準拠法</h2>
+        <p>本規約は、法の抵触に関する規定にかかわらず、適用される法律に準拠し、これに従って解釈されるものとします。本規約または本サービスから生じる紛争は、適用される管轄区域における管轄裁判所の専属管轄に服するものとします。</p>
+      </section>
+
+      <section>
+        <h2>お問い合わせ</h2>
+        <p>本利用規約に関するご質問は、<a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>までお送りください。</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

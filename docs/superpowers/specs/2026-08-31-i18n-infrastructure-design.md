@@ -655,3 +655,63 @@ source of truth for architecture and decision history. The sitemap `serialize()`
 `astro.config.mjs` was generalized from Spanish-only to loop over a `translatedBlogLocales` array
 when Portuguese was added, and `ja`, then `fr`, `de`, and `ko` were each appended to that same array
 as they landed — see the `## i18n` section in `CLAUDE.md` for where to extend it next.
+
+## Phase 6 addenda (2026-09-04/05) — legal pages, all seven locales
+
+The Phase 3 addenda above recorded a standing decision that `/privacy`, `/terms`, `/disclaimer`
+would get professional/reviewed translation rather than the AI-translation process used everywhere
+else, and that the user had declined a "this translation is not authoritative" notice. At the start
+of this session the user explicitly asked to override that decision: AI-translate the legal pages
+into all seven non-English locales in one pass, and when asked to choose between (a) AI-translate
+with no notice — the original declined option, just now accepted, (b) AI-translate with a notice
+added, or (c) hold for professional review as originally decided, the user chose **(b)**. This is a
+reversal of the "declined notice" half of the original decision, not a misreading of it — worth
+flagging if a future session sees the Phase 3 wording and assumes it's still current.
+
+**What was built:** a shared `LegalTranslationNotice.astro` component
+(`src/components/layout/LegalTranslationNotice.astro`, taking `locale` and `englishHref` props)
+rendered on every translated legal page immediately after the header block (and before the
+disclaimer page's pre-existing amber risk-warning box, which is unrelated and stayed in place,
+translated). Its copy comes from two new `ui.ts` keys, `legal.translationNotice` and
+`legal.viewEnglish`, translated into all eight locale dictionaries (the `en` entries exist for type
+completeness but are never rendered, since the English pages are the authoritative source and don't
+carry the notice). `PRIVACY_ALTERNATES`, `TERMS_ALTERNATES`, and `DISCLAIMER_ALTERNATES` were added
+to `alternates.ts` and its `REGISTRY` following the standard checklist — this alone made `Footer`'s
+existing `legalLinks` (which already called `localizedHref`, per the Phase 2 addenda) resolve
+per-locale for the first time. `CookieConsent.astro`'s privacy link, previously hardcoded to the
+English `/privacy/` (documented as intentional in this doc's own gotchas section while privacy had
+no translation), was switched to `localizedHref` too, per the standing checklist's step-5 sweep —
+that gotchas-section note is now stale and should be read as historical, not current.
+
+**Rollout mechanics:** one subagent per locale, dispatched sequentially in registry order (es, ja,
+fr, de, pt, ko, it) per explicit instruction — never more than one subagent live at once, no
+per-locale confirmation prompt, no deploy. Each subagent's output was independently verified against
+the built `dist/` HTML (not just the subagent's own self-report) before starting the next locale:
+hreflang reciprocity on the English page, the compressHTML tag-boundary whitespace bug, byte-identity
+of the `<style>` blocks against the English source, and a read-through of the translated prose
+against the English original for completeness and established-terminology reuse (checked against
+each locale's own `about.astro`/`simulator.astro`/`analytics.astro`, not re-derived from scratch).
+
+**New bug class found (ja):** the first Japanese draft wrapped long paragraphs across multiple
+source lines, as is natural for English/Spanish prose. Because `compressHTML` collapses a source
+line-break into one space, and Japanese (like Korean) has no word-spacing convention, this injected
+a visible stray ASCII space **mid-sentence** in the built HTML — a CJK-specific variant of this
+doc's documented tag-boundary whitespace bug, but not requiring a tag boundary at all. Fixed by
+writing every Japanese `<p>`/`<li>` as one unbroken source line; the same instruction was given
+up front for the Korean batch and it produced no instances of the bug. This is now recorded in the
+assistant's cross-session memory (not just this doc) since it's a general CJK-translation hazard,
+not specific to the legal-page content.
+
+**One subagent (ko) hit a background rate limit** after writing all three files correctly but before
+running its own self-verification steps; the coordinating session verified the already-complete
+files directly against a real build rather than re-running the translation, confirming the
+"never trust a subagent's own completion report — verify against the filesystem/build" practice
+paid off in both directions (catching real bugs in some batches, and correctly trusting real,
+already-finished work in this one rather than redoing it).
+
+**Result:** all three legal pages now have a translated sibling in all seven non-English locales
+(21 new files), full hreflang reciprocity confirmed page-by-page, `npm run build` (250 pages) and
+`npm test` (39 tests) both clean, `npx astro check` at the same pre-existing single error as every
+prior phase. No deploy was run. Every registry locale now has complete site-wide coverage —
+homepage, static/app pages, blog, and legal — with only the `/404`/`/500` non-goals remaining
+English-only.

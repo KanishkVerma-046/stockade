@@ -35,7 +35,9 @@ export type UiKey =
   | 'blog.tableOfContents'
   | 'blog.learningCenter'
   | 'blog.minRead'
-  | 'blog.keepLearning';
+  | 'blog.keepLearning'
+  | 'legal.translationNotice'
+  | 'legal.viewEnglish';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -77,6 +79,9 @@ const en: Dictionary = {
   'blog.learningCenter': 'Learning Center',
   'blog.minRead': 'min read',
   'blog.keepLearning': 'Keep learning',
+  'legal.translationNotice':
+    'This page has been translated for your convenience. In case of any discrepancy, the English version is authoritative.',
+  'legal.viewEnglish': 'View the English version',
 };
 
 const es: Dictionary = {
@@ -117,6 +122,9 @@ const es: Dictionary = {
   'blog.learningCenter': 'Centro de Aprendizaje',
   'blog.minRead': 'min de lectura',
   'blog.keepLearning': 'Sigue aprendiendo',
+  'legal.translationNotice':
+    'Esta página ha sido traducida por comodidad. En caso de discrepancia, la versión en inglés prevalece.',
+  'legal.viewEnglish': 'Ver la versión en inglés',
 };
 
 const pt: Dictionary = {
@@ -157,6 +165,9 @@ const pt: Dictionary = {
   'blog.learningCenter': 'Centro de Aprendizado',
   'blog.minRead': 'min de leitura',
   'blog.keepLearning': 'Continue aprendendo',
+  'legal.translationNotice':
+    'Esta página foi traduzida para sua conveniência. Em caso de discrepância, a versão em inglês prevalece.',
+  'legal.viewEnglish': 'Ver a versão em inglês',
 };
 
 const ja: Dictionary = {
@@ -197,6 +208,9 @@ const ja: Dictionary = {
   'blog.learningCenter': '学習センター',
   'blog.minRead': '分で読了',
   'blog.keepLearning': '学習を続ける',
+  'legal.translationNotice':
+    'このページは利便性のために翻訳されています。内容に相違がある場合は、英語版が優先されます。',
+  'legal.viewEnglish': '英語版を見る',
 };
 
 const fr: Dictionary = {
@@ -237,6 +251,9 @@ const fr: Dictionary = {
   'blog.learningCenter': "Centre d'Apprentissage",
   'blog.minRead': 'min de lecture',
   'blog.keepLearning': "Continuer l'apprentissage",
+  'legal.translationNotice':
+    "Cette page a été traduite pour votre confort. En cas de divergence, la version anglaise fait foi.",
+  'legal.viewEnglish': 'Voir la version anglaise',
 };
 
 const de: Dictionary = {
@@ -277,6 +294,9 @@ const de: Dictionary = {
   'blog.learningCenter': 'Lernzentrum',
   'blog.minRead': 'Min. Lesezeit',
   'blog.keepLearning': 'Weiterlernen',
+  'legal.translationNotice':
+    'Diese Seite wurde zu Ihrer Bequemlichkeit übersetzt. Im Falle von Abweichungen ist die englische Version maßgeblich.',
+  'legal.viewEnglish': 'Englische Version ansehen',
 };
 
 const ko: Dictionary = {
@@ -317,6 +337,9 @@ const ko: Dictionary = {
   'blog.learningCenter': '학습 센터',
   'blog.minRead': '분 읽기',
   'blog.keepLearning': '계속 학습하기',
+  'legal.translationNotice':
+    '이 페이지는 편의를 위해 번역되었습니다. 내용에 차이가 있는 경우 영어 버전이 우선합니다.',
+  'legal.viewEnglish': '영어 버전 보기',
 };
 
 const it: Dictionary = {
@@ -357,6 +380,9 @@ const it: Dictionary = {
   'blog.learningCenter': 'Centro di Apprendimento',
   'blog.minRead': 'min di lettura',
   'blog.keepLearning': 'Continua a imparare',
+  'legal.translationNotice':
+    'Questa pagina è stata tradotta per tua comodità. In caso di discrepanza, prevale la versione in inglese.',
+  'legal.viewEnglish': 'Visualizza la versione in inglese',
 };
 
 export const translations: Record<Locale, Dictionary> = {

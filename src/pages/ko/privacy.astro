@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { PRIVACY_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'ko';
+---
+
+<Layout
+  title="개인정보처리방침 | Stockade"
+  description="Stockade가 여러분의 데이터를 어떻게 다루는지 알아보세요. 개인정보는 수집하지 않으며, 모든 시뮬레이션 상태는 브라우저에 로컬로 저장됩니다."
+  alternates={PRIVACY_ALTERNATES}
+>
+  <Navbar alternates={PRIVACY_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">개인정보처리방침</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">최종 업데이트: 2026년 8월 11일</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/privacy/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>개요</h2>
+        <p>Stockade("당사")는 웹사이트 stockademarketsim.com("서비스")을 운영합니다. 이 페이지는 여러분이 서비스를 이용할 때 개인 데이터의 수집, 이용, 공개에 관한 당사의 방침을 안내합니다. 당사는 여러분의 개인정보를 보호하기 위해 최선을 다하고 있습니다. 요약하면 다음과 같습니다: <strong>당사는 어떠한 개인 식별 정보도 수집하지 않으며</strong>, 사용자 계정도 존재하지 않습니다.</p>
+      </section>
+
+      <section>
+        <h2>수집하는 데이터</h2>
+
+        <h3>계정이 필요하지 않습니다</h3>
+        <p>Stockade는 회원가입, 로그인, 이메일 주소 등록을 요구하지 않습니다. 여러분은 당사에 어떠한 개인정보도 제공하지 않고 플랫폼의 모든 기능을 이용할 수 있습니다.</p>
+
+        <h3>로컬 스토리지(클라이언트 측 전용)</h3>
+        <p>가상 포트폴리오 잔고, 거래 내역, 다크·라이트 모드와 같은 환경설정 등 여러분의 트레이딩 시뮬레이션 상태는 오직 브라우저의 <code>localStorage</code>에만 저장됩니다. 이 데이터는 절대 여러분의 기기를 벗어나지 않으며, 당사 서버로 전송되지 않습니다. 브라우저의 사이트 데이터를 삭제하면 언제든지 이 데이터를 지울 수 있습니다.</p>
+
+        <h3>이용 데이터</h3>
+        <p>당사는 표준 웹 분석 도구를 통해 페이지 조회수, 세션 수 등 익명화되고 집계된 이용 데이터를 수집할 수 있습니다. 이 데이터는 여러분을 식별하는 데 사용될 수 없으며, 오직 서비스가 어떻게 이용되는지 파악하고 이를 개선하는 목적으로만 사용됩니다.</p>
+      </section>
+
+      <section>
+        <h2>제3자 서비스</h2>
+
+        <h3>Google Fonts</h3>
+        <p>Stockade는 Google Fonts에서 제공하는 폰트(Inter 및 JetBrains Mono)를 사용합니다. 브라우저가 이 폰트를 요청하면 여러분의 IP 주소가 Google 서버로 전송됩니다. 이 데이터를 Google이 어떻게 처리하는지에 대한 자세한 내용은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google 개인정보처리방침</a>을 참고하세요.</p>
+
+        <h3>Google Analytics</h3>
+        <p>당사는 Google Analytics를 사용하여 서비스가 전체적으로 어떻게 이용되는지 파악하며, 페이지 조회수와 세션 수 같은 익명화된 지표를 보고받습니다. 분석 쿠키는 여러분이 동의한 경우에만 저장됩니다. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google 개인정보처리방침</a>을 참고하세요.</p>
+
+        <h3>Google AdSense</h3>
+        <p>당사는 광고를 표시하기 위해 Google AdSense를 사용합니다. 광고 쿠키는 여러분이 동의한 경우에만 저장되며, 맞춤형 광고도 동의한 경우에만 표시됩니다. 광고 쿠키의 작동 방식과 맞춤형 광고를 거부하는 방법은 아래 <a href="#advertising-and-cookies">광고 및 쿠키</a>를 참고하세요.</p>
+
+        <h3>Google Consent Mode</h3>
+        <p>당사는 Google Consent Mode를 이용해 여러분의 쿠키 선택을 Google에 전달합니다. 여러분의 결정은 분석 저장소, 광고 저장소, 광고 맞춤설정, 광고 사용자 데이터 공유에 적용됩니다. 동의하기 전까지 이 네 가지 항목은 모두 거부 상태로 설정됩니다.</p>
+
+        <h3>호스팅</h3>
+        <p>이 사이트는 제3자 웹 호스팅 제공업체에서 호스팅됩니다. 표준 웹 서버 로그(IP 주소, 브라우저 종류, 리퍼러 URL, 타임스탬프)는 호스팅 제공업체 자체의 개인정보처리방침에 따라 보관될 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>쿠키</h2>
+        <p>쿠키는 웹사이트가 방문 사이의 정보를 기억하기 위해 여러분의 기기에 저장하는 작은 텍스트 파일입니다. <code>localStorage</code>나 웹 비콘과 같은 유사한 기술도 이와 거의 같은 방식으로 작동합니다.</p>
+
+        <h3>필수적 이용</h3>
+        <p>Stockade는 서비스 자체의 기능, 즉 가상 포트폴리오, 거래 내역, 테마 설정, 쿠키 동의 선택을 위해 브라우저의 로컬 스토리지를 사용합니다. 이는 사이트가 의도한 대로 작동하기 위해 반드시 필요한 것이며, 다른 웹사이트에서 여러분을 추적하는 데는 절대 사용되지 않습니다.</p>
+
+        <h3>광고 및 분석</h3>
+        <p>Stockade는 분석과 광고를 위해서도 쿠키를 사용합니다. 이는 사이트 운영에 필수적이지 않으므로, 여러분이 동의하지 않는 한 설정되지 않습니다. 처음 방문 시 동의 배너가 표시됩니다. 동의하기 전까지 당사의 광고 및 분석 제공업체는 기기에 어떠한 쿠키도 저장하지 않고, 여러분의 활동으로 광고 프로필을 만들지 않으며, 오직 비맞춤형 광고만 제공하는 제한된 모드로 작동합니다.</p>
+
+        <h3>여러분의 선택</h3>
+        <p>거부하시면 그 제한된 모드가 영구적으로 유지되어, 분석이나 광고 쿠키가 저장되지 않고 맞춤형 광고도 표시되지 않습니다. 다만 여러분의 방문 기록이 아닌 페이지 콘텐츠를 기반으로 선택된 비맞춤형 광고는 계속 보일 수 있습니다.</p>
+        <p>브라우저에서 stockademarketsim.com의 사이트 데이터를 삭제하면 언제든지 마음을 바꿀 수 있으며, 다음 방문 시 동의 배너가 다시 표시됩니다. 브라우저 설정을 통해 쿠키를 차단하거나 삭제할 수도 있지만, 그럴 경우 서비스 일부의 작동 방식에 영향을 줄 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2 id="advertising-and-cookies">광고 및 쿠키</h2>
+        <p>이 사이트는 Google을 포함한 제3자 공급업체를 이용하여, 사용자가 이 웹사이트 또는 다른 웹사이트를 방문한 이력을 바탕으로 광고를 표시합니다. Google의 광고 쿠키 사용을 통해 Google과 그 파트너사는 여러분이 이 사이트 및/또는 인터넷상의 다른 사이트를 방문한 이력을 바탕으로 광고를 제공할 수 있습니다.</p>
+        <p>Google을 포함한 제3자 공급업체는 사용자가 이 웹사이트 또는 다른 웹사이트를 방문한 이력을 바탕으로 광고를 표시하기 위해 쿠키를 사용합니다. Google의 광고 쿠키 사용을 통해 Google과 그 파트너사는 사용자가 이 사이트 및/또는 인터넷상의 다른 사이트를 방문한 이력을 바탕으로 광고를 제공할 수 있습니다.</p>
+        <p>이러한 쿠키는 광고 네트워크가 방문 간에 여러분의 브라우저나 기기를 인식하고, 여러분의 탐색 활동을 바탕으로 관심사 프로필을 구축하여 더 관련성 높은 광고를 보여줄 수 있게 합니다.</p>
+
+        <h3>수신 거부</h3>
+        <p>사용자는 <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google 광고 설정</a>을 방문하여 맞춤형 광고를 거부할 수 있습니다. 또한 <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a> 또는 <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">Network Advertising Initiative 수신 거부 페이지</a>를 방문하여 일부 제3자 공급업체의 맞춤형 광고를 위한 쿠키 사용을 거부할 수도 있습니다.</p>
+
+        <h3>적용 범위</h3>
+        <p>이 개인정보처리방침은 당사 자체의 쿠키 사용에 적용됩니다. 광고주나 제3자 광고 네트워크에 의한 쿠키 또는 기타 추적 기술의 사용은 다루지 않습니다.</p>
+      </section>
+
+      <section>
+        <h2>아동의 개인정보 보호</h2>
+        <p>당사의 서비스는 13세 미만을 대상으로 하지 않습니다. 당사는 13세 미만 아동의 개인 식별 정보를 고의로 수집하지 않습니다. 여러분이 부모 또는 보호자이며 자녀가 당사에 개인 데이터를 제공했다고 생각되는 경우, 당사에 문의해 주시기 바랍니다.</p>
+      </section>
+
+      <section>
+        <h2>다른 사이트로의 링크</h2>
+        <p>당사의 서비스에는 제3자 웹사이트로의 링크가 포함될 수 있습니다. 당사는 제3자 사이트나 서비스의 콘텐츠, 개인정보처리방침, 관행에 대해 어떠한 통제권도 없으며 아무런 책임도 지지 않습니다.</p>
+      </section>
+
+      <section>
+        <h2>이 방침의 변경</h2>
+        <p>당사는 이 개인정보처리방침을 수시로 업데이트할 수 있습니다. 변경 사항은 이 페이지 상단의 "최종 업데이트" 날짜를 갱신하여 알려드립니다. 이 페이지를 주기적으로 확인하시기를 권장합니다.</p>
+      </section>
+
+      <section>
+        <h2>문의</h2>
+        <p>이 개인정보처리방침에 대해 궁금한 점이 있으시면 <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>으로 문의해 주세요.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--c-bg-muted);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    color: var(--c-text);
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

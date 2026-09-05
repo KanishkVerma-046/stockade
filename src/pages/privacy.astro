@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import { PRIVACY_ALTERNATES } from '../i18n/alternates';
 ---
 
 <Layout
   title="Privacy Policy | Stockade"
   description="Learn how Stockade handles your data. We collect no personal information — all simulation state is stored locally in your browser."
+  alternates={PRIVACY_ALTERNATES}
 >
-  <Navbar />
+  <Navbar alternates={PRIVACY_ALTERNATES} />
 
   <main class="max-w-[760px] mx-auto px-6 py-16">
 

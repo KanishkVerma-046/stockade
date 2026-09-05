@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import { DISCLAIMER_ALTERNATES } from '../i18n/alternates';
 ---
 
 <Layout
   title="Disclaimer | Stockade"
   description="Stockade is a trading simulator for educational purposes only. All trading uses virtual money. This is not financial advice. Read our full disclaimer."
+  alternates={DISCLAIMER_ALTERNATES}
 >
-  <Navbar />
+  <Navbar alternates={DISCLAIMER_ALTERNATES} />
 
   <main class="max-w-[760px] mx-auto px-6 py-16">
 

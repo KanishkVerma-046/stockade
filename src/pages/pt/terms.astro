@@ -1,0 +1,204 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { TERMS_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'pt';
+---
+
+<Layout
+  title="Termos de Serviço | Stockade"
+  description="Leia os Termos de Serviço do Stockade. Ao usar nosso simulador de trading gratuito, você concorda com estes termos. Sem dinheiro real, sem aconselhamento financeiro."
+  alternates={TERMS_ALTERNATES}
+>
+  <Navbar alternates={TERMS_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">Termos de Serviço</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">Última atualização: 22 de junho de 2026</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/terms/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>Aceitação dos Termos</h2>
+        <p>
+          Ao acessar ou usar o Stockade ("o Serviço") em stockademarketsim.com, você concorda em se
+          vincular a estes Termos de Serviço. Se você não concordar com qualquer parte destes
+          termos, não poderá usar o Serviço. Reservamo-nos o direito de atualizar estes termos a
+          qualquer momento; o uso continuado do Serviço após as alterações constitui aceitação dos
+          termos revisados.
+        </p>
+      </section>
+
+      <section>
+        <h2>Descrição do Serviço</h2>
+        <p>
+          Stockade é um <strong>simulador gratuito de trading de ações e criptomoedas baseado no
+          navegador</strong>. O Serviço é destinado apenas a fins educacionais e de entretenimento.
+          Todas as operações no Stockade são realizadas usando dinheiro virtual e simulado, sem
+          valor monetário no mundo real. Nenhum ativo, moeda ou instrumento financeiro real é
+          comprado, vendido ou transferido por meio do Serviço.
+        </p>
+        <p>
+          Stockade não exige cadastro e pode ser usado imediatamente por qualquer pessoa com um
+          navegador compatível. Os dados da sua simulação são armazenados localmente no seu
+          navegador e não são mantidos em nossos servidores.
+        </p>
+      </section>
+
+      <section>
+        <h2>Não é Aconselhamento Financeiro</h2>
+        <p>
+          <strong>Nada no Stockade constitui aconselhamento financeiro, de investimento, jurídico ou
+          fiscal.</strong> O Serviço foi projetado exclusivamente para ajudar os usuários a aprender
+          sobre a mecânica de trading em um ambiente simulado e sem risco. Quaisquer estratégias,
+          técnicas ou resultados observados dentro do simulador não representam um conselho para
+          operar em mercados financeiros reais, e o desempenho simulado passado não é indicativo de
+          resultados reais futuros.
+        </p>
+        <p>
+          Você deve consultar um consultor financeiro licenciado antes de tomar qualquer decisão
+          real de investimento.
+        </p>
+      </section>
+
+      <section>
+        <h2>Uso Permitido</h2>
+        <p>Você pode usar o Serviço para fins legais, pessoais e não comerciais. Você concorda em não:</p>
+        <ul>
+          <li>Usar o Serviço para qualquer finalidade ilegal ou em violação de qualquer lei aplicável.</li>
+          <li>Tentar fazer engenharia reversa, extrair (scraping) ou coletar dados sistematicamente do Serviço.</li>
+          <li>Introduzir malware, vírus ou qualquer código malicioso no Serviço.</li>
+          <li>Apresentar resultados simulados de forma enganosa como desempenho real de trading para
+              ganho comercial ou para enganar outras pessoas.</li>
+          <li>Usar bots ou scripts automatizados para interagir com o Serviço de uma forma que
+              atrapalhe seu funcionamento normal.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Moeda Virtual</h2>
+        <p>
+          O saldo virtual (a partir do equivalente a $100.000 USD) fornecido no simulador não tem
+          absolutamente nenhum valor monetário e não pode ser sacado, transferido, trocado ou
+          resgatado por dinheiro real ou qualquer outro ativo. Acumular lucros virtuais no Stockade
+          não confere nenhum direito ou prerrogativa financeira.
+        </p>
+      </section>
+
+      <section>
+        <h2>Isenção de Garantias</h2>
+        <p>
+          O Serviço é fornecido em uma base <strong>"tal como está"</strong> e <strong>"conforme
+          disponível"</strong>, sem garantias de qualquer tipo, expressas ou implícitas, incluindo,
+          mas sem se limitar a, garantias implícitas de comercialização, adequação a uma finalidade
+          específica ou não violação. Não garantimos que o Serviço será ininterrupto ou livre de
+          erros.
+        </p>
+        <p>
+          Os dados de preços simulados usados no Stockade são gerados algoritmicamente e não
+          representam preços reais de mercado. Qualquer semelhança com movimentos reais de mercado é
+          mera coincidência.
+        </p>
+      </section>
+
+      <section>
+        <h2>Limitação de Responsabilidade</h2>
+        <p>
+          Na máxima extensão permitida por lei, o Stockade e seus operadores não serão responsáveis
+          por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos
+          decorrentes do seu uso, ou da incapacidade de usar, o Serviço — incluindo, mas sem se
+          limitar a, quaisquer perdas financeiras incorridas em mercados reais como resultado de
+          estratégias testadas no simulador.
+        </p>
+      </section>
+
+      <section>
+        <h2>Rescisão</h2>
+        <p>
+          Reservamo-nos o direito de suspender ou descontinuar o Serviço a qualquer momento, com ou
+          sem aviso prévio, por qualquer motivo, incluindo manutenção, atualizações ou encerramento
+          permanente. Como nenhuma conta ou dado pessoal é mantido em nossos servidores, não há
+          dados a excluir após o encerramento.
+        </p>
+      </section>
+
+      <section>
+        <h2>Lei Aplicável</h2>
+        <p>
+          Estes Termos serão regidos e interpretados de acordo com as leis aplicáveis, sem
+          consideração a conflitos de disposições legais. Quaisquer disputas decorrentes destes
+          Termos ou do Serviço estarão sujeitas à jurisdição exclusiva dos tribunais competentes na
+          jurisdição aplicável.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contato</h2>
+        <p>
+          Dúvidas sobre estes Termos de Serviço podem ser enviadas para <a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal ul {
+    margin: 0.5rem 0 0.9rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .prose-legal li {
+    list-style: disc;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

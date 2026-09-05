@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import LegalTranslationNotice from '../../components/layout/LegalTranslationNotice.astro';
+import { PRIVACY_ALTERNATES } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+const locale: Locale = 'ja';
+---
+
+<Layout
+  title="プライバシーポリシー | Stockade"
+  description="Stockadeが皆様のデータをどのように扱うかについてご説明します。個人情報は一切収集せず、すべてのシミュレーション状態はお使いのブラウザにローカル保存されます。"
+  alternates={PRIVACY_ALTERNATES}
+>
+  <Navbar alternates={PRIVACY_ALTERNATES} />
+
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <div class="text-[11px] font-mono uppercase tracking-widest text-[#f59e0b] mb-3">{t(locale, 'footer.legal')}</div>
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--c-text)] mb-3">プライバシーポリシー</h1>
+      <p class="text-[13px] font-mono text-[var(--c-text-subtle)]">最終更新日: 2026年8月11日</p>
+    </div>
+
+    <LegalTranslationNotice locale={locale} englishHref="/privacy/" />
+
+    <div class="prose-legal">
+
+      <section>
+        <h2>概要</h2>
+        <p>Stockade（「私たち」「当社」）は、ウェブサイトstockademarketsim.com（「本サービス」）を運営しています。このページでは、本サービスをご利用いただく際の個人データの収集、利用、開示に関する当社の方針についてご説明します。私たちは皆様のプライバシー保護に努めています。要約すると: <strong>私たちは個人を特定できる情報を一切収集せず</strong>、ユーザーアカウントも存在しません。</p>
+      </section>
+
+      <section>
+        <h2>収集するデータ</h2>
+
+        <h3>アカウント登録は不要です</h3>
+        <p>Stockadeは登録、ログイン、メールアドレスの提供を一切必要としません。皆様は個人情報を当社に提供することなく、プラットフォームのすべての機能をご利用いただけます。</p>
+
+        <h3>ローカルストレージ（クライアント側のみ）</h3>
+        <p>仮想ポートフォリオの残高、取引履歴、ダークモード/ライトモードなどの設定を含む、皆様のトレーディングシミュレーション状態は、お使いのブラウザの<code>localStorage</code>にのみ保存されます。このデータがお使いの端末から出ることはなく、当社サーバーに送信されることもありません。ブラウザのサイトデータを消去することで、いつでもこのデータを削除できます。</p>
+
+        <h3>利用データ</h3>
+        <p>標準的なウェブ解析ツールを通じて、ページビューやセッション数などの匿名化・集計された利用データを収集する場合があります。このデータから皆様個人を特定することはできず、本サービスの利用状況を把握し、改善するためだけに使用されます。</p>
+      </section>
+
+      <section>
+        <h2>第三者サービス</h2>
+
+        <h3>Google Fonts</h3>
+        <p>Stockadeでは、Google Fontsが配信するフォント（InterおよびJetBrains Mono）を使用しています。お使いのブラウザがこれらのフォントをリクエストする際、皆様のIPアドレスがGoogleのサーバーに送信されます。これらのデータをGoogleがどのように扱うかについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご覧ください。</p>
+
+        <h3>Google Analytics</h3>
+        <p>私たちはGoogle Analyticsを使用して、ページビューやセッション数などの匿名化された指標を通じて本サービスの利用状況を集計的に把握しています。解析用Cookieは、皆様が同意した場合にのみ保存されます。詳細は<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご覧ください。</p>
+
+        <h3>Google AdSense</h3>
+        <p>私たちは広告を表示するためにGoogle AdSenseを使用しています。広告用Cookieの保存とパーソナライズ広告の表示は、皆様が同意した場合にのみ行われます。広告用Cookieの仕組みとパーソナライズ広告を無効にする方法については、下記の<a href="#advertising-and-cookies">広告とCookie</a>をご覧ください。</p>
+
+        <h3>Google Consent Mode</h3>
+        <p>私たちはGoogle Consent Modeを使用して、皆様のCookieに関する選択をGoogleに伝えています。皆様の決定は、解析ストレージ、広告ストレージ、広告のパーソナライズ、広告ユーザーデータの共有の4項目に適用されます。皆様が同意するまで、これら4項目はすべて「拒否」に設定されます。</p>
+
+        <h3>ホスティング</h3>
+        <p>本サイトは第三者のウェブホスティングプロバイダー上でホストされています。標準的なウェブサーバーログ（IPアドレス、ブラウザの種類、参照元URL、タイムスタンプ）は、ホスティングプロバイダー自身のプライバシーポリシーに従って、当該プロバイダーにより保持される場合があります。</p>
+      </section>
+
+      <section>
+        <h2>Cookie</h2>
+        <p>Cookieとは、ウェブサイトが訪問間で皆様に関する情報を記憶するために、皆様の端末に保存する小さなテキストファイルです。<code>localStorage</code>やウェブビーコンなどの類似技術も、これとほぼ同じ仕組みで動作します。</p>
+
+        <h3>必須用途</h3>
+        <p>Stockadeは、本サービス自体の機能のためにブラウザのローカルストレージを使用しています: 仮想ポートフォリオ、取引履歴、テーマ設定、そして皆様のCookie同意の選択です。これらは本サイトが意図通りに機能するために厳密に必要なものであり、他のウェブサイトを横断して皆様を追跡するために使用されることは一切ありません。</p>
+
+        <h3>広告と解析</h3>
+        <p>Stockadeは解析および広告のためにもCookieを使用しています。これらは本サイトの運営に必須のものではないため、皆様が同意しない限り設定されません。初回訪問時には同意バナーが表示されます。皆様が同意するまで、当社の広告および解析プロバイダーは制限モードで動作し、皆様の端末にCookieを保存せず、皆様の行動から広告プロファイルを構築せず、パーソナライズされていない広告のみを配信します。</p>
+
+        <h3>皆様の選択</h3>
+        <p>同意しないことを選択した場合、その制限モードは恒久的に維持されます: 解析用・広告用Cookieは一切保存されず、パーソナライズ広告も表示されません。それでも、閲覧履歴ではなくページの内容に基づいて選ばれた、パーソナライズされていない広告が表示されることはあります。</p>
+        <p>stockademarketsim.comに関するブラウザのサイトデータを消去することで、いつでも選択を変更できます。消去すると、次回訪問時に同意バナーが再度表示されます。ブラウザの設定からCookieをブロックまたは削除することもできますが、その場合、本サービスの一部機能に影響が及ぶ可能性があります。</p>
+      </section>
+
+      <section>
+        <h2 id="advertising-and-cookies">広告とCookie</h2>
+        <p>本サイトでは、Googleを含む第三者ベンダーを利用し、ユーザーが本ウェブサイトまたは他のウェブサイトで過去に行った訪問に基づいて広告を配信しています。Googleが広告用Cookieを使用することにより、Googleおよびそのパートナーは、皆様の本サイトおよび/またはインターネット上の他サイトへの訪問に基づいて、皆様に広告を配信できるようになります。</p>
+        <p>Googleを含む第三者ベンダーは、ユーザーが本ウェブサイトまたは他のウェブサイトで過去に行った訪問に基づいて広告を配信するためにCookieを使用します。Googleが広告用Cookieを使用することにより、Googleおよびそのパートナーは、ユーザーの本サイトおよび/または他サイトへの訪問に基づいて、ユーザーに広告を配信できるようになります。</p>
+        <p>これらのCookieにより、広告ネットワークは訪問間で皆様のブラウザや端末を識別し、皆様の閲覧行動に基づいて興味関心のプロファイルを構築することで、より皆様に関連性の高い広告を表示できるようになります。</p>
+
+        <h3>オプトアウトについて</h3>
+        <p>ユーザーは<a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Googleの広告設定</a>にアクセスすることで、パーソナライズ広告をオプトアウトできます。また、<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>または<a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">Network Advertising Initiativeのオプトアウトページ</a>にアクセスすることで、一部の第三者ベンダーによるパーソナライズ広告のためのCookie利用をオプトアウトすることもできます。</p>
+
+        <h3>適用範囲</h3>
+        <p>このプライバシーポリシーは、当社自身によるCookieの利用を対象としています。広告主や第三者の広告ネットワークによるCookieその他の追跡技術の利用は対象としていません。</p>
+      </section>
+
+      <section>
+        <h2>お子様のプライバシー</h2>
+        <p>本サービスは13歳未満の方を対象としていません。私たちは13歳未満のお子様から個人を特定できる情報を意図的に収集することはありません。保護者の方で、お子様が当社に個人データを提供したと思われる場合は、お問い合わせください。</p>
+      </section>
+
+      <section>
+        <h2>他サイトへのリンク</h2>
+        <p>本サービスには第三者のウェブサイトへのリンクが含まれる場合があります。私たちは、第三者のサイトやサービスの内容、プライバシーポリシー、慣行について一切の管理を行わず、また一切の責任を負いません。</p>
+      </section>
+
+      <section>
+        <h2>本ポリシーの変更</h2>
+        <p>私たちは、本プライバシーポリシーを随時更新することがあります。変更があった場合は、このページ上部の「最終更新日」を更新することでお知らせします。定期的にこのページをご確認いただくことをお勧めします。</p>
+      </section>
+
+      <section>
+        <h2>お問い合わせ</h2>
+        <p>本プライバシーポリシーに関するご質問は、<a href="mailto:hello@stockademarketsim.com">hello@stockademarketsim.com</a>までお問い合わせください。</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal {
+    color: var(--c-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .prose-legal section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .prose-legal section:last-child {
+    border-bottom: none;
+  }
+  .prose-legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  .prose-legal h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal p {
+    margin-bottom: 0.9rem;
+  }
+  .prose-legal a {
+    color: #f59e0b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-legal a:hover {
+    color: #fbbf24;
+  }
+  .prose-legal code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--c-bg-muted);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    color: var(--c-text);
+  }
+  .prose-legal strong {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

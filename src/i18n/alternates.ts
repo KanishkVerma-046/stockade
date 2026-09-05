@@ -94,6 +94,39 @@ export const BLOG_ALTERNATES = {
   it: '/it/blog/',
 } as const;
 
+export const PRIVACY_ALTERNATES = {
+  en: '/privacy/',
+  es: '/es/privacy/',
+  pt: '/pt/privacy/',
+  ja: '/ja/privacy/',
+  fr: '/fr/privacy/',
+  de: '/de/privacy/',
+  ko: '/ko/privacy/',
+  it: '/it/privacy/',
+} as const;
+
+export const TERMS_ALTERNATES = {
+  en: '/terms/',
+  es: '/es/terms/',
+  pt: '/pt/terms/',
+  ja: '/ja/terms/',
+  fr: '/fr/terms/',
+  de: '/de/terms/',
+  ko: '/ko/terms/',
+  it: '/it/terms/',
+} as const;
+
+export const DISCLAIMER_ALTERNATES = {
+  en: '/disclaimer/',
+  es: '/es/disclaimer/',
+  pt: '/pt/disclaimer/',
+  ja: '/ja/disclaimer/',
+  fr: '/fr/disclaimer/',
+  de: '/de/disclaimer/',
+  ko: '/ko/disclaimer/',
+  it: '/it/disclaimer/',
+} as const;
+
 // Every page-alternates constant above, in one place, so shared chrome
 // (Navbar/Footer) can look up "does this destination have a translation for
 // the current locale" without hand-maintaining a second list that could drift
@@ -110,6 +143,9 @@ const REGISTRY: Partial<Record<Locale, string>>[] = [
   SIMULATOR_ALTERNATES,
   CHART_SIMULATOR_ALTERNATES,
   BLOG_ALTERNATES,
+  PRIVACY_ALTERNATES,
+  TERMS_ALTERNATES,
+  DISCLAIMER_ALTERNATES,
 ];
 
 /**
