@@ -92,7 +92,7 @@ brevemente. Esse é o rompimento fracassado do exemplo de abertura.
 Uma regra prática comum é exigir de 1,5x a 2x o volume médio numa barra de rompimento antes de tratar o
 rompimento como significativo. O limiar exato não é sagrado; a disciplina de *ter* um é a parte útil. O que
 esses níveis são e por que eles rompem é coberto em
-[níveis de suporte e resistência](/blog/support-and-resistance-levels).
+[níveis de suporte e resistência](/blog/support-and-resistance-levels/).
 
 ### Picos de capitulação no fim de um declínio
 
@@ -115,7 +115,7 @@ foi seriamente desafiado.
 O corolário ajuda a desenhar níveis: preços onde muito volume trocou de mãos historicamente tendem a
 importar depois, porque é ali que a maioria dos participantes tem uma base de custo para defender ou uma
 posição no vermelho para escapar. Isso está intimamente relacionado a por que o
-[VWAP](/blog/vwap-trading-strategy) funciona como um nível de referência — é literalmente o preço em que a
+[VWAP](/blog/vwap-trading-strategy/) funciona como um nível de referência — é literalmente o preço em que a
 ação média foi negociada.
 
 ## Como ler o histograma de volume abaixo de um gráfico de preço
@@ -132,7 +132,7 @@ entra na janela.
 Leia em duas passadas. Procure por outliers que visivelmente ofuscam as vinte barras ao redor, depois
 verifique o que o preço fez exatamente nessas barras: um candle de amplitude larga, uma reversão, um
 impulso contra um nível. Volume sem a estrutura de
-[candlestick](/blog/how-to-read-candlestick-charts) correspondente é só metade da informação.
+[candlestick](/blog/how-to-read-candlestick-charts/) correspondente é só metade da informação.
 
 ## Onde os dados de volume te enganam
 

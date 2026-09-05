@@ -84,7 +84,7 @@ Vous échangez un peu de certitude d'exécution contre un plafond ferme sur la c
 
 Il existe une situation où un ordre au marché n'est pas seulement acceptable mais correct : **sortir d'une position qui évolue contre vous.**
 
-Si votre niveau de stop est franchi et que vous devez être à plat, la certitude d'exécution est tout ce qui compte. Une sortie à cours limité à votre prix idéal peut rester non exécutée pendant que la perte s'aggrave, et une petite perte qui ne s'exécute pas devient une grande perte qui finit par s'exécuter. L'alternative à payer quelques centimes de plus n'est pas « une meilleure exécution », c'est « être toujours en position ». C'est pourquoi les [ordres stop-loss](/blog/stop-loss-orders-explained) déclenchent typiquement un ordre au marché une fois que le prix stop est traité.
+Si votre niveau de stop est franchi et que vous devez être à plat, la certitude d'exécution est tout ce qui compte. Une sortie à cours limité à votre prix idéal peut rester non exécutée pendant que la perte s'aggrave, et une petite perte qui ne s'exécute pas devient une grande perte qui finit par s'exécuter. L'alternative à payer quelques centimes de plus n'est pas « une meilleure exécution », c'est « être toujours en position ». C'est pourquoi les [ordres stop-loss](/blog/stop-loss-orders-explained/) déclenchent typiquement un ordre au marché une fois que le prix stop est traité.
 
 La même logique couvre toute urgence réelle : clôturer avant une annonce programmée, sortir quand votre thèse s'est effondrée, tout liquider à la fin de votre session. Quand vous devez sortir, sortez.
 
@@ -96,9 +96,9 @@ Presque partout ailleurs.
 
 **Les instruments peu liquides.** Là où le spread est de 0.25 plutôt que 0.04, un ordre au marché cède de l'argent réel des deux côtés du trade.
 
-**L'entrée échelonnée et patiente.** Si vous voulez 900 actions, empilez des limites à trois niveaux — 300 à 24.80, 300 à 24.65, 300 à 24.50 — et acceptez de peut-être n'en obtenir qu'une partie. Cela interagit directement avec votre [dimensionnement de position](/blog/risk-management-position-sizing) : une entrée partiellement exécutée est une position plus petite, et votre calcul de risque devrait refléter la taille réellement obtenue.
+**L'entrée échelonnée et patiente.** Si vous voulez 900 actions, empilez des limites à trois niveaux — 300 à 24.80, 300 à 24.65, 300 à 24.50 — et acceptez de peut-être n'en obtenir qu'une partie. Cela interagit directement avec votre [dimensionnement de position](/blog/risk-management-position-sizing/) : une entrée partiellement exécutée est une position plus petite, et votre calcul de risque devrait refléter la taille réellement obtenue.
 
-**Les sorties à un objectif.** Un objectif de profit n'est par définition pas urgent, donc une limite à votre prix est exactement ce qu'il faut. Associer une limite de take-profit à une sortie stop-loss est la structure derrière [les ordres OCO et bracket](/blog/oco-and-bracket-orders).
+**Les sorties à un objectif.** Un objectif de profit n'est par définition pas urgent, donc une limite à votre prix est exactement ce qu'il faut. Associer une limite de take-profit à une sortie stop-loss est la structure derrière [les ordres OCO et bracket](/blog/oco-and-bracket-orders/).
 
 ## L'ordre à cours limité qui ne s'exécute jamais a son propre coût
 

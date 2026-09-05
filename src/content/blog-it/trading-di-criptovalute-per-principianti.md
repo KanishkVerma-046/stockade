@@ -23,7 +23,7 @@ Il crypto elimina tutto questo. Non esiste un momento in cui la tua posizione è
 - **La dimensione della posizione deve sopravvivere a un movimento non sorvegliato.** Chiediti cosa succede se l'asset si muove del 15% contro di te mentre dormi, perché può succedere e succede.
 - **Non ci sono circuit breaker.** Nelle azioni statunitensi, un calo del 7% dell'S&P 500 sospende le contrattazioni per 15 minuti. Il crypto non ha un equivalente. Una cascata di liquidazioni corre finché non si esaurisce da sola.
 
-Se non hai ancora costruito un framework di dimensionamento, fallo prima di toccare questa classe di asset — [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing) copre l'aritmetica.
+Se non hai ancora costruito un framework di dimensionamento, fallo prima di toccare questa classe di asset — [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/) copre l'aritmetica.
 
 ## Borse centralizzate contro borse decentralizzate
 
@@ -100,13 +100,13 @@ Nelle azioni, le piattaforme riportano il volume ai regolatori per obbligo legal
 
 Il **wash trading** — comprare e vendere con se stessi per fabbricare volume — è il metodo standard. Un'analisi del 2019 presentata alla SEC ha concluso che circa il 95% del volume spot di bitcoin riportato non era economico. Ricerche successive hanno trovato frazioni più piccole ma comunque sostanziali su piattaforme non regolamentate.
 
-Quindi un token che mostra "2 miliardi di dollari di volume giornaliero" può avere 100 milioni di dollari di trading reale dietro, e ogni tecnica basata sul volume degrada di conseguenza. I [concetti fondamentali sul volume](/blog/understanding-trading-volume) restano validi; sono solo gli input a essere molto meno affidabili qui. La profondità dell'order book sulle piattaforme regolamentate e i dati di trasferimento on-chain sono prove migliori di una cifra di volume riportata.
+Quindi un token che mostra "2 miliardi di dollari di volume giornaliero" può avere 100 milioni di dollari di trading reale dietro, e ogni tecnica basata sul volume degrada di conseguenza. I [concetti fondamentali sul volume](/blog/understanding-trading-volume/) restano validi; sono solo gli input a essere molto meno affidabili qui. La profondità dell'order book sulle piattaforme regolamentate e i dati di trasferimento on-chain sono prove migliori di una cifra di volume riportata.
 
 ## Cosa non ti danno i mercati crypto
 
 Sii lucido riguardo all'infrastruttura mancante. Non esiste un equivalente della copertura SIPC per una borsa crypto fallita — i creditori di piattaforme fallite hanno passato anni in tribunale per recuperi parziali. La manipolazione che attirerebbe azioni legali nelle azioni è comune e in gran parte non controllata. Le quotazioni non portano uno standard di trasparenza paragonabile a un deposito pubblico.
 
-E l'orologio 24/7 è una trappola psicologica tanto quanto strutturale. Le azioni impongono una pausa; il crypto non lo fa mai. Ogni ora è un'ora in cui *potresti* tradare, il che è esattamente la condizione che produce overtrading, trading di vendetta, e decisioni prese alle 3 del mattino — gli [errori più comuni del day trading](/blog/common-day-trading-mistakes), con l'unico guardrail esterno rimosso. La disciplina deve essere interamente autoimposta: ore di sessione definite, un orario di stop rigido, e ordini in attesa che lavorano mentre tu non lo fai.
+E l'orologio 24/7 è una trappola psicologica tanto quanto strutturale. Le azioni impongono una pausa; il crypto non lo fa mai. Ogni ora è un'ora in cui *potresti* tradare, il che è esattamente la condizione che produce overtrading, trading di vendetta, e decisioni prese alle 3 del mattino — gli [errori più comuni del day trading](/blog/common-day-trading-mistakes/), con l'unico guardrail esterno rimosso. La disciplina deve essere interamente autoimposta: ore di sessione definite, un orario di stop rigido, e ordini in attesa che lavorano mentre tu non lo fai.
 
 ## Esercitati sul simulatore
 

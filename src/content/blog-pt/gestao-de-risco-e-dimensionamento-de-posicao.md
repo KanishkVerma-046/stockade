@@ -30,7 +30,7 @@ causa de onde uma linha num gráfico por acaso ficou.
 Quando o tamanho é fixo e a distância do stop varia, seu risco em dólares oscila aleatoriamente. Quando o
 risco em dólares é fixo e a distância do stop varia, sua quantidade de ações se ajusta e toda perda sai do
 mesmo tamanho. O segundo arranjo é todo o ponto da gestão de risco.
-[Ordens stop-loss](/blog/stop-loss-orders-explained) cobre como encontrar o preço de invalidação; este
+[Ordens stop-loss](/blog/stop-loss-orders-explained/) cobre como encontrar o preço de invalidação; este
 artigo é sobre o que fazer com o número depois que você o tem.
 
 ## A fórmula de dimensionamento de posição, trabalhada do início ao fim
@@ -154,7 +154,7 @@ de 40% está tudo bem, enquanto uma de 60% com perdedoras de −2R ainda pode se
 Essa segunda afirmação depende inteiramente do tamanho das vencedoras: a 60% de acerto e perdedoras de −2R,
 o equilíbrio precisa de uma vencedora média de +1,33R, então vencedoras de +2R na verdade tornariam isso um
 sistema forte a +0,4R por operação, e qualquer coisa abaixo de +1,33R o afunda. Taxa de acerto sozinha nunca
-é suficiente para julgar. O [painel de análises](/blog/analyze-trading-performance-metrics) da Stockade
+é suficiente para julgar. O [painel de análises](/blog/analyze-trading-performance-metrics/) da Stockade
 rastreia taxa de acerto, fator de lucro, e ganho/perda médio, os insumos brutos deste cálculo.
 
 ## Limites de perda diários e semanais impedem que um dia ruim se acumule
@@ -167,7 +167,7 @@ isso são $1.500 num dia e $3.000 numa semana. Atinja o limite diário e você t
 nenhum "só mais um setup." O valor deles é que são definidos com antecedência por uma versão de você que
 não está perdendo no momento. Trade de vingança não é um defeito de caráter; é o que acontece quando um
 cérebro desequilibrado tem permissão para escolher tamanhos de posição. Escreva os números no seu
-[plano de trading](/blog/how-to-build-a-trading-plan) para que a decisão já esteja tomada.
+[plano de trading](/blog/how-to-build-a-trading-plan/) para que a decisão já esteja tomada.
 
 ## Posições correlacionadas tornam sua exposição real maior que a soma
 

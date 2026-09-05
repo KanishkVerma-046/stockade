@@ -54,7 +54,7 @@ La divergenza è l'opposto. Il prezzo si arrampica verso massimi più alti mentr
 
 Per superare un livello che tre settimane di venditori hanno difeso, qualcuno deve assorbire tutta quell'offerta, e assorbire offerta reale genera volume reale. Quando il prezzo spunta sopra un livello ben testato con un volume di 0,79x, l'aritmetica dice che l'offerta non è stata assorbita — i venditori si sono semplicemente allontanati brevemente. Questo è il breakout fallito dell'esempio iniziale.
 
-Una regola pratica comune è richiedere da 1,5x a 2x il volume medio sulla barra di breakout prima di trattare la rottura come significativa. La soglia esatta non è sacra; la disciplina di *averne una* è la parte utile. Cosa sono quei livelli e perché si rompono è trattato in [livelli di supporto e resistenza](/blog/support-and-resistance-levels).
+Una regola pratica comune è richiedere da 1,5x a 2x il volume medio sulla barra di breakout prima di trattare la rottura come significativa. La soglia esatta non è sacra; la disciplina di *averne una* è la parte utile. Cosa sono quei livelli e perché si rompono è trattato in [livelli di supporto e resistenza](/blog/support-and-resistance-levels/).
 
 ### Picchi di capitolazione alla fine di un declino
 
@@ -66,7 +66,7 @@ La logica è l'esaurimento: una volta che i venditori forzati hanno venduto, l'o
 
 Un livello testato su volume pesante che regge è più informativo di uno testato su volume leggero. Volume pesante a supporto significa che i compratori l'hanno difeso in dimensione; volume leggero significa che non è mai stato seriamente sfidato.
 
-Il corollario aiuta a tracciare i livelli: i prezzi dove storicamente è passato molto volume tendono a contare in seguito, perché è lì che il maggior numero di partecipanti ha una base di costo da difendere o una posizione in perdita da cui fuggire. È strettamente collegato al motivo per cui il [VWAP](/blog/vwap-trading-strategy) funziona come livello di riferimento — è letteralmente il prezzo a cui è stata scambiata l'azione media.
+Il corollario aiuta a tracciare i livelli: i prezzi dove storicamente è passato molto volume tendono a contare in seguito, perché è lì che il maggior numero di partecipanti ha una base di costo da difendere o una posizione in perdita da cui fuggire. È strettamente collegato al motivo per cui il [VWAP](/blog/vwap-trading-strategy/) funziona come livello di riferimento — è letteralmente il prezzo a cui è stata scambiata l'azione media.
 
 ## Come leggere l'istogramma del volume sotto un grafico dei prezzi
 
@@ -74,7 +74,7 @@ La presentazione standard è un istogramma in un pannello sottile sotto il grafi
 
 Questo ha due conseguenze. Stai sempre leggendo altezze *relative*, il che è ciò che vuoi — una barra che svetta sui suoi vicini è il segnale, non un'altezza in pixel qualsiasi. Ma la scala cambia mentre scorri o cambi timeframe, quindi una barra che sembrava enorme scompare nel rumore una volta che un vero picco di 9x entra nella finestra.
 
-Leggilo in due passaggi. Cerca i valori anomali che sovrastano visibilmente le venti barre circostanti, poi controlla cosa ha fatto il prezzo esattamente su quelle barre: una candela dal range ampio, un'inversione, una spinta verso un livello. Il volume senza la corrispondente [struttura a candele](/blog/how-to-read-candlestick-charts) è solo metà dell'informazione.
+Leggilo in due passaggi. Cerca i valori anomali che sovrastano visibilmente le venti barre circostanti, poi controlla cosa ha fatto il prezzo esattamente su quelle barre: una candela dal range ampio, un'inversione, una spinta verso un livello. Il volume senza la corrispondente [struttura a candele](/blog/how-to-read-candlestick-charts/) è solo metà dell'informazione.
 
 ## Dove i dati di volume ti ingannano
 

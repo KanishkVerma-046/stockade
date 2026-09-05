@@ -156,8 +156,8 @@ const REGISTRY: Partial<Record<Locale, string>>[] = [
  * without hardcoding per-link locale logic.
  */
 export function localizedHref(enPath: string, locale: Locale): string {
-  if (locale === DEFAULT_LOCALE) return enPath;
   const normalized = enPath.endsWith('/') ? enPath : `${enPath}/`;
+  if (locale === DEFAULT_LOCALE) return normalized;
   const match = REGISTRY.find(alt => alt.en === normalized);
-  return match?.[locale] ?? enPath;
+  return match?.[locale] ?? normalized;
 }

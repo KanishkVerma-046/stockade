@@ -60,7 +60,7 @@ significa julgamentos mais rasos e nenhum sentimento de como qualquer coisa se c
 dois instrumentos e um período de gráfico** e anote-os. Se você tem um emprego fixo, essa escolha já está
 largamente feita para você — um gráfico de 5 minutos que você não consegue observar não é uma opção real.
 Manutenção intraday versus multi-dias é a maior bifurcação do documento;
-[day trading vs swing trading](/blog/day-trading-vs-swing-trading) cobre as restrições que decidem isso.
+[day trading vs swing trading](/blog/day-trading-vs-swing-trading/) cobre as restrições que decidem isso.
 Depois escreva seus horários de sessão: "eu opero entre 09h45 e 11h30 e não abro nada novo depois disso" é
 verificável, e "eu opero quando há oportunidade" não é.
 
@@ -119,7 +119,7 @@ A seção 6 converte risco em quantidade de ações. Numa conta de $25.000 arris
 ação, isso é 250 ÷ 0,48 = **520 ações**. Note que 520 ações a 48,32 são $25.126 de exposição a partir de
 uma decisão de risco de $250; um número de risco pequeno pode implicar uma posição grande, e é por isso
 que a aritmética recebe seu próprio tratamento em
-[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing). Seu plano precisa do
+[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/). Seu plano precisa do
 percentual e da fórmula na página, não de um número que você recalcula sob pressão.
 
 A seção 7 é a que a maioria dos iniciantes omite e a que mais precisam. **Escreva um limite de perda diária
@@ -146,7 +146,7 @@ errada e será repetido.
 
 A **revisão semanal** olha para os agregados: setups tomados, setups pulados, taxa de aderência, e os
 números de desempenho cobertos em
-[analisando suas métricas de trading](/blog/analyze-trading-performance-metrics). É aqui que você percebe
+[analisando suas métricas de trading](/blog/analyze-trading-performance-metrics/). É aqui que você percebe
 que as perdas se concentram numa hora, ou que operações fora do plano respondem pela maior parte do seu
 drawdown.
 
@@ -191,5 +191,5 @@ comparar operações que cumpriram sua definição de setup contra as que você 
 ressalvas sobre o resultado: os preços da Stockade vêm de um passeio aleatório no lado do cliente, não de
 nenhum mercado, então um setup que "funciona" aqui diz que sua execução foi consistente e nada sobre a
 vantagem — e o capital virtual remove o peso emocional que te fez reescrever a regra em primeiro lugar.
-Ensaiar o processo ainda ajuda, como [praticar paper trading deliberadamente](/blog/paper-trading-guide)
+Ensaiar o processo ainda ajuda, como [praticar paper trading deliberadamente](/blog/paper-trading-guide/)
 explica; só nunca confunda um resultado simulado com um plano validado.

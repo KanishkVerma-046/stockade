@@ -93,7 +93,7 @@ Lotes pequenos são o que torna o dimensionamento em forex viável em uma conta 
 risco por operação — $50 — em um setup de EUR/USD com stop de 25 pips, você precisa de um valor de pip de
 50 ÷ 25 = **$2,00**, que são 2 mini lotes, ou 20.000 unidades. Valor nocional: 20.000 × 1,0872 =
 **$21.744**. Quatro vezes sua conta controlados com $50 em risco. A
-[fórmula de dimensionamento de posição](/blog/risk-management-position-sizing) funciona de forma idêntica
+[fórmula de dimensionamento de posição](/blog/risk-management-position-sizing/) funciona de forma idêntica
 aqui; só a unidade muda de risco-por-ação para risco-por-pip.
 
 ## O spread é o principal custo que você paga no forex de varejo
@@ -144,7 +144,7 @@ alavancagem são o motivo dominante.
 
 Trate a alavancagem como uma capacidade que você majoritariamente recusa: dimensione a partir da distância
 do seu stop e do seu orçamento de risco, e deixe a exigência de margem cair onde cair.
-[Futuros carregam uma mecânica de alavancagem parecida](/blog/futures-trading-explained) através da margem
+[Futuros carregam uma mecânica de alavancagem parecida](/blog/futures-trading-explained/) através da margem
 de contrato, e a mesma disciplina se aplica.
 
 ## Majors, minors, exóticos, e a semana de trading de 24 horas
@@ -164,7 +164,7 @@ de Ásia costumam ser calmas e em faixa.
 
 Acesso ininterrupto não é um convite para operar sem parar. Escolha a janela que combina com seus setups e
 sua vida; se essa é uma sobreposição de duas horas ou uma manutenção de vários dias é a decisão de
-[day trading versus swing trading](/blog/day-trading-vs-swing-trading). E embora a semana seja contínua,
+[day trading versus swing trading](/blog/day-trading-vs-swing-trading/). E embora a semana seja contínua,
 forex tem gaps no fim de semana — segunda-feira pode abrir longe do fechamento de sexta, passando por
 qualquer stop que esteja no meio do caminho.
 

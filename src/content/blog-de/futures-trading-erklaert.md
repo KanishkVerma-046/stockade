@@ -75,7 +75,7 @@ Jetzt rechnen Sie die Zahl durch, die zählt:
 - 2 % ungünstige Bewegung auf /ES-Nominal: 262.437,50 × 0,02 = **5.248,75 $**
 - Als Anteil einer Margin-Einzahlung von 13.000 $: 5.248,75 ÷ 13.000 = **40,4 %**
 
-Eine 2-%-Bewegung im Basiswert löscht 40 % des hinterlegten Kapitals aus. Der S&P 500 hat im durchschnittlichen Jahr mehrfach 2-%-Tage. Diese Asymmetrie — kleine Bewegung, enormer proportionaler Schaden — ist das Wichtigste auf dieser Seite, und deshalb sind die [1-%-Regel und die Positionsgrößen-Arithmetik](/blog/risk-management-position-sizing) bei Futures nicht optional. Es bedeutet auch, dass die [Stop-Loss-Platzierung](/blog/stop-loss-orders-explained) vor dem Einstieg kommen muss, nicht danach. Bei Aktien ist ein vergessener Stop ein schlechter Trade. Bei 20:1 ist es ein Solvenzereignis.
+Eine 2-%-Bewegung im Basiswert löscht 40 % des hinterlegten Kapitals aus. Der S&P 500 hat im durchschnittlichen Jahr mehrfach 2-%-Tage. Diese Asymmetrie — kleine Bewegung, enormer proportionaler Schaden — ist das Wichtigste auf dieser Seite, und deshalb sind die [1-%-Regel und die Positionsgrößen-Arithmetik](/blog/risk-management-position-sizing/) bei Futures nicht optional. Es bedeutet auch, dass die [Stop-Loss-Platzierung](/blog/stop-loss-orders-explained/) vor dem Einstieg kommen muss, nicht danach. Bei Aktien ist ein vergessener Stop ein schlechter Trade. Bei 20:1 ist es ein Solvenzereignis.
 
 ## Verfall, Rollover und Contango bei Rohstoff-Futures
 
@@ -94,7 +94,7 @@ Der Unterschied für ein kleines Konto ist nicht kosmetisch. Auf einem Konto mit
 - **1 /ES-Kontrakt:** 10 × 50 $ = **500 $** Risiko — **10 %** des Kontos auf einem Trade.
 - **1 /MES-Kontrakt:** 10 × 5 $ = **50 $** Risiko — **1 %** des Kontos.
 
-Die /MES-Version ist ein normaler Trade. Die /ES-Version ist ein Glücksspiel, das keine Überzeugung rechtfertigt. Mikros lassen Sie auch in Zehnteln skalieren statt vor einer Alles-oder-nichts-Entscheidung zu stehen — dasselbe Granularitätsargument, das [Forex-Positionsgrößenbestimmung](/blog/forex-trading-for-beginners) mit Mini- und Mikro-Lots praktikabel macht.
+Die /MES-Version ist ein normaler Trade. Die /ES-Version ist ein Glücksspiel, das keine Überzeugung rechtfertigt. Mikros lassen Sie auch in Zehnteln skalieren statt vor einer Alles-oder-nichts-Entscheidung zu stehen — dasselbe Granularitätsargument, das [Forex-Positionsgrößenbestimmung](/blog/forex-trading-for-beginners/) mit Mini- und Mikro-Lots praktikabel macht.
 
 ## Was Stockades Futures-Symbole Ihnen beibringen können und was nicht
 

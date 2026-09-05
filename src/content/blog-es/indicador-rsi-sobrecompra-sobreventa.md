@@ -55,7 +55,7 @@ Nota lo que eso significa. Para imprimir 70, los movimientos alcistas solo tiene
 
 Wilder eligió 70 y 30. Pudo haber elegido 75 y 25. No hay una derivación detrás de ellos, ningún umbral estadístico donde el comportamiento cambie, ningún mecanismo que se active en 70.0 y se desactive en 69.9. Son números redondos que se veían razonables en los gráficos que estudió en los años setenta, y se quedaron porque todos copiaron los valores predeterminados. La mayoría del software de gráficos dibuja esas líneas por ti, lo cual refuerza silenciosamente la idea de que son fronteras. El gráfico de Stockade hace lo mismo — cambia el panel inferior a RSI y obtienes líneas punteadas en 70 y 30. Son marcas de referencia, no veredictos.
 
-Lo mismo aplica al período de retroceso de 14. Un ajuste más corto como 7 reacciona más rápido y llega a los extremos constantemente; uno más largo como 21 rara vez llega. El período cambia qué tan seguido ves una señal, no qué tan confiable es — la misma disyuntiva que gobierna [elegir la longitud de una media móvil](/blog/moving-averages-ema-vs-sma).
+Lo mismo aplica al período de retroceso de 14. Un ajuste más corto como 7 reacciona más rápido y llega a los extremos constantemente; uno más largo como 21 rara vez llega. El período cambia qué tan seguido ves una señal, no qué tan confiable es — la misma disyuntiva que gobierna [elegir la longitud de una media móvil](/blog/moving-averages-ema-vs-sma/).
 
 ## Sobrecompra significa fuerza, no "a punto de revertir"
 
@@ -86,7 +86,7 @@ La divergencia es un desacuerdo entre el precio y el momentum.
 
 Para leer una, marca dos puntos de giro del mismo tipo en el precio — dos máximos claros, o dos mínimos claros — y compara el RSI en cada uno. Solo cuenta si los dos son giros comparables con un retroceso real entre ellos; trazar líneas entre velas arbitrarias produce una divergencia en casi cualquier gráfico, por eso son tan fáciles de ver en retrospectiva.
 
-Sé directo sobre la tasa de acierto: la divergencia falla seguido, y falla peor precisamente donde parece más tentadora. Una tendencia fuerte imprimirá tres o cuatro divergencias bajistas en su camino hacia arriba, y solo la última marca algo — cada una de las anteriores es una trampa que cuesta dinero. Trata la divergencia como una razón para ajustar un stop o dejar de sumar a una posición ganadora, no como una entrada independiente contra la tendencia. Apostar contra la fuerza en una señal de divergencia es uno de los [hábitos más costosos que desarrollan los traders nuevos](/blog/common-day-trading-mistakes).
+Sé directo sobre la tasa de acierto: la divergencia falla seguido, y falla peor precisamente donde parece más tentadora. Una tendencia fuerte imprimirá tres o cuatro divergencias bajistas en su camino hacia arriba, y solo la última marca algo — cada una de las anteriores es una trampa que cuesta dinero. Trata la divergencia como una razón para ajustar un stop o dejar de sumar a una posición ganadora, no como una entrada independiente contra la tendencia. Apostar contra la fuerza en una señal de divergencia es uno de los [hábitos más costosos que desarrollan los traders nuevos](/blog/common-day-trading-mistakes/).
 
 ## Usar la línea 50 como filtro de tendencia
 
@@ -109,7 +109,7 @@ El orden importa: identifica primero el régimen, luego elige los umbrales. Usar
 
 El RSI se construye enteramente con precios de cierre que ya has visto. Es una medida rezagada y derivada — cada valor es un hecho sobre el pasado. No ve la acción intravela, y no lleva ninguna información que no esté ya en la serie de precios.
 
-Tampoco tiene noción de *por qué* se movieron los precios. Una lectura de 90.9 que viene de un ascenso constante y una que viene de un solo hueco de apertura se ven idénticas para la fórmula. Esa es una buena razón para leer el RSI junto con la estructura del precio y el volumen, y para saber en qué se diferencia del [MACD](/blog/macd-explained), que mide la separación entre dos medias móviles en lugar de una razón de ganancia/pérdida.
+Tampoco tiene noción de *por qué* se movieron los precios. Una lectura de 90.9 que viene de un ascenso constante y una que viene de un solo hueco de apertura se ven idénticas para la fórmula. Esa es una buena razón para leer el RSI junto con la estructura del precio y el volumen, y para saber en qué se diferencia del [MACD](/blog/macd-explained/), que mide la separación entre dos medias móviles en lugar de una razón de ganancia/pérdida.
 
 ## Practica leer el RSI en el simulador
 

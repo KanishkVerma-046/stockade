@@ -116,7 +116,7 @@ Pegue uma conta de $50.000 arriscando 1% — **$500** — por operação, em uma
 
 Mesmo risco de $500. Dez vezes a quantidade de ações e dez vezes o capital comprometido no day trade. A
 aritmética completa por trás disso está em
-[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing).
+[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/).
 
 Essa quantidade de ações também é onde os custos mordem. Suponha que o spread entre compra e venda seja
 0,02 e você o atravesse na entrada e na saída, aproximadamente um spread por ida e volta:
@@ -141,7 +141,7 @@ o trade de vingança é a consequência direta. O ciclo de feedback que te ensin
 Swing trading te dá um punhado de resultados resolvidos por mês. O aprendizado é mais lento, e leva muito
 mais tempo para saber se sua vantagem é real ou se você teve sorte. Mas o intervalo entre impulso e ação é
 medido em horas, o que é tempo suficiente para a maioria das decisões ruins morrerem sozinhas. Seja qual
-for sua escolha, os [erros comuns de day trading](/blog/common-day-trading-mistakes) que vale a pena
+for sua escolha, os [erros comuns de day trading](/blog/common-day-trading-mistakes/) que vale a pena
 estudar são, em sua maioria, falhas desse intervalo.
 
 ## As chances reais, e como escolher o estilo que combina
@@ -161,7 +161,7 @@ sessão, você tem ou consegue chegar a $25.000 se estiver nos EUA, você manté
 consegue parar por dia sob comando. Swing trading combina com você se sua atenção está comprometida em
 outro lugar durante o horário de mercado, sua conta é menor, você consegue deixar uma posição em paz por
 uma semana, e consegue absorver um gap sem que ele te destrua. Nenhuma resposta é mais séria que a outra.
-Seja qual for sua escolha, escreva-a em um [plano de trading](/blog/how-to-build-a-trading-plan) antes de
+Seja qual for sua escolha, escreva-a em um [plano de trading](/blog/how-to-build-a-trading-plan/) antes de
 operá-la, para que o estilo seja uma decisão, não um humor.
 
 ## Pratique isso no simulador

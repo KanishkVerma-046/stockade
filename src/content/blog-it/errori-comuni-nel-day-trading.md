@@ -19,7 +19,7 @@ Ogni errore qui sotto è uno di questi quattro impulsi travestito da trading. Ec
 
 Il setup è pulito, le ultime due operazioni hanno funzionato, quindi prendi il triplo della tua dimensione normale. Nulla nel tuo processo scritto è cambiato — solo la tua sensazione. La fiducia è generata dagli esiti recenti, non dal vantaggio statistico, e la dimensione è il modo più immediato per agire su di essa.
 
-**La regola:** nessuna posizione supera l'1% dell'equity del conto in rischio, calcolato dal prezzo di ingresso, dal prezzo dello stop e dal numero di azioni *prima* che l'ordine venga piazzato. La dimensione è il risultato di un problema di divisione, non di uno stato d'animo. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing) contiene l'aritmetica completa.
+**La regola:** nessuna posizione supera l'1% dell'equity del conto in rischio, calcolato dal prezzo di ingresso, dal prezzo dello stop e dal numero di azioni *prima* che l'ordine venga piazzato. La dimensione è il risultato di un problema di divisione, non di uno stato d'animo. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/) contiene l'aritmetica completa.
 
 ### L'aritmetica: venti operazioni disciplinate contro un'operazione sovradimensionata
 
@@ -41,7 +41,7 @@ Il dimensionamento non è un rischio tra tanti. È il moltiplicatore di tutti gl
 
 Il prezzo si avvicina al tuo stop, decidi che il livello era "un po' stretto" e lo sposti più in basso. Uno stop attivato converte una perdita fluttuante e negabile in una permanente — spostarlo non riduce il tuo rischio, sposta solo il momento in cui lo ammetti. Il sollievo che provi è il segnale rivelatore.
 
-**La regola:** gli stop si spostano solo verso il profitto, mai in direzione opposta. Volere più margine significa una posizione più piccola la prossima volta, non uno stop più largo questa volta. Piazzalo dove la tua idea viene dimostrata sbagliata, non dove la perdita sembra tollerabile — vedi [gli ordini stop-loss spiegati](/blog/stop-loss-orders-explained).
+**La regola:** gli stop si spostano solo verso il profitto, mai in direzione opposta. Volere più margine significa una posizione più piccola la prossima volta, non uno stop più largo questa volta. Piazzalo dove la tua idea viene dimostrata sbagliata, non dove la perdita sembra tollerabile — vedi [gli ordini stop-loss spiegati](/blog/stop-loss-orders-explained/).
 
 ### Mediare al ribasso su una posizione in perdita
 
@@ -85,7 +85,7 @@ All'ingresso pianificato, il rischio è 0,50$ contro 1,00$ di guadagno potenzial
 
 Un piano non scritto non può essere violato, solo reinterpretato, e la reinterpretazione non costa nulla.
 
-**La regola:** il piano esiste come file, scritto prima della sessione, che specifica i criteri del setup, il trigger di ingresso, la logica dello stop, la logica del target, il rischio massimo per operazione, il numero massimo di operazioni al giorno, e le condizioni che terminano la sessione. [Costruire un piano di trading](/blog/how-to-build-a-trading-plan) illustra ogni parte.
+**La regola:** il piano esiste come file, scritto prima della sessione, che specifica i criteri del setup, il trigger di ingresso, la logica dello stop, la logica del target, il rischio massimo per operazione, il numero massimo di operazioni al giorno, e le condizioni che terminano la sessione. [Costruire un piano di trading](/blog/how-to-build-a-trading-plan/) illustra ogni parte.
 
 ## I costi che dimentichi di sottrarre
 
@@ -103,7 +103,7 @@ Commissioni e spread sembrano trascurabili per singola operazione e sono decisiv
 
 Stockade aiuta con la metà meccanica. Il conto paper da 100.000$ ti permette di provare il ciclo — dimensione calcolata prima dell'ingresso, un bracket OCO inviato così le uscite esistono nel momento stesso in cui esiste la posizione, stop mai toccato — finché non diventa automatico invece che faticoso. La [vista analitica](/it/analytics/) riporta il guadagno medio contro la perdita media, ed è lì che l'effetto disposizione diventa visibile: se il tuo guadagno medio è il numero più piccolo, stai tagliando i guadagni, qualunque cosa tu creda sulla tua disciplina.
 
-Quello che un simulatore non può fare è riprodurre la pressione che causa questi errori. Il denaro non è reale, quindi una perdita non viene registrata come una minaccia, quindi l'impulso a spostare lo stop non scatta mai. I trader che rispettano perfettamente le proprie regole per un mese sul paper trading di solito le abbandonano nella prima settimana con capitale reale. Nessun simulatore colma quel divario — vedi [come esercitarsi deliberatamente](/blog/paper-trading-guide) per cosa la pratica può e non può offrire.
+Quello che un simulatore non può fare è riprodurre la pressione che causa questi errori. Il denaro non è reale, quindi una perdita non viene registrata come una minaccia, quindi l'impulso a spostare lo stop non scatta mai. I trader che rispettano perfettamente le proprie regole per un mese sul paper trading di solito le abbandonano nella prima settimana con capitale reale. Nessun simulatore colma quel divario — vedi [come esercitarsi deliberatamente](/blog/paper-trading-guide/) per cosa la pratica può e non può offrire.
 
 Due avvertenze. I prezzi di Stockade sono sintetici, generati nel tuo browser anziché provenire da una borsa, quindi stai esercitando la procedura contro un andamento dei prezzi dall'aspetto realistico, non la storia del mercato. E le esecuzioni hanno quasi nessun attrito: nessuno spread bid-ask, nessuna esecuzione parziale, e gli stop si eseguono al tick che ha superato il tuo livello anziché al livello stesso. La disciplina sui costi di transazione è l'unico elemento qui che non puoi esercitare sulla piattaforma.
 

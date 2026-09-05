@@ -45,7 +45,7 @@ coisa que você realmente queria, que era sair.
 
 A distinção importa mais exatamente nas condições para as quais um stop existe: movimentos rápidos e
 unidirecionais. A maioria dos traders deveria usar ordens stop-market para stops de proteção por esse
-motivo. A [diferença entre ordens a mercado e limitadas](/blog/market-orders-vs-limit-orders) vale a pena
+motivo. A [diferença entre ordens a mercado e limitadas](/blog/market-orders-vs-limit-orders/) vale a pena
 entender em geral, mas aqui a assimetria é gritante — uma execução um pouco pior é uma tarde ruim, um stop
 de proteção não executado é um ano ruim.
 
@@ -64,7 +64,7 @@ Digamos que você comprou a 187,40 porque o preço segurou um nível em 186,15 d
 Sua tese é "compradores estão defendendo 186,15." Abaixo de 186,15, essa tese está morta — não danificada,
 morta. Adicione um pequeno amortecedor e coloque o stop em 185,90. Agora a distância é definida pelo
 gráfico, não pelo seu conforto. Se disparar, você estava errado sobre algo real, o que é informação.
-[Níveis de suporte e resistência](/blog/support-and-resistance-levels) são a matéria-prima para esse tipo
+[Níveis de suporte e resistência](/blog/support-and-resistance-levels/) são a matéria-prima para esse tipo
 de posicionamento.
 
 Seu risco por ação é 187,40 − 185,90 = **1,50**. Esse número é um resultado da análise, não uma entrada. O
@@ -111,7 +111,7 @@ constante.
 Isso também expõe a fantasia do stop apertado. Um stop de 0,50 permitiria 1.000 ações — mas 1.000 × 187,40
 são $187.400 em ações numa conta de $100.000, o que exige alavancagem, e o stop está perto o suficiente
 para que ruído rotineiro o atinja repetidamente.
-[Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing) aprofunda essa
+[Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/) aprofunda essa
 aritmética.
 
 <div class="table-wrap">
@@ -134,7 +134,7 @@ O trade-off é que um stop móvel sempre devolve a distância do trail. Você nu
 construção. Aperte demais o trail e um recuo normal encerra uma operação de tendência cedo demais; afrouxe
 demais e você devolve uma grande parte de um ganho aberto. Não há configuração correta, só uma escolha
 sobre qual arrependimento você prefere. Stops móveis são frequentemente combinados com um alvo de lucro
-através de uma ordem bracket, que [ordens OCO e bracket](/blog/oco-and-bracket-orders) cobre como tipo de
+através de uma ordem bracket, que [ordens OCO e bracket](/blog/oco-and-bracket-orders/) cobre como tipo de
 ordem.
 
 ## Três coisas honestas sobre stops

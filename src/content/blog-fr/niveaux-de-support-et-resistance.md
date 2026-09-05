@@ -29,14 +29,14 @@ Rien de tout cela n'exige que le marché « se souvienne » de quoi que ce soit.
 
 ## Comment identifier les niveaux à partir des swing highs et swing lows
 
-Un swing low est une bougie dont le plus bas est inférieur aux plus bas des bougies voisines de part et d'autre — un creux local. Un swing high en est l'inverse. Ce sont les points où le prix s'est arrêté et a changé de direction, ce qui signifie que suffisamment d'ordres opposés sont apparus pour changer l'issue. Si vous n'êtes pas encore à l'aise avec l'anatomie des chandeliers, [comment lire les graphiques en chandeliers](/blog/how-to-read-candlestick-charts) détaille l'ouverture, le plus haut, le plus bas et la clôture.
+Un swing low est une bougie dont le plus bas est inférieur aux plus bas des bougies voisines de part et d'autre — un creux local. Un swing high en est l'inverse. Ce sont les points où le prix s'est arrêté et a changé de direction, ce qui signifie que suffisamment d'ordres opposés sont apparus pour changer l'issue. Si vous n'êtes pas encore à l'aise avec l'anatomie des chandeliers, [comment lire les graphiques en chandeliers](/blog/how-to-read-candlestick-charts/) détaille l'ouverture, le plus haut, le plus bas et la clôture.
 
 La méthode pratique n'a rien de glamour :
 
 1. Zoomez plus en arrière qu'il ne semble nécessaire. Un niveau visible uniquement sur un graphique en 5 minutes est fragile ; un niveau visible sur le graphique journalier est un niveau que des milliers de personnes peuvent voir.
 2. Marquez tous les swing highs et swing lows des derniers mois.
 3. Cherchez les prix où plusieurs points de retournement se regroupent dans une bande étroite. Deux contacts, c'est une coïncidence accompagnée d'une histoire. Trois ou plus, c'est un niveau.
-4. Notez quels contacts se sont accompagnés d'un volume important — beaucoup d'actions ont changé de mains à cet endroit, ce qui signifie que beaucoup de positions ont désormais une opinion sur ce prix. [Le volume de trading](/blog/understanding-trading-volume) fait la différence entre un niveau défendu et un niveau simplement dessiné.
+4. Notez quels contacts se sont accompagnés d'un volume important — beaucoup d'actions ont changé de mains à cet endroit, ce qui signifie que beaucoup de positions ont désormais une opinion sur ce prix. [Le volume de trading](/blog/understanding-trading-volume/) fait la différence entre un niveau défendu et un niveau simplement dessiné.
 
 Résistez à l'envie de tracer vingt lignes. Si votre graphique ressemble à du papier millimétré, chaque mouvement semblera « réagir à un niveau », et vous n'aurez rien appris.
 
@@ -70,7 +70,7 @@ La solution consiste à placer le stop sous la zone entière et à laisser la ta
 
 Cette fois, la mèche jusqu'à 249.20 ne vous touche pas. Le prix clôture à 251.30 et grimpe jusqu'à 254.00. Votre gain est de 3.60 par action × 62 = **$223.20**, soit 2.48 fois ce que vous aviez risqué.
 
-Comparons honnêtement. Le stop serré vous aurait permis de garder 100 actions au lieu de 62, et si tout s'était bien passé vous auriez gagné $360 plutôt que $223.20 — un stop plus large limite réellement votre potentiel de gain. Mais la version au stop serré n'a pas gagné $360. Elle a perdu $90, parce qu'elle n'a jamais survécu assez longtemps pour avoir raison. Un stop n'est pas l'endroit où les pertes sont les plus petites ; c'est le prix qui prouve que votre idée était fausse. [Les ordres stop-loss](/blog/stop-loss-orders-explained) approfondissent cette distinction.
+Comparons honnêtement. Le stop serré vous aurait permis de garder 100 actions au lieu de 62, et si tout s'était bien passé vous auriez gagné $360 plutôt que $223.20 — un stop plus large limite réellement votre potentiel de gain. Mais la version au stop serré n'a pas gagné $360. Elle a perdu $90, parce qu'elle n'a jamais survécu assez longtemps pour avoir raison. Un stop n'est pas l'endroit où les pertes sont les plus petites ; c'est le prix qui prouve que votre idée était fausse. [Les ordres stop-loss](/blog/stop-loss-orders-explained/) approfondissent cette distinction.
 
 ## Inversion de rôle : pourquoi une résistance cassée devient un support
 

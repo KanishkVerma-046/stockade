@@ -40,7 +40,7 @@ reavaliação. As consequências práticas:
   Cripto não tem equivalente. Uma cascata de liquidações roda até se esgotar.
 
 Se você ainda não construiu uma estrutura de dimensionamento, faça isso antes de tocar nessa classe de
-ativo — [dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing) cobre a
+ativo — [dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/) cobre a
 aritmética.
 
 ## Exchanges centralizadas versus exchanges descentralizadas
@@ -163,7 +163,7 @@ para inflar é direto.
 Pesquisas posteriores encontraram frações menores, mas ainda substanciais, em ambientes não regulados.
 
 Então um token mostrando "$2 bilhões de volume diário" pode ter $100 milhões de negociação real por trás,
-e toda técnica baseada em volume se degrada de acordo. Os [conceitos essenciais de volume](/blog/understanding-trading-volume)
+e toda técnica baseada em volume se degrada de acordo. Os [conceitos essenciais de volume](/blog/understanding-trading-volume/)
 ainda valem; os dados de entrada é que são muito menos confiáveis aqui. A profundidade do livro de ordens
 em ambientes regulados e os dados de transferência on-chain são evidências melhores que um número de
 volume reportado.
@@ -178,7 +178,7 @@ carregam padrão de divulgação comparável a um registro público.
 E o relógio de 24/7 é uma armadilha psicológica tanto quanto estrutural. Ações impõem uma pausa; cripto
 nunca faz isso. Toda hora é uma hora em que você *poderia* estar operando, que é exatamente a condição que
 produz overtrading, trades de vingança, e decisões tomadas às 3 da manhã — os
-[erros mais comuns de day trading](/blog/common-day-trading-mistakes), com a única barreira externa
+[erros mais comuns de day trading](/blog/common-day-trading-mistakes/), com a única barreira externa
 removida. A disciplina tem que ser inteiramente autoimposta: horários de sessão definidos, um horário de
 parada rígido, e ordens em espera que funcionam enquanto você não está.
 

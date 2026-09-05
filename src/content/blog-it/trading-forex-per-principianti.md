@@ -57,7 +57,7 @@ USD/JPY non lo è. La sua valuta quota è lo yen, quindi un lotto standard guada
 
 </div>
 
-I lotti piccoli sono ciò che rende il dimensionamento forex praticabile su un piccolo conto. Con 5.000$ e l'1% di rischio per operazione — 50$ — su un setup EUR/USD con uno stop di 25 pip, ti serve un valore del pip di 50 ÷ 25 = **2,00$**, ovvero 2 mini lotti, o 20.000 unità. Valore nozionale: 20.000 × 1,0872 = **21.744$**. Quattro volte il tuo conto controllato con 50$ a rischio. La [formula di dimensionamento della posizione](/blog/risk-management-position-sizing) funziona identicamente qui; cambia solo l'unità, da rischio-per-azione a rischio-per-pip.
+I lotti piccoli sono ciò che rende il dimensionamento forex praticabile su un piccolo conto. Con 5.000$ e l'1% di rischio per operazione — 50$ — su un setup EUR/USD con uno stop di 25 pip, ti serve un valore del pip di 50 ÷ 25 = **2,00$**, ovvero 2 mini lotti, o 20.000 unità. Valore nozionale: 20.000 × 1,0872 = **21.744$**. Quattro volte il tuo conto controllato con 50$ a rischio. La [formula di dimensionamento della posizione](/blog/risk-management-position-sizing/) funziona identicamente qui; cambia solo l'unità, da rischio-per-azione a rischio-per-pip.
 
 ## Lo spread è il costo principale che paghi nel forex retail
 
@@ -86,7 +86,7 @@ Leggi l'ultima riga e la trappola è evidente. Con 2.000$ e 500:1 puoi detenere 
 
 L'inquadramento di marketing è che la leva permette a un piccolo conto di accedere a un grande mercato. L'inquadramento onesto è che la leva moltiplica un esito il cui segno non controlli: scala i guadagni e le perdite dello stesso fattore e non cambia in nulla la tua aspettativa per operazione, quindi se la tua strategia perde denaro in media, la leva non è una via più veloce al profitto ma una via più veloce allo zero. I broker regolamentati nell'UE e nel Regno Unito devono pubblicare la quota di conti retail che perdono denaro, e le cifre divulgate si attestano generalmente nella fascia 70-80%; le perdite guidate dalla leva sono la ragione dominante.
 
-Tratta la leva come una capacità che declini per lo più: dimensionati dalla distanza del tuo stop e dal tuo budget di rischio, e lascia che il requisito di margine cada dove cade. [I futures portano meccaniche di leva simili](/blog/futures-trading-explained) tramite il margine del contratto, e vale la stessa disciplina.
+Tratta la leva come una capacità che declini per lo più: dimensionati dalla distanza del tuo stop e dal tuo budget di rischio, e lascia che il requisito di margine cada dove cade. [I futures portano meccaniche di leva simili](/blog/futures-trading-explained/) tramite il margine del contratto, e vale la stessa disciplina.
 
 ## Major, minori, esotiche, e la settimana di trading da 24 ore
 
@@ -94,7 +94,7 @@ Le coppie sono raggruppate per liquidità. I **major** includono tutti il dollar
 
 Il forex tratta 24 ore al giorno, cinque giorni a settimana, aprendo con Sydney intorno alle 17:00 ET di domenica e chiudendo alle 17:00 ET di venerdì, con quattro sessioni regionali che si alternano: Sydney, Tokyo, Londra, New York. Il volume più pesante è la **sovrapposizione Londra-New York**, circa dalle 8:00 alle 12:00 ET, quando entrambi i centri più grandi sono aperti — gli spread sono più stretti e i movimenti più ampi in quel momento. Le sole ore asiatiche sono tipicamente tranquille e a range.
 
-L'accesso ininterrotto non è un invito a tradare senza sosta. Scegli la finestra adatta ai tuoi setup e alla tua vita; che sia una sovrapposizione di due ore o una detenzione multi-giorno è la decisione tra [day trading e swing trading](/blog/day-trading-vs-swing-trading). E sebbene la settimana sia continua, il forex presenta gap nel weekend — il lunedì può aprire lontano dalla chiusura di venerdì, oltre qualsiasi stop in attesa nel mezzo.
+L'accesso ininterrotto non è un invito a tradare senza sosta. Scegli la finestra adatta ai tuoi setup e alla tua vita; che sia una sovrapposizione di due ore o una detenzione multi-giorno è la decisione tra [day trading e swing trading](/blog/day-trading-vs-swing-trading/). E sebbene la settimana sia continua, il forex presenta gap nel weekend — il lunedì può aprire lontano dalla chiusura di venerdì, oltre qualsiasi stop in attesa nel mezzo.
 
 ## Cosa possono e non possono insegnarti le tre coppie di valute di Stockade
 

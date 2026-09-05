@@ -83,7 +83,7 @@ para RSI e você recebe linhas tracejadas em 70 e 30. São marcas de referência
 O mesmo vale para o retrocesso de 14 períodos. Uma configuração mais curta como 7 reage mais rápido e
 alcança os extremos constantemente; uma mais longa como 21 raramente chega lá. O período muda com que
 frequência você vê um sinal, não quão confiável ele é — a mesma troca que governa
-[escolher o comprimento de uma média móvel](/blog/moving-averages-ema-vs-sma).
+[escolher o comprimento de uma média móvel](/blog/moving-averages-ema-vs-sma/).
 
 ## Sobrecompra significa força, não "prestes a reverter"
 
@@ -135,7 +135,7 @@ parece mais tentadora. Uma tendência forte vai imprimir três ou quatro diverg�
 cima, e só a última marca alguma coisa — cada uma das anteriores é uma armadilha que custa dinheiro. Trate
 a divergência como um motivo para apertar um stop ou parar de adicionar a uma posição ganhadora, não como
 uma entrada independente contra a tendência. Apostar contra a força num sinal de divergência é um dos
-[hábitos mais caros que traders novos desenvolvem](/blog/common-day-trading-mistakes).
+[hábitos mais caros que traders novos desenvolvem](/blog/common-day-trading-mistakes/).
 
 ## Usando a linha 50 como filtro de tendência
 
@@ -171,7 +171,7 @@ que já não esteja na série de preços.
 
 Também não tem noção de *por que* os preços se moveram. Uma leitura de 90,9 vinda de uma subida constante e
 uma vinda de um único gap parecem idênticas para a fórmula. Esse é um bom motivo para ler o RSI junto com a
-estrutura de preço e o volume, e para saber em que ele difere do [MACD](/blog/macd-explained), que mede a
+estrutura de preço e o volume, e para saber em que ele difere do [MACD](/blog/macd-explained/), que mede a
 separação entre duas médias móveis em vez de uma razão de ganho/perda.
 
 ## Pratique ler o RSI no simulador

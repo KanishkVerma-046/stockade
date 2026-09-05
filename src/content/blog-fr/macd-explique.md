@@ -27,9 +27,9 @@ MACD signifie Moving Average Convergence Divergence — un nom honnête, puisque
 
 ### La ligne MACD
 
-Prenez une moyenne mobile exponentielle des 12 dernières barres et une des 26 dernières barres, puis soustrayez la lente de la rapide. Pour savoir comment une EMA pondère plus fortement les barres récentes que les anciennes, voir [moyennes mobiles : EMA vs SMA](/blog/moving-averages-ema-vs-sma).
+Prenez une moyenne mobile exponentielle des 12 dernières barres et une des 26 dernières barres, puis soustrayez la lente de la rapide. Pour savoir comment une EMA pondère plus fortement les barres récentes que les anciennes, voir [moyennes mobiles : EMA vs SMA](/blog/moving-averages-ema-vs-sma/).
 
-Concrètement : si l'EMA 12 périodes est à 188.40 et l'EMA 26 périodes à 186.90, la ligne MACD affiche 188.40 − 186.90 = **1.50**. La moyenne rapide se situe $1.50 au-dessus de la lente. Ce chiffre est exprimé dans l'unité propre du prix — des dollars ici, pas un pourcentage ni une échelle bornée de 0 à 100 comme le [RSI](/blog/rsi-indicator-overbought-oversold). Une action à $400 produit couramment des valeurs de MACD dix fois plus grandes qu'une action à $40, c'est pourquoi les lectures de MACD ne sont jamais comparables d'un instrument à l'autre.
+Concrètement : si l'EMA 12 périodes est à 188.40 et l'EMA 26 périodes à 186.90, la ligne MACD affiche 188.40 − 186.90 = **1.50**. La moyenne rapide se situe $1.50 au-dessus de la lente. Ce chiffre est exprimé dans l'unité propre du prix — des dollars ici, pas un pourcentage ni une échelle bornée de 0 à 100 comme le [RSI](/blog/rsi-indicator-overbought-oversold/). Une action à $400 produit couramment des valeurs de MACD dix fois plus grandes qu'une action à $40, c'est pourquoi les lectures de MACD ne sont jamais comparables d'un instrument à l'autre.
 
 ### La ligne de signal
 
@@ -95,7 +95,7 @@ La divergence se produit quand le prix et le MACD sont en désaccord sur la dire
 
 La divergence mérite d'être surveillée et ne mérite pas d'être tradée seule. Les tendances fortes en produisent sur de longues périodes — une tendance haussière peut afficher une divergence baissière sur des dizaines de barres tout en inscrivant de nouveaux plus hauts, parce que l'impulsion initiale a créé un pic de momentum que la tendance n'a jamais besoin d'égaler à nouveau. La divergence vous indique qu'un mouvement est fatigué, pas qu'il est terminé.
 
-Elle devient plus crédible quand quelque chose d'indépendant vient l'appuyer : une ligne de tendance cassée, un échec à un niveau qui avait tenu auparavant, ou un pattern de volume qui contredit le mouvement de prix. [Le volume](/blog/understanding-trading-volume) est une confirmation utile ici précisément parce qu'il provient d'une donnée différente de celle du MACD. Deux indicateurs dérivés des mêmes prix de clôture qui s'accordent, ce n'est pas une confirmation ; c'est de l'arithmétique.
+Elle devient plus crédible quand quelque chose d'indépendant vient l'appuyer : une ligne de tendance cassée, un échec à un niveau qui avait tenu auparavant, ou un pattern de volume qui contredit le mouvement de prix. [Le volume](/blog/understanding-trading-volume/) est une confirmation utile ici précisément parce qu'il provient d'une donnée différente de celle du MACD. Deux indicateurs dérivés des mêmes prix de clôture qui s'accordent, ce n'est pas une confirmation ; c'est de l'arithmétique.
 
 ## Pourquoi le MACD est doublement en retard et échoue dans les marchés en range
 

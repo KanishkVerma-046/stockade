@@ -101,7 +101,7 @@ botão para cada uma, para que você possa reduzir a apenas uma linha enquanto a
 
 ## Usando médias móveis como suporte e resistência dinâmicos
 
-[Níveis de suporte e resistência](/blog/support-and-resistance-levels) horizontais são preços fixos. Uma
+[Níveis de suporte e resistência](/blog/support-and-resistance-levels/) horizontais são preços fixos. Uma
 média móvel é um nível que se move com o mercado, o que a torna útil em tendências onde uma linha fixa fica
 obsoleta em uma hora. Numa tendência de alta saudável, o preço recua, toca ou fica levemente abaixo de uma
 EMA ascendente, e retoma — traders chamam isso de "cavalgar a 20." Numa tendência de baixa a mesma linha
@@ -129,8 +129,8 @@ acontece quando você aplica uma ferramenta de seguimento de tendência a um mer
 
 A defesa não é um período melhor. É um filtro: só assuma cruzamentos quando a linha lenta está claramente
 inclinada, ou exija confirmação de algo que mede uma coisa diferente, como o
-[MACD](/blog/macd-explained) — que é ele mesmo construído a partir de EMAs — ou uma referência ancorada em
-volume como o [VWAP](/blog/vwap-trading-strategy).
+[MACD](/blog/macd-explained/) — que é ele mesmo construído a partir de EMAs — ou uma referência ancorada em
+volume como o [VWAP](/blog/vwap-trading-strategy/).
 
 ## Lendo a inclinação da média móvel como um filtro de tendência
 

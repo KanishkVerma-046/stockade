@@ -57,7 +57,7 @@ USD/JPY is not. Its quote currency is the yen, so a standard lot earns 100,000 �
 
 </div>
 
-Small lots are what make forex sizing workable on a small account. With $5,000 and 1% risk per trade — $50 — on a EUR/USD setup with a 25-pip stop, you need a pip value of 50 ÷ 25 = **$2.00**, which is 2 mini lots, or 20,000 units. Notional value: 20,000 × 1.0872 = **$21,744**. Four times your account controlled with $50 at risk. The [position sizing formula](/blog/risk-management-position-sizing) works identically here; only the unit changes from risk-per-share to risk-per-pip.
+Small lots are what make forex sizing workable on a small account. With $5,000 and 1% risk per trade — $50 — on a EUR/USD setup with a 25-pip stop, you need a pip value of 50 ÷ 25 = **$2.00**, which is 2 mini lots, or 20,000 units. Notional value: 20,000 × 1.0872 = **$21,744**. Four times your account controlled with $50 at risk. The [position sizing formula](/blog/risk-management-position-sizing/) works identically here; only the unit changes from risk-per-share to risk-per-pip.
 
 ## The spread is the main cost you pay in retail forex
 
@@ -86,7 +86,7 @@ Read the bottom row and the trap is obvious. With $2,000 and 500:1 you can hold 
 
 The marketing frame is that leverage lets a small account access a big market. The honest frame is that leverage multiplies an outcome whose sign you do not control: it scales wins and losses by the same factor and changes your expectancy per trade not at all, so if your strategy loses money on average, leverage is not a faster route to profit but a faster route to zero. Brokers regulated in the EU and UK must publish the share of retail accounts that lose money, and the disclosed figures generally sit in the 70–80% band; leverage-driven losses are the dominant reason.
 
-Treat leverage as capacity you mostly decline: size from your stop distance and risk budget, and let the margin requirement fall where it falls. [Futures carry similar leverage mechanics](/blog/futures-trading-explained) through contract margin, and the same discipline applies.
+Treat leverage as capacity you mostly decline: size from your stop distance and risk budget, and let the margin requirement fall where it falls. [Futures carry similar leverage mechanics](/blog/futures-trading-explained/) through contract margin, and the same discipline applies.
 
 ## Majors, minors, exotics, and the 24-hour trading week
 
@@ -94,7 +94,7 @@ Pairs are grouped by liquidity. **Majors** all include the US dollar — EUR/USD
 
 Forex runs 24 hours a day, five days a week, opening with Sydney around 5pm ET Sunday and closing 5pm ET Friday, with four regional sessions rotating: Sydney, Tokyo, London, New York. The heaviest volume is the **London–New York overlap**, roughly 8am to 12pm ET, when both of the largest centres are open — spreads are tightest and moves largest then. Asia-only hours are typically quiet and range-bound.
 
-Round-the-clock access is not an invitation to trade round the clock. Pick the window that suits your setups and your life; whether that is a two-hour overlap or a multi-day hold is the [day trading versus swing trading](/blog/day-trading-vs-swing-trading) decision. And although the week is continuous, forex gaps over the weekend — Monday can open away from Friday's close, past any stop resting in between.
+Round-the-clock access is not an invitation to trade round the clock. Pick the window that suits your setups and your life; whether that is a two-hour overlap or a multi-day hold is the [day trading versus swing trading](/blog/day-trading-vs-swing-trading/) decision. And although the week is continuous, forex gaps over the weekend — Monday can open away from Friday's close, past any stop resting in between.
 
 ## What Stockade's three currency pairs can and cannot teach you
 
@@ -106,4 +106,4 @@ What it is good for is reading practice: a four-decimal quote, counting pips off
 
 ## Practice this on the simulator
 
-Pull up EUR/USD and USD/JPY on Stockade and read distances in pips rather than decimals — measure a swing on each and confirm the four-decimal and two-decimal conventions produce comparable moves. Then price the same trade twice on paper: what it would cost or return at one standard lot ($10 a pip on EUR/USD, $6.35 on USD/JPY at 157.42) versus one micro lot. Remember that no spread and no leverage are modelled there, so the two forces that dominate real retail forex are absent, and that virtual money makes sizing discipline far easier than real money will. Get the conventions automatic on [Stockade's paper trading simulator](/simulator) before any of it matters financially.
+Pull up EUR/USD and USD/JPY on Stockade and read distances in pips rather than decimals — measure a swing on each and confirm the four-decimal and two-decimal conventions produce comparable moves. Then price the same trade twice on paper: what it would cost or return at one standard lot ($10 a pip on EUR/USD, $6.35 on USD/JPY at 157.42) versus one micro lot. Remember that no spread and no leverage are modelled there, so the two forces that dominate real retail forex are absent, and that virtual money makes sizing discipline far easier than real money will. Get the conventions automatic on [Stockade's paper trading simulator](/simulator/) before any of it matters financially.

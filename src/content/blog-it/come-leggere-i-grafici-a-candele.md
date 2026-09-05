@@ -87,12 +87,12 @@ I pattern multi-candela sono più forti perché mostrano un *cambiamento* nell'e
 
 Ecco la parte che separa chi sa leggere i grafici da chi si limita a individuare forme: una candela identica significa cose diverse a prezzi diversi.
 
-Un hammer che si forma esattamente su un livello di prezzo da cui il prezzo è già rimbalzato tre volte è un rifiuto in un punto che altri trader stanno osservando. Lo stesso hammer nel bel mezzo del nulla è solo una candela in cui qualcuno ha comprato un ribasso. Il pattern non è cambiato; la posizione sì. Ecco perché vale la pena imparare i [livelli di supporto e resistenza](/blog/support-and-resistance-levels) prima di memorizzare anche solo un nome di pattern.
+Un hammer che si forma esattamente su un livello di prezzo da cui il prezzo è già rimbalzato tre volte è un rifiuto in un punto che altri trader stanno osservando. Lo stesso hammer nel bel mezzo del nulla è solo una candela in cui qualcuno ha comprato un ribasso. Il pattern non è cambiato; la posizione sì. Ecco perché vale la pena imparare i [livelli di supporto e resistenza](/blog/support-and-resistance-levels/) prima di memorizzare anche solo un nome di pattern.
 
 Gli altri due elementi di contesto da verificare:
 
-- **Volume.** Una candela engulfing su un volume triplo rispetto alla media recente significa che è entrata una partecipazione reale. La stessa forma su un volume scarso significa che è successo ben poco. Il [volume di trading](/blog/understanding-trading-volume) è la verifica di buon senso su ogni pattern che trovi.
-- **Trend.** I pattern di inversione hanno bisogno di qualcosa da invertire. Una Morning Star dopo un calo di tre giorni è un segnale; una Morning Star in un range laterale è decorazione. Una [media mobile](/blog/moving-averages-ema-vs-sma) ti offre una lettura rapida e oggettiva del regime in cui ti trovi.
+- **Volume.** Una candela engulfing su un volume triplo rispetto alla media recente significa che è entrata una partecipazione reale. La stessa forma su un volume scarso significa che è successo ben poco. Il [volume di trading](/blog/understanding-trading-volume/) è la verifica di buon senso su ogni pattern che trovi.
+- **Trend.** I pattern di inversione hanno bisogno di qualcosa da invertire. Una Morning Star dopo un calo di tre giorni è un segnale; una Morning Star in un range laterale è decorazione. Una [media mobile](/blog/moving-averages-ema-vs-sma/) ti offre una lettura rapida e oggettiva del regime in cui ti trovi.
 
 Confluenza è la parola per ciò che stai cercando: pattern, posizione e partecipazione tutti allineati nella stessa direzione. Quando è presente solo uno dei tre, hai una forma, non un setup.
 

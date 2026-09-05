@@ -9,7 +9,7 @@ translationOf: "paper-trading-guide"
 
 Fai paper trading da sei settimane. Il saldo virtuale è in crescita. E se qualcuno ti chiedesse cosa sai fare meglio adesso rispetto alla prima settimana, non avresti una risposta.
 
-Questo è l'esito normale, e non perché il paper trading sia inutile. Cliccare compra e vendi in continuazione non è pratica, è ripetizione — un pianista che suona il suo pezzo preferito cento volte ottiene cento ripetizioni degli stessi errori. La pratica deliberata richiede tre cose che la sola ripetizione non fornisce: un obiettivo per ogni sessione, una registrazione di ciò che hai fatto, e una revisione che giudica la decisione e non il risultato. (Se stai ancora decidendo se il simulatore di paper trading di Stockade valga il tuo tempo, [inizia da qui](/blog/what-is-a-stock-market-simulator).)
+Questo è l'esito normale, e non perché il paper trading sia inutile. Cliccare compra e vendi in continuazione non è pratica, è ripetizione — un pianista che suona il suo pezzo preferito cento volte ottiene cento ripetizioni degli stessi errori. La pratica deliberata richiede tre cose che la sola ripetizione non fornisce: un obiettivo per ogni sessione, una registrazione di ciò che hai fatto, e una revisione che giudica la decisione e non il risultato. (Se stai ancora decidendo se il simulatore di paper trading di Stockade valga il tuo tempo, [inizia da qui](/blog/what-is-a-stock-market-simulator/).)
 
 ## Perché la maggior parte del paper trading non produce nulla
 
@@ -27,7 +27,7 @@ C'è un quarto fallimento, più sottile: la dimensione illimitata. Fare paper tr
 
 **1. Scrivi un solo obiettivo, in una sola frase.** Non "fare soldi". Qualcosa che puoi superare o fallire: *"Prendere solo ingressi long dove il prezzo ritraccia sull'EMA 20, e piazzare lo stop prima dell'ingresso."* Due obiettivi equivalgono a zero obiettivi.
 
-**2. Definisci il setup in anticipo.** Scrivi le condizioni di ingresso come una checklist: direzione del trend, trigger, posizione dello stop, target. Se non hai ancora questo, è l'argomento di [costruire un piano di trading](/blog/how-to-build-a-trading-plan), e viene prima di tutto.
+**2. Definisci il setup in anticipo.** Scrivi le condizioni di ingresso come una checklist: direzione del trend, trigger, posizione dello stop, target. Se non hai ancora questo, è l'argomento di [costruire un piano di trading](/blog/how-to-build-a-trading-plan/), e viene prima di tutto.
 
 **3. Limita il numero di operazioni.** Cinque setup, non "quanti se ne presentano". Il limite forza la selettività, che è essa stessa la competenza. Bruciare tutti e cinque in dieci minuti su ingressi marginali e la sessione finisce — quella è la lezione.
 
@@ -74,7 +74,7 @@ Quindi la revisione ordina ogni operazione in quattro caselle, non due:
 
 </div>
 
-Conta le caselle ogni settimana. Il tuo tasso di aderenza — operazioni che hanno seguito il piano diviso il totale delle operazioni — è il numero che dovrebbe migliorare per primo, e nient'altro migliora in modo affidabile finché non lo fa. La maggior parte delle voci nella colonna "piano violato" sono gli stessi pochi errori che si ripetono, catalogati in [errori comuni del day trading](/blog/common-day-trading-mistakes).
+Conta le caselle ogni settimana. Il tuo tasso di aderenza — operazioni che hanno seguito il piano diviso il totale delle operazioni — è il numero che dovrebbe migliorare per primo, e nient'altro migliora in modo affidabile finché non lo fa. La maggior parte delle voci nella colonna "piano violato" sono gli stessi pochi errori che si ripetono, catalogati in [errori comuni del day trading](/blog/common-day-trading-mistakes/).
 
 ## Quali numeri mostrano progressi e quali sono rumore
 
@@ -82,7 +82,7 @@ Una volta che l'aderenza è sopra circa il 90%, le statistiche di performance in
 
 Prendi quaranta operazioni chiuse: 18 vinte, 22 perse — **tasso di successo 45%**, guadagno medio **180$**, perdita media **90$**.
 
-L'aspettativa per operazione è (0,45 × 180$) − (0,55 × 90$) = 81,00$ − 49,50$ = **31,50$**, ovvero 1.260$ sulle quaranta operazioni. Verifica incrociata con il profit factor, profitto lordo diviso perdita lorda: 18 × 180$ = 3.240$ contro 22 × 90$ = 1.980$, quindi 3.240 ÷ 1.980 = **1,64** — e 3.240$ − 1.980$ è proprio quello stesso 1.260$. Stockade calcola per te tasso di successo, profit factor, guadagno medio, perdita media e drawdown massimo su [`/analytics`](/it/analytics/); cosa significhino davvero quei numeri è trattato in [analizzare le tue metriche di performance](/blog/analyze-trading-performance-metrics).
+L'aspettativa per operazione è (0,45 × 180$) − (0,55 × 90$) = 81,00$ − 49,50$ = **31,50$**, ovvero 1.260$ sulle quaranta operazioni. Verifica incrociata con il profit factor, profitto lordo diviso perdita lorda: 18 × 180$ = 3.240$ contro 22 × 90$ = 1.980$, quindi 3.240 ÷ 1.980 = **1,64** — e 3.240$ − 1.980$ è proprio quello stesso 1.260$. Stockade calcola per te tasso di successo, profit factor, guadagno medio, perdita media e drawdown massimo su [`/analytics`](/it/analytics/); cosa significhino davvero quei numeri è trattato in [analizzare le tue metriche di performance](/blog/analyze-trading-performance-metrics/).
 
 Ora la parte che nessuno vuole sentire: **quaranta operazioni non dimostrano quasi nulla.** Con un vero tasso di successo del 45% su 40 campioni l'errore standard è di circa 7,9 punti percentuali, quindi un errore standard per lato copre dal 37% al 53%. Al limite inferiore l'aspettativa è (0,37 × 180$) − (0,63 × 90$) = 66,60$ − 56,70$ = **9,90$**; al limite superiore, (0,53 × 180$) − (0,47 × 90$) = 95,40$ − 42,30$ = **53,10$**. Stessa strategia, stesse quaranta operazioni, e l'intervallo onesto va da dieci dollari a operazione a cinquantatré.
 

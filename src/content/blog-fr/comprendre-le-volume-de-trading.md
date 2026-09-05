@@ -54,7 +54,7 @@ La divergence est l'inverse. Le prix progresse laborieusement vers des sommets d
 
 Pour franchir un niveau que des vendeurs ont défendu pendant trois semaines, quelqu'un doit absorber toute cette offre, et absorber une offre réelle génère un volume réel. Quand le prix pointe au-dessus d'un niveau bien testé avec un volume de 0.79x, l'arithmétique indique que l'offre n'a pas été absorbée — les vendeurs se sont simplement écartés brièvement. C'est la cassure ratée de l'exemple d'ouverture.
 
-Une règle de travail courante consiste à exiger un volume de 1.5x à 2x la moyenne sur la barre de cassure avant de considérer la cassure comme significative. Le seuil exact n'a rien de sacré ; c'est la discipline d'*en avoir un* qui est utile. Ce que sont ces niveaux et pourquoi ils cèdent est couvert dans [les niveaux de support et de résistance](/blog/support-and-resistance-levels).
+Une règle de travail courante consiste à exiger un volume de 1.5x à 2x la moyenne sur la barre de cassure avant de considérer la cassure comme significative. Le seuil exact n'a rien de sacré ; c'est la discipline d'*en avoir un* qui est utile. Ce que sont ces niveaux et pourquoi ils cèdent est couvert dans [les niveaux de support et de résistance](/blog/support-and-resistance-levels/).
 
 ### Les pics de capitulation en fin de déclin
 
@@ -66,7 +66,7 @@ La logique est celle de l'épuisement : une fois que les vendeurs forcés ont ve
 
 Un niveau testé sur un fort volume et qui tient est plus informatif qu'un niveau testé sur un faible volume. Un fort volume au support signifie que les acheteurs l'ont défendu massivement ; un faible volume signifie qu'il n'a jamais été sérieusement menacé.
 
-Le corollaire aide à tracer les niveaux : les prix où beaucoup de volume a historiquement changé de mains ont tendance à compter plus tard, car c'est là que le plus grand nombre de participants ont un prix de revient à défendre ou une position dans le rouge dont ils cherchent à sortir. C'est étroitement lié à la raison pour laquelle le [VWAP](/blog/vwap-trading-strategy) fonctionne comme niveau de référence — c'est littéralement le prix auquel l'action moyenne a été traitée.
+Le corollaire aide à tracer les niveaux : les prix où beaucoup de volume a historiquement changé de mains ont tendance à compter plus tard, car c'est là que le plus grand nombre de participants ont un prix de revient à défendre ou une position dans le rouge dont ils cherchent à sortir. C'est étroitement lié à la raison pour laquelle le [VWAP](/blog/vwap-trading-strategy/) fonctionne comme niveau de référence — c'est littéralement le prix auquel l'action moyenne a été traitée.
 
 ## Comment lire l'histogramme de volume sous un graphique de prix
 
@@ -74,7 +74,7 @@ La présentation standard est un histogramme dans un panneau étroit sous le gra
 
 Cela a deux conséquences. Vous lisez toujours des hauteurs *relatives*, ce qui est exactement ce que vous voulez — une barre qui domine ses voisines est le signal, pas une hauteur en pixels absolue. Mais l'échelle change à mesure que vous faites défiler ou changez d'intervalle de temps, donc une barre qui paraissait énorme disparaît dans le bruit dès qu'un véritable pic de 9x entre dans la fenêtre.
 
-Lisez-le en deux passages. Repérez les valeurs aberrantes qui dominent visiblement la vingtaine de barres environnantes, puis vérifiez ce qu'a fait le prix exactement sur ces barres-là : un chandelier à grande amplitude, un retournement, une poussée vers un niveau. Le volume sans la [structure des chandeliers](/blog/how-to-read-candlestick-charts) correspondante ne représente que la moitié de l'information.
+Lisez-le en deux passages. Repérez les valeurs aberrantes qui dominent visiblement la vingtaine de barres environnantes, puis vérifiez ce qu'a fait le prix exactement sur ces barres-là : un chandelier à grande amplitude, un retournement, une poussée vers un niveau. Le volume sans la [structure des chandeliers](/blog/how-to-read-candlestick-charts/) correspondante ne représente que la moitié de l'information.
 
 ## Où les données de volume vous induisent en erreur
 

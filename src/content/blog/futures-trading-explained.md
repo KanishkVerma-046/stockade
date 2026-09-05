@@ -75,7 +75,7 @@ Now run the number that matters:
 - 2% adverse move on /ES notional: 262,437.50 × 0.02 = **$5,248.75**
 - As a share of a $13,000 margin deposit: 5,248.75 ÷ 13,000 = **40.4%**
 
-A 2% move in the underlying erases 40% of the capital you posted. The S&P 500 has 2% days several times in an average year. This asymmetry — small move, enormous proportional damage — is the most important thing on this page, and it is why the [1% rule and position sizing arithmetic](/blog/risk-management-position-sizing) are not optional in futures. It also means [stop-loss placement](/blog/stop-loss-orders-explained) has to come before entry, not after. In stocks a forgotten stop is a bad trade. At 20:1, it is a solvency event.
+A 2% move in the underlying erases 40% of the capital you posted. The S&P 500 has 2% days several times in an average year. This asymmetry — small move, enormous proportional damage — is the most important thing on this page, and it is why the [1% rule and position sizing arithmetic](/blog/risk-management-position-sizing/) are not optional in futures. It also means [stop-loss placement](/blog/stop-loss-orders-explained/) has to come before entry, not after. In stocks a forgotten stop is a bad trade. At 20:1, it is a solvency event.
 
 ## Expiration, rollover, and contango in commodity futures
 
@@ -94,7 +94,7 @@ The difference to a small account is not cosmetic. On a $5,000 account with a st
 - **1 /ES contract:** 10 × $50 = **$500** at risk — **10%** of the account on one trade.
 - **1 /MES contract:** 10 × $5 = **$50** at risk — **1%** of the account.
 
-The /MES version is a normal trade. The /ES version is a gamble no amount of conviction justifies. Micros also let you scale in tenths instead of facing an all-or-nothing decision — the same granularity argument that makes [forex position sizing](/blog/forex-trading-for-beginners) workable with mini and micro lots.
+The /MES version is a normal trade. The /ES version is a gamble no amount of conviction justifies. Micros also let you scale in tenths instead of facing an all-or-nothing decision — the same granularity argument that makes [forex position sizing](/blog/forex-trading-for-beginners/) workable with mini and micro lots.
 
 ## What Stockade's futures symbols can and cannot teach you
 
@@ -108,4 +108,4 @@ What it is useful for is rehearsing the *process* against futures-shaped price a
 
 Pull up /ES on the simulator and, before placing anything, write down the multiplier, the tick value, and the notional at the current price. Then take a position and translate every move into contract dollars in your head — 2.5 points is $125, ten points is $500 — until the conversion is automatic. Do the same on /CL, where a penny is $10, so the reflex transfers rather than attaching to one symbol. Then run the leverage check: at 20:1, how far can this market move before 40% of a posted deposit is gone?
 
-Start on [Stockade's paper trading simulator](/simulator) with that arithmetic written down, not estimated.
+Start on [Stockade's paper trading simulator](/simulator/) with that arithmetic written down, not estimated.

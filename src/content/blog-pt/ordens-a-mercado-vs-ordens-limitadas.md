@@ -141,7 +141,7 @@ Se seu nível de stop foi rompido e você precisa zerar, certeza de execução �
 limitada no seu preço ideal pode ficar sem execução enquanto a perda aumenta, e uma perda pequena que não é
 executada vira uma perda grande que eventualmente é. A alternativa a pagar alguns centavos a mais não é
 "uma execução melhor", é "ainda segurando." É por isso que
-[ordens stop-loss](/blog/stop-loss-orders-explained) tipicamente disparam uma ordem a mercado assim que o
+[ordens stop-loss](/blog/stop-loss-orders-explained/) tipicamente disparam uma ordem a mercado assim que o
 preço de stop é negociado.
 
 A mesma lógica cobre qualquer urgência real: fechar antes de um anúncio programado, sair quando sua tese
@@ -159,12 +159,12 @@ real dos dois lados da operação.
 
 **Escalonamento paciente.** Se você quer 900 ações, empilhe limitadas em três níveis — 300 a 24,80, 300 a
 24,65, 300 a 24,50 — e aceite que talvez consiga só parte. Isso interage diretamente com seu
-[dimensionamento de posição](/blog/risk-management-position-sizing): uma entrada parcialmente executada é
+[dimensionamento de posição](/blog/risk-management-position-sizing/): uma entrada parcialmente executada é
 uma posição menor, e seu cálculo de risco deve refletir o tamanho que você realmente conseguiu.
 
 **Saídas num alvo.** Um alvo de lucro não é urgente por definição, então uma limitada no seu preço é
 exatamente certo. Combinar uma saída limitada de take-profit com uma saída de stop-loss é a estrutura por
-trás das [ordens OCO e bracket](/blog/oco-and-bracket-orders).
+trás das [ordens OCO e bracket](/blog/oco-and-bracket-orders/).
 
 ## A ordem limitada que nunca é executada tem seu próprio custo
 

@@ -11,7 +11,7 @@ You finish a week of practice trading, open the analytics page, and see a win ra
 good. Then you look at total P&L and it is negative. Nothing is broken — you have just discovered that
 the number most traders quote first is the one that tells you the least.
 
-Stockade's [analytics page](/analytics) computes six headline figures from your closed trades: total P&L, equity,
+Stockade's [analytics page](/analytics/) computes six headline figures from your closed trades: total P&L, equity,
 win rate, profit factor, average win, and max drawdown. Underneath sit three tabs — an equity curve, a
 trade journal, and a win-rate-by-hour heatmap. Here is what each one means and which ones can lie to you.
 
@@ -79,7 +79,7 @@ In R, you can average across symbols and position sizes without distortion. Trad
 0.35 × 3.75R − 0.65 × 1R = 1.3125 − 0.65 = **+0.66R per trade** — a figure that survives changes in
 account size, which makes it the cleanest way to compare this month to last. It assumes you size
 consistently, which is the argument for a
-[fixed-percentage position sizing rule](/blog/risk-management-position-sizing).
+[fixed-percentage position sizing rule](/blog/risk-management-position-sizing/).
 
 ## Profit factor, average win, and average loss
 
@@ -144,7 +144,7 @@ trades — at 160 trades the SE drops to about 4.0 points. This is why roughly 1
 usual floor before drawing conclusions, and why the most common analytical mistake is overfitting:
 rewriting your rules after eight bad trades, when eight trades is pure noise. Decide in advance how many
 trades a rule change gets before you judge it, and write that into
-[your trading plan](/blog/how-to-build-a-trading-plan).
+[your trading plan](/blog/how-to-build-a-trading-plan/).
 
 ## Finding your best hours with the time-of-day heatmap
 
@@ -169,8 +169,8 @@ money" but "which trades broke my rules", because a rule-breaking trade that hap
 dangerous than a disciplined loss. Keep a separate document logging the setup, the planned stop and
 target, and one line on whether you executed the plan, then join it to the journal by symbol and
 timestamp. That habit separates deliberate practice from
-[simply clicking buttons](/blog/paper-trading-guide), and it surfaces the
-[repeatable mistakes](/blog/common-day-trading-mistakes) no dashboard can detect.
+[simply clicking buttons](/blog/paper-trading-guide/), and it surfaces the
+[repeatable mistakes](/blog/common-day-trading-mistakes/) no dashboard can detect.
 
 Two limits. The data lives in your browser's local storage, so clearing site data erases your history.
 More importantly, these metrics measure your decision-making, not your temperament. Stockade's prices are
@@ -184,4 +184,4 @@ Take 20 trades, then open the analytics page and compute your expectancy by hand
 average win cards plus the average loss you derive from the journal — write down the answer before you
 look at total P&L. Then keep going to 100 trades and compute it again, and notice how far the number
 moved. That movement is the standard error above, made concrete.
-[Open the simulator](/simulator) and start logging trades worth analysing.
+[Open the simulator](/simulator/) and start logging trades worth analysing.

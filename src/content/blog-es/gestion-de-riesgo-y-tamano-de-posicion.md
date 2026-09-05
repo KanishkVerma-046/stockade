@@ -16,7 +16,7 @@ Esa secuencia está al revés, y invertirla es el cambio de mayor valor que pued
 
 Esto es lo que pasa cuando el tamaño va primero. Compras 500 acciones a 187.40. El gráfico dice que la operación está equivocada por debajo de 185.90 — 1.50 por acción de riesgo — así que la pérdida si el stop se ejecuta es 500 × 1.50 = **$750**. En una cuenta de $50,000 eso es 1.5% perdido en una operación ordinaria. Toma el mismo setup con una invalidación más amplia y honesta en 183.90, todavía 500 acciones, y la pérdida se vuelve 500 × 3.50 = **$1,750**, o 3.5%. Mismo trader, misma convicción, misma cantidad de acciones, y el daño se más que duplicó por dónde resultó estar una línea en un gráfico.
 
-Cuando el tamaño es fijo y la distancia al stop varía, tu riesgo en dólares oscila al azar. Cuando el riesgo en dólares es fijo y la distancia al stop varía, tu cantidad de acciones se ajusta y cada pérdida sale del mismo tamaño. El segundo arreglo es todo el punto de la gestión de riesgo. [Las órdenes stop-loss](/blog/stop-loss-orders-explained) cubren cómo encontrar el precio de invalidación; este artículo trata sobre qué hacer con ese número una vez que lo tienes.
+Cuando el tamaño es fijo y la distancia al stop varía, tu riesgo en dólares oscila al azar. Cuando el riesgo en dólares es fijo y la distancia al stop varía, tu cantidad de acciones se ajusta y cada pérdida sale del mismo tamaño. El segundo arreglo es todo el punto de la gestión de riesgo. [Las órdenes stop-loss](/blog/stop-loss-orders-explained/) cubren cómo encontrar el precio de invalidación; este artículo trata sobre qué hacer con ese número una vez que lo tienes.
 
 ## La fórmula de tamaño de posición, trabajada de principio a fin
 
@@ -113,7 +113,7 @@ Veinte centavos de R por operación, o $100 con una unidad de $500. Eso es aritm
 
 El tamaño de posición limita una sola operación. No hace nada respecto a la séptima operación de una mañana frustrante, tomada al triple de tamaño para recuperar el día.
 
-Establece límites duros en R. Una estructura común es **−3R diario, −6R semanal** — al 1% de riesgo en $50,000, eso es $1,500 en un día y $3,000 en una semana. Llega al límite diario y terminaste: plataforma cerrada, sin "un setup más". Su valor está en que los define de antemano una versión de ti que en ese momento no está perdiendo. El revenge trading no es un defecto de carácter; es lo que pasa cuando se le permite a un cerebro alterado elegir el tamaño de las posiciones. Escribe los números en tu [plan de trading](/blog/how-to-build-a-trading-plan) para que la decisión ya esté tomada.
+Establece límites duros en R. Una estructura común es **−3R diario, −6R semanal** — al 1% de riesgo en $50,000, eso es $1,500 en un día y $3,000 en una semana. Llega al límite diario y terminaste: plataforma cerrada, sin "un setup más". Su valor está en que los define de antemano una versión de ti que en ese momento no está perdiendo. El revenge trading no es un defecto de carácter; es lo que pasa cuando se le permite a un cerebro alterado elegir el tamaño de las posiciones. Escribe los números en tu [plan de trading](/blog/how-to-build-a-trading-plan/) para que la decisión ya esté tomada.
 
 ## Las posiciones correlacionadas hacen que tu exposición real sea mayor que la suma
 

@@ -21,7 +21,7 @@ Dieser letzte Satz ist das ganze Feature. Ohne die Verknüpfung haben Sie zwei l
 
 Das häufigste OCO-Paar ist ein Stop unter Ihrer Position und ein Limit darüber: eine **Stop-Order**, die zu einem Verkauf wird, wenn der Preis auf Ihre Verlustgrenze fällt, und eine **Limit-Order**, die verkauft, wenn der Preis auf Ihr Gewinnziel steigt. Der Preis kann nur eine davon zuerst erreichen. Welche auch immer dort ankommt, gewinnt, die Position schließt, und die überlebende wird storniert.
 
-Für die Logik, *wo* der Stop hingehört — Struktur, Volatilität, warum eine runde Zahl eine schlechte Wahl ist — siehe [Stop-Loss-Orders erklärt](/blog/stop-loss-orders-explained). Dieser Artikel setzt voraus, dass Sie die Niveaus bereits gewählt haben, und interessiert sich nur dafür, wie sie miteinander verdrahtet sind.
+Für die Logik, *wo* der Stop hingehört — Struktur, Volatilität, warum eine runde Zahl eine schlechte Wahl ist — siehe [Stop-Loss-Orders erklärt](/blog/stop-loss-orders-explained/). Dieser Artikel setzt voraus, dass Sie die Niveaus bereits gewählt haben, und interessiert sich nur dafür, wie sie miteinander verdrahtet sind.
 
 ## Was eine Bracket-Order hinzufügt: einen Einstieg mit angehängtem Ausstiegspaar
 
@@ -57,7 +57,7 @@ Prüfen Sie die Arithmetik. Risiko pro Aktie ist 187,40 − 185,90 = 1,50, also 
 
 **Und ein 2:1-Bracket braucht eine Trefferquote über 33,3 %, nur um die Gewinnschwelle zu erreichen.** Zehn Trades in dieser Größe: vier Gewinner erzeugen 4 × 1.500 $ = 6.000 $, sechs Verlierer erzeugen 6 × 750 $ = 4.500 $, netto +1.500 $ bei 40 % Trefferquote. Fallen Sie auf drei Gewinner, sind es 4.500 $ gewonnen gegen 5.250 $ verloren — negativ bei 30 %. Das Verhältnis macht Sie nicht profitabel; es setzt die Latte, die Sie trotzdem überspringen müssen.
 
-Auf einem Konto von 100.000 $ sind diese 750 $ 0,75 % des Eigenkapitals — innerhalb der üblichen 1-%-Obergrenze aus [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing). Beachten Sie, dass die Position 93.700 $ wert ist, etwa 94 % des Kontos, während der tatsächlich riskierte Betrag 750 $ beträgt. Positionsgröße und Risikogröße sind unterschiedliche Zahlen, und der Stop ist es, der sie trennt.
+Auf einem Konto von 100.000 $ sind diese 750 $ 0,75 % des Eigenkapitals — innerhalb der üblichen 1-%-Obergrenze aus [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/). Beachten Sie, dass die Position 93.700 $ wert ist, etwa 94 % des Kontos, während der tatsächlich riskierte Betrag 750 $ beträgt. Positionsgröße und Risikogröße sind unterschiedliche Zahlen, und der Stop ist es, der sie trennt.
 
 ## Warum das Bracket vor dem Einstieg zu platzieren der ganze psychologische Punkt ist
 
@@ -95,7 +95,7 @@ Ein Bracket ist eine Maschine, und Maschinen lesen keine Charts.
 
 **Ein mechanisches Ziel kann irgendwo sitzen, das der Chart nie rechtfertigte.** Setzen Sie jedes Ziel auf genau 2R, weil 2R professionell klingt, und Sie werden manchmal eine Limit-Order in totem Raum knapp hinter einem offensichtlichen Widerstandsregal parken und dann zusehen, wie der Preis 20 Cent davor dreht. Das Verhältnis sollte ein Ergebnis dessen sein, wo die sinnvollen Ausstiegsniveaus liegen, kein Eingabewert, den der Chart erfüllen muss. Ein 2:1-Bracket ist nur gut, wenn der Markt diese 3,00 Aufwärtspotenzial vor den 1,50 Abwärtsrisiko plausibel bietet.
 
-**Und sie garantiert nicht den eingegebenen Preis.** In echten Märkten wird ein Stop bei Auslösung zu einer Market-Order, und Market-Orders werden zu dem ausgeführt, was verfügbar ist, was schlechter sein kann als Ihr Stop-Niveau — siehe [Market-Order vs. Limit-Order](/blog/market-orders-vs-limit-orders) dafür, warum dieser Unterschied zubeißt. Ihr Risiko von 750 $ ist eine Schätzung, keine Garantie.
+**Und sie garantiert nicht den eingegebenen Preis.** In echten Märkten wird ein Stop bei Auslösung zu einer Market-Order, und Market-Orders werden zu dem ausgeführt, was verfügbar ist, was schlechter sein kann als Ihr Stop-Niveau — siehe [Market-Order vs. Limit-Order](/blog/market-orders-vs-limit-orders/) dafür, warum dieser Unterschied zubeißt. Ihr Risiko von 750 $ ist eine Schätzung, keine Garantie.
 
 ## Üben Sie das im Simulator
 

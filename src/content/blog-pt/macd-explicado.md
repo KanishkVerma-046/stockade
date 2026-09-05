@@ -38,12 +38,12 @@ partes, cada uma construída a partir da anterior.
 
 Pegue uma média móvel exponencial das últimas 12 barras e uma das últimas 26 barras, depois subtraia a
 mais lenta da mais rápida. Para entender como uma EMA pondera as barras recentes mais fortemente que as
-antigas, veja [médias móveis: EMA vs SMA](/blog/moving-averages-ema-vs-sma).
+antigas, veja [médias móveis: EMA vs SMA](/blog/moving-averages-ema-vs-sma/).
 
 Concretamente: se a EMA de 12 períodos é 188,40 e a EMA de 26 períodos é 186,90, a linha MACD marca
 188,40 − 186,90 = **1,50**. A média rápida está $1,50 acima da lenta. Esse número está nas unidades do
 próprio preço — dólares aqui, não um percentual e não uma escala limitada de 0 a 100 como o
-[RSI](/blog/rsi-indicator-overbought-oversold). Uma ação de $400 rotineiramente produz valores de MACD dez
+[RSI](/blog/rsi-indicator-overbought-oversold/). Uma ação de $400 rotineiramente produz valores de MACD dez
 vezes maiores que uma ação de $40, o que é por isso que leituras de MACD nunca são comparáveis entre
 instrumentos.
 
@@ -158,7 +158,7 @@ mais precisa igualar. Divergência te diz que um movimento está cansado, não q
 
 Ela se torna mais crível quando algo independente concorda: uma linha de tendência rompida, uma falha num
 nível que segurou antes, ou um padrão de volume que contradiz o movimento de preço.
-[Volume](/blog/understanding-trading-volume) é uma confirmação útil aqui precisamente porque vem de um
+[Volume](/blog/understanding-trading-volume/) é uma confirmação útil aqui precisamente porque vem de um
 insumo diferente do MACD. Dois indicadores derivados dos mesmos preços de fechamento concordando não é
 confirmação; é aritmética.
 

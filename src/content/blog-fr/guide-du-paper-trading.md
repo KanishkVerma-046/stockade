@@ -9,7 +9,7 @@ translationOf: "paper-trading-guide"
 
 Cela fait six semaines que vous faites du paper trading. Le solde virtuel a augmenté. Et si quelqu'un vous demandait ce que vous faites mieux maintenant qu'en semaine une, vous n'auriez pas de réponse.
 
-C'est le résultat normal, et non parce que le paper trading est inutile. Cliquer sur acheter et vendre de façon répétée n'est pas de la pratique, c'est de la répétition — un pianiste qui joue son morceau préféré cent fois obtient cent répétitions des mêmes erreurs. La pratique délibérée a besoin de trois choses que la répétition seule ne fournit pas : un objectif pour chaque séance, un enregistrement de ce que vous avez fait, et une revue qui juge la décision plutôt que le résultat. (Si vous vous demandez encore si le simulateur de paper trading de Stockade vaut votre temps, [commencez plutôt par ici](/blog/what-is-a-stock-market-simulator).)
+C'est le résultat normal, et non parce que le paper trading est inutile. Cliquer sur acheter et vendre de façon répétée n'est pas de la pratique, c'est de la répétition — un pianiste qui joue son morceau préféré cent fois obtient cent répétitions des mêmes erreurs. La pratique délibérée a besoin de trois choses que la répétition seule ne fournit pas : un objectif pour chaque séance, un enregistrement de ce que vous avez fait, et une revue qui juge la décision plutôt que le résultat. (Si vous vous demandez encore si le simulateur de paper trading de Stockade vaut votre temps, [commencez plutôt par ici](/blog/what-is-a-stock-market-simulator/).)
 
 ## Pourquoi la plupart du paper trading ne produit rien
 
@@ -27,7 +27,7 @@ Un quatrième échec est plus subtil : la taille illimitée. Faire du paper trad
 
 **1. Rédigez un objectif, en une phrase.** Pas « gagner de l'argent ». Quelque chose que vous pouvez réussir ou rater : *« Ne prendre que des entrées longues où le prix revient sur l'EMA 20, et placer le stop avant l'entrée. »* Deux objectifs, c'est zéro objectif.
 
-**2. Définissez le setup à l'avance.** Écrivez les conditions d'entrée sous forme de checklist : direction de la tendance, déclencheur, emplacement du stop, objectif. Si vous ne l'avez pas encore, c'est le sujet de [la construction d'un plan de trading](/blog/how-to-build-a-trading-plan), et cela vient en premier.
+**2. Définissez le setup à l'avance.** Écrivez les conditions d'entrée sous forme de checklist : direction de la tendance, déclencheur, emplacement du stop, objectif. Si vous ne l'avez pas encore, c'est le sujet de [la construction d'un plan de trading](/blog/how-to-build-a-trading-plan/), et cela vient en premier.
 
 **3. Plafonnez le nombre de trades.** Cinq setups, pas « autant qu'il s'en présente ». Le plafond impose une sélectivité, qui est elle-même la compétence. Brûlez les cinq en dix minutes sur des entrées limites et la séance se termine — c'est la leçon.
 
@@ -74,7 +74,7 @@ La revue classe donc chaque trade dans l'une de quatre cases, pas deux :
 
 </div>
 
-Comptez les cases chaque semaine. Votre taux de conformité — les trades ayant suivi le plan divisés par le total des trades — est le chiffre qui doit s'améliorer en premier, et rien d'autre ne s'améliore de façon fiable tant que ce n'est pas le cas. La plupart des entrées de la colonne « a enfreint le plan » sont les mêmes quelques erreurs qui se répètent, cataloguées dans [les erreurs courantes du day trading](/blog/common-day-trading-mistakes).
+Comptez les cases chaque semaine. Votre taux de conformité — les trades ayant suivi le plan divisés par le total des trades — est le chiffre qui doit s'améliorer en premier, et rien d'autre ne s'améliore de façon fiable tant que ce n'est pas le cas. La plupart des entrées de la colonne « a enfreint le plan » sont les mêmes quelques erreurs qui se répètent, cataloguées dans [les erreurs courantes du day trading](/blog/common-day-trading-mistakes/).
 
 ## Quels chiffres montrent une progression, et lesquels ne sont que du bruit
 
@@ -82,7 +82,7 @@ Une fois la conformité au-dessus d'environ 90%, les statistiques de performance
 
 Prenez quarante trades clôturés : 18 gagnants, 22 perdants — **taux de réussite 45%**, gain moyen **$180**, perte moyenne **$90**.
 
-L'espérance par trade est (0.45 × $180) − (0.55 × $90) = $81.00 − $49.50 = **$31.50**, soit $1,260 sur les quarante. Vérification croisée avec le facteur de profit, profit brut sur perte brute : 18 × $180 = $3,240 contre 22 × $90 = $1,980, donc 3,240 ÷ 1,980 = **1.64** — et $3,240 − $1,980 donne ce même $1,260. Stockade calcule pour vous le taux de réussite, le facteur de profit, le gain moyen, la perte moyenne et le drawdown maximum sur `/fr/analytics/` ; ce que ces chiffres signifient en profondeur est couvert dans [l'analyse de vos indicateurs de performance](/blog/analyze-trading-performance-metrics).
+L'espérance par trade est (0.45 × $180) − (0.55 × $90) = $81.00 − $49.50 = **$31.50**, soit $1,260 sur les quarante. Vérification croisée avec le facteur de profit, profit brut sur perte brute : 18 × $180 = $3,240 contre 22 × $90 = $1,980, donc 3,240 ÷ 1,980 = **1.64** — et $3,240 − $1,980 donne ce même $1,260. Stockade calcule pour vous le taux de réussite, le facteur de profit, le gain moyen, la perte moyenne et le drawdown maximum sur `/fr/analytics/` ; ce que ces chiffres signifient en profondeur est couvert dans [l'analyse de vos indicateurs de performance](/blog/analyze-trading-performance-metrics/).
 
 Maintenant la partie que personne ne veut entendre : **quarante trades ne prouve presque rien.** Pour un taux de réussite réel de 45% sur 40 échantillons, l'erreur type est d'environ 7.9 points de pourcentage, donc une erreur type de chaque côté couvre 37% à 53%. À l'extrémité basse, l'espérance est (0.37 × $180) − (0.63 × $90) = $66.60 − $56.70 = **$9.90** ; à l'extrémité haute, (0.53 × $180) − (0.47 × $90) = $95.40 − $42.30 = **$53.10**. Même stratégie, mêmes quarante trades, et la plage honnête va de dix dollars par trade à cinquante-trois.
 

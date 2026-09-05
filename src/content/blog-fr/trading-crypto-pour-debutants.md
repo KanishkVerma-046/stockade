@@ -23,7 +23,7 @@ Les cryptomonnaies suppriment tout cela. Il n'existe aucun moment où votre posi
 - **La taille de la position doit survivre à un mouvement non surveillé.** Demandez-vous ce qui se passe si l'actif évolue de 15% contre vous pendant votre sommeil, car cela peut arriver — et cela arrive.
 - **Il n'existe aucun coupe-circuit.** Sur les actions américaines, une baisse de 7% du S&P 500 suspend les échanges pendant 15 minutes. Les cryptomonnaies n'ont pas d'équivalent. Une cascade de liquidations se poursuit jusqu'à son épuisement.
 
-Si vous n'avez pas encore construit de cadre de dimensionnement, faites-le avant de toucher à cette classe d'actifs — [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing) couvre l'arithmétique.
+Si vous n'avez pas encore construit de cadre de dimensionnement, faites-le avant de toucher à cette classe d'actifs — [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing/) couvre l'arithmétique.
 
 ## Plateformes centralisées et plateformes décentralisées
 
@@ -100,13 +100,13 @@ Sur les actions, les plateformes déclarent le volume aux régulateurs sous obli
 
 Le **wash trading** — acheter et vendre avec soi-même pour fabriquer du volume — est la méthode standard. Une analyse de 2019 soumise à la SEC a conclu qu'environ 95% du volume spot de bitcoin déclaré était non économique. Des recherches ultérieures ont trouvé des proportions plus faibles mais toujours substantielles sur les plateformes non régulées.
 
-Ainsi, un jeton affichant « $2 milliards de volume quotidien » peut ne cacher que $100 millions de trading réel, et chaque technique basée sur le volume se dégrade en conséquence. [Les concepts fondamentaux du volume](/blog/understanding-trading-volume) restent valables ; ce sont simplement les données d'entrée qui sont bien moins fiables ici. La profondeur du carnet d'ordres sur les plateformes régulées et les données de transfert on-chain constituent de meilleures preuves qu'un chiffre de volume déclaré.
+Ainsi, un jeton affichant « $2 milliards de volume quotidien » peut ne cacher que $100 millions de trading réel, et chaque technique basée sur le volume se dégrade en conséquence. [Les concepts fondamentaux du volume](/blog/understanding-trading-volume/) restent valables ; ce sont simplement les données d'entrée qui sont bien moins fiables ici. La profondeur du carnet d'ordres sur les plateformes régulées et les données de transfert on-chain constituent de meilleures preuves qu'un chiffre de volume déclaré.
 
 ## Ce que les marchés crypto ne vous offrent pas
 
 Soyez lucide sur l'infrastructure manquante. Il n'existe aucun équivalent d'une couverture type SIPC en cas de faillite d'une plateforme crypto — les créanciers de plateformes en faillite ont passé des années devant les tribunaux pour des recouvrements partiels. Des manipulations qui déclencheraient des sanctions sur les actions sont courantes et largement impunies dans les cryptomonnaies. Les listings ne sont soumis à aucune norme de divulgation comparable à un dépôt public.
 
-Et l'horloge 24/7 est un piège psychologique autant qu'une contrainte structurelle. Les actions imposent une pause ; les cryptomonnaies, jamais. Chaque heure est une heure où vous *pourriez* trader, ce qui est exactement la condition qui produit le surtrading, le trading de vengeance, et des décisions prises à 3 heures du matin — les [erreurs de day trading les plus courantes](/blog/common-day-trading-mistakes), avec le seul garde-fou externe retiré. La discipline doit être entièrement auto-imposée : des heures de session définies, une heure d'arrêt stricte, et des ordres en attente qui fonctionnent quand vous ne l'êtes pas.
+Et l'horloge 24/7 est un piège psychologique autant qu'une contrainte structurelle. Les actions imposent une pause ; les cryptomonnaies, jamais. Chaque heure est une heure où vous *pourriez* trader, ce qui est exactement la condition qui produit le surtrading, le trading de vengeance, et des décisions prises à 3 heures du matin — les [erreurs de day trading les plus courantes](/blog/common-day-trading-mistakes/), avec le seul garde-fou externe retiré. La discipline doit être entièrement auto-imposée : des heures de session définies, une heure d'arrêt stricte, et des ordres en attente qui fonctionnent quand vous ne l'êtes pas.
 
 ## Pratiquez cela sur le simulateur
 

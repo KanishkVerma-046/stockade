@@ -9,7 +9,7 @@ slug: "paper-trading-guide"
 
 You have been paper trading for six weeks. The virtual balance is up. And if someone asked what you do better now than in week one, you would not have an answer.
 
-That is the normal outcome, and not because paper trading is useless. Clicking buy and sell repeatedly is not practice, it is repetition — a pianist who plays their favourite piece a hundred times gets a hundred repetitions of the same mistakes. Deliberate practice needs three things repetition alone does not supply: an objective for each session, a record of what you did, and a review that judges the decision rather than the result. (If you are still deciding whether Stockade's paper trading simulator is worth your time at all, [start here instead](/blog/what-is-a-stock-market-simulator).)
+That is the normal outcome, and not because paper trading is useless. Clicking buy and sell repeatedly is not practice, it is repetition — a pianist who plays their favourite piece a hundred times gets a hundred repetitions of the same mistakes. Deliberate practice needs three things repetition alone does not supply: an objective for each session, a record of what you did, and a review that judges the decision rather than the result. (If you are still deciding whether Stockade's paper trading simulator is worth your time at all, [start here instead](/blog/what-is-a-stock-market-simulator/).)
 
 ## Why most paper trading produces nothing
 
@@ -27,7 +27,7 @@ A fourth failure is subtler: unlimited size. Paper trading in $80,000 clips beca
 
 **1. Write one objective, in one sentence.** Not "make money." Something you can pass or fail: *"Take only long entries where price pulls back to the EMA 20, and place the stop before the entry."* Two objectives is zero objectives.
 
-**2. Define the setup in advance.** Write the entry conditions as a checklist: trend direction, trigger, stop location, target. If you do not have this yet, that is the subject of [building a trading plan](/blog/how-to-build-a-trading-plan), and it comes first.
+**2. Define the setup in advance.** Write the entry conditions as a checklist: trend direction, trigger, stop location, target. If you do not have this yet, that is the subject of [building a trading plan](/blog/how-to-build-a-trading-plan/), and it comes first.
 
 **3. Cap the number of trades.** Five setups, not "as many as appear." The cap forces selectivity, which is itself the skill. Burn all five in ten minutes on marginal entries and the session ends — that is the lesson.
 
@@ -39,7 +39,7 @@ A fourth failure is subtler: unlimited size. Paper trading in $80,000 clips beca
 
 ## What to write down for every trade
 
-Stockade's [trade journal](/analytics) records what happened: symbol, side, entry, exit, quantity, P&L, duration, date. That is the objective half. It does not record *why* you entered — no platform can, because the reason lived in your head. Keep a notebook or spreadsheet for the half that teaches you something.
+Stockade's [trade journal](/analytics/) records what happened: symbol, side, entry, exit, quantity, P&L, duration, date. That is the objective half. It does not record *why* you entered — no platform can, because the reason lived in your head. Keep a notebook or spreadsheet for the half that teaches you something.
 
 Before every entry, write:
 
@@ -74,7 +74,7 @@ So the review sorts every trade into four buckets, not two:
 
 </div>
 
-Count the boxes weekly. Your compliance rate — trades that followed the plan divided by total trades — is the number that should improve first, and nothing else improves reliably until it does. Most entries in the "broke plan" column are the same few errors repeating, catalogued in [common day trading mistakes](/blog/common-day-trading-mistakes).
+Count the boxes weekly. Your compliance rate — trades that followed the plan divided by total trades — is the number that should improve first, and nothing else improves reliably until it does. Most entries in the "broke plan" column are the same few errors repeating, catalogued in [common day trading mistakes](/blog/common-day-trading-mistakes/).
 
 ## Which numbers show progress and which are noise
 
@@ -82,7 +82,7 @@ Once compliance is above roughly 90%, the performance statistics start to mean s
 
 Take forty closed trades: 18 wins, 22 losses — **win rate 45%**, average win **$180**, average loss **$90**.
 
-Expectancy per trade is (0.45 × $180) − (0.55 × $90) = $81.00 − $49.50 = **$31.50**, or $1,260 across the forty. Cross-check with profit factor, gross profit over gross loss: 18 × $180 = $3,240 against 22 × $90 = $1,980, so 3,240 ÷ 1,980 = **1.64** — and $3,240 − $1,980 is that same $1,260. Stockade computes win rate, profit factor, average win, average loss and max drawdown for you on `/analytics`; what those figures mean in depth is covered in [analysing your performance metrics](/blog/analyze-trading-performance-metrics).
+Expectancy per trade is (0.45 × $180) − (0.55 × $90) = $81.00 − $49.50 = **$31.50**, or $1,260 across the forty. Cross-check with profit factor, gross profit over gross loss: 18 × $180 = $3,240 against 22 × $90 = $1,980, so 3,240 ÷ 1,980 = **1.64** — and $3,240 − $1,980 is that same $1,260. Stockade computes win rate, profit factor, average win, average loss and max drawdown for you on `/analytics`; what those figures mean in depth is covered in [analysing your performance metrics](/blog/analyze-trading-performance-metrics/).
 
 Now the part nobody wants to hear: **forty trades proves almost nothing.** At a true win rate of 45% over 40 samples the standard error is about 7.9 percentage points, so one standard error either side spans 37% to 53%. At the low end expectancy is (0.37 × $180) − (0.63 × $90) = $66.60 − $56.70 = **$9.90**; at the high end, (0.53 × $180) − (0.47 × $90) = $95.40 − $42.30 = **$53.10**. Same strategy, same forty trades, and the honest range runs from ten dollars a trade to fifty-three.
 
@@ -108,4 +108,4 @@ So read a clean simulator record correctly: it is evidence your process is sound
 
 Pick one setup and one objective, cap yourself at five trades, and write the reason for each entry before you click. Use `F` to flatten the moment your invalidation prints instead of negotiating with it. Then open `/analytics`, compare the trade journal's actual entries and exits against what your notes said you intended, and count how many followed the plan. Repeat until that compliance number stops moving — then start caring about the equity curve.
 
-[Start on Stockade's paper trading simulator](/simulator)
+[Start on Stockade's paper trading simulator](/simulator/)

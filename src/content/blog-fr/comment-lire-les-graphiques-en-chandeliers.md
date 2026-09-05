@@ -87,12 +87,12 @@ Les patterns à plusieurs chandeliers sont plus forts parce qu'ils montrent un *
 
 Voici ce qui sépare les gens qui savent lire un graphique de ceux qui se contentent de repérer des formes : un chandelier identique signifie des choses différentes à des prix différents.
 
-Un hammer qui se forme exactement sur un niveau de prix qui a déjà rebondi trois fois est un rejet à un endroit que d'autres traders surveillent. Le même hammer au milieu de nulle part est simplement un chandelier où quelqu'un a acheté un creux. Le pattern n'a pas changé ; l'emplacement, si. C'est pourquoi [les niveaux de support et résistance](/blog/support-and-resistance-levels) valent la peine d'être appris avant de mémoriser le moindre nom de pattern.
+Un hammer qui se forme exactement sur un niveau de prix qui a déjà rebondi trois fois est un rejet à un endroit que d'autres traders surveillent. Le même hammer au milieu de nulle part est simplement un chandelier où quelqu'un a acheté un creux. Le pattern n'a pas changé ; l'emplacement, si. C'est pourquoi [les niveaux de support et résistance](/blog/support-and-resistance-levels/) valent la peine d'être appris avant de mémoriser le moindre nom de pattern.
 
 Les deux autres éléments de contexte à vérifier :
 
-- **Le volume.** Un chandelier d'engulfing sur un volume triple de la moyenne récente signifie qu'une participation réelle est entrée. La même forme sur un volume faible signifie que très peu de chose s'est passé. [Le volume de trading](/blog/understanding-trading-volume) est le test de bon sens pour chaque pattern que vous trouvez.
-- **La tendance.** Les patterns de retournement ont besoin de quelque chose à retourner. Un morning star après trois jours de baisse est un signal ; un morning star dans un range latéral n'est que décoration. Une [moyenne mobile](/blog/moving-averages-ema-vs-sma) vous donne une lecture rapide et objective du régime dans lequel vous vous trouvez.
+- **Le volume.** Un chandelier d'engulfing sur un volume triple de la moyenne récente signifie qu'une participation réelle est entrée. La même forme sur un volume faible signifie que très peu de chose s'est passé. [Le volume de trading](/blog/understanding-trading-volume/) est le test de bon sens pour chaque pattern que vous trouvez.
+- **La tendance.** Les patterns de retournement ont besoin de quelque chose à retourner. Un morning star après trois jours de baisse est un signal ; un morning star dans un range latéral n'est que décoration. Une [moyenne mobile](/blog/moving-averages-ema-vs-sma/) vous donne une lecture rapide et objective du régime dans lequel vous vous trouvez.
 
 La confluence est le mot pour ce que vous recherchez : pattern, emplacement et participation pointant tous dans la même direction. Quand un seul des trois est présent, vous avez une forme, pas un setup.
 

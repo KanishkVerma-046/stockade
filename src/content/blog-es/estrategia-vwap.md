@@ -92,7 +92,7 @@ Algunas plataformas agregan bandas de desviación estándar — VWAP más y meno
 
 **Se vuelve más lento durante toda la sesión.** Para las 15:30, el denominador contiene seis horas de volumen. Una sola vela nueva apenas mueve el promedio, sin importar qué tan violenta sea. El VWAP es más sensible cuando es menos confiable y más confiable cuando es menos sensible, y nada arregla eso — es aritmética.
 
-**No significa nada por encima del marco temporal intradía.** Un promedio de sesión acumulado no tiene interpretación en un gráfico diario o semanal. No hay sesión a la cual reiniciarse. Si mantienes posiciones a través de varios días, el VWAP no es tu herramienta; consulta [day trading versus swing trading](/blog/day-trading-vs-swing-trading) para ver qué cambia según el horizonte de la posición.
+**No significa nada por encima del marco temporal intradía.** Un promedio de sesión acumulado no tiene interpretación en un gráfico diario o semanal. No hay sesión a la cual reiniciarse. Si mantienes posiciones a través de varios días, el VWAP no es tu herramienta; consulta [day trading versus swing trading](/blog/day-trading-vs-swing-trading/) para ver qué cambia según el horizonte de la posición.
 
 **Es tan bueno como los datos de volumen detrás de él.** El VWAP es una estadística ponderada por volumen, así que datos de volumen malos producen una línea equivocada con mucha confianza. Los feeds minoristas que no capturan impresiones fuera de bolsa, o instrumentos donde el volumen reportado no es confiable, te entregarán un VWAP contra el que ninguna institución realmente se está midiendo.
 

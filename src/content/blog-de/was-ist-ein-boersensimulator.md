@@ -27,13 +27,13 @@ Vor jeder Strategiefrage liegt eine Schicht aus reiner Verkabelung, über die fa
 
 Eine **Market-Order** kauft oder verkauft sofort zum aktuell verfügbaren Preis. Sie garantiert die Ausführung; sie garantiert nicht den Preis.
 
-Eine **Limit-Order** legt ein Höchstmaß fest, das Sie zahlen, oder ein Mindestmaß, das Sie akzeptieren. Platzieren Sie einen Limit-Kauf auf eine Aktie bei 47,50 $, während sie bei 48,20 $ gehandelt wird, passiert nichts, bis der Preis zu Ihnen kommt. Sie garantiert den Preis; sie garantiert nicht überhaupt eine Ausführung. ([Market-Order vs. Limit-Order](/blog/market-orders-vs-limit-orders) geht näher darauf ein, wann welche passt.)
+Eine **Limit-Order** legt ein Höchstmaß fest, das Sie zahlen, oder ein Mindestmaß, das Sie akzeptieren. Platzieren Sie einen Limit-Kauf auf eine Aktie bei 47,50 $, während sie bei 48,20 $ gehandelt wird, passiert nichts, bis der Preis zu Ihnen kommt. Sie garantiert den Preis; sie garantiert nicht überhaupt eine Ausführung. ([Market-Order vs. Limit-Order](/blog/market-orders-vs-limit-orders/) geht näher darauf ein, wann welche passt.)
 
 Ein **Stop-Loss** ist eine ruhende Order, die aktiv wird, wenn sich der Preis über ein von Ihnen gewähltes Niveau hinaus gegen Sie bewegt. Er ist der Mechanismus, der aus „ich sollte das wohl beenden" etwas macht, das passiert, egal ob Sie hinschauen oder nicht.
 
 Ein **Take-Profit** ist dieselbe Idee in die andere Richtung — eine Order, die Ihre Position schließt, sobald sie ein Ziel erreicht.
 
-Eine **OCO-Bracket-Order** („one cancels the other") paart einen Stop-Loss und einen Take-Profit um eine offene Position herum. Welcher zuerst ausgeführt wird, storniert den anderen, sodass Sie nicht mit einer verwaisten Order enden können, die nach Ihrem Ausstieg eine neue Position eröffnet. Siehe [OCO- und Bracket-Orders erklärt](/blog/oco-and-bracket-orders) für die vollständige Mechanik.
+Eine **OCO-Bracket-Order** („one cancels the other") paart einen Stop-Loss und einen Take-Profit um eine offene Position herum. Welcher zuerst ausgeführt wird, storniert den anderen, sodass Sie nicht mit einer verwaisten Order enden können, die nach Ihrem Ausstieg eine neue Position eröffnet. Siehe [OCO- und Bracket-Orders erklärt](/blog/oco-and-bracket-orders/) für die vollständige Mechanik.
 
 Stockade unterstützt alle fünf. Hundert davon mit fiktivem Geld zu platzieren ist, wie das Vokabular zum Muskelgedächtnis wird. Die Tastenkürzel helfen: `B` zum Kaufen, `S` zum Verkaufen, `F` zum Glattstellen (alles schließen). Wenn Ihre Hände die Ausstiegstaste kennen, hört Zögern auf, ein Faktor zu sein.
 
@@ -51,7 +51,7 @@ Das ist eine Position von 26.000 $ (500 × 52,00 $) auf einem Konto von 100.000 
 
 Ändern Sie jetzt eine Eingabe. Dieselbe Aktie, derselbe Einstieg bei 52,00 $, aber Sie entscheiden, dass das Niveau, das Ihre Idee invalidiert, bei 51,00 $ statt liegt. Das Risiko pro Aktie ist 1,00 $, also wird die Größe 1.000 $ ÷ 1,00 $ = **1.000 Aktien** — eine Position von 52.000 $, doppelt so groß, mit demselben Risiko von 1.000 $. Ein engerer Stop bedeutet nicht weniger Risiko; er bedeutet eine größere Position und eine höhere Chance, durch gewöhnliches Rauschen ausgestoppt zu werden.
 
-Rechnen Sie das dreißigmal in einem Simulator durch, und es wird automatisch. Lernen Sie es auf einem echten Konto, und jede Wiederholung hat einen Preis. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing) behandelt die Formel vollständig, einschließlich der Drawdown-Erholungsmathematik.
+Rechnen Sie das dreißigmal in einem Simulator durch, und es wird automatisch. Lernen Sie es auf einem echten Konto, und jede Wiederholung hat einen Preis. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/) behandelt die Formel vollständig, einschließlich der Drawdown-Erholungsmathematik.
 
 ## Das Chart-Lesen ist eine eigene Fähigkeit
 
@@ -97,7 +97,7 @@ Der korrekte Weg, ein gutes Simulator-Ergebnis zu lesen, lautet: „meine Mechan
 
 Behandeln Sie das virtuelle Guthaben, als wäre es real. In dem Moment, in dem Sie anfangen, 40.000-$-Positionen einzugehen, „um zu sehen, was passiert", hört die Übung auf, Übung zu sein.
 
-Handeln Sie eine Größe und ein Setup, bis Sie 40 oder 50 Einträge im Journal haben, und schauen Sie dann auf die Statistik statt auf Ihre Erinnerung. Schreiben Sie auf, warum Sie eingestiegen sind, bevor Sie einsteigen, nicht nachdem Sie ausgestiegen sind. Und wenn Sie zu echtem Geld wechseln, verkleinern Sie Ihre Größe, bis ein voller Verlust echt langweilig ist — an diesem Punkt testen Sie nicht mehr die Strategie, Sie testen sich selbst. [Der Paper-Trading-Leitfaden](/blog/paper-trading-guide) behandelt diesen Übergang ausführlicher.
+Handeln Sie eine Größe und ein Setup, bis Sie 40 oder 50 Einträge im Journal haben, und schauen Sie dann auf die Statistik statt auf Ihre Erinnerung. Schreiben Sie auf, warum Sie eingestiegen sind, bevor Sie einsteigen, nicht nachdem Sie ausgestiegen sind. Und wenn Sie zu echtem Geld wechseln, verkleinern Sie Ihre Größe, bis ein voller Verlust echt langweilig ist — an diesem Punkt testen Sie nicht mehr die Strategie, Sie testen sich selbst. [Der Paper-Trading-Leitfaden](/blog/paper-trading-guide/) behandelt diesen Übergang ausführlicher.
 
 ## Üben Sie das im Simulator
 

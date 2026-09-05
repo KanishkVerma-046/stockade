@@ -15,7 +15,7 @@ That sequence is backwards, and reversing it is the highest-value change most ne
 
 Here is what happens when size comes first. You buy 500 shares at 187.40. The chart says the trade is wrong below 185.90 — 1.50 per share of risk — so the loss if the stop fills is 500 × 1.50 = **$750**. On a $50,000 account that is 1.5% gone on one ordinary trade. Take the same setup with a wider, more honest invalidation at 183.90, still 500 shares, and the loss becomes 500 × 3.50 = **$1,750**, or 3.5%. Same trader, same conviction, same share count, and the damage more than doubled because of where a line on a chart happened to sit.
 
-When size is fixed and stop distance varies, your dollar risk swings randomly. When dollar risk is fixed and stop distance varies, your share count adjusts and every loss comes out the same size. The second arrangement is the whole point of risk management. [Stop-loss orders](/blog/stop-loss-orders-explained) covers how to find the invalidation price; this article is about what to do with the number once you have it.
+When size is fixed and stop distance varies, your dollar risk swings randomly. When dollar risk is fixed and stop distance varies, your share count adjusts and every loss comes out the same size. The second arrangement is the whole point of risk management. [Stop-loss orders](/blog/stop-loss-orders-explained/) covers how to find the invalidation price; this article is about what to do with the number once you have it.
 
 ## The position sizing formula, worked end to end
 
@@ -106,13 +106,13 @@ This makes expectancy computable. At a 40% win rate with average winners of +2R 
 
 **(0.40 × 2R) + (0.60 × −1R) = 0.80R − 0.60R = +0.20R per trade**
 
-Twenty cents of R per trade, or $100 at a $500 unit. That is arithmetic about a past sample, not a forecast — win rates drift and edges decay, so a positive historical expectancy promises nothing about the next hundred trades. But it does show why a 40% win rate is fine, while a 60% win rate with −2R losers can still be a losing strategy. That second claim depends entirely on winner size: at 60% wins and −2R losers, breakeven needs an average winner of +1.33R, so +2R winners would actually make it a strong system at +0.4R per trade, and anything under +1.33R sinks it. Win rate alone is never enough to judge. Stockade's [analytics view](/blog/analyze-trading-performance-metrics) tracks win rate, profit factor, and average win/loss, the raw inputs to this calculation.
+Twenty cents of R per trade, or $100 at a $500 unit. That is arithmetic about a past sample, not a forecast — win rates drift and edges decay, so a positive historical expectancy promises nothing about the next hundred trades. But it does show why a 40% win rate is fine, while a 60% win rate with −2R losers can still be a losing strategy. That second claim depends entirely on winner size: at 60% wins and −2R losers, breakeven needs an average winner of +1.33R, so +2R winners would actually make it a strong system at +0.4R per trade, and anything under +1.33R sinks it. Win rate alone is never enough to judge. Stockade's [analytics view](/blog/analyze-trading-performance-metrics/) tracks win rate, profit factor, and average win/loss, the raw inputs to this calculation.
 
 ## Daily and weekly loss limits stop a bad day compounding
 
 Position sizing caps a single trade. It does nothing about the seventh trade of a frustrating morning, taken at triple size to make the day back.
 
-Set hard limits in R. A common structure is **−3R daily, −6R weekly** — at 1% risk on $50,000, that is $1,500 in a day and $3,000 in a week. Hit the daily limit and you are done: platform closed, no "one more setup." Their value is that they are set in advance by a version of you who is not currently losing. Revenge trading is not a character flaw; it is what happens when a tilted brain is allowed to choose position sizes. Write the numbers into your [trading plan](/blog/how-to-build-a-trading-plan) so the decision is already made.
+Set hard limits in R. A common structure is **−3R daily, −6R weekly** — at 1% risk on $50,000, that is $1,500 in a day and $3,000 in a week. Hit the daily limit and you are done: platform closed, no "one more setup." Their value is that they are set in advance by a version of you who is not currently losing. Revenge trading is not a character flaw; it is what happens when a tilted brain is allowed to choose position sizes. Write the numbers into your [trading plan](/blog/how-to-build-a-trading-plan/) so the decision is already made.
 
 ## Correlated positions make your real exposure larger than the sum
 
@@ -130,4 +130,4 @@ One asymmetry is worth stating plainly: beginners almost universally risk too mu
 
 ## Practice this on the simulator
 
-Take twenty trades on Stockade's $100,000 virtual trading balance where you compute the share count *before* opening the ticket — entry, stop, risk per share, then size, in that order. At 1% that is $1,000 per trade, so check the trade journal afterward to see whether your realized losses actually cluster near 1R or run past it. Remember that a simulated stop fills at the tick that crossed your level rather than at the level itself, and that virtual money makes this discipline far easier than real money ever will. Run the arithmetic on [Stockade's stock market simulator](/simulator) until the division is automatic.
+Take twenty trades on Stockade's $100,000 virtual trading balance where you compute the share count *before* opening the ticket — entry, stop, risk per share, then size, in that order. At 1% that is $1,000 per trade, so check the trade journal afterward to see whether your realized losses actually cluster near 1R or run past it. Remember that a simulated stop fills at the tick that crossed your level rather than at the level itself, and that virtual money makes this discipline far easier than real money ever will. Run the arithmetic on [Stockade's stock market simulator](/simulator/) until the division is automatic.

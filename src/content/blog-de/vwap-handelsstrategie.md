@@ -21,9 +21,9 @@ Der typische Preis ist `(Höchst + Tiefst + Schluss) ÷ 3` — eine Zahl, die da
 
 Das unterscheidet sich von einem einfachen oder exponentiellen gleitenden Durchschnitt auf zwei unabhängige Arten, und beide zählen.
 
-**Gewichtung.** Ein 20-Perioden-SMA gibt jedem seiner 20 Schlusskurse genau 1/20 des Gewichts, egal ob dieser Balken 3.000 Aktien oder 3 Millionen handelte. VWAP gewichtet jeden Balken nach den tatsächlich darin gehandelten Aktien. Ein Balken mit hohem Volumen bewegt VWAP stark; ein toter Balken kaum. Wollen Sie das vollständige Bild dessen, was Volumen sagt und nicht sagt, hat [Handelsvolumen seinen eigenen Artikel](/blog/understanding-trading-volume).
+**Gewichtung.** Ein 20-Perioden-SMA gibt jedem seiner 20 Schlusskurse genau 1/20 des Gewichts, egal ob dieser Balken 3.000 Aktien oder 3 Millionen handelte. VWAP gewichtet jeden Balken nach den tatsächlich darin gehandelten Aktien. Ein Balken mit hohem Volumen bewegt VWAP stark; ein toter Balken kaum. Wollen Sie das vollständige Bild dessen, was Volumen sagt und nicht sagt, hat [Handelsvolumen seinen eigenen Artikel](/blog/understanding-trading-volume/).
 
-**Fenster.** Ein SMA ist ein rollierendes Fenster, das den ältesten Balken fallen lässt, sobald ein neuer ankommt. VWAP lässt nichts fallen — jeder Balken seit der Sessioneröffnung bleibt dauerhaft in beiden Summen. Diese kumulative Natur treibt das meiste Verhalten von VWAP, einschließlich seiner schlimmsten Schwäche, unten behandelt. Der [Vergleich EMA versus SMA](/blog/moving-averages-ema-vs-sma) handelt davon, wie man *jüngere* Balken gewichtet; VWAP tritt in diesem Wettbewerb überhaupt nicht an.
+**Fenster.** Ein SMA ist ein rollierendes Fenster, das den ältesten Balken fallen lässt, sobald ein neuer ankommt. VWAP lässt nichts fallen — jeder Balken seit der Sessioneröffnung bleibt dauerhaft in beiden Summen. Diese kumulative Natur treibt das meiste Verhalten von VWAP, einschließlich seiner schlimmsten Schwäche, unten behandelt. Der [Vergleich EMA versus SMA](/blog/moving-averages-ema-vs-sma/) handelt davon, wie man *jüngere* Balken gewichtet; VWAP tritt in diesem Wettbewerb überhaupt nicht an.
 
 Schlicht gesagt: Ein gleitender Durchschnitt ist ein Glättungsfilter, angewandt auf den Preis. VWAP ist eine buchhalterische Tatsache über ausgeführte Transaktionen.
 
@@ -91,7 +91,7 @@ Manche Plattformen fügen Standardabweichungs-Bänder hinzu — VWAP plus und mi
 
 **Er wird die ganze Session über langsamer.** Bis 15:30 hält der Nenner sechs Stunden Volumen. Ein einzelner neuer Balken bewegt den Durchschnitt kaum, egal wie heftig er ist. VWAP ist am reaktionsfreudigsten, wenn er am wenigsten verlässlich ist, und am verlässlichsten, wenn er am wenigsten reaktionsfreudig ist, und nichts behebt das — es ist Arithmetik.
 
-**Er ist jenseits des Intraday-Zeitrahmens bedeutungslos.** Ein kumulativer Session-Durchschnitt hat auf einem Tages- oder Wochenchart keine Interpretation. Es gibt keine Session, auf die zurückgesetzt werden könnte. Halten Sie Positionen über Tage hinweg, ist VWAP nicht Ihr Werkzeug; siehe [Day Trading versus Swing Trading](/blog/day-trading-vs-swing-trading) dafür, was sich mit der Haltedauer ändert.
+**Er ist jenseits des Intraday-Zeitrahmens bedeutungslos.** Ein kumulativer Session-Durchschnitt hat auf einem Tages- oder Wochenchart keine Interpretation. Es gibt keine Session, auf die zurückgesetzt werden könnte. Halten Sie Positionen über Tage hinweg, ist VWAP nicht Ihr Werkzeug; siehe [Day Trading versus Swing Trading](/blog/day-trading-vs-swing-trading/) dafür, was sich mit der Haltedauer ändert.
 
 **Er ist nur so gut wie die Volumendaten dahinter.** VWAP ist eine volumengewichtete Statistik, sodass schlechte Volumendaten eine selbstsicher falsche Linie erzeugen. Retail-Feeds, die außerbörsliche Prints verpassen, oder Instrumente, bei denen gemeldetes Volumen unzuverlässig ist, geben Ihnen einen VWAP, gegen den keine Institution tatsächlich benchmarkt.
 

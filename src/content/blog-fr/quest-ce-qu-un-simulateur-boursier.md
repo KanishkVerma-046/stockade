@@ -27,13 +27,13 @@ Avant toute question de stratégie, il existe une couche de pure plomberie qui p
 
 Un **ordre au marché** achète ou vend immédiatement au prix actuellement disponible. Il garantit que vous serez exécuté ; il ne garantit pas le prix.
 
-Un **ordre à cours limité** fixe un maximum que vous êtes prêt à payer ou un minimum que vous êtes prêt à accepter. Placez un ordre d'achat à cours limité sur une action à $47.50 pendant qu'elle se traite à $48.20, et rien ne se passe jusqu'à ce que le prix vienne à vous. Il garantit le prix ; il ne garantit pas du tout que vous serez exécuté. ([Ordre au marché vs ordre à cours limité](/blog/market-orders-vs-limit-orders) approfondit quand chacun est approprié.)
+Un **ordre à cours limité** fixe un maximum que vous êtes prêt à payer ou un minimum que vous êtes prêt à accepter. Placez un ordre d'achat à cours limité sur une action à $47.50 pendant qu'elle se traite à $48.20, et rien ne se passe jusqu'à ce que le prix vienne à vous. Il garantit le prix ; il ne garantit pas du tout que vous serez exécuté. ([Ordre au marché vs ordre à cours limité](/blog/market-orders-vs-limit-orders/) approfondit quand chacun est approprié.)
 
 Un **stop-loss** est un ordre en attente qui s'active lorsque le prix évolue contre vous au-delà d'un niveau que vous avez choisi. C'est le mécanisme qui transforme « je devrais sans doute couper ça » en quelque chose qui se produit, que vous surveilliez ou non.
 
 Un **take-profit** est la même idée dans l'autre sens — un ordre qui clôture votre position une fois qu'elle atteint un objectif.
 
-Un **bracket OCO** (« one cancels the other », l'un annule l'autre) associe un stop-loss et un take-profit autour d'une position ouverte. Celui qui s'exécute en premier annule l'autre, si bien que vous ne pouvez pas vous retrouver avec un ordre orphelin qui ouvre une nouvelle position après que vous êtes déjà sorti. Voir [les ordres OCO et bracket expliqués](/blog/oco-and-bracket-orders) pour le mécanisme complet.
+Un **bracket OCO** (« one cancels the other », l'un annule l'autre) associe un stop-loss et un take-profit autour d'une position ouverte. Celui qui s'exécute en premier annule l'autre, si bien que vous ne pouvez pas vous retrouver avec un ordre orphelin qui ouvre une nouvelle position après que vous êtes déjà sorti. Voir [les ordres OCO et bracket expliqués](/blog/oco-and-bracket-orders/) pour le mécanisme complet.
 
 Stockade prend en charge ces cinq types. En passer une centaine avec de l'argent fictif est la façon dont ce vocabulaire devient un réflexe. Les raccourcis clavier aident : `B` pour acheter, `S` pour vendre, `F` pour tout liquider (fermer toutes les positions). Quand vos mains connaissent la touche de sortie, l'hésitation cesse d'être un facteur.
 
@@ -51,7 +51,7 @@ C'est une position de $26,000 (500 × $52.00) sur un compte de $100,000. Remarqu
 
 Changez maintenant une seule donnée. Même action, même entrée à $52.00, mais vous décidez que le niveau qui invalide votre idée est $51.00 au lieu de $50.00. Le risque par action est $1.00, donc la taille devient $1,000 ÷ $1.00 = **1,000 actions** — une position de $52,000, deux fois plus grande, pour le même risque de $1,000. Un stop plus serré ne signifie pas moins de risque ; il signifie une position plus grande et une probabilité plus élevée d'être sorti par le bruit ordinaire du marché.
 
-Répétez cette arithmétique trente fois dans un simulateur et elle devient automatique. Apprenez-la sur un compte réel et chaque répétition a un prix. [Le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing) couvre la formule en détail, y compris le calcul de récupération après un drawdown.
+Répétez cette arithmétique trente fois dans un simulateur et elle devient automatique. Apprenez-la sur un compte réel et chaque répétition a un prix. [Le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing/) couvre la formule en détail, y compris le calcul de récupération après un drawdown.
 
 ## Lire le graphique est une compétence à part
 
@@ -97,7 +97,7 @@ La bonne façon de lire un bon résultat de simulateur est : « mes mécanismes 
 
 Traitez le solde virtuel comme s'il était réel. Dès l'instant où vous commencez à prendre des positions de $40,000 « pour voir ce qui se passe », la pratique cesse d'être une pratique.
 
-Tradez une seule taille et un seul setup jusqu'à avoir 40 ou 50 entrées dans le journal, puis regardez les statistiques plutôt que vos souvenirs. Écrivez pourquoi vous êtes entré avant d'entrer, pas après être sorti. Et quand vous passerez à l'argent réel, réduisez votre taille jusqu'à ce qu'une perte totale soit véritablement ennuyeuse — à ce moment-là, vous ne testez plus la stratégie, vous vous testez vous-même. [Le guide du paper trading](/blog/paper-trading-guide) traite cette transition plus en détail.
+Tradez une seule taille et un seul setup jusqu'à avoir 40 ou 50 entrées dans le journal, puis regardez les statistiques plutôt que vos souvenirs. Écrivez pourquoi vous êtes entré avant d'entrer, pas après être sorti. Et quand vous passerez à l'argent réel, réduisez votre taille jusqu'à ce qu'une perte totale soit véritablement ennuyeuse — à ce moment-là, vous ne testez plus la stratégie, vous vous testez vous-même. [Le guide du paper trading](/blog/paper-trading-guide/) traite cette transition plus en détail.
 
 ## Pratiquez cela sur le simulateur
 

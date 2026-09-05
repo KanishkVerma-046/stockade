@@ -29,14 +29,14 @@ Nulla di tutto ciò richiede che il mercato "ricordi" qualcosa. La memoria vive 
 
 ## Come identificare i livelli dai massimi e minimi di oscillazione
 
-Un minimo di oscillazione è una candela il cui minimo è più basso dei minimi su entrambi i lati — un fondo locale. Un massimo di oscillazione è il contrario. Questi sono i punti dove il prezzo si è fermato e ha girato, il che significa che sono comparsi abbastanza ordini opposti da cambiare l'esito. Se stai ancora prendendo confidenza con l'anatomia delle candele, [come leggere i grafici a candele](/blog/how-to-read-candlestick-charts) tratta apertura, massimo, minimo e chiusura nel dettaglio.
+Un minimo di oscillazione è una candela il cui minimo è più basso dei minimi su entrambi i lati — un fondo locale. Un massimo di oscillazione è il contrario. Questi sono i punti dove il prezzo si è fermato e ha girato, il che significa che sono comparsi abbastanza ordini opposti da cambiare l'esito. Se stai ancora prendendo confidenza con l'anatomia delle candele, [come leggere i grafici a candele](/blog/how-to-read-candlestick-charts/) tratta apertura, massimo, minimo e chiusura nel dettaglio.
 
 Il metodo pratico è poco affascinante:
 
 1. Fai uno zoom indietro più di quanto sembri necessario. Un livello visibile solo su un grafico a cinque minuti è debole; uno visibile sul giornaliero è un livello che migliaia di persone possono vedere.
 2. Segna ogni massimo e minimo di oscillazione negli ultimi mesi.
 3. Cerca prezzi dove diversi punti di svolta si raggruppano in una banda stretta. Due tocchi sono una coincidenza con una storia allegata. Tre o più sono un livello.
-4. Nota quali tocchi avevano volume pesante — molte azioni sono passate di mano lì, il che significa che molte posizioni ora hanno opinioni su quel prezzo. Il [volume di trading](/blog/understanding-trading-volume) è la differenza tra un livello difeso e uno semplicemente disegnato.
+4. Nota quali tocchi avevano volume pesante — molte azioni sono passate di mano lì, il che significa che molte posizioni ora hanno opinioni su quel prezzo. Il [volume di trading](/blog/understanding-trading-volume/) è la differenza tra un livello difeso e uno semplicemente disegnato.
 
 Resisti alla tentazione di disegnare venti linee. Se il tuo grafico sembra carta millimetrata, ogni movimento sembrerà "reagire a un livello" e non avrai imparato nulla.
 
@@ -70,7 +70,7 @@ La soluzione è mettere lo stop sotto l'intera zona e lasciare che la dimensione
 
 Ora lo stoppino fino a 249,20 non ti tocca. Il prezzo chiude a 251,30 e corre fino a 254,00. Il tuo guadagno è 3,60 per azione × 62 = **223,20$**, ovvero 2,48 volte quanto hai rischiato.
 
-Confronta onestamente. Lo stop stretto ti avrebbe permesso di tenere 100 azioni invece di 62, e se avesse funzionato in modo pulito avresti guadagnato 360$ anziché 223,20$ — uno stop più ampio limita genuinamente il tuo rialzo. Ma la versione con lo stop stretto non ha fatto 360$. Ha fatto −90$, perché non è mai sopravvissuta abbastanza a lungo da avere ragione. Uno stop non è il posto dove le perdite sono più piccole; è il prezzo che dimostra che la tua idea è sbagliata. [Gli ordini stop-loss](/blog/stop-loss-orders-explained) approfondiscono quella distinzione.
+Confronta onestamente. Lo stop stretto ti avrebbe permesso di tenere 100 azioni invece di 62, e se avesse funzionato in modo pulito avresti guadagnato 360$ anziché 223,20$ — uno stop più ampio limita genuinamente il tuo rialzo. Ma la versione con lo stop stretto non ha fatto 360$. Ha fatto −90$, perché non è mai sopravvissuta abbastanza a lungo da avere ragione. Uno stop non è il posto dove le perdite sono più piccole; è il prezzo che dimostra che la tua idea è sbagliata. [Gli ordini stop-loss](/blog/stop-loss-orders-explained/) approfondiscono quella distinzione.
 
 ## Inversione di ruolo: perché una resistenza rotta diventa supporto
 

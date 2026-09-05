@@ -27,13 +27,13 @@ Prima di qualsiasi domanda sulla strategia c'è uno strato di puro impianto che 
 
 Un **ordine a mercato** compra o vende immediatamente al prezzo attualmente disponibile. Garantisce che tu venga eseguito; non garantisce il prezzo.
 
-Un **ordine a limite** imposta un massimo che pagherai o un minimo che accetterai. Piazza un limite di acquisto su un titolo a 47,50$ mentre scambia a 48,20$ e non succede nulla finché il prezzo non viene da te. Garantisce il prezzo; non garantisce affatto che tu venga eseguito. ([Ordini a mercato vs ordini a limite](/blog/market-orders-vs-limit-orders) approfondisce quando ognuno si adatta.)
+Un **ordine a limite** imposta un massimo che pagherai o un minimo che accetterai. Piazza un limite di acquisto su un titolo a 47,50$ mentre scambia a 48,20$ e non succede nulla finché il prezzo non viene da te. Garantisce il prezzo; non garantisce affatto che tu venga eseguito. ([Ordini a mercato vs ordini a limite](/blog/market-orders-vs-limit-orders/) approfondisce quando ognuno si adatta.)
 
 Uno **stop-loss** è un ordine in attesa che diventa attivo quando il prezzo si muove contro di te oltre un livello che hai scelto. È il meccanismo che trasforma "probabilmente dovrei tagliare questa" in qualcosa che accade indipendentemente dal fatto che tu stia guardando.
 
 Un **take-profit** è la stessa idea nella direzione opposta — un ordine che chiude la tua posizione una volta raggiunto un target.
 
-Un **bracket OCO** ("one cancels the other", uno annulla l'altro) accoppia uno stop-loss e un take-profit intorno a una posizione aperta. Qualunque dei due si esegua per primo annulla l'altro, così non puoi ritrovarti con un ordine pendente che apre una nuova posizione dopo che sei già uscito. Vedi [ordini OCO e bracket spiegati](/blog/oco-and-bracket-orders) per la meccanica completa.
+Un **bracket OCO** ("one cancels the other", uno annulla l'altro) accoppia uno stop-loss e un take-profit intorno a una posizione aperta. Qualunque dei due si esegua per primo annulla l'altro, così non puoi ritrovarti con un ordine pendente che apre una nuova posizione dopo che sei già uscito. Vedi [ordini OCO e bracket spiegati](/blog/oco-and-bracket-orders/) per la meccanica completa.
 
 Stockade supporta tutti e cinque. Piazzarne un centinaio con denaro finto è come il vocabolario diventa memoria muscolare. Le scorciatoie da tastiera aiutano: `B` per comprare, `S` per vendere, `F` per azzerare (chiudere tutto). Quando le tue mani conoscono il tasto di uscita, l'esitazione smette di essere un fattore.
 
@@ -51,7 +51,7 @@ Quella è una posizione da 26.000$ (500 × 52,00$) su un conto da 100.000$. Nota
 
 Ora cambia un input. Stesso titolo, stesso ingresso a 52,00$, ma decidi che il livello che invalida la tua idea è 51,00$ invece. Il rischio per azione è 1,00$, quindi la dimensione diventa 1.000$ ÷ 1,00$ = **1.000 azioni** — una posizione da 52.000$, il doppio grande, con lo stesso 1.000$ a rischio. Uno stop più stretto non significa meno rischio; significa una posizione più grande e una probabilità più alta di essere fermato dal rumore ordinario.
 
-Fai quell'aritmetica trenta volte in un simulatore e diventa automatica. Imparala su un conto reale e ogni ripetizione ha un prezzo. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing) copre la formula per intero, incluso il calcolo del recupero da drawdown.
+Fai quell'aritmetica trenta volte in un simulatore e diventa automatica. Imparala su un conto reale e ogni ripetizione ha un prezzo. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/) copre la formula per intero, incluso il calcolo del recupero da drawdown.
 
 ## Leggere il grafico è una competenza separata
 
@@ -97,7 +97,7 @@ Il modo corretto di leggere un buon risultato del simulatore è: "la mia meccani
 
 Tratta il saldo virtuale come se fosse reale. Nel momento in cui inizi a prendere posizioni da 40.000$ "per vedere cosa succede", la pratica smette di essere pratica.
 
-Fai trading con una sola dimensione e un solo setup finché non hai 40 o 50 ingressi nel diario, poi guarda le statistiche anziché il tuo ricordo. Scrivi perché sei entrato prima di entrare, non dopo essere uscito. E quando passi a denaro reale, riduci la tua dimensione finché una perdita completa non è genuinamente noiosa — a quel punto non stai più testando la strategia, stai testando te stesso. [La guida al paper trading](/blog/paper-trading-guide) copre quella transizione in maggiore dettaglio.
+Fai trading con una sola dimensione e un solo setup finché non hai 40 o 50 ingressi nel diario, poi guarda le statistiche anziché il tuo ricordo. Scrivi perché sei entrato prima di entrare, non dopo essere uscito. E quando passi a denaro reale, riduci la tua dimensione finché una perdita completa non è genuinamente noiosa — a quel punto non stai più testando la strategia, stai testando te stesso. [La guida al paper trading](/blog/paper-trading-guide/) copre quella transizione in maggiore dettaglio.
 
 ## Esercitati sul simulatore
 

@@ -52,7 +52,7 @@ garante que você será executado; não garante o preço.
 Uma **ordem limitada** define um máximo que você pagará ou um mínimo que você aceitará. Coloque uma compra
 limitada numa ação a $47,50 enquanto ela negocia a $48,20 e nada acontece até o preço vir até você. Ela
 garante o preço; não garante que você será executado de forma alguma.
-([Ordens a mercado vs. ordens limitadas](/blog/market-orders-vs-limit-orders) aprofunda quando cada uma se
+([Ordens a mercado vs. ordens limitadas](/blog/market-orders-vs-limit-orders/) aprofunda quando cada uma se
 encaixa.)
 
 Um **stop-loss** é uma ordem em espera que se ativa quando o preço se move contra você além de um nível
@@ -65,7 +65,7 @@ alcança um alvo.
 Um **bracket OCO** ("uma cancela a outra") combina um stop-loss e um take-profit em torno de uma posição
 aberta. Qualquer um que executar primeiro cancela o outro, então você não consegue acabar com uma ordem
 pendurada que abre uma nova posição depois que você já saiu. Veja
-[ordens OCO e bracket explicadas](/blog/oco-and-bracket-orders) para a mecânica completa.
+[ordens OCO e bracket explicadas](/blog/oco-and-bracket-orders/) para a mecânica completa.
 
 A Stockade suporta todos os cinco. Enviar uma centena deles com dinheiro falso é como o vocabulário vira
 memória muscular. Os atalhos de teclado ajudam: `B` para comprar, `S` para vender, `F` para zerar (fechar
@@ -96,7 +96,7 @@ comum.
 
 Rode essa aritmética trinta vezes num simulador e ela se torna automática. Aprenda numa conta real e cada
 repetição tem uma etiqueta de preço.
-[Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing) cobre a fórmula
+[Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/) cobre a fórmula
 completa, incluindo a matemática de recuperação de drawdown.
 
 ## Ler o gráfico é uma habilidade separada
@@ -191,7 +191,7 @@ Opere um tamanho e um setup até ter 40 ou 50 entradas no diário, depois olhe a
 lembrança. Escreva por que você entrou antes de entrar, não depois de sair. E quando você migrar para
 dinheiro real, corte seu tamanho até uma perda completa ser genuinamente entediante — nesse ponto você não
 está mais testando a estratégia, está testando a si mesmo.
-[O guia de paper trading](/blog/paper-trading-guide) cobre essa transição com mais detalhe.
+[O guia de paper trading](/blog/paper-trading-guide/) cobre essa transição com mais detalhe.
 
 ## Pratique isso no simulador
 

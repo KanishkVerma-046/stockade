@@ -84,7 +84,7 @@ Scambi una piccola quantità di certezza di esecuzione per un tetto rigido al di
 
 C'è una sola situazione in cui un ordine a mercato non è solo accettabile ma corretto: **uscire da una posizione che sta andando contro di te.**
 
-Se il tuo livello di stop viene violato e devi essere fuori, la certezza dell'esecuzione è tutto ciò che conta. Un'uscita a limite al tuo prezzo ideale può restare ineseguita mentre la perdita si allarga, e una piccola perdita che non si esegue diventa una grande perdita che alla fine si esegue. L'alternativa a pagare qualche centesimo in più non è "un'esecuzione migliore", è "essere ancora dentro". Ecco perché gli [ordini stop-loss](/blog/stop-loss-orders-explained) tipicamente attivano un ordine a mercato una volta che il prezzo di stop viene scambiato.
+Se il tuo livello di stop viene violato e devi essere fuori, la certezza dell'esecuzione è tutto ciò che conta. Un'uscita a limite al tuo prezzo ideale può restare ineseguita mentre la perdita si allarga, e una piccola perdita che non si esegue diventa una grande perdita che alla fine si esegue. L'alternativa a pagare qualche centesimo in più non è "un'esecuzione migliore", è "essere ancora dentro". Ecco perché gli [ordini stop-loss](/blog/stop-loss-orders-explained/) tipicamente attivano un ordine a mercato una volta che il prezzo di stop viene scambiato.
 
 La stessa logica vale per qualsiasi urgenza reale: chiudere prima di un annuncio programmato, uscire quando la tua tesi si è rotta, chiudere tutto alla fine della tua sessione. Quando devi essere fuori, sii fuori.
 
@@ -96,9 +96,9 @@ Quasi ovunque altrove.
 
 **Strumenti poco liquidi.** Dove lo spread è 0,25 anziché 0,04, un ordine a mercato consegna denaro reale su entrambi i lati dell'operazione.
 
-**Scalare con pazienza.** Se vuoi 900 azioni, impila limiti su tre livelli — 300 a 24,80, 300 a 24,65, 300 a 24,50 — e accetta che potresti ottenerne solo una parte. Questo interagisce direttamente con il tuo [dimensionamento della posizione](/blog/risk-management-position-sizing): un ingresso parzialmente eseguito è una posizione più piccola, e il tuo calcolo del rischio dovrebbe riflettere la dimensione che hai effettivamente ottenuto.
+**Scalare con pazienza.** Se vuoi 900 azioni, impila limiti su tre livelli — 300 a 24,80, 300 a 24,65, 300 a 24,50 — e accetta che potresti ottenerne solo una parte. Questo interagisce direttamente con il tuo [dimensionamento della posizione](/blog/risk-management-position-sizing/): un ingresso parzialmente eseguito è una posizione più piccola, e il tuo calcolo del rischio dovrebbe riflettere la dimensione che hai effettivamente ottenuto.
 
-**Uscite su un target.** Un target di profitto per definizione non è urgente, quindi un limite al tuo prezzo è esattamente giusto. Abbinare un take-profit a limite con un'uscita stop-loss è la struttura dietro gli [ordini OCO e bracket](/blog/oco-and-bracket-orders).
+**Uscite su un target.** Un target di profitto per definizione non è urgente, quindi un limite al tuo prezzo è esattamente giusto. Abbinare un take-profit a limite con un'uscita stop-loss è la struttura dietro gli [ordini OCO e bracket](/blog/oco-and-bracket-orders/).
 
 ## L'ordine a limite che non si esegue mai ha un suo costo
 

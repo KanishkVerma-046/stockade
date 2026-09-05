@@ -139,18 +139,18 @@ coisas diferentes em preços diferentes.
 Um hammer que se forma exatamente num nível de preço de onde já saltou três vezes antes é uma rejeição num
 lugar que outros traders estão observando. O mesmo hammer no meio do nada é um candle onde alguém comprou
 uma queda. O padrão não mudou; a localização mudou. É por isso que
-[níveis de suporte e resistência](/blog/support-and-resistance-levels) valem a pena aprender antes de
+[níveis de suporte e resistência](/blog/support-and-resistance-levels/) valem a pena aprender antes de
 decorar um único nome de padrão.
 
 As outras duas peças de contexto que vale a pena checar:
 
 - **Volume.** Um candle de engolfo em três vezes o volume médio recente significa que participação real
   entrou. A mesma forma em volume fraco significa que quase nada aconteceu.
-  [Volume de trading](/blog/understanding-trading-volume) é a checagem de sanidade em todo padrão que você
+  [Volume de trading](/blog/understanding-trading-volume/) é a checagem de sanidade em todo padrão que você
   encontrar.
 - **Tendência.** Padrões de reversão precisam de algo para reverter. Uma estrela da manhã depois de uma
   queda de três dias é um sinal; uma estrela da manhã num range lateral é decoração. Uma
-  [média móvel](/blog/moving-averages-ema-vs-sma) te dá uma leitura rápida e objetiva de em qual regime
+  [média móvel](/blog/moving-averages-ema-vs-sma/) te dá uma leitura rápida e objetiva de em qual regime
   você está.
 
 Confluência é a palavra para o que você está procurando: padrão, localização e participação todos

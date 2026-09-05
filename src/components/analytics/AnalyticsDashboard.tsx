@@ -177,7 +177,7 @@ export default function AnalyticsDashboard() {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center h-[140px] text-center">
               <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet — start trading to see your equity curve</p>
-              <a href="/simulator" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <a href="/simulator/" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
             </div>
           ) : (
             <>
@@ -220,7 +220,7 @@ export default function AnalyticsDashboard() {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center p-10 text-center">
               <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet</p>
-              <a href="/simulator" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <a href="/simulator/" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
             </div>
           ) : (
             <div className="overflow-x-auto">

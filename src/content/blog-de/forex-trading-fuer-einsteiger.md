@@ -57,7 +57,7 @@ USD/JPY nicht. Seine Kurswährung ist der Yen, also verdient ein Standard-Lot 10
 
 </div>
 
-Kleine Lots sind es, was Forex-Dimensionierung auf einem kleinen Konto praktikabel macht. Mit 5.000 $ und 1 % Risiko pro Trade — 50 $ — bei einem EUR/USD-Setup mit einem 25-Pip-Stop brauchen Sie einen Pip-Wert von 50 ÷ 25 = **2,00 $**, was 2 Mini-Lots sind, oder 20.000 Einheiten. Nominalwert: 20.000 × 1,0872 = **21.744 $**. Das Vierfache Ihres Kontos kontrolliert mit 50 $ Risiko. Die [Formel zur Positionsgrößenbestimmung](/blog/risk-management-position-sizing) funktioniert hier identisch; nur die Einheit ändert sich von Risiko-pro-Aktie zu Risiko-pro-Pip.
+Kleine Lots sind es, was Forex-Dimensionierung auf einem kleinen Konto praktikabel macht. Mit 5.000 $ und 1 % Risiko pro Trade — 50 $ — bei einem EUR/USD-Setup mit einem 25-Pip-Stop brauchen Sie einen Pip-Wert von 50 ÷ 25 = **2,00 $**, was 2 Mini-Lots sind, oder 20.000 Einheiten. Nominalwert: 20.000 × 1,0872 = **21.744 $**. Das Vierfache Ihres Kontos kontrolliert mit 50 $ Risiko. Die [Formel zur Positionsgrößenbestimmung](/blog/risk-management-position-sizing/) funktioniert hier identisch; nur die Einheit ändert sich von Risiko-pro-Aktie zu Risiko-pro-Pip.
 
 ## Der Spread ist die Hauptkosten im Retail-Forex
 
@@ -86,7 +86,7 @@ Lesen Sie die unterste Zeile, und die Falle ist offensichtlich. Mit 2.000 $ und 
 
 Der Marketing-Rahmen ist, dass Hebel einem kleinen Konto Zugang zu einem großen Markt gibt. Der ehrliche Rahmen ist, dass Hebel ein Ergebnis multipliziert, dessen Vorzeichen Sie nicht kontrollieren: Er skaliert Gewinne und Verluste um denselben Faktor und ändert Ihren Erwartungswert pro Trade überhaupt nicht, sodass Hebel, falls Ihre Strategie im Schnitt Geld verliert, kein schnellerer Weg zum Gewinn ist, sondern ein schnellerer Weg zur Null. In der EU und UK regulierte Broker müssen den Anteil der Retail-Konten veröffentlichen, die Geld verlieren, und die offengelegten Zahlen liegen meist im Bereich von 70–80 %; hebelgetriebene Verluste sind der dominante Grund.
 
-Behandeln Sie Hebel als Kapazität, die Sie größtenteils ablehnen: dimensionieren Sie aus Ihrem Stop-Abstand und Risikobudget, und lassen Sie die Margin-Anforderung fallen, wo sie fällt. [Futures tragen ähnliche Hebel-Mechanik](/blog/futures-trading-explained) über die Kontrakt-Margin, und dieselbe Disziplin gilt.
+Behandeln Sie Hebel als Kapazität, die Sie größtenteils ablehnen: dimensionieren Sie aus Ihrem Stop-Abstand und Risikobudget, und lassen Sie die Margin-Anforderung fallen, wo sie fällt. [Futures tragen ähnliche Hebel-Mechanik](/blog/futures-trading-explained/) über die Kontrakt-Margin, und dieselbe Disziplin gilt.
 
 ## Majors, Minors, Exoten und die 24-Stunden-Handelswoche
 
@@ -94,7 +94,7 @@ Paare werden nach Liquidität gruppiert. **Majors** enthalten alle den US-Dollar
 
 Forex läuft 24 Stunden am Tag, fünf Tage die Woche, beginnend mit Sydney gegen 17 Uhr ET am Sonntag und schließend um 17 Uhr ET am Freitag, mit vier rotierenden Regionalsessions: Sydney, Tokio, London, New York. Das stärkste Volumen ist die **London-New-York-Überschneidung**, etwa 8 bis 12 Uhr ET, wenn beide der größten Zentren geöffnet sind — Spreads sind dann am engsten und Bewegungen am größten. Rein asiatische Stunden sind typischerweise ruhig und rangegebunden.
 
-Rund-um-die-Uhr-Zugang ist keine Einladung, rund um die Uhr zu handeln. Wählen Sie das Fenster, das zu Ihren Setups und Ihrem Leben passt; ob das eine Zwei-Stunden-Überschneidung oder ein mehrtägiges Halten ist, ist die Entscheidung [Day Trading versus Swing Trading](/blog/day-trading-vs-swing-trading). Und obwohl die Woche kontinuierlich ist, hat Forex am Wochenende Gaps — Montag kann entfernt vom Freitagsschluss eröffnen, an jedem dazwischen ruhenden Stop vorbei.
+Rund-um-die-Uhr-Zugang ist keine Einladung, rund um die Uhr zu handeln. Wählen Sie das Fenster, das zu Ihren Setups und Ihrem Leben passt; ob das eine Zwei-Stunden-Überschneidung oder ein mehrtägiges Halten ist, ist die Entscheidung [Day Trading versus Swing Trading](/blog/day-trading-vs-swing-trading/). Und obwohl die Woche kontinuierlich ist, hat Forex am Wochenende Gaps — Montag kann entfernt vom Freitagsschluss eröffnen, an jedem dazwischen ruhenden Stop vorbei.
 
 ## Was Stockades drei Währungspaare Ihnen beibringen können und was nicht
 

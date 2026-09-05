@@ -84,7 +84,7 @@ You trade a small amount of fill certainty for a hard ceiling on disaster. That 
 
 There is one situation where a market order is not just acceptable but correct: **getting out of a position that is going against you.**
 
-If your stop level is breached and you need to be flat, execution certainty is the whole point. A limit exit at your ideal price can sit unfilled while the loss widens, and a small loss that does not fill becomes a large loss that eventually does. The alternative to paying a few extra cents is not "a better fill," it is "still holding." That is why [stop-loss orders](/blog/stop-loss-orders-explained) typically trigger a market order once the stop price trades.
+If your stop level is breached and you need to be flat, execution certainty is the whole point. A limit exit at your ideal price can sit unfilled while the loss widens, and a small loss that does not fill becomes a large loss that eventually does. The alternative to paying a few extra cents is not "a better fill," it is "still holding." That is why [stop-loss orders](/blog/stop-loss-orders-explained/) typically trigger a market order once the stop price trades.
 
 The same logic covers any real urgency: closing before a scheduled announcement, exiting when your thesis has broken, flattening at the end of your session. When you must be out, be out.
 
@@ -96,9 +96,9 @@ Almost everywhere else.
 
 **Illiquid instruments.** Where the spread is 0.25 rather than 0.04, a market order hands over real money on both sides of the trade.
 
-**Patient scaling.** If you want 900 shares, stack limits at three levels — 300 at 24.80, 300 at 24.65, 300 at 24.50 — and accept that you may only get part of it. That interacts directly with your [position sizing](/blog/risk-management-position-sizing): a partly filled entry is a smaller position, and your risk calculation should reflect the size you actually got.
+**Patient scaling.** If you want 900 shares, stack limits at three levels — 300 at 24.80, 300 at 24.65, 300 at 24.50 — and accept that you may only get part of it. That interacts directly with your [position sizing](/blog/risk-management-position-sizing/): a partly filled entry is a smaller position, and your risk calculation should reflect the size you actually got.
 
-**Exits at a target.** A profit target is not urgent by definition, so a limit at your price is exactly right. Pairing a limit take-profit with a stop-loss exit is the structure behind [OCO and bracket orders](/blog/oco-and-bracket-orders).
+**Exits at a target.** A profit target is not urgent by definition, so a limit at your price is exactly right. Pairing a limit take-profit with a stop-loss exit is the structure behind [OCO and bracket orders](/blog/oco-and-bracket-orders/).
 
 ## The limit order that never fills has its own cost
 
@@ -110,4 +110,4 @@ That is not an argument against limit orders. It is an argument against pricing 
 
 ## Practice the decision on the simulator
 
-Stockade's fills are perfect, so you cannot practice paying a spread there — but you can practice the decision that determines whether you pay one. Open [Stockade's free stock market simulator](/simulator), switch the order ticket from market to limit before every entry, and write down the limit price you would use against a real book. Then reserve market orders for flattening — the F key exists for exactly that. Carry that reflex to a real platform and the spread will be the only new thing to learn.
+Stockade's fills are perfect, so you cannot practice paying a spread there — but you can practice the decision that determines whether you pay one. Open [Stockade's free stock market simulator](/simulator/), switch the order ticket from market to limit before every entry, and write down the limit price you would use against a real book. Then reserve market orders for flattening — the F key exists for exactly that. Carry that reflex to a real platform and the spread will be the only new thing to learn.

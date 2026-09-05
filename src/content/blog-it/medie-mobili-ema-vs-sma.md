@@ -67,7 +67,7 @@ Stockade mette tutte e tre sul grafico in colori distinti — EMA 9 ambra, EMA 2
 
 ## Usare le medie mobili come supporto e resistenza dinamici
 
-I [livelli di supporto e resistenza](/blog/support-and-resistance-levels) orizzontali sono prezzi fissi. Una media mobile è un livello che si muove con il mercato, il che la rende utile nei trend dove una linea fissa diventa obsoleta entro un'ora. In un uptrend sano, il prezzo ritraccia, tocca o leggermente sottopassa un'EMA in salita, e riprende — i trader la chiamano "cavalcare la 20". In un downtrend la stessa linea agisce come un soffitto contro cui falliscono i rally.
+I [livelli di supporto e resistenza](/blog/support-and-resistance-levels/) orizzontali sono prezzi fissi. Una media mobile è un livello che si muove con il mercato, il che la rende utile nei trend dove una linea fissa diventa obsoleta entro un'ora. In un uptrend sano, il prezzo ritraccia, tocca o leggermente sottopassa un'EMA in salita, e riprende — i trader la chiamano "cavalcare la 20". In un downtrend la stessa linea agisce come un soffitto contro cui falliscono i rally.
 
 Sii onesto su cosa sia questo. L'EMA non è una barriera; è una linea descrittiva che capita di trovarsi dove si è concentrato l'acquisto recente, e fallisce di routine. Se la tratti come supporto ti serve comunque uno stop sotto di essa — "il prezzo è rimbalzato dalla 20 le ultime tre volte" descrive tre eventi, non una proprietà dello strumento.
 
@@ -77,7 +77,7 @@ La regola meccanica classica: compra quando una MA veloce incrocia sopra una MA 
 
 In un range è uno sminuzzatore. Immagina il prezzo che oscilla tra circa 184 e 188. L'EMA 9 incrocia sopra l'EMA 20 a 186,40 — compri. Sei barre dopo il prezzo rotola a 185,20 e le linee incrociano di nuovo — vendi con una perdita di 1,20$. Quattro barre dopo incrociano di nuovo verso l'alto a 186,10 — compri — e il prezzo scivola a 185,00, altri 1,10$ persi. Due operazioni, nessun trend, e sei sotto di 2,30$ per azione prima di qualsiasi costo, puramente perché un mercato laterale fa incrociare avanti e indietro due linee quasi identiche. Questo è **whipsaw**, e non è un difetto nelle impostazioni. È ciò che succede quando applichi uno strumento di trend-following a un mercato che non ha trend.
 
-La difesa non è un periodo migliore. È un filtro: prendi gli incroci solo quando la linea lenta è chiaramente inclinata, o richiedi conferma da qualcosa che misura una cosa diversa, come il [MACD](/blog/macd-explained) — che è esso stesso costruito da EMA — o un riferimento ancorato al volume come il [VWAP](/blog/vwap-trading-strategy).
+La difesa non è un periodo migliore. È un filtro: prendi gli incroci solo quando la linea lenta è chiaramente inclinata, o richiedi conferma da qualcosa che misura una cosa diversa, come il [MACD](/blog/macd-explained/) — che è esso stesso costruito da EMA — o un riferimento ancorato al volume come il [VWAP](/blog/vwap-trading-strategy/).
 
 ## Leggere la pendenza della media mobile come filtro di trend
 

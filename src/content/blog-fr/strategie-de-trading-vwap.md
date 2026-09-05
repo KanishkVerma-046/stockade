@@ -21,9 +21,9 @@ Le prix typique est `(haut + bas + clôture) ÷ 3` — un chiffre unique représ
 
 Cela diffère d'une moyenne mobile simple ou exponentielle sur deux points indépendants, et les deux comptent.
 
-**La pondération.** Une SMA à 20 périodes donne à chacune de ses 20 clôtures exactement 1/20 du poids, que cette barre ait échangé 3 000 actions ou 3 millions. Le VWAP pondère chaque barre par les actions réellement échangées en son sein. Une barre à fort volume déplace beaucoup le VWAP ; une barre morte le déplace à peine. Si vous voulez le tableau complet de ce que le volume révèle et ne révèle pas, [le volume de trading a son propre article](/blog/understanding-trading-volume).
+**La pondération.** Une SMA à 20 périodes donne à chacune de ses 20 clôtures exactement 1/20 du poids, que cette barre ait échangé 3 000 actions ou 3 millions. Le VWAP pondère chaque barre par les actions réellement échangées en son sein. Une barre à fort volume déplace beaucoup le VWAP ; une barre morte le déplace à peine. Si vous voulez le tableau complet de ce que le volume révèle et ne révèle pas, [le volume de trading a son propre article](/blog/understanding-trading-volume/).
 
-**La fenêtre.** Une SMA est une fenêtre glissante qui abandonne la barre la plus ancienne à chaque arrivée d'une nouvelle. Le VWAP n'abandonne rien — chaque barre depuis l'ouverture de la séance reste dans les deux totaux en permanence. Cette nature cumulative pilote la plupart du comportement du VWAP, y compris sa pire faiblesse, traitée plus bas. [La comparaison EMA contre SMA](/blog/moving-averages-ema-vs-sma) porte sur la façon de pondérer les barres *récentes* ; le VWAP ne participe pas du tout à cette compétition.
+**La fenêtre.** Une SMA est une fenêtre glissante qui abandonne la barre la plus ancienne à chaque arrivée d'une nouvelle. Le VWAP n'abandonne rien — chaque barre depuis l'ouverture de la séance reste dans les deux totaux en permanence. Cette nature cumulative pilote la plupart du comportement du VWAP, y compris sa pire faiblesse, traitée plus bas. [La comparaison EMA contre SMA](/blog/moving-averages-ema-vs-sma/) porte sur la façon de pondérer les barres *récentes* ; le VWAP ne participe pas du tout à cette compétition.
 
 Pour le dire simplement : une moyenne mobile est un filtre de lissage appliqué au prix. Le VWAP est un fait comptable sur des transactions exécutées.
 
@@ -91,7 +91,7 @@ Certaines plateformes ajoutent des bandes d'écart-type — le VWAP plus et moin
 
 **Il ralentit tout au long de la séance.** À 15h30, le dénominateur contient six heures de volume. Une seule nouvelle barre déplace à peine la moyenne, quelle que soit sa violence. Le VWAP est à son plus réactif quand il est le moins fiable, et à son plus fiable quand il est le moins réactif, et rien n'y remédie — c'est de l'arithmétique.
 
-**Il n'a aucun sens au-delà de l'échelle de temps intrajournalière.** Une moyenne cumulée de séance n'a aucune interprétation sur un graphique journalier ou hebdomadaire. Il n'y a pas de séance à laquelle se réinitialiser. Si vous détenez des positions à travers plusieurs jours, le VWAP n'est pas votre outil ; voyez [day trading contre swing trading](/blog/day-trading-vs-swing-trading) pour ce qui change selon la période de détention.
+**Il n'a aucun sens au-delà de l'échelle de temps intrajournalière.** Une moyenne cumulée de séance n'a aucune interprétation sur un graphique journalier ou hebdomadaire. Il n'y a pas de séance à laquelle se réinitialiser. Si vous détenez des positions à travers plusieurs jours, le VWAP n'est pas votre outil ; voyez [day trading contre swing trading](/blog/day-trading-vs-swing-trading/) pour ce qui change selon la période de détention.
 
 **Il ne vaut que ce que valent les données de volume derrière lui.** Le VWAP est une statistique pondérée par le volume, donc de mauvaises données de volume produisent une ligne fausse avec assurance. Les flux retail qui manquent les transactions hors bourse, ou les instruments dont le volume rapporté est peu fiable, vous donneront un VWAP qu'aucune institution ne prend réellement comme référence.
 

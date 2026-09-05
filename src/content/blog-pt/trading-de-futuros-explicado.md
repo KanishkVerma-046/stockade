@@ -119,9 +119,9 @@ Agora faça a conta que importa:
 Um movimento de 2% no subjacente apaga 40% do capital que você depositou. O S&P 500 tem dias de 2% várias
 vezes num ano médio. Essa assimetria — movimento pequeno, dano proporcional enorme — é a coisa mais
 importante desta página, e é por isso que a
-[aritmética da regra de 1% e do dimensionamento de posição](/blog/risk-management-position-sizing) não são
+[aritmética da regra de 1% e do dimensionamento de posição](/blog/risk-management-position-sizing/) não são
 opcionais em futuros. Também significa que
-[colocar o stop-loss](/blog/stop-loss-orders-explained) tem que vir antes da entrada, não depois. Em ações,
+[colocar o stop-loss](/blog/stop-loss-orders-explained/) tem que vir antes da entrada, não depois. Em ações,
 um stop esquecido é uma operação ruim. A 20:1, é um evento de solvência.
 
 ## Vencimento, rolagem, e contango em futuros de commodities
@@ -157,7 +157,7 @@ de distância:
 A versão /MES é uma operação normal. A versão /ES é uma aposta que nenhuma quantidade de convicção
 justifica. Micros também permitem escalar em décimos em vez de encarar uma decisão de tudo ou nada — o
 mesmo argumento de granularidade que torna
-[o dimensionamento em forex](/blog/forex-trading-for-beginners) viável com mini e micro lotes.
+[o dimensionamento em forex](/blog/forex-trading-for-beginners/) viável com mini e micro lotes.
 
 ## O que os símbolos de futuros da Stockade podem e não podem te ensinar
 

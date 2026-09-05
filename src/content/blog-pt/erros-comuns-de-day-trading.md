@@ -33,7 +33,7 @@ recentes, não por vantagem estatística, e o tamanho é a forma mais imediata d
 
 **A regra:** nenhuma posição excede 1% do capital da conta em risco, calculado a partir do preço de
 entrada, preço de stop e quantidade *antes* de a ordem ser enviada. O tamanho é o resultado de uma divisão,
-não de um humor. [Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing) tem a
+não de um humor. [Dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/) tem a
 aritmética completa.
 
 ### A aritmética: vinte operações disciplinadas contra uma operação superdimensionada
@@ -67,7 +67,7 @@ risco, só o momento da admissão. O alívio que você sente é o sinal.
 
 **A regra:** stops se movem apenas em direção ao lucro, nunca para longe dele. Querer mais espaço significa
 uma posição menor na próxima vez, não um stop mais largo desta vez. Coloque-o onde sua ideia está provada
-errada, não onde a perda parece tolerável — veja [ordens stop-loss explicadas](/blog/stop-loss-orders-explained).
+errada, não onde a perda parece tolerável — veja [ordens stop-loss explicadas](/blog/stop-loss-orders-explained/).
 
 ### Comprar na queda em uma posição perdedora
 
@@ -143,7 +143,7 @@ Um plano não escrito não pode ser violado, apenas reinterpretado, e reinterpre
 
 **A regra:** o plano existe como um arquivo, escrito antes da sessão, especificando critérios de setup,
 gatilho de entrada, lógica de stop, lógica de alvo, risco máximo por operação, máximo de operações por dia,
-e as condições que encerram a sessão. [Como criar um plano de trading](/blog/how-to-build-a-trading-plan)
+e as condições que encerram a sessão. [Como criar um plano de trading](/blog/how-to-build-a-trading-plan/)
 percorre cada parte.
 
 ## Os custos que você esquece de subtrair
@@ -181,7 +181,7 @@ médio é o número menor, você está cortando ganhos, seja lá o que você acr
 O que um simulador não consegue fazer é reproduzir a pressão que causa esses erros. O dinheiro não é real,
 então uma perda não é registrada como ameaça, então o impulso de mover o stop nunca é acionado. Traders que
 mantêm suas regras perfeitamente por um mês no papel costumam abandoná-las na primeira semana com capital
-real. Nenhum simulador fecha essa lacuna — veja [como praticar deliberadamente](/blog/paper-trading-guide)
+real. Nenhum simulador fecha essa lacuna — veja [como praticar deliberadamente](/blog/paper-trading-guide/)
 para o que a prática pode e não pode entregar.
 
 Duas ressalvas. Os preços da Stockade são sintéticos, gerados no seu navegador em vez de vindos de qualquer

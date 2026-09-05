@@ -25,7 +25,7 @@ Un ordre **stop-market** (stop au marché) dit : quand le prix touche 185.90, ve
 
 Un ordre **stop-limit** (stop à cours limité) dit : quand le prix touche 185.90, place un ordre à cours limité pour vendre à 185.80 au pire. Vous contrôlez maintenant le prix — mais vous ne contrôlez plus si vous sortez ou non. Si la transaction suivante s'imprime à 184.20, votre limite reste non exécutée à 185.80 pendant que le marché s'enfuit en dessous. Vous détenez toujours une position perdante, et la protection que vous pensiez avoir est un ordre qui ne s'exécutera jamais. C'est le piège. Le stop-limit protège votre prix d'exécution en abandonnant ce que vous vouliez réellement, à savoir sortir.
 
-Cette distinction compte le plus exactement dans les conditions pour lesquelles un stop existe : des mouvements rapides et unidirectionnels. La plupart des traders devraient donc utiliser des ordres stop-market pour leurs stops de protection. La [différence entre ordre au marché et ordre à cours limité](/blog/market-orders-vs-limit-orders) mérite d'être comprise en général, mais ici l'asymétrie est flagrante — une exécution un peu moins bonne gâche un après-midi, un stop de protection non exécuté gâche une année.
+Cette distinction compte le plus exactement dans les conditions pour lesquelles un stop existe : des mouvements rapides et unidirectionnels. La plupart des traders devraient donc utiliser des ordres stop-market pour leurs stops de protection. La [différence entre ordre au marché et ordre à cours limité](/blog/market-orders-vs-limit-orders/) mérite d'être comprise en général, mais ici l'asymétrie est flagrante — une exécution un peu moins bonne gâche un après-midi, un stop de protection non exécuté gâche une année.
 
 ## Placez le stop là où votre idée de trade est prouvée fausse
 
@@ -33,7 +33,7 @@ La méthode la plus courante pour placer un stop est de décider combien d'argen
 
 Ce n'en est pas. Le marché n'a aucune idée du solde de votre compte. Un stop placé à une distance arbitraire se fait toucher par le bruit ordinaire du marché, et la position se ferme alors que votre raison initiale d'être dans le trade est encore parfaitement intacte. Vous perdez de l'argent sans rien apprendre, parce que le trade n'a jamais réellement été testé. Le stop doit se trouver au prix qui rend fausse votre raison d'être dans le trade.
 
-Disons que vous avez acheté à 187.40 parce que le prix a tenu un niveau à 186.15 à deux reprises et a rebondi dessus. Votre thèse est « les acheteurs défendent 186.15 ». Sous 186.15, cette thèse est morte — pas endommagée, morte. Ajoutez une petite marge et placez le stop à 185.90. La distance est maintenant définie par le graphique, pas par votre confort. S'il se déclenche, vous vous êtes trompé sur quelque chose de réel, ce qui constitue une information. [Les niveaux de support et résistance](/blog/support-and-resistance-levels) sont la matière première de ce type de placement.
+Disons que vous avez acheté à 187.40 parce que le prix a tenu un niveau à 186.15 à deux reprises et a rebondi dessus. Votre thèse est « les acheteurs défendent 186.15 ». Sous 186.15, cette thèse est morte — pas endommagée, morte. Ajoutez une petite marge et placez le stop à 185.90. La distance est maintenant définie par le graphique, pas par votre confort. S'il se déclenche, vous vous êtes trompé sur quelque chose de réel, ce qui constitue une information. [Les niveaux de support et résistance](/blog/support-and-resistance-levels/) sont la matière première de ce type de placement.
 
 Votre risque par action est 187.40 − 185.90 = **1.50**. Ce chiffre est un résultat de l'analyse, pas une donnée de départ. Ce que vous en faites vient ensuite.
 
@@ -65,7 +65,7 @@ Supposons maintenant que la structure soit plus large et que l'invalidation honn
 
 Mêmes $500 à risque. Position complètement différente. Un stop plus large ne signifie pas plus de risque ; il signifie moins d'actions. La distance du stop et le nombre d'actions évoluent en sens opposés pour maintenir la perte constante.
 
-Cela met aussi à nu le fantasme du stop serré. Un stop de 0.50 permettrait 1,000 actions — mais 1,000 × 187.40, c'est $187,400 d'actions sur un compte de $100,000, ce qui exige de l'effet de levier, et le stop est assez proche pour se faire sortir régulièrement par le bruit ordinaire. [Le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing) approfondit cette arithmétique.
+Cela met aussi à nu le fantasme du stop serré. Un stop de 0.50 permettrait 1,000 actions — mais 1,000 × 187.40, c'est $187,400 d'actions sur un compte de $100,000, ce qui exige de l'effet de levier, et le stop est assez proche pour se faire sortir régulièrement par le bruit ordinaire. [Le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing/) approfondit cette arithmétique.
 
 <div class="table-wrap">
 
@@ -81,7 +81,7 @@ Cela met aussi à nu le fantasme du stop serré. Un stop de 0.50 permettrait 1,0
 
 Un trailing stop (stop suiveur) suit le prix dans votre sens et ne recule jamais. En position longue depuis 187.40 avec un trail de 2.50 : le prix monte à 194.00, le stop est relevé à 191.50, et une sortie à ce niveau verrouille 4.10 par action — 333 × 4.10 = **$1,365.30** — sans que vous n'ayez rien décidé.
 
-Le compromis est qu'un trailing stop redonne toujours la distance du trail. Vous ne sortirez jamais au plus haut, par construction. Un trail trop serré met fin prématurément à un trade de tendance à cause d'un pullback normal ; un trail trop lâche vous fait rendre une grande partie d'un gain latent. Il n'existe pas de réglage correct, seulement un choix de regret que vous préférez. Les trailing stops sont souvent combinés à un objectif de profit via un ordre bracket, que [les ordres OCO et bracket](/blog/oco-and-bracket-orders) traitent comme type d'ordre.
+Le compromis est qu'un trailing stop redonne toujours la distance du trail. Vous ne sortirez jamais au plus haut, par construction. Un trail trop serré met fin prématurément à un trade de tendance à cause d'un pullback normal ; un trail trop lâche vous fait rendre une grande partie d'un gain latent. Il n'existe pas de réglage correct, seulement un choix de regret que vous préférez. Les trailing stops sont souvent combinés à un objectif de profit via un ordre bracket, que [les ordres OCO et bracket](/blog/oco-and-bracket-orders/) traitent comme type d'ordre.
 
 ## Trois vérités honnêtes sur les stops
 

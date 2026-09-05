@@ -25,7 +25,7 @@ Eine **Stop-Market**-Order sagt: Wenn der Preis 185,90 berührt, verkaufe zu dem
 
 Eine **Stop-Limit**-Order sagt: Wenn der Preis 185,90 berührt, platziere eine Limit-Order, die zu nicht schlechter als 185,80 verkauft. Jetzt kontrollieren Sie den Preis — aber Sie kontrollieren nicht mehr, ob Sie überhaupt aussteigen. Notiert der nächste Trade bei 184,20, bleibt Ihr Limit bei 185,80 unausgeführt, während der Markt darunter davonläuft. Sie halten immer noch eine Verlustposition, und der Schutz, den Sie zu haben glaubten, ist eine Order, die nie ausgeführt wird. Das ist die Falle. Das Stop-Limit schützt Ihren Ausführungspreis, indem es das aufgibt, was Sie eigentlich wollten: draußen zu sein.
 
-Der Unterschied zählt am meisten genau unter den Bedingungen, für die ein Stop existiert: schnelle, einseitige Bewegungen. Die meisten Trader sollten deshalb Stop-Market-Orders für schützende Stops verwenden. Der [Unterschied zwischen Market- und Limit-Order](/blog/market-orders-vs-limit-orders) lohnt sich generell zu verstehen, aber hier ist die Asymmetrie krass — eine etwas schlechtere Ausführung ist ein schlechter Nachmittag, ein unausgeführter Schutz-Stop ist ein schlechtes Jahr.
+Der Unterschied zählt am meisten genau unter den Bedingungen, für die ein Stop existiert: schnelle, einseitige Bewegungen. Die meisten Trader sollten deshalb Stop-Market-Orders für schützende Stops verwenden. Der [Unterschied zwischen Market- und Limit-Order](/blog/market-orders-vs-limit-orders/) lohnt sich generell zu verstehen, aber hier ist die Asymmetrie krass — eine etwas schlechtere Ausführung ist ein schlechter Nachmittag, ein unausgeführter Schutz-Stop ist ein schlechtes Jahr.
 
 ## Setzen Sie den Stop dorthin, wo Ihre Trade-Idee als falsch bewiesen ist
 
@@ -33,7 +33,7 @@ Der häufigste Weg, einen Stop zu platzieren, ist zu entscheiden, wie viel Geld 
 
 Das ist es nicht. Der Markt hat keine Ahnung, wie hoch Ihr Kontostand ist. Ein Stop in willkürlichem Abstand wird von gewöhnlichem Rauschen getroffen, und die Position schließt, während Ihr ursprünglicher Grund für den Trade noch völlig intakt ist. Sie verlieren Geld, ohne etwas zu lernen, weil der Trade nie wirklich getestet wurde. Der Stop gehört an den Preis, der Ihren Grund für den Trade widerlegt.
 
-Angenommen, Sie haben bei 187,40 gekauft, weil der Preis ein Niveau bei 186,15 zweimal gehalten und sich davon abgestoßen hat. Ihre These lautet: „Käufer verteidigen 186,15." Unter 186,15 ist diese These tot — nicht beschädigt, tot. Fügen Sie einen kleinen Puffer hinzu und platzieren Sie den Stop bei 185,90. Jetzt wird der Abstand vom Chart definiert, nicht von Ihrem Wohlbefinden. Löst er aus, lagen Sie bei etwas Realem falsch, was Information ist. [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels) sind das Rohmaterial für diese Art der Platzierung.
+Angenommen, Sie haben bei 187,40 gekauft, weil der Preis ein Niveau bei 186,15 zweimal gehalten und sich davon abgestoßen hat. Ihre These lautet: „Käufer verteidigen 186,15." Unter 186,15 ist diese These tot — nicht beschädigt, tot. Fügen Sie einen kleinen Puffer hinzu und platzieren Sie den Stop bei 185,90. Jetzt wird der Abstand vom Chart definiert, nicht von Ihrem Wohlbefinden. Löst er aus, lagen Sie bei etwas Realem falsch, was Information ist. [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels/) sind das Rohmaterial für diese Art der Platzierung.
 
 Ihr Risiko pro Aktie ist 187,40 − 185,90 = **1,50**. Diese Zahl ist ein Ergebnis der Analyse, kein Ausgangspunkt. Was Sie damit tun, kommt als Nächstes.
 
@@ -65,7 +65,7 @@ Angenommen nun, die Struktur ist breiter und die ehrliche Invalidierung liegt be
 
 Dasselbe Risiko von 500 $. Völlig andere Position. Ein weiterer Stop bedeutet nicht mehr Risiko; er bedeutet weniger Aktien. Stop-Abstand und Stückzahl bewegen sich in entgegengesetzte Richtungen, um den Verlust konstant zu halten.
 
-Das entlarvt auch die Fantasie des engen Stops. Ein Stop von 0,50 würde 1.000 Aktien erlauben — aber 1.000 × 187,40 sind 187.400 $ an Aktien auf einem Konto von 100.000 $, was Hebel erfordert, und der Stop ist eng genug, dass ihn gewöhnliches Rauschen wiederholt auslöst. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing) geht tiefer auf diese Arithmetik ein.
+Das entlarvt auch die Fantasie des engen Stops. Ein Stop von 0,50 würde 1.000 Aktien erlauben — aber 1.000 × 187,40 sind 187.400 $ an Aktien auf einem Konto von 100.000 $, was Hebel erfordert, und der Stop ist eng genug, dass ihn gewöhnliches Rauschen wiederholt auslöst. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/) geht tiefer auf diese Arithmetik ein.
 
 <div class="table-wrap">
 
@@ -81,7 +81,7 @@ Das entlarvt auch die Fantasie des engen Stops. Ein Stop von 0,50 würde 1.000 A
 
 Ein Trailing-Stop folgt dem Preis zu Ihren Gunsten und bewegt sich nie zurück. Long von 187,40 mit einem Trail von 2,50: Der Preis läuft auf 194,00, der Stop zieht auf 191,50 nach, und ein Ausstieg dort sichert 4,10 pro Aktie — 333 × 4,10 = **1.365,30 $** — ohne dass Sie irgendetwas entscheiden.
 
-Der Kompromiss ist, dass ein Trailing-Stop immer den Trail-Abstand zurückgibt. Sie werden konstruktionsbedingt nie am Hoch aussteigen. Trailen Sie zu eng, beendet ein normaler Pullback einen Trendtrade vorzeitig; trailen Sie zu locker, geben Sie einen großen Teil eines offenen Gewinns zurück. Es gibt keine richtige Einstellung, nur eine Wahl, welches Bedauern Sie bevorzugen. Trailing-Stops werden oft mit einem Gewinnziel über eine Bracket-Order kombiniert, was [OCO- und Bracket-Orders](/blog/oco-and-bracket-orders) als Ordertyp behandelt.
+Der Kompromiss ist, dass ein Trailing-Stop immer den Trail-Abstand zurückgibt. Sie werden konstruktionsbedingt nie am Hoch aussteigen. Trailen Sie zu eng, beendet ein normaler Pullback einen Trendtrade vorzeitig; trailen Sie zu locker, geben Sie einen großen Teil eines offenen Gewinns zurück. Es gibt keine richtige Einstellung, nur eine Wahl, welches Bedauern Sie bevorzugen. Trailing-Stops werden oft mit einem Gewinnziel über eine Bracket-Order kombiniert, was [OCO- und Bracket-Orders](/blog/oco-and-bracket-orders/) als Ordertyp behandelt.
 
 ## Drei ehrliche Dinge über Stops
 

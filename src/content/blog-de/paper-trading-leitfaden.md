@@ -9,7 +9,7 @@ translationOf: "paper-trading-guide"
 
 Sie betreiben seit sechs Wochen Paper Trading. Das virtuelle Guthaben ist gestiegen. Und wenn jemand fragen würde, was Sie jetzt besser machen als in Woche eins, hätten Sie keine Antwort.
 
-Das ist das normale Ergebnis, und nicht, weil Paper Trading nutzlos ist. Wiederholt auf Kaufen und Verkaufen zu klicken ist keine Übung, sondern Wiederholung — ein Pianist, der sein Lieblingsstück hundertmal spielt, bekommt hundert Wiederholungen derselben Fehler. Bewusstes Üben braucht drei Dinge, die reine Wiederholung nicht liefert: ein Ziel für jede Session, eine Aufzeichnung dessen, was Sie getan haben, und eine Auswertung, die die Entscheidung beurteilt, nicht das Ergebnis. (Wenn Sie noch überlegen, ob Stockades Paper-Trading-Simulator Ihre Zeit überhaupt wert ist, [beginnen Sie stattdessen hier](/blog/what-is-a-stock-market-simulator).)
+Das ist das normale Ergebnis, und nicht, weil Paper Trading nutzlos ist. Wiederholt auf Kaufen und Verkaufen zu klicken ist keine Übung, sondern Wiederholung — ein Pianist, der sein Lieblingsstück hundertmal spielt, bekommt hundert Wiederholungen derselben Fehler. Bewusstes Üben braucht drei Dinge, die reine Wiederholung nicht liefert: ein Ziel für jede Session, eine Aufzeichnung dessen, was Sie getan haben, und eine Auswertung, die die Entscheidung beurteilt, nicht das Ergebnis. (Wenn Sie noch überlegen, ob Stockades Paper-Trading-Simulator Ihre Zeit überhaupt wert ist, [beginnen Sie stattdessen hier](/blog/what-is-a-stock-market-simulator/).)
 
 ## Warum die meiste Paper-Trading-Praxis nichts bringt
 
@@ -27,7 +27,7 @@ Ein vierter Fehler ist subtiler: unbegrenzte Größe. Paper Trading in 80.000-$-
 
 **1. Schreiben Sie ein Ziel, in einem Satz.** Nicht „Geld verdienen." Etwas, das Sie bestehen oder nicht bestehen können: *„Nur Long-Einstiege nehmen, bei denen der Preis zur EMA 20 zurückkehrt, und den Stop vor dem Einstieg platzieren."* Zwei Ziele sind null Ziele.
 
-**2. Definieren Sie das Setup im Voraus.** Schreiben Sie die Einstiegsbedingungen als Checkliste: Trendrichtung, Auslöser, Stop-Position, Ziel. Falls Sie das noch nicht haben, ist das das Thema von [einen Trading-Plan erstellen](/blog/how-to-build-a-trading-plan), und das kommt zuerst.
+**2. Definieren Sie das Setup im Voraus.** Schreiben Sie die Einstiegsbedingungen als Checkliste: Trendrichtung, Auslöser, Stop-Position, Ziel. Falls Sie das noch nicht haben, ist das das Thema von [einen Trading-Plan erstellen](/blog/how-to-build-a-trading-plan/), und das kommt zuerst.
 
 **3. Begrenzen Sie die Trade-Anzahl.** Fünf Setups, nicht „so viele wie auftauchen." Die Begrenzung erzwingt Selektivität, was selbst die eigentliche Fähigkeit ist. Verbrennen Sie alle fünf in zehn Minuten mit marginalen Einstiegen, endet die Session — das ist die Lektion.
 
@@ -74,7 +74,7 @@ Die Auswertung sortiert also jeden Trade in vier Kästen, nicht zwei:
 
 </div>
 
-Zählen Sie die Kästen wöchentlich. Ihre Befolgungsrate — Trades, die dem Plan folgten, geteilt durch alle Trades — ist die Zahl, die sich zuerst verbessern sollte, und nichts anderes verbessert sich zuverlässig, bevor das geschieht. Die meisten Einträge in der Spalte „Plan verletzt" sind dieselben wenigen Fehler, die sich wiederholen, katalogisiert in [häufigen Day-Trading-Fehlern](/blog/common-day-trading-mistakes).
+Zählen Sie die Kästen wöchentlich. Ihre Befolgungsrate — Trades, die dem Plan folgten, geteilt durch alle Trades — ist die Zahl, die sich zuerst verbessern sollte, und nichts anderes verbessert sich zuverlässig, bevor das geschieht. Die meisten Einträge in der Spalte „Plan verletzt" sind dieselben wenigen Fehler, die sich wiederholen, katalogisiert in [häufigen Day-Trading-Fehlern](/blog/common-day-trading-mistakes/).
 
 ## Welche Zahlen Fortschritt zeigen und welche Rauschen sind
 
@@ -82,7 +82,7 @@ Sobald die Befolgungsrate über etwa 90 % liegt, beginnen die Performance-Statis
 
 Nehmen wir vierzig geschlossene Trades: 18 Gewinne, 22 Verluste — **Trefferquote 45 %**, durchschnittlicher Gewinn **180 $**, durchschnittlicher Verlust **90 $**.
 
-Der Erwartungswert pro Trade ist (0,45 × 180 $) − (0,55 × 90 $) = 81,00 $ − 49,50 $ = **31,50 $**, oder 1.260 $ über die vierzig. Zum Abgleich der Profitfaktor, Bruttogewinn über Bruttoverlust: 18 × 180 $ = 3.240 $ gegen 22 × 90 $ = 1.980 $, also 3.240 ÷ 1.980 = **1,64** — und 3.240 $ − 1.980 $ ergibt dieselben 1.260 $. Stockade berechnet Trefferquote, Profitfaktor, Durchschnittsgewinn, Durchschnittsverlust und maximalen Drawdown für Sie unter `/analytics`; was diese Zahlen im Detail bedeuten, behandelt [Ihre Performance-Kennzahlen analysieren](/blog/analyze-trading-performance-metrics).
+Der Erwartungswert pro Trade ist (0,45 × 180 $) − (0,55 × 90 $) = 81,00 $ − 49,50 $ = **31,50 $**, oder 1.260 $ über die vierzig. Zum Abgleich der Profitfaktor, Bruttogewinn über Bruttoverlust: 18 × 180 $ = 3.240 $ gegen 22 × 90 $ = 1.980 $, also 3.240 ÷ 1.980 = **1,64** — und 3.240 $ − 1.980 $ ergibt dieselben 1.260 $. Stockade berechnet Trefferquote, Profitfaktor, Durchschnittsgewinn, Durchschnittsverlust und maximalen Drawdown für Sie unter `/analytics`; was diese Zahlen im Detail bedeuten, behandelt [Ihre Performance-Kennzahlen analysieren](/blog/analyze-trading-performance-metrics/).
 
 Jetzt der Teil, den niemand hören will: **Vierzig Trades beweisen fast nichts.** Bei einer wahren Trefferquote von 45 % über 40 Stichproben liegt der Standardfehler bei etwa 7,9 Prozentpunkten, sodass eine Standardabweichung in beide Richtungen die Spanne von 37 % bis 53 % umfasst. Am unteren Ende ist der Erwartungswert (0,37 × 180 $) − (0,63 × 90 $) = 66,60 $ − 56,70 $ = **9,90 $**; am oberen Ende (0,53 × 180 $) − (0,47 × 90 $) = 95,40 $ − 42,30 $ = **53,10 $**. Gleiche Strategie, gleiche vierzig Trades, und die ehrliche Spanne reicht von zehn Dollar pro Trade bis dreiundfünfzig.
 

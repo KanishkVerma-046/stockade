@@ -75,7 +75,7 @@ Ora esegui il calcolo che conta:
 - Movimento avverso del 2% sul nozionale /ES: 262.437,50 × 0,02 = **5.248,75$**
 - Come quota di un deposito a margine di 13.000$: 5.248,75 ÷ 13.000 = **40,4%**
 
-Un movimento del 2% nel sottostante cancella il 40% del capitale che hai depositato. L'S&P 500 ha giornate del 2% diverse volte in un anno medio. Questa asimmetria — piccolo movimento, danno proporzionale enorme — è la cosa più importante di questa pagina, ed è per questo che [l'aritmetica della regola dell'1% e del dimensionamento della posizione](/blog/risk-management-position-sizing) non è opzionale nei futures. Significa anche che [il posizionamento dello stop-loss](/blog/stop-loss-orders-explained) deve avvenire prima dell'ingresso, non dopo. Nelle azioni uno stop dimenticato è un'operazione sbagliata. A 20:1, è un evento di solvibilità.
+Un movimento del 2% nel sottostante cancella il 40% del capitale che hai depositato. L'S&P 500 ha giornate del 2% diverse volte in un anno medio. Questa asimmetria — piccolo movimento, danno proporzionale enorme — è la cosa più importante di questa pagina, ed è per questo che [l'aritmetica della regola dell'1% e del dimensionamento della posizione](/blog/risk-management-position-sizing/) non è opzionale nei futures. Significa anche che [il posizionamento dello stop-loss](/blog/stop-loss-orders-explained/) deve avvenire prima dell'ingresso, non dopo. Nelle azioni uno stop dimenticato è un'operazione sbagliata. A 20:1, è un evento di solvibilità.
 
 ## Scadenza, rollover, e contango nei futures su materie prime
 
@@ -94,7 +94,7 @@ La differenza per un piccolo conto non è cosmetica. Su un conto da 5.000$ con u
 - **1 contratto /ES:** 10 × 50$ = **500$** a rischio — **10%** del conto su un'operazione.
 - **1 contratto /MES:** 10 × 5$ = **50$** a rischio — **1%** del conto.
 
-La versione /MES è un'operazione normale. La versione /ES è una scommessa che nessuna convinzione giustifica. I micro ti permettono anche di scalare in decimi invece di affrontare una decisione tutto-o-niente — lo stesso argomento della granularità che rende [il dimensionamento della posizione forex](/blog/forex-trading-for-beginners) praticabile con mini e micro lotti.
+La versione /MES è un'operazione normale. La versione /ES è una scommessa che nessuna convinzione giustifica. I micro ti permettono anche di scalare in decimi invece di affrontare una decisione tutto-o-niente — lo stesso argomento della granularità che rende [il dimensionamento della posizione forex](/blog/forex-trading-for-beginners/) praticabile con mini e micro lotti.
 
 ## Cosa possono e non possono insegnarti i simboli futures di Stockade
 

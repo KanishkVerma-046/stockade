@@ -87,12 +87,12 @@ Mehrkerzen-Muster sind stärker, weil sie eine *Veränderung* in der Balance zei
 
 Hier ist der Teil, der Leute, die Charts lesen, von Leuten, die nur Formen erkennen, unterscheidet: Eine identische Kerze bedeutet an unterschiedlichen Preisen unterschiedliche Dinge.
 
-Ein Hammer, der sich genau auf einem Preisniveau bildet, von dem der Preis dreimal zuvor abgeprallt ist, ist eine Zurückweisung an einem Ort, den andere Trader beobachten. Derselbe Hammer im Nirgendwo ist eine Kerze, bei der jemand einen Dip gekauft hat. Das Muster hat sich nicht geändert; die Lage schon. Deshalb lohnt es sich, [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels) zu lernen, bevor Sie einen einzigen Musternamen auswendig lernen.
+Ein Hammer, der sich genau auf einem Preisniveau bildet, von dem der Preis dreimal zuvor abgeprallt ist, ist eine Zurückweisung an einem Ort, den andere Trader beobachten. Derselbe Hammer im Nirgendwo ist eine Kerze, bei der jemand einen Dip gekauft hat. Das Muster hat sich nicht geändert; die Lage schon. Deshalb lohnt es sich, [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels/) zu lernen, bevor Sie einen einzigen Musternamen auswendig lernen.
 
 Die anderen zwei Kontextteile, die es wert sind zu prüfen:
 
-- **Volumen.** Eine Engulfing-Kerze bei dreifachem durchschnittlichem Volumen bedeutet echte Beteiligung ist eingestiegen. Dieselbe Form bei dünnem Volumen bedeutet, dass sehr wenig passiert ist. [Handelsvolumen](/blog/understanding-trading-volume) ist der Realitätscheck für jedes Muster, das Sie finden.
-- **Trend.** Umkehrmuster brauchen etwas zum Umkehren. Ein Morning Star nach einem dreitägigen Rutsch ist ein Signal; ein Morning Star in einer seitwärts laufenden Range ist Dekoration. Ein [gleitender Durchschnitt](/blog/moving-averages-ema-vs-sma) gibt Ihnen einen schnellen, objektiven Blick darauf, in welchem Regime Sie sich befinden.
+- **Volumen.** Eine Engulfing-Kerze bei dreifachem durchschnittlichem Volumen bedeutet echte Beteiligung ist eingestiegen. Dieselbe Form bei dünnem Volumen bedeutet, dass sehr wenig passiert ist. [Handelsvolumen](/blog/understanding-trading-volume/) ist der Realitätscheck für jedes Muster, das Sie finden.
+- **Trend.** Umkehrmuster brauchen etwas zum Umkehren. Ein Morning Star nach einem dreitägigen Rutsch ist ein Signal; ein Morning Star in einer seitwärts laufenden Range ist Dekoration. Ein [gleitender Durchschnitt](/blog/moving-averages-ema-vs-sma/) gibt Ihnen einen schnellen, objektiven Blick darauf, in welchem Regime Sie sich befinden.
 
 Konfluenz ist das Wort für das, wonach Sie suchen: Muster, Lage und Beteiligung, die alle in dieselbe Richtung zeigen. Ist nur eines der drei vorhanden, haben Sie eine Form, kein Setup.
 

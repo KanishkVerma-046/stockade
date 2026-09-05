@@ -23,7 +23,7 @@ Krypto löscht das alles. Es gibt keinen Moment, in dem Ihre Position standardm�
 - **Die Positionsgröße muss eine unbeaufsichtigte Bewegung überstehen.** Fragen Sie sich, was passiert, wenn sich das Asset 15 % gegen Sie bewegt, während Sie schlafen, denn es kann und es tut.
 - **Es gibt keine Handelsunterbrechungen.** Bei US-Aktien stoppt ein Rückgang des S&P 500 um 7 % den Handel für 15 Minuten. Krypto hat kein Äquivalent. Eine Kaskade von Liquidationen läuft, bis sie ausläuft.
 
-Haben Sie noch kein Größenrahmenwerk aufgebaut, tun Sie das, bevor Sie diese Anlageklasse anfassen — [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing) behandelt die Arithmetik.
+Haben Sie noch kein Größenrahmenwerk aufgebaut, tun Sie das, bevor Sie diese Anlageklasse anfassen — [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/) behandelt die Arithmetik.
 
 ## Zentralisierte Börsen versus dezentrale Börsen
 
@@ -100,13 +100,13 @@ Bei Aktien melden Handelsplätze Volumen unter gesetzlicher Verpflichtung an Reg
 
 **Wash Trading** — Kaufen und Verkaufen mit sich selbst, um Volumen zu erzeugen — ist die Standardmethode. Eine 2019 bei der SEC eingereichte Analyse kam zu dem Schluss, dass etwa 95 % des gemeldeten Bitcoin-Spot-Volumens nicht-ökonomisch waren. Spätere Forschung fand kleinere, aber immer noch erhebliche Anteile auf unregulierten Plätzen.
 
-Ein Token mit „2 Milliarden $ Tagesvolumen" kann also 100 Millionen $ echten Handel dahinter haben, und jede volumenbasierte Technik verschlechtert sich entsprechend. Die [Kernkonzepte des Volumens](/blog/understanding-trading-volume) gelten weiterhin; die Eingaben sind hier nur weit weniger verlässlich. Orderbuchtiefe auf regulierten Plätzen und On-Chain-Transferdaten sind bessere Belege als eine gemeldete Volumenzahl.
+Ein Token mit „2 Milliarden $ Tagesvolumen" kann also 100 Millionen $ echten Handel dahinter haben, und jede volumenbasierte Technik verschlechtert sich entsprechend. Die [Kernkonzepte des Volumens](/blog/understanding-trading-volume/) gelten weiterhin; die Eingaben sind hier nur weit weniger verlässlich. Orderbuchtiefe auf regulierten Plätzen und On-Chain-Transferdaten sind bessere Belege als eine gemeldete Volumenzahl.
 
 ## Was Krypto-Märkte Ihnen nicht geben
 
 Seien Sie sich der fehlenden Infrastruktur klar bewusst. Es gibt kein Äquivalent zum SIPC-Schutz für eine gescheiterte Krypto-Börse — Gläubiger bankrotter Handelsplätze haben Jahre vor Gericht für Teilrückzahlungen verbracht. Manipulation, die bei Aktien Durchsetzungsmaßnahmen nach sich ziehen würde, ist üblich und weitgehend unbeaufsichtigt. Listings tragen keinen Offenlegungsstandard vergleichbar mit einer öffentlichen Einreichung.
 
-Und die 24/7-Uhr ist ebenso eine psychologische Falle wie eine strukturelle. Aktien erzwingen eine Pause; Krypto nie. Jede Stunde ist eine, in der Sie handeln *könnten*, was genau die Bedingung ist, die Overtrading, Revenge-Trading und um 3 Uhr morgens getroffene Entscheidungen erzeugt — die [häufigsten Day-Trading-Fehler](/blog/common-day-trading-mistakes), nur ohne die eine externe Leitplanke. Die Disziplin muss vollständig selbst auferlegt werden: definierte Sessionstunden, eine harte Schlusszeit, und ruhende Orders, die arbeiten, während Sie es nicht tun.
+Und die 24/7-Uhr ist ebenso eine psychologische Falle wie eine strukturelle. Aktien erzwingen eine Pause; Krypto nie. Jede Stunde ist eine, in der Sie handeln *könnten*, was genau die Bedingung ist, die Overtrading, Revenge-Trading und um 3 Uhr morgens getroffene Entscheidungen erzeugt — die [häufigsten Day-Trading-Fehler](/blog/common-day-trading-mistakes/), nur ohne die eine externe Leitplanke. Die Disziplin muss vollständig selbst auferlegt werden: definierte Sessionstunden, eine harte Schlusszeit, und ruhende Orders, die arbeiten, während Sie es nicht tun.
 
 ## Üben Sie das im Simulator
 

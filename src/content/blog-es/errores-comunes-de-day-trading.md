@@ -42,7 +42,7 @@ El tamaño no es un riesgo entre muchos. Es el multiplicador de todos ellos. Cua
 
 El precio se acerca a tu stop, decides que el nivel estaba "un poco ajustado", y lo deslizas hacia abajo. Un stop ejecutado convierte una pérdida flotante y negable en una permanente — moverlo no reduce tu riesgo, solo el momento de admitirlo. El alivio que sientes es la señal.
 
-**La regla:** los stops se mueven solo hacia la ganancia, nunca en contra. Querer más margen significa una posición más pequeña la próxima vez, no un stop más amplio esta vez. Colócalo donde tu idea queda demostrada como equivocada en lugar de donde la pérdida se siente tolerable — consulta [órdenes stop-loss explicadas](/blog/stop-loss-orders-explained).
+**La regla:** los stops se mueven solo hacia la ganancia, nunca en contra. Querer más margen significa una posición más pequeña la próxima vez, no un stop más amplio esta vez. Colócalo donde tu idea queda demostrada como equivocada en lugar de donde la pérdida se siente tolerable — consulta [órdenes stop-loss explicadas](/blog/stop-loss-orders-explained/).
 
 ### Promediar a la baja en una posición perdedora
 

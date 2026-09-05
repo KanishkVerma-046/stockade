@@ -27,9 +27,9 @@ MACD stands for Moving Average Convergence Divergence — an honest name, since 
 
 ### The MACD line
 
-Take an exponential moving average of the last 12 bars and one of the last 26 bars, then subtract the slower from the faster. For how an EMA weights recent bars more heavily than old ones, see [moving averages: EMA vs SMA](/blog/moving-averages-ema-vs-sma).
+Take an exponential moving average of the last 12 bars and one of the last 26 bars, then subtract the slower from the faster. For how an EMA weights recent bars more heavily than old ones, see [moving averages: EMA vs SMA](/blog/moving-averages-ema-vs-sma/).
 
-Concretely: if the 12-period EMA is 188.40 and the 26-period EMA is 186.90, the MACD line reads 188.40 − 186.90 = **1.50**. The fast average sits $1.50 above the slow one. That number is in the price's own units — dollars here, not a percentage and not a bounded 0-to-100 scale like [RSI](/blog/rsi-indicator-overbought-oversold). A $400 stock routinely produces MACD values ten times larger than a $40 stock, which is why MACD readings are never comparable across instruments.
+Concretely: if the 12-period EMA is 188.40 and the 26-period EMA is 186.90, the MACD line reads 188.40 − 186.90 = **1.50**. The fast average sits $1.50 above the slow one. That number is in the price's own units — dollars here, not a percentage and not a bounded 0-to-100 scale like [RSI](/blog/rsi-indicator-overbought-oversold/). A $400 stock routinely produces MACD values ten times larger than a $40 stock, which is why MACD readings are never comparable across instruments.
 
 ### The signal line
 
@@ -95,7 +95,7 @@ Divergence is when price and MACD disagree about direction.
 
 Divergence is worth watching and is not worth trading alone. Strong trends produce it for extended stretches — an uptrend can show bearish divergence across dozens of bars while making new highs, because the initial thrust set a momentum peak the trend never needs to match again. Divergence tells you a move is tired, not that it is over.
 
-It becomes more credible when something independent agrees: a broken trendline, a failure at a level that held before, or a volume pattern that contradicts the price move. [Volume](/blog/understanding-trading-volume) is useful confirmation here precisely because it comes from a different input than MACD does. Two indicators derived from the same closing prices agreeing is not confirmation; it is arithmetic.
+It becomes more credible when something independent agrees: a broken trendline, a failure at a level that held before, or a volume pattern that contradicts the price move. [Volume](/blog/understanding-trading-volume/) is useful confirmation here precisely because it comes from a different input than MACD does. Two indicators derived from the same closing prices agreeing is not confirmation; it is arithmetic.
 
 ## Why MACD is doubly lagging and fails in chop
 
@@ -111,4 +111,4 @@ The standard defense is to take MACD signals only in the direction of a longer-t
 
 Reading about a shrinking histogram is not the same as noticing one while a position is open and green. Turn MACD on and watch the histogram through a full move — mark the bar where it peaks, then count how many more bars price kept climbing before the MACD line actually crossed. That gap is your lag, measured rather than described.
 
-Then trade it. Every time a signal-line cross prints, decide before the next bar whether you would take it and note which side of zero it happened on. Do that thirty times and you will have your own count of how many crosses in chop were worth acting on — more convincing than anything here. Every price on Stockade is algorithmically generated rather than pulled from a real market, so what you are training is the reading, not a forecast. And be honest: with $100,000 of virtual trading capital, sitting through a shrinking histogram is far easier than it will be with money that is actually yours. Start on [Stockade's stock market simulator](/simulator).
+Then trade it. Every time a signal-line cross prints, decide before the next bar whether you would take it and note which side of zero it happened on. Do that thirty times and you will have your own count of how many crosses in chop were worth acting on — more convincing than anything here. Every price on Stockade is algorithmically generated rather than pulled from a real market, so what you are training is the reading, not a forecast. And be honest: with $100,000 of virtual trading capital, sitting through a shrinking histogram is far easier than it will be with money that is actually yours. Start on [Stockade's stock market simulator](/simulator/).

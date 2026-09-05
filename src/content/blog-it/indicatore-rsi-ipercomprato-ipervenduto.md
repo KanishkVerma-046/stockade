@@ -54,7 +54,7 @@ Nota cosa significa. Per stampare 70, i movimenti al rialzo devono essere solo u
 
 Wilder scelse 70 e 30. Avrebbe potuto scegliere 75 e 25. Non c'è nessuna derivazione dietro di essi, nessuna soglia statistica a cui il comportamento cambia, nessun meccanismo che si attiva a 70,0 e si disattiva a 69,9. Sono numeri tondi che sembravano ragionevoli sui grafici che studiò negli anni '70, e sono rimasti perché tutti hanno copiato i default. La maggior parte dei software di grafici disegna quelle linee per te, il che rinforza silenziosamente l'idea che siano confini. Il grafico di Stockade fa lo stesso — passa il pannello inferiore a RSI e ottieni linee tratteggiate a 70 e 30. Sono segni di riferimento, non verdetti.
 
-Lo stesso vale per il periodo di lookback di 14. Un'impostazione più breve come 7 reagisce più in fretta e colpisce gli estremi costantemente; una più lunga come 21 ci arriva raramente. Il periodo cambia quanto spesso vedi un segnale, non quanto è affidabile — lo stesso compromesso che governa [la scelta della lunghezza di una media mobile](/blog/moving-averages-ema-vs-sma).
+Lo stesso vale per il periodo di lookback di 14. Un'impostazione più breve come 7 reagisce più in fretta e colpisce gli estremi costantemente; una più lunga come 21 ci arriva raramente. Il periodo cambia quanto spesso vedi un segnale, non quanto è affidabile — lo stesso compromesso che governa [la scelta della lunghezza di una media mobile](/blog/moving-averages-ema-vs-sma/).
 
 ## Ipercomprato significa forte, non "sul punto di invertire"
 
@@ -85,7 +85,7 @@ La divergenza è un disaccordo tra prezzo e momentum.
 
 Per leggerne una, segna due punti di oscillazione dello stesso tipo sul prezzo — due massimi chiari, o due minimi chiari — e confronta l'RSI su ciascuno. Conta solo se i due sono oscillazioni comparabili con un vero ritracciamento tra di esse; tracciare linee tra barre arbitrarie produce una divergenza su quasi ogni grafico, motivo per cui sono così facili da vedere col senno di poi.
 
-Sii diretto sul tasso di successo: la divergenza fallisce spesso, e fallisce peggio proprio dove sembra più allettante. Un trend forte stamperà tre o quattro divergenze ribassiste durante la salita, e solo l'ultima segna qualcosa — ognuna delle precedenti è una trappola che costa denaro. Tratta la divergenza come un motivo per stringere uno stop o smettere di aggiungere a una posizione vincente, non come un ingresso autonomo contro il trend. Tradare in contro-tendenza sulla forza in base a un segnale di divergenza è una delle [abitudini più costose che i nuovi trader sviluppano](/blog/common-day-trading-mistakes).
+Sii diretto sul tasso di successo: la divergenza fallisce spesso, e fallisce peggio proprio dove sembra più allettante. Un trend forte stamperà tre o quattro divergenze ribassiste durante la salita, e solo l'ultima segna qualcosa — ognuna delle precedenti è una trappola che costa denaro. Tratta la divergenza come un motivo per stringere uno stop o smettere di aggiungere a una posizione vincente, non come un ingresso autonomo contro il trend. Tradare in contro-tendenza sulla forza in base a un segnale di divergenza è una delle [abitudini più costose che i nuovi trader sviluppano](/blog/common-day-trading-mistakes/).
 
 ## Usare la linea 50 come filtro di trend
 
@@ -108,7 +108,7 @@ L'ordine conta: identifica prima il regime, poi scegli le soglie. Usare l'RSI pe
 
 L'RSI è costruito interamente da prezzi di chiusura che hai già visto. È una misura derivata e in ritardo — ogni valore è un fatto sul passato. Non vede l'azione intrabarra, e non porta nessuna informazione che non sia già nella serie di prezzi.
 
-Non ha neppure una nozione del *perché* i prezzi si sono mossi. Una lettura di 90,9 da una salita costante e una da un singolo gap sembrano identiche alla formula. Questo è un buon motivo per leggere l'RSI insieme alla struttura del prezzo e al volume, e per sapere come differisce dal [MACD](/blog/macd-explained), che misura il divario tra due medie mobili anziché un rapporto guadagno/perdita.
+Non ha neppure una nozione del *perché* i prezzi si sono mossi. Una lettura di 90,9 da una salita costante e una da un singolo gap sembrano identiche alla formula. Questo è un buon motivo per leggere l'RSI insieme alla struttura del prezzo e al volume, e per sapere come differisce dal [MACD](/blog/macd-explained/), che misura il divario tra due medie mobili anziché un rapporto guadagno/perdita.
 
 ## Esercitati a leggere l'RSI sul simulatore
 

@@ -45,7 +45,7 @@ pessoas observando o mesmo gráfico.
 Uma mínima de oscilação é um candle cuja mínima é mais baixa que as mínimas de ambos os lados — um fundo
 local. Uma máxima de oscilação é o inverso. Esses são os pontos onde o preço parou e virou, significando
 que ordens opostas suficientes apareceram para mudar o resultado. Se você ainda está se familiarizando com
-a anatomia dos candles, [como ler gráficos de candles](/blog/how-to-read-candlestick-charts) cobre a
+a anatomia dos candles, [como ler gráficos de candles](/blog/how-to-read-candlestick-charts/) cobre a
 abertura, máxima, mínima e fechamento em detalhe.
 
 O método prático não tem glamour:
@@ -57,7 +57,7 @@ O método prático não tem glamour:
    coincidência com uma história anexada. Três ou mais é um nível.
 4. Note quais toques tiveram volume pesado — muitas ações trocaram de mãos ali, significando que muitas
    posições agora têm opiniões sobre aquele preço.
-   [Volume de trading](/blog/understanding-trading-volume) é a diferença entre um nível que é defendido e
+   [Volume de trading](/blog/understanding-trading-volume/) é a diferença entre um nível que é defendido e
    um que é apenas desenhado.
 
 Resista a desenhar vinte linhas. Se seu gráfico parece papel milimetrado, todo movimento vai parecer
@@ -102,7 +102,7 @@ Compare honestamente. O stop apertado teria permitido segurar 100 ações em vez
 funcionado limpo você teria ganhado $360 em vez de $223,20 — um stop mais largo genuinamente limita seu
 potencial. Mas a versão de stop apertado não fez $360. Fez −$90, porque nunca sobreviveu tempo suficiente
 para estar certa. Um stop não é o lugar onde as perdas são menores; é o preço que prova sua ideia errada.
-[Ordens stop-loss](/blog/stop-loss-orders-explained) aprofunda essa distinção.
+[Ordens stop-loss](/blog/stop-loss-orders-explained/) aprofunda essa distinção.
 
 ## Reversão de papel: por que a resistência rompida vira suporte
 

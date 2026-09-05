@@ -21,7 +21,7 @@ Quest'ultima frase è l'intera funzionalità. Senza il collegamento hai due ordi
 
 La coppia OCO più comune è uno stop sotto la tua posizione e un limite sopra di essa: un **ordine stop** che diventa una vendita se il prezzo scende fino al tuo limite di perdita, e un **ordine a limite** che vende se il prezzo sale fino al tuo target di profitto. Il prezzo può raggiungere solo uno dei due per primo. Chi arriva prima vince, la posizione si chiude, e il sopravvissuto viene annullato.
 
-Per la logica di *dove* posizionare lo stop — struttura, volatilità, perché un numero tondo è una scelta sbagliata — vedi [ordini stop-loss spiegati](/blog/stop-loss-orders-explained). Questo articolo presuppone che tu abbia già scelto i livelli e si occupa solo di come sono collegati tra loro.
+Per la logica di *dove* posizionare lo stop — struttura, volatilità, perché un numero tondo è una scelta sbagliata — vedi [ordini stop-loss spiegati](/blog/stop-loss-orders-explained/). Questo articolo presuppone che tu abbia già scelto i livelli e si occupa solo di come sono collegati tra loro.
 
 ## Cosa aggiunge un ordine bracket: un ingresso con la coppia di uscite allegata
 
@@ -57,7 +57,7 @@ Verifica l'aritmetica. Il rischio per azione è 187,40 − 185,90 = 1,50, quindi
 
 **E un bracket 2:1 ha bisogno di un tasso di successo sopra il 33,3% solo per andare in pareggio.** Dieci operazioni di questa dimensione: quattro vincenti producono 4 × 1.500$ = 6.000$, sei perdenti producono 6 × 750$ = 4.500$, netto +1.500$ a un tasso di successo del 40%. Scendi a tre vincenti ed è 4.500$ vinti contro 5.250$ persi — negativo al 30%. Il rapporto non ti rende profittevole; fissa l'asticella che devi comunque superare.
 
-Su un conto da 100.000$, quei 750$ sono lo 0,75% del capitale — dentro il tetto comune dell'1% descritto in [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing). Nota che la posizione vale 93.700$, circa il 94% del conto, mentre l'importo genuinamente a rischio è 750$. La dimensione della posizione e la dimensione del rischio sono due numeri diversi, ed è lo stop a separarli.
+Su un conto da 100.000$, quei 750$ sono lo 0,75% del capitale — dentro il tetto comune dell'1% descritto in [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/). Nota che la posizione vale 93.700$, circa il 94% del conto, mentre l'importo genuinamente a rischio è 750$. La dimensione della posizione e la dimensione del rischio sono due numeri diversi, ed è lo stop a separarli.
 
 ## Perché piazzare il bracket prima dell'ingresso è tutto il punto psicologico
 
@@ -95,7 +95,7 @@ Un bracket è una macchina, e le macchine non leggono i grafici.
 
 **Un target meccanico può trovarsi in un punto che il grafico non ha mai giustificato.** Se imposti ogni target esattamente a 2R perché 2R suona professionale, a volte parcheggerai un ordine a limite in uno spazio vuoto appena oltre uno scaffale di resistenza evidente, per poi vedere il prezzo girare 20 centesimi prima di raggiungerlo. Il rapporto dovrebbe essere un risultato di dove si trovano i livelli di uscita sensati, non un input che il grafico è costretto ad accomodare. Un bracket 2:1 è valido solo se il mercato offre plausibilmente quei 3,00 di rialzo prima dell'1,50 di ribasso.
 
-**E non garantisce il prezzo che hai digitato.** Nei mercati reali uno stop diventa un ordine a mercato quando si attiva, e gli ordini a mercato vengono eseguiti a qualunque prezzo sia disponibile, che può essere peggiore del tuo livello di stop — vedi [ordini a mercato vs ordini a limite](/blog/market-orders-vs-limit-orders) per capire perché quella distinzione morde. Il tuo rischio di 750$ è una stima, non una garanzia.
+**E non garantisce il prezzo che hai digitato.** Nei mercati reali uno stop diventa un ordine a mercato quando si attiva, e gli ordini a mercato vengono eseguiti a qualunque prezzo sia disponibile, che può essere peggiore del tuo livello di stop — vedi [ordini a mercato vs ordini a limite](/blog/market-orders-vs-limit-orders/) per capire perché quella distinzione morde. Il tuo rischio di 750$ è una stima, non una garanzia.
 
 ## Esercitati sul simulatore
 

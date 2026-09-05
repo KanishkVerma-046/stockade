@@ -23,7 +23,7 @@ Crypto deletes all of that. There is no moment when your position is safe by def
 - **Position size has to survive an unattended move.** Ask what happens if the asset moves 15% against you while you sleep, because it can and does.
 - **There are no circuit breakers.** In US equities, a 7% S&P 500 decline halts trading for 15 minutes. Crypto has no equivalent. A cascade of liquidations runs until it runs out.
 
-If you have not built a sizing framework yet, do that before you touch this asset class — [position sizing and the 1% rule](/blog/risk-management-position-sizing) covers the arithmetic.
+If you have not built a sizing framework yet, do that before you touch this asset class — [position sizing and the 1% rule](/blog/risk-management-position-sizing/) covers the arithmetic.
 
 ## Centralized exchanges versus decentralized exchanges
 
@@ -100,16 +100,16 @@ In equities, venues report volume to regulators under legal obligation. In crypt
 
 **Wash trading** — buying and selling with yourself to manufacture volume — is the standard method. A 2019 analysis submitted to the SEC concluded that roughly 95% of reported bitcoin spot volume was non-economic. Later research has found smaller but still substantial fractions on unregulated venues.
 
-So a token showing "$2 billion daily volume" may have $100 million of real trading behind it, and every volume-based technique degrades accordingly. The [core volume concepts](/blog/understanding-trading-volume) still hold; the inputs are just far less reliable here. Order book depth on regulated venues and on-chain transfer data are better evidence than a reported volume figure.
+So a token showing "$2 billion daily volume" may have $100 million of real trading behind it, and every volume-based technique degrades accordingly. The [core volume concepts](/blog/understanding-trading-volume/) still hold; the inputs are just far less reliable here. Order book depth on regulated venues and on-chain transfer data are better evidence than a reported volume figure.
 
 ## What crypto markets do not give you
 
 Be clear-eyed about the missing infrastructure. There is no equivalent of SIPC coverage for a failed crypto exchange — creditors of bankrupt venues have spent years in court for partial recoveries. Manipulation that would draw enforcement in equities is common and largely unpoliced. Listings carry no disclosure standard comparable to a public filing.
 
-And the 24/7 clock is a psychological trap as much as a structural one. Equities impose a break; crypto never does. Every hour is one you *could* be trading, which is exactly the condition that produces overtrading, revenge trading, and decisions made at 3 a.m. — the [most common day trading mistakes](/blog/common-day-trading-mistakes), with the one external guardrail removed. The discipline has to be entirely self-imposed: defined session hours, a hard stop time, and resting orders that work while you are not.
+And the 24/7 clock is a psychological trap as much as a structural one. Equities impose a break; crypto never does. Every hour is one you *could* be trading, which is exactly the condition that produces overtrading, revenge trading, and decisions made at 3 a.m. — the [most common day trading mistakes](/blog/common-day-trading-mistakes/), with the one external guardrail removed. The discipline has to be entirely self-imposed: defined session hours, a hard stop time, and resting orders that work while you are not.
 
 ## Practice this on the simulator
 
 Stockade's `/markets` and `/simulator` pages carry eight crypto-labeled instruments — BLTC, ETHX, SLAX, XBEN, AVXL, DRLN, FLOX, NXVR — which are invented tokens, not Bitcoin or Ethereum. The separate `/chart-simulator` page carries BLTC and ETHX as well, there as candle-by-candle playback of a generated session rather than a trading screen. Nothing anywhere on the site is labeled with a real coin's ticker. All prices are synthetic, and Stockade's crypto instruments do not move differently from its stocks: no modeled 24/7 clock, no weekend session, no exchange risk.
 
-What you can rehearse is the mechanics — computing a position from a wide percentage stop, and placing a bracket so an exit exists whether or not you are watching. Run that arithmetic on a few trades in [Stockade's free stock market simulator](/simulator) until it is automatic, then take it to a market where nobody rings a bell for you.
+What you can rehearse is the mechanics — computing a position from a wide percentage stop, and placing a bracket so an exit exists whether or not you are watching. Run that arithmetic on a few trades in [Stockade's free stock market simulator](/simulator/) until it is automatic, then take it to a market where nobody rings a bell for you.

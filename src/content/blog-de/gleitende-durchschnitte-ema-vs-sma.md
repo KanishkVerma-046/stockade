@@ -67,7 +67,7 @@ Stockade zeigt alle drei im Chart in unterschiedlichen Farben — EMA 9 bernstei
 
 ## Gleitende Durchschnitte als dynamische Unterstützung und Widerstand nutzen
 
-Horizontale [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels) sind feste Preise. Ein gleitender Durchschnitt ist ein Niveau, das sich mit dem Markt bewegt, was ihn in Trends nützlich macht, wo eine feste Linie innerhalb einer Stunde veraltet. In einem gesunden Aufwärtstrend zieht der Preis zurück, berührt oder unterschreitet leicht einen steigenden EMA und setzt sich fort — Trader nennen das „auf dem 20er reiten." In einem Abwärtstrend fungiert dieselbe Linie als Decke, an der Rallys scheitern.
+Horizontale [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels/) sind feste Preise. Ein gleitender Durchschnitt ist ein Niveau, das sich mit dem Markt bewegt, was ihn in Trends nützlich macht, wo eine feste Linie innerhalb einer Stunde veraltet. In einem gesunden Aufwärtstrend zieht der Preis zurück, berührt oder unterschreitet leicht einen steigenden EMA und setzt sich fort — Trader nennen das „auf dem 20er reiten." In einem Abwärtstrend fungiert dieselbe Linie als Decke, an der Rallys scheitern.
 
 Seien Sie ehrlich, was das ist. Der EMA ist keine Barriere; er ist eine beschreibende Linie, die zufällig dort sitzt, wo sich jüngstes Kaufinteresse konzentriert hat, und er versagt routinemäßig. Behandeln Sie einen als Unterstützung, brauchen Sie trotzdem einen Stop darunter — „der Preis prallte die letzten drei Male vom 20er ab" beschreibt drei Ereignisse, keine Eigenschaft des Instruments.
 
@@ -77,7 +77,7 @@ Die klassische mechanische Regel: kaufen, wenn ein schneller MA über einen lang
 
 In einer Range ist es ein Schredder. Stellen Sie sich einen Preis vor, der zwischen etwa 184 und 188 oszilliert. Der EMA 9 kreuzt bei 186,40 über den EMA 20 — Sie kaufen. Sechs Balken später rollt der Preis auf 185,20 zurück, und die Linien kreuzen zurück — Sie verkaufen mit 1,20 $ Verlust. Vier Balken weiter kreuzen sie bei 186,10 wieder nach oben — Sie kaufen — und der Preis rutscht auf 185,00 zurück, weitere 1,10 $ weg. Zwei Trades, kein Trend, und Sie sind 2,30 $ pro Aktie im Minus, vor jeglichen Kosten, rein weil ein Seitwärtsmarkt zwei nahezu identische Linien immer wieder kreuzen lässt. Das ist **Whipsaw**, und es ist kein Bug in den Einstellungen. Es ist, was passiert, wenn Sie ein trendfolgendes Werkzeug auf einen Markt anwenden, der keinen Trend hat.
 
-Die Verteidigung ist keine bessere Periode. Es ist ein Filter: Nehmen Sie Kreuzungen nur, wenn die langsame Linie klar geneigt ist, oder verlangen Sie Bestätigung von etwas, das etwas anderes misst, wie [MACD](/blog/macd-explained) — das selbst aus EMAs gebaut ist — oder eine volumenverankerte Referenz wie [VWAP](/blog/vwap-trading-strategy).
+Die Verteidigung ist keine bessere Periode. Es ist ein Filter: Nehmen Sie Kreuzungen nur, wenn die langsame Linie klar geneigt ist, oder verlangen Sie Bestätigung von etwas, das etwas anderes misst, wie [MACD](/blog/macd-explained/) — das selbst aus EMAs gebaut ist — oder eine volumenverankerte Referenz wie [VWAP](/blog/vwap-trading-strategy/).
 
 ## Die Steigung des gleitenden Durchschnitts als Trendfilter lesen
 

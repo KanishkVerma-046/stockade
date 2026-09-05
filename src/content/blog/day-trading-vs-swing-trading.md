@@ -65,7 +65,7 @@ Take a $50,000 account risking 1% — **$500** — per trade, on a stock at 30.0
 - **Day trade.** Stop at 29.60, so the stop distance is 0.40. Shares = $500 ÷ 0.40 = **1,250 shares**. Notional position: 1,250 × 30.00 = **$37,500**.
 - **Swing trade.** Stop at 26.00, so the stop distance is 4.00. Shares = $500 ÷ 4.00 = **125 shares**. Notional position: 125 × 30.00 = **$3,750**.
 
-Same $500 at risk. Ten times the share count and ten times the capital committed on the day trade. The full arithmetic behind this sits in [position sizing and the 1% rule](/blog/risk-management-position-sizing).
+Same $500 at risk. Ten times the share count and ten times the capital committed on the day trade. The full arithmetic behind this sits in [position sizing and the 1% rule](/blog/risk-management-position-sizing/).
 
 That share count is also where costs bite. Suppose the bid-ask spread is 0.02 and you cross it in and out, roughly one spread per round trip:
 
@@ -78,7 +78,7 @@ The assumptions are illustrative, but the shape is not: frequency multiplies fri
 
 Day trading gives you dozens of resolved outcomes a week. That is genuinely the fastest way to learn pattern recognition, and it is also the fastest way to unravel. Three losses before 10:30 leaves you sitting in front of a live market with the means to act on your frustration, and revenge trading is the direct result. The feedback loop that teaches you also tilts you.
 
-Swing trading gives you a handful of resolved outcomes a month. Learning is slower, and it takes far longer to know whether your edge is real or you got lucky. But the gap between impulse and action is measured in hours, which is enough time for most bad decisions to die on their own. Whichever you choose, the [common day trading mistakes](/blog/common-day-trading-mistakes) worth studying are mostly failures of that gap.
+Swing trading gives you a handful of resolved outcomes a month. Learning is slower, and it takes far longer to know whether your edge is real or you got lucky. But the gap between impulse and action is measured in hours, which is enough time for most bad decisions to die on their own. Whichever you choose, the [common day trading mistakes](/blog/common-day-trading-mistakes/) worth studying are mostly failures of that gap.
 
 ## The honest odds, and how to pick the style that fits
 
@@ -86,8 +86,8 @@ Most day traders lose money. That is the repeated finding of study after study o
 
 Trading more frequently is also not the same as trading better. Frequency multiplies costs, mistakes, and emotional load without multiplying edge. A trader taking three good swing setups a month is not behind one taking thirty mediocre intraday setups.
 
-So choose on fit. Day trading suits you if your hours are genuinely free during the session, you have or can reach $25,000 if you are in the US, you stay calm at speed, and you can stop for the day on command. Swing trading suits you if your attention is committed elsewhere during market hours, your account is smaller, you can leave a position alone for a week, and you can absorb a gap without it wrecking you. Neither answer is more serious than the other. Whichever you land on, write it into a [trading plan](/blog/how-to-build-a-trading-plan) before you trade it, so the style is a decision rather than a mood.
+So choose on fit. Day trading suits you if your hours are genuinely free during the session, you have or can reach $25,000 if you are in the US, you stay calm at speed, and you can stop for the day on command. Swing trading suits you if your attention is committed elsewhere during market hours, your account is smaller, you can leave a position alone for a week, and you can absorb a gap without it wrecking you. Neither answer is more serious than the other. Whichever you land on, write it into a [trading plan](/blog/how-to-build-a-trading-plan/) before you trade it, so the style is a decision rather than a mood.
 
 ## Practice this on the simulator
 
-Run the same setup twice on [Stockade's day trading simulator](/simulator) with the $100,000 virtual trading balance — once as an intraday trade with a tight stop and a large share count using live mode's 800ms simulated ticks, once as a wider-stop, smaller-size hold across many candles. Then compare them on the [Analytics dashboard](/analytics): win rate, average win and loss, max drawdown, and the time-of-day heatmap that shows when your intraday decisions actually go wrong. Two things the simulator cannot show you are gap risk, since generated sessions are continuous, and the emotional weight of real money — discipline that holds with virtual capital routinely collapses without it.
+Run the same setup twice on [Stockade's day trading simulator](/simulator/) with the $100,000 virtual trading balance — once as an intraday trade with a tight stop and a large share count using live mode's 800ms simulated ticks, once as a wider-stop, smaller-size hold across many candles. Then compare them on the [Analytics dashboard](/analytics/): win rate, average win and loss, max drawdown, and the time-of-day heatmap that shows when your intraday decisions actually go wrong. Two things the simulator cannot show you are gap risk, since generated sessions are continuous, and the emotional weight of real money — discipline that holds with virtual capital routinely collapses without it.

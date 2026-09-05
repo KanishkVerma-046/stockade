@@ -16,7 +16,7 @@ repetidamente não é prática, é repetição — um pianista que toca sua peç
 repetições dos mesmos erros. A prática deliberada precisa de três coisas que a repetição sozinha não
 fornece: um objetivo para cada sessão, um registro do que você fez, e uma revisão que julga a decisão, não
 o resultado. (Se você ainda está decidindo se o simulador de paper trading da Stockade vale seu tempo,
-[comece por aqui em vez disso](/blog/what-is-a-stock-market-simulator).)
+[comece por aqui em vez disso](/blog/what-is-a-stock-market-simulator/).)
 
 ## Por que a maioria do paper trading não produz nada
 
@@ -45,7 +45,7 @@ entrada."* Dois objetivos são zero objetivos.
 
 **2. Defina o setup com antecedência.** Escreva as condições de entrada como uma checklist: direção da
 tendência, gatilho, local do stop, alvo. Se você ainda não tem isso, esse é o assunto de
-[como criar um plano de trading](/blog/how-to-build-a-trading-plan), e vem primeiro.
+[como criar um plano de trading](/blog/how-to-build-a-trading-plan/), e vem primeiro.
 
 **3. Limite o número de operações.** Cinco setups, não "quantos aparecerem." O limite força a
 seletividade, que é ela mesma a habilidade. Gastar as cinco em dez minutos em entradas marginais encerra a
@@ -120,7 +120,7 @@ Então a revisão classifica cada operação em quatro caixas, não duas:
 Conte as caixas semanalmente. Sua taxa de aderência — operações que seguiram o plano dividido pelo total —
 é o número que deve melhorar primeiro, e nada mais melhora de forma confiável até que isso aconteça. A
 maioria das entradas na coluna "quebrou o plano" são os mesmos poucos erros se repetindo, catalogados em
-[erros comuns de day trading](/blog/common-day-trading-mistakes).
+[erros comuns de day trading](/blog/common-day-trading-mistakes/).
 
 ## Quais números mostram progresso e quais são ruído
 
@@ -135,7 +135,7 @@ quarenta. Verifique cruzando com o fator de lucro, lucro bruto sobre perda bruta
 22 × $90 = $1.980, então 3.240 ÷ 1.980 = **1,64** — e $3.240 − $1.980 é esse mesmo $1.260. A Stockade
 calcula a taxa de acerto, o fator de lucro, o ganho médio, a perda média e o drawdown máximo para você em
 `/pt/analytics/`; o que essas cifras significam em profundidade é coberto em
-[analisando suas métricas de desempenho](/blog/analyze-trading-performance-metrics).
+[analisando suas métricas de desempenho](/blog/analyze-trading-performance-metrics/).
 
 Agora a parte que ninguém quer ouvir: **quarenta operações não provam quase nada.** Numa taxa de acerto
 real de 45% em 40 amostras, o erro padrão é de cerca de 7,9 pontos percentuais, então um erro padrão para

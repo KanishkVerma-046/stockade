@@ -54,7 +54,7 @@ Remarquez ce que cela signifie. Pour afficher 70, les hausses n'ont besoin d'êt
 
 Wilder a choisi 70 et 30. Il aurait pu choisir 75 et 25. Il n'y a aucune dérivation derrière ces chiffres, aucun seuil statistique où le comportement change, aucun mécanisme qui s'active à 70.0 et se désactive à 69.9. Ce sont des chiffres ronds qui paraissaient raisonnables sur les graphiques qu'il étudiait dans les années 1970, et ils sont restés parce que tout le monde a repris ces valeurs par défaut. La plupart des logiciels de graphiques tracent ces lignes pour vous, ce qui renforce silencieusement l'idée qu'il s'agit de frontières. Le graphique de Stockade fait de même — passez le panneau inférieur en RSI et vous obtenez des lignes pointillées à 70 et 30. Ce sont des repères, pas des verdicts.
 
-Il en va de même pour la période de calcul de 14. Un réglage plus court comme 7 réagit plus vite et atteint constamment les extrêmes ; un réglage plus long comme 21 y arrive rarement. La période change la fréquence à laquelle vous voyez un signal, pas sa fiabilité — le même arbitrage qui régit [le choix de la longueur d'une moyenne mobile](/blog/moving-averages-ema-vs-sma).
+Il en va de même pour la période de calcul de 14. Un réglage plus court comme 7 réagit plus vite et atteint constamment les extrêmes ; un réglage plus long comme 21 y arrive rarement. La période change la fréquence à laquelle vous voyez un signal, pas sa fiabilité — le même arbitrage qui régit [le choix de la longueur d'une moyenne mobile](/blog/moving-averages-ema-vs-sma/).
 
 ## Surachat signifie fort, pas « sur le point de se retourner »
 
@@ -85,7 +85,7 @@ La divergence est un désaccord entre le prix et le momentum.
 
 Pour en lire une, repérez deux points de swing de même nature sur le prix — deux plus hauts nets, ou deux plus bas nets — et comparez le RSI à chacun. Cela ne compte que si les deux swings sont comparables avec un vrai repli entre eux ; tracer des lignes entre des barres arbitraires produit une divergence sur presque n'importe quel graphique, ce qui explique pourquoi elles sont si faciles à repérer a posteriori.
 
-Soyons francs sur le taux de réussite : la divergence échoue souvent, et elle échoue le plus mal précisément là où elle semble la plus tentante. Une tendance forte affichera trois ou quatre divergences baissières pendant sa montée, et seule la dernière signifie quelque chose — chacune des précédentes est un piège qui coûte de l'argent. Traitez la divergence comme une raison de resserrer un stop ou d'arrêter d'ajouter à une position gagnante, pas comme une entrée autonome contre la tendance. Se positionner contre la force sur un simple signal de divergence est l'une des [habitudes les plus coûteuses que développent les nouveaux traders](/blog/common-day-trading-mistakes).
+Soyons francs sur le taux de réussite : la divergence échoue souvent, et elle échoue le plus mal précisément là où elle semble la plus tentante. Une tendance forte affichera trois ou quatre divergences baissières pendant sa montée, et seule la dernière signifie quelque chose — chacune des précédentes est un piège qui coûte de l'argent. Traitez la divergence comme une raison de resserrer un stop ou d'arrêter d'ajouter à une position gagnante, pas comme une entrée autonome contre la tendance. Se positionner contre la force sur un simple signal de divergence est l'une des [habitudes les plus coûteuses que développent les nouveaux traders](/blog/common-day-trading-mistakes/).
 
 ## Utiliser la ligne des 50 comme filtre de tendance
 
@@ -108,7 +108,7 @@ L'ordre compte : identifiez d'abord le régime, puis choisissez les seuils. Util
 
 Le RSI est construit entièrement à partir de prix de clôture que vous avez déjà vus. C'est une mesure retardée et dérivée — chaque valeur est un fait sur le passé. Il ne voit pas l'action intra-barre, et ne porte aucune information qui ne soit déjà présente dans la série de prix.
 
-Il n'a pas non plus la moindre notion du *pourquoi* les prix ont bougé. Une lecture de 90.9 issue d'une montée régulière et une issue d'un simple gap paraissent identiques pour la formule. C'est une bonne raison de lire le RSI aux côtés de la structure de prix et du volume, et de savoir en quoi il diffère du [MACD](/blog/macd-explained), qui mesure l'écart entre deux moyennes mobiles plutôt qu'un ratio gain/perte.
+Il n'a pas non plus la moindre notion du *pourquoi* les prix ont bougé. Une lecture de 90.9 issue d'une montée régulière et une issue d'un simple gap paraissent identiques pour la formule. C'est une bonne raison de lire le RSI aux côtés de la structure de prix et du volume, et de savoir en quoi il diffère du [MACD](/blog/macd-explained/), qui mesure l'écart entre deux moyennes mobiles plutôt qu'un ratio gain/perte.
 
 ## Pratiquez la lecture du RSI sur le simulateur
 

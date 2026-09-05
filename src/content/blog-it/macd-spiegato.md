@@ -27,9 +27,9 @@ MACD sta per Moving Average Convergence Divergence (convergenza e divergenza di 
 
 ### La linea MACD
 
-Prendi una media mobile esponenziale delle ultime 12 barre e una delle ultime 26 barre, poi sottrai la più lenta dalla più veloce. Per come un'EMA pesa le barre recenti più di quelle vecchie, vedi [medie mobili: EMA vs SMA](/blog/moving-averages-ema-vs-sma).
+Prendi una media mobile esponenziale delle ultime 12 barre e una delle ultime 26 barre, poi sottrai la più lenta dalla più veloce. Per come un'EMA pesa le barre recenti più di quelle vecchie, vedi [medie mobili: EMA vs SMA](/blog/moving-averages-ema-vs-sma/).
 
-Concretamente: se l'EMA a 12 periodi è 188,40 e l'EMA a 26 periodi è 186,90, la linea MACD legge 188,40 − 186,90 = **1,50**. La media veloce si trova 1,50$ sopra quella lenta. Quel numero è nelle unità proprie del prezzo — dollari qui, non una percentuale e non una scala limitata da 0 a 100 come l'[RSI](/blog/rsi-indicator-overbought-oversold). Un titolo da 400$ produce di routine valori MACD dieci volte più grandi di un titolo da 40$, motivo per cui le letture del MACD non sono mai confrontabili tra strumenti diversi.
+Concretamente: se l'EMA a 12 periodi è 188,40 e l'EMA a 26 periodi è 186,90, la linea MACD legge 188,40 − 186,90 = **1,50**. La media veloce si trova 1,50$ sopra quella lenta. Quel numero è nelle unità proprie del prezzo — dollari qui, non una percentuale e non una scala limitata da 0 a 100 come l'[RSI](/blog/rsi-indicator-overbought-oversold/). Un titolo da 400$ produce di routine valori MACD dieci volte più grandi di un titolo da 40$, motivo per cui le letture del MACD non sono mai confrontabili tra strumenti diversi.
 
 ### La linea di segnale
 
@@ -95,7 +95,7 @@ La divergenza è quando il prezzo e il MACD non concordano sulla direzione.
 
 La divergenza vale la pena di essere osservata e non vale la pena di essere tradata da sola. I trend forti la producono per tratti prolungati — un uptrend può mostrare divergenza ribassista per decine di barre mentre fa nuovi massimi, perché la spinta iniziale ha fissato un picco di momentum che il trend non ha mai più bisogno di eguagliare. La divergenza ti dice che un movimento è stanco, non che è finito.
 
-Diventa più credibile quando qualcosa di indipendente concorda: una trendline rotta, un fallimento su un livello che aveva tenuto in precedenza, o un pattern di volume che contraddice il movimento di prezzo. Il [volume](/blog/understanding-trading-volume) è una conferma utile qui proprio perché deriva da un input diverso rispetto al MACD. Due indicatori derivati dagli stessi prezzi di chiusura che concordano non è conferma; è aritmetica.
+Diventa più credibile quando qualcosa di indipendente concorda: una trendline rotta, un fallimento su un livello che aveva tenuto in precedenza, o un pattern di volume che contraddice il movimento di prezzo. Il [volume](/blog/understanding-trading-volume/) è una conferma utile qui proprio perché deriva da un input diverso rispetto al MACD. Due indicatori derivati dagli stessi prezzi di chiusura che concordano non è conferma; è aritmetica.
 
 ## Perché il MACD è doppiamente in ritardo e fallisce nel range
 

@@ -75,7 +75,7 @@ Faisons maintenant le calcul qui compte :
 - Mouvement défavorable de 2% sur le notionnel /ES : 262,437.50 × 0.02 = **$5,248.75**
 - En proportion d'un dépôt de marge de $13,000 : 5,248.75 ÷ 13,000 = **40.4%**
 
-Un mouvement de 2% sur le sous-jacent efface 40% du capital que vous avez déposé. Le S&P 500 connaît plusieurs journées à 2% par an en moyenne. Cette asymétrie — petit mouvement, dégâts proportionnels énormes — est la chose la plus importante de cette page, et c'est pourquoi [la règle du 1% et l'arithmétique du dimensionnement de position](/blog/risk-management-position-sizing) ne sont pas facultatives sur les contrats à terme. Cela signifie aussi que [le placement du stop-loss](/blog/stop-loss-orders-explained) doit venir avant l'entrée, pas après. Sur les actions, un stop oublié est un mauvais trade. À 20:1, c'est un événement de solvabilité.
+Un mouvement de 2% sur le sous-jacent efface 40% du capital que vous avez déposé. Le S&P 500 connaît plusieurs journées à 2% par an en moyenne. Cette asymétrie — petit mouvement, dégâts proportionnels énormes — est la chose la plus importante de cette page, et c'est pourquoi [la règle du 1% et l'arithmétique du dimensionnement de position](/blog/risk-management-position-sizing/) ne sont pas facultatives sur les contrats à terme. Cela signifie aussi que [le placement du stop-loss](/blog/stop-loss-orders-explained/) doit venir avant l'entrée, pas après. Sur les actions, un stop oublié est un mauvais trade. À 20:1, c'est un événement de solvabilité.
 
 ## Échéance, roulement et contango sur les matières premières
 
@@ -94,7 +94,7 @@ La différence pour un petit compte n'est pas cosmétique. Sur un compte de $5,0
 - **1 contrat /ES :** 10 × $50 = **$500 de risque** — **10%** du compte sur un seul trade.
 - **1 contrat /MES :** 10 × $5 = **$50 de risque** — **1%** du compte.
 
-La version /MES est un trade normal. La version /ES est un pari qu'aucune conviction ne justifie. Les micro-contrats vous permettent aussi de vous positionner par dixièmes plutôt que de faire face à une décision tout-ou-rien — le même argument de granularité qui rend [le dimensionnement de position en forex](/blog/forex-trading-for-beginners) praticable avec des lots mini et micro.
+La version /MES est un trade normal. La version /ES est un pari qu'aucune conviction ne justifie. Les micro-contrats vous permettent aussi de vous positionner par dixièmes plutôt que de faire face à une décision tout-ou-rien — le même argument de granularité qui rend [le dimensionnement de position en forex](/blog/forex-trading-for-beginners/) praticable avec des lots mini et micro.
 
 ## Ce que les symboles de contrats à terme de Stockade peuvent, et ne peuvent pas, vous enseigner
 

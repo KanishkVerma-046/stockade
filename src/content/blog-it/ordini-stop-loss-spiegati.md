@@ -25,7 +25,7 @@ Un ordine **stop-market** dice: quando il prezzo tocca 185,90, vendi a qualunque
 
 Un ordine **stop-limit** dice: quando il prezzo tocca 185,90, piazza un ordine a limite di vendita a non meno di 185,80. Ora controlli il prezzo — ma non controlli più se uscirai affatto. Se la prossima operazione stampa a 184,20, il tuo limite resta ineseguito a 185,80 mentre il mercato scappa sotto di esso. Sei ancora in possesso di una posizione in perdita, e la protezione che pensavi di avere è un ordine che non si eseguirà mai. Questa è la trappola. Lo stop-limit protegge il tuo prezzo di esecuzione abbandonando ciò che in realtà volevi, ovvero essere fuori.
 
-La distinzione conta di più esattamente nelle condizioni per cui esiste uno stop: movimenti veloci e unidirezionali. La maggior parte dei trader dovrebbe usare ordini stop-market per gli stop protettivi proprio per questo motivo. La [differenza tra ordini a mercato e a limite](/blog/market-orders-vs-limit-orders) vale la pena di essere compresa in generale, ma qui l'asimmetria è netta — un'esecuzione leggermente peggiore è un brutto pomeriggio, uno stop protettivo ineseguito è un brutto anno.
+La distinzione conta di più esattamente nelle condizioni per cui esiste uno stop: movimenti veloci e unidirezionali. La maggior parte dei trader dovrebbe usare ordini stop-market per gli stop protettivi proprio per questo motivo. La [differenza tra ordini a mercato e a limite](/blog/market-orders-vs-limit-orders/) vale la pena di essere compresa in generale, ma qui l'asimmetria è netta — un'esecuzione leggermente peggiore è un brutto pomeriggio, uno stop protettivo ineseguito è un brutto anno.
 
 ## Metti lo stop dove la tua idea di trading viene dimostrata sbagliata
 
@@ -33,7 +33,7 @@ Il modo più comune di piazzare uno stop è decidere quanto denaro sei disposto 
 
 Non lo è. Il mercato non ha idea di quale sia il saldo del tuo conto. Uno stop a una distanza arbitraria viene colpito dal rumore ordinario, e la posizione si chiude mentre la tua ragione originale per l'operazione è ancora completamente intatta. Perdi denaro senza imparare nulla, perché l'operazione non è mai stata davvero messa alla prova. Lo stop appartiene al prezzo che rende falsa la tua ragione per essere nell'operazione.
 
-Diciamo che hai comprato a 187,40 perché il prezzo ha tenuto un livello a 186,15 due volte ed è rimbalzato da lì. La tua tesi è "i compratori stanno difendendo 186,15". Sotto 186,15, quella tesi è morta — non danneggiata, morta. Aggiungi un piccolo margine e piazza lo stop a 185,90. Ora la distanza è definita dal grafico, non dal tuo comfort. Se si attiva, avevi torto su qualcosa di reale, il che è informazione. I [livelli di supporto e resistenza](/blog/support-and-resistance-levels) sono la materia prima per questo tipo di posizionamento.
+Diciamo che hai comprato a 187,40 perché il prezzo ha tenuto un livello a 186,15 due volte ed è rimbalzato da lì. La tua tesi è "i compratori stanno difendendo 186,15". Sotto 186,15, quella tesi è morta — non danneggiata, morta. Aggiungi un piccolo margine e piazza lo stop a 185,90. Ora la distanza è definita dal grafico, non dal tuo comfort. Se si attiva, avevi torto su qualcosa di reale, il che è informazione. I [livelli di supporto e resistenza](/blog/support-and-resistance-levels/) sono la materia prima per questo tipo di posizionamento.
 
 Il tuo rischio per azione è 187,40 − 185,90 = **1,50**. Quel numero è un risultato dell'analisi, non un input. Cosa fai con esso viene dopo.
 
@@ -65,7 +65,7 @@ Ora supponi che la struttura sia più ampia e l'invalidazione onesta sia 183,90 
 
 Stessi 500$ a rischio. Posizione completamente diversa. Uno stop più ampio non significa più rischio; significa meno azioni. La distanza dello stop e il numero di azioni si muovono in direzioni opposte per mantenere costante la perdita.
 
-Questo smaschera anche la fantasia dello stop stretto. Uno stop di 0,50 permetterebbe 1.000 azioni — ma 1.000 × 187,40 sono 187.400$ di titoli su un conto da 100.000$, il che richiede leva, e lo stop è abbastanza vicino che il rumore ordinario lo colpisce ripetutamente. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing) approfondisce questa aritmetica.
+Questo smaschera anche la fantasia dello stop stretto. Uno stop di 0,50 permetterebbe 1.000 azioni — ma 1.000 × 187,40 sono 187.400$ di titoli su un conto da 100.000$, il che richiede leva, e lo stop è abbastanza vicino che il rumore ordinario lo colpisce ripetutamente. [Dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/) approfondisce questa aritmetica.
 
 <div class="table-wrap">
 
@@ -81,7 +81,7 @@ Questo smaschera anche la fantasia dello stop stretto. Uno stop di 0,50 permette
 
 Uno stop dinamico segue il prezzo a tuo favore e non si sposta mai indietro. Long da 187,40 con un trail di 2,50: il prezzo corre a 194,00, lo stop sale trascinato a 191,50, e un'uscita lì blocca 4,10 per azione — 333 × 4,10 = **1.365,30$** — senza che tu decida nulla.
 
-Il compromesso è che uno stop dinamico restituisce sempre la distanza del trail. Non uscirai mai al massimo, per costruzione. Trascina troppo stretto e un normale ritracciamento termina presto un'operazione di trend; trascina troppo largo e restituisci una grande parte di un guadagno aperto. Non c'è un'impostazione corretta, solo una scelta su quale rimpianto preferisci. Gli stop dinamici sono spesso combinati con un target di profitto attraverso un ordine bracket, che [gli ordini OCO e bracket](/blog/oco-and-bracket-orders) trattano come tipo di ordine.
+Il compromesso è che uno stop dinamico restituisce sempre la distanza del trail. Non uscirai mai al massimo, per costruzione. Trascina troppo stretto e un normale ritracciamento termina presto un'operazione di trend; trascina troppo largo e restituisci una grande parte di un guadagno aperto. Non c'è un'impostazione corretta, solo una scelta su quale rimpianto preferisci. Gli stop dinamici sono spesso combinati con un target di profitto attraverso un ordine bracket, che [gli ordini OCO e bracket](/blog/oco-and-bracket-orders/) trattano come tipo di ordine.
 
 ## Tre cose oneste sugli stop
 

@@ -65,7 +65,7 @@ Prendi un conto da 50.000$ che rischia l'1% — **500$** — per operazione, su 
 - **Day trade.** Stop a 29,60, quindi la distanza dello stop è 0,40. Azioni = 500$ ÷ 0,40 = **1.250 azioni**. Posizione nozionale: 1.250 × 30,00 = **37.500$**.
 - **Swing trade.** Stop a 26,00, quindi la distanza dello stop è 4,00. Azioni = 500$ ÷ 4,00 = **125 azioni**. Posizione nozionale: 125 × 30,00 = **3.750$**.
 
-Stessi 500$ a rischio. Dieci volte il numero di azioni e dieci volte il capitale impegnato sul day trade. L'aritmetica completa dietro a questo sta in [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing).
+Stessi 500$ a rischio. Dieci volte il numero di azioni e dieci volte il capitale impegnato sul day trade. L'aritmetica completa dietro a questo sta in [dimensionamento della posizione e la regola dell'1%](/blog/risk-management-position-sizing/).
 
 Quel numero di azioni è anche dove mordono i costi. Supponi che lo spread bid-ask sia 0,02 e che tu lo attraversi in entrata e in uscita, circa uno spread per operazione completa:
 
@@ -78,7 +78,7 @@ Le ipotesi sono illustrative, ma la forma non lo è: la frequenza moltiplica l'a
 
 Il day trading ti dà dozzine di esiti risolti a settimana. Questo è genuinamente il modo più veloce per imparare il riconoscimento dei pattern, ed è anche il modo più veloce per sfaldarsi. Tre perdite prima delle 10:30 ti lascia seduto davanti a un mercato dal vivo con i mezzi per agire sulla tua frustrazione, e il trading di vendetta è il risultato diretto. Il ciclo di retroazione che ti insegna è anche quello che ti fa perdere l'equilibrio.
 
-Lo swing trading ti dà una manciata di esiti risolti al mese. L'apprendimento è più lento, e ci vuole molto più tempo per sapere se il tuo vantaggio è reale o se hai avuto fortuna. Ma il divario tra impulso e azione si misura in ore, il che è abbastanza tempo perché la maggior parte delle decisioni sbagliate muoia da sola. Qualunque cosa tu scelga, gli [errori comuni del day trading](/blog/common-day-trading-mistakes) che vale la pena studiare sono per lo più fallimenti di quel divario.
+Lo swing trading ti dà una manciata di esiti risolti al mese. L'apprendimento è più lento, e ci vuole molto più tempo per sapere se il tuo vantaggio è reale o se hai avuto fortuna. Ma il divario tra impulso e azione si misura in ore, il che è abbastanza tempo perché la maggior parte delle decisioni sbagliate muoia da sola. Qualunque cosa tu scelga, gli [errori comuni del day trading](/blog/common-day-trading-mistakes/) che vale la pena studiare sono per lo più fallimenti di quel divario.
 
 ## Le probabilità oneste, e come scegliere lo stile che fa per te
 
@@ -86,7 +86,7 @@ La maggior parte dei day trader perde denaro. Questo è il risultato ripetuto di
 
 Tradare più frequentemente non è nemmeno la stessa cosa che tradare meglio. La frequenza moltiplica costi, errori e carico emotivo senza moltiplicare il vantaggio. Un trader che prende tre buoni setup di swing al mese non è indietro rispetto a uno che ne prende trenta mediocri intraday.
 
-Quindi scegli in base all'adattamento. Il day trading fa per te se le tue ore sono genuinamente libere durante la sessione, hai o puoi raggiungere 25.000$ se sei negli Stati Uniti, resti calmo alla velocità, e puoi fermarti per la giornata su comando. Lo swing trading fa per te se la tua attenzione è impegnata altrove durante le ore di mercato, il tuo conto è più piccolo, puoi lasciare una posizione in pace per una settimana, e puoi assorbire un gap senza che ti distrugga. Nessuna delle due risposte è più seria dell'altra. Qualunque sia la tua scelta, scrivila in un [piano di trading](/blog/how-to-build-a-trading-plan) prima di tradarla, così lo stile è una decisione anziché un umore.
+Quindi scegli in base all'adattamento. Il day trading fa per te se le tue ore sono genuinamente libere durante la sessione, hai o puoi raggiungere 25.000$ se sei negli Stati Uniti, resti calmo alla velocità, e puoi fermarti per la giornata su comando. Lo swing trading fa per te se la tua attenzione è impegnata altrove durante le ore di mercato, il tuo conto è più piccolo, puoi lasciare una posizione in pace per una settimana, e puoi assorbire un gap senza che ti distrugga. Nessuna delle due risposte è più seria dell'altra. Qualunque sia la tua scelta, scrivila in un [piano di trading](/blog/how-to-build-a-trading-plan/) prima di tradarla, così lo stile è una decisione anziché un umore.
 
 ## Esercitati sul simulatore
 

@@ -35,7 +35,7 @@ o seu alvo de lucro. O preço só pode alcançar uma delas primeiro. Qualquer qu
 posição fecha, e a sobrevivente é cancelada.
 
 Para a lógica de *onde* o stop pertence — estrutura, volatilidade, por que um número redondo é uma escolha
-ruim — veja [ordens stop-loss explicadas](/blog/stop-loss-orders-explained). Este artigo assume que você já
+ruim — veja [ordens stop-loss explicadas](/blog/stop-loss-orders-explained/). Este artigo assume que você já
 escolheu os níveis e se importa apenas com como eles são conectados.
 
 ## O que uma ordem bracket adiciona: uma entrada com o par de saída anexado
@@ -84,7 +84,7 @@ perdidos — negativo a 30%. A relação não te torna lucrativo; ela define a b
 superar.
 
 Numa conta de $100.000, esse $750 é 0,75% do capital — dentro do teto comum de 1% descrito em
-[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing). Note que a posição
+[dimensionamento de posição e a regra de 1%](/blog/risk-management-position-sizing/). Note que a posição
 vale $93.700, aproximadamente 94% da conta, enquanto o valor genuinamente em risco é $750. Tamanho de
 posição e tamanho de risco são números diferentes, e o stop é o que os separa.
 
@@ -154,7 +154,7 @@ que o gráfico é forçado a acomodar. Um bracket de 2:1 só é bom se o mercado
 
 **E ele não garante o preço que você digitou.** Em mercados reais um stop vira uma ordem a mercado quando
 disparado, e ordens a mercado são executadas no que estiver disponível, o que pode ser pior que seu nível
-de stop — veja [ordens a mercado vs ordens limitadas](/blog/market-orders-vs-limit-orders) para entender
+de stop — veja [ordens a mercado vs ordens limitadas](/blog/market-orders-vs-limit-orders/) para entender
 por que essa distinção morde. Seu risco de $750 é uma estimativa, não uma garantia.
 
 ## Pratique isso no simulador

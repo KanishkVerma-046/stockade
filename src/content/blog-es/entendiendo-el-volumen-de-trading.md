@@ -55,7 +55,7 @@ La divergencia es lo opuesto. El precio avanza hacia máximos más altos mientra
 
 Para superar un nivel que tres semanas de vendedores defendieron, alguien tiene que absorber toda esa oferta, y absorber oferta real genera volumen real. Cuando el precio asoma por encima de un nivel bien probado con 0.79x de volumen, la aritmética dice que la oferta no fue absorbida — los vendedores simplemente se apartaron brevemente. Esa es la ruptura fallida del ejemplo inicial.
 
-Una regla práctica común es exigir de 1.5x a 2x el volumen promedio en la vela de ruptura antes de tratar el quiebre como significativo. El umbral exacto no es sagrado; la disciplina de *tener* uno es la parte útil. Qué son esos niveles y por qué se rompen se cubre en [soporte y resistencia](/blog/support-and-resistance-levels).
+Una regla práctica común es exigir de 1.5x a 2x el volumen promedio en la vela de ruptura antes de tratar el quiebre como significativo. El umbral exacto no es sagrado; la disciplina de *tener* uno es la parte útil. Qué son esos niveles y por qué se rompen se cubre en [soporte y resistencia](/blog/support-and-resistance-levels/).
 
 ### Picos de capitulación al final de una caída
 
@@ -75,7 +75,7 @@ La presentación estándar es un histograma en un panel delgado debajo del gráf
 
 Eso tiene dos consecuencias. Siempre estás leyendo alturas *relativas*, que es lo que quieres — una barra que sobresale de sus vecinas es la señal, no ninguna altura en píxeles. Pero la escala cambia mientras te desplazas o cambias de marco temporal, así que una barra que parecía enorme desaparece en el ruido en cuanto un pico genuino de 9x entra en la ventana.
 
-Léelo en dos pasadas. Busca valores atípicos que claramente superen a las veinte barras que los rodean, y luego revisa qué hizo el precio exactamente en esas velas: una vela de rango amplio, una reversión, un empuje hacia un nivel. El volumen sin la [estructura de velas](/blog/how-to-read-candlestick-charts) correspondiente es solo la mitad de la información.
+Léelo en dos pasadas. Busca valores atípicos que claramente superen a las veinte barras que los rodean, y luego revisa qué hizo el precio exactamente en esas velas: una vela de rango amplio, una reversión, un empuje hacia un nivel. El volumen sin la [estructura de velas](/blog/how-to-read-candlestick-charts/) correspondiente es solo la mitad de la información.
 
 ## Dónde te engañan los datos de volumen
 

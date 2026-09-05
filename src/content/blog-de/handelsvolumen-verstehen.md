@@ -54,7 +54,7 @@ Divergenz ist das Gegenteil. Der Preis arbeitet sich zu höheren Hochs, während
 
 Um ein Niveau zu durchbrechen, das drei Wochen lang von Verkäufern verteidigt wurde, muss jemand das gesamte Angebot absorbieren, und echtes Angebot zu absorbieren erzeugt echtes Volumen. Stößt der Preis bei 0,79x Volumen über ein gut getestetes Niveau, sagt die Arithmetik, dass das Angebot nicht absorbiert wurde — die Verkäufer traten nur kurz zur Seite. Das ist der gescheiterte Breakout im Eröffnungsbeispiel.
 
-Eine gängige Faustregel verlangt 1,5x bis 2x durchschnittliches Volumen auf einem Breakout-Balken, bevor der Durchbruch als bedeutsam behandelt wird. Der exakte Schwellenwert ist nicht heilig; die Disziplin, *einen* zu haben, ist der nützliche Teil. Was diese Niveaus sind und warum sie brechen, behandelt [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels).
+Eine gängige Faustregel verlangt 1,5x bis 2x durchschnittliches Volumen auf einem Breakout-Balken, bevor der Durchbruch als bedeutsam behandelt wird. Der exakte Schwellenwert ist nicht heilig; die Disziplin, *einen* zu haben, ist der nützliche Teil. Was diese Niveaus sind und warum sie brechen, behandelt [Unterstützungs- und Widerstandsniveaus](/blog/support-and-resistance-levels/).
 
 ### Kapitulationsspitzen am Ende eines Rückgangs
 
@@ -66,7 +66,7 @@ Die Logik ist Erschöpfung: Sobald die gezwungenen Verkäufer verkauft haben, is
 
 Ein Niveau, das bei starkem Volumen getestet wird und hält, ist aussagekräftiger als eines, das bei leichtem Volumen getestet wird. Starkes Volumen an Unterstützung bedeutet, Käufer verteidigten sie in Größe; leichtes Volumen bedeutet, sie wurde nie ernsthaft herausgefordert.
 
-Die Folgerung hilft beim Einzeichnen von Niveaus: Preise, an denen historisch viel Volumen den Besitzer wechselte, neigen dazu, später wichtig zu werden, weil dort die meisten Teilnehmer eine Kostenbasis zu verteidigen oder eine Verlustposition zu entkommen haben. Das ist eng verwandt damit, warum [VWAP](/blog/vwap-trading-strategy) als Referenzniveau funktioniert — es ist buchstäblich der Preis, zu dem die durchschnittliche Aktie gehandelt wurde.
+Die Folgerung hilft beim Einzeichnen von Niveaus: Preise, an denen historisch viel Volumen den Besitzer wechselte, neigen dazu, später wichtig zu werden, weil dort die meisten Teilnehmer eine Kostenbasis zu verteidigen oder eine Verlustposition zu entkommen haben. Das ist eng verwandt damit, warum [VWAP](/blog/vwap-trading-strategy/) als Referenzniveau funktioniert — es ist buchstäblich der Preis, zu dem die durchschnittliche Aktie gehandelt wurde.
 
 ## Wie man das Volumen-Histogramm unter einem Kurschart liest
 
@@ -74,7 +74,7 @@ Die Standarddarstellung ist ein Histogramm in einem dünnen Panel unter dem Kurs
 
 Das hat zwei Konsequenzen. Sie lesen immer *relative* Höhen, was auch das ist, was Sie wollen — ein Balken, der über seine Nachbarn ragt, ist das Signal, keine absolute Pixelhöhe. Aber der Maßstab verschiebt sich, während Sie scrollen oder den Zeitrahmen wechseln, sodass ein Balken, der riesig aussah, im Rauschen verschwindet, sobald eine echte 9x-Spitze ins Bild kommt.
 
-Lesen Sie es in zwei Durchgängen. Scannen Sie nach Ausreißern, die die umgebenden zwanzig Balken sichtbar überragen, und prüfen Sie dann, was der Preis genau bei diesen Balken tat: eine Kerze mit weiter Spanne, eine Umkehr, ein Stoß in ein Niveau. Volumen ohne die entsprechende [Candlestick-Struktur](/blog/how-to-read-candlestick-charts) ist nur die halbe Information.
+Lesen Sie es in zwei Durchgängen. Scannen Sie nach Ausreißern, die die umgebenden zwanzig Balken sichtbar überragen, und prüfen Sie dann, was der Preis genau bei diesen Balken tat: eine Kerze mit weiter Spanne, eine Umkehr, ein Stoß in ein Niveau. Volumen ohne die entsprechende [Candlestick-Struktur](/blog/how-to-read-candlestick-charts/) ist nur die halbe Information.
 
 ## Wo Volumendaten Sie in die Irre führen
 

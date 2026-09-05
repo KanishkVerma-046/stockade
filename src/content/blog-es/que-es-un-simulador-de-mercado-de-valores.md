@@ -28,13 +28,13 @@ Antes de cualquier pregunta de estrategia hay una capa de plomería pura que hac
 
 Una **orden de mercado** compra o vende de inmediato al precio que esté disponible en ese momento. Garantiza que te ejecuten; no garantiza el precio.
 
-Una **orden límite** fija un máximo que pagarás o un mínimo que aceptarás. Coloca una compra límite en una acción a $47.50 mientras opera a $48.20 y no pasa nada hasta que el precio llegue a ti. Garantiza el precio; no garantiza que te ejecuten en absoluto. ([Órdenes de mercado vs. órdenes límite](/blog/market-orders-vs-limit-orders) profundiza en cuándo usar cada una.)
+Una **orden límite** fija un máximo que pagarás o un mínimo que aceptarás. Coloca una compra límite en una acción a $47.50 mientras opera a $48.20 y no pasa nada hasta que el precio llegue a ti. Garantiza el precio; no garantiza que te ejecuten en absoluto. ([Órdenes de mercado vs. órdenes límite](/blog/market-orders-vs-limit-orders/) profundiza en cuándo usar cada una.)
 
 Un **stop-loss** es una orden en espera que se activa cuando el precio se mueve en tu contra más allá de un nivel que elegiste. Es el mecanismo que convierte "probablemente debería cortar esto" en algo que pasa estés mirando o no.
 
 Un **take-profit** es la misma idea en la dirección opuesta — una orden que cierra tu posición cuando alcanza un objetivo.
 
-Un **bracket OCO** ("una cancela la otra") empareja un stop-loss y un take-profit alrededor de una posición abierta. La que se ejecute primero cancela la otra, así que no puedes terminar con una orden colgante que abre una nueva posición después de que ya saliste. Consulta [OCO y bracket orders explicados](/blog/oco-and-bracket-orders) para la mecánica completa.
+Un **bracket OCO** ("una cancela la otra") empareja un stop-loss y un take-profit alrededor de una posición abierta. La que se ejecute primero cancela la otra, así que no puedes terminar con una orden colgante que abre una nueva posición después de que ya saliste. Consulta [OCO y bracket orders explicados](/blog/oco-and-bracket-orders/) para la mecánica completa.
 
 Stockade admite los cinco. Colocar cien de ellos con dinero ficticio es cómo el vocabulario se vuelve memoria muscular. Los atajos de teclado ayudan: `B` para comprar, `S` para vender, `F` para cerrar todo. Cuando tus manos conocen la tecla de salida, la vacilación deja de ser un factor.
 

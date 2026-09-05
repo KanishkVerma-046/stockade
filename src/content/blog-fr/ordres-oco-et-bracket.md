@@ -21,7 +21,7 @@ Cette dernière phrase est toute la fonctionnalité. Sans le lien, vous avez deu
 
 La paire OCO la plus courante est un stop sous votre position et une limite au-dessus : un **ordre stop** qui se transforme en vente si le prix descend jusqu'à votre plafond de perte, et un **ordre à cours limité** qui vend si le prix monte jusqu'à votre objectif de profit. Le prix ne peut atteindre que l'un des deux en premier. Celui qui y arrive gagne, la position se ferme, et le survivant est annulé.
 
-Pour la logique de *où* placer le stop — structure, volatilité, pourquoi un chiffre rond est un mauvais choix — voir [les ordres stop-loss expliqués](/blog/stop-loss-orders-explained). Cet article part du principe que vous avez déjà choisi les niveaux et se préoccupe uniquement de la façon dont ils sont reliés.
+Pour la logique de *où* placer le stop — structure, volatilité, pourquoi un chiffre rond est un mauvais choix — voir [les ordres stop-loss expliqués](/blog/stop-loss-orders-explained/). Cet article part du principe que vous avez déjà choisi les niveaux et se préoccupe uniquement de la façon dont ils sont reliés.
 
 ## Ce qu'ajoute un ordre bracket : une entrée avec la paire de sortie attachée
 
@@ -57,7 +57,7 @@ Vérifions l'arithmétique. Le risque par action est 187.40 − 185.90 = 1.50, d
 
 **Et un bracket en 2:1 nécessite un taux de réussite supérieur à 33.3% juste pour atteindre le seuil de rentabilité.** Dix trades de cette taille : quatre gagnants produisent 4 × $1,500 = $6,000, six perdants produisent 6 × $750 = $4,500, soit un net de +$1,500 pour un taux de réussite de 40%. Descendez à trois gagnants et c'est $4,500 gagnés contre $5,250 perdus — négatif à 30%. Le ratio ne vous rend pas rentable ; il fixe la barre que vous devez encore franchir.
 
-Sur un compte de $100,000, ce $750 représente 0.75% des capitaux propres — dans le plafond courant de 1% décrit dans [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing). Notez que la position vaut $93,700, soit environ 94% du compte, alors que le montant réellement à risque est de $750. La taille de la position et la taille du risque sont des chiffres différents, et c'est le stop qui les sépare.
+Sur un compte de $100,000, ce $750 représente 0.75% des capitaux propres — dans le plafond courant de 1% décrit dans [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing/). Notez que la position vaut $93,700, soit environ 94% du compte, alors que le montant réellement à risque est de $750. La taille de la position et la taille du risque sont des chiffres différents, et c'est le stop qui les sépare.
 
 ## Pourquoi placer le bracket avant l'entrée est tout l'intérêt psychologique
 
@@ -95,7 +95,7 @@ Un bracket est une machine, et les machines ne lisent pas les graphiques.
 
 **Un objectif mécanique peut se retrouver quelque part que le graphique n'a jamais justifié.** Fixez chaque objectif à exactement 2R parce que 2R sonne professionnel, et vous placerez parfois un ordre à cours limité dans le vide juste après un palier de résistance évident, puis regarderez le prix se retourner à 20 cents de celui-ci. Le ratio devrait être un résultat de l'emplacement des niveaux de sortie sensés, pas une donnée de départ que l'on force le graphique à accommoder. Un bracket en 2:1 n'est bon que si le marché offre plausiblement ces 3.00 de hausse avant les 1.50 de baisse.
 
-**Et il ne garantit pas le prix que vous avez saisi.** Sur les marchés réels, un stop devient un ordre au marché une fois déclenché, et les ordres au marché s'exécutent au prix disponible, qui peut être pire que votre niveau de stop — voir [ordre au marché vs ordre à cours limité](/blog/market-orders-vs-limit-orders) pour comprendre pourquoi cette distinction fait mal. Votre risque de $750 est une estimation, pas une garantie.
+**Et il ne garantit pas le prix que vous avez saisi.** Sur les marchés réels, un stop devient un ordre au marché une fois déclenché, et les ordres au marché s'exécutent au prix disponible, qui peut être pire que votre niveau de stop — voir [ordre au marché vs ordre à cours limité](/blog/market-orders-vs-limit-orders/) pour comprendre pourquoi cette distinction fait mal. Votre risque de $750 est une estimation, pas une garantie.
 
 ## Pratiquez cela sur le simulateur
 

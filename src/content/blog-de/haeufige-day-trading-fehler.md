@@ -19,7 +19,7 @@ Jeder Fehler unten ist einer dieser vier Impulse im Trading-Gewand. Deshalb ist 
 
 Das Setup ist sauber, die letzten zwei Trades liefen, also nehmen Sie die dreifache Normalgröße. Nichts an Ihrem schriftlichen Prozess hat sich geändert — nur Ihr Gefühl. Vertrauen wird von jüngsten Ergebnissen erzeugt, nicht vom Edge, und Größe ist der unmittelbarste Weg, danach zu handeln.
 
-**Die Regel:** Keine Position übersteigt 1 % des Kontoeigenkapitals an Risiko, berechnet aus Einstiegspreis, Stop-Preis und Stückzahl *bevor* die Order aufgegeben wird. Größe ist das Ergebnis einer Divisionsaufgabe, keine Stimmung. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing) hat die vollständige Arithmetik.
+**Die Regel:** Keine Position übersteigt 1 % des Kontoeigenkapitals an Risiko, berechnet aus Einstiegspreis, Stop-Preis und Stückzahl *bevor* die Order aufgegeben wird. Größe ist das Ergebnis einer Divisionsaufgabe, keine Stimmung. [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/) hat die vollständige Arithmetik.
 
 ### Die Arithmetik: zwanzig disziplinierte Trades gegen einen übergroßen Trade
 
@@ -41,7 +41,7 @@ Größe ist nicht ein Risiko unter vielen. Sie ist der Multiplikator auf alle. J
 
 Der Preis nähert sich Ihrem Stop, Sie entscheiden, dass das Niveau „etwas eng" war, und schieben ihn nach unten. Ein ausgelöster Stop verwandelt einen schwebenden, abstreitbaren Verlust in einen dauerhaften — ihn zu verschieben verringert nicht Ihr Risiko, nur den Moment des Eingeständnisses. Die Erleichterung, die Sie spüren, ist der Verräter.
 
-**Die Regel:** Stops bewegen sich nur in Richtung Gewinn, nie weg davon. Mehr Spielraum zu wollen bedeutet eine kleinere Position beim nächsten Mal, keinen weiteren Stop diesmal. Platzieren Sie ihn dort, wo Ihre Idee als falsch bewiesen ist, nicht dort, wo sich der Verlust erträglich anfühlt — siehe [Stop-Loss-Orders erklärt](/blog/stop-loss-orders-explained).
+**Die Regel:** Stops bewegen sich nur in Richtung Gewinn, nie weg davon. Mehr Spielraum zu wollen bedeutet eine kleinere Position beim nächsten Mal, keinen weiteren Stop diesmal. Platzieren Sie ihn dort, wo Ihre Idee als falsch bewiesen ist, nicht dort, wo sich der Verlust erträglich anfühlt — siehe [Stop-Loss-Orders erklärt](/blog/stop-loss-orders-explained/).
 
 ### Nachkaufen in eine Verlustposition hinein
 
@@ -85,7 +85,7 @@ Beim geplanten Einstieg ist das Risiko 0,50 $ gegen 1,00 $ Belohnung — ein 2R-
 
 Ein ungeschriebener Plan kann nicht verletzt werden, nur neu interpretiert, und Neuinterpretation ist kostenlos.
 
-**Die Regel:** Der Plan existiert als Datei, geschrieben vor der Session, mit Setup-Kriterien, Einstiegsauslöser, Stop-Logik, Ziel-Logik, maximalem Risiko pro Trade, maximalen Trades pro Tag und den Bedingungen, die die Session beenden. [Einen Trading-Plan erstellen](/blog/how-to-build-a-trading-plan) geht jeden Teil durch.
+**Die Regel:** Der Plan existiert als Datei, geschrieben vor der Session, mit Setup-Kriterien, Einstiegsauslöser, Stop-Logik, Ziel-Logik, maximalem Risiko pro Trade, maximalen Trades pro Tag und den Bedingungen, die die Session beenden. [Einen Trading-Plan erstellen](/blog/how-to-build-a-trading-plan/) geht jeden Teil durch.
 
 ## Die Kosten, die Sie zu subtrahieren vergessen
 
@@ -103,7 +103,7 @@ Kommissionen und Spread fühlen sich pro Trade trivial an und sind in Summe ents
 
 Stockade hilft bei der mechanischen Hälfte. Das 100.000-$-Paper-Konto lässt Sie die Schleife einüben — Größe vor dem Einstieg berechnet, ein OCO-Bracket aufgegeben, sodass Ausstiege existieren, sobald die Position es tut, Stop nie angefasst —, bis es automatisch statt mühsam ist. Die [Analyse-Ansicht](/de/analytics/) meldet Durchschnittsgewinn gegen Durchschnittsverlust, wo der Dispositionseffekt sichtbar wird: Ist Ihr Durchschnittsgewinn die kleinere Zahl, beenden Sie Gewinner zu früh, was auch immer Sie über Ihre Disziplin glauben.
 
-Was ein Simulator nicht kann, ist den Druck nachzubilden, der diese Fehler verursacht. Das Geld ist nicht echt, also registriert sich ein Verlust nicht als Bedrohung, also feuert der Impuls, den Stop zu verschieben, nie. Trader, die ihre Regeln einen Monat lang auf Papier perfekt einhalten, geben sie in der ersten Woche mit echtem Kapital routinemäßig auf. Kein Simulator schließt diese Lücke — siehe [wie man bewusst übt](/blog/paper-trading-guide) dafür, was Übung leisten kann und was nicht.
+Was ein Simulator nicht kann, ist den Druck nachzubilden, der diese Fehler verursacht. Das Geld ist nicht echt, also registriert sich ein Verlust nicht als Bedrohung, also feuert der Impuls, den Stop zu verschieben, nie. Trader, die ihre Regeln einen Monat lang auf Papier perfekt einhalten, geben sie in der ersten Woche mit echtem Kapital routinemäßig auf. Kein Simulator schließt diese Lücke — siehe [wie man bewusst übt](/blog/paper-trading-guide/) dafür, was Übung leisten kann und was nicht.
 
 Zwei Vorbehalte. Stockades Kurse sind synthetisch, in Ihrem Browser generiert statt von einer Börse bezogen, sodass Sie Prozedur gegen realistisch aussehende Kursbewegung üben, nicht Markthistorie. Und Ausführungen tragen fast keine Reibung: kein Bid-Ask-Spread, keine Teilausführungen, und Stops werden zu dem Tick ausgeführt, der Ihr Niveau überschritten hat, nicht am Niveau selbst. Transaktionskosten-Disziplin ist der einzige Punkt hier, den Sie auf der Plattform nicht üben können.
 

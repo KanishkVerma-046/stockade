@@ -21,7 +21,7 @@ That last sentence is the entire feature. Without the link you have two live ord
 
 The most common OCO pair is a stop below your position and a limit above it: a **stop order** that turns into a sell if price falls to your loss cap, and a **limit order** that sells if price rises to your profit target. Price can only reach one of them first. Whichever gets there wins, the position closes, and the survivor is cancelled.
 
-For the logic of *where* the stop belongs — structure, volatility, why a round number is a bad choice — see [stop-loss orders explained](/blog/stop-loss-orders-explained). This article assumes you already picked the levels and cares only about how they are wired together.
+For the logic of *where* the stop belongs — structure, volatility, why a round number is a bad choice — see [stop-loss orders explained](/blog/stop-loss-orders-explained/). This article assumes you already picked the levels and cares only about how they are wired together.
 
 ## What a bracket order adds: an entry with the exit pair attached
 
@@ -57,7 +57,7 @@ Check the arithmetic. Risk per share is 187.40 − 185.90 = 1.50, so 500 × 1.50
 
 **And a 2:1 bracket needs a win rate above 33.3% just to break even.** Ten trades at this size: four winners produce 4 × $1,500 = $6,000, six losers produce 6 × $750 = $4,500, net +$1,500 at a 40% win rate. Drop to three winners and it is $4,500 won against $5,250 lost — negative at 30%. The ratio does not make you profitable; it sets the bar you still have to clear.
 
-On a $100,000 account, that $750 is 0.75% of equity — inside the common 1% ceiling described in [position sizing and the 1% rule](/blog/risk-management-position-sizing). Note that the position is worth $93,700, roughly 94% of the account, while the amount genuinely at risk is $750. Position size and risk size are different numbers, and the stop is what separates them.
+On a $100,000 account, that $750 is 0.75% of equity — inside the common 1% ceiling described in [position sizing and the 1% rule](/blog/risk-management-position-sizing/). Note that the position is worth $93,700, roughly 94% of the account, while the amount genuinely at risk is $750. Position size and risk size are different numbers, and the stop is what separates them.
 
 ## Why placing the bracket before entry is the whole psychological point
 
@@ -95,7 +95,7 @@ A bracket is a machine, and machines do not read charts.
 
 **A mechanical target can sit somewhere the chart never justified.** Set every target at exactly 2R because 2R sounds professional and you will sometimes park a limit order in dead space just past an obvious resistance shelf, then watch price turn 20 cents short of it. The ratio should be an output of where the sensible exit levels are, not an input the chart is forced to accommodate. A 2:1 bracket is only good if the market plausibly offers that 3.00 of upside before the 1.50 of downside.
 
-**And it does not guarantee the price you typed.** In real markets a stop becomes a market order when triggered, and market orders fill at whatever is available, which can be worse than your stop level — see [market orders vs limit orders](/blog/market-orders-vs-limit-orders) for why that distinction bites. Your $750 risk is an estimate, not a guarantee.
+**And it does not guarantee the price you typed.** In real markets a stop becomes a market order when triggered, and market orders fill at whatever is available, which can be worse than your stop level — see [market orders vs limit orders](/blog/market-orders-vs-limit-orders/) for why that distinction bites. Your $750 risk is an estimate, not a guarantee.
 
 ## Practice this on the simulator
 
@@ -103,4 +103,4 @@ Stockade's `/simulator` order panel has optional **Stop Loss** and **Take Profit
 
 One honest caveat, because it changes what you can learn here. Stockade's fills carry far less friction than real ones — no bid-ask spread, no partial fills — but they are not literally frictionless. The simulator checks your levels against a new price every 800 milliseconds, and books the exit at the tick that *crossed* the level rather than at the level itself, so a stop or target lands a few cents past where you set it. The absence of partial fills is the part that matters here: it means the quantity-mismatch problem described above **cannot happen on the simulator**, so it is the one bracket failure mode you have to learn about rather than experience. Everything else — pre-committing to a ratio, resisting the urge to widen the stop, discovering how often a 2:1 target misses by a few cents — is fully available.
 
-Run twenty bracketed trades where you set the levels first and never adjust them, then check your realized results in [Stockade's paper trading simulator](/simulator) and see what your actual win rate would need to be.
+Run twenty bracketed trades where you set the levels first and never adjust them, then check your realized results in [Stockade's paper trading simulator](/simulator/) and see what your actual win rate would need to be.

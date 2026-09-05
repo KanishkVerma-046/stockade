@@ -82,7 +82,7 @@ Em R, você pode tirar médias entre símbolos e tamanhos de posição sem disto
 é 0,35 × 3,75R − 0,65 × 1R = 1,3125 − 0,65 = **+0,66R por operação** — um número que sobrevive a mudanças
 no tamanho da conta, o que o torna a forma mais limpa de comparar este mês com o anterior. Isso assume que
 você dimensiona de forma consistente, que é o argumento a favor de uma
-[regra de dimensionamento de posição com percentual fixo](/blog/risk-management-position-sizing).
+[regra de dimensionamento de posição com percentual fixo](/blog/risk-management-position-sizing/).
 
 ## Fator de lucro, ganho médio e perda média
 
@@ -149,7 +149,7 @@ vezes mais operações — em 160 operações o EP cai para cerca de 4,0 pontos.
 operações fechadas é o piso costumeiro antes de tirar conclusões, e por que o erro analítico mais comum é
 o overfitting: reescrever suas regras depois de oito operações ruins, quando oito operações é puro ruído.
 Decida com antecedência quantas operações uma mudança de regra tem antes de você julgá-la, e escreva isso
-no [seu plano de trading](/blog/how-to-build-a-trading-plan).
+no [seu plano de trading](/blog/how-to-build-a-trading-plan/).
 
 ## Encontrando seus melhores horários com o mapa de calor por horário do dia
 
@@ -176,8 +176,8 @@ perderam dinheiro" mas "quais operações quebraram minhas regras", porque uma o
 regras e por acaso ganhou é mais perigosa que uma perda disciplinada. Mantenha um documento separado
 registrando o setup, o stop e o alvo planejados, e uma linha sobre se você executou o plano, e depois
 junte isso ao diário por símbolo e horário. Esse hábito separa a prática deliberada de
-[simplesmente clicar em botões](/blog/paper-trading-guide), e revela os
-[erros repetíveis](/blog/common-day-trading-mistakes) que nenhum painel consegue detectar.
+[simplesmente clicar em botões](/blog/paper-trading-guide/), e revela os
+[erros repetíveis](/blog/common-day-trading-mistakes/) que nenhum painel consegue detectar.
 
 Dois limites. Os dados vivem no armazenamento local do seu navegador, então limpar os dados do site apaga
 seu histórico. Mais importante ainda, essas métricas medem sua tomada de decisão, não seu temperamento. Os

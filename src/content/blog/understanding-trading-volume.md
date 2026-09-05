@@ -54,7 +54,7 @@ Divergence is the opposite. Price grinds to higher highs while each new high dra
 
 To clear a level that three weeks of sellers defended, someone has to absorb all of that supply, and absorbing real supply generates real volume. When price pokes above a well-tested level on 0.79x volume, the arithmetic says the supply was not absorbed — the sellers simply stepped away briefly. That is the failed breakout in the opening example.
 
-A common working rule is to require 1.5x to 2x average volume on a breakout bar before treating the break as meaningful. The exact threshold is not sacred; the discipline of *having* one is the useful part. What those levels are and why they break is covered in [support and resistance levels](/blog/support-and-resistance-levels).
+A common working rule is to require 1.5x to 2x average volume on a breakout bar before treating the break as meaningful. The exact threshold is not sacred; the discipline of *having* one is the useful part. What those levels are and why they break is covered in [support and resistance levels](/blog/support-and-resistance-levels/).
 
 ### Capitulation spikes at the end of a decline
 
@@ -66,7 +66,7 @@ The logic is exhaustion: once the forced sellers have sold, the supply driving p
 
 A level tested on heavy volume that holds is more informative than one tested on light volume. Heavy volume at support means buyers defended it in size; light volume means it was never seriously challenged.
 
-The corollary helps with level-drawing: prices where a lot of volume changed hands historically tend to matter later, because that is where the most participants have a cost basis to defend or an underwater position to escape. It is closely related to why [VWAP](/blog/vwap-trading-strategy) works as a reference level — it is literally the price the average share transacted at.
+The corollary helps with level-drawing: prices where a lot of volume changed hands historically tend to matter later, because that is where the most participants have a cost basis to defend or an underwater position to escape. It is closely related to why [VWAP](/blog/vwap-trading-strategy/) works as a reference level — it is literally the price the average share transacted at.
 
 ## How to read the volume histogram beneath a price chart
 
@@ -74,7 +74,7 @@ The standard presentation is a histogram in a thin panel below the price chart, 
 
 That has two consequences. You are always reading *relative* heights, which is what you want — one bar towering over its neighbors is the signal, not any pixel height. But the scale shifts as you scroll or change timeframe, so a bar that looked huge disappears into the noise once a genuine 9x spike enters the window.
 
-Read it in two passes. Scan for outliers that visibly dwarf the surrounding twenty bars, then check what price did on exactly those bars: a wide-range candle, a reversal, a thrust into a level. Volume without the corresponding [candlestick structure](/blog/how-to-read-candlestick-charts) is only half the information.
+Read it in two passes. Scan for outliers that visibly dwarf the surrounding twenty bars, then check what price did on exactly those bars: a wide-range candle, a reversal, a thrust into a level. Volume without the corresponding [candlestick structure](/blog/how-to-read-candlestick-charts/) is only half the information.
 
 ## Where volume data misleads you
 
@@ -98,6 +98,6 @@ What you *can* do here is learn the plumbing: where the histogram sits, how it r
 
 ## Practice the mechanics here, then take volume to real charts
 
-Stockade is useful for the parts of this that are execution rather than signal: reading candle structure, marking levels, placing stops, reviewing the [trade journal](/analytics). Build the habit of glancing at the volume panel before every entry — the routine is worth having even where the data behind it is meaningless.
+Stockade is useful for the parts of this that are execution rather than signal: reading candle structure, marking levels, placing stops, reviewing the [trade journal](/analytics/). Build the habit of glancing at the volume panel before every entry — the routine is worth having even where the data behind it is meaningless.
 
-For the actual skill, pull up real charts on any free charting site, compute the 20-day average yourself, and go back through breakouts that worked and breakouts that failed to compare relative volume on each. Then bring the trade management back to [Stockade's stock market simulator](/simulator), where $100,000 in virtual trading capital lets you rehearse everything except the one thing random numbers cannot show you.
+For the actual skill, pull up real charts on any free charting site, compute the 20-day average yourself, and go back through breakouts that worked and breakouts that failed to compare relative volume on each. Then bring the trade management back to [Stockade's stock market simulator](/simulator/), where $100,000 in virtual trading capital lets you rehearse everything except the one thing random numbers cannot show you.

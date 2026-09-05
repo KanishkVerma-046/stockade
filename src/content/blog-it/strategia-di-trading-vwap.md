@@ -21,9 +21,9 @@ Il prezzo tipico è `(massimo + minimo + chiusura) ÷ 3` — un unico numero che
 
 Questo differisce da una media mobile semplice o esponenziale in due modi indipendenti, ed entrambi contano.
 
-**Ponderazione.** Una SMA a 20 periodi dà a ciascuna delle sue 20 chiusure esattamente 1/20 del peso, sia che quella barra abbia scambiato 3.000 azioni sia 3 milioni. Il VWAP pesa ogni barra in base alle azioni effettivamente passate di mano in essa. Una barra ad alto volume muove molto il VWAP; una barra morta lo muove appena. Se vuoi il quadro completo di cosa il volume ti dice e cosa no, [il volume di trading ha il suo articolo dedicato](/blog/understanding-trading-volume).
+**Ponderazione.** Una SMA a 20 periodi dà a ciascuna delle sue 20 chiusure esattamente 1/20 del peso, sia che quella barra abbia scambiato 3.000 azioni sia 3 milioni. Il VWAP pesa ogni barra in base alle azioni effettivamente passate di mano in essa. Una barra ad alto volume muove molto il VWAP; una barra morta lo muove appena. Se vuoi il quadro completo di cosa il volume ti dice e cosa no, [il volume di trading ha il suo articolo dedicato](/blog/understanding-trading-volume/).
 
-**Finestra.** Una SMA è una finestra scorrevole che elimina la barra più vecchia ogni volta che ne arriva una nuova. Il VWAP non elimina nulla — ogni barra dall'apertura della sessione resta in entrambi i totali permanentemente. Quella natura cumulativa guida la maggior parte del comportamento del VWAP, incluso il suo peggior punto debole, trattato più sotto. Il [confronto tra EMA e SMA](/blog/moving-averages-ema-vs-sma) riguarda come ponderare le barre *recenti*; il VWAP non compete affatto in quella gara.
+**Finestra.** Una SMA è una finestra scorrevole che elimina la barra più vecchia ogni volta che ne arriva una nuova. Il VWAP non elimina nulla — ogni barra dall'apertura della sessione resta in entrambi i totali permanentemente. Quella natura cumulativa guida la maggior parte del comportamento del VWAP, incluso il suo peggior punto debole, trattato più sotto. Il [confronto tra EMA e SMA](/blog/moving-averages-ema-vs-sma/) riguarda come ponderare le barre *recenti*; il VWAP non compete affatto in quella gara.
 
 In parole semplici: una media mobile è un filtro di smussamento applicato al prezzo. Il VWAP è un fatto contabile sulle transazioni eseguite.
 
@@ -91,7 +91,7 @@ Alcune piattaforme aggiungono bande di deviazione standard — VWAP più e meno 
 
 **Diventa più lento per tutta la sessione.** Alle 15:30, il denominatore contiene sei ore di volume. Una singola nuova barra muove appena la media, non importa quanto sia violenta. Il VWAP è al massimo della sua reattività quando è meno affidabile e al massimo della sua affidabilità quando è meno reattivo, e nulla lo risolve — è aritmetica.
 
-**È privo di significato oltre il timeframe intraday.** Una media di sessione cumulativa non ha interpretazione su un grafico giornaliero o settimanale. Non c'è una sessione a cui azzerarsi. Se stai mantenendo posizioni attraverso i giorni, il VWAP non è il tuo strumento; vedi [day trading contro swing trading](/blog/day-trading-vs-swing-trading) per cosa cambia con il periodo di detenzione.
+**È privo di significato oltre il timeframe intraday.** Una media di sessione cumulativa non ha interpretazione su un grafico giornaliero o settimanale. Non c'è una sessione a cui azzerarsi. Se stai mantenendo posizioni attraverso i giorni, il VWAP non è il tuo strumento; vedi [day trading contro swing trading](/blog/day-trading-vs-swing-trading/) per cosa cambia con il periodo di detenzione.
 
 **Vale quanto i dati di volume dietro di esso.** Il VWAP è una statistica ponderata per volume, quindi dati di volume scadenti producono una linea sbagliata con sicurezza. Feed retail che perdono le stampe fuori borsa, o strumenti dove il volume riportato non è affidabile, ti daranno un VWAP contro cui nessuna istituzione sta effettivamente misurandosi.
 

@@ -37,12 +37,12 @@ Isso difere de uma média móvel simples ou exponencial de duas formas independe
 essa barra negociado 3.000 ações ou 3 milhões. O VWAP pondera cada barra pelas ações que realmente trocaram
 de mãos nela. Uma barra de alto volume move o VWAP bastante; uma barra morta quase não o move. Se você
 quiser o quadro completo do que volume revela e não revela,
-[trading de volume tem seu próprio artigo](/blog/understanding-trading-volume).
+[trading de volume tem seu próprio artigo](/blog/understanding-trading-volume/).
 
 **Janela.** Uma SMA é uma janela rolante que descarta a barra mais antiga toda vez que uma nova chega. O
 VWAP não descarta nada — toda barra desde a abertura da sessão permanece em ambos os totais
 permanentemente. Essa natureza cumulativa comanda a maior parte do comportamento do VWAP, incluindo sua
-pior fraqueza, coberta abaixo. A [comparação EMA versus SMA](/blog/moving-averages-ema-vs-sma) é sobre como
+pior fraqueza, coberta abaixo. A [comparação EMA versus SMA](/blog/moving-averages-ema-vs-sma/) é sobre como
 ponderar barras *recentes*; o VWAP nem está competindo nessa disputa.
 
 Dito claramente: uma média móvel é um filtro de suavização aplicado ao preço. O VWAP é um fato contábil
@@ -159,7 +159,7 @@ menos confiável e mais confiável quando é menos responsivo, e nada conserta i
 **Ele não tem sentido acima do período intraday.** Uma média cumulativa de sessão não tem interpretação num
 gráfico diário ou semanal. Não há sessão para reiniciar. Se você está mantendo posições através de vários
 dias, o VWAP não é sua ferramenta; veja
-[day trading versus swing trading](/blog/day-trading-vs-swing-trading) para o que muda com o período de
+[day trading versus swing trading](/blog/day-trading-vs-swing-trading/) para o que muda com o período de
 manutenção.
 
 **Ele só é tão bom quanto os dados de volume por trás dele.** O VWAP é uma estatística ponderada por

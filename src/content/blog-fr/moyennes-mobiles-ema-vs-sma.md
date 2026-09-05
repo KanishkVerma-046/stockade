@@ -67,7 +67,7 @@ Stockade affiche les trois sur le graphique dans des couleurs distinctes — EMA
 
 ## Utiliser les moyennes mobiles comme support et résistance dynamiques
 
-Les [niveaux de support et de résistance](/blog/support-and-resistance-levels) horizontaux sont des prix fixes. Une moyenne mobile est un niveau qui bouge avec le marché, ce qui la rend utile dans les tendances où une ligne fixe devient obsolète en une heure. Dans une tendance haussière saine, le prix se replie, touche ou casse légèrement une EMA montante, puis reprend sa route — les traders appellent cela « surfer sur la 20 ». Dans une tendance baissière, la même ligne agit comme un plafond contre lequel les rebonds échouent.
+Les [niveaux de support et de résistance](/blog/support-and-resistance-levels/) horizontaux sont des prix fixes. Une moyenne mobile est un niveau qui bouge avec le marché, ce qui la rend utile dans les tendances où une ligne fixe devient obsolète en une heure. Dans une tendance haussière saine, le prix se replie, touche ou casse légèrement une EMA montante, puis reprend sa route — les traders appellent cela « surfer sur la 20 ». Dans une tendance baissière, la même ligne agit comme un plafond contre lequel les rebonds échouent.
 
 Soyez honnête sur ce que c'est réellement. L'EMA n'est pas une barrière ; c'est une ligne descriptive qui se trouve là où les achats récents se sont concentrés, et elle échoue régulièrement. Si vous la traitez comme un support, vous avez quand même besoin d'un stop en dessous — « le prix a rebondi sur la 20 les trois dernières fois » décrit trois événements, pas une propriété de l'instrument.
 
@@ -77,7 +77,7 @@ La règle mécanique classique : acheter quand une moyenne mobile rapide croise 
 
 Dans un marché en range, c'est une déchiqueteuse. Imaginez un prix oscillant entre environ 184 et 188. L'EMA 9 croise au-dessus de l'EMA 20 à 186.40 — vous achetez. Six barres plus tard, le prix retombe à 185.20 et les lignes recroisent — vous vendez pour une perte de $1.20. Quatre barres après, elles croisent de nouveau à la hausse à 186.10 — vous achetez — et le prix retombe à 185.00, encore $1.10 de perdus. Deux trades, aucune tendance, et vous êtes en baisse de $2.30 par action avant tout coût, uniquement parce qu'un marché latéral fait croiser encore et encore deux lignes presque identiques. C'est le **whipsaw** (faux signal en dents de scie), et ce n'est pas un bug dans les réglages. C'est ce qui se produit quand vous appliquez un outil suiveur de tendance à un marché qui n'a pas de tendance.
 
-La parade n'est pas une meilleure période. C'est un filtre : ne prendre les croisements que lorsque la ligne lente est clairement inclinée, ou exiger une confirmation par quelque chose qui mesure autre chose, comme le [MACD](/blog/macd-explained) — lui-même construit à partir d'EMA — ou une référence ancrée sur le volume comme le [VWAP](/blog/vwap-trading-strategy).
+La parade n'est pas une meilleure période. C'est un filtre : ne prendre les croisements que lorsque la ligne lente est clairement inclinée, ou exiger une confirmation par quelque chose qui mesure autre chose, comme le [MACD](/blog/macd-explained/) — lui-même construit à partir d'EMA — ou une référence ancrée sur le volume comme le [VWAP](/blog/vwap-trading-strategy/).
 
 ## Lire la pente d'une moyenne mobile comme filtre de tendance
 

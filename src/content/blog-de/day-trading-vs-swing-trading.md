@@ -65,7 +65,7 @@ Nehmen Sie ein Konto mit 50.000 $, das 1 % — **500 $** — pro Trade riskiert,
 - **Day Trade.** Stop bei 29,60, also ist der Stop-Abstand 0,40. Aktien = 500 $ ÷ 0,40 = **1.250 Aktien**. Nominale Position: 1.250 × 30,00 = **37.500 $**.
 - **Swing Trade.** Stop bei 26,00, also ist der Stop-Abstand 4,00. Aktien = 500 $ ÷ 4,00 = **125 Aktien**. Nominale Position: 125 × 30,00 = **3.750 $**.
 
-Dasselbe Risiko von 500 $. Zehnmal die Stückzahl und zehnmal das eingesetzte Kapital beim Day Trade. Die vollständige Arithmetik dahinter finden Sie in [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing).
+Dasselbe Risiko von 500 $. Zehnmal die Stückzahl und zehnmal das eingesetzte Kapital beim Day Trade. Die vollständige Arithmetik dahinter finden Sie in [Positionsgrößenbestimmung und die 1-%-Regel](/blog/risk-management-position-sizing/).
 
 Diese Stückzahl ist auch, wo Kosten zubeißen. Angenommen, der Bid-Ask-Spread ist 0,02 und Sie überqueren ihn hin und zurück, etwa ein Spread pro Hin- und Rückweg:
 
@@ -78,7 +78,7 @@ Die Annahmen sind illustrativ, aber die Form nicht: Häufigkeit multipliziert Re
 
 Day Trading gibt Ihnen Dutzende abgeschlossener Ergebnisse pro Woche. Das ist wirklich der schnellste Weg, Mustererkennung zu lernen, und auch der schnellste Weg, sich zu entladen. Drei Verluste vor 10:30 lassen Sie vor einem lebenden Markt sitzen, mit den Mitteln, nach Ihrer Frustration zu handeln, und Revenge-Trading ist die direkte Folge. Die Feedbackschleife, die Sie lehrt, bringt Sie auch aus der Fassung.
 
-Swing Trading gibt Ihnen eine Handvoll abgeschlossener Ergebnisse pro Monat. Lernen geht langsamer, und es dauert weit länger, zu wissen, ob Ihr Edge echt ist oder Sie Glück hatten. Aber die Lücke zwischen Impuls und Handlung wird in Stunden gemessen, was genug Zeit für die meisten schlechten Entscheidungen ist, um von selbst zu sterben. Egal, wofür Sie sich entscheiden, die studierenswerten [häufigen Day-Trading-Fehler](/blog/common-day-trading-mistakes) sind größtenteils Versagen dieser Lücke.
+Swing Trading gibt Ihnen eine Handvoll abgeschlossener Ergebnisse pro Monat. Lernen geht langsamer, und es dauert weit länger, zu wissen, ob Ihr Edge echt ist oder Sie Glück hatten. Aber die Lücke zwischen Impuls und Handlung wird in Stunden gemessen, was genug Zeit für die meisten schlechten Entscheidungen ist, um von selbst zu sterben. Egal, wofür Sie sich entscheiden, die studierenswerten [häufigen Day-Trading-Fehler](/blog/common-day-trading-mistakes/) sind größtenteils Versagen dieser Lücke.
 
 ## Die ehrlichen Chancen, und wie Sie den passenden Stil wählen
 
@@ -86,7 +86,7 @@ Die meisten Day-Trader verlieren Geld. Das ist der wiederholte Befund einer Stud
 
 Häufiger zu traden ist auch nicht dasselbe wie besser zu traden. Häufigkeit multipliziert Kosten, Fehler und emotionale Last, ohne den Edge zu multiplizieren. Ein Trader, der drei gute Swing-Setups im Monat nimmt, liegt nicht hinter einem, der dreißig mittelmäßige Intraday-Setups nimmt.
 
-Wählen Sie also nach Passung. Day Trading passt zu Ihnen, wenn Ihre Stunden während der Session wirklich frei sind, Sie 25.000 $ haben oder erreichen können, falls Sie in den USA sind, Sie unter Tempo ruhig bleiben, und Sie auf Kommando für den Tag aufhören können. Swing Trading passt zu Ihnen, wenn Ihre Aufmerksamkeit während der Handelszeiten anderswo gebunden ist, Ihr Konto kleiner ist, Sie eine Position eine Woche lang in Ruhe lassen können, und Sie einen Gap absorbieren können, ohne dass er Sie zerstört. Keine Antwort ist ernsthafter als die andere. Wofür Sie sich auch entscheiden, schreiben Sie es in einen [Trading-Plan](/blog/how-to-build-a-trading-plan), bevor Sie danach handeln, damit der Stil eine Entscheidung ist, keine Stimmung.
+Wählen Sie also nach Passung. Day Trading passt zu Ihnen, wenn Ihre Stunden während der Session wirklich frei sind, Sie 25.000 $ haben oder erreichen können, falls Sie in den USA sind, Sie unter Tempo ruhig bleiben, und Sie auf Kommando für den Tag aufhören können. Swing Trading passt zu Ihnen, wenn Ihre Aufmerksamkeit während der Handelszeiten anderswo gebunden ist, Ihr Konto kleiner ist, Sie eine Position eine Woche lang in Ruhe lassen können, und Sie einen Gap absorbieren können, ohne dass er Sie zerstört. Keine Antwort ist ernsthafter als die andere. Wofür Sie sich auch entscheiden, schreiben Sie es in einen [Trading-Plan](/blog/how-to-build-a-trading-plan/), bevor Sie danach handeln, damit der Stil eine Entscheidung ist, keine Stimmung.
 
 ## Üben Sie das im Simulator
 

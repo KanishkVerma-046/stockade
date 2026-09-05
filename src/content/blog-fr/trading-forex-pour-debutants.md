@@ -57,7 +57,7 @@ USD/JPY, non. Sa devise de cotation est le yen, donc un lot standard rapporte 10
 
 </div>
 
-Ce sont les petits lots qui rendent le dimensionnement forex viable sur un petit compte. Avec $5,000 et un risque de 1% par trade — $50 — sur une configuration EUR/USD avec un stop de 25 pips, il vous faut une valeur de pip de 50 ÷ 25 = **$2.00**, soit 2 mini lots, ou 20,000 unités. Valeur notionnelle : 20,000 × 1.0872 = **$21,744**. Quatre fois votre compte contrôlé avec $50 à risque. [La formule de dimensionnement de position](/blog/risk-management-position-sizing) fonctionne ici de façon identique ; seule l'unité change, passant du risque par action au risque par pip.
+Ce sont les petits lots qui rendent le dimensionnement forex viable sur un petit compte. Avec $5,000 et un risque de 1% par trade — $50 — sur une configuration EUR/USD avec un stop de 25 pips, il vous faut une valeur de pip de 50 ÷ 25 = **$2.00**, soit 2 mini lots, ou 20,000 unités. Valeur notionnelle : 20,000 × 1.0872 = **$21,744**. Quatre fois votre compte contrôlé avec $50 à risque. [La formule de dimensionnement de position](/blog/risk-management-position-sizing/) fonctionne ici de façon identique ; seule l'unité change, passant du risque par action au risque par pip.
 
 ## Le spread est le principal coût que vous payez en forex retail
 
@@ -86,7 +86,7 @@ Lisez la dernière ligne et le piège saute aux yeux. Avec $2,000 et un levier d
 
 Le discours marketing veut que l'effet de levier permette à un petit compte d'accéder à un grand marché. Le discours honnête est que le levier multiplie un résultat dont vous ne contrôlez pas le signe : il multiplie gains et pertes par le même facteur et ne change absolument pas votre espérance par trade, donc si votre stratégie perd de l'argent en moyenne, le levier n'est pas un chemin plus rapide vers le profit mais un chemin plus rapide vers zéro. Les courtiers régulés dans l'UE et au Royaume-Uni doivent publier la part de comptes retail qui perdent de l'argent, et les chiffres divulgués se situent généralement dans la fourchette de 70 à 80% ; les pertes liées à l'effet de levier en sont la raison dominante.
 
-Traitez l'effet de levier comme une capacité que vous déclinez la plupart du temps : dimensionnez à partir de votre distance de stop et de votre budget de risque, et laissez l'exigence de marge tomber où elle tombe. [Les futures ont une mécanique de levier similaire](/blog/futures-trading-explained) via la marge sur contrat, et la même discipline s'applique.
+Traitez l'effet de levier comme une capacité que vous déclinez la plupart du temps : dimensionnez à partir de votre distance de stop et de votre budget de risque, et laissez l'exigence de marge tomber où elle tombe. [Les futures ont une mécanique de levier similaire](/blog/futures-trading-explained/) via la marge sur contrat, et la même discipline s'applique.
 
 ## Majeures, mineures, exotiques, et la semaine de trading 24 heures
 
@@ -94,7 +94,7 @@ Les paires sont regroupées par liquidité. Les **majeures** incluent toutes le 
 
 Le forex tourne 24 heures sur 24, cinq jours par semaine, ouvrant avec Sydney vers 17h ET le dimanche et fermant à 17h ET le vendredi, avec quatre sessions régionales qui se relaient : Sydney, Tokyo, Londres, New York. Le volume le plus lourd se trouve au **chevauchement Londres–New York**, environ de 8h à 12h ET, quand les deux plus grands centres sont ouverts — les spreads y sont les plus serrés et les mouvements les plus amples. Les heures où seule l'Asie est ouverte sont généralement calmes et confinées à un range.
 
-Un accès permanent n'est pas une invitation à trader en permanence. Choisissez la fenêtre qui convient à vos configurations et à votre vie ; que ce soit un chevauchement de deux heures ou une position tenue sur plusieurs jours relève de la décision entre [day trading et swing trading](/blog/day-trading-vs-swing-trading). Et bien que la semaine soit continue, le forex présente des gaps le week-end — le lundi peut ouvrir loin de la clôture du vendredi, au-delà de tout stop resté en attente entre-temps.
+Un accès permanent n'est pas une invitation à trader en permanence. Choisissez la fenêtre qui convient à vos configurations et à votre vie ; que ce soit un chevauchement de deux heures ou une position tenue sur plusieurs jours relève de la décision entre [day trading et swing trading](/blog/day-trading-vs-swing-trading/). Et bien que la semaine soit continue, le forex présente des gaps le week-end — le lundi peut ouvrir loin de la clôture du vendredi, au-delà de tout stop resté en attente entre-temps.
 
 ## Ce que les trois paires de devises de Stockade peuvent et ne peuvent pas vous enseigner
 

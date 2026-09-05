@@ -71,7 +71,7 @@ La solución es poner el stop debajo de toda la zona y dejar que el tamaño de l
 
 Ahora la mecha hasta 249.20 no te toca. El precio cierra en 251.30 y corre hasta 254.00. Tu ganancia es 3.60 por acción × 62 = **$223.20**, o 2.48 veces lo que arriesgaste.
 
-Compara con honestidad. El stop ajustado te habría dejado sostener 100 acciones en lugar de 62, y de haber funcionado limpiamente habrías ganado $360 en lugar de $223.20 — un stop más amplio genuinamente limita tu ganancia potencial. Pero la versión de stop ajustado no ganó $360. Perdió $90, porque nunca sobrevivió lo suficiente para tener razón. Un stop no es el lugar donde las pérdidas son menores; es el precio que demuestra que tu idea estaba equivocada. [Las órdenes stop-loss](/blog/stop-loss-orders-explained) profundizan en esa distinción.
+Compara con honestidad. El stop ajustado te habría dejado sostener 100 acciones en lugar de 62, y de haber funcionado limpiamente habrías ganado $360 en lugar de $223.20 — un stop más amplio genuinamente limita tu ganancia potencial. Pero la versión de stop ajustado no ganó $360. Perdió $90, porque nunca sobrevivió lo suficiente para tener razón. Un stop no es el lugar donde las pérdidas son menores; es el precio que demuestra que tu idea estaba equivocada. [Las órdenes stop-loss](/blog/stop-loss-orders-explained/) profundizan en esa distinción.
 
 ## Inversión de rol: por qué una resistencia rota se vuelve soporte
 

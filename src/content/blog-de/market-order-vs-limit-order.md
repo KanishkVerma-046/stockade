@@ -84,7 +84,7 @@ Sie tauschen ein wenig Ausführungssicherheit gegen eine harte Obergrenze für d
 
 Es gibt eine Situation, in der eine Market-Order nicht nur akzeptabel, sondern korrekt ist: **eine Position verlassen, die gegen Sie läuft.**
 
-Wird Ihr Stop-Niveau durchbrochen und Sie müssen glattstellen, ist Ausführungssicherheit der ganze Punkt. Ein Limit-Ausstieg zu Ihrem Wunschpreis kann unausgeführt sitzen bleiben, während sich der Verlust vergrößert, und ein kleiner Verlust, der nicht ausgeführt wird, wird zu einem großen, der es irgendwann wird. Die Alternative dazu, ein paar zusätzliche Cent zu zahlen, ist nicht „eine bessere Ausführung", sondern „immer noch halten." Deshalb lösen [Stop-Loss-Orders](/blog/stop-loss-orders-explained) typischerweise eine Market-Order aus, sobald der Stop-Preis gehandelt wird.
+Wird Ihr Stop-Niveau durchbrochen und Sie müssen glattstellen, ist Ausführungssicherheit der ganze Punkt. Ein Limit-Ausstieg zu Ihrem Wunschpreis kann unausgeführt sitzen bleiben, während sich der Verlust vergrößert, und ein kleiner Verlust, der nicht ausgeführt wird, wird zu einem großen, der es irgendwann wird. Die Alternative dazu, ein paar zusätzliche Cent zu zahlen, ist nicht „eine bessere Ausführung", sondern „immer noch halten." Deshalb lösen [Stop-Loss-Orders](/blog/stop-loss-orders-explained/) typischerweise eine Market-Order aus, sobald der Stop-Preis gehandelt wird.
 
 Dieselbe Logik gilt für jede echte Dringlichkeit: vor einer geplanten Ankündigung schließen, aussteigen, wenn Ihre These gebrochen ist, am Ende Ihrer Session glattstellen. Wenn Sie raus müssen, müssen Sie raus.
 
@@ -96,9 +96,9 @@ Fast überall sonst.
 
 **Illiquide Instrumente.** Wo der Spread 0,25 statt 0,04 beträgt, gibt eine Market-Order auf beiden Seiten des Trades echtes Geld weg.
 
-**Geduldiges Skalieren.** Wollen Sie 900 Aktien, stapeln Sie Limits auf drei Niveaus — 300 bei 24,80, 300 bei 24,65, 300 bei 24,50 — und akzeptieren Sie, dass Sie vielleicht nur einen Teil davon bekommen. Das wirkt direkt auf Ihre [Positionsgrößenbestimmung](/blog/risk-management-position-sizing): Ein teilweise ausgeführter Einstieg ist eine kleinere Position, und Ihre Risikoberechnung sollte die tatsächlich erhaltene Größe widerspiegeln.
+**Geduldiges Skalieren.** Wollen Sie 900 Aktien, stapeln Sie Limits auf drei Niveaus — 300 bei 24,80, 300 bei 24,65, 300 bei 24,50 — und akzeptieren Sie, dass Sie vielleicht nur einen Teil davon bekommen. Das wirkt direkt auf Ihre [Positionsgrößenbestimmung](/blog/risk-management-position-sizing/): Ein teilweise ausgeführter Einstieg ist eine kleinere Position, und Ihre Risikoberechnung sollte die tatsächlich erhaltene Größe widerspiegeln.
 
-**Ausstiege bei einem Ziel.** Ein Gewinnziel ist per Definition nicht dringend, also ist ein Limit bei Ihrem Preis genau richtig. Ein Limit-Take-Profit mit einem Stop-Loss-Ausstieg zu paaren ist die Struktur hinter [OCO- und Bracket-Orders](/blog/oco-and-bracket-orders).
+**Ausstiege bei einem Ziel.** Ein Gewinnziel ist per Definition nicht dringend, also ist ein Limit bei Ihrem Preis genau richtig. Ein Limit-Take-Profit mit einem Stop-Loss-Ausstieg zu paaren ist die Struktur hinter [OCO- und Bracket-Orders](/blog/oco-and-bracket-orders/).
 
 ## Die Limit-Order, die nie ausgeführt wird, hat ihre eigenen Kosten
 

@@ -29,14 +29,14 @@ Nichts davon erfordert, dass sich der Markt an irgendetwas „erinnert." Die Eri
 
 ## Wie man Niveaus aus Swing-Hochs und Swing-Tiefs identifiziert
 
-Ein Swing-Tief ist eine Kerze, deren Tief niedriger ist als die Tiefs auf beiden Seiten — ein lokaler Boden. Ein Swing-Hoch ist das Gegenteil. Das sind die Punkte, an denen der Preis anhielt und drehte, was bedeutet, dass genug gegensätzliche Orders auftauchten, um das Ergebnis zu ändern. Sind Sie noch nicht sicher mit der Kerzenanatomie, behandelt [Candlestick-Charts lesen](/blog/how-to-read-candlestick-charts) Eröffnung, Höchst, Tiefst und Schluss im Detail.
+Ein Swing-Tief ist eine Kerze, deren Tief niedriger ist als die Tiefs auf beiden Seiten — ein lokaler Boden. Ein Swing-Hoch ist das Gegenteil. Das sind die Punkte, an denen der Preis anhielt und drehte, was bedeutet, dass genug gegensätzliche Orders auftauchten, um das Ergebnis zu ändern. Sind Sie noch nicht sicher mit der Kerzenanatomie, behandelt [Candlestick-Charts lesen](/blog/how-to-read-candlestick-charts/) Eröffnung, Höchst, Tiefst und Schluss im Detail.
 
 Die praktische Methode ist unglamourös:
 
 1. Zoomen Sie weiter heraus, als sich nötig anfühlt. Ein Niveau, das nur auf einem 5-Minuten-Chart sichtbar ist, ist dünn; eines, das auf dem Tageschart sichtbar ist, ist ein Niveau, das Tausende sehen können.
 2. Markieren Sie jedes Swing-Hoch und Swing-Tief der letzten Monate.
 3. Suchen Sie nach Preisen, wo sich mehrere Wendepunkte in einem engen Band ballen. Zwei Berührungen sind ein Zufall mit einer Geschichte dazu. Drei oder mehr sind ein Niveau.
-4. Beachten Sie, welche Berührungen starkes Volumen hatten — dort wechselten viele Aktien den Besitzer, was bedeutet, dass viele Positionen jetzt Meinungen zu diesem Preis haben. [Handelsvolumen](/blog/understanding-trading-volume) ist der Unterschied zwischen einem verteidigten Niveau und einem, das nur eingezeichnet ist.
+4. Beachten Sie, welche Berührungen starkes Volumen hatten — dort wechselten viele Aktien den Besitzer, was bedeutet, dass viele Positionen jetzt Meinungen zu diesem Preis haben. [Handelsvolumen](/blog/understanding-trading-volume/) ist der Unterschied zwischen einem verteidigten Niveau und einem, das nur eingezeichnet ist.
 
 Widerstehen Sie, zwanzig Linien zu ziehen. Sieht Ihr Chart aus wie Millimeterpapier, wird jede Bewegung scheinbar „auf ein Niveau reagieren", und Sie haben nichts gelernt.
 
@@ -70,7 +70,7 @@ Die Lösung ist, den Stop unter die gesamte Zone zu setzen und die Positionsgrö
 
 Jetzt berührt Sie der Docht bis 249,20 nicht. Der Preis schließt bei 251,30 und läuft auf 254,00. Ihr Gewinn ist 3,60 pro Aktie × 62 = **223,20 $**, oder das 2,48-Fache dessen, was Sie riskiert haben.
 
-Vergleichen Sie ehrlich. Der enge Stop hätte Ihnen erlaubt, 100 statt 62 Aktien zu halten, und wäre es sauber aufgegangen, hätten Sie 360 $ statt 223,20 $ verdient — ein breiterer Stop deckelt tatsächlich Ihr Aufwärtspotenzial. Aber die Enge-Stop-Version verdiente nicht 360 $. Sie machte −90 $, weil sie nie lange genug überlebte, um richtig zu sein. Ein Stop ist nicht der Ort, an dem Verluste am kleinsten sind; er ist der Preis, der Ihre Idee als falsch beweist. [Stop-Loss-Orders](/blog/stop-loss-orders-explained) geht tiefer auf diese Unterscheidung ein.
+Vergleichen Sie ehrlich. Der enge Stop hätte Ihnen erlaubt, 100 statt 62 Aktien zu halten, und wäre es sauber aufgegangen, hätten Sie 360 $ statt 223,20 $ verdient — ein breiterer Stop deckelt tatsächlich Ihr Aufwärtspotenzial. Aber die Enge-Stop-Version verdiente nicht 360 $. Sie machte −90 $, weil sie nie lange genug überlebte, um richtig zu sein. Ein Stop ist nicht der Ort, an dem Verluste am kleinsten sind; er ist der Preis, der Ihre Idee als falsch beweist. [Stop-Loss-Orders](/blog/stop-loss-orders-explained/) geht tiefer auf diese Unterscheidung ein.
 
 ## Rollentausch: warum gebrochener Widerstand zu Unterstützung wird
 

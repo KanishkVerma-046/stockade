@@ -25,7 +25,7 @@ A **stop-market** order says: when price touches 185.90, sell at whatever the ma
 
 A **stop-limit** order says: when price touches 185.90, place a limit order to sell at no worse than 185.80. Now you control the price — but you no longer control whether you exit at all. If the next trade prints at 184.20, your limit sits unfilled at 185.80 while the market runs away below it. You are still holding a losing position, and the protection you thought you had is an order that will never fill. That is the trap. The stop-limit protects your fill price by abandoning the thing you actually wanted, which was to be out.
 
-The distinction matters most in exactly the conditions a stop exists for: fast, one-directional moves. Most traders should use stop-market orders for protective stops for that reason. The [difference between market and limit orders](/blog/market-orders-vs-limit-orders) is worth understanding in general, but here the asymmetry is stark — a slightly worse fill is a bad afternoon, an unfilled protective stop is a bad year.
+The distinction matters most in exactly the conditions a stop exists for: fast, one-directional moves. Most traders should use stop-market orders for protective stops for that reason. The [difference between market and limit orders](/blog/market-orders-vs-limit-orders/) is worth understanding in general, but here the asymmetry is stark — a slightly worse fill is a bad afternoon, an unfilled protective stop is a bad year.
 
 ## Put the stop where your trade idea is proven wrong
 
@@ -33,7 +33,7 @@ The most common way to place a stop is to decide how much money you are willing 
 
 It is not. The market has no idea what your account balance is. A stop at an arbitrary distance gets hit by ordinary noise, and the position closes while your original reason for the trade is still completely intact. You lose money without learning anything, because the trade was never actually tested. The stop belongs at the price that makes your reason for being in the trade false.
 
-Say you bought at 187.40 because price held a level at 186.15 twice and pushed off it. Your thesis is "buyers are defending 186.15." Below 186.15, that thesis is dead — not damaged, dead. Add a small buffer and place the stop at 185.90. Now the distance is defined by the chart, not by your comfort. If it triggers, you were wrong about something real, which is information. [Support and resistance levels](/blog/support-and-resistance-levels) are the raw material for this kind of placement.
+Say you bought at 187.40 because price held a level at 186.15 twice and pushed off it. Your thesis is "buyers are defending 186.15." Below 186.15, that thesis is dead — not damaged, dead. Add a small buffer and place the stop at 185.90. Now the distance is defined by the chart, not by your comfort. If it triggers, you were wrong about something real, which is information. [Support and resistance levels](/blog/support-and-resistance-levels/) are the raw material for this kind of placement.
 
 Your risk per share is 187.40 − 185.90 = **1.50**. That number is an output of the analysis, not an input. What you do with it comes next.
 
@@ -65,7 +65,7 @@ Now suppose the structure is wider and the honest invalidation is 183.90 — a 3
 
 Same $500 at risk. Completely different position. A wider stop does not mean more risk; it means fewer shares. The stop distance and the share count move in opposite directions to hold the loss constant.
 
-This also exposes the tight-stop fantasy. A 0.50 stop would allow 1,000 shares — but 1,000 × 187.40 is $187,400 of stock on a $100,000 account, which requires leverage, and the stop is close enough that routine noise takes it out repeatedly. [Position sizing and the 1% rule](/blog/risk-management-position-sizing) goes deeper on this arithmetic.
+This also exposes the tight-stop fantasy. A 0.50 stop would allow 1,000 shares — but 1,000 × 187.40 is $187,400 of stock on a $100,000 account, which requires leverage, and the stop is close enough that routine noise takes it out repeatedly. [Position sizing and the 1% rule](/blog/risk-management-position-sizing/) goes deeper on this arithmetic.
 
 <div class="table-wrap">
 
@@ -81,7 +81,7 @@ This also exposes the tight-stop fantasy. A 0.50 stop would allow 1,000 shares �
 
 A trailing stop follows price in your favor and never moves back. Long from 187.40 with a 2.50 trail: price runs to 194.00, the stop drags up to 191.50, and an exit there locks in 4.10 per share — 333 × 4.10 = **$1,365.30** — without you deciding anything.
 
-The trade-off is that a trailing stop always gives back the trail distance. You will never exit at the high, by construction. Trail too tightly and a normal pullback ends a trend trade early; trail too loosely and you hand back a large part of an open gain. There is no correct setting, only a choice about which regret you prefer. Trailing stops are often combined with a profit target through a bracket order, which [OCO and bracket orders](/blog/oco-and-bracket-orders) covers as an order type.
+The trade-off is that a trailing stop always gives back the trail distance. You will never exit at the high, by construction. Trail too tightly and a normal pullback ends a trend trade early; trail too loosely and you hand back a large part of an open gain. There is no correct setting, only a choice about which regret you prefer. Trailing stops are often combined with a profit target through a bracket order, which [OCO and bracket orders](/blog/oco-and-bracket-orders/) covers as an order type.
 
 ## Three honest things about stops
 
@@ -101,4 +101,4 @@ Real stops are far worse than that. Use the simulator for the parts it models ho
 
 ## Practice this on the simulator
 
-Take twenty trades where you write down the invalidation price *before* you write down the share count, then let the arithmetic set the size. Enter the stop level on the ticket at the same moment you open the position, and do not touch it afterwards — the discipline of leaving it alone is the skill, and it is far harder with real money than with virtual capital. Then check `/analytics` to see whether your losses cluster near your planned risk or run well past it. Start on [Stockade's paper trading simulator](/simulator).
+Take twenty trades where you write down the invalidation price *before* you write down the share count, then let the arithmetic set the size. Enter the stop level on the ticket at the same moment you open the position, and do not touch it afterwards — the discipline of leaving it alone is the skill, and it is far harder with real money than with virtual capital. Then check `/analytics` to see whether your losses cluster near your planned risk or run well past it. Start on [Stockade's paper trading simulator](/simulator/).

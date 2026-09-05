@@ -65,7 +65,7 @@ Prenons un compte de $50,000 risquant 1% — soit **$500** — par trade, sur un
 - **Day trade.** Stop à 29.60, donc la distance du stop est de 0.40. Actions = $500 ÷ 0.40 = **1,250 actions**. Position notionnelle : 1,250 × 30.00 = **$37,500**.
 - **Swing trade.** Stop à 26.00, donc la distance du stop est de 4.00. Actions = $500 ÷ 4.00 = **125 actions**. Position notionnelle : 125 × 30.00 = **$3,750**.
 
-Mêmes $500 à risque. Dix fois plus d'actions et dix fois plus de capital engagé sur le day trade. L'arithmétique complète derrière tout cela se trouve dans [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing).
+Mêmes $500 à risque. Dix fois plus d'actions et dix fois plus de capital engagé sur le day trade. L'arithmétique complète derrière tout cela se trouve dans [le dimensionnement de position et la règle du 1%](/blog/risk-management-position-sizing/).
 
 C'est aussi ce nombre d'actions qui fait mal du côté des coûts. Supposons que le spread bid-ask soit de 0.02 et que vous le traversiez à l'entrée et à la sortie, soit environ un spread par aller-retour :
 
@@ -78,7 +78,7 @@ Les hypothèses sont illustratives, mais la logique ne l'est pas : la fréquence
 
 Le day trading vous donne des dizaines de résultats résolus par semaine. C'est réellement le moyen le plus rapide d'apprendre la reconnaissance de motifs, et c'est aussi le moyen le plus rapide de craquer. Trois pertes avant 10h30 vous laissent assis devant un marché en direct avec les moyens d'agir sur votre frustration, et le trading de vengeance en est le résultat direct. La boucle de feedback qui vous enseigne est aussi celle qui vous déstabilise.
 
-Le swing trading vous donne une poignée de résultats résolus par mois. L'apprentissage est plus lent, et il faut bien plus de temps pour savoir si votre edge est réel ou si vous avez simplement eu de la chance. Mais l'écart entre l'impulsion et l'action se mesure en heures, ce qui est suffisant pour que la plupart des mauvaises décisions meurent d'elles-mêmes. Quel que soit votre choix, les [erreurs de day trading les plus courantes](/blog/common-day-trading-mistakes) qui méritent d'être étudiées sont surtout des échecs de cet écart.
+Le swing trading vous donne une poignée de résultats résolus par mois. L'apprentissage est plus lent, et il faut bien plus de temps pour savoir si votre edge est réel ou si vous avez simplement eu de la chance. Mais l'écart entre l'impulsion et l'action se mesure en heures, ce qui est suffisant pour que la plupart des mauvaises décisions meurent d'elles-mêmes. Quel que soit votre choix, les [erreurs de day trading les plus courantes](/blog/common-day-trading-mistakes/) qui méritent d'être étudiées sont surtout des échecs de cet écart.
 
 ## Les probabilités honnêtes, et comment choisir le style qui vous convient
 
@@ -86,7 +86,7 @@ La plupart des day traders perdent de l'argent. C'est la conclusion répétée d
 
 Trader plus fréquemment n'équivaut pas non plus à trader mieux. La fréquence multiplie les coûts, les erreurs et la charge émotionnelle sans multiplier l'edge. Un trader qui prend trois bonnes configurations de swing par mois n'est pas en retard sur celui qui en prend trente médiocres en intraday.
 
-Choisissez donc en fonction de votre adéquation. Le day trading vous convient si vos horaires sont réellement libres pendant la session, si vous disposez de $25,000 ou pouvez les atteindre aux États-Unis, si vous restez calme sous la pression de la vitesse, et si vous pouvez arrêter la journée sur commande. Le swing trading vous convient si votre attention est mobilisée ailleurs pendant les heures de marché, si votre compte est plus petit, si vous pouvez laisser une position tranquille pendant une semaine, et si vous pouvez absorber un gap sans qu'il vous détruise. Aucune des deux réponses n'est plus sérieuse que l'autre. Quel que soit votre choix, couchez-le dans un [plan de trading](/blog/how-to-build-a-trading-plan) avant de le mettre en pratique, afin que le style soit une décision et non une humeur.
+Choisissez donc en fonction de votre adéquation. Le day trading vous convient si vos horaires sont réellement libres pendant la session, si vous disposez de $25,000 ou pouvez les atteindre aux États-Unis, si vous restez calme sous la pression de la vitesse, et si vous pouvez arrêter la journée sur commande. Le swing trading vous convient si votre attention est mobilisée ailleurs pendant les heures de marché, si votre compte est plus petit, si vous pouvez laisser une position tranquille pendant une semaine, et si vous pouvez absorber un gap sans qu'il vous détruise. Aucune des deux réponses n'est plus sérieuse que l'autre. Quel que soit votre choix, couchez-le dans un [plan de trading](/blog/how-to-build-a-trading-plan/) avant de le mettre en pratique, afin que le style soit une décision et non une humeur.
 
 ## Pratiquez cela sur le simulateur
 

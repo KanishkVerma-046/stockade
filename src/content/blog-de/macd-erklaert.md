@@ -27,9 +27,9 @@ MACD steht für Moving Average Convergence Divergence — ein ehrlicher Name, de
 
 ### Die MACD-Linie
 
-Nehmen Sie einen exponentiellen gleitenden Durchschnitt der letzten 12 Balken und einen der letzten 26 Balken, und subtrahieren Sie den langsameren vom schnelleren. Wie ein EMA jüngere Balken stärker gewichtet als alte, siehe [gleitende Durchschnitte: EMA vs. SMA](/blog/moving-averages-ema-vs-sma).
+Nehmen Sie einen exponentiellen gleitenden Durchschnitt der letzten 12 Balken und einen der letzten 26 Balken, und subtrahieren Sie den langsameren vom schnelleren. Wie ein EMA jüngere Balken stärker gewichtet als alte, siehe [gleitende Durchschnitte: EMA vs. SMA](/blog/moving-averages-ema-vs-sma/).
 
-Konkret: Ist der 12-Perioden-EMA 188,40 und der 26-Perioden-EMA 186,90, zeigt die MACD-Linie 188,40 − 186,90 = **1,50**. Der schnelle Durchschnitt liegt 1,50 $ über dem langsamen. Diese Zahl steht in den eigenen Einheiten des Preises — hier Dollar, keine Prozentzahl und keine begrenzte 0-bis-100-Skala wie [RSI](/blog/rsi-indicator-overbought-oversold). Eine 400-$-Aktie erzeugt routinemäßig MACD-Werte zehnmal größer als eine 40-$-Aktie, weshalb MACD-Werte nie über Instrumente hinweg vergleichbar sind.
+Konkret: Ist der 12-Perioden-EMA 188,40 und der 26-Perioden-EMA 186,90, zeigt die MACD-Linie 188,40 − 186,90 = **1,50**. Der schnelle Durchschnitt liegt 1,50 $ über dem langsamen. Diese Zahl steht in den eigenen Einheiten des Preises — hier Dollar, keine Prozentzahl und keine begrenzte 0-bis-100-Skala wie [RSI](/blog/rsi-indicator-overbought-oversold/). Eine 400-$-Aktie erzeugt routinemäßig MACD-Werte zehnmal größer als eine 40-$-Aktie, weshalb MACD-Werte nie über Instrumente hinweg vergleichbar sind.
 
 ### Die Signallinie
 
@@ -95,7 +95,7 @@ Divergenz ist, wenn Preis und MACD sich über die Richtung uneinig sind.
 
 Divergenz ist es wert, beobachtet zu werden, und ist es nicht wert, allein gehandelt zu werden. Starke Trends erzeugen sie über lange Strecken — ein Aufwärtstrend kann über Dutzende Balken bärische Divergenz zeigen, während er neue Hochs macht, weil der anfängliche Schub einen Momentum-Höhepunkt setzte, den der Trend nie wieder erreichen muss. Divergenz sagt Ihnen, dass eine Bewegung müde ist, nicht, dass sie vorbei ist.
 
-Sie wird glaubwürdiger, wenn etwas Unabhängiges zustimmt: eine gebrochene Trendlinie, ein Scheitern an einem Niveau, das zuvor hielt, oder ein Volumenmuster, das der Preisbewegung widerspricht. [Volumen](/blog/understanding-trading-volume) ist hier nützliche Bestätigung, genau weil es aus einem anderen Input stammt als MACD. Zwei Indikatoren, abgeleitet aus denselben Schlusskursen, die übereinstimmen, ist keine Bestätigung; es ist Arithmetik.
+Sie wird glaubwürdiger, wenn etwas Unabhängiges zustimmt: eine gebrochene Trendlinie, ein Scheitern an einem Niveau, das zuvor hielt, oder ein Volumenmuster, das der Preisbewegung widerspricht. [Volumen](/blog/understanding-trading-volume/) ist hier nützliche Bestätigung, genau weil es aus einem anderen Input stammt als MACD. Zwei Indikatoren, abgeleitet aus denselben Schlusskursen, die übereinstimmen, ist keine Bestätigung; es ist Arithmetik.
 
 ## Warum MACD doppelt nachläuft und in Seitwärtsmärkten versagt
 

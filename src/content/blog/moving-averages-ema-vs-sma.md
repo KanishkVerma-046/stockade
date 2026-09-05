@@ -67,7 +67,7 @@ Stockade puts all three on the chart in distinct colors — EMA 9 amber, EMA 20 
 
 ## Using moving averages as dynamic support and resistance
 
-Horizontal [support and resistance levels](/blog/support-and-resistance-levels) are fixed prices. A moving average is a level that moves with the market, which makes it useful in trends where a fixed line goes stale within an hour. In a healthy uptrend, price pulls back, touches or slightly undercuts a rising EMA, and resumes — traders call this "riding the 20." In a downtrend the same line acts as a ceiling that rallies fail against.
+Horizontal [support and resistance levels](/blog/support-and-resistance-levels/) are fixed prices. A moving average is a level that moves with the market, which makes it useful in trends where a fixed line goes stale within an hour. In a healthy uptrend, price pulls back, touches or slightly undercuts a rising EMA, and resumes — traders call this "riding the 20." In a downtrend the same line acts as a ceiling that rallies fail against.
 
 Be honest about what this is. The EMA is not a barrier; it is a descriptive line that happens to sit where recent buying has been concentrated, and it fails routinely. If you treat one as support you still need a stop below it — "price bounced off the 20 the last three times" describes three events, not a property of the instrument.
 
@@ -77,7 +77,7 @@ The classic mechanical rule: buy when a fast MA crosses above a slow MA, sell wh
 
 In a range it is a shredder. Picture price oscillating between roughly 184 and 188. The EMA 9 crosses above the EMA 20 at 186.40 — you buy. Six bars later price rolls to 185.20 and the lines cross back — you sell for a $1.20 loss. Four bars on they cross up again at 186.10 — you buy — and price fades to 185.00, another $1.10 gone. Two trades, no trend, and you are down $2.30 per share before any costs, purely because a sideways market makes two nearly identical lines cross over and over. That is **whipsaw**, and it is not a bug in the settings. It is what happens when you apply a trend-following tool to a market that has no trend.
 
-The defense is not a better period. It is a filter: only take crossovers when the slow line is clearly sloped, or require confirmation from something that measures a different thing, like [MACD](/blog/macd-explained) — which is itself built from EMAs — or a volume-anchored reference such as [VWAP](/blog/vwap-trading-strategy).
+The defense is not a better period. It is a filter: only take crossovers when the slow line is clearly sloped, or require confirmation from something that measures a different thing, like [MACD](/blog/macd-explained/) — which is itself built from EMAs — or a volume-anchored reference such as [VWAP](/blog/vwap-trading-strategy/).
 
 ## Reading moving average slope as a trend filter
 
@@ -99,4 +99,4 @@ What a moving average genuinely gives you is a consistent, unemotional descripti
 
 Pull up a chart on Stockade and toggle off everything except the EMA 20. Watch a few hundred bars and note where price respects it and where it slices straight through. Then turn on the EMA 9 and 50 and count how many crossovers happened while the EMA 50 was clearly sloped versus flat — that count is the whole argument for the slope filter, in your own data.
 
-Bear in mind what you are practicing on: Stockade's prices are generated in the browser, not sourced from any exchange, so these EMAs describe a simulated market. The arithmetic and the reading habits are identical; the instrument underneath is fictional. Step through a generated session candle-by-candle on the chart simulator so you can pause at each crossover and commit before the next bar reveals the answer. Start on [Stockade's stock market simulator](/simulator).
+Bear in mind what you are practicing on: Stockade's prices are generated in the browser, not sourced from any exchange, so these EMAs describe a simulated market. The arithmetic and the reading habits are identical; the instrument underneath is fictional. Step through a generated session candle-by-candle on the chart simulator so you can pause at each crossover and commit before the next bar reveals the answer. Start on [Stockade's stock market simulator](/simulator/).

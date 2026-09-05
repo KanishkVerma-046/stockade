@@ -68,7 +68,7 @@ Stockade pone las tres en el gráfico en colores distintos — EMA 9 ámbar, EMA
 
 ## Usar medias móviles como soporte y resistencia dinámicos
 
-Los [niveles de soporte y resistencia](/blog/support-and-resistance-levels) horizontales son precios fijos. Una media móvil es un nivel que se mueve con el mercado, lo cual la hace útil en tendencias donde una línea fija queda obsoleta en una hora. En una tendencia alcista saludable, el precio retrocede, toca o perfora ligeramente una EMA ascendente, y reanuda — los traders llaman a esto "cabalgar la 20". En una tendencia bajista, la misma línea actúa como techo contra el que fallan los rebotes.
+Los [niveles de soporte y resistencia](/blog/support-and-resistance-levels/) horizontales son precios fijos. Una media móvil es un nivel que se mueve con el mercado, lo cual la hace útil en tendencias donde una línea fija queda obsoleta en una hora. En una tendencia alcista saludable, el precio retrocede, toca o perfora ligeramente una EMA ascendente, y reanuda — los traders llaman a esto "cabalgar la 20". En una tendencia bajista, la misma línea actúa como techo contra el que fallan los rebotes.
 
 Sé honesto sobre lo que es esto. La EMA no es una barrera; es una línea descriptiva que resulta estar donde se ha concentrado la compra reciente, y falla rutinariamente. Si tratas una como soporte, de todas formas necesitas un stop debajo — "el precio rebotó en la 20 las últimas tres veces" describe tres eventos, no una propiedad del instrumento.
 

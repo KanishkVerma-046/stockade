@@ -54,7 +54,7 @@ Beachten Sie, was das bedeutet. Um 70 zu drucken, müssen Aufwärtsbewegungen nu
 
 Wilder wählte 70 und 30. Er hätte 75 und 25 wählen können. Es gibt keine Herleitung dahinter, keine statistische Schwelle, an der sich Verhalten ändert, keinen Mechanismus, der bei 70,0 ein- und bei 69,9 ausschaltet. Es sind runde Zahlen, die auf den Charts, die er in den 1970ern studierte, vernünftig aussahen, und sie blieben, weil jeder die Standards kopierte. Die meiste Chart-Software zeichnet diese Linien für Sie, was die Vorstellung, sie seien Grenzen, still verstärkt. Stockades Chart tut dasselbe — schalten Sie das untere Panel auf RSI, bekommen Sie gestrichelte Linien bei 70 und 30. Es sind Referenzmarken, keine Urteile.
 
-Dasselbe gilt für die 14-Perioden-Rückblickzeit. Eine kürzere Einstellung wie 7 reagiert schneller und trifft ständig die Extreme; eine längere wie 21 erreicht sie selten. Die Periode ändert, wie oft Sie ein Signal sehen, nicht wie verlässlich es ist — derselbe Kompromiss, der [die Wahl einer gleitenden-Durchschnitts-Länge](/blog/moving-averages-ema-vs-sma) bestimmt.
+Dasselbe gilt für die 14-Perioden-Rückblickzeit. Eine kürzere Einstellung wie 7 reagiert schneller und trifft ständig die Extreme; eine längere wie 21 erreicht sie selten. Die Periode ändert, wie oft Sie ein Signal sehen, nicht wie verlässlich es ist — derselbe Kompromiss, der [die Wahl einer gleitenden-Durchschnitts-Länge](/blog/moving-averages-ema-vs-sma/) bestimmt.
 
 ## Überkauft bedeutet stark, nicht „kurz vor der Umkehr"
 
@@ -85,7 +85,7 @@ Divergenz ist eine Uneinigkeit zwischen Preis und Dynamik.
 
 Um eine zu lesen, markieren Sie zwei Swing-Punkte derselben Art im Preis — zwei klare Hochs oder zwei klare Tiefs — und vergleichen Sie RSI bei jedem. Es zählt nur, wenn die zwei vergleichbare Swings mit einem echten Rücksetzer dazwischen sind; Linien zwischen willkürlichen Balken zu ziehen erzeugt auf fast jedem Chart eine Divergenz, weshalb sie im Nachhinein so leicht zu sehen sind.
 
-Seien Sie direkt über die Trefferrate: Divergenz versagt oft, und sie versagt am schlimmsten genau dort, wo sie am verlockendsten aussieht. Ein starker Trend druckt auf dem Weg nach oben drei oder vier bärische Divergenzen, und nur die letzte markiert überhaupt etwas — jede frühere ist eine Falle, die Geld kostet. Behandeln Sie Divergenz als Grund, einen Stop zu straffen oder einen Gewinner nicht weiter aufzustocken, nicht als eigenständigen Einstieg gegen den Trend. Stärke bei einem Divergenzsignal zu faden ist eine der [teureren Gewohnheiten, die neue Trader entwickeln](/blog/common-day-trading-mistakes).
+Seien Sie direkt über die Trefferrate: Divergenz versagt oft, und sie versagt am schlimmsten genau dort, wo sie am verlockendsten aussieht. Ein starker Trend druckt auf dem Weg nach oben drei oder vier bärische Divergenzen, und nur die letzte markiert überhaupt etwas — jede frühere ist eine Falle, die Geld kostet. Behandeln Sie Divergenz als Grund, einen Stop zu straffen oder einen Gewinner nicht weiter aufzustocken, nicht als eigenständigen Einstieg gegen den Trend. Stärke bei einem Divergenzsignal zu faden ist eine der [teureren Gewohnheiten, die neue Trader entwickeln](/blog/common-day-trading-mistakes/).
 
 ## Die 50-Linie als Trendfilter nutzen
 
@@ -108,7 +108,7 @@ Die Reihenfolge zählt: Identifizieren Sie zuerst das Regime, wählen Sie dann d
 
 RSI ist vollständig aus Schlusskursen gebaut, die Sie bereits gesehen haben. Es ist ein nachlaufendes, abgeleitetes Maß — jeder Wert ist eine Tatsache über die Vergangenheit. Er sieht kein Intrabar-Geschehen und trägt keine Information, die nicht bereits in der Preisreihe steckt.
 
-Er hat auch keine Vorstellung davon, *warum* sich Preise bewegten. Ein Wert von 90,9 aus einem stetigen Anstieg und einer aus einem einzigen Gap sehen für die Formel identisch aus. Das ist ein guter Grund, RSI zusammen mit Preisstruktur und Volumen zu lesen und zu wissen, wie er sich von [MACD](/blog/macd-explained) unterscheidet, das die Spanne zwischen zwei gleitenden Durchschnitten misst statt eines Gewinn/Verlust-Verhältnisses.
+Er hat auch keine Vorstellung davon, *warum* sich Preise bewegten. Ein Wert von 90,9 aus einem stetigen Anstieg und einer aus einem einzigen Gap sehen für die Formel identisch aus. Das ist ein guter Grund, RSI zusammen mit Preisstruktur und Volumen zu lesen und zu wissen, wie er sich von [MACD](/blog/macd-explained/) unterscheidet, das die Spanne zwischen zwei gleitenden Durchschnitten misst statt eines Gewinn/Verlust-Verhältnisses.
 
 ## Üben Sie das Lesen von RSI im Simulator
 

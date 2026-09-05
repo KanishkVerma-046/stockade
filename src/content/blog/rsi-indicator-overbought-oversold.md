@@ -54,7 +54,7 @@ Notice what that means. To print 70, up-moves only have to be a bit more than tw
 
 Wilder picked 70 and 30. He could have picked 75 and 25. There is no derivation behind them, no statistical threshold at which behaviour changes, no mechanism that switches on at 70.0 and off at 69.9. They are round numbers that looked reasonable on the charts he studied in the 1970s, and they stuck because everyone copied the defaults. Most charting software draws those lines for you, which quietly reinforces the idea that they are boundaries. Stockade's chart does the same — switch the lower pane to RSI and you get dashed lines at 70 and 30. They are reference marks, not verdicts.
 
-The same goes for the 14-period lookback. A shorter setting like 7 reacts faster and hits the extremes constantly; a longer one like 21 rarely gets there. The period changes how often you see a signal, not how reliable it is — the same tradeoff that governs [choosing a moving average length](/blog/moving-averages-ema-vs-sma).
+The same goes for the 14-period lookback. A shorter setting like 7 reacts faster and hits the extremes constantly; a longer one like 21 rarely gets there. The period changes how often you see a signal, not how reliable it is — the same tradeoff that governs [choosing a moving average length](/blog/moving-averages-ema-vs-sma/).
 
 ## Overbought means strong, not "about to reverse"
 
@@ -85,7 +85,7 @@ Divergence is a disagreement between price and momentum.
 
 To read one, mark two swing points of the same kind on price — two clear highs, or two clear lows — and compare RSI at each. It only counts if the two are comparable swings with a real pullback between them; drawing lines between arbitrary bars produces a divergence on almost any chart, which is why they are so easy to see in hindsight.
 
-Be blunt about the hit rate: divergence fails often, and it fails worst precisely where it looks most tempting. A strong trend will print three or four bearish divergences on the way up, and only the last one marks anything — each earlier one is a trap that costs money. Treat divergence as a reason to tighten a stop or stop adding to a winner, not as a standalone entry against the trend. Fading strength on a divergence signal is one of the [more expensive habits new traders develop](/blog/common-day-trading-mistakes).
+Be blunt about the hit rate: divergence fails often, and it fails worst precisely where it looks most tempting. A strong trend will print three or four bearish divergences on the way up, and only the last one marks anything — each earlier one is a trap that costs money. Treat divergence as a reason to tighten a stop or stop adding to a winner, not as a standalone entry against the trend. Fading strength on a divergence signal is one of the [more expensive habits new traders develop](/blog/common-day-trading-mistakes/).
 
 ## Using the 50 line as a trend filter
 
@@ -108,8 +108,8 @@ The order matters: identify the regime first, then pick the thresholds. Using RS
 
 RSI is built entirely from closing prices you have already seen. It is a lagging, derivative measure — every value is a fact about the past. It does not see intrabar action, and it carries no information that is not already in the price series.
 
-It also has no notion of *why* prices moved. A 90.9 reading from a steady grind higher and one from a single gap look identical to the formula. That is a good reason to read RSI alongside price structure and volume, and to know how it differs from [MACD](/blog/macd-explained), which measures the spread between two moving averages rather than a gain/loss ratio.
+It also has no notion of *why* prices moved. A 90.9 reading from a steady grind higher and one from a single gap look identical to the formula. That is a good reason to read RSI alongside price structure and volume, and to know how it differs from [MACD](/blog/macd-explained/), which measures the spread between two moving averages rather than a gain/loss ratio.
 
 ## Practice reading RSI on the simulator
 
-The fastest way to unlearn "70 means sell" is to watch RSI sit above 70 for forty bars while price climbs. Open [Stockade's stock market simulator](/simulator), switch the lower chart pane from volume to RSI, and find a stretch where the line embeds above 70 — then note how far price travels before RSI returns to 50. Do the opposite exercise too: mark every bearish divergence on a rising chart and count how many actually preceded a decline. The prices are algorithmically generated rather than real market data, but the indicator arithmetic is identical, and that count will change how you use the tool.
+The fastest way to unlearn "70 means sell" is to watch RSI sit above 70 for forty bars while price climbs. Open [Stockade's stock market simulator](/simulator/), switch the lower chart pane from volume to RSI, and find a stretch where the line embeds above 70 — then note how far price travels before RSI returns to 50. Do the opposite exercise too: mark every bearish divergence on a rising chart and count how many actually preceded a decline. The prices are algorithmically generated rather than real market data, but the indicator arithmetic is identical, and that count will change how you use the tool.
