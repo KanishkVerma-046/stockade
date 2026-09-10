@@ -19,6 +19,42 @@ import { MARKETS_ALTERNATES } from '../i18n/alternates';
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Market overview refreshes every 2 seconds across 29 simulated assets — stocks, crypto, forex, and futures. Use it as a crypto trading simulator watchlist, a forex simulator scanner, or just a quick check on where prices stand before you trade. Sort by price change to see which assets are moving most, and check the volume column alongside it — see <a href="/blog/understanding-trading-volume/" class="text-[#f59e0b] hover:underline">understanding trading volume</a> for what that number actually tells you. For 800ms live ticks, use the <a href="/simulator/" class="text-[#f59e0b] hover:underline">Trading Simulator</a>.</p>
     </div>
     <MarketsView client:load />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        How to Use Market Overview
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        The table covers all 29 simulated assets Stockade offers — 14 stocks, 8 crypto pairs, 3 forex
+        pairs, and 4 futures contracts — with prices ticking every 2 seconds so you can watch how each
+        asset class moves without opening a trade.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Filtering and sorting</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Use the category tabs to narrow the table to one asset class, or the search box to jump straight
+        to a symbol or name. Click any of the Symbol, Price, or Change column headers to sort by that
+        field — click again to reverse the order. The default view sorts by Change, so the biggest movers
+        surface first.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Reading the columns</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Price and Change are self-explanatory, but Volume carries a different unit per asset class —
+        shares traded for stocks, notional dollar volume for crypto and forex, and contracts for
+        futures — since that is the convention each market actually uses. Market Cap only applies to
+        stocks and crypto; forex pairs and futures contracts show <span class="font-mono">—</span> because the concept doesn't translate to either.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Trading from the table</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        The Trade button on each row opens the <a href="/simulator/" class="text-[#f59e0b] hover:underline">Trading Simulator</a> with that
+        symbol already selected, so you can move from spotting a mover here to placing an order without
+        re-searching for it. If you'd rather watch price action unfold candle by candle before you commit
+        to a read, the <a href="/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> replays
+        the same asset classes bar by bar.
+      </p>
+    </section>
   </main>
   <Footer />
 </Layout>
