@@ -98,7 +98,7 @@ Confluence is the word for what you are looking for: pattern, location, and part
 
 ## The honest limits of candlestick patterns
 
-Candlestick patterns have modest predictive power on their own. When researchers test them systematically across large samples, hit rates land close enough to chance that the pattern alone is not an edge — and any edge that does show up tends to shrink once you subtract spread, commission, and slippage.
+Candlestick patterns have modest predictive power on their own. Most systematic attempts to test them across large samples find hit rates close enough to chance that the pattern alone is not a reliable edge — and any edge that does show up tends to shrink once you subtract spread, commission, and slippage.
 
 They fail constantly. A textbook bullish engulfing at obvious support resolves downward often enough that if you cannot survive a run of them going wrong, you should not be trading them. Patterns are also backward-looking by construction: they describe an argument that already concluded. Nothing about the drawing knows what the next candle does.
 

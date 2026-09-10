@@ -38,11 +38,11 @@ Swing trading asks for a different kind of time: twenty to forty minutes of char
 
 ## Capital, the US pattern day trader rule, and account minimums
 
-Here is the constraint many beginners meet only after they have started. In the United States, FINRA's pattern day trader rule applies to **margin accounts at US broker-dealers**. If you place four or more day trades within five business days, and those day trades are more than 6% of your total trades in that window, your account is flagged as a pattern day trader. Once flagged, you must maintain **at least $25,000 in equity** on any day you day trade. Fall below that and your day-trading ability is restricted until you top it up.
+Here is a constraint many beginners run into, and it recently changed. For years, FINRA's pattern day trader rule applied to **margin accounts at US broker-dealers**: place four or more day trades within five business days, with those day trades more than 6% of your total trades in that window, and your account was flagged as a pattern day trader, requiring **at least $25,000 in equity** on any day you day traded. FINRA has now [retired that fixed threshold](https://www.finra.org/rules-guidance/notices/26-10) in favor of a real-time intraday margin framework, effective June 4, 2026, with firms given until October 20, 2027 to fully transition — so confirm with your own broker which regime currently governs your account rather than assuming the old $25,000 figure still applies everywhere.
 
-This is US-specific. Rules elsewhere differ, and cash accounts are not subject to the PDT rule — but in a cash account you can only trade with settled funds, so the same capital cycles far more slowly.
+This is still a US-specific area, and it is worth rechecking as the transition plays out. Cash accounts were never subject to the PDT rule — but in a cash account you can only trade with settled funds, so the same capital cycles far more slowly.
 
-Swing trading has no equivalent threshold, because holding overnight means the trade is not a day trade and the rule never triggers. That makes swing trading the structurally available style for a smaller account — not because it is gentler, but because the regulation is written around holding period.
+Swing trading has no equivalent threshold, because holding overnight means the trade is not a day trade. That makes swing trading the structurally available style for a smaller account regardless of which day-trading margin regime is in effect — not because it is gentler, but because the regulation is written around holding period.
 
 ## Overnight and weekend gap risk: the swing trader's defining exposure
 
@@ -82,7 +82,7 @@ Swing trading gives you a handful of resolved outcomes a month. Learning is slow
 
 ## The honest odds, and how to pick the style that fits
 
-Most day traders lose money. That is the repeated finding of study after study of retail brokerage records, and the small minority who do profit consistently generally spent years unprofitable first. Day trading looks easy because the individual decisions are simple; doing several hundred of them a month without degrading is the hard part, and that skill is closer to a professional sport than to a hobby.
+Most day traders lose money. A study that tracked every individual who began day trading Brazilian equity futures over a multi-year period found that [97% of those who kept at it for more than 300 days ended up net losers](https://ideas.repec.org/p/spa/wpaper/2019wpecon47.html), and the small minority who do profit consistently generally spent years unprofitable first. Day trading looks easy because the individual decisions are simple; doing several hundred of them a month without degrading is the hard part, and that skill is closer to a professional sport than to a hobby.
 
 Trading more frequently is also not the same as trading better. Frequency multiplies costs, mistakes, and emotional load without multiplying edge. A trader taking three good swing setups a month is not behind one taking thirty mediocre intraday setups.
 

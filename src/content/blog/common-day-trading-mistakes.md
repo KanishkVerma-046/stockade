@@ -53,7 +53,7 @@ Here is what it hides. At $57 you are down $600 either way. But if price continu
 
 ### Cutting winners short while letting losers run
 
-You take profit at +0.5R because a small gain in hand feels solid, then hold a loser to −2R because it might come back. This is the disposition effect: realizing a gain produces a reward hit, realizing a loss produces the opposite. Your nervous system optimizes for how often you feel good, not for how much money you have.
+You take profit at +0.5R because a small gain in hand feels solid, then hold a loser to −2R because it might come back. This is [the disposition effect](https://en.wikipedia.org/wiki/Disposition_effect): realizing a gain produces a reward hit, realizing a loss produces the opposite. Your nervous system optimizes for how often you feel good, not for how much money you have.
 
 With the same 55% win rate, disciplined exits return 0.55 × 1.5 − 0.45 × 1 = **+0.375R per trade**, or +7.5R over 20 trades. Winners cut to +0.5R and losers allowed to reach −2R return 0.55 × 0.5 − 0.45 × 2 = **−0.625R per trade**, or −12.5R over the same 20. Identical entries, identical win rate, a 20R swing produced entirely by exit behavior.
 

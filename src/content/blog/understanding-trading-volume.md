@@ -78,7 +78,7 @@ Read it in two passes. Scan for outliers that visibly dwarf the surrounding twen
 
 ## Where volume data misleads you
 
-**It is fragmented across venues.** A US equity trades on more than a dozen exchanges plus off-exchange venues, and a meaningful share never prints on a lit exchange at all. Your platform's number depends on which feeds it consolidates, so two charting tools can show different volume for the same stock on the same day.
+**It is fragmented across venues.** A US equity trades on [more than a dozen registered exchanges](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges) plus off-exchange venues, and a meaningful share never prints on a lit exchange at all. Your platform's number depends on which feeds it consolidates, so two charting tools can show different volume for the same stock on the same day.
 
 **Crypto volume is frequently fictitious.** Wash trading — the same entity buying and selling to itself to manufacture apparent activity — has been documented at large scale on multiple exchanges, and no consolidated tape or regulator enforces a single standard. Decentralized venues make it cheaper still. Treating a crypto volume figure with the trust you would give an NYSE print is a mistake.
 

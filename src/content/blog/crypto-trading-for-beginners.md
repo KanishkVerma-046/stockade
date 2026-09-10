@@ -21,7 +21,7 @@ Crypto deletes all of that. There is no moment when your position is safe by def
 
 - **Your stop is your only overnight protection.** Not a mental level, not an intention to check the chart — a resting order. A mental stop only works when you are awake.
 - **Position size has to survive an unattended move.** Ask what happens if the asset moves 15% against you while you sleep, because it can and does.
-- **There are no circuit breakers.** In US equities, a 7% S&P 500 decline halts trading for 15 minutes. Crypto has no equivalent. A cascade of liquidations runs until it runs out.
+- **There are no circuit breakers.** In US equities, a [7% S&P 500 decline halts trading for 15 minutes](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Crypto has no equivalent. A cascade of liquidations runs until it runs out.
 
 If you have not built a sizing framework yet, do that before you touch this asset class — [position sizing and the 1% rule](/blog/risk-management-position-sizing/) covers the arithmetic.
 
@@ -104,7 +104,7 @@ So a token showing "$2 billion daily volume" may have $100 million of real tradi
 
 ## What crypto markets do not give you
 
-Be clear-eyed about the missing infrastructure. There is no equivalent of SIPC coverage for a failed crypto exchange — creditors of bankrupt venues have spent years in court for partial recoveries. Manipulation that would draw enforcement in equities is common and largely unpoliced. Listings carry no disclosure standard comparable to a public filing.
+Be clear-eyed about the missing infrastructure. There is no equivalent of [SIPC coverage](https://www.sipc.org/for-investors/what-sipc-protects) for a failed crypto exchange — creditors of bankrupt venues have spent years in court for partial recoveries. Manipulation that would draw enforcement in equities is common and largely unpoliced. Listings carry no disclosure standard comparable to a public filing.
 
 And the 24/7 clock is a psychological trap as much as a structural one. Equities impose a break; crypto never does. Every hour is one you *could* be trading, which is exactly the condition that produces overtrading, revenge trading, and decisions made at 3 a.m. — the [most common day trading mistakes](/blog/common-day-trading-mistakes/), with the one external guardrail removed. The discipline has to be entirely self-imposed: defined session hours, a hard stop time, and resting orders that work while you are not.
 

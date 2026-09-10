@@ -19,7 +19,7 @@ One thing about that definition matters more than it looks: the stop is an order
 
 ## Stop-market and stop-limit orders, and the trap in the second one
 
-Once a stop triggers, something has to actually sell your shares. There are two ways to specify that, and the difference has ended accounts.
+Once a stop triggers, something has to actually sell your shares. There are two ways to specify that, and the difference is significant enough that [regulators publish investor guidance specifically about it](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15).
 
 A **stop-market** order says: when price touches 185.90, sell at whatever the market will pay. You are guaranteed to get out. You are not guaranteed the price. If the market is falling quickly, your fill may come in at 185.40 or worse.
 
