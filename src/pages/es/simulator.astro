@@ -112,6 +112,18 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
               reales, pero ninguno de sus precios proviene del mercado de ese instrumento: todos los
               precios son datos sintéticos generados en tu navegador, nunca obtenidos de un feed en vivo.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Sin margen ni apalancamiento.</strong> Una compra solo se acepta si su costo total cabe en tu saldo en efectivo, así que no hay apalancamiento, ni requisito de margen, ni llamadas de margen.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">La venta en corto está simplificada.</strong> Vender sin una posición abierta abre un corto sin ninguna verificación de saldo ni de margen. El importe de la venta se suma a tu saldo en efectivo, tu capital resta el valor actual del corto, y no se cobra ningún costo de financiamiento.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Sin horario de mercado ni gaps.</strong> Todos los símbolos cotizan a toda hora, y cada vela abre donde cerró la anterior, así que los precios nunca hacen gap de un día para otro ni durante un fin de semana.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Un solo modelo de volatilidad para todos los símbolos.</strong> Acciones, cripto, forex y futuros se mueven con el mismo proceso aleatorio, escalado solo por el precio, así que aquí las clases de activo no se comportan de forma distinta. Los futuros no tienen multiplicador de contrato ni tamaño de tick: la G/P es el cambio de precio por la cantidad, como en una acción.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             En resumen: trata los resultados como práctica de proceso — entradas, salidas, tamaño
