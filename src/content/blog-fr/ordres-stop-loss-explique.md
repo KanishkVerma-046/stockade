@@ -19,7 +19,7 @@ Un point de cette définition compte plus qu'il n'y paraît : le stop est un ord
 
 ## Ordres stop-market et stop-limit, et le piège du second
 
-Une fois qu'un stop se déclenche, quelque chose doit effectivement vendre vos actions. Il existe deux façons de le préciser, et la différence a déjà ruiné des comptes.
+Une fois qu'un stop se déclenche, quelque chose doit effectivement vendre vos actions. Il existe deux façons de le préciser, et la différence est assez importante pour que les régulateurs publient des guides destinés aux investisseurs précisément à ce sujet.
 
 Un ordre **stop-market** (stop au marché) dit : quand le prix touche 185.90, vends au prix que le marché voudra bien payer. Votre sortie est garantie. Le prix ne l'est pas. Si le marché chute rapidement, votre exécution peut se faire à 185.40 ou pire.
 

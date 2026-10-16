@@ -158,10 +158,10 @@ apontando na mesma direção. Quando só um dos três está presente, você tem 
 
 ## Os limites honestos dos padrões de candlestick
 
-Padrões de candlestick têm um poder preditivo modesto por conta própria. Quando pesquisadores os testam
-sistematicamente em amostras grandes, as taxas de acerto ficam próximas o suficiente do acaso para que o
-padrão sozinho não seja uma vantagem — e qualquer vantagem que apareça tende a encolher assim que você
-subtrai spread, comissão e slippage.
+Padrões de candlestick têm um poder preditivo modesto por conta própria. A maioria das tentativas de
+testá-los sistematicamente em amostras grandes encontra taxas de acerto próximas o suficiente do acaso
+para que o padrão sozinho não seja uma vantagem confiável — e qualquer vantagem que apareça tende a
+encolher assim que você subtrai spread, comissão e slippage.
 
 Eles falham constantemente. Um engolfo de alta de livro-texto num suporte óbvio resolve para baixo com
 frequência suficiente para que, se você não consegue sobreviver a uma sequência deles dando errado, você

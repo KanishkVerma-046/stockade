@@ -19,7 +19,7 @@ Una cosa di quella definizione conta più di quanto sembri: lo stop è un ordine
 
 ## Ordini stop-market e stop-limit, e la trappola nel secondo
 
-Una volta che uno stop si attiva, qualcosa deve effettivamente vendere le tue azioni. Ci sono due modi per specificarlo, e la differenza ha chiuso dei conti.
+Una volta che uno stop si attiva, qualcosa deve effettivamente vendere le tue azioni. Ci sono due modi per specificarlo, e la differenza è abbastanza importante da spingere le autorità di vigilanza a pubblicare guide per gli investitori proprio su questo tema.
 
 Un ordine **stop-market** dice: quando il prezzo tocca 185,90, vendi a qualunque prezzo il mercato sia disposto a pagare. Ti è garantita l'uscita. Non ti è garantito il prezzo. Se il mercato sta scendendo velocemente, la tua esecuzione potrebbe arrivare a 185,40 o peggio.
 

@@ -98,7 +98,7 @@ Confluenza è la parola per ciò che stai cercando: pattern, posizione e parteci
 
 ## I limiti onesti dei pattern a candele
 
-I pattern a candele hanno da soli un potere predittivo modesto. Quando i ricercatori li testano sistematicamente su grandi campioni, i tassi di successo si avvicinano abbastanza al caso che il pattern da solo non costituisce un vantaggio — e qualsiasi vantaggio che emerge tende a ridursi una volta sottratti spread, commissioni e slippage.
+I pattern a candele hanno da soli un potere predittivo modesto. La maggior parte dei tentativi di testarli sistematicamente su grandi campioni trova tassi di successo abbastanza vicini al caso che il pattern da solo non costituisce un vantaggio affidabile — e qualsiasi vantaggio che emerge tende a ridursi una volta sottratti spread, commissioni e slippage.
 
 Falliscono costantemente. Un manuale di engulfing rialzista su un supporto evidente si risolve al ribasso abbastanza spesso che, se non riesci a sopravvivere a una serie di casi che vanno male, non dovresti farci trading. I pattern sono anche retrospettivi per costruzione: descrivono un confronto già concluso. Nulla nel disegno sa cosa farà la prossima candela.
 

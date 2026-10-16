@@ -98,7 +98,7 @@ Konfluenz ist das Wort für das, wonach Sie suchen: Muster, Lage und Beteiligung
 
 ## Die ehrlichen Grenzen von Candlestick-Mustern
 
-Candlestick-Muster haben für sich genommen bescheidene Vorhersagekraft. Testen Forscher sie systematisch an großen Stichproben, liegen die Trefferraten nahe genug am Zufall, dass das Muster allein kein Edge ist — und jeder Edge, der sich zeigt, schrumpft meist, sobald Spread, Kommission und Slippage abgezogen werden.
+Candlestick-Muster haben für sich genommen bescheidene Vorhersagekraft. Die meisten systematischen Tests an großen Stichproben finden Trefferraten, die nahe genug am Zufall liegen, dass das Muster allein kein zuverlässiger Edge ist — und jeder Edge, der sich zeigt, schrumpft meist, sobald Spread, Kommission und Slippage abgezogen werden.
 
 Sie versagen ständig. Ein Lehrbuch-Bullish-Engulfing an offensichtlicher Unterstützung löst sich oft genug abwärts auf, dass Sie sie nicht traden sollten, wenn Sie eine Serie von Fehlschlägen nicht überstehen können. Muster sind konstruktionsbedingt auch rückwärtsgewandt: Sie beschreiben einen Streit, der bereits abgeschlossen ist. Nichts an der Zeichnung weiß, was die nächste Kerze tut.
 

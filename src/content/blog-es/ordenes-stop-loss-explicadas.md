@@ -20,7 +20,7 @@ Un detalle de esa definición importa más de lo que parece: el stop es una orde
 
 ## Órdenes stop-market y stop-limit, y la trampa en la segunda
 
-Una vez que un stop se dispara, algo tiene que vender realmente tus acciones. Hay dos formas de especificar eso, y la diferencia ha terminado con cuentas enteras.
+Una vez que un stop se dispara, algo tiene que vender realmente tus acciones. Hay dos formas de especificar eso, y la diferencia es lo bastante importante como para que los reguladores publiquen guías para inversores específicamente sobre ella.
 
 Una orden **stop-market** dice: cuando el precio toque 185.90, vende a lo que sea que pague el mercado. Tienes garantizado salir. No tienes garantizado el precio. Si el mercado está cayendo rápido, tu ejecución puede llegar en 185.40 o peor.
 

@@ -39,11 +39,11 @@ El swing trading pide un tipo distinto de tiempo: veinte a cuarenta minutos de r
 
 ## Capital, la regla del pattern day trader en EE. UU., y los mínimos de cuenta
 
-Aquí está la restricción que muchos principiantes encuentran solo después de haber empezado. En Estados Unidos, la regla del pattern day trader (PDT) de FINRA aplica a las **cuentas de margen en broker-dealers estadounidenses**. Si colocas cuatro o más operaciones de day trading en cinco días hábiles, y esas operaciones son más del 6% de tus operaciones totales en esa ventana, tu cuenta queda marcada como pattern day trader. Una vez marcada, debes mantener **al menos $25,000 de capital** cualquier día que hagas day trading. Caer por debajo de eso restringe tu capacidad de day trading hasta que la repongas.
+Aquí está una restricción con la que muchos principiantes se topan, y que cambió recientemente. Durante años, la regla del pattern day trader (PDT) de FINRA se aplicó a las **cuentas de margen en broker-dealers estadounidenses**: si colocabas cuatro o más operaciones de day trading en cinco días hábiles, y esas operaciones eran más del 6% de tus operaciones totales en esa ventana, tu cuenta quedaba marcada como pattern day trader y debías mantener **al menos $25,000 de capital** cualquier día que hicieras day trading. FINRA ha retirado ese umbral fijo en favor de un marco de margen intradía en tiempo real, vigente desde el 4 de junio de 2026, y las firmas tienen hasta el 20 de octubre de 2027 para completar la transición — así que confirma con tu propio broker qué régimen rige actualmente tu cuenta, en lugar de asumir que la antigua cifra de $25,000 sigue aplicándose en todas partes.
 
-Esto es específico de EE. UU. Las reglas en otros lugares difieren, y las cuentas de contado no están sujetas a la regla PDT — pero en una cuenta de contado solo puedes operar con fondos liquidados, así que el mismo capital circula mucho más lento.
+Esto sigue siendo un tema específico de EE. UU., y vale la pena volver a revisarlo a medida que avanza la transición. Las cuentas de contado nunca estuvieron sujetas a la regla PDT — pero en una cuenta de contado solo puedes operar con fondos liquidados, así que el mismo capital circula mucho más lento.
 
-El swing trading no tiene un umbral equivalente, porque sostener de un día para otro significa que la operación no es una operación de day trading y la regla nunca se activa. Eso convierte al swing trading en el estilo estructuralmente disponible para una cuenta más pequeña — no porque sea más suave, sino porque la regulación está escrita en torno al período de tenencia.
+El swing trading no tiene un umbral equivalente, porque sostener de un día para otro significa que la operación no es una operación de day trading. Eso convierte al swing trading en el estilo estructuralmente disponible para una cuenta más pequeña, sea cual sea el régimen de margen para day trading que esté vigente — no porque sea más suave, sino porque la regulación está escrita en torno al período de tenencia.
 
 ## Riesgo de gap nocturno y de fin de semana: la exposición que define al swing trader
 
@@ -83,7 +83,7 @@ El swing trading te da un puñado de resultados resueltos al mes. Aprender es m�
 
 ## Las probabilidades honestas, y cómo elegir el estilo que te conviene
 
-La mayoría de los day traders pierde dinero. Ese es el hallazgo repetido de estudio tras estudio de registros de brokers minoristas, y la pequeña minoría que sí es rentable de forma consistente generalmente pasó años sin ganar primero. El day trading parece fácil porque las decisiones individuales son simples; hacer varios cientos de ellas al mes sin degradarse es la parte difícil, y esa habilidad se parece más a un deporte profesional que a un pasatiempo.
+La mayoría de los day traders pierde dinero. Un estudio que siguió durante varios años a todas las personas que empezaron a hacer day trading con futuros de acciones brasileñas encontró que el 97% de quienes persistieron más de 300 días terminaron con pérdidas netas, y la pequeña minoría que sí es rentable de forma consistente generalmente pasó años sin ganar primero. El day trading parece fácil porque las decisiones individuales son simples; hacer varios cientos de ellas al mes sin degradarse es la parte difícil, y esa habilidad se parece más a un deporte profesional que a un pasatiempo.
 
 Operar con más frecuencia tampoco es lo mismo que operar mejor. La frecuencia multiplica los costos, los errores y la carga emocional sin multiplicar la ventaja. Un trader que toma tres buenos setups de swing al mes no está por detrás de uno que toma treinta setups intradía mediocres.
 

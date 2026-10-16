@@ -99,7 +99,7 @@ Confluencia es la palabra para lo que estás buscando: patrón, ubicación y par
 
 ## Los límites honestos de los patrones de velas
 
-Los patrones de velas tienen un poder predictivo modesto por sí solos. Cuando los investigadores los prueban sistemáticamente en muestras grandes, las tasas de acierto quedan lo bastante cerca del azar como para que el patrón solo no sea una ventaja — y cualquier ventaja que sí aparezca tiende a reducirse una vez que restas spread, comisión y slippage.
+Los patrones de velas tienen un poder predictivo modesto por sí solos. La mayoría de los intentos de probarlos sistemáticamente en muestras grandes encuentran tasas de acierto lo bastante cerca del azar como para que el patrón solo no sea una ventaja confiable — y cualquier ventaja que sí aparezca tiende a reducirse una vez que restas spread, comisión y slippage.
 
 Fallan constantemente. Un Bullish engulfing de libro de texto en un soporte obvio se resuelve a la baja con la frecuencia suficiente como para que, si no puedes sobrevivir a una racha de que te salgan mal, no deberías operarlos. Los patrones también miran hacia atrás por construcción: describen una discusión que ya concluyó. Nada en el dibujo sabe qué hace la siguiente vela.
 

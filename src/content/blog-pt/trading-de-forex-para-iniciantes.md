@@ -139,8 +139,9 @@ discurso honesto é que alavancagem multiplica um resultado cujo sinal você nã
 e perdas pelo mesmo fator e não muda em nada sua expectativa por operação, então se sua estratégia perde
 dinheiro em média, alavancagem não é uma rota mais rápida para o lucro, mas uma rota mais rápida para zero.
 Corretoras reguladas na UE e no Reino Unido são obrigadas a publicar a proporção de contas de varejo que
-perdem dinheiro, e os números divulgados geralmente ficam na faixa de 70–80%; perdas causadas por
-alavancagem são o motivo dominante.
+perdem dinheiro, e, quando os reguladores analisaram essas divulgações nas jurisdições da UE, a proporção
+de contas com prejuízo ia de cerca de 75% a quase 90%; perdas causadas por alavancagem são o motivo
+dominante.
 
 Trate a alavancagem como uma capacidade que você majoritariamente recusa: dimensione a partir da distância
 do seu stop e do seu orçamento de risco, e deixe a exigência de margem cair onde cair.

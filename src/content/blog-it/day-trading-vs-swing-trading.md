@@ -38,11 +38,11 @@ Lo swing trading richiede un tipo diverso di tempo: venti-quaranta minuti di rev
 
 ## Capitale, la regola statunitense del pattern day trader, e i minimi di conto
 
-Ecco il vincolo che molti principianti incontrano solo dopo aver iniziato. Negli Stati Uniti, la regola del pattern day trader della FINRA si applica ai **conti a margine presso broker-dealer statunitensi**. Se piazzi quattro o più day trade entro cinque giorni lavorativi, e quei day trade sono più del 6% delle tue operazioni totali in quella finestra, il tuo conto viene segnalato come pattern day trader. Una volta segnalato, devi mantenere **almeno 25.000$ di equity** in qualsiasi giorno in cui fai day trading. Scendi sotto quella soglia e la tua capacità di fare day trading viene limitata finché non la reintegri.
+Ecco un vincolo in cui molti principianti si imbattono, e che è cambiato di recente. Per anni, la regola del pattern day trader della FINRA si è applicata ai **conti a margine presso broker-dealer statunitensi**: se piazzavi quattro o più day trade entro cinque giorni lavorativi, e quei day trade erano più del 6% delle tue operazioni totali in quella finestra, il tuo conto veniva segnalato come pattern day trader e dovevi mantenere **almeno 25.000$ di equity** in qualsiasi giorno in cui facevi day trading. La FINRA ha ora eliminato quella soglia fissa a favore di un quadro di margine intraday in tempo reale, in vigore dal 4 giugno 2026, con tempo per le società fino al 20 ottobre 2027 per completare la transizione — quindi verifica con il tuo broker quale regime si applica attualmente al tuo conto, invece di dare per scontato che la vecchia soglia di 25.000$ valga ancora ovunque.
 
-Questo è specifico degli Stati Uniti. Le regole altrove differiscono, e i conti cash non sono soggetti alla regola PDT — ma in un conto cash puoi tradare solo con fondi liquidati, quindi lo stesso capitale circola molto più lentamente.
+Resta un ambito specifico degli Stati Uniti, e vale la pena ricontrollarlo man mano che la transizione procede. I conti cash non sono mai stati soggetti alla regola PDT — ma in un conto cash puoi tradare solo con fondi liquidati, quindi lo stesso capitale circola molto più lentamente.
 
-Lo swing trading non ha una soglia equivalente, perché tenere durante la notte significa che l'operazione non è un day trade e la regola non scatta mai. Questo rende lo swing trading lo stile strutturalmente disponibile per un conto più piccolo — non perché sia più gentile, ma perché la regolamentazione è scritta intorno al periodo di detenzione.
+Lo swing trading non ha una soglia equivalente, perché tenere durante la notte significa che l'operazione non è un day trade. Questo rende lo swing trading lo stile strutturalmente disponibile per un conto più piccolo, qualunque sia il regime di margine per il day trading in vigore — non perché sia più gentile, ma perché la regolamentazione è scritta intorno al periodo di detenzione.
 
 ## Il rischio di gap overnight e nel weekend: l'esposizione che definisce lo swing trader
 
@@ -82,7 +82,7 @@ Lo swing trading ti dà una manciata di esiti risolti al mese. L'apprendimento �
 
 ## Le probabilità oneste, e come scegliere lo stile che fa per te
 
-La maggior parte dei day trader perde denaro. Questo è il risultato ripetuto di studio dopo studio sui registri dei broker retail, e la piccola minoranza che profitta costantemente in genere ha passato anni in perdita prima. Il day trading sembra facile perché le decisioni individuali sono semplici; farne diverse centinaia al mese senza degradare è la parte difficile, e quella competenza è più vicina a uno sport professionistico che a un hobby.
+La maggior parte dei day trader perde denaro. Uno studio che ha seguito per diversi anni tutte le persone che avevano iniziato a fare day trading sui futures azionari brasiliani ha rilevato che il 97% di chi ha continuato per più di 300 giorni ha chiuso in perdita netta, e la piccola minoranza che profitta costantemente in genere ha passato anni in perdita prima. Il day trading sembra facile perché le decisioni individuali sono semplici; farne diverse centinaia al mese senza degradare è la parte difficile, e quella competenza è più vicina a uno sport professionistico che a un hobby.
 
 Tradare più frequentemente non è nemmeno la stessa cosa che tradare meglio. La frequenza moltiplica costi, errori e carico emotivo senza moltiplicare il vantaggio. Un trader che prende tre buoni setup di swing al mese non è indietro rispetto a uno che ne prende trenta mediocri intraday.
 

@@ -38,11 +38,11 @@ Swing Trading verlangt eine andere Art von Zeit: zwanzig bis vierzig Minuten Cha
 
 ## Kapital, die US-„Pattern Day Trader"-Regel und Kontominimums
 
-Hier ist die Einschränkung, auf die viele Anfänger erst stoßen, nachdem sie begonnen haben. In den USA gilt FINRAs Pattern-Day-Trader-Regel für **Margin-Konten bei US-Broker-Dealern**. Geben Sie vier oder mehr Day Trades innerhalb von fünf Handelstagen auf, und diese Day Trades machen mehr als 6 % Ihrer gesamten Trades in diesem Fenster aus, wird Ihr Konto als Pattern Day Trader markiert. Einmal markiert, müssen Sie an jedem Tag, an dem Sie Day Trading betreiben, **mindestens 25.000 $ Eigenkapital** halten. Fallen Sie darunter, wird Ihre Day-Trading-Fähigkeit eingeschränkt, bis Sie aufstocken.
+Hier ist eine Einschränkung, auf die viele Anfänger stoßen, und sie hat sich kürzlich geändert. Jahrelang galt FINRAs Pattern-Day-Trader-Regel für **Margin-Konten bei US-Broker-Dealern**: Gaben Sie vier oder mehr Day Trades innerhalb von fünf Handelstagen auf und machten diese mehr als 6 % Ihrer gesamten Trades in diesem Fenster aus, wurde Ihr Konto als Pattern Day Trader markiert, und Sie mussten an jedem Tag, an dem Sie Day Trading betrieben, **mindestens 25.000 $ Eigenkapital** halten. FINRA hat diese feste Schwelle inzwischen zugunsten eines Echtzeit-Intraday-Margin-Rahmens abgeschafft, gültig ab dem 4. Juni 2026, wobei Firmen bis zum 20. Oktober 2027 Zeit für die vollständige Umstellung haben — klären Sie also mit Ihrem eigenen Broker, welches Regime derzeit für Ihr Konto gilt, statt anzunehmen, dass die alte 25.000-$-Grenze noch überall greift.
 
-Das ist US-spezifisch. Regeln anderswo unterscheiden sich, und Barkonten unterliegen nicht der PDT-Regel — aber in einem Barkonto können Sie nur mit abgewickelten Mitteln handeln, sodass dasselbe Kapital viel langsamer zirkuliert.
+Das bleibt ein US-spezifisches Thema, und es lohnt sich, es im Verlauf der Umstellung erneut zu prüfen. Barkonten unterlagen nie der PDT-Regel — aber in einem Barkonto können Sie nur mit abgewickelten Mitteln handeln, sodass dasselbe Kapital viel langsamer zirkuliert.
 
-Swing Trading hat keine vergleichbare Schwelle, weil das Halten über Nacht bedeutet, dass der Trade kein Day Trade ist und die Regel nie greift. Das macht Swing Trading zum strukturell verfügbaren Stil für ein kleineres Konto — nicht weil er sanfter ist, sondern weil die Regulierung um die Haltedauer herum geschrieben ist.
+Swing Trading hat keine vergleichbare Schwelle, weil das Halten über Nacht bedeutet, dass der Trade kein Day Trade ist. Das macht Swing Trading zum strukturell verfügbaren Stil für ein kleineres Konto, unabhängig davon, welches Day-Trading-Margin-Regime gilt — nicht weil er sanfter ist, sondern weil die Regulierung um die Haltedauer herum geschrieben ist.
 
 ## Overnight- und Wochenend-Gap-Risiko: die definierende Exposition des Swing-Traders
 
@@ -82,7 +82,7 @@ Swing Trading gibt Ihnen eine Handvoll abgeschlossener Ergebnisse pro Monat. Ler
 
 ## Die ehrlichen Chancen, und wie Sie den passenden Stil wählen
 
-Die meisten Day-Trader verlieren Geld. Das ist der wiederholte Befund einer Studie nach der anderen über Retail-Brokerage-Aufzeichnungen, und die kleine Minderheit, die konstant profitabel ist, war meist erst jahrelang unprofitabel. Day Trading sieht einfach aus, weil die einzelnen Entscheidungen simpel sind; mehrere Hundert davon im Monat ohne Verschlechterung zu treffen ist der schwere Teil, und diese Fähigkeit ähnelt eher einem Profisport als einem Hobby.
+Die meisten Day-Trader verlieren Geld. Eine Studie, die über mehrere Jahre jede Person verfolgte, die mit dem Day Trading brasilianischer Aktien-Futures begann, fand, dass 97 % derjenigen, die länger als 300 Tage dabeiblieben, am Ende netto Verluste machten, und die kleine Minderheit, die konstant profitabel ist, war meist erst jahrelang unprofitabel. Day Trading sieht einfach aus, weil die einzelnen Entscheidungen simpel sind; mehrere Hundert davon im Monat ohne Verschlechterung zu treffen ist der schwere Teil, und diese Fähigkeit ähnelt eher einem Profisport als einem Hobby.
 
 Häufiger zu traden ist auch nicht dasselbe wie besser zu traden. Häufigkeit multipliziert Kosten, Fehler und emotionale Last, ohne den Edge zu multiplizieren. Ein Trader, der drei gute Swing-Setups im Monat nimmt, liegt nicht hinter einem, der dreißig mittelmäßige Intraday-Setups nimmt.
 

@@ -98,7 +98,7 @@ La confluence est le mot pour ce que vous recherchez : pattern, emplacement et p
 
 ## Les limites honnêtes des patterns en chandeliers
 
-Les patterns en chandeliers ont, à eux seuls, un pouvoir prédictif modeste. Quand les chercheurs les testent systématiquement sur de larges échantillons, les taux de réussite se rapprochent suffisamment du hasard pour que le pattern seul ne constitue pas un edge — et tout edge qui apparaît malgré tout tend à se réduire une fois qu'on soustrait le spread, la commission et le slippage.
+Les patterns en chandeliers ont, à eux seuls, un pouvoir prédictif modeste. La plupart des tentatives de les tester systématiquement sur de larges échantillons trouvent des taux de réussite suffisamment proches du hasard pour que le pattern seul ne constitue pas un edge fiable — et tout edge qui apparaît malgré tout tend à se réduire une fois qu'on soustrait le spread, la commission et le slippage.
 
 Ils échouent constamment. Un bullish engulfing digne d'un manuel, formé sur un support évident, se résout à la baisse assez souvent pour que, si vous ne pouvez pas survivre à une série d'échecs, vous ne devriez pas les trader. Les patterns sont aussi, par construction, tournés vers le passé : ils décrivent un affrontement déjà conclu. Rien dans le dessin ne sait ce que fera le prochain chandelier.
 

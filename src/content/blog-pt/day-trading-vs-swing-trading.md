@@ -60,21 +60,24 @@ executado em minutos roubados.
 
 ## Capital, a regra do pattern day trader nos EUA, e mínimos de conta
 
-Aqui está a restrição que muitos iniciantes só encontram depois de já terem começado. Nos Estados Unidos,
-a regra do pattern day trader da FINRA se aplica a **contas de margem em corretoras dos EUA**. Se você
-enviar quatro ou mais day trades em cinco dias úteis, e esses day trades forem mais de 6% do total de suas
-operações naquela janela, sua conta é marcada como pattern day trader. Uma vez marcada, você precisa manter
-**pelo menos $25.000 em capital** em qualquer dia em que faça day trading. Cair abaixo disso e sua
-capacidade de day trading fica restrita até que você reponha.
+Aqui está uma restrição com a qual muitos iniciantes se deparam, e que mudou recentemente. Durante anos, a
+regra do pattern day trader da FINRA se aplicou a **contas de margem em corretoras dos EUA**: se você
+enviasse quatro ou mais day trades em cinco dias úteis, e esses day trades fossem mais de 6% do total de
+suas operações naquela janela, sua conta era marcada como pattern day trader e você precisava manter **pelo
+menos $25.000 em capital** em qualquer dia em que fizesse day trading. A FINRA agora aposentou esse limite
+fixo em favor de uma estrutura de margem intradiária em tempo real, em vigor desde 4 de junho de 2026, com
+prazo até 20 de outubro de 2027 para as corretoras concluírem a transição — então confirme com a sua
+própria corretora qual regime rege a sua conta hoje, em vez de presumir que o antigo valor de $25.000 ainda
+vale em todo lugar.
 
-Isso é específico dos EUA. Regras em outros lugares diferem, e contas à vista não estão sujeitas à regra
-PDT — mas em uma conta à vista você só pode operar com fundos liquidados, então o mesmo capital gira muito
-mais devagar.
+Isso continua sendo um tema específico dos EUA, e vale a pena verificar de novo conforme a transição
+avança. Contas à vista nunca estiveram sujeitas à regra PDT — mas em uma conta à vista você só pode operar
+com fundos liquidados, então o mesmo capital gira muito mais devagar.
 
 Swing trading não tem limiar equivalente, porque manter durante a noite significa que a operação não é um
-day trade e a regra nunca é acionada. Isso torna o swing trading o estilo estruturalmente disponível para
-uma conta menor — não porque seja mais suave, mas porque a regulação é escrita em torno do período de
-manutenção.
+day trade. Isso torna o swing trading o estilo estruturalmente disponível para uma conta menor, seja qual
+for o regime de margem para day trading em vigor — não porque seja mais suave, mas porque a regulação é
+escrita em torno do período de manutenção.
 
 ## Risco de gap overnight e de fim de semana: a exposição definidora do swing trader
 
@@ -146,11 +149,12 @@ estudar são, em sua maioria, falhas desse intervalo.
 
 ## As chances reais, e como escolher o estilo que combina
 
-A maioria dos day traders perde dinheiro. Esse é o achado repetido de estudo após estudo de registros de
-corretoras de varejo, e a pequena minoria que lucra de forma consistente geralmente passou anos no
-prejuízo primeiro. Day trading parece fácil porque as decisões individuais são simples; fazer várias
-centenas delas por mês sem se deteriorar é a parte difícil, e essa habilidade está mais perto de um esporte
-profissional do que de um hobby.
+A maioria dos day traders perde dinheiro. Um estudo que acompanhou, ao longo de vários anos, todas as
+pessoas que começaram a fazer day trading em futuros de ações brasileiros constatou que 97% das que
+persistiram por mais de 300 dias terminaram com prejuízo líquido, e a pequena minoria que lucra de forma
+consistente geralmente passou anos no prejuízo primeiro. Day trading parece fácil porque as decisões
+individuais são simples; fazer várias centenas delas por mês sem se deteriorar é a parte difícil, e essa
+habilidade está mais perto de um esporte profissional do que de um hobby.
 
 Operar com mais frequência também não é o mesmo que operar melhor. Frequência multiplica custos, erros e
 carga emocional sem multiplicar vantagem. Um trader que faz três bons setups de swing por mês não está
