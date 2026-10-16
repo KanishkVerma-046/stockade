@@ -1,13 +1,14 @@
 // @ts-check
-import { rename, readdir, rm } from 'node:fs/promises';
+import { rename, readdir, readFile, rm } from 'node:fs/promises';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { join } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.ts';
+import { buildSiblingMap, findStaleLinks } from './src/lib/localized-links.ts';
 
 // Non-default locale codes, for stripping the locale prefix off a sitemap
 // item's path before matching it against the branches below — /es/simulator
@@ -116,6 +117,50 @@ function singleFileSitemap() {
   };
 }
 
+/**
+ * Fails the build if any translated page links to an English URL whose
+ * sibling in that page's own locale exists. This bug has shipped repeatedly —
+ * via nav chrome, React islands, and hand-written prose links — and is
+ * invisible on the page itself. It reads the built HTML, so it checks what
+ * visitors and crawlers actually get; the logic and its tests live in
+ * src/lib/localized-links.ts. Exempt a deliberate cross-language link (the
+ * language switcher, "View the English version") with an `hreflang`
+ * attribute on the <a>.
+ *
+ * @returns {import('astro').AstroIntegration}
+ */
+function localizedLinkCheck() {
+  return {
+    name: 'localized-link-check',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const outDir = fileURLToPath(dir);
+        const files = (await readdir(outDir, { recursive: true }))
+          .filter(name => name.endsWith('index.html'))
+          .map(name => join(outDir, name));
+        const pages = await Promise.all(
+          files.map(async file => ({
+            path: '/' + relative(outDir, file).split(sep).join('/').replace(/index\.html$/, ''),
+            html: await readFile(file, 'utf-8'),
+          }))
+        );
+        const hreflangToLocale = Object.fromEntries(LOCALES.map(l => [l.hreflang, l.code]));
+        const siblings = buildSiblingMap(pages, localeCodes, hreflangToLocale, 'https://stockademarketsim.com');
+        const stale = findStaleLinks(pages, siblings, localeCodes);
+        if (stale.length > 0) {
+          const shown = stale.slice(0, 25).map(s => `  ${s.page}: ${s.href} -> ${s.expected}`);
+          if (stale.length > 25) shown.push(`  … and ${stale.length - 25} more`);
+          throw new Error(
+            `localized-link-check: ${stale.length} link(s) on translated pages point at an ` +
+              `English URL that has a localized sibling:\n${shown.join('\n')}`
+          );
+        }
+        logger.info(`No translated page links to an English URL with a localized sibling (${pages.length} pages)`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: 'https://stockademarketsim.com',
   trailingSlash: 'always',
@@ -189,6 +234,7 @@ export default defineConfig({
       },
     }),
     singleFileSitemap(),
+    localizedLinkCheck(),
   ],
   vite: {
     plugins: [tailwindcss()],

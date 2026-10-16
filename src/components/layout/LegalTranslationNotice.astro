@@ -16,7 +16,7 @@ const { locale, englishHref } = Astro.props;
   <p class="text-[13px] text-[var(--c-text-subtle)] leading-relaxed">
     {t(locale, 'legal.translationNotice')}
   </p>
-  <a href={englishHref} class="text-[13px] text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2 whitespace-nowrap">
+  <a href={englishHref} hreflang="en" class="text-[13px] text-[#f59e0b] hover:text-[#fbbf24] underline underline-offset-2 whitespace-nowrap">
     {t(locale, 'legal.viewEnglish')} →
   </a>
 </div>
