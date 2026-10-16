@@ -22,7 +22,7 @@ Un contrato de futuros es un objeto completamente distinto: un acuerdo estandari
 
 ## Especificaciones del contrato: multiplicador, tamaño del tick y valor del tick
 
-Un precio de futuros no es una cantidad en dólares. Es un número que traduces a dólares a través del multiplicador del contrato. Stockade lleva cuatro símbolos de futuros en `/es/simulator/` y `/es/markets/`, modelados según las [especificaciones reales de contrato de CME Group](https://www.cmegroup.com/markets/equities/sp/e-mini-sandp500.contractSpecs.html), y cada uno se traduce distinto.
+Un precio de futuros no es una cantidad en dólares. Es un número que traduces a dólares a través del multiplicador del contrato. Stockade lleva cuatro símbolos de futuros en `/es/simulator/` y `/es/markets/`, con los nombres de los contratos reales de la tabla, y cada uno de esos contratos se traduce distinto.
 
 <div class="table-wrap">
 

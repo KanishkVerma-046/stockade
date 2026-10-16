@@ -21,7 +21,7 @@ A futures contract is a different object entirely: a standardized, exchange-trad
 
 ## Contract specifications: multiplier, tick size, and tick value
 
-A futures price is not a dollar amount. It is a number you translate into dollars through the contract's multiplier. Stockade carries four futures symbols on `/simulator` and `/markets`, modeled on [CME Group's real contract specifications](https://www.cmegroup.com/markets/equities/sp/e-mini-sandp500.contractSpecs.html) for each, and each translates differently.
+A futures price is not a dollar amount. It is a number you translate into dollars through the contract's multiplier. Stockade carries four futures symbols on `/simulator` and `/markets`, named after the real contracts below, and each of those contracts translates differently.
 
 <div class="table-wrap">
 
