@@ -89,6 +89,18 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
               <strong class="text-[var(--c-text)] font-semibold">Les prix sont générés, pas réels.</strong>
               Les 14 tickers d'actions et les 8 de cryptomonnaies sont des noms inventés. Les 3 paires de forex et les 4 symboles de contrats à terme portent les noms d'instruments réels, mais aucun de leurs prix ne provient du marché de cet instrument : tous les prix sont des données synthétiques générées dans votre navigateur, jamais issues d'un flux en direct.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Ni marge ni effet de levier.</strong> Un achat n'est accepté que si son coût total tient dans votre solde en cash, donc il n'y a ni effet de levier, ni exigence de marge, ni appel de marge.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">La vente à découvert est simplifiée.</strong> Vendre sans position ouverte ouvre une position courte sans aucune vérification de solde ni de marge. Le produit de la vente est ajouté à votre solde en cash, vos capitaux propres déduisent la valeur actuelle de la position courte, et aucun coût d'emprunt n'est facturé.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Ni heures de marché ni gaps.</strong> Tous les symboles se négocient en continu, et chaque chandelier ouvre là où le précédent a clôturé, donc les prix ne font jamais de gap d'un jour à l'autre ni sur un week-end.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Un seul modèle de volatilité pour tous les symboles.</strong> Actions, cryptomonnaies, forex et contrats à terme évoluent selon le même processus aléatoire, mis à l'échelle uniquement par le prix, donc les classes d'actifs ne se comportent pas différemment ici. Les contrats à terme n'ont ni multiplicateur de contrat ni taille de tick : le P&amp;L est la variation de prix multipliée par la quantité, comme pour une action.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             En résumé: considérez les résultats comme un entraînement au processus — entrées, sorties, dimensionnement et discipline — plutôt que comme une prévision de ce que la même stratégie rapporterait avec de l'argent réel.
