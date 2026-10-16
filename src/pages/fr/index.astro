@@ -28,11 +28,11 @@ const faqs = [
   },
   {
     q: 'Stockade est-il un simulateur de paper trading ou de day trading ?',
-    a: 'Les deux. Avancez dans une session complète chandelier par chandelier à votre propre rythme (paper trading) ou suivez des prix en direct avec des cotations toutes les 800 ms (day trading) — le tout avec 100 000 $ d\'argent virtuel.',
+    a: 'Les deux. Avancez dans une session complète chandelier par chandelier à votre propre rythme (paper trading) ou tradez des prix simulés qui se mettent à jour toutes les 800 ms (day trading) — le tout avec 100 000 $ d\'argent virtuel.',
   },
   {
     q: 'Qu\'est-ce qu\'un simulateur de marché boursier ?',
-    a: 'Un simulateur de marché boursier est une plateforme de trading virtuelle qui reproduit les conditions réelles du marché en utilisant de l\'argent fictif, vous permettant de vous entraîner à acheter et vendre des actions, des cryptomonnaies, du forex et des contrats à terme sans risque financier. Stockade vous donne 100 000 $ de capital virtuel et des outils de niveau professionnel — graphiques en chandeliers, indicateurs techniques et plusieurs types d\'ordres — directement dans votre navigateur, sans inscription requise.',
+    a: 'Un simulateur de marché boursier est une plateforme de trading virtuelle qui vous permet de vous entraîner à acheter et vendre des actions, des cryptomonnaies, du forex et des contrats à terme avec de l\'argent fictif, sans risque financier. Stockade vous donne 100 000 $ de capital virtuel et des outils de niveau professionnel — graphiques en chandeliers, indicateurs techniques et plusieurs types d\'ordres — directement dans votre navigateur, sans inscription requise. Ses prix sont générés dans votre navigateur plutôt qu\'issus d\'un flux de marché en direct, et il ne modélise ni les spreads, ni la marge, ni les exécutions partielles.',
   },
   {
     q: 'Que puis-je faire avec un simulateur de marché boursier ?',
@@ -40,11 +40,11 @@ const faqs = [
   },
   {
     q: 'Le simulateur de marché boursier est-il réel ou fictif ?',
-    a: 'L\'argent est fictif — un capital entièrement virtuel, à partir de 100 000 $, donc aucun risque financier. Les prix et les graphiques utilisent des données de marché simulées réalistes, modélisées sur le comportement réel des courtiers, de sorte que la mécanique de trading, les figures graphiques et les types d\'ordres reflètent ce que vous utiliseriez sur une plateforme réelle. L\'argent n\'est pas réel, mais les compétences acquises le sont.',
+    a: 'L\'argent est fictif — un capital entièrement virtuel, à partir de 100 000 $, donc aucun risque financier. Les prix sont simulés eux aussi : ils sont générés aléatoirement dans votre navigateur et ne proviennent d\'aucune bourse. Ce qui se transfère, c\'est le fonctionnement des outils — graphiques en chandeliers, ordres au marché et à cours limité, niveaux de stop-loss et de take-profit, et l\'arithmétique du P&L de votre compte — même si les exécutions sont plus simples que chez un vrai courtier, sans spread, commission ni exécution partielle. L\'argent n\'est pas réel, mais les compétences acquises le sont.',
   },
   {
     q: 'Comment fonctionne un simulateur de marché boursier ?',
-    a: 'Stockade génère des données de prix réalistes pour 29 actifs répartis entre actions, cryptomonnaies, forex et contrats à terme. Vous passez vos ordres via un carnet d\'ordres complet — au marché, à cours limité, stop-loss, take-profit et ordres bracket OCO — et le simulateur les exécute instantanément. Votre P&L virtuel, votre courbe d\'équité, votre taux de réussite et vos indicateurs de performance sont suivis automatiquement dans votre navigateur, sans compte requis.',
+    a: 'Stockade génère des prix simulés pour 29 actifs répartis entre actions, cryptomonnaies, forex et contrats à terme. Vous tradez depuis un panneau d\'ordres avec des ordres au marché et à cours limité, plus des niveaux optionnels de stop-loss et de take-profit qui fonctionnent comme un bracket OCO. Les ordres au marché s\'exécutent instantanément au dernier prix ; les ordres à cours limité attendent que le prix les atteigne. Votre P&L virtuel, votre courbe d\'équité, votre taux de réussite et vos indicateurs de performance sont suivis automatiquement dans votre navigateur, sans compte requis.',
   },
   {
     q: 'Quels sont les risques liés à l\'utilisation d\'un simulateur de marché boursier ?',
@@ -52,11 +52,11 @@ const faqs = [
   },
   {
     q: 'Quelles sont les limites du simulateur ?',
-    a: 'Stockade utilise des données de prix simulées plutôt qu\'un flux de marché en direct, si bien que les écarts de cours, le slippage et les gaps hors séance réels sont approximés plutôt que précisément reproduits. Il ne peut pas non plus reproduire pleinement la pression psychologique liée à la mise en jeu de capital réel. Voyez-le comme un terrain d\'entraînement qui couvre toutes les compétences techniques, tout en reconnaissant que la discipline émotionnelle se développe davantage sur les marchés réels.',
+    a: 'Les prix de Stockade sont générés aléatoirement plutôt qu\'issus d\'un flux de marché en direct, et ses exécutions sont plus simples que celles d\'une vraie bourse : pas de spread bid-ask, pas de commission, pas de marge et pas d\'exécution partielle. Les ordres s\'exécutent intégralement au prix affiché, ou à leur prix limite, donc le seul slippage vient d\'un stop-loss ou d\'un take-profit qui clôture au tick ayant franchi son niveau, et les prix ne font jamais de gap, car le marché simulé n\'a pas d\'heures de fermeture. Il ne peut pas non plus reproduire la pression psychologique liée à la mise en jeu de capital réel. Voyez-le comme un terrain d\'entraînement pour le processus — entrées, sorties et dimensionnement — tandis que la discipline émotionnelle se développe davantage sur les marchés réels.',
   },
   {
     q: 'Quel est le principal avantage d\'un simulateur ?',
-    a: 'Un risque financier nul tout en développant de véritables compétences de trading. Vous pouvez tester des stratégies, faire des erreurs et développer de la discipline sans perdre d\'argent. Stockade vous donne 100 000 $ de capital virtuel et des outils professionnels — graphiques en chandeliers, EMA/VWAP/RSI/MACD, un carnet d\'ordres complet et un tableau de bord analytique détaillé — le même environnement qu\'un courtier réel, entièrement gratuit et sans conséquence.',
+    a: 'Un risque financier nul tout en développant de véritables compétences de trading. Vous pouvez tester des stratégies, faire des erreurs et développer de la discipline sans perdre d\'argent. Stockade vous donne 100 000 $ de capital virtuel et des outils professionnels — graphiques en chandeliers, EMA/VWAP/RSI/MACD, un panneau d\'ordres complet et un tableau de bord analytique détaillé — entièrement gratuit et sans conséquence.',
   },
 ];
 
@@ -155,7 +155,7 @@ const liveStatsLabels = {
 
       <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
         Le simulateur de trading d'actions et de cryptomonnaies gratuit, avec des données de
-        marché simulées réalistes. Sans inscription. Sans risque. Juste du trading virtuel.
+        marché simulées. Sans inscription. Sans risque. Juste du trading virtuel.
       </p>
 
       <div class="flex flex-wrap justify-center gap-3 mb-16">
@@ -250,7 +250,7 @@ const liveStatsLabels = {
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { icon: '📈', title: 'Vrais graphiques en chandeliers', desc: 'Chandeliers complets avec volume, superposés d\'indicateurs EMA, VWAP, RSI et MACD — les mêmes outils qu\'utilisent les professionnels.' },
+          { icon: '📈', title: 'Graphiques en chandeliers et indicateurs', desc: 'Chandeliers complets avec volume, superposés d\'indicateurs EMA, VWAP, RSI et MACD — les mêmes outils qu\'utilisent les professionnels.' },
           { icon: '⚡', title: 'Exécution instantanée',          desc: 'Ordres au marché, à cours limité, stop-loss, take-profit et bracket OCO exécutés instantanément.' },
           { icon: '⌨️', title: 'Raccourcis clavier',              desc: 'B pour acheter, S pour vendre, F pour clôturer. Tradez à la vitesse de la pensée sans toucher la souris.' },
           { icon: '📊', title: 'Tableau de bord analytique',      desc: 'Taux de réussite, facteur de profit, gain/perte moyen, courbe d\'équité, drawdown et cartes de chaleur par plage horaire.' },
@@ -312,21 +312,21 @@ Stockade est un <a href="/fr/simulator/" class="text-[#f59e0b] hover:underline">
           Pourquoi la plupart des jeux de trading tombent à plat
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Beaucoup de simulateurs sont optimisés pour l'engagement plutôt que pour le réalisme. Ils suppriment les indicateurs, les types d'ordres et les indicateurs de risque, et ce qui reste est un jeu où l'on regarde un chiffre monter — amusant pour un après-midi, mais qui n'apprend presque rien qui survive au contact d'un véritable courtier. Nous avons fait le choix inverse. Stockade vous offre des graphiques en chandeliers avec histogrammes de volume, des superpositions EMA 9/20/50, le VWAP, le RSI et le MACD, ainsi qu'un carnet d'ordres avec des entrées au marché et à cours limité et des niveaux de stop-loss / take-profit qui fonctionnent comme un ordre bracket OCO. L'idée est que les habitudes que vous développez ici restent valables lorsque vous passez à une plateforme réelle — voir <a href="/fr/blog/guide-du-paper-trading/" class="text-[#f59e0b] hover:underline">le guide du paper trading</a> pour savoir comment faire durer cette transition.
+          Beaucoup de simulateurs sont optimisés pour l'engagement plutôt que pour le réalisme. Ils suppriment les indicateurs, les types d'ordres et les indicateurs de risque, et ce qui reste est un jeu où l'on regarde un chiffre monter — amusant pour un après-midi, mais qui n'apprend presque rien qui survive au contact d'un véritable courtier. Nous avons fait le choix inverse. Stockade vous offre des graphiques en chandeliers avec histogrammes de volume, des superpositions EMA 9/20/50, le VWAP, le RSI et le MACD, ainsi qu'un panneau d'ordres avec des entrées au marché et à cours limité et des niveaux de stop-loss / take-profit qui fonctionnent comme un ordre bracket OCO. L'idée est que les habitudes que vous développez ici restent valables lorsque vous passez à une plateforme réelle — voir <a href="/fr/blog/guide-du-paper-trading/" class="text-[#f59e0b] hover:underline">le guide du paper trading</a> pour savoir comment faire durer cette transition.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Deux façons de s'entraîner: en direct et en relecture
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Le mode direct diffuse six actifs à la fois avec des prix mis à jour toutes les 800 millisecondes, vous permettant de pratiquer le day trading face à un flux rapide et de découvrir comment vous vous comportez réellement sous pression. Le mode relecture fait l'inverse — vous avancez dans une session complète un chandelier à la fois, en prenant le temps qu'il vous faut sur chaque décision. La plupart des gens utilisent le mode direct pour développer leurs réflexes et le mode relecture pour développer la reconnaissance de figures — pour un entraînement centré uniquement sur la lecture des formations plutôt que sur le P&amp;L, le <a href="/fr/chart-simulator/" class="text-[#f59e0b] hover:underline">simulateur de graphiques</a> avance de la même façon à travers les figures en chandeliers. Les simulateurs de paper trading gérés par des courtiers exigent généralement une inscription et un compte réel lié avant de vous laisser passer un seul ordre. Ici, il suffit d'ouvrir la page.
+          Le mode direct met à jour le symbole que vous tradez toutes les 800 millisecondes, vous permettant de pratiquer le day trading face à un flux rapide et de découvrir comment vous vous comportez réellement sous pression. Le mode relecture fait l'inverse — vous avancez dans une session complète un chandelier à la fois, en prenant le temps qu'il vous faut sur chaque décision. La plupart des gens utilisent le mode direct pour développer leurs réflexes et le mode relecture pour développer la reconnaissance de figures — pour un entraînement centré uniquement sur la lecture des formations plutôt que sur le P&amp;L, le <a href="/fr/chart-simulator/" class="text-[#f59e0b] hover:underline">simulateur de graphiques</a> avance de la même façon à travers les figures en chandeliers. Les simulateurs de paper trading gérés par des courtiers exigent généralement une inscription et un compte réel lié avant de vous laisser passer un seul ordre. Ici, il suffit d'ouvrir la page.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Actions, cryptomonnaies, forex et contrats à terme au même endroit
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Il y a 14 actions au comportement de prix réaliste, 8 cryptomonnaies qui évoluent avec la volatilité que vous attendriez de vraies devises numériques, des paires de devises majeures et mineures, et quatre contrats à terme — NQ, ES, CL et GC. Cette diversité compte plus qu'il n'y paraît: une stratégie qui semble brillante sur une action peu volatile s'effondre souvent sur une paire de devises ou un contrat à terme, et avoir tout réuni sur <a href="/fr/markets/" class="text-[#f59e0b] hover:underline">une seule plateforme</a> permet de le découvrir facilement.
+          Il y a 14 actions et 8 jetons crypto, tous avec des noms inventés, ainsi que trois paires de devises majeures (EUR/USD, GBP/USD et USD/JPY) et quatre symboles de contrats à terme qui portent les noms de contrats réels — NQ, ES, CL et GC. Les 29 prix sont générés aléatoirement avec le même modèle de volatilité, donc cette diversité sert à s'entraîner sur différentes échelles de prix et formats de cotation, pas à comparer le comportement des vraies classes d'actifs — et avec tout réuni sur <a href="/fr/markets/" class="text-[#f59e0b] hover:underline">une seule plateforme</a>, passer de l'une à l'autre se fait en un clic.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -346,7 +346,7 @@ Stockade est un <a href="/fr/simulator/" class="text-[#f59e0b] hover:underline">
           {[
             'Graphiques en chandeliers complets avec volume',
             'Indicateurs professionnels: EMA, VWAP, RSI, MACD',
-            'Carnet d\'ordres: entrées au marché et à cours limité, brackets OCO stop-loss / take-profit',
+            'Panneau d\'ordres: entrées au marché et à cours limité, brackets OCO stop-loss / take-profit',
             'Analyse de performance avec courbes d\'équité et suivi du drawdown',
             'Compatibilité complète mobile et tablette',
           ].map(item => (

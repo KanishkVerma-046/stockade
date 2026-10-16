@@ -116,3 +116,16 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
   - FAQ == JSON-LD (11/11). og/twitter == meta on all four pages. No title changed (explainer title 69).
   - Explainer description 146 → 158. Home 143, about 159 and simulator 149 are unchanged.
 - **Leftover sweep:** remaining hits on these pages are true statements (negations, "realismo" defined as tooling, real-time ticks).
+
+### fr
+
+- **Rows fixed:** 1–7, 9, 10, 13, R, plus **11** and **14**.
+  - **Row 11 (order-book false friend):** all 9 "carnet d'ordres" lines meaning Stockade's panel now say **"panneau d'ordres"**, fr's existing term (`blog-fr/ordres-oco-et-bracket.md:102`, "Le panneau d'ordres de `/fr/simulator/`"). That's index 47/59/315/349, about 78, simulator 48, and the three blog lines.
+  - "Carnet d'ordres" stays where it means a real exchange's book: simulator 82, the market-vs-limit post's "vrai carnet d'ordres", and the crypto and support/resistance posts.
+  - **Row 14:** "cotations en direct" becomes "ticks simulés" (about, markets).
+- **Terms:**
+  - From the fr `/simulator/` list and posts: "spread bid-ask", "exécution partielle", "flux en direct", "jetons inventés", "processus — entrées, sorties, dimensionnement".
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
+  - Explainer description 157 → 154.
+  - Unchanged descriptions over 160: home 178, about 170, simulator 173 (report-only list).
