@@ -84,6 +84,18 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             <li>
               <strong class="text-[var(--c-text)] font-semibold">Preise sind generiert, nicht real.</strong> Die 14 Aktien- und 8 Krypto-Ticker sind erfundene Namen. Die 3 Forex-Paare und 4 Futures-Symbole tragen die Bezeichnungen realer Instrumente, aber keiner ihrer Kurse stammt aus dem Markt dieses Instruments: Alle Kurse sind synthetische Daten, die in Ihrem Browser erzeugt werden, niemals aus einem Live-Feed.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Keine Margin und kein Hebel.</strong> Ein Kauf wird nur angenommen, wenn seine vollen Kosten in Ihr Barguthaben passen, daher gibt es keinen Hebel, keine Margin-Anforderung und keinen Margin Call.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Leerverkäufe sind vereinfacht.</strong> Ein Verkauf ohne offene Position eröffnet eine Short-Position ohne jede Guthaben- oder Margin-Prüfung. Der Verkaufserlös wird Ihrem Barguthaben gutgeschrieben, Ihr Eigenkapital zieht den aktuellen Wert der Short-Position ab, und es fallen keine Finanzierungskosten an.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Keine Handelszeiten und keine Kurslücken.</strong> Jedes Symbol wird rund um die Uhr gehandelt, und jede Kerze eröffnet dort, wo die vorherige geschlossen hat, sodass Kurse nie über Nacht oder über ein Wochenende springen.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Ein einziges Volatilitätsmodell für jedes Symbol.</strong> Aktien, Krypto, Forex und Futures bewegen sich nach demselben Zufallsprozess, nur nach dem Preis skaliert, daher verhalten sich die Anlageklassen hier nicht unterschiedlich. Futures haben keinen Kontrakt-Multiplikator und keine Tick-Größe: P&amp;L ist die Preisänderung mal die Menge, wie bei einer Aktie.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             Kurz gesagt: Betrachten Sie die Ergebnisse als Training des Prozesses — Einstiege, Ausstiege, Positionsgröße und Disziplin — statt als Prognose dafür, was dieselbe Strategie mit echtem Geld einbringen würde.
