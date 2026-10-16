@@ -214,6 +214,24 @@ This is the FAQ answer users and search engines will read as the limitations sta
 
 **Code:** same as rows 8 and 13. "Cotations", "Kurse" and 시세 are market *quotes*, so "live quotes" reads as a live data feed. The ticks are generated in the browser. es/pt/it/ja keep "ticks", which describes the simulator accurately.
 
+### 15. Sentences the /simulator/ limitations list now contradicts (added 2026-10-16, after the list gained margin, shorting, hours and volatility items)
+
+Found by re-reading every English page and post for Stockade-specific behaviour claims, then locating each one's counterpart in the 7 translations. The English is fixed in its own commit; the translations wait for review.
+
+| # | English (file:line) | Claim | Code / limitations list | Counterparts |
+|---|---|---|---|---|
+| E1 | `src/pages/about.astro:52` | "too simplistic to **reflect how actual markets behave**" | Implies Stockade reflects real market behaviour; it uses one random-walk model and none of the list's market mechanics | es `about.astro:53`, pt `:52`, fr `:48`, it `:52`, de `:48`, ja `:47`, ko `:47` |
+| E2 | `blog/what-is-a-stock-market-simulator.md:12` | "a price chart that **moves the way a market moves**" | Random walk, one volatility model, no gaps or hours | the explainer intro in all 7 (es/fr/de/ko `:12`, pt `:18`, it `:12`, ja `:12`) |
+| E3 | same post `:16` | "the tools built around them — charts, orders, account math — **work the way they do at a broker**" | No margin, simplified shorting, levels instead of resting stop orders | the intro sentence written in the realism pass, all 7 |
+| E4 | same post `:16` | "What they do is ***behave* like market data** — … volume that shifts from bar to bar, and **the long wicks that make real charts awkward to read**" | Volume is a uniform random draw unrelated to the candle (`understanding-trading-volume.md:93`). Each wick is a random fraction of the body: up to 1× (history) or 0.8× (replay, chart simulator), and on about 12–15% of wicks up to 2.2–2.5× (`TradingSimulator.tsx:91-93, :115-117`; `ChartSimulator.tsx:319-321`). Live wicks are the running high/low of 800 ms ticks. Long wicks are occasional and capped, not modelled on real charts | es `:17`, pt `:27`, fr/it/de/ja/ko `:16` |
+| E5 | same post `:16` | "The account math … **follows the same arithmetic your broker uses**" | Same arithmetic for P&L and equity, but no margin requirement and no collateral for shorts | all 7, same paragraph |
+| E6 | same post `:38` | "**Stockade supports all five**" (after defining stop-loss and take-profit as resting orders) | Stop-loss and take-profit are levels on the open position, not separate resting orders | es `:39`, pt `:72`, fr/it/de/ja/ko `:38` |
+| E7 | same post `:66` | "Live mode moves at 800ms ticks, **closer to the real pace** and the real pressure" | Tick rate is a fixed 800 ms timer, not a market's pace | es `:67`, pt `:127`, fr/it/de/ja/ko `:66` |
+| E8 | same post `:90` | "Commissions, spreads, borrowing costs, and taxes are **not modelled the way your specific broker will apply them**" | Implies they are modelled in some form; none of them is modelled at all | es `:91`, pt `:173`, fr/it/de/ja/ko `:90` |
+| E9 | `blog/how-to-read-candlestick-charts.md:109` | "the OHLC structure, the wicks, and **the volume behave the way real chart structure behaves**" | Volume is random and unrelated to the candle; wicks are random fractions of the body (see E4) | es `como-leer-graficos-de-velas.md:110`, pt `como-ler-graficos-de-candles.md:182`, fr/it/de/ja/ko `:109` |
+
+Checked and kept: "realistic-looking price action" (`common-day-trading-mistakes.md:108`, hedged), "Fills here carry almost no friction" and similar limitation statements in the posts (accurate), and the home "realism" paragraph (tooling).
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.

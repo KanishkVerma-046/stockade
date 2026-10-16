@@ -9,11 +9,11 @@ slug: "what-is-a-stock-market-simulator"
 
 The first time most people place a real trade, they are learning two things at once: how the software works, and whether their idea about the market was any good. Those are very different problems, and mixing them is expensive. You click "sell" when you meant "sell short," you buy 100 shares when you meant 10, you discover your stop order was never actually submitted — and every one of those mistakes costs real money to learn something a manual could have taught you.
 
-A stock market simulator separates those two problems. It gives you a full trading interface, a price chart that moves the way a market moves, and a balance of fake money, so the mechanical mistakes cost nothing. You get to be bad at the software in private.
+A stock market simulator separates those two problems. It gives you a full trading interface, a price chart that moves tick by tick, and a balance of fake money, so the mechanical mistakes cost nothing. You get to be bad at the software in private.
 
 ## What a stock market simulator actually is
 
-A simulator is a trading platform where the money and the price feed are both simulated, while the tools built around them — charts, orders, account math — work the way they do at a broker. Be clear on the data: Stockade's prices are generated algorithmically, not pulled from an exchange, and there is no live feed behind them. What they do is *behave* like market data — proper OHLC candles with an open, high, low and close, volume that shifts from bar to bar, and the long wicks that make real charts awkward to read. Market and limit orders work as they are defined. The account math — cash balance, position size, unrealized profit and loss, account equity — follows the same arithmetic your broker uses. What is missing is the market around them: there is no spread, no commission, no margin requirement and no partial fill, nobody sends your order to an exchange, and no cash leaves an account.
+A simulator is a trading platform where the money and the price feed are both simulated. What carries over to a real account is the order handling and the arithmetic — market and limit orders, stop-loss and take-profit levels, and how profit and loss is calculated — in the simplified form described further down. Be clear on the data: Stockade's prices are generated algorithmically, not pulled from an exchange, and there is no live feed behind them. What they do have is the shape of market data — OHLC candles with an open, high, low and close — but the details are random: each wick is a random fraction of the candle's body, usually shorter than it and occasionally up to two and a half times as long, and each bar's volume is a random number unrelated to the candle. Market and limit orders work as they are defined. The account math — cash balance, position size, unrealized profit and loss, account equity — uses the same arithmetic as a broker for profit and loss and for equity, but without margin requirements: a buy needs its full cost in cash, and a short needs no collateral. What is missing is the market around them: there is no spread, no commission and no partial fill, nobody sends your order to an exchange, and no cash leaves an account.
 
 That distinction matters. A simulator is not a game with a market theme; it is a working model of the trading workflow with the consequences removed. The skills that transfer are the mechanical ones — sizing a position, working an order, keeping a record. The one that does not transfer is the one you need most, and we will get to it below.
 
@@ -35,7 +35,7 @@ A **take-profit** is the same idea in the other direction — an order that clos
 
 An **OCO bracket** ("one cancels the other") pairs a stop-loss and a take-profit around an open position. Whichever fills first cancels the other, so you cannot end up with a dangling order that opens a new position after you have already exited. See [OCO and bracket orders explained](/blog/oco-and-bracket-orders/) for the full mechanics.
 
-Stockade supports all five. Placing a hundred of them with fake money is how the vocabulary becomes muscle memory. The keyboard shortcuts help: `B` to buy, `S` to sell, `F` to flatten (close everything). When your hands know the exit key, hesitation stops being a factor.
+Stockade supports all five in a simplified form: stop-loss and take-profit are levels attached to your open position rather than separate resting orders, and together they work as the OCO bracket. Placing a hundred of them with fake money is how the vocabulary becomes muscle memory. The keyboard shortcuts help: `B` to buy, `S` to sell, `F` to flatten (close everything). When your hands know the exit key, hesitation stops being a factor.
 
 ### Position sizing, with actual numbers
 
@@ -63,7 +63,7 @@ The [Markets page](/markets/) carries 29 instruments: 14 equities, 8 crypto toke
 
 The generated prices also do not reproduce real-world instrument personality: a single volatility model runs across every symbol. What you learn here is the arithmetic and the workflow.
 
-For deliberate practice, the [Chart Simulator](/chart-simulator/) replays a chart session candle by candle, so you step forward one bar at a time without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, closer to the real pace and the real pressure.
+For deliberate practice, the [Chart Simulator](/chart-simulator/) replays a chart session candle by candle, so you step forward one bar at a time without knowing what comes next. The session is generated rather than pulled from an archive, so you cannot recognise the chart and cheat — and not knowing what the next candle does is the whole point. Live mode moves at 800ms ticks, which adds the time pressure that stepping through a replay removes.
 
 ## What the statistics tell you that your memory will not
 
@@ -87,7 +87,7 @@ This part gets left out of most articles on the subject, and leaving it out is d
 
 **Fills in a simulator carry almost no friction.** Your order fills at the price you see, instantly, in full; only stop and target exits slip, by the tick that crossed your level. Real orders face slippage — the gap between the price you expected and the price you got, which widens exactly when the market is moving fast and you most want to be filled. Real orders also face partial fills, where you ask for 500 shares and get 300. Neither appears at real scale here, so simulated results are systematically a little better than the same decisions would produce live.
 
-**Commissions, spreads, borrowing costs, and taxes are not modelled the way your specific broker will apply them.** A strategy that clears a thin profit in a simulator can be a net loser once real costs land on it.
+**Commissions, spreads, borrowing costs, and taxes are not modelled at all.** A strategy that clears a thin profit in a simulator can be a net loser once real costs land on it.
 
 **The price data is generated, so it contains no actual market behaviour.** Stockade's candles come from an algorithm, not from an exchange. That is fine for drilling mechanics — an order ticket does not care where the number came from — but a pattern that "works" here has been tested against arithmetic, not against a market. There are no earnings releases, no news shocks, none of the recurring structure traders actually try to exploit. Backtest-style conclusions drawn from generated data are worth nothing. Use the simulator to learn how to trade, not to discover what to trade.
 
