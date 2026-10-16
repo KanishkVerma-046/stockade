@@ -1,6 +1,6 @@
 # Audit: claims that the product models real markets
 
-**Status: report only. Nothing edited.** Written 2026-10-16 at `87e0b57`.
+**Status: fix in progress (see `2026-10-16-realism-claims-fixes.md`).** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass.
 
 **Trigger:** `025da5e` removed a claim that Stockade's futures were "modeled on CME Group's real contract specifications". The engine has no multipliers, tick sizes or margin. This audit looks for other claims that the product models, replicates or follows real market data, contract specs, exchange behaviour or fills.
 
@@ -150,6 +150,31 @@ This is the FAQ answer users and search engines will read as the limitations sta
 | `src/pages/index.astro:256` + `{7 locales}/index.astro:253` (it `:258`) | all 8 | Feature card "**Real Candlestick Charts** … same tools the pros use" (ja 「本格的な」 = "full-fledged", milder) | **Partly.** The indicators (EMA, VWAP, RSI, MACD) exist in `TradingChart.tsx`, but "Real" next to synthetic data is ambiguous. |
 | `src/pages/index.astro:318` + `{7}/index.astro:315` (it `:320`) | all 8 | "A lot of simulators optimize for engagement instead of **realism**." | **Subjective.** It implies Stockade is realistic. |
 | `src/pages/about.astro:58` + es `:60`, pt/it `:59`, fr/de `:52`, ja/ko `:51` | all 8 | "a stock market simulator with **realistic order types** (market, limit, stop-loss, OCO/bracket orders)" | **Partly.** Market and limit behave as defined. Stop-loss/OCO are position-level triggers that close at the crossing tick, not resting orders. |
+
+### 10. FAQ "What is the main advantage of a simulator?": "the same environment as a real brokerage" — **No** (added 2026-10-16 during the fix pass)
+
+| File | Locale | Sentence (claim part) |
+|---|---|---|
+| `src/pages/index.astro:59` | en | "… a full order panel, and a detailed analytics dashboard — **the same environment as a real brokerage**, completely free and consequence-free." |
+| `src/pages/{es,pt,fr,it,de,ja,ko}/index.astro:59` | all 7 | es "el mismo entorno que un bróker real"; pt "o mesmo ambiente de uma corretora real"; fr "le même environnement qu'un courtier réel"; it "lo stesso ambiente di un broker vero"; de "dieselbe Umgebung wie bei einem echten Broker"; ja 「実際の証券会社と同じ環境」; ko "실제 증권사와 동일한 환경" |
+
+**Code:** same as #2. No broker environment is reproduced: there's no spread, commission, margin, partial fill or live data. This answer is also FAQPage JSON-LD.
+
+### 11. de and fr only: the order panel translated as an order book — **No** (added 2026-10-16 during the fix pass)
+
+| File | Locale | Sentence (claim part) | English source |
+|---|---|---|---|
+| `src/pages/de/index.astro:47` | de | "Sie geben Ihre Orders über ein **vollständiges Orderbuch** auf" | "through a full order panel" |
+| `src/pages/de/index.astro:59` | de | "ein **vollständiges Orderbuch**" | "a full order panel" |
+| `src/pages/de/index.astro:315` | de | "sowie ein **Orderbuch** mit Market- und Limit-Einträgen" | "plus an order panel with market and limit entries" |
+| `src/pages/de/index.astro:349` | de | "'**Orderbuch**: Market- und Limit-Einträge, …'" | "'Order panel: market and limit entries, …'" |
+| `src/pages/de/simulator.astro:48` | de | "und ein **vollständiges Orderbuch**" | "and a full order ticket" |
+| `src/pages/de/about.astro:78` | de | title "**Vollständiges Orderbuch**" | "Complete order panel" |
+| `src/pages/fr/index.astro:47` | fr | "via un **carnet d'ordres complet**" | "through a full order panel" |
+| `src/pages/fr/index.astro:315` | fr | "ainsi qu'un **carnet d'ordres** avec des entrées au marché et à cours limité" | "plus an order panel with market and limit entries" |
+| `src/pages/fr/simulator.astro:48` | fr | "et un **carnet d'ordres complet**" | "and a full order ticket" |
+
+**Code:** "Orderbuch" and "carnet d'ordres" are the standard terms for an exchange **order book**, the resting bids and offers at each price. Stockade has no order book or market depth: one generated price per tick. The English says order *panel*/*ticket*, the form you enter orders in. de and fr already use "Orderbuch" and "carnet d'ordres" correctly for real markets on their `/simulator/` limitations list (de `:73`, `:79`; fr `:82`), which is the meaning that makes these lines an overclaim. The de and fr `index.astro:47` and de `:59` lines are FAQ answers (#3, #10), so they are also FAQPage JSON-LD.
 
 ## Related inconsistency (understates rather than overstates)
 
