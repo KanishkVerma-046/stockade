@@ -160,3 +160,10 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
 - **dist:**
   - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
   - The explainer description stays 72 chars; ja descriptions on these pages were never in the 150–160 set.
+
+### ko (applied as proposed above)
+
+- **Rows fixed:** 1–7, 9, 10, 13, R, plus **8** (실시간 시세 → 시뮬레이션 가격 in the FAQ, the home meta description and markets) and **14** (about "800밀리초 시세 갱신" → "800밀리초 간격의 시뮬레이션 가격 갱신").
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
+  - Home meta description 153 → **158** (in the 150–160 range); "실시간 시세" appears nowhere in `dist/ko/`.
