@@ -105,3 +105,14 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
 | 7b explainer intro | 「その周りに構築されたすべてのものが本物同様に機能する」→「その周りに構築されたツール — チャート、注文、口座の計算 — は証券会社と同じように機能する」; 「注文タイプは本物の注文タイプです。」→「成行注文と指値注文は定義どおりに機能します。」; 「欠けているのは決済です: …」→「欠けているのは、その周りの市場です: スプレッドも手数料も証拠金の要件も部分約定もなく、誰もあなたの注文を取引所に送らず、口座から現金が出ていくこともありません。」 | "그 주변에 구축된 모든 것이 실제로 작동하는 방식대로 작동하는" → "그 주변에 구축된 도구들 — 차트, 주문, 계좌 산술 — 이 증권사에서와 같은 방식으로 작동하는"; "주문 유형은 진짜 주문 유형입니다." → "시장가 주문과 지정가 주문은 정의대로 작동합니다."; "빠진 것은 정산입니다: …" → "빠진 것은 그 주변의 시장입니다: 스프레드도, 수수료도, 증거금 요건도, 부분 체결도 없고, 아무도 여러분의 주문을 거래소로 보내지 않으며, 어떤 현금도 계좌를 떠나지 않습니다." |
 | 7c explainer | 「結果を取り除いたマーケットの実働モデル」→「結果を取り除いたトレーディングの作業手順の実働モデル」 | "결과가 제거된 시장의 작동하는 모형" → "결과가 제거된 트레이딩 작업 흐름의 작동하는 모형" |
 | step 5 | volume post 「10以上の取引所」→「12を超える取引所」 ("more than a dozen") | — |
+
+### pt
+
+- **Rows fixed:** 1, 2, 3, 4, 10, 13 (FAQ), 5, 6, 9a, 9b (home), 9c (about), R (simulator), 7a–7c (explainer). The explainer paragraphs are re-wrapped at ≤104 chars, and no wrapped line starts with a markdown marker.
+- **Terms:**
+  - From the pt `/simulator/` list: "sem spread e sem comissão", "execuções parciais", "feed ao vivo".
+  - From pt posts: "nomes do mundo real", "tokens inventados", "um único modelo de volatilidade", "processo — entradas, saídas"; "spread entre compra e venda" for bid-ask.
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all four pages. No title changed (explainer title 69).
+  - Explainer description 146 → 158. Home 143, about 159 and simulator 149 are unchanged.
+- **Leftover sweep:** remaining hits on these pages are true statements (negations, "realismo" defined as tooling, real-time ticks).

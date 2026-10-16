@@ -1,6 +1,6 @@
 ---
 title: "O Que É um Simulador de Mercado de Ações e Por Que Usar Um"
-description: "Um simulador de mercado de ações permite operar a mecânica real do mercado com dinheiro virtual. Como funcionam e o que podem e não podem ensinar."
+description: "Um simulador de mercado de ações permite praticar ordens reais e a matemática da conta com dinheiro virtual. Como funcionam e o que podem e não podem ensinar."
 date: 2026-03-23
 author: "Stockade Team"
 tags: ["Fundamentos"]
@@ -20,19 +20,21 @@ mecânicos não custam nada. Você pode ser ruim no software em particular.
 
 ## O que um simulador de mercado de ações realmente é
 
-Um simulador é uma plataforma de trading onde o dinheiro e o feed de preços são ambos simulados e tudo
-construído em torno deles funciona da forma como realmente funciona. Seja claro sobre os dados: os preços
-da Stockade são gerados algoritmicamente, não vindos de uma exchange, e não há feed ao vivo por trás deles.
-O que eles fazem é *se comportar* como dados de mercado — candles OHLC apropriados com abertura, máxima,
-mínima e fechamento, volume que muda de barra a barra, e os pavios longos que tornam gráficos reais difíceis
-de ler. Os tipos de ordem são os tipos de ordem reais. A matemática da conta — saldo em caixa, tamanho da
-posição, lucro e prejuízo não realizado, capital da conta — segue a mesma aritmética que sua corretora usa.
-O que falta é a liquidação: ninguém envia sua ordem para uma exchange, e nenhum dinheiro sai de uma conta.
+Um simulador é uma plataforma de trading onde o dinheiro e o feed de preços são ambos simulados,
+enquanto as ferramentas construídas em torno deles — gráficos, ordens, matemática da conta — funcionam
+como numa corretora. Seja claro sobre os dados: os preços da Stockade são gerados algoritmicamente, não
+vindos de uma exchange, e não há feed ao vivo por trás deles. O que eles fazem é *se comportar* como
+dados de mercado — candles OHLC apropriados com abertura, máxima, mínima e fechamento, volume que muda
+de barra a barra, e os pavios longos que tornam gráficos reais difíceis de ler. Ordens a mercado e
+limitadas funcionam exatamente como são definidas. A matemática da conta — saldo em caixa, tamanho da
+posição, lucro e prejuízo não realizado, capital da conta — segue a mesma aritmética que sua corretora
+usa. O que falta é o mercado em volta: não há spread, nem comissão, nem exigência de margem, nem
+execuções parciais, ninguém envia sua ordem para uma exchange, e nenhum dinheiro sai de uma conta.
 
-Essa distinção importa. Um simulador não é um jogo com tema de mercado; é um modelo funcional de um mercado
-com as consequências removidas. As habilidades que se transferem são as mecânicas — dimensionar uma
-posição, trabalhar uma ordem, manter um registro. A que não se transfere é a que você mais precisa, e
-chegaremos nela abaixo.
+Essa distinção importa. Um simulador não é um jogo com tema de mercado; é um modelo funcional do fluxo
+de trabalho do trading com as consequências removidas. As habilidades que se transferem são as mecânicas
+— dimensionar uma posição, trabalhar uma ordem, manter um registro. A que não se transfere é a que você
+mais precisa, e chegaremos nela abaixo.
 
 O simulador da Stockade começa com $100.000 em capital virtual e roda inteiramente no seu navegador. Não há
 cadastro nem conta; suas posições e histórico vivem no armazenamento local do seu navegador. Esse design
