@@ -230,6 +230,8 @@ Found by re-reading every English page and post for Stockade-specific behaviour 
 | E8 | same post `:90` | "Commissions, spreads, borrowing costs, and taxes are **not modelled the way your specific broker will apply them**" | Implies they are modelled in some form; none of them is modelled at all | es `:91`, pt `:173`, fr/it/de/ja/ko `:90` |
 | E9 | `blog/how-to-read-candlestick-charts.md:109` | "the OHLC structure, the wicks, and **the volume behave the way real chart structure behaves**" | Volume is random and unrelated to the candle; wicks are random fractions of the body (see E4) | es `como-leer-graficos-de-velas.md:110`, pt `como-ler-graficos-de-candles.md:182`, fr/it/de/ja/ko `:109` |
 
+**Correction to the E4/E9 fix (2026-10-16, before translation):** `cc56250` said every wick is a random fraction of the body. That holds for the loaded history and replay only; a live candle's wicks are the running high/low of its 800 ms ticks (`TradingSimulator.tsx:283-284`). Both English sentences now say so, and the translations carry the corrected wording.
+
 Checked and kept: "realistic-looking price action" (`common-day-trading-mistakes.md:108`, hedged), "Fills here carry almost no friction" and similar limitation statements in the posts (accurate), and the home "realism" paragraph (tooling).
 
 ## Related inconsistency (understates rather than overstates)
