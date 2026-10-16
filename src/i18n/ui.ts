@@ -37,7 +37,8 @@ export type UiKey =
   | 'blog.minRead'
   | 'blog.keepLearning'
   | 'legal.translationNotice'
-  | 'legal.viewEnglish';
+  | 'legal.viewEnglish'
+  | 'markets.trade';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -82,6 +83,7 @@ const en: Dictionary = {
   'legal.translationNotice':
     'This page has been translated for your convenience. In case of any discrepancy, the English version is authoritative.',
   'legal.viewEnglish': 'View the English version',
+  'markets.trade': 'Trade',
 };
 
 const es: Dictionary = {
@@ -125,6 +127,7 @@ const es: Dictionary = {
   'legal.translationNotice':
     'Esta página ha sido traducida por comodidad. En caso de discrepancia, la versión en inglés prevalece.',
   'legal.viewEnglish': 'Ver la versión en inglés',
+  'markets.trade': 'Operar',
 };
 
 const pt: Dictionary = {
@@ -168,6 +171,7 @@ const pt: Dictionary = {
   'legal.translationNotice':
     'Esta página foi traduzida para sua conveniência. Em caso de discrepância, a versão em inglês prevalece.',
   'legal.viewEnglish': 'Ver a versão em inglês',
+  'markets.trade': 'Operar',
 };
 
 const ja: Dictionary = {
@@ -211,6 +215,7 @@ const ja: Dictionary = {
   'legal.translationNotice':
     'このページは利便性のために翻訳されています。内容に相違がある場合は、英語版が優先されます。',
   'legal.viewEnglish': '英語版を見る',
+  'markets.trade': '取引',
 };
 
 const fr: Dictionary = {
@@ -254,6 +259,7 @@ const fr: Dictionary = {
   'legal.translationNotice':
     "Cette page a été traduite pour votre confort. En cas de divergence, la version anglaise fait foi.",
   'legal.viewEnglish': 'Voir la version anglaise',
+  'markets.trade': 'Trader',
 };
 
 const de: Dictionary = {
@@ -297,6 +303,7 @@ const de: Dictionary = {
   'legal.translationNotice':
     'Diese Seite wurde zu Ihrer Bequemlichkeit übersetzt. Im Falle von Abweichungen ist die englische Version maßgeblich.',
   'legal.viewEnglish': 'Englische Version ansehen',
+  'markets.trade': 'Traden',
 };
 
 const ko: Dictionary = {
@@ -340,6 +347,7 @@ const ko: Dictionary = {
   'legal.translationNotice':
     '이 페이지는 편의를 위해 번역되었습니다. 내용에 차이가 있는 경우 영어 버전이 우선합니다.',
   'legal.viewEnglish': '영어 버전 보기',
+  'markets.trade': '거래하기',
 };
 
 const it: Dictionary = {
@@ -383,6 +391,7 @@ const it: Dictionary = {
   'legal.translationNotice':
     'Questa pagina è stata tradotta per tua comodità. In caso di discrepanza, prevale la versione in inglese.',
   'legal.viewEnglish': 'Visualizza la versione in inglese',
+  'markets.trade': 'Fai trading',
 };
 
 export const translations: Record<Locale, Dictionary> = {

@@ -64,13 +64,30 @@ const VOLUME_UNITS: Record<Category, string> = {
   futures: 'Volume is contracts traded.',
 };
 
+interface Labels {
+  trade: string;
+}
+
+const DEFAULT_LABELS: Labels = {
+  trade: 'Trade',
+};
+
+interface Props {
+  // Where the Trade links point. Passed in rather than derived here because the
+  // island is pre-rendered at build time with no window.location to read, so a
+  // derived URL would ship English in the static HTML; the page computes it with
+  // localizedHref('/simulator/', locale). Defaults to the English simulator.
+  simulatorHref?: string;
+  labels?: Labels;
+}
+
 function fmt(price: number) {
   if (price >= 1000) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   if (price >= 1)    return price.toFixed(2);
   return price.toFixed(4);
 }
 
-export default function MarketsView() {
+export default function MarketsView({ simulatorHref = '/simulator/', labels = DEFAULT_LABELS }: Props) {
   const [assets, setAssets]     = useState<Asset[]>(INITIAL);
   const [category, setCategory] = useState<Category>('all');
   const [search, setSearch]     = useState('');
@@ -194,10 +211,10 @@ export default function MarketsView() {
                 <td className="py-3 px-4 text-[13px] font-mono text-[var(--c-text-subtle)]">{a.mktCap}</td>
                 <td className="py-3 px-4">
                   <a
-                    href={`/simulator/?symbol=${encodeURIComponent(a.symbol)}`}
+                    href={`${simulatorHref}?symbol=${encodeURIComponent(a.symbol)}`}
                     className="px-2.5 py-1 rounded bg-[var(--c-amber-bg)] border border-[var(--c-amber-dim)] text-[#f59e0b] text-[11px] font-mono hover:bg-[#f59e0b] hover:text-[#0a0a0a] transition-colors"
                   >
-                    Trade
+                    {labels.trade}
                   </a>
                 </td>
               </tr>

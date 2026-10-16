@@ -3,7 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/layout/Navbar.astro';
 import Footer from '../../components/layout/Footer.astro';
 import MarketsView from '../../components/markets/MarketsView.tsx';
-import { MARKETS_ALTERNATES } from '../../i18n/alternates';
+import { MARKETS_ALTERNATES, localizedHref } from '../../i18n/alternates';
+import { t } from '../../i18n/ui';
+
+const locale = 'ja' as const;
+const marketsLabels = {
+  trade: t(locale, 'markets.trade'),
+};
 ---
 
 <Layout
@@ -18,7 +24,11 @@ import { MARKETS_ALTERNATES } from '../../i18n/alternates';
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">マーケット概況</h1>
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">このマーケット概況は、株式・暗号資産・FX・先物の29種類のシミュレーション資産について2秒ごとに更新されます。暗号資産トレーディングシミュレーターのウォッチリストとして、FXシミュレーターのスキャナーとして、あるいは取引前に価格をさっと確認するためにご利用ください。価格変動率で並び替えると、最も動いている資産を確認できます。隣の出来高列もチェックしてください — その数字が実際に何を示しているかは<a href="/ja/blog/dekidaka-wo-rikai-suru/" class="text-[#f59e0b] hover:underline">トレーディング出来高を理解する</a>をご覧ください。800ミリ秒間隔のライブティックを利用するには、<a href="/ja/simulator/" class="text-[#f59e0b] hover:underline">トレーディングシミュレーター</a>をお使いください。</p>
     </div>
-    <MarketsView client:load />
+    <MarketsView
+      client:load
+      simulatorHref={localizedHref('/simulator/', locale)}
+      labels={marketsLabels}
+    />
   </main>
   <Footer />
 </Layout>

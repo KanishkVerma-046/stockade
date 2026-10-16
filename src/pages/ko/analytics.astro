@@ -3,7 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/layout/Navbar.astro';
 import Footer from '../../components/layout/Footer.astro';
 import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
-import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
+import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
+
+const locale = 'ko' as const;
 ---
 
 <Layout
@@ -18,7 +20,7 @@ import { ANALYTICS_ALTERNATES } from '../../i18n/alternates';
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">성과 대시보드</h1>
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">여러분의 시뮬레이션 트레이딩 통계 — 자본 곡선, 승률, 낙폭, 매매일지.</p>
     </div>
-    <AnalyticsDashboard client:load />
+    <AnalyticsDashboard client:load simulatorHref={localizedHref('/simulator/', locale)} />
 
     <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
       <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">

@@ -55,7 +55,14 @@ const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const DAY_INDICES = [1, 2, 3, 4, 5, 6, 0];
 
-export default function AnalyticsDashboard() {
+interface Props {
+  // Target of the "Open simulator" links. Passed in by the page via
+  // localizedHref('/simulator/', locale) for the same reason as MarketsView's
+  // prop: a pre-rendered island has no locale-aware URL of its own.
+  simulatorHref?: string;
+}
+
+export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'trades' | 'heatmap'>('overview');
   const [trades, setTrades] = useState<StoredTrade[]>([]);
   const [balance, setBalance] = useState(STARTING_BALANCE);
@@ -177,7 +184,7 @@ export default function AnalyticsDashboard() {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center h-[140px] text-center">
               <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet — start trading to see your equity curve</p>
-              <a href="/simulator/" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
             </div>
           ) : (
             <>
@@ -220,7 +227,7 @@ export default function AnalyticsDashboard() {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center p-10 text-center">
               <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet</p>
-              <a href="/simulator/" className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
             </div>
           ) : (
             <div className="overflow-x-auto">
