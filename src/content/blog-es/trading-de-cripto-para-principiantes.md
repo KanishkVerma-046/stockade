@@ -22,7 +22,7 @@ Cripto elimina todo eso. No hay un momento en el que tu posición esté a salvo 
 
 - **Tu stop es tu única protección nocturna.** No un nivel mental, no una intención de revisar el gráfico — una orden en espera. Un stop mental solo funciona cuando estás despierto.
 - **El tamaño de posición tiene que sobrevivir un movimiento sin supervisión.** Pregúntate qué pasa si el activo se mueve 15% en tu contra mientras duermes, porque puede pasar y pasa.
-- **No hay cortacircuitos.** En las acciones de EE. UU., una caída del 7% en el S&P 500 detiene el trading por 15 minutos. Cripto no tiene equivalente. Una cascada de liquidaciones corre hasta que se agota sola.
+- **No hay cortacircuitos.** En las acciones de EE. UU., una [caída del 7% en el S&P 500 detiene el trading por 15 minutos](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Cripto no tiene equivalente. Una cascada de liquidaciones corre hasta que se agota sola.
 
 Si todavía no has construido un marco de dimensionamiento, hazlo antes de tocar esta clase de activo — [tamaño de posición y la regla del 1%](/es/blog/gestion-de-riesgo-y-tamano-de-posicion/) cubre la aritmética.
 
@@ -105,7 +105,7 @@ Así que un token que muestra "$2,000 millones de volumen diario" puede tener $1
 
 ## Lo que los mercados cripto no te dan
 
-Sé realista sobre la infraestructura que falta. No hay equivalente a la cobertura SIPC para un exchange cripto que quiebra — los acreedores de plataformas en bancarrota han pasado años en tribunales por recuperaciones parciales. La manipulación que atraería sanciones en acciones es común y en gran parte no vigilada. Los listados no llevan un estándar de divulgación comparable a una presentación pública.
+Sé realista sobre la infraestructura que falta. No hay equivalente a la [cobertura SIPC](https://www.sipc.org/for-investors/what-sipc-protects) para un exchange cripto que quiebra — los acreedores de plataformas en bancarrota han pasado años en tribunales por recuperaciones parciales. La manipulación que atraería sanciones en acciones es común y en gran parte no vigilada. Los listados no llevan un estándar de divulgación comparable a una presentación pública.
 
 Y el reloj 24/7 es una trampa psicológica tanto como estructural. Las acciones imponen una pausa; cripto nunca lo hace. Cada hora es una en la que *podrías* estar operando, que es exactamente la condición que produce sobreoperar, revenge trading, y decisiones tomadas a las 3 a.m. — los [errores más comunes del day trading](/es/blog/errores-comunes-de-day-trading/), con el único freno externo eliminado. La disciplina tiene que ser enteramente autoimpuesta: horario de sesión definido, una hora de cierre dura, y órdenes en espera que funcionen mientras tú no lo haces.
 

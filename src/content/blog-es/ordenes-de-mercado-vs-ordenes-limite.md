@@ -45,7 +45,7 @@ Una **orden límite** dice: *ejecuta esto solo a mi precio o mejor, y si no pued
 
 ## La disyuntiva de la que se deriva todo lo demás
 
-Aquí está la frase para memorizar: **una orden de mercado garantiza la ejecución pero no el precio; una orden límite garantiza el precio pero no la ejecución.**
+Aquí está la frase para memorizar, y coincide con [cómo los propios reguladores definen los dos tipos de orden](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders): **una orden de mercado garantiza la ejecución pero no el precio; una orden límite garantiza el precio pero no la ejecución.**
 
 Cada otra consideración de abajo es consecuencia de esa única línea. ¿Orden de mercado para salir de una perdedora? Sí — te importa más salir que los últimos centavos, y la ejecución es lo que garantiza una orden de mercado. ¿Orden límite para entrar en un instrumento de spread amplio? Sí — ahí lo que está en riesgo es el precio.
 

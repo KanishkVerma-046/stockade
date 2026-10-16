@@ -14,7 +14,7 @@ La regla no estaba exactamente equivocada — tenías la idea equivocada sobre l
 
 ## Qué mide realmente el RSI
 
-El Índice de Fuerza Relativa (RSI), publicado por J. Welles Wilder en 1978, responde una pregunta estrecha: en las últimas N velas, ¿cómo se comparan los movimientos alcistas promedio con los movimientos bajistas promedio? Eso es genuinamente todo lo que hace. Toma el cambio de cierre a cierre de cada vela en una ventana de retroceso — 14 velas por defecto — los separa en ganancias y pérdidas, promedia cada grupo, y los compara como una razón llamada RS, por fuerza relativa:
+El Índice de Fuerza Relativa (RSI), [publicado por J. Welles Wilder en 1978](https://www.britannica.com/money/relative-strength-index-rsi), responde una pregunta estrecha: en las últimas N velas, ¿cómo se comparan los movimientos alcistas promedio con los movimientos bajistas promedio? Eso es genuinamente todo lo que hace. Toma el cambio de cierre a cierre de cada vela en una ventana de retroceso — 14 velas por defecto — los separa en ganancias y pérdidas, promedia cada grupo, y los compara como una razón llamada RS, por fuerza relativa:
 
 ```
 RS = ganancia promedio / pérdida promedio

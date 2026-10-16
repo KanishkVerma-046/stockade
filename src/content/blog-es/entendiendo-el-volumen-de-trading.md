@@ -79,7 +79,7 @@ Léelo en dos pasadas. Busca valores atípicos que claramente superen a las vein
 
 ## Dónde te engañan los datos de volumen
 
-**Está fragmentado entre plataformas.** Una acción estadounidense opera en más de una docena de exchanges además de plataformas fuera de bolsa, y una porción significativa nunca se imprime en un exchange visible en absoluto. El número de tu plataforma depende de qué feeds consolida, así que dos herramientas de gráficos pueden mostrar volúmenes distintos para la misma acción el mismo día.
+**Está fragmentado entre plataformas.** Una acción estadounidense opera en [más de una docena de exchanges registrados](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges) además de plataformas fuera de bolsa, y una porción significativa nunca se imprime en un exchange visible en absoluto. El número de tu plataforma depende de qué feeds consolida, así que dos herramientas de gráficos pueden mostrar volúmenes distintos para la misma acción el mismo día.
 
 **El volumen de cripto es frecuentemente ficticio.** El wash trading — la misma entidad comprando y vendiéndose a sí misma para fabricar actividad aparente — se ha documentado a gran escala en múltiples exchanges, y ningún registro consolidado ni regulador impone un estándar único. Las plataformas descentralizadas lo hacen aún más barato. Tratar una cifra de volumen de cripto con la confianza que le darías a una impresión de la NYSE es un error.
 

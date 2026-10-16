@@ -54,7 +54,7 @@ Esto es lo que oculta. En $57 estás abajo $600 de cualquier forma. Pero si el p
 
 ### Cortar las ganadoras temprano mientras dejas correr las perdedoras
 
-Tomas ganancias en +0.5R porque una ganancia pequeña en mano se siente sólida, y luego sostienes una perdedora hasta −2R porque podría volver. Este es el efecto disposición: realizar una ganancia produce una recompensa, realizar una pérdida produce lo opuesto. Tu sistema nervioso optimiza para qué tan seguido te sientes bien, no para cuánto dinero tienes.
+Tomas ganancias en +0.5R porque una ganancia pequeña en mano se siente sólida, y luego sostienes una perdedora hasta −2R porque podría volver. Este es [el efecto disposición](https://en.wikipedia.org/wiki/Disposition_effect): realizar una ganancia produce una recompensa, realizar una pérdida produce lo opuesto. Tu sistema nervioso optimiza para qué tan seguido te sientes bien, no para cuánto dinero tienes.
 
 Con la misma tasa de acierto del 55%, las salidas disciplinadas retornan 0.55 × 1.5 − 0.45 × 1 = **+0.375R por operación**, o +7.5R en 20 operaciones. Las ganadoras cortadas a +0.5R y las perdedoras que llegan a −2R retornan 0.55 × 0.5 − 0.45 × 2 = **−0.625R por operación**, o −12.5R en las mismas 20. Entradas idénticas, tasa de acierto idéntica, un giro de 20R producido enteramente por el comportamiento de salida.
 
