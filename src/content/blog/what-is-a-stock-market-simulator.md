@@ -1,6 +1,6 @@
 ---
 title: "What Is a Stock Market Simulator and Why Should You Use One"
-description: "A stock market simulator lets you trade real market mechanics with virtual money. Here is how they work and what they can and cannot teach you."
+description: "A stock market simulator lets you practice real order types and account math with virtual money. Here is how they work and what they can and cannot teach you."
 date: 2026-03-23
 author: "Stockade Team"
 tags: ["Basics"]
@@ -13,9 +13,9 @@ A stock market simulator separates those two problems. It gives you a full tradi
 
 ## What a stock market simulator actually is
 
-A simulator is a trading platform where the money and the price feed are both simulated and everything built around them works the way it really works. Be clear on the data: Stockade's prices are generated algorithmically, not pulled from an exchange, and there is no live feed behind them. What they do is *behave* like market data — proper OHLC candles with an open, high, low and close, volume that shifts from bar to bar, and the long wicks that make real charts awkward to read. The order types are the real order types. The account math — cash balance, position size, unrealized profit and loss, account equity — follows the same arithmetic your broker uses. What is missing is the settlement: nobody sends your order to an exchange, and no cash leaves an account.
+A simulator is a trading platform where the money and the price feed are both simulated, while the tools built around them — charts, orders, account math — work the way they do at a broker. Be clear on the data: Stockade's prices are generated algorithmically, not pulled from an exchange, and there is no live feed behind them. What they do is *behave* like market data — proper OHLC candles with an open, high, low and close, volume that shifts from bar to bar, and the long wicks that make real charts awkward to read. Market and limit orders work as they are defined. The account math — cash balance, position size, unrealized profit and loss, account equity — follows the same arithmetic your broker uses. What is missing is the market around them: there is no spread, no commission, no margin requirement and no partial fill, nobody sends your order to an exchange, and no cash leaves an account.
 
-That distinction matters. A simulator is not a game with a market theme; it is a working model of a market with the consequences removed. The skills that transfer are the mechanical ones — sizing a position, working an order, keeping a record. The one that does not transfer is the one you need most, and we will get to it below.
+That distinction matters. A simulator is not a game with a market theme; it is a working model of the trading workflow with the consequences removed. The skills that transfer are the mechanical ones — sizing a position, working an order, keeping a record. The one that does not transfer is the one you need most, and we will get to it below.
 
 Stockade's simulator starts you with $100,000 in virtual capital and runs entirely in your browser. There is no signup and no account; your positions and history live in your browser's local storage. That design has an obvious tradeoff — clear your browser data and your history goes with it — but it means you can start in seconds instead of filling out a form.
 

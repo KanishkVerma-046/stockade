@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: 'What is a stock market simulator?',
-    a: 'A stock market simulator is a virtual trading platform that replicates real market conditions using fake money, letting you practice buying and selling stocks, crypto, forex, and futures without financial risk. Stockade gives you $100,000 in virtual capital and professional-grade tools — candlestick charts, technical indicators, and multiple order types — right in your browser, no signup required.',
+    a: 'A stock market simulator is a virtual trading platform that lets you practice buying and selling stocks, crypto, forex, and futures with fake money, without financial risk. Stockade gives you $100,000 in virtual capital and professional-grade tools — candlestick charts, technical indicators, and multiple order types — right in your browser, no signup required. Its prices are generated in your browser rather than pulled from a live market feed, and it does not model spreads, margin, or partial fills.',
   },
   {
     q: 'What can I do with a stock market simulator?',
@@ -40,11 +40,11 @@ const faqs = [
   },
   {
     q: 'Is the stock market simulator real or fake?',
-    a: 'The money is fake — entirely virtual capital, starting at $100,000, so there is zero financial risk. The prices and charts use realistic simulated market data modeled on real brokerage behavior, so the trading mechanics, chart patterns, and order types mirror what you\'d use in an actual platform. The skill-building is genuine even though the money is not.',
+    a: 'The money is fake — entirely virtual capital, starting at $100,000, so there is zero financial risk. The prices are simulated too: they are randomly generated in your browser, not pulled from any exchange. What carries over is how the tools work — candlestick charts, market and limit orders, stop-loss and take-profit levels, and the P&L arithmetic behind your account — although fills are simpler than at a real broker, with no spread, commission, or partial fills. The skill-building is genuine even though the money is not.',
   },
   {
     q: 'How does a stock market simulator work?',
-    a: 'Stockade generates realistic price data for 29 assets across stocks, crypto, forex, and futures. You place orders through a full order panel — market, limit, stop-loss, take-profit, and OCO bracket orders — and the simulator fills them instantly. Your virtual P&L, equity curve, win rate, and performance metrics are tracked automatically in your browser with no account required.',
+    a: 'Stockade generates simulated prices for 29 assets across stocks, crypto, forex, and futures. You trade from an order panel with market and limit orders, plus optional stop-loss and take-profit levels that work as an OCO bracket. Market orders fill instantly at the last price; limit orders wait until price reaches them. Your virtual P&L, equity curve, win rate, and performance metrics are tracked automatically in your browser with no account required.',
   },
   {
     q: 'What are the risks of using a stock market simulator?',
@@ -52,11 +52,11 @@ const faqs = [
   },
   {
     q: 'What are the limitations of the simulator?',
-    a: 'Stockade uses simulated price data rather than a live market feed, so exact real-world spreads, slippage, and after-hours gaps are approximated rather than precisely reproduced. It also cannot fully replicate the psychological pressure of risking real capital. Think of it as a training ground that covers all the technical skills while acknowledging that emotional discipline further develops in live markets.',
+    a: 'Stockade\'s prices are randomly generated rather than taken from a live market feed, and its fills are simpler than a real exchange\'s: there is no bid-ask spread, no commission, no margin, and no partial fills. Orders fill in full at the price shown, or at their limit price, so the only slippage comes from a stop-loss or take-profit closing at the tick that crossed it, and prices never gap, because the simulated market has no closing hours. It also cannot replicate the psychological pressure of risking real capital. Think of it as a training ground for process — entries, exits, and sizing — while emotional discipline develops further in live markets.',
   },
   {
     q: 'What is the main advantage of a simulator?',
-    a: 'Zero financial risk while developing real trading skills. You can test strategies, make mistakes, and build discipline without losing money. Stockade gives you $100,000 in virtual capital and professional tools — candlestick charts, EMA/VWAP/RSI/MACD, a full order panel, and a detailed analytics dashboard — the same environment as a real brokerage, completely free and consequence-free.',
+    a: 'Zero financial risk while developing real trading skills. You can test strategies, make mistakes, and build discipline without losing money. Stockade gives you $100,000 in virtual capital and professional tools — candlestick charts, EMA/VWAP/RSI/MACD, a full order panel, and a detailed analytics dashboard — completely free and consequence-free.',
   },
 ];
 
@@ -153,7 +153,7 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
 
       <!-- Subhead -->
       <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
-        The free stock &amp; crypto trading simulator with realistic simulated market data.
+        The free stock &amp; crypto trading simulator with simulated market data.
         No signup. No risk. Just virtual trading.
       </p>
 
@@ -253,7 +253,7 @@ const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { icon: '📈', title: 'Real Candlestick Charts', desc: 'Full candlestick + volume with EMA, VWAP, RSI, MACD indicators — same tools the pros use.' },
+          { icon: '📈', title: 'Candlestick Charts & Indicators', desc: 'Full candlestick + volume with EMA, VWAP, RSI, MACD indicators — same tools the pros use.' },
           { icon: '⚡', title: 'Instant Order Fills',     desc: 'Market, limit, stop-loss, take-profit, and OCO bracket orders executed instantly.' },
           { icon: '⌨️', title: 'Keyboard Shortcuts',      desc: 'B to buy, S to sell, F to flatten. Trade at the speed of thought without touching the mouse.' },
           { icon: '📊', title: 'Analytics Dashboard',     desc: 'Win rate, profit factor, avg win/loss, equity curve, drawdown, and time-of-day heatmaps.' },
@@ -322,14 +322,14 @@ Stockade is a <a href="/simulator/" class="text-[#f59e0b] hover:underline">stock
           Two ways to practice: live and replay
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Live mode streams six assets at once with prices updating every 800 milliseconds, so you can practice day trading against a fast tape and find out how you actually behave under pressure. Replay mode does the opposite — you step through a full session one candle at a time, taking as long as you want on each decision. Most people use live mode to build reflexes and replay to build pattern recognition — for practice focused purely on reading formations rather than P&amp;L, the <a href="/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> steps through candlestick patterns the same way. Broker-run paper trading simulators usually want registration and a linked real account before they'll let you place a single order. Here, you just open the page.
+          Live mode ticks the symbol you are trading every 800 milliseconds, so you can practice day trading against a fast tape and find out how you actually behave under pressure. Replay mode does the opposite — you step through a full session one candle at a time, taking as long as you want on each decision. Most people use live mode to build reflexes and replay to build pattern recognition — for practice focused purely on reading formations rather than P&amp;L, the <a href="/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> steps through candlestick patterns the same way. Broker-run paper trading simulators usually want registration and a linked real account before they'll let you place a single order. Here, you just open the page.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Stocks, crypto, forex, and futures in one place
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          There are 14 equity tickers with realistic price behavior, 8 crypto assets that move with the volatility you'd expect from the real thing, major and minor currency pairs, and four futures contracts — NQ, ES, CL, and GC. That range matters more than it sounds: a strategy that looks brilliant on a slow-moving equity often falls apart on a currency pair or a futures contract, and having everything on <a href="/markets/" class="text-[#f59e0b] hover:underline">one platform</a> makes that easy to find out.
+          There are 14 stock tickers and 8 crypto tokens, all with invented names, plus three major currency pairs (EUR/USD, GBP/USD, and USD/JPY) and four futures symbols named after real contracts — NQ, ES, CL, and GC. All 29 prices are randomly generated with the same volatility model, so the range is for practicing on different price scales and quote formats, not for comparing how real asset classes behave — and with everything on <a href="/markets/" class="text-[#f59e0b] hover:underline">one platform</a>, switching between them takes a click.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
