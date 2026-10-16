@@ -1,5 +1,5 @@
 ---
-title: "Ordre au Marché vs Ordre à Cours Limité : Quand Utiliser Chacun"
+title: "Ordre au Marché ou à Cours Limité : Quand Utiliser Chacun"
 description: "Un ordre au marché garantit l'exécution mais pas le prix. Un ordre à cours limité garantit le prix mais pas l'exécution. Tout le reste en découle."
 date: 2026-05-11
 tags: ["Types d'Ordres", "Bases"]

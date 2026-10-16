@@ -1,5 +1,5 @@
 ---
-title: "Ordres Stop-Loss : Comment Protéger Vos Trades des Grosses Pertes"
+title: "Ordres Stop-Loss : Protéger Vos Trades des Grosses Pertes"
 description: "Un stop se place là où votre idée de trade est invalidée, pas à un chiffre rond. Stop au marché vs stop à cours limité, placement, et dimensionnement adapté."
 date: 2026-05-18
 tags: ["Types d'Ordres", "Gestion du Risque"]

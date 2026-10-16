@@ -1,5 +1,5 @@
 ---
-title: "Qu'est-ce Qu'un Simulateur Boursier et Pourquoi en Utiliser Un"
+title: "Qu'est-ce Qu'un Simulateur Boursier et Pourquoi l'Utiliser"
 description: "Un simulateur boursier permet de pratiquer les vrais types d'ordres avec de l'argent virtuel. Comment ça marche, et ce qu'il peut vraiment vous apprendre."
 date: 2026-03-23
 tags: ["Bases"]

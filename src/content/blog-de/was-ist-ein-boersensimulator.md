@@ -1,5 +1,5 @@
 ---
-title: "Was ist ein Börsensimulator und warum sollten Sie einen nutzen"
+title: "Was ist ein Börsensimulator und warum ihn nutzen"
 description: "Ein Börsensimulator lässt Sie mit virtuellem Geld echte Ordertypen und Kontomathematik üben. So funktionieren sie und was sie lehren können — und was nicht."
 date: 2026-03-23
 tags: ["Grundlagen"]
