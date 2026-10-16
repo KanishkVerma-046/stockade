@@ -36,7 +36,7 @@ URLs are reused **byte-for-byte**. "es reference" quotes the finished Spanish as
 | 12 | oco-and-bracket-orders | OCO stands for **one-cancels-other**, [a standard conditional order type]. | `https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types` | **New appositive + link.** "Most brokers offer" was dropped, so don't translate it. Place it after the locale's existing gloss, e.g. es "(una cancela la otra), [un tipo de orden condicional estándar]". |
 | 13 | rsi-indicator-overbought-oversold | The Relative Strength Index, [published by J. Welles Wilder in 1978], answers … | `https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi` **(changed from Britannica)** | **Link only** |
 | 14 | stop-loss-orders-explained | … significant enough that [regulators publish investor guidance specifically about it]. | `https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15` | **Wrap only** (`e1770b7`) |
-| 15 | understanding-trading-volume | A US equity trades on [more than a dozen registered exchanges] plus off-exchange venues, … | `https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges` | **Link + one word** ("registered"). **ja drift:** ja says 「10以上の取引所」 ("10 or more"), not "more than a dozen". Decide at the ja batch whether to align the number. It isn't wrong, only weaker. |
+| 15 | understanding-trading-volume | A US equity trades on [more than a dozen registered exchanges] plus off-exchange venues, … | `https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges` | **Link + one word** ("registered"). **ja drift fixed** in `098e7c3`: ja now says 「12を超える取引所」 ("more than a dozen"), so the ja batch only wraps the link and adds the ja word for "registered". |
 
 **Per locale:**
 - **Link only:** 3 (#1, #3, #13)
@@ -66,7 +66,7 @@ One locale per batch, one subagent at a time (or inline), each verified in `dist
 | 3 | fr | |
 | 4 | it | |
 | 5 | de | |
-| 6 | ja | CJK. Put the link on the existing phrase with no added spaces. Use `<strong>` rather than `**` next to punctuation (see CLAUDE.md). Decide on the #15 count drift. |
+| 6 | ja | CJK. Put the link on the existing phrase with no added spaces. Use `<strong>` rather than `**` next to punctuation (see CLAUDE.md). |
 | 7 | ko | CJK; same caveats as ja. |
 
 ## Per-batch verification (scripted, against `dist/`)
