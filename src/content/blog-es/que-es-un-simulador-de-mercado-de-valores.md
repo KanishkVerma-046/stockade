@@ -1,6 +1,6 @@
 ---
 title: "Qué Es un Simulador de Mercado de Valores y Por Qué Deberías Usar Uno"
-description: "Un simulador de mercado de valores te deja operar la mecánica real del mercado con dinero virtual. Cómo funcionan y qué pueden y no pueden enseñarte."
+description: "Un simulador de mercado de valores te deja practicar órdenes reales con dinero virtual y sin riesgo. Cómo funcionan y qué pueden y no pueden enseñarte."
 date: 2026-03-23
 author: "Stockade Team"
 tags: ["Fundamentos"]
@@ -14,9 +14,9 @@ Un simulador de mercado de valores separa esos dos problemas. Te da una interfaz
 
 ## Qué es realmente un simulador de mercado de valores
 
-Un simulador de mercado de valores es una plataforma de trading virtual que replica las condiciones reales del mercado usando dinero ficticio, permitiéndote practicar la compra y venta de acciones, cripto, forex y futuros sin riesgo financiero. Sé claro sobre los datos: los precios de Stockade se generan algorítmicamente, no se extraen de ningún exchange, y no hay ningún feed en vivo detrás de ellos. Lo que sí hacen es *comportarse* como datos de mercado — velas OHLC apropiadas con apertura, máximo, mínimo y cierre, volumen que cambia de vela en vela, y las mechas largas que hacen incómodos de leer a los gráficos reales. Los tipos de órdenes son los tipos de órdenes reales. La aritmética de la cuenta — saldo en efectivo, tamaño de posición, ganancia y pérdida no realizada, capital de la cuenta — sigue la misma matemática que usa tu bróker. Lo que falta es la liquidación: nadie envía tu orden a un exchange, y ningún efectivo sale de una cuenta.
+Un simulador es una plataforma de trading donde el dinero y el feed de precios son simulados, mientras que las herramientas construidas a su alrededor — gráficos, órdenes, aritmética de la cuenta — funcionan como en un bróker. Sé claro sobre los datos: los precios de Stockade se generan algorítmicamente, no se extraen de ningún exchange, y no hay ningún feed en vivo detrás de ellos. Lo que sí hacen es *comportarse* como datos de mercado — velas OHLC apropiadas con apertura, máximo, mínimo y cierre, volumen que cambia de vela en vela, y las mechas largas que hacen incómodos de leer a los gráficos reales. Las órdenes de mercado y límite funcionan tal como se definen. La aritmética de la cuenta — saldo en efectivo, tamaño de posición, ganancia y pérdida no realizada, capital de la cuenta — sigue la misma matemática que usa tu bróker. Lo que falta es el mercado a su alrededor: no hay spread, ni comisión, ni requisito de margen, ni ejecuciones parciales, nadie envía tu orden a un exchange, y ningún efectivo sale de una cuenta.
 
-Esa distinción importa. Un simulador no es un juego con temática de mercado; es un modelo funcional de un mercado con las consecuencias eliminadas. Las habilidades que se transfieren son las mecánicas — dimensionar una posición, trabajar una orden, llevar un registro. La que no se transfiere es la que más necesitas, y llegaremos a ella más abajo.
+Esa distinción importa. Un simulador no es un juego con temática de mercado; es un modelo funcional del flujo de trabajo del trading con las consecuencias eliminadas. Las habilidades que se transfieren son las mecánicas — dimensionar una posición, trabajar una orden, llevar un registro. La que no se transfiere es la que más necesitas, y llegaremos a ella más abajo.
 
 El simulador de Stockade te da $100,000 en capital virtual y herramientas de nivel profesional — gráficos de velas, indicadores técnicos y múltiples tipos de órdenes — directamente en tu navegador, sin necesidad de registro. No hay cuenta; tus posiciones e historial viven en el almacenamiento local de tu navegador. Ese diseño tiene una contrapartida obvia — borra los datos de tu navegador y tu historial desaparece con ellos — pero significa que puedes empezar en segundos en lugar de llenar un formulario.
 

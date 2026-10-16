@@ -57,3 +57,16 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
 - **Files:** `index.astro` (FAQ #1–#4 and #10, subhead, feature card, assets paragraph, live-mode sentence), `about.astro`, `simulator.astro`, `blog/what-is-a-stock-market-simulator.md`.
 - **dist:** FAQ visible text == FAQPage JSON-LD for all 11 items. Descriptions: home 154 (unchanged), about 152 (unchanged), simulator 140 (unchanged), explainer 158 (was 143). og:description and twitter:description equal the meta description on all four. No `<title>` or frontmatter title changed. The explainer's 70-char title predates this pass; it's in `2026-10-16-blog-title-length-proposals.md`.
 - **Old phrases:** none of the 14 removed phrases remain in any English page in `dist/`.
+
+### es
+
+- **Files:** `es/index.astro` (FAQ #1–#4 and #10, subhead, feature card, assets paragraph, live-mode sentence), `es/about.astro`, `es/simulator.astro`, `blog-es/que-es-un-simulador-de-mercado-de-valores.md`.
+- **Terms reused:**
+  - From the es `/simulator/` limitations list: "sin spread y sin comisión", "ejecuciones parciales", "feed en vivo".
+  - From es posts: "spread entre bid y ask" (forex post), "con los nombres de los contratos reales" (futures post, `025da5e`), "panel de órdenes", "bracket OCO", "proceso — entradas, salidas, tamaño".
+- **Explainer body:** the es intro had swapped in the FAQ's "replica las condiciones reales del mercado". It now translates the English intro.
+- **dist:**
+  - FAQ visible text == FAQPage JSON-LD (11/11). og/twitter == meta description on all four pages.
+  - Explainer description 149 → 151. Home 146, simulator 151 and about 184 are unchanged.
+  - No title changed. The explainer's 80-char title is pre-existing; it's in the title proposals doc.
+- **Old phrases:** none of the 13 removed es phrases remain in `dist/es/`.
