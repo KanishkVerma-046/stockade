@@ -1,5 +1,5 @@
 ---
-title: "So analysieren Sie Ihre Trading-Performance: Die Kennzahlen, die zählen"
+title: "Trading-Performance analysieren: Kennzahlen, die zählen"
 description: "Die Trefferquote allein kann Sie stark täuschen. Erwartungswert, Profitfaktor, Payoff-Ratio, Drawdown und Stichprobengröße mit Stockades Analyse-Seite."
 date: 2026-08-03
 tags: ["Analysen", "Risikomanagement"]

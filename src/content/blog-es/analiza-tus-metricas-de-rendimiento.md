@@ -1,5 +1,5 @@
 ---
-title: "Cómo Analizar tu Rendimiento de Trading: Las Métricas Clave"
+title: "Cómo Analizar tu Rendimiento de Trading: Métricas Clave"
 description: "La tasa de acierto sola puede engañarte gravemente. Aprende expectativa, factor de beneficio, ratio de pago, drawdown y tamaño de muestra con Análisis."
 date: 2026-08-03
 author: "Stockade Team"

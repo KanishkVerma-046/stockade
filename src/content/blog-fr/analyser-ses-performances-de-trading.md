@@ -1,5 +1,5 @@
 ---
-title: "Analyser Ses Performances de Trading : Les Indicateurs Qui Comptent"
+title: "Analyser Ses Performances de Trading : Indicateurs Clés"
 description: "Le taux de réussite seul peut être trompeur. Apprenez l'espérance, le facteur de profit, le ratio gain/perte, le drawdown et la taille d'échantillon."
 date: 2026-08-03
 tags: ["Analyses", "Gestion du Risque"]

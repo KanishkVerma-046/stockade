@@ -1,5 +1,5 @@
 ---
-title: "Como Analisar Seu Desempenho de Trading: Métricas-Chave que Importam"
+title: "Como Analisar Seu Desempenho de Trading: Métricas-Chave"
 description: "A taxa de acerto sozinha pode te enganar. Aprenda expectativa, fator de lucro, relação risco-retorno, drawdown e tamanho de amostra com o painel da Stockade."
 date: 2026-08-03
 author: "Stockade Team"

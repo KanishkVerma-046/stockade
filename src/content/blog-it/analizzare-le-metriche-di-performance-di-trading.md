@@ -1,5 +1,5 @@
 ---
-title: "Come Analizzare le Tue Performance di Trading: le Metriche Chiave"
+title: "Analizzare le Performance di Trading: le Metriche Chiave"
 description: "Il tasso di successo da solo inganna. Aspettativa, profit factor, drawdown e dimensione del campione spiegati con l'analisi di Stockade."
 date: 2026-08-03
 tags: ["Analisi", "Gestione del Rischio"]
