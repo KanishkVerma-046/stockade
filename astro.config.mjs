@@ -10,6 +10,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.ts';
 import { buildSiblingMap, findStaleLinks } from './src/lib/localized-links.ts';
 import { findLiteralBold } from './src/lib/literal-markdown.ts';
+import { uiCoverage } from './src/lib/ui-coverage.ts';
+import { translations, UI_PENDING } from './src/i18n/ui.ts';
 
 // Non-default locale codes, for stripping the locale prefix off a sitemap
 // item's path before matching it against the branches below — /es/simulator
@@ -135,6 +137,39 @@ async function readBuiltPages(dir) {
       html: await readFile(file, 'utf-8'),
     }))
   );
+}
+
+/**
+ * Lists every locale's ui.ts keys missing relative to English and fails the
+ * build if a complete locale is missing any, or a locale in UI_PENDING is
+ * missing a key outside its declared pending prefixes. Missing keys silently
+ * fall back to English at runtime via t(), so without this a half-translated
+ * island looks fine in review. Runs before rendering so it fails fast. Logic
+ * and tests: src/lib/ui-coverage.ts.
+ *
+ * @returns {import('astro').AstroIntegration}
+ */
+function uiCoverageCheck() {
+  return {
+    name: 'ui-coverage-check',
+    hooks: {
+      'astro:build:start': ({ logger }) => {
+        const reports = uiCoverage(translations, DEFAULT_LOCALE, UI_PENDING);
+        for (const r of reports) {
+          const parts = [r.complete ? 'complete' : `partial (${r.pending.length} pending)`];
+          if (r.extra.length) parts.push(`${r.extra.length} key(s) not in en: ${r.extra.join(', ')}`);
+          logger.info(`${r.locale}: ${parts.join('; ')}${r.pending.length ? ' — ' + r.pending.join(', ') : ''}`);
+        }
+        const failing = reports.filter(r => r.violations.length);
+        if (failing.length) {
+          throw new Error(
+            'ui-coverage-check: missing ui.ts keys\n' +
+              failing.map(r => `  ${r.locale}${r.complete ? ' (marked complete)' : ''}: ${r.violations.join(', ')}`).join('\n')
+          );
+        }
+      },
+    },
+  };
 }
 
 /**
@@ -278,6 +313,7 @@ export default defineConfig({
     singleFileSitemap(),
     localizedLinkCheck(),
     literalMarkdownCheck(),
+    uiCoverageCheck(),
   ],
   vite: {
     plugins: [tailwindcss()],

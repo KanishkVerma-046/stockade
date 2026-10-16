@@ -438,6 +438,13 @@ const it: Dictionary = {
   'markets.volume.contracts': 'Il volume è il numero di contratti scambiati.',
 };
 
+// Locales still mid-rollout for a batch of keys. Each entry lists key prefixes
+// that locale may be missing for now (they fall back to English via t());
+// any other missing key fails the build (uiCoverageCheck in astro.config.mjs).
+// A locale absent from this map is complete and must have every English key.
+// Delete a locale's entry when its batch lands.
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
+
 export const translations: Record<Locale, Dictionary> = {
   en,
   es,
