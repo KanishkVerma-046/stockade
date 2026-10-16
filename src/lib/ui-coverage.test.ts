@@ -25,6 +25,11 @@ describe('uiCoverage', () => {
     expect(r.pending).toEqual(['markets.col.price']);
   });
 
+  it('reports a pending locale with nothing left under its prefixes as incomplete with no pending keys', () => {
+    const [r] = uiCoverage({ en, pt: { ...en } }, 'en', { pt: ['markets.'] });
+    expect(r).toMatchObject({ complete: false, pending: [], violations: [] });
+  });
+
   it('treats an empty string as missing and reports keys the base does not have', () => {
     const [r] = uiCoverage({ en, ja: { ...en, 'nav.home': '', 'nav.hmoe': 'typo' } }, 'en', {});
     expect(r.violations).toEqual(['nav.home']);

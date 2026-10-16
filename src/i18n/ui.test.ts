@@ -30,4 +30,12 @@ describe('ui.ts coverage', () => {
   it('has no keys that English lacks', () => {
     for (const r of reports) expect(r.extra).toEqual([]);
   });
+
+  // A UI_PENDING entry left behind after its batch lands would let that
+  // locale lose those keys again without failing anything.
+  it('lists only locales that still have pending keys in UI_PENDING', () => {
+    for (const r of reports) {
+      if (!r.complete) expect(r.pending, `${r.locale}: nothing pending, delete its UI_PENDING entry`).not.toEqual([]);
+    }
+  });
 });
