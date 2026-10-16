@@ -178,7 +178,7 @@ const es: Dictionary = {
   'legal.viewEnglish': 'Ver la versión en inglés',
   'markets.trade': 'Operar',
   'markets.volume.all':
-    'Las unidades de volumen dependen de cada clase de activo — acciones negociadas en acciones, dólares estadounidenses negociados en cripto y forex, contratos en futuros.',
+    'Las unidades de volumen dependen de cada clase de activo — en acciones, el número de acciones negociadas; en cripto y forex, los dólares estadounidenses negociados; en futuros, el número de contratos.',
   'markets.volume.shares': 'El volumen es el número de acciones negociadas.',
   'markets.volume.usd': 'El volumen son los dólares estadounidenses negociados.',
   'markets.volume.contracts': 'El volumen es el número de contratos negociados.',
