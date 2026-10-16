@@ -117,6 +117,18 @@ import { SIMULATOR_ALTERNATES } from '../i18n/alternates';
               market: every price is synthetic data generated in your browser, never pulled from a live
               feed.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">No margin or leverage.</strong> A buy is accepted only if its full cost fits in your cash balance, so there is no leverage, no margin requirement and no margin call.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Short selling is simplified.</strong> Selling with no open position opens a short without any balance or margin check. The sale proceeds are added to your cash balance, your equity subtracts the short's current value, and no borrowing cost is charged.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">No market hours or gaps.</strong> Every symbol trades around the clock, and each candle opens where the previous one closed, so prices never gap overnight or over a weekend.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">One volatility model for every symbol.</strong> Stocks, crypto, forex and futures all move by the same random process, scaled only by price, so asset classes don't behave differently here. Futures have no contract multiplier or tick size: P&amp;L is the price change times the quantity, as for a share.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             The upshot: treat the results as practice for process — entries, exits, sizing, and

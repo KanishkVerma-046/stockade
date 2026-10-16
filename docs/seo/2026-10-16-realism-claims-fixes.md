@@ -167,3 +167,19 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
 - **dist:**
   - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
   - Home meta description 153 → **158** (in the 150–160 range); "실시간 시세" appears nowhere in `dist/ko/`.
+
+## /simulator/ limitations list: missing items added (2026-10-16)
+
+The FAQ now states facts that the `/simulator/` "What this simulator does not model" list didn't. The list was checked against the verified-facts table above:
+
+| Verified fact | On the list before? | Action |
+|---|---|---|
+| No spread, no commission | Yes (item 1, "No slippage") | none |
+| Fills in full, instantly; no queue; no buying-power reservation | Yes (items 2–4) | none |
+| Prices generated; invented vs real-named symbols | Yes (item 5) | none |
+| **No margin or leverage** (a buy needs its full cost in cash) | No | new item 6 |
+| **Shorting:** no balance/margin check, proceeds credited to cash, equity subtracts the short's value, no borrow cost | No | new item 7 |
+| **No market hours, no gaps** (24/7, each candle opens at the prior close) | No | new item 8 |
+| **One volatility model for every symbol**; futures have no contract multiplier or tick size | No | new item 9 |
+
+The existing five items are unchanged. The additions are in all 8 locales, one commit per locale. Each reuses the locale's margin term: margen, margem, marge, Margin, margine, 証拠金, 증거금.
