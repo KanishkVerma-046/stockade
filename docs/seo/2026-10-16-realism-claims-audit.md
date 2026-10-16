@@ -139,6 +139,7 @@ This is the FAQ answer users and search engines will read as the limitations sta
 |---|---|---|
 | `src/pages/ko/index.astro:88` (meta description) | ko | "… 800밀리초 **실시간 시세** 또는 캔들 …". English's description has no live-price wording at all. |
 | `src/pages/ko/index.astro:31` (FAQ) | ko | "… 800밀리초 간격의 **실시간 시세** …" (en: "stream live prices at 800ms ticks") |
+| `src/pages/ko/markets.astro:29` | ko | "800밀리초 간격의 **실시간 시세**를 원하시면 …" (en: "For 800ms live ticks, use the Trading Simulator.") — added 2026-10-16 during the fix pass |
 
 **Code:** the ticks are generated in real time, but 시세 means market quotes. Together, 실시간 시세 is the standard Korean term for a real-time market data feed. Mild, but it reads as live market data in a meta description.
 
@@ -175,6 +176,14 @@ This is the FAQ answer users and search engines will read as the limitations sta
 | `src/pages/fr/simulator.astro:48` | fr | "et un **carnet d'ordres complet**" | "and a full order ticket" |
 
 **Code:** "Orderbuch" and "carnet d'ordres" are the standard terms for an exchange **order book**, the resting bids and offers at each price. Stockade has no order book or market depth: one generated price per tick. The English says order *panel*/*ticket*, the form you enter orders in. de and fr already use "Orderbuch" and "carnet d'ordres" correctly for real markets on their `/simulator/` limitations list (de `:73`, `:79`; fr `:82`), which is the meaning that makes these lines an overclaim. The de and fr `index.astro:47` and de `:59` lines are FAQ answers (#3, #10), so they are also FAQPage JSON-LD.
+
+### 12. ja only: 「ヒストリカルなプライスアクション」 ("historical price action") — **No** (added 2026-10-16 during the fix pass)
+
+| File | Locale | Sentence (claim part) | English source |
+|---|---|---|---|
+| `src/pages/ja/about.astro:51` | ja | 「**ヒストリカルなプライスアクション**でテクニカル分析を練習できる」チャートリプレイツール | "for practicing technical analysis on **historical-style** price action" |
+
+**Code:** the chart simulator replays **generated** candles (`ChartSimulator.tsx` `generateCandles`), not historical data. English says "historical-style", and es/pt/fr/it/de/ko all keep the "-style" qualifier ("de estilo histórico", "em estilo histórico", "de style historique", "in stile storico", "historisch anmutender", "과거 데이터풍의"). ja drops it, which claims real historical data.
 
 ## Related inconsistency (understates rather than overstates)
 
