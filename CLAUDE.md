@@ -39,6 +39,7 @@
 
 - **`compressHTML` deletes a whitespace run containing a newline at a tag boundary.** A space before/after `<strong>`/`<em>` must sit on the *same line* as the tag, or the words render joined ("long,Sell"). Invisible in source — check `dist/`
 - **An HTML comment directly before a `set:html` script inside `<Fragment slot="head">` fails to compile** (`[CompilerError] Unexpected token`). Use `{/* … */}` instead
+- **Markdown bold silently fails in ja/ko prose.** CommonMark only opens or closes `**` at "flanking" positions, so a delimiter between a letter and punctuation (`少なくとも**$25,000の資産**を`, `가격의 **0.18%**입니다`) prints the asterisks. Use `<strong>…</strong>` in the markdown instead; text inside it still renders as markdown. 30 such spans across 15 ja/ko posts were converted on 2026-10-16. `literalMarkdownCheck()` in `astro.config.mjs` now **fails the build** if any built page shows a literal `**` in visible text (`<code>`/`<pre>`, scripts and styles excluded). Logic and tests: `src/lib/literal-markdown.ts`
 - `src/pages/index.astro` has four `{[ … ].map()` blocks — anchor scripted edits to the enclosing `<section>`, never the first match
 - git restores these files with CRLF; any script doing text surgery must normalise line endings first
 
@@ -78,7 +79,7 @@ Translated blog posts live in mirrored `blogEs`/`blogPt`/`blogJa`/`blogFr`/`blog
 
 ## Testing
 
-`npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`).
+`npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`).
 
 `npx astro check` reports 1 pre-existing error at `ChartSimulator.tsx:670` (lightweight-charts marker generics). Exit 1 is expected; treat anything beyond that one as new.
 

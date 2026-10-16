@@ -9,6 +9,7 @@ import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.ts';
 import { buildSiblingMap, findStaleLinks } from './src/lib/localized-links.ts';
+import { findLiteralBold } from './src/lib/literal-markdown.ts';
 
 // Non-default locale codes, for stripping the locale prefix off a sitemap
 // item's path before matching it against the branches below — /es/simulator
@@ -118,6 +119,56 @@ function singleFileSitemap() {
 }
 
 /**
+ * Every built `index.html` as `{ path, html }`, with `path` the site-relative
+ * URL (trailing slash). Shared by the post-build checks below.
+ *
+ * @param {URL} dir
+ */
+async function readBuiltPages(dir) {
+  const outDir = fileURLToPath(dir);
+  const files = (await readdir(outDir, { recursive: true }))
+    .filter(name => name.endsWith('index.html'))
+    .map(name => join(outDir, name));
+  return Promise.all(
+    files.map(async file => ({
+      path: '/' + relative(outDir, file).split(sep).join('/').replace(/index\.html$/, ''),
+      html: await readFile(file, 'utf-8'),
+    }))
+  );
+}
+
+/**
+ * Fails the build if any built page shows a literal `**` in its visible text:
+ * markdown bold that CommonMark refused to render. It happens when the
+ * delimiter sits between a letter and punctuation, which is common in ja/ko
+ * prose (`も**$25,000**`). It looks fine in source, so only the built HTML
+ * reveals it. Fix by using `<strong>…</strong>` in the markdown. Logic and
+ * tests: src/lib/literal-markdown.ts.
+ *
+ * @returns {import('astro').AstroIntegration}
+ */
+function literalMarkdownCheck() {
+  return {
+    name: 'literal-markdown-check',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const pages = await readBuiltPages(dir);
+        const hits = findLiteralBold(pages);
+        if (hits.length > 0) {
+          const total = hits.reduce((n, h) => n + h.count, 0);
+          const shown = hits.slice(0, 25).map(h => `  ${h.page} (${h.count}): ${h.samples.join(' | ')}`);
+          throw new Error(
+            `literal-markdown-check: ${total} literal "**" on ${hits.length} page(s) — markdown bold ` +
+              `that did not render. Use <strong>…</strong> instead:\n${shown.join('\n')}`
+          );
+        }
+        logger.info(`No literal "**" in the visible text of ${pages.length} pages`);
+      },
+    },
+  };
+}
+
+/**
  * Fails the build if any translated page links to an English URL whose
  * sibling in that page's own locale exists. This bug has shipped repeatedly —
  * via nav chrome, React islands, and hand-written prose links — and is
@@ -134,16 +185,7 @@ function localizedLinkCheck() {
     name: 'localized-link-check',
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
-        const outDir = fileURLToPath(dir);
-        const files = (await readdir(outDir, { recursive: true }))
-          .filter(name => name.endsWith('index.html'))
-          .map(name => join(outDir, name));
-        const pages = await Promise.all(
-          files.map(async file => ({
-            path: '/' + relative(outDir, file).split(sep).join('/').replace(/index\.html$/, ''),
-            html: await readFile(file, 'utf-8'),
-          }))
-        );
+        const pages = await readBuiltPages(dir);
         const hreflangToLocale = Object.fromEntries(LOCALES.map(l => [l.hreflang, l.code]));
         const siblings = buildSiblingMap(pages, localeCodes, hreflangToLocale, 'https://stockademarketsim.com');
         const stale = findStaleLinks(pages, siblings, localeCodes);
@@ -235,6 +277,7 @@ export default defineConfig({
     }),
     singleFileSitemap(),
     localizedLinkCheck(),
+    literalMarkdownCheck(),
   ],
   vite: {
     plugins: [tailwindcss()],
