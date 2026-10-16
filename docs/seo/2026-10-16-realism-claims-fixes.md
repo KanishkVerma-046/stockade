@@ -151,3 +151,12 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
   - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
   - Explainer description 151 → 155.
   - Home description 171 is unchanged (report-only list).
+
+### ja (applied as proposed above)
+
+- **Rows fixed:** 1–7, 9, 10, 13, R, plus **12** (about: 「ヒストリカルなプライスアクション」 → 「過去データ風のプライスアクション」).
+- **Row 13 (FAQ):** 「800ミリ秒間隔のライブ価格を追いかける」 → 「800ミリ秒ごとに更新されるシミュレーション価格で取引する」.
+- **Step-5 fix:** volume post 「米国株は10以上の取引所」 → 「米国株は12を超える取引所」 ("more than a dozen").
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
+  - The explainer description stays 72 chars; ja descriptions on these pages were never in the 150–160 set.
