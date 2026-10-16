@@ -2,7 +2,9 @@
 
 **Status: proposal only. Nothing here has been applied.** Generated 2026-10-16 from the built `dist/` after commit `1756060`. Covers the 52 ja/ko pages whose `<meta name="description">` is under 150 characters: 27 ja and 25 ko. The 120 Latin-script pages in the same audit are deliberately left alone.
 
-**Result:** 50 proposals, all **150–160** characters (Bing's 150–160 window, and inside the blog schema's hard 160 cap). **2 skips.**
+**Updated 2026-10-16 after `0cdb335`:** 1 proposal applied (`/ja/blog/angoushisan-toreedo-nyumon/`), both markets proposals unblocked, both contact skips marked for revisit. See the section below.
+
+**Result:** 50 proposals (1 applied, 49 pending), all **150–160** characters (Bing's 150–160 window, and inside the blog schema's hard 160 cap). **2 skips.**
 
 ## Rules followed
 
@@ -11,12 +13,12 @@
 - **Existing first sentence kept wherever it was already the hook,** so Google's truncated snippet barely changes from today's.
 - **Skip instead of padding.** A page is skipped when its description is already a complete sentence and the page has nothing more specific to add.
 
-## Found while writing these, not fixed (no edits were made)
+## Found while writing these: all four fixed on 2026-10-16
 
-1. **Markets "Trade" button ignores locale.** `src/components/markets/MarketsView.tsx` hardcodes `href={`/simulator/?symbol=…`}` and an English "Trade" label, so on every translated `/{locale}/markets/` page it sends visitors to the **English** simulator. This is the "nav link silently falls back to English" class of bug the CLAUDE.md checklist warns about. The ja/ko markets proposals say users can trade straight from the list, so fix this first.
-2. **English string on ja/ko markets pages.** "Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures." renders untranslated under the table.
-3. **Mistranslation in `/ja/blog/angoushisan-toreedo-nyumon/`.** The current description reads as crypto *having* circuit breakers. The post body itself is correct ("サーキットブレーカーがありません"), so only the description is wrong. The proposal below corrects it.
-4. **ja/ko contact pages have no email fallback.** It was added to the English `/contact/` only (commit `ef8cb75`). That is also why both contact descriptions are skips.
+1. **FIXED in `28c2af0`: markets "Trade" button ignored locale.** `MarketsView.tsx` hardcoded `/simulator/?symbol=…` and an English "Trade" label, so every translated markets page sent visitors to the English simulator. The island now takes a `simulatorHref` prop (`localizedHref()`) and a localized `labels.trade`. Since `7f5a7aa`, the build also fails if any translated page links to an English URL with a localized sibling. **The ja/ko markets proposals below are unblocked.**
+2. **FIXED in `520cde9`: English volume-unit note on the markets pages.** "Volume units follow each asset class — …" was English on all 7 translated markets pages, not only ja/ko. It now comes from `ui.ts` (`markets.volume.*`). The rest of the island (search placeholder, category buttons, column headers) is still English; see `2026-10-16-island-strings-audit.md`.
+3. **FIXED in `6f98f20`: mistranslation in `/ja/blog/angoushisan-toreedo-nyumon/`.** The description read as crypto *having* circuit breakers; the post body was always correct. Fixed by applying this doc's proposal for that page (154 chars). The other six locales were checked and were already correct.
+4. **FIXED in `0cdb335`: ja/ko contact pages had no email fallback.** It is now on all 7 translated contact pages, matching English. **That removes the reason both contact descriptions were skipped,** so they can be revisited: the email option is real content a description can mention.
 
 ## Japanese (27: 26 proposed, 1 skip)
 
@@ -51,7 +53,7 @@
 - **Source:** `src/content/blog-ja/angoushisan-toreedo-nyumon.md`
 - **Current (85):** 暗号資産は24時間365日、サーキットブレーカーも弱い保護も、水増しされた出来高とともに取引されます。株式と実際に何が違うのか、それに合わせたサイジング方法を解説します。
 - **Proposed (154):** 暗号資産はサーキットブレーカーのないまま24時間365日取引され、保護は弱く、出来高は水増しされています。24時間取引がリスク管理を変える理由、中央集権型・分散｜型取引所、カストディと秘密鍵、時価総額と価格の違い、ステーブルコイン、ボラティリティと流動性、それに合わせたポジションのサイジング方法を解説します。
-- **Note:** **Also fixes a mistranslation.** The current first sentence ("サーキットブレーカーも弱い保護も…とともに") reads as crypto *having* circuit breakers; English and ko both say it has none.
+- **Note:** **APPLIED in `6f98f20`** (2026-10-16); it is the live description. It also fixed a mistranslation: the old first sentence ("サーキットブレーカーも弱い保護も…とともに") read as crypto *having* circuit breakers, while English and every other locale say it has none.
 
 ### `/ja/blog/deitoreedo-vs-suingu-toreedo/`
 
@@ -163,7 +165,7 @@
 - **Source:** `src/pages/ja/contact.astro`
 - **Current (64):** 無料の株式市場シミュレーターStockadeについてのご意見をお聞かせください。ご感想、不具合の報告、ご提案などお気軽にどうぞ。
 - **Proposed: SKIP**
-- **Note:** Already a complete sentence. The page is just a feedback form plus an FAQ pointer (the email fallback added in ef8cb75 exists only on the English /contact/), so 150 would mean padding.
+- **Note:** **REVISIT.** Skipped originally because the page was only a feedback form plus an FAQ pointer. Since `0cdb335` it also offers a direct email option (メールでのご連絡…直接ご連絡いただけます), which is real content a description can mention. Re-check whether 150 is now reachable without padding; if not, keep the skip.
 
 ### `/ja/disclaimer/`
 
@@ -176,7 +178,7 @@
 - **Source:** `src/pages/ja/markets.astro`
 - **Current (61):** 無料のオンライン株式市場シミュレーターで29種類のシミュレーション資産（株式、暗号資産、FX、先物）をチェック。登録不要。
 - **Proposed (152):** 無料のオンライン株式市場シミュレーターで29種類のシミュレーション資産（株式、暗号資産、FX、先物）をチェック。登録不要。価格は2秒ごとに更新。暗号資産のウォッ｜チリスト、FXのスキャナー、取引前の価格確認に使え、価格変動率で並び替えて最も動いている資産と隣の出来高列を確認してから、そのまま取引できます。
-- **Note:** The Trade button currently links to the English /simulator/ (see the side finding at the top). Fix that first, or "そのまま取引" sends ja users to the English page.
+- **Note:** **UNBLOCKED.** Since `28c2af0` the Trade button opens `/ja/simulator/?symbol=…`, so "そのまま取引できます" is accurate. The table's search box, category buttons and column headers are still English (see the island-strings audit), but this description makes no claim about them.
 
 ### `/ja/privacy/`
 
@@ -322,7 +324,7 @@
 - **Source:** `src/pages/ko/contact.astro`
 - **Current (77):** 무료 주식 시장 시뮬레이터 Stockade에 대한 피드백을 남겨주세요. 버그, 아이디어, 그 밖의 의견도 몇 초 만에 전달할 수 있습니다.
 - **Proposed: SKIP**
-- **Note:** Already a complete sentence. The page is just a feedback form plus an FAQ pointer (the email fallback exists only on the English /contact/), so 150 would mean padding.
+- **Note:** **REVISIT.** Skipped originally because the page was only a feedback form plus an FAQ pointer. Since `0cdb335` it also offers a direct email option (이메일이 더 편하신가요? … 직접 연락하실 수 있습니다), which is real content a description can mention. Re-check whether 150 is now reachable without padding; if not, keep the skip.
 
 ### `/ko/disclaimer/`
 
@@ -335,7 +337,7 @@
 - **Source:** `src/pages/ko/markets.astro`
 - **Current (75):** 무료 온라인 주식 시장 시뮬레이터에서 주식, 암호화폐, 외환, 선물 등 29개 시뮬레이션 자산을 확인하세요. 가입이 필요하지 않습니다.
 - **Proposed (154):** 무료 온라인 주식 시장 시뮬레이터에서 주식, 암호화폐, 외환, 선물 등 29개 시뮬레이션 자산을 확인하세요. 가입 불필요. 가격은 2초마다 갱신｜되며, 외환 스캐너처럼 가격 변동률로 정렬해 가장 활발히 움직이는 자산과 거래량을 확인한 뒤 바로 시뮬레이터에서 거래할 수 있습니다.
-- **Note:** Same Trade-button caveat as /ja/markets/.
+- **Note:** **UNBLOCKED.** Since `28c2af0` the Trade button opens `/ko/simulator/?symbol=…`, so "바로 시뮬레이터에서 거래할 수 있습니다" is accurate.
 
 ### `/ko/privacy/`
 
