@@ -14,21 +14,26 @@ muito diferentes, e misturá-los é caro. Você clica em "vender" quando queria 
 compra 100 ações quando queria dizer 10, descobre que sua ordem de stop nunca foi realmente enviada — e
 cada um desses erros custa dinheiro real para aprender algo que um manual poderia ter ensinado.
 
-Um simulador de mercado de ações separa esses dois problemas. Ele te dá uma interface de trading completa,
-um gráfico de preços que se move como um mercado se move, e um saldo de dinheiro falso, então os erros
+Um simulador de mercado de ações separa esses dois problemas. Ele te dá uma interface de trading
+completa, um gráfico de preços que se move tick a tick, e um saldo de dinheiro falso, então os erros
 mecânicos não custam nada. Você pode ser ruim no software em particular.
 
 ## O que um simulador de mercado de ações realmente é
 
-Um simulador é uma plataforma de trading onde o dinheiro e o feed de preços são ambos simulados,
-enquanto as ferramentas construídas em torno deles — gráficos, ordens, matemática da conta — funcionam
-como numa corretora. Seja claro sobre os dados: os preços da Stockade são gerados algoritmicamente, não
-vindos de uma exchange, e não há feed ao vivo por trás deles. O que eles fazem é *se comportar* como
-dados de mercado — candles OHLC apropriados com abertura, máxima, mínima e fechamento, volume que muda
-de barra a barra, e os pavios longos que tornam gráficos reais difíceis de ler. Ordens a mercado e
-limitadas funcionam exatamente como são definidas. A matemática da conta — saldo em caixa, tamanho da
-posição, lucro e prejuízo não realizado, capital da conta — segue a mesma aritmética que sua corretora
-usa. O que falta é o mercado em volta: não há spread, nem comissão, nem exigência de margem, nem
+Um simulador é uma plataforma de trading onde o dinheiro e o feed de preços são ambos simulados. O que
+se transfere para uma conta real é o manuseio das ordens e a aritmética — ordens a mercado e limitadas,
+níveis de stop-loss e take-profit, e como o lucro e o prejuízo são calculados — na forma simplificada
+descrita mais adiante. Seja claro sobre os dados: os preços da Stockade são gerados algoritmicamente,
+não vindos de uma exchange, e não há feed ao vivo por trás deles. O que eles têm é a forma de dados de
+mercado — candles OHLC com abertura, máxima, mínima e fechamento — mas os detalhes são aleatórios: no
+histórico carregado e na repetição, cada pavio é uma fração aleatória do corpo do candle, geralmente
+mais curto que ele e às vezes até duas vezes e meia mais longo; nos candles ao vivo, os pavios são os
+preços mais alto e mais baixo que os ticks de 800ms alcançaram; e o volume de cada barra é um número
+aleatório sem relação com o candle. Ordens a mercado e limitadas funcionam exatamente como são
+definidas. A matemática da conta — saldo em caixa, tamanho da posição, lucro e prejuízo não realizado,
+capital da conta — usa a mesma aritmética de uma corretora para o lucro e prejuízo e para o capital, mas
+sem exigência de margem: uma compra precisa do custo total em caixa, e uma venda a descoberto não
+precisa de nenhuma garantia. O que falta é o mercado em volta: não há spread, nem comissão, nem
 execuções parciais, ninguém envia sua ordem para uma exchange, e nenhum dinheiro sai de uma conta.
 
 Essa distinção importa. Um simulador não é um jogo com tema de mercado; é um modelo funcional do fluxo
@@ -69,9 +74,11 @@ aberta. Qualquer um que executar primeiro cancela o outro, então você não con
 pendurada que abre uma nova posição depois que você já saiu. Veja
 [ordens OCO e bracket explicadas](/pt/blog/ordens-oco-e-bracket/) para a mecânica completa.
 
-A Stockade suporta todos os cinco. Enviar uma centena deles com dinheiro falso é como o vocabulário vira
-memória muscular. Os atalhos de teclado ajudam: `B` para comprar, `S` para vender, `F` para zerar (fechar
-tudo). Quando suas mãos conhecem a tecla de saída, a hesitação deixa de ser um fator.
+A Stockade suporta todos os cinco de forma simplificada: o stop-loss e o take-profit são níveis
+vinculados à sua posição aberta, e não ordens em espera separadas, e juntos funcionam como o bracket
+OCO. Enviar uma centena deles com dinheiro falso é como o vocabulário vira memória muscular. Os atalhos
+de teclado ajudam: `B` para comprar, `S` para vender, `F` para zerar (fechar tudo). Quando suas mãos
+conhecem a tecla de saída, a hesitação deixa de ser um fator.
 
 ### Dimensionamento de posição, com números reais
 
@@ -122,10 +129,10 @@ Os preços gerados também não reproduzem a personalidade real de instrumentos 
 de volatilidade roda em todo símbolo. O que você aprende aqui é a aritmética e o fluxo de trabalho.
 
 Para prática deliberada, o [Simulador de Gráficos](/pt/chart-simulator/) reproduz uma sessão de gráfico
-candle por candle, então você avança uma barra de cada vez sem saber o que vem a seguir. A sessão é gerada
-em vez de vir de um arquivo, então você não consegue reconhecer o gráfico e trapacear — e não saber o que a
-próxima vela vai fazer é todo o objetivo. O modo ao vivo se move em ticks de 800ms, mais perto do ritmo
-real e da pressão real.
+candle por candle, então você avança uma barra de cada vez sem saber o que vem a seguir. A sessão é
+gerada em vez de vir de um arquivo, então você não consegue reconhecer o gráfico e trapacear — e não
+saber o que a próxima vela vai fazer é todo o objetivo. O modo ao vivo se move em ticks de 800ms, o que
+adiciona a pressão de tempo que desaparece quando você avança passo a passo por uma repetição.
 
 ## O que as estatísticas te dizem que sua memória não vai dizer
 
@@ -170,9 +177,9 @@ também enfrentam execuções parciais, onde você pede 500 ações e recebe 300
 escala real aqui, então resultados simulados são sistematicamente um pouco melhores do que as mesmas
 decisões produziriam ao vivo.
 
-**Comissões, spreads, custos de empréstimo, e impostos não são modelados da forma como sua corretora
-específica vai aplicá-los.** Uma estratégia que rende um lucro fino num simulador pode ser uma perdedora
-líquida uma vez que custos reais recaiam sobre ela.
+**Comissões, spreads, custos de empréstimo, e impostos não são modelados de forma alguma.** Uma
+estratégia que rende um lucro fino num simulador pode ser uma perdedora líquida uma vez que custos reais
+recaiam sobre ela.
 
 **Os dados de preço são gerados, então não contêm nenhum comportamento real de mercado.** Os candles da
 Stockade vêm de um algoritmo, não de uma exchange. Isso é ótimo para treinar mecânica — um ticket de ordem

@@ -1,5 +1,5 @@
 ---
-title: "Como Ler Gráficos de Candles: O Guia Completo para Iniciantes"
+title: "Como Ler Gráficos de Candles: Guia para Iniciantes"
 description: "Cada candle empacota quatro preços em uma forma. Aprenda o que o corpo e os pavios codificam, os padrões que valem a pena saber, e por que contexto vence."
 date: 2026-03-30
 author: "Stockade Team"
@@ -175,14 +175,17 @@ para estar errado rapidamente. Isso vale muito, e é uma coisa diferente de prev
 ## Pratique ler candles um de cada vez
 
 A forma mais rápida de internalizar isso é encontrar candles um de cada vez em vez de estudar um gráfico
-que já terminou. O [simulador de gráficos](/pt/chart-simulator/) da Stockade avança por uma sessão gerada
-candle por candle no ritmo que você escolher, o que permite parar antes de a próxima barra aparecer, dizer
-em voz alta o que você espera que ela seja, e depois avançar um passo para descobrir. Adivinhar antes da
-revelação é a parte que te treina; rolar um gráfico já concluído nunca é. Todo preço na Stockade é gerado
-algoritmicamente — não são dados reais nem vindos de uma exchange — mas a estrutura OHLC, os pavios, e o
-volume se comportam da forma como a estrutura real de gráficos se comporta, que é exatamente o que você
-precisa para treinar seu olho. Se você quiser ver uma barra se formar em vez de já chegar pronta, o
-[simulador de mercado de ações da Stockade](/pt/simulator/) atualiza continuamente, então o candle mais
-recente se estica e se redesenha na sua frente até sua janela se fechar. De qualquer forma, trabalhe com
-um instrumento, nomeie todo candle por dez minutos, e note com que frequência a forma da qual você tinha
-certeza se resolveu do outro jeito.
+que já terminou. O [simulador de gráficos](/pt/chart-simulator/) da Stockade avança por uma sessão
+gerada candle por candle no ritmo que você escolher, o que permite parar antes de a próxima barra
+aparecer, dizer em voz alta o que você espera que ela seja, e depois avançar um passo para descobrir.
+Adivinhar antes da revelação é a parte que te treina; rolar um gráfico já concluído nunca é. Todo preço
+na Stockade é gerado algoritmicamente — não são dados reais nem vindos de uma exchange — mas cada candle
+ainda tem uma estrutura OHLC completa, que é o que você precisa para treinar seu olho nas formas dos
+candles. No histórico carregado e na repetição, cada pavio é uma fração aleatória do corpo do candle,
+geralmente mais curto que ele; nos candles ao vivo, os pavios são os preços mais alto e mais baixo que
+os ticks de 800ms alcançaram. As barras de volume são números aleatórios sem relação com os candles,
+então não procure significado nem nos pavios nem no volume aqui. Se você quiser ver uma barra se formar
+em vez de já chegar pronta, o [simulador de mercado de ações da Stockade](/pt/simulator/) atualiza
+continuamente, então o candle mais recente se estica e se redesenha na sua frente até sua janela se
+fechar. De qualquer forma, trabalhe com um instrumento, nomeie todo candle por dez minutos, e note com
+que frequência a forma da qual você tinha certeza se resolveu do outro jeito.
