@@ -116,6 +116,18 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
               dos seus preços vem do mercado desse instrumento: todos os preços são dados sintéticos
               gerados no seu navegador, nunca obtidos de um feed ao vivo.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Sem margem nem alavancagem.</strong> Uma compra só é aceita se o custo total couber no seu saldo em caixa, então não há alavancagem, nem exigência de margem, nem chamada de margem.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">A venda a descoberto é simplificada.</strong> Vender sem uma posição aberta abre uma venda a descoberto sem nenhuma verificação de saldo ou de margem. O valor da venda é somado ao seu saldo em caixa, seu capital subtrai o valor atual da posição vendida, e nenhum custo de empréstimo é cobrado.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Sem horário de mercado nem gaps.</strong> Todos os símbolos são negociados o tempo todo, e cada candle abre onde o anterior fechou, então os preços nunca abrem gap de um dia para o outro nem no fim de semana.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">Um único modelo de volatilidade para todos os símbolos.</strong> Ações, cripto, forex e futuros se movem pelo mesmo processo aleatório, escalado apenas pelo preço, então aqui as classes de ativos não se comportam de forma diferente. Os futuros não têm multiplicador de contrato nem tick size: o lucro ou prejuízo é a variação de preço vezes a quantidade, como numa ação.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             Resumindo: trate os resultados como prática de processo — entradas, saídas,
