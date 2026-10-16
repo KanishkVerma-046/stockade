@@ -84,6 +84,18 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             <li>
               <strong class="text-[var(--c-text)] font-semibold">가격은 실제가 아닌 생성된 값입니다.</strong> 주식 14개와 암호화폐 8개 티커는 가상의 이름입니다. 외환 페어 3개와 선물 4개 심볼은 실제 상품에서 이름을 땄지만, 어떤 가격도 해당 상품의 실제 시장에서 오지 않습니다: 모든 가격은 브라우저에서 생성되는 합성 데이터일 뿐 실시간 피드에서 가져오지 않습니다.
             </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">증거금과 레버리지 없음.</strong> 매수 주문은 총액이 현금 잔고 안에 들어올 때만 접수되므로, 레버리지도, 증거금 요건도, 마진콜도 없습니다.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">공매도가 단순화되어 있습니다.</strong> 포지션이 없는 상태에서 매도하면 잔고나 증거금 확인 없이 숏 포지션이 열립니다. 매도 대금은 현금 잔고에 더해지고, 계좌 자본에서는 숏 포지션의 현재 가치가 차감되며, 대여 비용은 부과되지 않습니다.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">장 운영 시간과 갭 없음.</strong> 모든 종목이 24시간 거래되고 각 캔들은 직전 캔들의 종가에서 시작하므로, 가격이 밤사이나 주말을 지나며 갭을 만드는 일이 없습니다.
+            </li>
+            <li>
+              <strong class="text-[var(--c-text)] font-semibold">모든 종목에 하나의 변동성 모델.</strong> 주식, 암호화폐, 외환, 선물은 모두 같은 무작위 과정으로 움직이며 가격 수준에 따라 크기만 조정되므로, 여기서는 자산군마다 움직임이 다르지 않습니다. 선물에는 계약 승수도 틱 사이즈도 없으며, 손익은 주식처럼 가격 변화 × 수량입니다.
+            </li>
           </ul>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed mt-3">
             결론적으로, 결과는 동일한 전략이 실제 자금으로 얼마를 벌지에 대한 예측이 아니라 진입, 청산, 사이징, 규율이라는 프로세스를 연습하는 것으로 받아들이세요.
