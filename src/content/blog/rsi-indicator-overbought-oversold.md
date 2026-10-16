@@ -13,7 +13,7 @@ The rule was not wrong, exactly — you had the wrong idea about what it says. R
 
 ## What RSI actually measures
 
-The Relative Strength Index, [published by J. Welles Wilder in 1978](https://www.britannica.com/money/relative-strength-index-rsi), answers one narrow question: over the last N bars, how do the average up-moves compare to the average down-moves? That is genuinely all it does. It takes the close-to-close change of each bar over a lookback window — 14 bars by default — separates them into gains and losses, averages each group, and compares them as a ratio called RS, for relative strength:
+The Relative Strength Index, [published by J. Welles Wilder in 1978](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi), answers one narrow question: over the last N bars, how do the average up-moves compare to the average down-moves? That is genuinely all it does. It takes the close-to-close change of each bar over a lookback window — 14 bars by default — separates them into gains and losses, averages each group, and compares them as a ratio called RS, for relative strength:
 
 ```
 RS = average gain / average loss
