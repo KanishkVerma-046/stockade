@@ -193,6 +193,15 @@ This is the FAQ answer users and search engines will read as the limitations sta
 
 **Code:** the chart simulator replays **generated** candles (`ChartSimulator.tsx` `generateCandles`), not historical data. English says "historical-style", and es/pt/fr/it/de/ko all keep the "-style" qualifier ("de estilo histórico", "em estilo histórico", "de style historique", "in stile storico", "historisch anmutender", "과거 데이터풍의"). ja drops it, which claims real historical data.
 
+### 13. FAQ "Is Stockade a paper trading or day trading simulator?": "stream live prices" — **Partly** (added 2026-10-16 by the dist/ leftover-word sweep)
+
+| File | Locale | Sentence (claim part) |
+|---|---|---|
+| `src/pages/index.astro:31` | en | "… or **stream live prices** at 800ms ticks (day trading)" |
+| `src/pages/{es,pt,fr,it,de,ja,ko}/index.astro:31` | all 7 | es "transmite precios en vivo"; pt "acompanhe preços ao vivo"; fr "suivez des prix en direct"; it "seguire i prezzi in diretta"; de "folgen Sie Live-Kursen"; ja 「ライブ価格を追いかける」; ko "실시간 시세를 스트리밍" (row 8) |
+
+**Code:** the 800 ms ticks are generated in the browser. Next to "prices", "live" reads as live market data, the same ambiguity as ko 실시간 시세. This answer is also FAQPage JSON-LD. The sweep also checked the SoftwareApplication JSON-LD (`description`, `featureList`) in all 8 locales, which already say "simulated candlestick charts" and make no realism claim.
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.
