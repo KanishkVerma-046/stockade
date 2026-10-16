@@ -28,11 +28,11 @@ const faqs = [
   },
   {
     q: 'Stockade è un simulatore di paper trading o di day trading?',
-    a: 'Entrambi. Puoi scorrere un\'intera sessione candela per candela al tuo ritmo (paper trading) oppure seguire i prezzi in diretta con aggiornamenti ogni 800ms (day trading) — il tutto con 100.000$ di capitale virtuale.',
+    a: 'Entrambi. Puoi scorrere un\'intera sessione candela per candela al tuo ritmo (paper trading) oppure fare trading su prezzi simulati che si aggiornano ogni 800ms (day trading) — il tutto con 100.000$ di capitale virtuale.',
   },
   {
     q: 'Che cos\'è un simulatore di borsa?',
-    a: 'Un simulatore di borsa è una piattaforma di trading virtuale che riproduce le condizioni reali del mercato usando denaro finto, permettendoti di esercitarti nella compravendita di azioni, crypto, forex e futures senza alcun rischio finanziario. Stockade ti offre 100.000$ di capitale virtuale e strumenti di livello professionale — grafici a candele, indicatori tecnici e diversi tipi di ordine — direttamente nel browser, senza registrazione.',
+    a: 'Un simulatore di borsa è una piattaforma di trading virtuale che ti permette di esercitarti nella compravendita di azioni, crypto, forex e futures con denaro finto, senza alcun rischio finanziario. Stockade ti offre 100.000$ di capitale virtuale e strumenti di livello professionale — grafici a candele, indicatori tecnici e diversi tipi di ordine — direttamente nel browser, senza registrazione. I suoi prezzi sono generati nel browser anziché provenire da un feed di mercato in tempo reale, e non modella spread, margine né esecuzioni parziali.',
   },
   {
     q: 'Cosa posso fare con un simulatore di borsa?',
@@ -40,11 +40,11 @@ const faqs = [
   },
   {
     q: 'Il simulatore di borsa è reale o finto?',
-    a: 'Il denaro è finto — capitale interamente virtuale, con partenza a 100.000$, quindi il rischio finanziario è pari a zero. Prezzi e grafici usano dati di mercato simulati e realistici, modellati sul comportamento reale dei broker, quindi la meccanica di trading, i pattern grafici e i tipi di ordine rispecchiano quelli di una piattaforma vera. Il denaro non è reale, ma le competenze che sviluppi sì.',
+    a: 'Il denaro è finto — capitale interamente virtuale, con partenza a 100.000$, quindi il rischio finanziario è pari a zero. Anche i prezzi sono simulati: vengono generati casualmente nel tuo browser e non provengono da nessuna borsa. Ciò che si trasferisce è il funzionamento degli strumenti — grafici a candele, ordini a mercato e a limite, livelli di stop-loss e take-profit e l\'aritmetica del P&L del tuo conto — anche se le esecuzioni sono più semplici che presso un broker vero, senza spread, commissioni né esecuzioni parziali. Il denaro non è reale, ma le competenze che sviluppi sì.',
   },
   {
     q: 'Come funziona un simulatore di borsa?',
-    a: 'Stockade genera dati di prezzo realistici per 29 asset tra azioni, crypto, forex e futures. Gli ordini si inseriscono tramite un pannello completo — mercato, limite, stop-loss, take-profit e ordini bracket OCO — e il simulatore li esegue istantaneamente. Il tuo P&L virtuale, la curva del capitale, il tasso di successo e le altre metriche di performance vengono tracciati automaticamente nel browser, senza bisogno di alcun account.',
+    a: 'Stockade genera prezzi simulati per 29 asset tra azioni, crypto, forex e futures. Fai trading da un pannello ordini con ordini a mercato e a limite, più livelli facoltativi di stop-loss e take-profit che funzionano come un bracket OCO. Gli ordini a mercato vengono eseguiti istantaneamente all\'ultimo prezzo; gli ordini a limite restano in attesa finché il prezzo non li raggiunge. Il tuo P&L virtuale, la curva del capitale, il tasso di successo e le altre metriche di performance vengono tracciati automaticamente nel browser, senza bisogno di alcun account.',
   },
   {
     q: 'Quali sono i rischi nell\'usare un simulatore di borsa?',
@@ -52,11 +52,11 @@ const faqs = [
   },
   {
     q: 'Quali sono i limiti del simulatore?',
-    a: 'Stockade utilizza dati di prezzo simulati anziché un feed di mercato in tempo reale, quindi spread, slippage e gap fuori orario reali vengono approssimati anziché riprodotti con precisione. Inoltre non può replicare pienamente la pressione psicologica del rischiare capitale vero. Consideralo un campo di allenamento che copre tutte le competenze tecniche, tenendo presente che la disciplina emotiva si sviluppa ulteriormente nei mercati reali.',
+    a: 'I prezzi di Stockade sono generati casualmente anziché provenire da un feed di mercato in tempo reale, e le sue esecuzioni sono più semplici di quelle di una borsa reale: nessuno spread bid-ask, nessuna commissione, nessun margine e nessuna esecuzione parziale. Gli ordini vengono eseguiti per intero al prezzo mostrato, o al loro prezzo limite, quindi l\'unico slippage nasce quando uno stop-loss o un take-profit chiude al tick che ha superato il suo livello, e i prezzi non fanno mai gap, perché il mercato simulato non ha orari di chiusura. Inoltre non può replicare la pressione psicologica del rischiare capitale vero. Consideralo un campo di allenamento per il processo — ingressi, uscite e dimensionamento — tenendo presente che la disciplina emotiva si sviluppa ulteriormente nei mercati reali.',
   },
   {
     q: 'Qual è il vantaggio principale di un simulatore?',
-    a: 'Zero rischio finanziario mentre sviluppi competenze di trading reali. Puoi testare strategie, commettere errori e costruire disciplina senza perdere denaro. Stockade ti offre 100.000$ di capitale virtuale e strumenti professionali — grafici a candele, EMA/VWAP/RSI/MACD, un pannello ordini completo e una dashboard di analisi dettagliata — lo stesso ambiente di un broker vero, completamente gratuito e senza conseguenze.',
+    a: 'Zero rischio finanziario mentre sviluppi competenze di trading reali. Puoi testare strategie, commettere errori e costruire disciplina senza perdere denaro. Stockade ti offre 100.000$ di capitale virtuale e strumenti professionali — grafici a candele, EMA/VWAP/RSI/MACD, un pannello ordini completo e una dashboard di analisi dettagliata — completamente gratuito e senza conseguenze.',
   },
 ];
 
@@ -159,7 +159,7 @@ const liveStatsLabels = {
       </h1>
 
       <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
-        Il simulatore di trading gratuito per azioni e crypto con dati di mercato simulati e realistici.
+        Il simulatore di trading gratuito per azioni e crypto con dati di mercato simulati.
         Nessuna registrazione. Nessun rischio. Solo trading virtuale.
       </p>
 
@@ -255,7 +255,7 @@ const liveStatsLabels = {
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { icon: '📈', title: 'Veri Grafici a Candele',   desc: 'Candele complete con volume ed EMA, VWAP, RSI, MACD — gli stessi strumenti usati dai professionisti.' },
+          { icon: '📈', title: 'Grafici a Candele e Indicatori',   desc: 'Candele complete con volume ed EMA, VWAP, RSI, MACD — gli stessi strumenti usati dai professionisti.' },
           { icon: '⚡', title: 'Esecuzione Istantanea',    desc: 'Ordini a mercato, a limite, stop-loss, take-profit e bracket OCO eseguiti all\'istante.' },
           { icon: '⌨️', title: 'Scorciatoie da Tastiera',   desc: 'B per comprare, S per vendere, F per chiudere. Fai trading alla velocità del pensiero senza toccare il mouse.' },
           { icon: '📊', title: 'Dashboard di Analisi',      desc: 'Tasso di successo, profit factor, guadagno/perdita medi, curva del capitale, drawdown e heatmap per fascia oraria.' },
@@ -324,14 +324,14 @@ Stockade è un <a href="/it/simulator/" class="text-[#f59e0b] hover:underline">s
           Due modi di fare pratica: live e replay
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          La modalità live trasmette sei asset contemporaneamente con prezzi aggiornati ogni 800 millisecondi, così puoi esercitarti nel day trading contro un flusso veloce e scoprire come reagisci davvero sotto pressione. La modalità replay fa l'opposto — scorri un'intera sessione una candela alla volta, prendendoti tutto il tempo che vuoi per ogni decisione. La maggior parte degli utenti usa la modalità live per sviluppare i riflessi e il replay per allenare il riconoscimento dei pattern — per una pratica concentrata esclusivamente sulla lettura delle formazioni, senza pensare al P&amp;L, il <a href="/it/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> scorre i pattern a candele allo stesso modo. I simulatori di paper trading gestiti dai broker di solito richiedono registrazione e un conto reale collegato prima di lasciarti piazzare un solo ordine. Qui basta aprire la pagina.
+          La modalità live aggiorna il simbolo che stai tradando ogni 800 millisecondi, così puoi esercitarti nel day trading contro un flusso veloce e scoprire come reagisci davvero sotto pressione. La modalità replay fa l'opposto — scorri un'intera sessione una candela alla volta, prendendoti tutto il tempo che vuoi per ogni decisione. La maggior parte degli utenti usa la modalità live per sviluppare i riflessi e il replay per allenare il riconoscimento dei pattern — per una pratica concentrata esclusivamente sulla lettura delle formazioni, senza pensare al P&amp;L, il <a href="/it/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> scorre i pattern a candele allo stesso modo. I simulatori di paper trading gestiti dai broker di solito richiedono registrazione e un conto reale collegato prima di lasciarti piazzare un solo ordine. Qui basta aprire la pagina.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Azioni, crypto, forex e futures in un unico posto
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Ci sono 14 titoli azionari con un comportamento di prezzo realistico, 8 asset crypto che si muovono con la volatilità che ci si aspetterebbe dal mercato reale, coppie valutarie principali e minori, e quattro contratti futures — NQ, ES, CL e GC. Questa varietà conta più di quanto sembri: una strategia che appare brillante su un'azione a movimento lento spesso crolla su una coppia valutaria o su un contratto futures, e avere tutto su <a href="/it/markets/" class="text-[#f59e0b] hover:underline">un'unica piattaforma</a> rende facile scoprirlo.
+          Ci sono 14 titoli azionari e 8 token crypto, tutti con nomi inventati, più tre coppie valutarie principali (EUR/USD, GBP/USD e USD/JPY) e quattro simboli futures che portano i nomi di contratti reali — NQ, ES, CL e GC. Tutti i 29 prezzi sono generati casualmente con lo stesso modello di volatilità, quindi la varietà serve a esercitarsi con scale di prezzo e formati di quotazione diversi, non a confrontare come si comportano le vere classi di asset — e con tutto su <a href="/it/markets/" class="text-[#f59e0b] hover:underline">un'unica piattaforma</a>, passare dall'una all'altra richiede un clic.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">

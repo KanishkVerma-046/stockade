@@ -141,3 +141,13 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
 - **dist:**
   - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
   - Explainer description 141 → 156.
+
+### it
+
+- **Rows fixed:** 1–7, 9, 10, 13, R. it already used "pannello ordini" for the order panel, so there's no row-11 issue. It keeps "tick" for 800 ms ticks, so there's no row-14 issue.
+- **Terms:**
+  - From the it `/simulator/` list and posts: "spread bid-ask", "esecuzioni parziali", "flusso/feed in tempo reale", "ticker inventati", "un unico modello di volatilità", "processo — ingressi, uscite, dimensionamento".
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
+  - Explainer description 151 → 155.
+  - Home description 171 is unchanged (report-only list).
