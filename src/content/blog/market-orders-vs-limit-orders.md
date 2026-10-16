@@ -44,7 +44,7 @@ A **limit order** says: *fill this only at my price or better, and if you cannot
 
 ## The trade-off everything else flows from
 
-Here is the sentence to memorize, and it matches [how regulators themselves define the two order types](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders): **a market order guarantees execution but not price; a limit order guarantees price but not execution.**
+Here is the sentence to memorize, and it matches how regulators themselves describe [a market order](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders) and [a limit order](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14): **a market order guarantees execution but not price; a limit order guarantees price but not execution.**
 
 Every other consideration below is a consequence of that one line. Market order to exit a loser? Yes — you care more about being out than about the last few cents, and execution is what a market order guarantees. Limit order to enter a wide-spread instrument? Yes — price is what is at risk there.
 

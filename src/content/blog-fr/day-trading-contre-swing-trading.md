@@ -82,7 +82,7 @@ Le swing trading vous donne une poignée de résultats résolus par mois. L'appr
 
 ## Les probabilités honnêtes, et comment choisir le style qui vous convient
 
-La plupart des day traders perdent de l'argent. Une étude qui a suivi pendant plusieurs années toutes les personnes ayant commencé le day trading sur les contrats à terme d'actions brésiliens a constaté que 97% de celles qui ont persévéré plus de 300 jours ont fini en perte nette, et la petite minorité qui parvient à être rentable de façon constante a généralement d'abord passé des années non rentable. Le day trading paraît facile parce que les décisions individuelles sont simples ; en faire plusieurs centaines par mois sans se dégrader, voilà la partie difficile, et cette compétence se rapproche davantage d'un sport professionnel que d'un loisir.
+La plupart des day traders perdent de l'argent. Une étude qui a suivi pendant plusieurs années toutes les personnes ayant commencé le day trading sur les contrats à terme d'actions brésiliens a constaté que 97% de celles qui ont persévéré au moins 300 jours ont fini en perte nette, et la petite minorité qui parvient à être rentable de façon constante a généralement d'abord passé des années non rentable. Le day trading paraît facile parce que les décisions individuelles sont simples ; en faire plusieurs centaines par mois sans se dégrader, voilà la partie difficile, et cette compétence se rapproche davantage d'un sport professionnel que d'un loisir.
 
 Trader plus fréquemment n'équivaut pas non plus à trader mieux. La fréquence multiplie les coûts, les erreurs et la charge émotionnelle sans multiplier l'edge. Un trader qui prend trois bonnes configurations de swing par mois n'est pas en retard sur celui qui en prend trente médiocres en intraday.
 

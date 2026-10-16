@@ -13,7 +13,7 @@ OCO and bracket orders exist to take that decision away from you. Not to make it
 
 ## What an OCO order is: two resting orders where filling one kills the other
 
-OCO stands for **one-cancels-other**, [a standard conditional order type most brokers offer](https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types). It is not a new kind of order. It is a *link* placed between two ordinary orders you already understand.
+OCO stands for **one-cancels-other**, [a standard conditional order type](https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types). It is not a new kind of order. It is a *link* placed between two ordinary orders you already understand.
 
 You submit two orders at the same time. Both sit at the broker, unfilled, waiting. The moment one of them fills, the broker automatically cancels the other. You never end up with both.
 

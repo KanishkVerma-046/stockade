@@ -82,7 +82,7 @@ Swing Trading gibt Ihnen eine Handvoll abgeschlossener Ergebnisse pro Monat. Ler
 
 ## Die ehrlichen Chancen, und wie Sie den passenden Stil wählen
 
-Die meisten Day-Trader verlieren Geld. Eine Studie, die über mehrere Jahre jede Person verfolgte, die mit dem Day Trading brasilianischer Aktien-Futures begann, fand, dass 97 % derjenigen, die länger als 300 Tage dabeiblieben, am Ende netto Verluste machten, und die kleine Minderheit, die konstant profitabel ist, war meist erst jahrelang unprofitabel. Day Trading sieht einfach aus, weil die einzelnen Entscheidungen simpel sind; mehrere Hundert davon im Monat ohne Verschlechterung zu treffen ist der schwere Teil, und diese Fähigkeit ähnelt eher einem Profisport als einem Hobby.
+Die meisten Day-Trader verlieren Geld. Eine Studie, die über mehrere Jahre jede Person verfolgte, die mit dem Day Trading brasilianischer Aktien-Futures begann, fand, dass 97 % derjenigen, die mindestens 300 Tage dabeiblieben, am Ende netto Verluste machten, und die kleine Minderheit, die konstant profitabel ist, war meist erst jahrelang unprofitabel. Day Trading sieht einfach aus, weil die einzelnen Entscheidungen simpel sind; mehrere Hundert davon im Monat ohne Verschlechterung zu treffen ist der schwere Teil, und diese Fähigkeit ähnelt eher einem Profisport als einem Hobby.
 
 Häufiger zu traden ist auch nicht dasselbe wie besser zu traden. Häufigkeit multipliziert Kosten, Fehler und emotionale Last, ohne den Edge zu multiplizieren. Ein Trader, der drei gute Swing-Setups im Monat nimmt, liegt nicht hinter einem, der dreißig mittelmäßige Intraday-Setups nimmt.
 

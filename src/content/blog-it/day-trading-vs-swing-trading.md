@@ -82,7 +82,7 @@ Lo swing trading ti dà una manciata di esiti risolti al mese. L'apprendimento �
 
 ## Le probabilità oneste, e come scegliere lo stile che fa per te
 
-La maggior parte dei day trader perde denaro. Uno studio che ha seguito per diversi anni tutte le persone che avevano iniziato a fare day trading sui futures azionari brasiliani ha rilevato che il 97% di chi ha continuato per più di 300 giorni ha chiuso in perdita netta, e la piccola minoranza che profitta costantemente in genere ha passato anni in perdita prima. Il day trading sembra facile perché le decisioni individuali sono semplici; farne diverse centinaia al mese senza degradare è la parte difficile, e quella competenza è più vicina a uno sport professionistico che a un hobby.
+La maggior parte dei day trader perde denaro. Uno studio che ha seguito per diversi anni tutte le persone che avevano iniziato a fare day trading sui futures azionari brasiliani ha rilevato che il 97% di chi ha continuato per almeno 300 giorni ha chiuso in perdita netta, e la piccola minoranza che profitta costantemente in genere ha passato anni in perdita prima. Il day trading sembra facile perché le decisioni individuali sono semplici; farne diverse centinaia al mese senza degradare è la parte difficile, e quella competenza è più vicina a uno sport professionistico che a un hobby.
 
 Tradare più frequentemente non è nemmeno la stessa cosa che tradare meglio. La frequenza moltiplica costi, errori e carico emotivo senza moltiplicare il vantaggio. Un trader che prende tre buoni setup di swing al mese non è indietro rispetto a uno che ne prende trenta mediocri intraday.
 

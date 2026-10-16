@@ -82,7 +82,7 @@ Swing trading gives you a handful of resolved outcomes a month. Learning is slow
 
 ## The honest odds, and how to pick the style that fits
 
-Most day traders lose money. A study that tracked every individual who began day trading Brazilian equity futures over a multi-year period found that [97% of those who kept at it for more than 300 days ended up net losers](https://ideas.repec.org/p/spa/wpaper/2019wpecon47.html), and the small minority who do profit consistently generally spent years unprofitable first. Day trading looks easy because the individual decisions are simple; doing several hundred of them a month without degrading is the hard part, and that skill is closer to a professional sport than to a hobby.
+Most day traders lose money. A study that tracked every individual who began day trading Brazilian equity futures over a multi-year period found that [97% of those who kept at it for at least 300 days ended up net losers](https://ideas.repec.org/p/spa/wpaper/2019wpecon47.html), and the small minority who do profit consistently generally spent years unprofitable first. Day trading looks easy because the individual decisions are simple; doing several hundred of them a month without degrading is the hard part, and that skill is closer to a professional sport than to a hobby.
 
 Trading more frequently is also not the same as trading better. Frequency multiplies costs, mistakes, and emotional load without multiplying edge. A trader taking three good swing setups a month is not behind one taking thirty mediocre intraday setups.
 

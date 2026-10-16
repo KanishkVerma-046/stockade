@@ -151,7 +151,7 @@ estudar são, em sua maioria, falhas desse intervalo.
 
 A maioria dos day traders perde dinheiro. Um estudo que acompanhou, ao longo de vários anos, todas as
 pessoas que começaram a fazer day trading em futuros de ações brasileiros constatou que 97% das que
-persistiram por mais de 300 dias terminaram com prejuízo líquido, e a pequena minoria que lucra de forma
+persistiram por pelo menos 300 dias terminaram com prejuízo líquido, e a pequena minoria que lucra de forma
 consistente geralmente passou anos no prejuízo primeiro. Day trading parece fácil porque as decisões
 individuais são simples; fazer várias centenas delas por mês sem se deteriorar é a parte difícil, e essa
 habilidade está mais perto de um esporte profissional do que de um hobby.

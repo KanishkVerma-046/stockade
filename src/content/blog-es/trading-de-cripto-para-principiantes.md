@@ -22,7 +22,7 @@ Cripto elimina todo eso. No hay un momento en el que tu posición esté a salvo 
 
 - **Tu stop es tu única protección nocturna.** No un nivel mental, no una intención de revisar el gráfico — una orden en espera. Un stop mental solo funciona cuando estás despierto.
 - **El tamaño de posición tiene que sobrevivir un movimiento sin supervisión.** Pregúntate qué pasa si el activo se mueve 15% en tu contra mientras duermes, porque puede pasar y pasa.
-- **No hay cortacircuitos.** En las acciones de EE. UU., una [caída del 7% en el S&P 500 detiene el trading por 15 minutos](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Cripto no tiene equivalente. Una cascada de liquidaciones corre hasta que se agota sola.
+- **No hay cortacircuitos.** En las acciones de EE. UU., una [caída del 7% en el S&P 500 antes de las 3:25 p. m. detiene el trading de todo el mercado por 15 minutos](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Cripto no tiene equivalente. Una cascada de liquidaciones corre hasta que se agota sola.
 
 Si todavía no has construido un marco de dimensionamiento, hazlo antes de tocar esta clase de activo — [tamaño de posición y la regla del 1%](/es/blog/gestion-de-riesgo-y-tamano-de-posicion/) cubre la aritmética.
 
