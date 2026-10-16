@@ -1,6 +1,6 @@
 # Hardcoded English strings in React islands
 
-**Status: report only. Nothing has been implemented.** Generated 2026-10-16 at `4c0ed56`.
+**Status: report only. Nothing has been implemented.** Generated 2026-10-16 at `4c0ed56`; revised the same day into two phases (see "Phased plan" at the end). **Scope decision pending.**
 
 Covers `MarketsView`, `AnalyticsDashboard`, `TradingSimulator` (plus `TradingChart`, which it renders) and `ChartSimulator`. Strings were extracted with the TypeScript compiler API, covering JSX text, user-facing attributes, and string literals. A second pass caught single-word labels and values rendered through `{t}` / `{c}` with CSS `capitalize`. Every entry was then reviewed by hand. Line numbers are as of `4c0ed56`.
 
@@ -96,20 +96,65 @@ Legend for **Shown**:
 
 The localized-link build check is unaffected, since it only looks at hrefs. A string check for leftover English would need a separate allowlist-based test.
 
-## Effort estimate
+## Phased plan
 
-| Piece | Strings | Engineering | Translation (×7 locales) | Size |
-|---|---|---|---|---|
-| Shared plumbing: `format()` + plurals helper and tests | n/a | small | n/a | **S** |
-| MarketsView remainder | 13 + 7 names | small, pattern exists | ~25 short labels | **S** |
-| AnalyticsDashboard | ~37 | small–medium (plurals, weekday `Intl`) | short labels | **S–M** |
-| TradingSimulator + TradingChart | ~60 | medium: 6 toast templates, value/label splits, coordinated updates to translated simulator page copy that quotes "Working Orders" / "Chart, Order, Trades" | short labels + 6 sentences | **M** |
-| ChartSimulator UI | ~30 | small–medium | short labels | **S–M** |
-| ChartSimulator `PATTERNS` prose | ~130 prose strings, ~2,500 words | medium: data-module split | **~17,500 words**, comparable to 2–3 blog posts per locale | **L** |
+The work splits cleanly into two phases. They touch different data, carry different risk, and affect the static HTML differently, so each can be approved on its own. Each island renders on exactly one page type, in all 8 locales:
 
-**Overall:** all the island chrome (everything except `PATTERNS`) is roughly **M**. It can ship as one change per island, verified in `dist/` by checking that each `SSR` string above no longer appears in English on `/xx/` pages. The pattern library is a separate **L** content job. It's worth scheduling on its own, ideally together with the drift items in `2026-10-16-translation-drift-audit.md`, since both are bulk educational translation.
+| Island | Rendered on |
+|---|---|
+| `MarketsView` | `/markets/` + `/{es,pt,ja,fr,de,ko,it}/markets/` |
+| `AnalyticsDashboard` | `/analytics/` + 7 translated |
+| `TradingSimulator` (+ `TradingChart`) | `/simulator/` + 7 translated. `TradingChart` is also imported by the unrouted `LiveSimulator.tsx`, which is dead code. |
+| `ChartSimulator` | `/chart-simulator/` + 7 translated |
 
-**Decisions needed before starting:**
+### Phase A: UI strings (about 140, all four islands)
+
+**Scope:** every table row above except the `PATTERNS` prose fields. That covers:
+- labels, buttons and tabs
+- column and stat headings
+- empty states, tooltips, toasts and plurals
+- display labels split from internal values
+- `ChartSimulator`'s chrome (panel titles, control titles, group headings, mobile tabs)
+
+It also includes the shared `format()` / plural helper.
+
+**Static HTML affected:** 28 pages, the 4 page types × 7 translated locales:
+
+| Pages | Becomes localized in the static HTML (SSR strings) | Client-only, localized after hydration |
+|---|---|---|
+| `/{xx}/markets/` ×7 | search placeholder, category buttons, 7 column headers, 7 instrument names | n/a |
+| `/{xx}/analytics/` ×7 | 6 stat labels, 3 tabs, "Equity Curve" + closed-trade count, empty states, "Open simulator →" | journal stats + headers, heatmap title, legend, weekdays, cell tooltips |
+| `/{xx}/simulator/` ×7 | disclaimer notice, symbol-group labels, order panel (Order, market/limit, Qty, Limit Price, help text, Stop Loss, Take Profit), stats, Reset Balance, Working Orders / Position / Trade History / Clear, LIVE/REPLAY and replay controls, keyboard hint, mobile tabs | 6 toasts, "Session complete", control tooltips; chart markers are canvas |
+| `/{xx}/chart-simulator/` ×7 | Pattern Library title + counts, the 4 group headings, empty-state help text, Library toggle, "Hover to see OHLCV", key hint, mobile tabs | 1/2/3-candle labels, "Found N× on chart", Formation / Market Psychology / Key Rules headings, control tooltips |
+
+The 4 English pages are byte-identical in visible text, because English defaults live in each island.
+
+**Copy that must change in the same commit**, or the pages contradict themselves:
+- **Markets "How to Use Market Overview" depends on Phase A.** That section, still missing in all 7 locales (drift audit #1), names the category tabs, the search box, and the "Symbol, Price, or Change" column headers. Translate it **after or together with** Phase A's MarketsView labels, so the prose quotes the labels as they actually render.
+- **Simulator mobile tabs:** `7317972` made the es/pt/ja/fr copy quote the English "Chart / Order / Trades", as de/ko/it already did. If Phase A localizes those tabs, all 7 locales' copy must switch to the localized labels.
+- **Working Orders, Buy / Sell / Flatten:** all 7 simulator pages quote these in English. Update the copy if Phase A translates them, or keep them English (decision 1 below).
+- **Chart simulator "Patterns" panel:** every locale's copy, **and English**, calls the left panel "Patterns". On desktop it is titled "Pattern Library"; only the mobile tab says "Patterns". Align the copy with whatever label Phase A settles on, in all 8 locales at once.
+
+**Size: M.** Engineering is the label plumbing plus about 6 toast templates. Translation is about 140 short strings × 7.
+
+**Verification:** for each `SSR` string in the tables above, a `dist/` check that it no longer appears in English on the 28 pages, plus a hydration spot-check per island (no text flash on load). Consider adding this as a build-time allowlist check, like the localized-link check.
+
+### Phase B: pattern library text (~2,500 words)
+
+**Scope:** the `description`, `signal`, `formation[]`, `psychology` and `characteristics[]` fields of the 24 `PATTERNS` entries in `ChartSimulator.tsx`: about 130 prose strings, **~17,500 words across 7 locales**. Pattern `name`/`shortName` stay in English, as all translated chart-simulator pages already treat them.
+
+**Static HTML affected: none of the visible text.** This text renders only after a pattern is selected, so today it lives in the `ChartSimulator` JS bundle (53 KB) and never in the HTML. The pattern names in the library list *are* in the static HTML, but they stay English by design. How it ships changes what lands in the HTML of the 7 `/{xx}/chart-simulator/` pages:
+- **As a prop** (the recommended default): each locale's text is serialized into that page's `<astro-island props>`, about 20–40 KB of escaped JSON per page. Crawlers may or may not index it.
+- **As a per-locale dynamic import:** the static HTML is unchanged, and the text loads client-side after hydration behind a short loading state.
+
+**Dependencies:** Phase B needs Phase A's `ChartSimulator` labels prop mechanism. The "Formation / Market Psychology / Key Rules" headings that frame this text are Phase A strings. Nothing else depends on Phase B.
+
+**Size: L.** It's a content job comparable to 2–3 blog posts per locale. Schedule it with the other bulk educational translation (the citations batches in `2026-10-16-citations-translation-plan.md`) and use the same per-locale, checkpoint-after-first-batch approach.
+
+### Decisions needed before Phase A
+
 1. Keep BUY / SELL / FLATTEN, LIVE / REPLAY and the B/S/F hint words in English, as the translated page copy does today, or translate them?
 2. Keep `en-US` number formatting everywhere?
-3. Pattern library: props, or dynamic import?
+3. Localize the mobile tab labels? If yes, the copy fixed in `7317972` changes again.
+
+**Before Phase B:** pass the pattern text as props, or load it with a dynamic import?
