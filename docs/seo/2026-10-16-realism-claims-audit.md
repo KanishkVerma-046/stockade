@@ -202,6 +202,18 @@ This is the FAQ answer users and search engines will read as the limitations sta
 
 **Code:** the 800 ms ticks are generated in the browser. Next to "prices", "live" reads as live market data, the same ambiguity as ko 실시간 시세. This answer is also FAQPage JSON-LD. The sweep also checked the SoftwareApplication JSON-LD (`description`, `featureList`) in all 8 locales, which already say "simulated candlestick charts" and make no realism claim.
 
+### 14. fr, de, ko: "800ms live ticks" rendered as live market quotes — **Partly** (added 2026-10-16 by the dist/ leftover-word sweep)
+
+| File | Locale | Sentence (claim part) | English source |
+|---|---|---|---|
+| `src/pages/fr/about.astro` (Live & replay card) | fr | "Des **cotations en direct** toutes les 800 ms pour un entraînement en temps réel" | "800ms live ticks for real-time practice" |
+| `src/pages/fr/markets.astro` | fr | "Pour des **cotations en direct** toutes les 800 ms, utilisez le …" | "For 800ms live ticks, use the Trading Simulator." |
+| `src/pages/de/about.astro` (Live & replay card) | de | "**Live-Kursupdates** alle 800 ms für Echtzeit-Übung" | "800ms live ticks for real-time practice" |
+| `src/pages/de/markets.astro` | de | "Für **Live-Kursupdates** alle 800 ms nutzen Sie den …" | "For 800ms live ticks, use the Trading Simulator." |
+| `src/pages/ko/about.astro` (Live & replay card) | ko | "실시간 연습을 위한 800밀리초 **시세 갱신**" | "800ms live ticks for real-time practice" |
+
+**Code:** same as rows 8 and 13. "Cotations", "Kurse" and 시세 are market *quotes*, so "live quotes" reads as a live data feed. The ticks are generated in the browser. es/pt/it/ja keep "ticks", which describes the simulator accurately.
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.
