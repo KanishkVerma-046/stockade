@@ -50,27 +50,38 @@ const INITIAL: Asset[] = [
 const CATEGORIES = ['all', 'stock', 'crypto', 'forex', 'futures'] as const;
 type Category = typeof CATEGORIES[number];
 
+interface Labels {
+  trade: string;
+  volumeAll: string;
+  volumeShares: string;
+  volumeUsd: string;
+  volumeContracts: string;
+}
+
+// English defaults; translated pages pass the ui.ts `markets.*` strings.
+const DEFAULT_LABELS: Labels = {
+  trade: 'Trade',
+  volumeAll: 'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
+  volumeShares: 'Volume is shares traded.',
+  volumeUsd: 'Volume is US dollars traded.',
+  volumeContracts: 'Volume is contracts traded.',
+};
+
 // The Volume column carries a different unit per asset class — bare share and
 // contract counts for stocks and futures, dollar-prefixed notional for crypto
 // and forex. That is the right convention per class but reads as one column, so
 // the unit is spelled out beside the table. With a class selected the note names
 // that one unit; on "all" it lists the mapping. Keep in step with the `volume`
 // strings in INITIAL above: those are what the column actually renders.
-const VOLUME_UNITS: Record<Category, string> = {
-  all:     'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
-  stock:   'Volume is shares traded.',
-  crypto:  'Volume is US dollars traded.',
-  forex:   'Volume is US dollars traded.',
-  futures: 'Volume is contracts traded.',
-};
-
-interface Labels {
-  trade: string;
+function volumeUnits(labels: Labels): Record<Category, string> {
+  return {
+    all:     labels.volumeAll,
+    stock:   labels.volumeShares,
+    crypto:  labels.volumeUsd,
+    forex:   labels.volumeUsd,
+    futures: labels.volumeContracts,
+  };
 }
-
-const DEFAULT_LABELS: Labels = {
-  trade: 'Trade',
-};
 
 interface Props {
   // Where the Trade links point. Passed in rather than derived here because the
@@ -163,7 +174,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
           stays readable on narrow screens instead of scrolling off with the
           table, and is wired to the Volume header via aria-describedby. */}
       <p id="volume-units" className="mb-3 text-[12px] leading-relaxed text-[var(--c-text-subtle)]">
-        {VOLUME_UNITS[category]}
+        {volumeUnits(labels)[category]}
       </p>
 
       {/* Table */}

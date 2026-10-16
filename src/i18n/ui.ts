@@ -38,7 +38,11 @@ export type UiKey =
   | 'blog.keepLearning'
   | 'legal.translationNotice'
   | 'legal.viewEnglish'
-  | 'markets.trade';
+  | 'markets.trade'
+  | 'markets.volume.all'
+  | 'markets.volume.shares'
+  | 'markets.volume.usd'
+  | 'markets.volume.contracts';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -84,6 +88,11 @@ const en: Dictionary = {
     'This page has been translated for your convenience. In case of any discrepancy, the English version is authoritative.',
   'legal.viewEnglish': 'View the English version',
   'markets.trade': 'Trade',
+  'markets.volume.all':
+    'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
+  'markets.volume.shares': 'Volume is shares traded.',
+  'markets.volume.usd': 'Volume is US dollars traded.',
+  'markets.volume.contracts': 'Volume is contracts traded.',
 };
 
 const es: Dictionary = {
@@ -128,6 +137,11 @@ const es: Dictionary = {
     'Esta página ha sido traducida por comodidad. En caso de discrepancia, la versión en inglés prevalece.',
   'legal.viewEnglish': 'Ver la versión en inglés',
   'markets.trade': 'Operar',
+  'markets.volume.all':
+    'Las unidades de volumen dependen de cada clase de activo — acciones negociadas en acciones, dólares estadounidenses negociados en cripto y forex, contratos en futuros.',
+  'markets.volume.shares': 'El volumen es el número de acciones negociadas.',
+  'markets.volume.usd': 'El volumen son los dólares estadounidenses negociados.',
+  'markets.volume.contracts': 'El volumen es el número de contratos negociados.',
 };
 
 const pt: Dictionary = {
@@ -172,6 +186,11 @@ const pt: Dictionary = {
     'Esta página foi traduzida para sua conveniência. Em caso de discrepância, a versão em inglês prevalece.',
   'legal.viewEnglish': 'Ver a versão em inglês',
   'markets.trade': 'Operar',
+  'markets.volume.all':
+    'As unidades de volume seguem cada classe de ativo — ações negociadas em ações, dólares americanos negociados em cripto e forex, contratos em futuros.',
+  'markets.volume.shares': 'O volume é o número de ações negociadas.',
+  'markets.volume.usd': 'O volume é o valor negociado em dólares americanos.',
+  'markets.volume.contracts': 'O volume é o número de contratos negociados.',
 };
 
 const ja: Dictionary = {
@@ -216,6 +235,11 @@ const ja: Dictionary = {
     'このページは利便性のために翻訳されています。内容に相違がある場合は、英語版が優先されます。',
   'legal.viewEnglish': '英語版を見る',
   'markets.trade': '取引',
+  'markets.volume.all':
+    '出来高の単位は資産クラスごとに異なります — 株式は売買された株数、暗号資産とFXは取引された米ドル金額、先物は契約数です。',
+  'markets.volume.shares': '出来高は売買された株数です。',
+  'markets.volume.usd': '出来高は取引された米ドル金額です。',
+  'markets.volume.contracts': '出来高は取引された契約数です。',
 };
 
 const fr: Dictionary = {
@@ -260,6 +284,11 @@ const fr: Dictionary = {
     "Cette page a été traduite pour votre confort. En cas de divergence, la version anglaise fait foi.",
   'legal.viewEnglish': 'Voir la version anglaise',
   'markets.trade': 'Trader',
+  'markets.volume.all':
+    "Les unités de volume dépendent de chaque classe d'actifs — actions échangées pour les actions, dollars américains échangés pour les cryptomonnaies et le forex, contrats pour les contrats à terme.",
+  'markets.volume.shares': "Le volume correspond au nombre d'actions échangées.",
+  'markets.volume.usd': 'Le volume correspond aux dollars américains échangés.',
+  'markets.volume.contracts': 'Le volume correspond au nombre de contrats échangés.',
 };
 
 const de: Dictionary = {
@@ -304,6 +333,11 @@ const de: Dictionary = {
     'Diese Seite wurde zu Ihrer Bequemlichkeit übersetzt. Im Falle von Abweichungen ist die englische Version maßgeblich.',
   'legal.viewEnglish': 'Englische Version ansehen',
   'markets.trade': 'Traden',
+  'markets.volume.all':
+    'Die Volumeneinheit richtet sich nach der Anlageklasse — gehandelte Aktien bei Aktien, gehandelte US-Dollar bei Kryptowährungen und Forex, Kontrakte bei Futures.',
+  'markets.volume.shares': 'Das Volumen ist die Anzahl gehandelter Aktien.',
+  'markets.volume.usd': 'Das Volumen ist der gehandelte Betrag in US-Dollar.',
+  'markets.volume.contracts': 'Das Volumen ist die Anzahl gehandelter Kontrakte.',
 };
 
 const ko: Dictionary = {
@@ -348,6 +382,11 @@ const ko: Dictionary = {
     '이 페이지는 편의를 위해 번역되었습니다. 내용에 차이가 있는 경우 영어 버전이 우선합니다.',
   'legal.viewEnglish': '영어 버전 보기',
   'markets.trade': '거래하기',
+  'markets.volume.all':
+    '거래량 단위는 자산군마다 다릅니다 — 주식은 거래된 주식 수, 암호화폐와 외환은 거래된 미국 달러 금액, 선물은 계약 수입니다.',
+  'markets.volume.shares': '거래량은 거래된 주식 수입니다.',
+  'markets.volume.usd': '거래량은 거래된 미국 달러 금액입니다.',
+  'markets.volume.contracts': '거래량은 거래된 계약 수입니다.',
 };
 
 const it: Dictionary = {
@@ -392,6 +431,11 @@ const it: Dictionary = {
     'Questa pagina è stata tradotta per tua comodità. In caso di discrepanza, prevale la versione in inglese.',
   'legal.viewEnglish': 'Visualizza la versione in inglese',
   'markets.trade': 'Fai trading',
+  'markets.volume.all':
+    'Le unità di volume seguono ogni classe di asset — azioni scambiate per le azioni, dollari USA scambiati per crypto e forex, contratti per i futures.',
+  'markets.volume.shares': 'Il volume è il numero di azioni scambiate.',
+  'markets.volume.usd': 'Il volume è il controvalore scambiato in dollari USA.',
+  'markets.volume.contracts': 'Il volume è il numero di contratti scambiati.',
 };
 
 export const translations: Record<Locale, Dictionary> = {
