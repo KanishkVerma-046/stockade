@@ -216,7 +216,7 @@ This is the FAQ answer users and search engines will read as the limitations sta
 
 ### 15. Sentences the /simulator/ limitations list now contradicts (added 2026-10-16, after the list gained margin, shorting, hours and volatility items)
 
-Found by re-reading every English page and post for Stockade-specific behaviour claims, then locating each one's counterpart in the 7 translations. The English is fixed in its own commit; the translations wait for review.
+Found by re-reading every English page and post for Stockade-specific behaviour claims, then locating each one's counterpart in the 7 translations. The English is fixed in `cc56250` (E1-E9), `052d74d` (the E4/E9 wick correction below) and `7da17fe` (E10). The 7 translations followed on 2026-10-16, one commit per locale (es, pt, fr, de, it, ja, ko), each translating the final English and fixing E10.
 
 | # | English (file:line) | Claim | Code / limitations list | Counterparts |
 |---|---|---|---|---|
