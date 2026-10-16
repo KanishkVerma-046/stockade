@@ -56,15 +56,39 @@ interface Labels {
   volumeShares: string;
   volumeUsd: string;
   volumeContracts: string;
+  search: string;
+  // Display text only — the Category values themselves never change.
+  categories: Record<Category, string>;
+  colSymbol: string;
+  colName: string;
+  colPrice: string;
+  colChange: string;
+  colVolume: string;
+  colMktCap: string;
+  colAction: string;
+  // Descriptive instrument names by symbol (forex pairs, futures). Fictional
+  // company and token names are brand names and are never translated.
+  assetNames: Partial<Record<string, string>>;
 }
 
 // English defaults; translated pages pass the ui.ts `markets.*` strings.
+// Category labels stay lowercase: the buttons capitalize them with CSS.
 const DEFAULT_LABELS: Labels = {
   trade: 'Trade',
   volumeAll: 'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
   volumeShares: 'Volume is shares traded.',
   volumeUsd: 'Volume is US dollars traded.',
   volumeContracts: 'Volume is contracts traded.',
+  search: 'Search symbol or name…',
+  categories: { all: 'all', stock: 'stock', crypto: 'crypto', forex: 'forex', futures: 'futures' },
+  colSymbol: 'Symbol',
+  colName: 'Name',
+  colPrice: 'Price',
+  colChange: 'Change',
+  colVolume: 'Volume',
+  colMktCap: 'Mkt Cap',
+  colAction: 'Action',
+  assetNames: {},
 };
 
 // The Volume column carries a different unit per asset class — bare share and
@@ -89,7 +113,9 @@ interface Props {
   // derived URL would ship English in the static HTML; the page computes it with
   // localizedHref('/simulator/', locale). Defaults to the English simulator.
   simulatorHref?: string;
-  labels?: Labels;
+  // Merged over the English defaults, so a locale can be localized one batch
+  // at a time: anything it doesn't pass yet renders in English.
+  labels?: Partial<Labels>;
 }
 
 function fmt(price: number) {
@@ -98,7 +124,9 @@ function fmt(price: number) {
   return price.toFixed(4);
 }
 
-export default function MarketsView({ simulatorHref = '/simulator/', labels = DEFAULT_LABELS }: Props) {
+export default function MarketsView({ simulatorHref = '/simulator/', labels: labelOverrides }: Props) {
+  const labels: Labels = { ...DEFAULT_LABELS, ...labelOverrides };
+  const nameOf = (a: Asset) => labels.assetNames[a.symbol] ?? a.name;
   const [assets, setAssets]     = useState<Asset[]>(INITIAL);
   const [category, setCategory] = useState<Category>('all');
   const [search, setSearch]     = useState('');
@@ -129,7 +157,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
     .filter(a => category === 'all' || a.category === category)
     .filter(a =>
       a.symbol.toLowerCase().includes(search.toLowerCase()) ||
-      a.name.toLowerCase().includes(search.toLowerCase())
+      nameOf(a).toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
       if (sortKey === 'symbol') return sortDir * a.symbol.localeCompare(b.symbol);
@@ -147,7 +175,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
       <div className="flex flex-wrap gap-3 mb-5">
         <input
           type="text"
-          placeholder="Search symbol or name…"
+          placeholder={labels.search}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded-lg px-3 py-2 text-[13px] font-mono text-[var(--c-text)] placeholder-[var(--c-text-faint)] outline-none focus:border-[#f59e0b] w-64"
@@ -164,7 +192,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
               }`}
               style={category === c ? { backgroundColor: catColors[c] } : {}}
             >
-              {c}
+              {labels.categories[c]}
             </button>
           ))}
         </div>
@@ -183,16 +211,16 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
           <thead>
             <tr className="bg-[var(--c-bg-soft)] border-b border-[var(--c-border)]">
               {[
-                { key: 'symbol', label: 'Symbol' },
-                { key: null,     label: 'Name' },
-                { key: 'price',  label: 'Price' },
-                { key: 'pct',    label: 'Change' },
-                { key: null,     label: 'Volume', describedBy: 'volume-units' },
-                { key: null,     label: 'Mkt Cap' },
-                { key: null,     label: 'Action' },
+                { id: 'symbol', key: 'symbol', label: labels.colSymbol },
+                { id: 'name',   key: null,     label: labels.colName },
+                { id: 'price',  key: 'price',  label: labels.colPrice },
+                { id: 'change', key: 'pct',    label: labels.colChange },
+                { id: 'volume', key: null,     label: labels.colVolume, describedBy: 'volume-units' },
+                { id: 'mktcap', key: null,     label: labels.colMktCap },
+                { id: 'action', key: null,     label: labels.colAction },
               ].map(col => (
                 <th
-                  key={col.label}
+                  key={col.id}
                   aria-describedby={(col as { describedBy?: string }).describedBy}
                   onClick={col.key ? () => toggleSort(col.key as typeof sortKey) : undefined}
                   className={`py-3 px-4 text-left text-[11px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] ${col.key ? 'cursor-pointer hover:text-[var(--c-text-muted)]' : ''}`}
@@ -209,7 +237,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels = DE
                 <td className="py-3 px-4">
                   <span className="text-[14px] font-mono font-semibold text-[var(--c-text)]">{a.symbol}</span>
                 </td>
-                <td className="py-3 px-4 text-[13px] text-[var(--c-text-subtle)]">{a.name}</td>
+                <td className="py-3 px-4 text-[13px] text-[var(--c-text-subtle)]">{nameOf(a)}</td>
                 <td className="py-3 px-4 text-[14px] font-mono text-[var(--c-text)] tabular-nums">
                   {a.symbol.includes('/') && !a.symbol.startsWith('/') ? '' : '$'}{fmt(a.price)}
                 </td>

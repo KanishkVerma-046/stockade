@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { t, translations } from './ui';
+import { t, translations, UI_PENDING } from './ui';
+import { uiCoverage } from '../lib/ui-coverage';
 
 describe('t', () => {
   it('returns the English string for the English locale', () => {
@@ -13,53 +14,20 @@ describe('t', () => {
   it('returns the translated string for Italian', () => {
     expect(t('it', 'nav.simulator')).toBe('Simulatore di Trading');
   });
+});
 
-  it('has a complete Spanish translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.es[key]).toBeDefined();
-    }
+// Same rule the build enforces (uiCoverageCheck in astro.config.mjs): a locale
+// is complete unless listed in UI_PENDING, and a pending locale may only be
+// missing keys under its declared prefixes.
+describe('ui.ts coverage', () => {
+  const reports = uiCoverage(translations, 'en', UI_PENDING);
+
+  it.each(reports.map(r => [r.locale, r] as const))('%s has every English key it is required to have', (_locale, r) => {
+    expect(r.violations).toEqual([]);
+    if (r.complete) expect(r.pending).toEqual([]);
   });
 
-  it('has a complete Portuguese translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.pt[key]).toBeDefined();
-    }
-  });
-
-  it('has a complete Japanese translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.ja[key]).toBeDefined();
-    }
-  });
-
-  it('has a complete French translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.fr[key]).toBeDefined();
-    }
-  });
-
-  it('has a complete German translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.de[key]).toBeDefined();
-    }
-  });
-
-  it('has a complete Korean translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.ko[key]).toBeDefined();
-    }
-  });
-
-  it('has a complete Italian translation for every English key', () => {
-    const keys = Object.keys(translations.en) as (keyof typeof translations.en)[];
-    for (const key of keys) {
-      expect(translations.it[key]).toBeDefined();
-    }
+  it('has no keys that English lacks', () => {
+    for (const r of reports) expect(r.extra).toEqual([]);
   });
 });

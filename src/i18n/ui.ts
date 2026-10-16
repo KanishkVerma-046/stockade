@@ -42,7 +42,27 @@ export type UiKey =
   | 'markets.volume.all'
   | 'markets.volume.shares'
   | 'markets.volume.usd'
-  | 'markets.volume.contracts';
+  | 'markets.volume.contracts'
+  | 'markets.search'
+  | 'markets.category.all'
+  | 'markets.category.stock'
+  | 'markets.category.crypto'
+  | 'markets.category.forex'
+  | 'markets.category.futures'
+  | 'markets.col.symbol'
+  | 'markets.col.name'
+  | 'markets.col.price'
+  | 'markets.col.change'
+  | 'markets.col.volume'
+  | 'markets.col.mktCap'
+  | 'markets.col.action'
+  | 'markets.asset.EURUSD'
+  | 'markets.asset.GBPUSD'
+  | 'markets.asset.USDJPY'
+  | 'markets.asset.ES'
+  | 'markets.asset.NQ'
+  | 'markets.asset.CL'
+  | 'markets.asset.GC';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -93,6 +113,26 @@ const en: Dictionary = {
   'markets.volume.shares': 'Volume is shares traded.',
   'markets.volume.usd': 'Volume is US dollars traded.',
   'markets.volume.contracts': 'Volume is contracts traded.',
+  'markets.search': 'Search symbol or name…',
+  'markets.category.all': 'all',
+  'markets.category.stock': 'stock',
+  'markets.category.crypto': 'crypto',
+  'markets.category.forex': 'forex',
+  'markets.category.futures': 'futures',
+  'markets.col.symbol': 'Symbol',
+  'markets.col.name': 'Name',
+  'markets.col.price': 'Price',
+  'markets.col.change': 'Change',
+  'markets.col.volume': 'Volume',
+  'markets.col.mktCap': 'Mkt Cap',
+  'markets.col.action': 'Action',
+  'markets.asset.EURUSD': 'Euro / US Dollar',
+  'markets.asset.GBPUSD': 'British Pound / USD',
+  'markets.asset.USDJPY': 'US Dollar / Yen',
+  'markets.asset.ES': 'S&P 500 Futures',
+  'markets.asset.NQ': 'Nasdaq 100 Futures',
+  'markets.asset.CL': 'Crude Oil Futures',
+  'markets.asset.GC': 'Gold Futures',
 };
 
 const es: Dictionary = {
@@ -142,6 +182,26 @@ const es: Dictionary = {
   'markets.volume.shares': 'El volumen es el número de acciones negociadas.',
   'markets.volume.usd': 'El volumen son los dólares estadounidenses negociados.',
   'markets.volume.contracts': 'El volumen es el número de contratos negociados.',
+  'markets.search': 'Buscar símbolo o nombre…',
+  'markets.category.all': 'todos',
+  'markets.category.stock': 'acciones',
+  'markets.category.crypto': 'cripto',
+  'markets.category.forex': 'forex',
+  'markets.category.futures': 'futuros',
+  'markets.col.symbol': 'Símbolo',
+  'markets.col.name': 'Nombre',
+  'markets.col.price': 'Precio',
+  'markets.col.change': 'Cambio',
+  'markets.col.volume': 'Volumen',
+  'markets.col.mktCap': 'Cap. de mercado',
+  'markets.col.action': 'Operar',
+  'markets.asset.EURUSD': 'Euro / Dólar estadounidense',
+  'markets.asset.GBPUSD': 'Libra esterlina / USD',
+  'markets.asset.USDJPY': 'Dólar estadounidense / Yen',
+  'markets.asset.ES': 'Futuros del S&P 500',
+  'markets.asset.NQ': 'Futuros del Nasdaq 100',
+  'markets.asset.CL': 'Futuros de Petróleo Crudo',
+  'markets.asset.GC': 'Futuros de Oro',
 };
 
 const pt: Dictionary = {
@@ -443,7 +503,16 @@ const it: Dictionary = {
 // any other missing key fails the build (uiCoverageCheck in astro.config.mjs).
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
+// Phase A, MarketsView batch: es landed as the checkpoint (2026-10-16).
+const MARKETS_PHASE_A = ['markets.search', 'markets.category.', 'markets.col.', 'markets.asset.'] as const;
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
+  pt: MARKETS_PHASE_A,
+  ja: MARKETS_PHASE_A,
+  fr: MARKETS_PHASE_A,
+  de: MARKETS_PHASE_A,
+  ko: MARKETS_PHASE_A,
+  it: MARKETS_PHASE_A,
+};
 
 export const translations: Record<Locale, Dictionary> = {
   en,
