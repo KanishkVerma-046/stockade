@@ -28,11 +28,11 @@ const faqs = [
   },
   {
     q: 'Ist Stockade ein Paper-Trading- oder ein Day-Trading-Simulator?',
-    a: 'Beides. Durchlaufen Sie eine komplette Sitzung Kerze für Kerze in Ihrem eigenen Tempo (Paper Trading) oder folgen Sie Live-Kursen mit Tick-Updates alle 800 ms (Day Trading) — beides mit 100.000 $ virtuellem Guthaben.',
+    a: 'Beides. Durchlaufen Sie eine komplette Sitzung Kerze für Kerze in Ihrem eigenen Tempo (Paper Trading) oder handeln Sie simulierte Kurse, die sich alle 800 ms aktualisieren (Day Trading) — beides mit 100.000 $ virtuellem Guthaben.',
   },
   {
     q: 'Was ist ein Börsensimulator?',
-    a: 'Ein Börsensimulator ist eine virtuelle Handelsplattform, die reale Marktbedingungen mit fiktivem Geld nachbildet und es Ihnen ermöglicht, den Kauf und Verkauf von Aktien, Kryptowährungen, Forex und Futures ohne finanzielles Risiko zu üben. Stockade gibt Ihnen 100.000 $ virtuelles Kapital und Tools auf professionellem Niveau — Candlestick-Charts, technische Indikatoren und mehrere Ordertypen — direkt im Browser, ohne Anmeldung.',
+    a: 'Ein Börsensimulator ist eine virtuelle Handelsplattform, die es Ihnen ermöglicht, den Kauf und Verkauf von Aktien, Kryptowährungen, Forex und Futures mit fiktivem Geld und ohne finanzielles Risiko zu üben. Stockade gibt Ihnen 100.000 $ virtuelles Kapital und Tools auf professionellem Niveau — Candlestick-Charts, technische Indikatoren und mehrere Ordertypen — direkt im Browser, ohne Anmeldung. Die Kurse werden in Ihrem Browser generiert statt aus einem Live-Marktfeed bezogen, und Spreads, Margin und Teilausführungen werden nicht modelliert.',
   },
   {
     q: 'Was kann ich mit einem Börsensimulator tun?',
@@ -40,11 +40,11 @@ const faqs = [
   },
   {
     q: 'Ist der Börsensimulator echt oder fiktiv?',
-    a: 'Das Geld ist fiktiv — vollständig virtuelles Kapital, beginnend bei 100.000 $, also kein finanzielles Risiko. Kurse und Charts basieren auf realistischen simulierten Marktdaten, die am tatsächlichen Verhalten von Brokern ausgerichtet sind, sodass Handelsmechanik, Chartmuster und Ordertypen widerspiegeln, was Sie auf einer echten Plattform nutzen würden. Das Geld ist nicht real, aber die erlernten Fähigkeiten sind es.',
+    a: 'Das Geld ist fiktiv — vollständig virtuelles Kapital, beginnend bei 100.000 $, also kein finanzielles Risiko. Auch die Kurse sind simuliert: Sie werden in Ihrem Browser zufällig generiert und stammen von keiner Börse. Was sich überträgt, ist die Funktionsweise der Werkzeuge — Candlestick-Charts, Market- und Limit-Orders, Stop-Loss- und Take-Profit-Stände und die P&L-Arithmetik Ihres Kontos —, auch wenn die Ausführungen einfacher sind als bei einem echten Broker, ohne Spread, Kommission oder Teilausführungen. Das Geld ist nicht real, aber die erlernten Fähigkeiten sind es.',
   },
   {
     q: 'Wie funktioniert ein Börsensimulator?',
-    a: 'Stockade generiert realistische Kursdaten für 29 Assets aus den Bereichen Aktien, Kryptowährungen, Forex und Futures. Sie geben Ihre Orders über ein vollständiges Orderbuch auf — Market-, Limit-, Stop-Loss-, Take-Profit- und OCO-Bracket-Orders — und der Simulator führt sie sofort aus. Ihr virtueller P&L, Ihre Equity-Kurve, Trefferquote und weitere Performance-Kennzahlen werden automatisch in Ihrem Browser erfasst, ohne dass ein Konto erforderlich ist.',
+    a: 'Stockade generiert simulierte Kurse für 29 Assets aus den Bereichen Aktien, Kryptowährungen, Forex und Futures. Sie handeln über ein Order-Panel mit Market- und Limit-Orders sowie optionalen Stop-Loss- und Take-Profit-Ständen, die als OCO-Bracket funktionieren. Market-Orders werden sofort zum letzten Kurs ausgeführt; Limit-Orders warten, bis der Kurs sie erreicht. Ihr virtueller P&L, Ihre Equity-Kurve, Trefferquote und weitere Performance-Kennzahlen werden automatisch in Ihrem Browser erfasst, ohne dass ein Konto erforderlich ist.',
   },
   {
     q: 'Welche Risiken birgt die Nutzung eines Börsensimulators?',
@@ -52,11 +52,11 @@ const faqs = [
   },
   {
     q: 'Was sind die Grenzen des Simulators?',
-    a: 'Stockade verwendet simulierte Kursdaten statt eines Live-Marktfeeds, sodass reale Kursabweichungen, Slippage und Kurslücken außerhalb der Handelszeiten angenähert statt exakt nachgebildet werden. Er kann auch den psychologischen Druck, der mit dem Einsatz von echtem Kapital einhergeht, nicht vollständig abbilden. Betrachten Sie ihn als Trainingsumgebung, die alle technischen Fähigkeiten abdeckt, während emotionale Disziplin sich stärker an echten Märkten entwickelt.',
+    a: 'Die Kurse von Stockade werden zufällig generiert statt aus einem Live-Marktfeed bezogen, und die Ausführungen sind einfacher als an einer echten Börse: kein Bid-Ask-Spread, keine Kommission, keine Margin und keine Teilausführungen. Orders werden vollständig zum angezeigten Kurs oder zu ihrem Limitkurs ausgeführt, sodass Slippage nur entsteht, wenn ein Stop-Loss oder Take-Profit zu dem Tick schließt, der sein Niveau überschritten hat, und Kurse haben nie Lücken, weil der simulierte Markt keinen Handelsschluss kennt. Der Simulator kann auch den psychologischen Druck, der mit dem Einsatz von echtem Kapital einhergeht, nicht abbilden. Betrachten Sie ihn als Trainingsumgebung für den Prozess — Einstiege, Ausstiege und Positionsgröße —, während emotionale Disziplin sich stärker an echten Märkten entwickelt.',
   },
   {
     q: 'Was ist der größte Vorteil eines Simulators?',
-    a: 'Null finanzielles Risiko bei gleichzeitigem Aufbau echter Handelsfähigkeiten. Sie können Strategien testen, Fehler machen und Disziplin entwickeln, ohne Geld zu verlieren. Stockade gibt Ihnen 100.000 $ virtuelles Kapital und professionelle Tools — Candlestick-Charts, EMA/VWAP/RSI/MACD, ein vollständiges Orderbuch und ein detailliertes Analyse-Dashboard — dieselbe Umgebung wie bei einem echten Broker, komplett kostenlos und folgenlos.',
+    a: 'Null finanzielles Risiko bei gleichzeitigem Aufbau echter Handelsfähigkeiten. Sie können Strategien testen, Fehler machen und Disziplin entwickeln, ohne Geld zu verlieren. Stockade gibt Ihnen 100.000 $ virtuelles Kapital und professionelle Tools — Candlestick-Charts, EMA/VWAP/RSI/MACD, ein vollständiges Order-Panel und ein detailliertes Analyse-Dashboard — komplett kostenlos und folgenlos.',
   },
 ];
 
@@ -154,7 +154,7 @@ const liveStatsLabels = {
       </h1>
 
       <p class="text-lg sm:text-xl text-[var(--c-text-muted)] max-w-[600px] mx-auto mb-10 leading-relaxed">
-        Der kostenlose Simulator für Aktien- und Krypto-Trading mit realistischen simulierten
+        Der kostenlose Simulator für Aktien- und Krypto-Trading mit simulierten
         Marktdaten. Keine Anmeldung. Kein Risiko. Nur virtuelles Trading.
       </p>
 
@@ -250,7 +250,7 @@ const liveStatsLabels = {
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { icon: '📈', title: 'Echte Candlestick-Charts',     desc: 'Vollständige Candlesticks mit Volumen, überlagert mit EMA-, VWAP-, RSI- und MACD-Indikatoren — dieselben Tools wie bei den Profis.' },
+          { icon: '📈', title: 'Candlestick-Charts und Indikatoren',     desc: 'Vollständige Candlesticks mit Volumen, überlagert mit EMA-, VWAP-, RSI- und MACD-Indikatoren — dieselben Tools wie bei den Profis.' },
           { icon: '⚡', title: 'Sofortige Ausführung',          desc: 'Market-, Limit-, Stop-Loss-, Take-Profit- und OCO-Bracket-Orders werden sofort ausgeführt.' },
           { icon: '⌨️', title: 'Tastenkürzel',                  desc: 'B zum Kaufen, S zum Verkaufen, F zum Glattstellen. Traden Sie in Gedankengeschwindigkeit, ohne die Maus zu berühren.' },
           { icon: '📊', title: 'Analyse-Dashboard',             desc: 'Trefferquote, Profitfaktor, durchschnittlicher Gewinn/Verlust, Equity-Kurve, Drawdown und Heatmaps nach Tageszeit.' },
@@ -312,21 +312,21 @@ Stockade ist ein <a href="/de/simulator/" class="text-[#f59e0b] hover:underline"
           Warum die meisten Trading-Spiele enttäuschen
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Viele Simulatoren sind auf Engagement statt auf Realismus optimiert. Sie verzichten auf Indikatoren, Ordertypen und Risikokennzahlen, sodass übrig bleibt, wie man einer steigenden Zahl zusieht — für einen Nachmittag unterhaltsam, aber es lehrt kaum etwas, das den Kontakt mit einem echten Broker übersteht. Wir haben uns für das Gegenteil entschieden. Stockade bietet Ihnen Candlestick-Charts mit Volumen-Histogrammen, EMA-9/20/50-Overlays, VWAP, RSI und MACD sowie ein Orderbuch mit Market- und Limit-Einträgen und Stop-Loss-/Take-Profit-Ständen, die wie eine OCO-Bracket-Order funktionieren. Der Gedanke: Die Gewohnheiten, die Sie hier entwickeln, sollen auch auf einer echten Plattform Bestand haben — siehe <a href="/de/blog/paper-trading-leitfaden/" class="text-[#f59e0b] hover:underline">den Paper-Trading-Leitfaden</a>, um diesen Übergang reibungslos zu gestalten.
+          Viele Simulatoren sind auf Engagement statt auf Realismus optimiert. Sie verzichten auf Indikatoren, Ordertypen und Risikokennzahlen, sodass übrig bleibt, wie man einer steigenden Zahl zusieht — für einen Nachmittag unterhaltsam, aber es lehrt kaum etwas, das den Kontakt mit einem echten Broker übersteht. Wir haben uns für das Gegenteil entschieden. Stockade bietet Ihnen Candlestick-Charts mit Volumen-Histogrammen, EMA-9/20/50-Overlays, VWAP, RSI und MACD sowie ein Order-Panel mit Market- und Limit-Einträgen und Stop-Loss-/Take-Profit-Ständen, die wie eine OCO-Bracket-Order funktionieren. Der Gedanke: Die Gewohnheiten, die Sie hier entwickeln, sollen auch auf einer echten Plattform Bestand haben — siehe <a href="/de/blog/paper-trading-leitfaden/" class="text-[#f59e0b] hover:underline">den Paper-Trading-Leitfaden</a>, um diesen Übergang reibungslos zu gestalten.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Zwei Übungswege: Live und Wiedergabe
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Der Live-Modus streamt sechs Assets gleichzeitig mit Kursupdates alle 800 Millisekunden, sodass Sie Day Trading gegen einen schnellen Feed üben und herausfinden können, wie Sie tatsächlich unter Druck reagieren. Der Wiedergabemodus macht das Gegenteil — Sie durchlaufen eine komplette Sitzung Kerze für Kerze, in Ihrem eigenen Tempo bei jeder Entscheidung. Die meisten nutzen den Live-Modus, um Reflexe aufzubauen, und den Wiedergabemodus, um Mustererkennung zu entwickeln — für ein Training, das sich ausschließlich auf das Lesen von Formationen statt auf den P&amp;L konzentriert, durchläuft der <a href="/de/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart-Simulator</a> auf dieselbe Weise Candlestick-Muster. Von Brokern betriebene Paper-Trading-Simulatoren verlangen in der Regel eine Anmeldung und ein verknüpftes echtes Konto, bevor Sie auch nur eine Order platzieren können. Hier reicht es, die Seite zu öffnen.
+          Der Live-Modus aktualisiert das Symbol, das Sie gerade handeln, alle 800 Millisekunden, sodass Sie Day Trading gegen einen schnellen Feed üben und herausfinden können, wie Sie tatsächlich unter Druck reagieren. Der Wiedergabemodus macht das Gegenteil — Sie durchlaufen eine komplette Sitzung Kerze für Kerze, in Ihrem eigenen Tempo bei jeder Entscheidung. Die meisten nutzen den Live-Modus, um Reflexe aufzubauen, und den Wiedergabemodus, um Mustererkennung zu entwickeln — für ein Training, das sich ausschließlich auf das Lesen von Formationen statt auf den P&amp;L konzentriert, durchläuft der <a href="/de/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart-Simulator</a> auf dieselbe Weise Candlestick-Muster. Von Brokern betriebene Paper-Trading-Simulatoren verlangen in der Regel eine Anmeldung und ein verknüpftes echtes Konto, bevor Sie auch nur eine Order platzieren können. Hier reicht es, die Seite zu öffnen.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
           Aktien, Kryptowährungen, Forex und Futures an einem Ort
         </h3>
         <p class="text-[var(--c-text-muted)] text-[16px] leading-relaxed mb-6">
-          Es gibt 14 Aktien mit realistischem Kursverhalten, 8 Kryptowährungen, die sich mit der Volatilität bewegen, die man von echten digitalen Währungen erwarten würde, wichtige und weniger geläufige Devisenpaare sowie vier Futures — NQ, ES, CL und GC. Diese Vielfalt zählt mehr, als es scheint: Eine Strategie, die bei einer wenig volatilen Aktie brillant wirkt, bricht bei einem Devisenpaar oder Future oft zusammen, und all das auf <a href="/de/markets/" class="text-[#f59e0b] hover:underline">einer einzigen Plattform</a> zu vereinen, macht das leicht sichtbar.
+          Es gibt 14 Aktien und 8 Krypto-Token, alle mit erfundenen Namen, dazu drei Major-Devisenpaare (EUR/USD, GBP/USD und USD/JPY) und vier Futures-Symbole, die die Bezeichnungen realer Kontrakte tragen — NQ, ES, CL und GC. Alle 29 Kurse werden mit demselben Volatilitätsmodell zufällig generiert, daher dient die Auswahl dem Üben mit unterschiedlichen Preisniveaus und Kursformaten, nicht dem Vergleich, wie sich echte Anlageklassen verhalten — und weil alles auf <a href="/de/markets/" class="text-[#f59e0b] hover:underline">einer einzigen Plattform</a> liegt, wechseln Sie mit einem Klick.
         </p>
 
         <h3 class="text-xl font-bold text-[var(--c-text)] mb-3 mt-8">
@@ -346,7 +346,7 @@ Stockade ist ein <a href="/de/simulator/" class="text-[#f59e0b] hover:underline"
           {[
             'Vollständige Candlestick-Charts mit Volumen',
             'Professionelle Indikatoren: EMA, VWAP, RSI, MACD',
-            'Orderbuch: Market- und Limit-Einträge, OCO-Stop-Loss-/Take-Profit-Brackets',
+            'Order-Panel: Market- und Limit-Einträge, OCO-Stop-Loss-/Take-Profit-Brackets',
             'Performance-Analyse mit Equity-Kurven und Drawdown-Tracking',
             'Vollständige Mobil- und Tablet-Kompatibilität',
           ].map(item => (

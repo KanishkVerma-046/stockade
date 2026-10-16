@@ -129,3 +129,15 @@ Each locale is one commit. The dist checks for each are recorded below as it lan
   - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
   - Explainer description 157 → 154.
   - Unchanged descriptions over 160: home 178, about 170, simulator 173 (report-only list).
+
+### de
+
+- **Rows fixed:** 1–7, 9, 10, 13, R, plus **11** and **14**.
+  - **Row 11:** "Orderbuch" for Stockade's own panel becomes **"Order-Panel"** where English says "order panel" (index 47/59/315/349, about 78). It becomes **"Order-Ticket"** where English says "order ticket" (simulator 48). Both are de's existing terms: `blog-de/oco-und-bracket-orders.md:102` "Stockades Order-Panel"; `blog-de/market-order-vs-limit-order.md:113` and `stop-loss-orders-erklaert.md:96` "Order-Ticket".
+  - "Orderbuch" stays where it means a real exchange's book: simulator 73/79 and the posts.
+  - **Row 14:** "Live-Kursupdates" becomes "Simulierte Kursupdates" (about, markets).
+- **Terms:**
+  - From the de `/simulator/` list and posts: "Bid-Ask-Spread", "Teilausführungen", "Live-Feed", "erfundene Ticker/Token", "reale Bezeichnungen", "ein einziges Volatilitätsmodell", "Prozess — Einstiege, Ausstiege, Positionsgröße".
+- **dist:**
+  - FAQ == JSON-LD (11/11). og/twitter == meta on all pages checked. No title changed.
+  - Explainer description 141 → 156.

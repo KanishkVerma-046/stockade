@@ -1,6 +1,6 @@
 ---
 title: "Was ist ein Börsensimulator und warum sollten Sie einen nutzen"
-description: "Ein Börsensimulator lässt Sie mit virtuellem Geld echte Marktmechanik traden. So funktionieren sie und was sie lehren können — und was nicht."
+description: "Ein Börsensimulator lässt Sie mit virtuellem Geld echte Ordertypen und Kontomathematik üben. So funktionieren sie und was sie lehren können — und was nicht."
 date: 2026-03-23
 tags: ["Grundlagen"]
 slug: "was-ist-ein-boersensimulator"
@@ -13,9 +13,9 @@ Ein Börsensimulator trennt diese beiden Probleme. Er gibt Ihnen eine vollständ
 
 ## Was ein Börsensimulator tatsächlich ist
 
-Ein Simulator ist eine Handelsplattform, bei der sowohl das Geld als auch der Kursfeed simuliert sind, während alles darum herum genauso funktioniert wie in echt. Seien Sie sich über die Daten im Klaren: Stockades Kurse werden algorithmisch generiert, nicht von einer Börse bezogen, und es gibt keinen Live-Feed dahinter. Was sie tun, ist, sich wie Marktdaten zu *verhalten* — echte OHLC-Kerzen mit Eröffnungs-, Höchst-, Tiefst- und Schlusskurs, Volumen, das von Balken zu Balken schwankt, und die langen Dochte, die echte Charts mühsam zu lesen machen. Die Ordertypen sind die echten Ordertypen. Die Kontomathematik — Barguthaben, Positionsgröße, unrealisierter Gewinn und Verlust, Kontoeigenkapital — folgt derselben Arithmetik wie bei Ihrem Broker. Was fehlt, ist die Abwicklung: Niemand schickt Ihre Order an eine Börse, und kein Geld verlässt ein Konto.
+Ein Simulator ist eine Handelsplattform, bei der sowohl das Geld als auch der Kursfeed simuliert sind, während die Werkzeuge darum herum — Charts, Orders, Kontomathematik — so funktionieren wie bei einem Broker. Seien Sie sich über die Daten im Klaren: Stockades Kurse werden algorithmisch generiert, nicht von einer Börse bezogen, und es gibt keinen Live-Feed dahinter. Was sie tun, ist, sich wie Marktdaten zu *verhalten* — echte OHLC-Kerzen mit Eröffnungs-, Höchst-, Tiefst- und Schlusskurs, Volumen, das von Balken zu Balken schwankt, und die langen Dochte, die echte Charts mühsam zu lesen machen. Market- und Limit-Orders funktionieren genau so, wie sie definiert sind. Die Kontomathematik — Barguthaben, Positionsgröße, unrealisierter Gewinn und Verlust, Kontoeigenkapital — folgt derselben Arithmetik wie bei Ihrem Broker. Was fehlt, ist der Markt drumherum: kein Spread, keine Kommission, keine Margin-Anforderung, keine Teilausführungen; niemand schickt Ihre Order an eine Börse, und kein Geld verlässt ein Konto.
 
-Dieser Unterschied ist wichtig. Ein Simulator ist kein Spiel mit Marktthema; er ist ein funktionierendes Modell eines Marktes ohne die Konsequenzen. Die Fähigkeiten, die sich übertragen, sind die mechanischen — eine Position dimensionieren, eine Order abwickeln, Buch führen. Die eine, die sich nicht überträgt, ist die, die Sie am meisten brauchen, und dazu kommen wir weiter unten.
+Dieser Unterschied ist wichtig. Ein Simulator ist kein Spiel mit Marktthema; er ist ein funktionierendes Modell des Trading-Ablaufs ohne die Konsequenzen. Die Fähigkeiten, die sich übertragen, sind die mechanischen — eine Position dimensionieren, eine Order abwickeln, Buch führen. Die eine, die sich nicht überträgt, ist die, die Sie am meisten brauchen, und dazu kommen wir weiter unten.
 
 Stockades Simulator startet Sie mit 100.000 $ virtuellem Kapital und läuft vollständig in Ihrem Browser. Es gibt keine Anmeldung und kein Konto; Ihre Positionen und Ihr Verlauf leben im lokalen Speicher Ihres Browsers. Dieses Design hat einen offensichtlichen Kompromiss — löschen Sie Ihre Browserdaten, verschwindet Ihr Verlauf mit — bedeutet aber, dass Sie in Sekunden statt nach dem Ausfüllen eines Formulars beginnen können.
 
