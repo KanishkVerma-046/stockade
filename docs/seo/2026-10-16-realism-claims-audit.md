@@ -174,6 +174,14 @@ This is the FAQ answer users and search engines will read as the limitations sta
 | `src/pages/fr/index.astro:47` | fr | "via un **carnet d'ordres complet**" | "through a full order panel" |
 | `src/pages/fr/index.astro:315` | fr | "ainsi qu'un **carnet d'ordres** avec des entrées au marché et à cours limité" | "plus an order panel with market and limit entries" |
 | `src/pages/fr/simulator.astro:48` | fr | "et un **carnet d'ordres complet**" | "and a full order ticket" |
+| `src/pages/fr/index.astro:59` | fr | "un **carnet d'ordres complet**" (FAQ, escaped apostrophe — missed by the first sweep) | "a full order panel" |
+| `src/pages/fr/index.astro:349` | fr | "'**Carnet d'ordres**: entrées au marché …'" | "'Order panel: market and limit entries, …'" |
+| `src/pages/fr/about.astro:78` | fr | title "**Carnet d'ordres complet**" | "Complete order panel" |
+| `src/content/blog-fr/ordre-au-marche-vs-ordre-limite.md:113` | fr | "passez le **carnet d'ordres** du marché à la limite avant chaque entrée" | "switch the order ticket from market to limit before every entry" |
+| `src/content/blog-fr/ordres-stop-loss-explique.md:96` | fr | "les niveaux de stop-loss et de take-profit sur le **carnet d'ordres** de `/fr/simulator/`" | "on the `/simulator` order ticket" |
+| `src/content/blog-fr/quest-ce-qu-un-simulateur-boursier.md:92` | fr | "un **carnet d'ordres** se moque de l'origine du chiffre" | "an order ticket does not care where the number came from" |
+
+**False-friend sweep (2026-10-16, all 8 locales):** searched for es "libro de órdenes", pt "livro de ofertas/ordens", fr "carnet d'ordres" (including the `'`-escaped form in JS strings), it "order book/libro degli ordini", de "Orderbuch", ja 「板」「オーダーブック」, ko "호가창/오더북". Every other hit describes a real market's order book, which is correct. Only de and fr use the term for Stockade's own panel (15 lines above). **Replacements reuse each locale's existing wording:** de "Order-Panel" (`blog-de/oco-und-bracket-orders.md:102`) for "order panel" and "Order-Ticket" (`blog-de/market-order-vs-limit-order.md:113`, `stop-loss-orders-erklaert.md:96`) for "order ticket"; fr "panneau d'ordres" (`blog-fr/ordres-oco-et-bracket.md:102`) for both.
 
 **Code:** "Orderbuch" and "carnet d'ordres" are the standard terms for an exchange **order book**, the resting bids and offers at each price. Stockade has no order book or market depth: one generated price per tick. The English says order *panel*/*ticket*, the form you enter orders in. de and fr already use "Orderbuch" and "carnet d'ordres" correctly for real markets on their `/simulator/` limitations list (de `:73`, `:79`; fr `:82`), which is the meaning that makes these lines an overclaim. The de and fr `index.astro:47` and de `:59` lines are FAQ answers (#3, #10), so they are also FAQPage JSON-LD.
 
