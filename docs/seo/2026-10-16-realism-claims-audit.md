@@ -272,6 +272,18 @@ A sweep of all 8 locales after row 16, for any other sentence describing the pre
 
 **Checked and kept:** the other heatmap mentions on the site (home feature card and "realism" paragraph, about page, `/analytics/` "Time heatmap" section in all 8 locales, which already says net P&L, and the paper-trading-guide, day-vs-swing and what-is-a-simulator posts with their counterparts) describe the heatmap without saying what colours it. Separately noted, not part of this row: several of those mentions list "average win and loss", but the dashboard shows Avg Win only.
 
+### 19. TradingSimulator UI strings, checked before the Phase A step 4 translation (added 2026-10-17)
+
+Every English string in `TradingSimulator.tsx` and `TradingChart.tsx` (about 60, inventoried for Phase A step 4) was compared with the verified-facts table in `2026-10-16-realism-claims-fixes.md`. **No label implies a bid/ask, market depth, an order book, real-time quotes or real fills.** The order panel says "Order", the resting list "Working Orders", and the toasts say "filled", "resting" and "cancelled" of the simulator's own orders. "LIVE" is qualified by its tooltip "Live simulation — prices tick in real time", already listed as accurate under "Checked and supported" (prices do tick on the wall clock, every 800 ms). Translations must keep the "simulation" qualifier.
+
+Not realism claims, but inaccurate, and found in the same pass. Line numbers are as of `c8a969d`.
+
+| # | String (file:line) | Problem | Code | Status |
+|---|---|---|---|---|
+| T1 | "Qty (shares)" (`TradingSimulator.tsx:617`) | The unit is "shares" for all 29 symbols, including the 8 crypto tokens, 3 forex pairs and 4 futures | Quantity is a bare multiplier: P&L = price change × qty, no contract multiplier (facts table) | Open. A fix would be "Qty" or "Qty (units)" in all 8 locales at once; es translates the English as it stands ("Cantidad (acciones)") until then |
+| T2 | "{symbol} · 1M" in the price panel and chart overlay (`:592`, `:964`) | Says 1-minute candles. True for the loaded history and for replay, but in live mode a new candle starts every **10 s** | `generateCandles` spaces history 60 s apart; the live loop opens a candle every 10 000 ms (`:291`) | Open. Not a translated string |
+| T3 | `/simulator/` "Reading the interface" paragraph, all 8 locales (en `simulator.astro:58-63`) | Mentions "timeframe buttons", which do not exist, and puts the EMA toggles in the top bar (they sit on the chart). Calls the right-hand panel a "running log of every fill", but on desktop the trade log is in the left column, and it lists closing fills only: opening a position adds no row | No timeframe control in either component; `setTrades` is called only when a position closes or shrinks | Open. Page copy, not an island string; es keeps it in this pass, apart from its tab names |
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.
