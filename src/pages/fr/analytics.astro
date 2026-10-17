@@ -70,6 +70,12 @@ const analyticsLabels = buildAnalyticsLabels(locale);
           </dd>
         </div>
         <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Perte moyenne</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Le P&amp;L moyen de vos trades perdants, affiché en négatif. Un trade clôturé exactement à zéro compte comme une perte, le même découpage que pour le taux de réussite, et la carte affiche un tiret tant que vous n'avez enregistré aucun trade perdant. Avec le taux de réussite et le gain moyen, c'est tout ce qu'il faut pour calculer l'espérance, ce qu'un trade moyen rapporte ou coûte. Retirez le signe de la perte moyenne avant de la reporter dans cette formule.
+          </dd>
+        </div>
+        <div>
           <dt class="text-[14px] font-semibold text-[var(--c-text)]">Drawdown maximal</dt>
           <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
             La plus grande chute de vos capitaux propres entre un sommet et un creux, exprimée en pourcentage. C'est l'indicateur de la douleur. Dans le trading réel, c'est souvent ce qui met fin à une stratégie bien avant que les mathématiques ne le fassent. <a href="/fr/blog/gestion-du-risque-et-dimensionnement-de-position/" class="text-[#f59e0b] hover:underline">Le dimensionnement de position et la règle des 1 %</a> explique la logique de récupération qui rend le drawdown si important.
