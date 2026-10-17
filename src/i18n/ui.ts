@@ -962,6 +962,50 @@ const it: Dictionary = {
   'markets.asset.NQ': 'Futures sul Nasdaq 100',
   'markets.asset.CL': 'Futures sul petrolio greggio',
   'markets.asset.GC': "Futures sull'oro",
+  'analytics.totalPnl': 'P&L totale',
+  'analytics.equity': 'Capitale',
+  'analytics.winRate': 'Tasso di successo',
+  'analytics.profitFactor': 'Profit factor',
+  'analytics.avgWin': 'Guadagno medio',
+  'analytics.maxDrawdown': 'Drawdown massimo',
+  'analytics.equityCurve': 'Curva del capitale',
+  'analytics.tradeJournal': 'Diario di trading',
+  'analytics.timeHeatmap': 'Heatmap oraria',
+  'analytics.closedTrades.one': '{n} operazione chiusa',
+  'analytics.closedTrades.other': '{n} operazioni chiuse',
+  'analytics.empty.equityCurve':
+    'Ancora nessuna operazione — inizia a fare trading per vedere la tua curva del capitale',
+  'analytics.empty.journal': 'Ancora nessuna operazione',
+  'analytics.openSimulator': 'Apri il simulatore →',
+  'analytics.totalTrades': 'Operazioni totali',
+  'analytics.winning': 'Vincenti',
+  'analytics.losing': 'In perdita',
+  'analytics.avgDuration': 'Durata media',
+  'analytics.col.symbol': 'Simbolo',
+  'analytics.col.side': 'Direzione',
+  'analytics.col.entry': 'Ingresso',
+  'analytics.col.exit': 'Uscita',
+  'analytics.col.qty': 'Dimensione',
+  'analytics.col.pnl': 'P&L',
+  'analytics.col.duration': 'Durata',
+  'analytics.col.date': 'Data',
+  'analytics.heatmap.title': 'Performance per ora del giorno',
+  'analytics.heatmap.legend':
+    'Colore = P&L netto · Numero = tasso di successo · Passa il cursore su una cella per vedere il P&L netto · Orari in UTC · — = nessuna operazione in quella fascia',
+  'analytics.heatmap.empty': 'Nessuna operazione da mostrare',
+  'analytics.heatmap.cell.one': '{n} operazione · {wr}% di successo · netto {net}',
+  'analytics.heatmap.cell.other': '{n} operazioni · {wr}% di successo · netto {net}',
+  'analytics.heatmap.cellEmpty': 'Nessuna operazione',
+  'analytics.day.mon': 'Lun',
+  'analytics.day.tue': 'Mar',
+  'analytics.day.wed': 'Mer',
+  'analytics.day.thu': 'Gio',
+  'analytics.day.fri': 'Ven',
+  'analytics.day.sat': 'Sab',
+  'analytics.day.sun': 'Dom',
+  'analytics.duration.minutes': '{m} min',
+  'analytics.duration.hours': '{h} h',
+  'analytics.duration.hoursMinutes': '{h} h {m} min',
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes
@@ -970,10 +1014,8 @@ const it: Dictionary = {
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
-// Phase A, AnalyticsDashboard batch: es, pt, ja, fr, de, ko done (2026-10-17); the rest pending.
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  it: ['analytics.'],
-};
+// Phase A, AnalyticsDashboard batch: complete in all 7 locales (2026-10-17).
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
 
 export const translations: Record<Locale, Dictionary> = {
   en,

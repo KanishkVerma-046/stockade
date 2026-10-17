@@ -4,8 +4,10 @@ import Navbar from '../../components/layout/Navbar.astro';
 import Footer from '../../components/layout/Footer.astro';
 import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
+import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
 
 const locale = 'it' as const;
+const analyticsLabels = buildAnalyticsLabels(locale);
 ---
 
 <Layout
@@ -20,7 +22,12 @@ const locale = 'it' as const;
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Dashboard delle Performance</h1>
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Le tue statistiche di trading simulato — curva del capitale, tasso di successo, drawdown e diario di trading.</p>
     </div>
-    <AnalyticsDashboard client:load simulatorHref={localizedHref('/simulator/', locale)} />
+    <AnalyticsDashboard
+      client:load
+      simulatorHref={localizedHref('/simulator/', locale)}
+      locale={locale}
+      labels={analyticsLabels}
+    />
 
     <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
       <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
