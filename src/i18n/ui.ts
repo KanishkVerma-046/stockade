@@ -596,6 +596,26 @@ const it: Dictionary = {
   'markets.volume.shares': 'Il volume è il numero di azioni scambiate.',
   'markets.volume.usd': 'Il volume è il controvalore scambiato in dollari USA.',
   'markets.volume.contracts': 'Il volume è il numero di contratti scambiati.',
+  'markets.search': 'Cerca simbolo o nome…',
+  'markets.category.all': 'Tutti',
+  'markets.category.stock': 'Azioni',
+  'markets.category.crypto': 'Crypto',
+  'markets.category.forex': 'Forex',
+  'markets.category.futures': 'Futures',
+  'markets.col.symbol': 'Simbolo',
+  'markets.col.name': 'Nome',
+  'markets.col.price': 'Prezzo',
+  'markets.col.change': 'Variazione',
+  'markets.col.volume': 'Volume',
+  'markets.col.mktCap': 'Capitalizzazione',
+  'markets.col.action': 'Fai trading',
+  'markets.asset.EURUSD': 'Euro / Dollaro USA',
+  'markets.asset.GBPUSD': 'Sterlina britannica / USD',
+  'markets.asset.USDJPY': 'Dollaro USA / Yen',
+  'markets.asset.ES': "Futures sull'S&P 500",
+  'markets.asset.NQ': 'Futures sul Nasdaq 100',
+  'markets.asset.CL': 'Futures sul petrolio greggio',
+  'markets.asset.GC': "Futures sull'oro",
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes
@@ -603,11 +623,8 @@ const it: Dictionary = {
 // any other missing key fails the build (uiCoverageCheck in astro.config.mjs).
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
-// Phase A, MarketsView batch: es landed as the checkpoint (2026-10-16).
-const MARKETS_PHASE_A = ['markets.search', 'markets.category.', 'markets.col.', 'markets.asset.'] as const;
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  it: MARKETS_PHASE_A,
-};
+// Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
 
 export const translations: Record<Locale, Dictionary> = {
   en,

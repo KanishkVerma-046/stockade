@@ -13,6 +13,30 @@ const marketsLabels = {
   volumeShares: t(locale, 'markets.volume.shares'),
   volumeUsd: t(locale, 'markets.volume.usd'),
   volumeContracts: t(locale, 'markets.volume.contracts'),
+  search: t(locale, 'markets.search'),
+  categories: {
+    all: t(locale, 'markets.category.all'),
+    stock: t(locale, 'markets.category.stock'),
+    crypto: t(locale, 'markets.category.crypto'),
+    forex: t(locale, 'markets.category.forex'),
+    futures: t(locale, 'markets.category.futures'),
+  },
+  colSymbol: t(locale, 'markets.col.symbol'),
+  colName: t(locale, 'markets.col.name'),
+  colPrice: t(locale, 'markets.col.price'),
+  colChange: t(locale, 'markets.col.change'),
+  colVolume: t(locale, 'markets.col.volume'),
+  colMktCap: t(locale, 'markets.col.mktCap'),
+  colAction: t(locale, 'markets.col.action'),
+  assetNames: {
+    'EUR/USD': t(locale, 'markets.asset.EURUSD'),
+    'GBP/USD': t(locale, 'markets.asset.GBPUSD'),
+    'USD/JPY': t(locale, 'markets.asset.USDJPY'),
+    '/ES': t(locale, 'markets.asset.ES'),
+    '/NQ': t(locale, 'markets.asset.NQ'),
+    '/CL': t(locale, 'markets.asset.CL'),
+    '/GC': t(locale, 'markets.asset.GC'),
+  },
 };
 ---
 
@@ -33,6 +57,30 @@ const marketsLabels = {
       simulatorHref={localizedHref('/simulator/', locale)}
       labels={marketsLabels}
     />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        Come usare la panoramica dei mercati
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        La tabella copre tutti i 29 asset simulati offerti da Stockade — 14 titoli azionari, 8 token crypto, 3 coppie valutarie e 4 simboli futures — con prezzi che si aggiornano ogni 2 secondi, così puoi osservare come si muove ogni classe di asset senza aprire un'operazione.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Filtrare e ordinare</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Usa le schede delle categorie per limitare la tabella a una classe di asset, oppure la casella di ricerca per passare direttamente a un simbolo o a un nome. Fai clic su una delle intestazioni di colonna Simbolo, Prezzo o Variazione per ordinare in base a quel campo — fai clic di nuovo per invertire l'ordine. La vista predefinita ordina per Variazione, così gli asset che si muovono di più compaiono per primi.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Leggere le colonne</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Prezzo e Variazione si spiegano da soli, ma Volume usa un'unità diversa per ogni classe di asset — per le azioni il numero di azioni scambiate, per crypto e forex il controvalore scambiato in dollari USA, e per i futures il numero di contratti — perché è la convenzione che ogni mercato usa davvero. Capitalizzazione si applica solo ad azioni e crypto; le coppie valutarie e i futures mostrano <span class="font-mono">—</span> perché il concetto non si applica a nessuno dei due.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Fare trading dalla tabella</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Il pulsante Fai trading di ogni riga apre il <a href={localizedHref('/simulator/', locale)} class="text-[#f59e0b] hover:underline">Simulatore di Trading</a> con quel simbolo già selezionato, così passi dall'individuare un movimento qui all'inserire un ordine senza doverlo cercare di nuovo. Se preferisci vedere il prezzo svilupparsi candela per candela prima di impegnarti in una lettura, il <a href={localizedHref('/chart-simulator/', locale)} class="text-[#f59e0b] hover:underline">Simulatore di Grafici</a> riproduce le stesse classi di asset barra per barra.
+      </p>
+    </section>
   </main>
   <Footer />
 </Layout>
