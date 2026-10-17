@@ -278,7 +278,8 @@ const liveStatsLabels = {
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: 'Aktien',          sub: 'Aktien · 14 Ticker',                icon: '📈', color: '#3b82f6' },
-          { label: 'Kryptowährungen', sub: 'Tokens & Coins · 8 Assets',         icon: '🪙', color: '#f59e0b' },
+          // soft hyphen: unbroken, the word overflows its card in the 2-column grid at 320px
+          { label: 'Krypto­währungen', sub: 'Tokens & Coins · 8 Assets', icon: '🪙', color: '#f59e0b' },
           { label: 'Forex',           sub: 'EUR/USD · GBP/USD · USD/JPY',       icon: '💱', color: '#22c55e' },
           { label: 'Futures',         sub: 'NQ · ES · CL · GC',                 icon: '🔮', color: '#8b5cf6' },
         ].map(a => (
