@@ -1,5 +1,5 @@
 ---
-title: "Trading de Contrats à Terme : Contrats, Marge et Effet de Levier"
+title: "Trading de Contrats à Terme : Marge et Effet de Levier"
 description: "Ce qu'est vraiment un contrat à terme, comment fonctionnent taille de tick et multiplicateur, pourquoi la marge est un dépôt de garantie, pas un prêt."
 date: 2026-07-27
 tags: ["Contrats à Terme", "Gestion du Risque"]

@@ -1,5 +1,5 @@
 ---
-title: "Trading Crypto pour Débutants : Comment Fonctionnent les Marchés d'Actifs Numériques"
+title: "Trading Crypto pour Débutants : Fonctionnement des Marchés"
 description: "Les cryptos tradent 24h/24 sans coupe-circuit, peu de protections, volume gonflé. Ce qui diffère des actions, et comment dimensionner ses positions."
 date: 2026-07-20
 tags: ["Cryptomonnaies", "Bases"]

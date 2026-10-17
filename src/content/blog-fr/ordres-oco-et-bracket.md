@@ -1,5 +1,5 @@
 ---
-title: "Que Sont les Ordres OCO et Bracket et Comment Fonctionnent-Ils"
+title: "Ordres OCO et Bracket : Comment Fonctionnent-Ils"
 description: "Comment les ordres OCO et bracket lient un stop et un objectif pour que l'exécution de l'un annule l'autre, plus les erreurs de quantité des débutants."
 date: 2026-05-25
 tags: ["Types d'Ordres"]

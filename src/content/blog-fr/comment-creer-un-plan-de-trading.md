@@ -1,5 +1,5 @@
 ---
-title: "Comment Créer un Plan de Trading : Guide Étape par Étape pour Débutants"
+title: "Comment Créer un Plan de Trading : Guide Étape par Étape"
 description: "Un plan de trading est un document, pas une intention. Les sections nécessaires, un exemple de setup complet, et la règle pour savoir quand le modifier."
 date: 2026-06-15
 tags: ["Stratégie", "Gestion du Risque"]

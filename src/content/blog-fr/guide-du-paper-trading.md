@@ -1,5 +1,5 @@
 ---
-title: "Guide du Paper Trading : Comment S'Entraîner Sans Risquer d'Argent Réel"
+title: "Paper Trading : S'Entraîner Sans Risquer d'Argent Réel"
 description: "La plupart du paper trading ne construit rien. Voici comment structurer vos séances, noter votre raisonnement, et mesurer vos progrès réels."
 date: 2026-06-08
 tags: ["Bases", "Psychologie"]

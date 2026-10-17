@@ -1,5 +1,5 @@
 ---
-title: "Introduction au Trading Forex : Paires de Devises et Pips Expliqués"
+title: "Trading Forex : Paires de Devises et Pips Expliqués"
 description: "Une paire de devises, c'est être long sur une devise et short sur une autre. Comment lire une cotation, ce qu'est un pip, et pourquoi le levier forex fait mal."
 date: 2026-07-13
 tags: ["Forex", "Bases"]

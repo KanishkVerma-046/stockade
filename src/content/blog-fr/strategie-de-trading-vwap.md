@@ -1,5 +1,5 @@
 ---
-title: "Stratégie de Trading VWAP : Ce Que C'est et Comment les Traders l'Utilisent"
+title: "Stratégie de Trading VWAP : Comment l'Utiliser"
 description: "VWAP, c'est le prix typique cumulé multiplié par le volume, divisé par le volume cumulé. L'arithmétique, pourquoi les institutions le suivent, ses limites."
 date: 2026-05-04
 tags: ["Indicateurs", "Stratégie"]

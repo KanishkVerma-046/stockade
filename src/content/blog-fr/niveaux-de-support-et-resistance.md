@@ -1,5 +1,5 @@
 ---
-title: "Comprendre les Niveaux de Support et de Résistance en Trading"
+title: "Comprendre les Niveaux de Support et de Résistance"
 description: "Support et résistance sont des zones d'ordres en attente, pas des prix exacts. Comment les repérer, pourquoi votre stop se fait chasser, et une vraie cassure."
 date: 2026-04-06
 tags: ["Analyse Technique"]

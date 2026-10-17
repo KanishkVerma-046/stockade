@@ -1,5 +1,5 @@
 ---
-title: "Les Moyennes Mobiles Expliquées : EMA contre SMA et Comment les Utiliser"
+title: "Moyennes Mobiles : EMA contre SMA et Comment les Utiliser"
 description: "La SMA et l'EMA ne diffèrent que par un multiplicateur. Pourquoi 9/20/50 sont standards, comment les utiliser comme support, et pourquoi elles ont du retard."
 date: 2026-04-13
 tags: ["Indicateurs", "Analyse Technique"]

@@ -1,5 +1,5 @@
 ---
-title: "Indicateur RSI : Comment Identifier le Surachat et la Survente"
+title: "Indicateur RSI : Identifier le Surachat et la Survente"
 description: "Un RSI au-dessus de 70 n'est pas un signal de vente. Ce qu'il mesure vraiment, pourquoi le surachat signifie la force, et comment lire la divergence."
 date: 2026-04-20
 tags: ["Indicateurs"]

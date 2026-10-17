@@ -1,5 +1,5 @@
 ---
-title: "Gestion du Risque 101 : Dimensionnement de Position et la Règle du 1%"
+title: "Gestion du Risque : Dimensionnement de Position"
 description: "La taille de position découle de la distance du stop, ce n'est pas un chiffre choisi. Formule de dimensionnement, règle du 1%, récupération après drawdown."
 date: 2026-06-29
 tags: ["Gestion du Risque"]

@@ -1,5 +1,5 @@
 ---
-title: "Day Trading contre Swing Trading : Quel Style Vous Convient"
+title: "Day Trading contre Swing Trading : Lequel Vous Convient"
 description: "Aucun style n'est meilleur. Le temps, le capital, le risque de gap, les coûts et le feedback diffèrent : voici comment savoir lequel vous convient."
 date: 2026-06-01
 tags: ["Stratégie", "Bases"]
