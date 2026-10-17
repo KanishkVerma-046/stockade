@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Vous terminez une semaine de trading d'entraînement, ouvrez la page Analytics, et voyez un taux de réussite de 68%. C'est plutôt satisfaisant. Puis vous regardez le P&L total, et il est négatif. Rien n'est cassé — vous venez simplement de découvrir que le chiffre que la plupart des traders citent en premier est celui qui vous renseigne le moins.
 
-La [page Analytics](/fr/analytics/) de Stockade calcule six chiffres clés à partir de vos trades clôturés : P&L total, capitaux propres, taux de réussite, facteur de profit, gain moyen et drawdown maximum. En dessous se trouvent trois onglets — une courbe d'équité, un journal de trading et une heatmap horaire. Voici ce que signifie chacun d'eux, et lesquels peuvent vous mentir.
+La [page Analytics](/fr/analytics/) de Stockade calcule sept chiffres clés à partir de vos trades clôturés : P&L total, capitaux propres, taux de réussite, facteur de profit, gain moyen, perte moyenne et drawdown maximum. En dessous se trouvent trois onglets — une courbe d'équité, un journal de trading et une heatmap horaire. Voici ce que signifie chacun d'eux, et lesquels peuvent vous mentir.
 
 ## Pourquoi un taux de réussite de 70% peut perdre de l'argent, alors qu'un taux de 35% en gagne
 
@@ -46,7 +46,7 @@ La perte moyenne s'utilise comme un nombre positif. Appliquons-la aux deux trade
 
 **Trader B :** 0.35 × $300 = $105. 0.65 × $80 = $52. $105 − $52 = **+$53 par trade.**
 
-Stockade n'affiche pas l'espérance, mais vous pouvez la calculer en quelques secondes à partir du taux de réussite, du gain moyen, et de la perte moyenne que vous déduisez du journal. Faites ce calcul avant de tirer toute autre conclusion. Une stratégie à espérance négative ne peut pas être corrigée en tradant plus souvent ou en augmentant la taille des positions — la taille ne fait que changer la vitesse à laquelle l'arithmétique se déroule.
+Stockade n'affiche pas l'espérance, mais vous pouvez la calculer en quelques secondes à partir des cartes taux de réussite, gain moyen et perte moyenne. Faites ce calcul avant de tirer toute autre conclusion. Une stratégie à espérance négative ne peut pas être corrigée en tradant plus souvent ou en augmentant la taille des positions — la taille ne fait que changer la vitesse à laquelle l'arithmétique se déroule.
 
 Le chiffre associé est le **taux de réussite d'équilibre**, égal à `1 ÷ (1 + ratio gain/perte)`. Le ratio gain/perte du trader B est 300 ÷ 80 = 3.75, donc B atteint l'équilibre à 1 ÷ 4.75 = 21% et gagne 35% du temps. Le ratio gain/perte du trader A est 50 ÷ 150 = 0.33, donc A a besoin de 75% et n'atteint que 70%. Cet écart de cinq points fait toute la différence entre les deux comptes.
 
@@ -62,7 +62,7 @@ Le facteur de profit est le profit brut divisé par la perte brute sur l'ensembl
 
 Lecture rapide : en dessous de 1.0, vous perdez ; entre 1.0 et 1.3, c'est marginal et pourrait facilement n'être que du bruit ; entre 1.3 et 2.0, c'est un edge respectable sur un échantillon correct ; et bien au-dessus de 2.5 sur un petit échantillon, c'est généralement de la chance. Si la carte affiche `∞`, c'est que vous n'avez pas encore enregistré de trade perdant — un constat sur la taille de l'échantillon, pas sur votre compétence.
 
-Une particularité : la ligne de KPI affiche le **Gain Moyen**, mais pas la perte moyenne. Vous obtenez la perte moyenne à partir du journal en additionnant les entrées de P&L négatives et en divisant par le nombre de trades perdants, que l'onglet Équité vous donne directement. Vous en avez besoin à la fois pour l'espérance et pour le ratio gain/perte, alors ne sautez pas cette étape.
+La ligne de KPI affiche le **Gain moyen** et la **Perte moyenne** côte à côte. La perte moyenne est le P&L moyen de vos trades perdants, affiché en négatif : retirez le signe avant de la reporter dans la formule de l'espérance. Un trade clôturé exactement à zéro compte comme une perte, le même découpage que pour le taux de réussite. Tant que vous n'avez enregistré aucun trade perdant, la carte affiche un tiret. Vous en avez besoin à la fois pour l'espérance et pour le ratio gain/perte, alors ne sautez pas cette étape.
 
 ## Le drawdown maximum : l'indicateur qui décide si vous pouvez tenir une stratégie
 
@@ -108,6 +108,6 @@ Deux limites. Les données vivent dans le stockage local de votre navigateur, do
 
 ## Pratiquez cela sur le simulateur
 
-Prenez 20 trades, puis ouvrez la page Analytics et calculez votre espérance à la main à partir des cartes taux de réussite et gain moyen, plus la perte moyenne que vous déduisez du journal — notez la réponse avant de regarder le P&L total. Continuez ensuite jusqu'à 100 trades et recalculez-la, en observant à quel point le chiffre a bougé. Ce mouvement, c'est l'erreur type ci-dessus, rendue concrète.
+Prenez 20 trades, puis ouvrez la page Analytics et calculez votre espérance à la main à partir des cartes taux de réussite, gain moyen et perte moyenne — notez la réponse avant de regarder le P&L total. Continuez ensuite jusqu'à 100 trades et recalculez-la, en observant à quel point le chiffre a bougé. Ce mouvement, c'est l'erreur type ci-dessus, rendue concrète.
 
 [Ouvrez le simulateur](/fr/simulator/) et commencez à enregistrer des trades qui valent la peine d'être analysés.
