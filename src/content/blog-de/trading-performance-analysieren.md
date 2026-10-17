@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Sie beenden eine Woche Übungstrading, öffnen die Analyse-Seite und sehen eine Trefferquote von 68 %. Das fühlt sich gut an. Dann schauen Sie auf den Gesamt-P&L, und er ist negativ. Nichts ist kaputt — Sie haben nur entdeckt, dass die Zahl, die die meisten Trader zuerst nennen, die ist, die am wenigsten aussagt.
 
-Stockades [Analyse-Seite](/de/analytics/) berechnet sechs Kennzahlen aus Ihren geschlossenen Trades: Gesamt-P&L, Eigenkapital, Trefferquote, Profitfaktor, Durchschnittsgewinn und maximaler Drawdown. Darunter liegen drei Tabs — eine Equity-Kurve, ein Trade-Journal und eine Trefferquote-nach-Stunde-Heatmap. Hier ist, was jede bedeutet und welche Sie belügen können.
+Stockades [Analyse-Seite](/de/analytics/) berechnet sechs Kennzahlen aus Ihren geschlossenen Trades: Gesamt-P&L, Eigenkapital, Trefferquote, Profitfaktor, Durchschnittsgewinn und maximaler Drawdown. Darunter liegen drei Tabs — eine Equity-Kurve, ein Trade-Journal und eine Tageszeit-Heatmap. Hier ist, was jede bedeutet und welche Sie belügen können.
 
 ## Warum eine Trefferquote von 70 % Geld verlieren kann, während 35 % welches machen
 
@@ -63,7 +63,7 @@ Der Profitfaktor ist der Bruttogewinn geteilt durch den Bruttoverlust über alle
 
 Grobe Einordnung: Unter 1,0 ist Verlust, 1,0 bis 1,3 ist marginal und könnte leicht Rauschen sein, 1,3 bis 2,0 ist ein respektabler Edge bei einer ordentlichen Stichprobe, und deutlich über 2,5 bei kleiner Stichprobe bedeutet meist Glück. Zeigt die Karte `∞`, haben Sie noch keinen Verlust-Trade verbucht — eine Aussage über die Stichprobengröße, nicht über Können.
 
-Eine Eigenart: Die KPI-Zeile zeigt **Ø-Gewinn**, aber nicht den Durchschnittsverlust. Den Durchschnittsverlust bekommen Sie aus dem Journal, indem Sie die negativen P&L-Einträge summieren und durch die Anzahl der Verlust-Trades teilen, die Ihnen der Übersichts-Tab direkt liefert. Sie brauchen ihn sowohl für den Erwartungswert als auch die Payoff-Ratio, überspringen Sie ihn also nicht.
+Eine Eigenart: Die KPI-Zeile zeigt **Ø-Gewinn**, aber nicht den Durchschnittsverlust. Den Durchschnittsverlust bekommen Sie aus dem Journal, indem Sie die negativen P&L-Einträge summieren und durch die Anzahl der Verlust-Trades teilen, die Ihnen der Equity-Kurve-Tab direkt liefert. Sie brauchen ihn sowohl für den Erwartungswert als auch die Payoff-Ratio, überspringen Sie ihn also nicht.
 
 ## Maximaler Drawdown: die Kennzahl, die entscheidet, ob Sie bei einer Strategie bleiben können
 
@@ -95,9 +95,9 @@ Der Standardfehler schrumpft mit der Quadratwurzel der Anzahl, dieses Band zu ha
 
 ## Ihre besten Stunden mit der Tageszeit-Heatmap finden
 
-Der Zeit-Heatmap-Tab legt Wochentage gegen Stunden von 9:00 bis 20:00 an und färbt jede Zelle nach Trefferquote in diesem Slot: Grün bei 65 % und darüber, Rot unter 50 %, neutral dazwischen, und ein Strich, wo Sie keine Trades haben. Bewegen Sie den Mauszeiger über eine Zelle für ihre Trade-Anzahl.
+Der Heatmap-Tab legt Wochentage gegen Stunden von 9:00 bis 20:00 UTC an und färbt jede Zelle nach dem Netto-P&L in diesem Slot: Grün, wenn der Slot Geld eingebracht hat, Rot, wenn er Geld verloren hat, neutral bei null, und ein Strich, wo Sie keine Trades haben. Die Zahl in jeder Zelle ist ihre Trefferquote. Bewegen Sie den Mauszeiger über eine Zelle für Trade-Anzahl, Trefferquote und Netto-P&L.
 
-Das beantwortet eine wirklich nützliche Frage: Finanzieren Ihre Nachmittags-Trades still Ihre Vormittags-Trades? Zwei Vorbehalte. Zellen färben sich nur nach Trefferquote, sodass eine grüne Zelle trotzdem eine Geld verlierende Stunde sein kann, wenn diese Gewinne winzig sind — gleichen Sie das P&L des Journals für diesen Slot gegen. Und Stichproben pro Zelle sind winzig: Vier Trades mit drei Gewinnern zeigen 75 % und bedeuten nichts. Warten Sie auf 20 oder 30 Trades in einem Slot, bevor Sie es ein Muster nennen. Die Stunden sind die lokale Zeit Ihres Browsers, keine Börsensession.
+Das beantwortet eine wirklich nützliche Frage: Finanzieren Ihre Nachmittags-Trades still Ihre Vormittags-Trades? Zwei Vorbehalte. Lesen Sie Farbe und Zahl zusammen: Eine rote Zelle mit 75 % ist eine Stunde, in der drei kleine Gewinne von einem einzigen großen Verlust aufgezehrt wurden — genau das, was die Trefferquote allein verbergen würde. Und Stichproben pro Zelle sind winzig: Vier Trades mit drei Gewinnern zeigen 75 % und bedeuten nichts. Warten Sie auf 20 oder 30 Trades in einem Slot, bevor Sie es ein Muster nennen. Die Stunden sind UTC, nach der Schlusszeit jedes Trades, nicht Ihre lokale Zeit und keine Börsensession.
 
 ## Was das Trade-Journal aufzeichnet und was Sie selbst aufzeichnen müssen
 
