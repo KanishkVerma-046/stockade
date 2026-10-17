@@ -592,7 +592,7 @@ const it: Dictionary = {
   'legal.viewEnglish': 'Visualizza la versione in inglese',
   'markets.trade': 'Fai trading',
   'markets.volume.all':
-    'Le unità di volume seguono ogni classe di asset — azioni scambiate per le azioni, dollari USA scambiati per crypto e forex, contratti per i futures.',
+    'Le unità di volume seguono ogni classe di asset — per le azioni il numero di azioni scambiate, per crypto e forex il controvalore scambiato in dollari USA, per i futures il numero di contratti.',
   'markets.volume.shares': 'Il volume è il numero di azioni scambiate.',
   'markets.volume.usd': 'Il volume è il controvalore scambiato in dollari USA.',
   'markets.volume.contracts': 'Il volume è il numero di contratti scambiati.',
