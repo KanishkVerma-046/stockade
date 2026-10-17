@@ -1,6 +1,11 @@
 # Phase A plan: localize the island UI strings
 
-**Status: approved for a one-locale checkpoint only.** The checkpoint is MarketsView in Spanish plus the es "How to Use Market Overview" section. Everything else waits for review of that checkpoint. Written 2026-10-16. The string inventory is in `2026-10-16-island-strings-audit.md`.
+**Status: steps 1–2 done; step 3 (AnalyticsDashboard) is next and has not started.** Step 1, the checkpoint, was MarketsView in Spanish plus the es "How to Use Market Overview" section (`15e0216`, 2026-10-16). Step 2 brought the same to pt, ja, fr, de, ko and it, one commit per locale (2026-10-17), and `UI_PENDING` is empty again. Written 2026-10-16. The string inventory is in `2026-10-16-island-strings-audit.md`.
+
+**Step 2 notes (2026-10-17):**
+- **Category casing.** The category buttons used CSS `capitalize`, which capitalizes every word, so fr "contrats à terme" would have rendered "Contrats À Terme". The class now applies only to the English defaults, and translated labels come already cased (`1c60937`, which also recased es's five labels; /es/markets/ looks the same).
+- **Asset counts.** The six new how-to sections reuse each locale's home-page breakdown ("8 tokens cripto", 暗号資産トークン8種類, "8 jetons crypto", "8 Krypto-Token", 암호화폐 토큰 8개, "8 token crypto"; futures as *symbols*). The en and es sections still say "8 crypto pairs" / "8 pares de cripto", which no other page does; the crypto assets are single tokens (realism-fixes facts table). Not changed here.
+- **New names.** No locale had a name for the British pound before; the GBP/USD names ("Libra esterlina", "Livre sterling", "Britisches Pfund", "Sterlina britannica", 英ポンド, 영국 파운드) are new.
 
 ## Scope
 
