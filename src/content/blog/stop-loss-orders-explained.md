@@ -1,5 +1,5 @@
 ---
-title: "Stop-Loss Orders: How to Protect Your Trades From Big Losses"
+title: "Stop-Loss Orders: How to Protect Trades From Big Losses"
 description: "A stop belongs where your trade idea breaks, not at a round dollar figure. Stop-market vs stop-limit, placement beyond structure, and sizing to fit."
 date: 2026-05-18
 author: "Stockade Team"

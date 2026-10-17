@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Forex Trading: Currency Pairs and Pips Explained"
+title: "Forex Trading for Beginners: Currency Pairs and Pips"
 description: "A currency pair means being long one currency and short another. How to read a quote, what a pip is, why JPY pairs differ, and why forex leverage hurts."
 date: 2026-07-13
 author: "Stockade Team"
