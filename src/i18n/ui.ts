@@ -385,7 +385,7 @@ const fr: Dictionary = {
   'legal.viewEnglish': 'Voir la version anglaise',
   'markets.trade': 'Trader',
   'markets.volume.all':
-    "Les unités de volume dépendent de chaque classe d'actifs — actions échangées pour les actions, dollars américains échangés pour les cryptomonnaies et le forex, contrats pour les contrats à terme.",
+    "Les unités de volume dépendent de chaque classe d'actifs — pour les actions, le nombre d'actions échangées ; pour les cryptomonnaies et le forex, les dollars américains échangés ; pour les contrats à terme, le nombre de contrats.",
   'markets.volume.shares': "Le volume correspond au nombre d'actions échangées.",
   'markets.volume.usd': 'Le volume correspond aux dollars américains échangés.',
   'markets.volume.contracts': 'Le volume correspond au nombre de contrats échangés.',
