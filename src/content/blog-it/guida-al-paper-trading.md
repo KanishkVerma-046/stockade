@@ -1,5 +1,5 @@
 ---
-title: "Paper Trading: Come Esercitarsi Senza Rischiare Denaro Reale"
+title: "Paper Trading: Esercitarsi Senza Rischiare Denaro Reale"
 description: "Il paper trading spesso non insegna nulla. Ecco come strutturare le sessioni, tenere un diario delle decisioni e misurare i progressi reali."
 date: 2026-06-08
 tags: ["Basi", "Psicologia"]

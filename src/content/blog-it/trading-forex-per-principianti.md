@@ -1,5 +1,5 @@
 ---
-title: "Introduzione al Trading Forex: Coppie di Valute e Pip Spiegati"
+title: "Trading Forex: Coppie di Valute e Pip Spiegati"
 description: "Una coppia di valute significa essere lunghi su una valuta e corti sull'altra. Come leggere una quotazione, cos'è un pip, e perché la leva forex fa male."
 date: 2026-07-13
 tags: ["Forex", "Basi"]

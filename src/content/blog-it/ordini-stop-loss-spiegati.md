@@ -1,5 +1,5 @@
 ---
-title: "Ordini Stop-Loss: Come Proteggere le Tue Operazioni da Grandi Perdite"
+title: "Ordini Stop-Loss: Come Limitare le Grandi Perdite"
 description: "Uno stop va dove la tua idea di trading si rompe, non a una cifra tonda. Stop-market vs stop-limit, posizionamento oltre la struttura e dimensionamento."
 date: 2026-05-18
 tags: ["Tipi di Ordine", "Gestione del Rischio"]

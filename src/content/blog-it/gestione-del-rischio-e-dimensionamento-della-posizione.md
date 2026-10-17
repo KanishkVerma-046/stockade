@@ -1,5 +1,5 @@
 ---
-title: "Gestione del Rischio 101: Dimensionamento della Posizione e la Regola dell'1%"
+title: "Gestione del Rischio: Dimensionamento della Posizione"
 description: "La dimensione della posizione è il risultato della distanza dello stop, non un numero a caso: formula, regola dell'1%, recupero da drawdown e multipli R."
 date: 2026-06-29
 tags: ["Gestione del Rischio"]

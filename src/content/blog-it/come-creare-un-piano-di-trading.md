@@ -1,5 +1,5 @@
 ---
-title: "Come Creare un Piano di Trading: Guida Passo Passo per Principianti"
+title: "Come Creare un Piano di Trading: Guida Passo Passo"
 description: "Un piano di trading è un documento, non un'intenzione. Ogni sezione necessaria, un esempio di setup completo, e la regola per quando puoi modificarlo."
 date: 2026-06-15
 tags: ["Strategia", "Gestione del Rischio"]

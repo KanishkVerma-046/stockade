@@ -1,5 +1,5 @@
 ---
-title: "Indicatore RSI: Come Identificare le Condizioni di Ipercomprato e Ipervenduto"
+title: "Indicatore RSI: Identificare Ipercomprato e Ipervenduto"
 description: "RSI sopra 70 non è un segnale di vendita. Cosa misura davvero l'RSI, perché ipercomprato significa forte, e come leggere la divergenza senza illudersi."
 date: 2026-04-20
 tags: ["Indicatori"]

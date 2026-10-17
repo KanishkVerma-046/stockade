@@ -1,5 +1,5 @@
 ---
-title: "Trading di Criptovalute per Principianti: Come Funzionano i Mercati Digitali"
+title: "Trading di Criptovalute per Principianti"
 description: "Il crypto tratta 24/7 senza circuit breaker, con protezioni deboli e volume gonfiato. Cosa cambia davvero rispetto alle azioni, e come dimensionarsi."
 date: 2026-07-20
 tags: ["Crypto", "Basi"]
