@@ -10,7 +10,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Terminas una semana de práctica, abres el panel de análisis, y ves una tasa de acierto del 68%. Se siente bien. Después miras el G/P total y es negativo. Nada está roto — acabas de descubrir que el número que la mayoría de los traders cita primero es el que menos te dice.
 
-El [panel de análisis](/es/analytics/) de Stockade calcula seis cifras principales a partir de tus operaciones cerradas: G/P total, capital, tasa de acierto, factor de beneficio, ganancia promedio y drawdown máximo. Debajo hay tres pestañas — una curva de capital, un diario de operaciones, y un mapa de calor de tasa de acierto por horario. Esto es lo que significa cada una y cuáles pueden mentirte.
+El [panel de análisis](/es/analytics/) de Stockade calcula seis cifras principales a partir de tus operaciones cerradas: G/P total, capital, tasa de acierto, factor de beneficio, ganancia promedio y drawdown máximo. Debajo hay tres pestañas — una curva de capital, un diario de operaciones, y un mapa de calor por horario. Esto es lo que significa cada una y cuáles pueden mentirte.
 
 ## Por qué una tasa de acierto del 70% puede perder dinero mientras una del 35% lo gana
 
@@ -64,7 +64,7 @@ El factor de beneficio es la ganancia bruta dividida entre la pérdida bruta a l
 
 Lectura aproximada: por debajo de 1.0 es perder dinero, de 1.0 a 1.3 es marginal y fácilmente podría ser ruido, de 1.3 a 2.0 es una ventaja respetable sobre una muestra decente, y bastante por encima de 2.5 en una muestra pequeña generalmente significa suerte. Si la tarjeta muestra `∞`, todavía no has registrado una operación perdedora — una afirmación sobre el tamaño de muestra, no sobre habilidad.
 
-Un detalle curioso: la fila de KPIs muestra **Ganancia Promedio** pero no la pérdida promedio. Obtienes la pérdida promedio del diario sumando las entradas de G/P negativas y dividiendo entre el número de operaciones perdedoras, lo cual la pestaña de resumen te da directamente. La necesitas tanto para la expectativa como para el ratio de pago, así que no te la saltes.
+Un detalle curioso: la fila de KPIs muestra **Ganancia Promedio** pero no la pérdida promedio. Obtienes la pérdida promedio del diario sumando las entradas de G/P negativas y dividiendo entre el número de operaciones perdedoras, lo cual la pestaña Capital te da directamente. La necesitas tanto para la expectativa como para el ratio de pago, así que no te la saltes.
 
 ## Drawdown máximo: la métrica que decide si puedes seguir con una estrategia
 
@@ -76,7 +76,7 @@ Esta es la métrica que decide si una estrategia es utilizable *para ti*. Un sis
 
 ## Qué te dice la forma de tu curva de capital
 
-La pestaña de Curva de Capital grafica tu saldo acumulado después de cada operación cerrada, empezando en $100,000, con el mínimo y el máximo etiquetados debajo. La mayoría lee solo el último punto. La forma dice más.
+La pestaña Capital grafica tu saldo acumulado después de cada operación cerrada, empezando en $100,000, con el mínimo y el máximo etiquetados debajo. La mayoría lee solo el último punto. La forma dice más.
 
 Una curva que asciende con caídas cortas y superficiales es expectativa consistente y pérdidas controladas. Una que está plana durante largos tramos y luego salta verticalmente significa que un puñado de operaciones produjo casi toda la ganancia — quítalas y no queda nada. Una escalera que sube y repetidamente devuelve un bloque grande es la firma de cortar las ganadoras temprano y dejar correr las perdedoras. Y una línea casi vertical sin retrocesos, con pocas operaciones, no es un descubrimiento; es una muestra pequeña.
 
@@ -96,13 +96,13 @@ El error estándar se reduce con la raíz cuadrada del conteo, así que reducir 
 
 ## Encontrar tus mejores horarios con el mapa de calor por hora del día
 
-La pestaña de Mapa de Calor por Horario organiza los días de la semana contra las horas de 9:00 a 20:00 y colorea cada celda según la tasa de acierto en ese tramo: verde en 65% o más, rojo por debajo de 50%, neutro en medio, y un guion donde no tienes operaciones. Pasa el cursor sobre una celda para ver su número de operaciones.
+La pestaña Mapa de calor organiza los días de la semana contra las horas de 9:00 a 20:00 UTC y colorea cada celda según el G/P neto en ese tramo: verde si el tramo ganó dinero, rojo si perdió, neutro si quedó en cero, y un guion donde no tienes operaciones. El número de cada celda es su tasa de acierto. Pasa el cursor sobre una celda para ver su número de operaciones, su tasa de acierto y su G/P neto.
 
-Esto responde una pregunta genuinamente útil: ¿tus operaciones de la tarde están financiando silenciosamente las de la mañana? Dos advertencias. Las celdas se colorean solo por tasa de acierto, así que una celda verde todavía puede ser una hora que pierde dinero si esas ganancias son minúsculas — verifica el G/P del diario para ese tramo. Y las muestras por celda son diminutas: cuatro operaciones con tres ganadoras muestra 75% y no significa nada. Espera a tener 20 o 30 operaciones en un tramo antes de llamarlo patrón. Las horas son la hora local de tu navegador, no una sesión de exchange.
+Esto responde una pregunta genuinamente útil: ¿tus operaciones de la tarde están financiando silenciosamente las de la mañana? Dos advertencias. Lee el color y el número juntos: una celda roja que muestra 75% es una hora en la que tres ganancias pequeñas quedaron por debajo de una sola pérdida grande, justo lo que la tasa de acierto por sí sola ocultaría. Y las muestras por celda son diminutas: cuatro operaciones con tres ganadoras muestra 75% y no significa nada. Espera a tener 20 o 30 operaciones en un tramo antes de llamarlo patrón. Las horas están en UTC, según la hora en que se cerró cada operación, no en tu hora local ni en la de una sesión de exchange.
 
 ## Qué registra el diario de operaciones y qué debes registrar tú mismo
 
-El diario muestra ocho columnas por operación cerrada: Símbolo, Lado, Entrada, Salida, Cantidad, G/P, Duración y Fecha, la más reciente primero. Ese es un registro completo de *qué* hiciste.
+El diario muestra ocho columnas por operación cerrada: Símbolo, Dirección, Entrada, Salida, Cantidad, G/P, Duración y Fecha, la más reciente primero. Ese es un registro completo de *qué* hiciste.
 
 No tiene campo de notas ni de razonamiento. Nada captura por qué entraste, qué setup creíste ver, o si seguiste tus propias reglas — y la pregunta de revisión más valiosa no es "qué operaciones perdieron dinero" sino "qué operaciones rompieron mis reglas", porque una operación que rompe las reglas y por casualidad gana es más peligrosa que una pérdida disciplinada. Lleva un documento aparte que registre el setup, el stop y el objetivo planeados, y una línea sobre si ejecutaste el plan, y luego únelo al diario por símbolo y marca de tiempo. Ese hábito separa la práctica deliberada de [simplemente hacer clic en botones](/es/blog/guia-de-paper-trading/), y saca a la luz los [errores repetibles](/es/blog/errores-comunes-de-day-trading/) que ningún panel puede detectar.
 
