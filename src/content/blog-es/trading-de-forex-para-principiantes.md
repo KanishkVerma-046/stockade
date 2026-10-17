@@ -1,5 +1,5 @@
 ---
-title: "Introducción al Trading de Forex: Pares de Divisas y Pips Explicados"
+title: "Trading de Forex: Pares de Divisas y Pips Explicados"
 description: "Un par de divisas significa estar largo en una divisa y corto en otra. Cómo leer una cotización, qué es un pip, por qué el yen difiere, y el apalancamiento."
 date: 2026-07-13
 author: "Stockade Team"

@@ -1,5 +1,5 @@
 ---
-title: "Entendiendo los Niveles de Soporte y Resistencia en Trading"
+title: "Entendiendo los Niveles de Soporte y Resistencia"
 description: "Soporte y resistencia son zonas de órdenes en espera, no precios exactos. Cómo encontrarlos, por qué tu stop se activa por la mecha, y cómo es una ruptura real."
 date: 2026-04-06
 author: "Stockade Team"

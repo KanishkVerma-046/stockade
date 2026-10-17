@@ -1,5 +1,5 @@
 ---
-title: "Gestión de Riesgo 101: El Tamaño de Posición y la Regla del 1%"
+title: "Gestión de Riesgo 101: Tamaño de Posición y Regla del 1%"
 description: "El tamaño de posición es resultado de tu distancia al stop, no un número que eliges. La fórmula, la regla del 1% y la matemática del drawdown."
 date: 2026-06-29
 author: "Stockade Team"

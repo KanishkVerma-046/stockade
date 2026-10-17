@@ -1,5 +1,5 @@
 ---
-title: "Indicador RSI: Cómo Identificar Condiciones de Sobrecompra y Sobreventa"
+title: "Indicador RSI: Cómo Identificar Sobrecompra y Sobreventa"
 description: "RSI por encima de 70 no es una señal de venta. Qué mide realmente el RSI, por qué sobrecompra significa fuerza, y cómo leer la divergencia sin engañarte."
 date: 2026-04-20
 author: "Stockade Team"

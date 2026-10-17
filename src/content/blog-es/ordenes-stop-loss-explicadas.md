@@ -1,5 +1,5 @@
 ---
-title: "Órdenes Stop-Loss: Cómo Proteger tus Operaciones de Grandes Pérdidas"
+title: "Órdenes Stop-Loss: Cómo Limitar Grandes Pérdidas"
 description: "Un stop pertenece a donde se rompe tu idea de la operación, no a una cifra redonda. Stop-market vs stop-limit, colocación más allá de la estructura, y tamaño."
 date: 2026-05-18
 author: "Stockade Team"

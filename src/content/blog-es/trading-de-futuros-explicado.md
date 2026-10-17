@@ -1,5 +1,5 @@
 ---
-title: "Trading de Futuros Explicado: Contratos, Margen y Apalancamiento"
+title: "Trading de Futuros: Contratos, Margen y Apalancamiento"
 description: "Qué es realmente un contrato de futuros, cómo funcionan el tick y el multiplicador, por qué el margen es una garantía y no un préstamo, y el apalancamiento."
 date: 2026-07-27
 author: "Stockade Team"
