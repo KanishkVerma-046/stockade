@@ -1,6 +1,6 @@
 # Audit: claims that the product models real markets
 
-**Status: fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`).** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass.
+**Status: fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`).** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass; row #18 (heatmap colouring) added and fixed 2026-10-17.
 
 **Trigger:** `025da5e` removed a claim that Stockade's futures were "modeled on CME Group's real contract specifications". The engine has no multipliers, tick sizes or margin. This audit looks for other claims that the product models, replicates or follows real market data, contract specs, exchange behaviour or fills.
 
@@ -258,6 +258,19 @@ A sweep of all 8 locales after row 16, for any other sentence describing the pre
 - The `/simulator/` limitations bullet "**No partial fills.** Orders fill in full and instantly, whatever the size" and its 7 counterparts. It was written in `4dfce19`, the commit that introduced resting limits, and the next bullet ("No queue position. A resting limit order fills the moment price reaches its level") covers resting; "instantly" there contrasts with a large order filling in pieces over time.
 - Generic definitions of a market order ("fills immediately at the best price available") and of a marketable limit in the market-vs-limit posts: they describe real markets.
 - The `TradingSimulator` toast "Limit … filled immediately at …": it only fires for a marketable limit.
+
+### 18. The analytics post says the time heatmap is coloured by win rate (added 2026-10-17)
+
+| # | English (file:line) | Claim | Code | Counterparts |
+|---|---|---|---|---|
+| H1 | `src/content/blog/analyze-trading-performance-metrics.md:151-153` | "colours each cell by **win rate** in that slot: **green at 65% and above, red below 50%**, neutral between … Hover a cell for its trade count." | `AnalyticsDashboard.tsx` `heatBg()` colours a cell by the sign of its **net P&L** (green > 0, red < 0, neutral at 0); the number printed in the cell is the win rate, and the hover title gives trade count, win rate and net P&L. There are no 65%/50% thresholds. The code comment says why: colouring by win rate would paint hours with small wins and large losses green. The in-app legend (`analytics.heatmap.legend`) already says "Colour = net P&L · Number = win rate" | es `analiza-tus-metricas-de-rendimiento.md:99`, pt `analise-suas-metricas-de-desempenho.md:156-159` (wrapped), fr `analyser-ses-performances-de-trading.md:97`, de `trading-performance-analysieren.md:98`, it `analizzare-le-metriche-di-performance-di-trading.md:98`, ja `pafomansu-shihyo-no-bunseki.md:97`, ko `teureiding-seonggwa-jipyo-bunseok.md:97` |
+| H2 | same post, `:156` | "Cells colour on win rate only, so a green cell can still be a money-losing hour" | Inverted by H1's code: colour is net P&L, so the caution now runs the other way (a high win rate on a red cell) | same files, the next paragraph (es `:101`, pt `:161-163`, fr `:99`, de `:100`, it `:100`, ja `:99`, ko `:99`) |
+| H3 | same post, `:159` | "The hours are your browser's local time" | Cells bucket each trade by `getUTCDay()` / `getUTCHours()` of its **close** time, so hours are UTC; the legend says "Hours are UTC" | last sentence of the same paragraph in all 7 |
+| H4 | same post, `:16` | "a **win-rate-by-hour** heatmap" (intro) | Same as H1 | intro paragraph in all 7 (es `:13`, pt `:17`, fr `:12`, de `:12`, it `:12`, ja `:12`, ko `:12`); ko also in its meta `description` ("시간대별 승률 히트맵", `:3`) |
+
+**Fix:** describe what the code does, reusing each locale's in-app legend wording (`analytics.heatmap.legend`): colour = net P&L, number = win rate, hover = trade count, win rate and net P&L, hours in UTC by close time. The H2 caution is rewritten to read colour and number together (a red cell at 75% is three small wins outweighed by one large loss). The intro and the ko meta description drop "win rate". Where a locale's copy names the tab, it now uses the tab label that locale's dashboard shows since the short tab labels landed (es/pt "Mapa de calor", fr "Carte de chaleur", de/it "Heatmap", ja 「ヒートマップ」, ko 「시간대별 히트맵」; en keeps "Time Heatmap"), and the same goes for the equity tab and for the "Overview tab" the post credits with the losing-trade count: the dashboard has no tab by that name, the count sits under the first tab (en "Equity Curve", es/pt "Capital", fr "Équité", de "Equity-Kurve", it "Capitale", ja 「資産曲線」, ko 자본 곡선). The es and pt journal column lists say "Lado" where the dashboard header reads "Dirección"/"Direção"; they follow the dashboard. Titles are unchanged; the ko description gets shorter. One commit for en, then one per locale.
+
+**Checked and kept:** the other heatmap mentions on the site (home feature card and "realism" paragraph, about page, `/analytics/` "Time heatmap" section in all 8 locales, which already says net P&L, and the paper-trading-guide, day-vs-swing and what-is-a-simulator posts with their counterparts) describe the heatmap without saying what colours it. Separately noted, not part of this row: several of those mentions list "average win and loss", but the dashboard shows Avg Win only.
 
 ## Related inconsistency (understates rather than overstates)
 

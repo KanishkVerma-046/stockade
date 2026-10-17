@@ -13,7 +13,7 @@ the number most traders quote first is the one that tells you the least.
 
 Stockade's [analytics page](/analytics/) computes six headline figures from your closed trades: total P&L, equity,
 win rate, profit factor, average win, and max drawdown. Underneath sit three tabs — an equity curve, a
-trade journal, and a win-rate-by-hour heatmap. Here is what each one means and which ones can lie to you.
+trade journal, and a time-of-day heatmap. Here is what each one means and which ones can lie to you.
 
 ## Why a 70% win rate can lose money while a 35% win rate makes it
 
@@ -93,7 +93,7 @@ respectable edge over a decent sample, and much above 2.5 on a small sample usua
 card shows `∞`, you have not logged a losing trade yet — a statement about sample size, not skill.
 
 One quirk: the KPI row shows **Avg Win** but not average loss. You get average loss from the journal by
-summing the negative P&L entries and dividing by the losing-trade count, which the Overview tab gives you
+summing the negative P&L entries and dividing by the losing-trade count, which the Equity Curve tab gives you
 directly. You need it for both expectancy and the payoff ratio, so do not skip it.
 
 ## Max drawdown: the metric that decides whether you can stay with a strategy
@@ -148,15 +148,16 @@ trades a rule change gets before you judge it, and write that into
 
 ## Finding your best hours with the time-of-day heatmap
 
-The Time Heatmap tab lays out days of the week against hours from 9:00 to 20:00 and colours each cell by
-win rate in that slot: green at 65% and above, red below 50%, neutral between, and a dash where you have
-no trades. Hover a cell for its trade count.
+The Time Heatmap tab lays out days of the week against hours from 9:00 to 20:00 UTC and colours each cell
+by net P&L in that slot: green when the slot made money, red when it lost, neutral when it broke even, and
+a dash where you have no trades. The number in each cell is its win rate. Hover a cell for its trade count,
+win rate and net P&L.
 
 This answers a genuinely useful question: are your afternoon trades quietly funding your morning ones? Two
-cautions. Cells colour on win rate only, so a green cell can still be a money-losing hour if those wins
-are tiny — cross-check the journal's P&L for that slot. And per-cell samples are tiny: four trades with
+cautions. Read the colour and the number together: a red cell showing 75% is an hour where three small
+wins were outweighed by one large loss, which is exactly what a win rate alone would hide. And per-cell samples are tiny: four trades with
 three winners shows 75% and means nothing. Wait for 20 or 30 trades in a slot before calling it a pattern.
-The hours are your browser's local time, not an exchange session.
+The hours are UTC, by the hour each trade closed, not your local time or an exchange session.
 
 ## What the trade journal records and what you must record yourself
 
