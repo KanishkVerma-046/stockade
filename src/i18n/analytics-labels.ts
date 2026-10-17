@@ -12,8 +12,9 @@ export function analyticsLabels(locale: Locale) {
     avgWin: t(locale, 'analytics.avgWin'),
     maxDrawdown: t(locale, 'analytics.maxDrawdown'),
     equityCurve: t(locale, 'analytics.equityCurve'),
-    tradeJournal: t(locale, 'analytics.tradeJournal'),
-    timeHeatmap: t(locale, 'analytics.timeHeatmap'),
+    tabEquity: t(locale, 'analytics.tab.equity'),
+    tabJournal: t(locale, 'analytics.tab.journal'),
+    tabHeatmap: t(locale, 'analytics.tab.heatmap'),
     closedTrades: {
       one: t(locale, 'analytics.closedTrades.one'),
       other: t(locale, 'analytics.closedTrades.other'),

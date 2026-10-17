@@ -70,8 +70,9 @@ export type UiKey =
   | 'analytics.avgWin'
   | 'analytics.maxDrawdown'
   | 'analytics.equityCurve'
-  | 'analytics.tradeJournal'
-  | 'analytics.timeHeatmap'
+  | 'analytics.tab.equity'
+  | 'analytics.tab.journal'
+  | 'analytics.tab.heatmap'
   | 'analytics.closedTrades.one'
   | 'analytics.closedTrades.other'
   | 'analytics.empty.equityCurve'
@@ -182,8 +183,9 @@ const en: Dictionary = {
   'analytics.avgWin': 'Avg Win',
   'analytics.maxDrawdown': 'Max Drawdown',
   'analytics.equityCurve': 'Equity Curve',
-  'analytics.tradeJournal': 'Trade Journal',
-  'analytics.timeHeatmap': 'Time Heatmap',
+  'analytics.tab.equity': 'Equity Curve',
+  'analytics.tab.journal': 'Trade Journal',
+  'analytics.tab.heatmap': 'Time Heatmap',
   'analytics.closedTrades.one': '{n} closed trade',
   'analytics.closedTrades.other': '{n} closed trades',
   'analytics.empty.equityCurve': 'No trades yet — start trading to see your equity curve',
@@ -294,8 +296,9 @@ const es: Dictionary = {
   'analytics.avgWin': 'Ganancia Promedio',
   'analytics.maxDrawdown': 'Drawdown Máximo',
   'analytics.equityCurve': 'Curva de capital',
-  'analytics.tradeJournal': 'Diario de operaciones',
-  'analytics.timeHeatmap': 'Mapa de calor por horario',
+  'analytics.tab.equity': 'Capital',
+  'analytics.tab.journal': 'Diario',
+  'analytics.tab.heatmap': 'Mapa de calor',
   'analytics.closedTrades.one': '{n} operación cerrada',
   'analytics.closedTrades.other': '{n} operaciones cerradas',
   'analytics.empty.equityCurve':
@@ -407,8 +410,9 @@ const pt: Dictionary = {
   'analytics.avgWin': 'Ganho Médio',
   'analytics.maxDrawdown': 'Drawdown Máximo',
   'analytics.equityCurve': 'Curva de capital',
-  'analytics.tradeJournal': 'Diário de operações',
-  'analytics.timeHeatmap': 'Mapa de calor por horário',
+  'analytics.tab.equity': 'Capital',
+  'analytics.tab.journal': 'Diário',
+  'analytics.tab.heatmap': 'Mapa de calor',
   'analytics.closedTrades.one': '{n} operação fechada',
   'analytics.closedTrades.other': '{n} operações fechadas',
   'analytics.empty.equityCurve':
@@ -520,8 +524,9 @@ const ja: Dictionary = {
   'analytics.avgWin': '平均利益',
   'analytics.maxDrawdown': '最大ドローダウン',
   'analytics.equityCurve': '資産曲線',
-  'analytics.tradeJournal': 'トレード日記',
-  'analytics.timeHeatmap': '時間帯別ヒートマップ',
+  'analytics.tab.equity': '資産曲線',
+  'analytics.tab.journal': 'トレード日記',
+  'analytics.tab.heatmap': 'ヒートマップ',
   'analytics.closedTrades.one': '決済済み取引 {n}件',
   'analytics.closedTrades.other': '決済済み取引 {n}件',
   'analytics.empty.equityCurve': 'まだ取引がありません — 取引を始めると資産曲線が表示されます',
@@ -631,8 +636,9 @@ const fr: Dictionary = {
   'analytics.avgWin': 'Gain moyen',
   'analytics.maxDrawdown': 'Drawdown maximal',
   'analytics.equityCurve': "Courbe d'équité",
-  'analytics.tradeJournal': 'Journal de trading',
-  'analytics.timeHeatmap': 'Carte de chaleur horaire',
+  'analytics.tab.equity': 'Équité',
+  'analytics.tab.journal': 'Journal',
+  'analytics.tab.heatmap': 'Carte de chaleur',
   'analytics.closedTrades.one': '{n} trade clôturé',
   'analytics.closedTrades.other': '{n} trades clôturés',
   'analytics.empty.equityCurve':
@@ -744,8 +750,9 @@ const de: Dictionary = {
   'analytics.avgWin': 'Durchschnittsgewinn',
   'analytics.maxDrawdown': 'Maximaler Drawdown',
   'analytics.equityCurve': 'Equity-Kurve',
-  'analytics.tradeJournal': 'Trade-Journal',
-  'analytics.timeHeatmap': 'Zeitliche Heatmap',
+  'analytics.tab.equity': 'Equity-Kurve',
+  'analytics.tab.journal': 'Journal',
+  'analytics.tab.heatmap': 'Heatmap',
   'analytics.closedTrades.one': '{n} geschlossener Trade',
   'analytics.closedTrades.other': '{n} geschlossene Trades',
   'analytics.empty.equityCurve':
@@ -857,8 +864,9 @@ const ko: Dictionary = {
   'analytics.avgWin': '평균 이익',
   'analytics.maxDrawdown': '최대 낙폭',
   'analytics.equityCurve': '자본 곡선',
-  'analytics.tradeJournal': '매매일지',
-  'analytics.timeHeatmap': '시간대별 히트맵',
+  'analytics.tab.equity': '자본 곡선',
+  'analytics.tab.journal': '매매일지',
+  'analytics.tab.heatmap': '시간대별 히트맵',
   'analytics.closedTrades.one': '종료된 거래 {n}건',
   'analytics.closedTrades.other': '종료된 거래 {n}건',
   'analytics.empty.equityCurve': '아직 거래가 없습니다 — 거래를 시작하면 자본 곡선이 표시됩니다',
@@ -969,8 +977,9 @@ const it: Dictionary = {
   'analytics.avgWin': 'Guadagno medio',
   'analytics.maxDrawdown': 'Drawdown massimo',
   'analytics.equityCurve': 'Curva del capitale',
-  'analytics.tradeJournal': 'Diario di trading',
-  'analytics.timeHeatmap': 'Heatmap oraria',
+  'analytics.tab.equity': 'Capitale',
+  'analytics.tab.journal': 'Diario',
+  'analytics.tab.heatmap': 'Heatmap',
   'analytics.closedTrades.one': '{n} operazione chiusa',
   'analytics.closedTrades.other': '{n} operazioni chiuse',
   'analytics.empty.equityCurve':

@@ -66,8 +66,11 @@ interface Labels {
   avgWin: string;
   maxDrawdown: string;
   equityCurve: string;
-  tradeJournal: string;
-  timeHeatmap: string;
+  // Tab buttons, kept short so the three fit one line at 375px. The
+  // overview tab's section heading is equityCurve.
+  tabEquity: string;
+  tabJournal: string;
+  tabHeatmap: string;
   closedTrades: PluralForms;
   emptyEquityCurve: string;
   emptyJournal: string;
@@ -104,8 +107,9 @@ const DEFAULT_LABELS: Labels = {
   avgWin: 'Avg Win',
   maxDrawdown: 'Max Drawdown',
   equityCurve: 'Equity Curve',
-  tradeJournal: 'Trade Journal',
-  timeHeatmap: 'Time Heatmap',
+  tabEquity: 'Equity Curve',
+  tabJournal: 'Trade Journal',
+  tabHeatmap: 'Time Heatmap',
   closedTrades: { one: '{n} closed trade', other: '{n} closed trades' },
   emptyEquityCurve: 'No trades yet — start trading to see your equity curve',
   emptyJournal: 'No trades yet',
@@ -255,7 +259,7 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/', loca
                 ? 'border-[#f59e0b] text-[var(--c-text)]'
                 : 'border-transparent text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
             }`}>
-            {t === 'overview' ? labels.equityCurve : t === 'trades' ? labels.tradeJournal : labels.timeHeatmap}
+            {t === 'overview' ? labels.tabEquity : t === 'trades' ? labels.tabJournal : labels.tabHeatmap}
           </button>
         ))}
       </div>
