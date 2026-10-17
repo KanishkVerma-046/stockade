@@ -70,6 +70,12 @@ const analyticsLabels = buildAnalyticsLabels(locale);
           </dd>
         </div>
         <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">Durchschnittsverlust</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            Der mittlere P&amp;L Ihrer Verlust-Trades, angezeigt als negative Zahl. Ein Trade, der exakt bei null schließt, zählt als Verlust, dieselbe Aufteilung wie bei der Trefferquote. Solange Sie keinen Verlust-Trade protokolliert haben, zeigt die Karte einen Strich. Zusammen mit Trefferquote und Durchschnittsgewinn ist das alles, was Sie für den Erwartungswert brauchen, also den Betrag, den ein durchschnittlicher Trade einbringt oder kostet; lassen Sie beim Durchschnittsverlust das Vorzeichen weg, bevor er in die Formel geht.
+          </dd>
+        </div>
+        <div>
           <dt class="text-[14px] font-semibold text-[var(--c-text)]">Maximaler Drawdown</dt>
           <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
             Der größte Rückgang Ihres Eigenkapitals von einem Hoch zu einem Tief, ausgedrückt in Prozent. Das ist die Schmerz-Kennzahl. Im realen Trading beendet sie oft eine Strategie lange bevor es die Mathematik tut. <a href="/de/blog/risikomanagement-positionsgroesse/" class="text-[#f59e0b] hover:underline">Positionsgrößenbestimmung und die 1-%-Regel</a> erklärt die Erholungslogik, die den Drawdown so bedeutsam macht.
