@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { format, plural, type PluralForms } from '../../lib/format';
+import { averageLoss } from '../../lib/trade-stats';
 
 interface StoredTrade {
   id: string;
@@ -64,6 +65,7 @@ interface Labels {
   winRate: string;
   profitFactor: string;
   avgWin: string;
+  avgLoss: string;
   maxDrawdown: string;
   equityCurve: string;
   // Tab buttons, kept short so the three fit one line at 375px. The
@@ -105,6 +107,7 @@ const DEFAULT_LABELS: Labels = {
   winRate: 'Win Rate',
   profitFactor: 'Profit Factor',
   avgWin: 'Avg Win',
+  avgLoss: 'Avg Loss',
   maxDrawdown: 'Max Drawdown',
   equityCurve: 'Equity Curve',
   tabEquity: 'Equity Curve',
@@ -176,8 +179,9 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/', loca
   const losses = trades.filter(t => t.pnl <= 0);
   const winRate = trades.length ? (wins.length / trades.length) * 100 : 0;
   const avgWin = wins.length ? wins.reduce((s, t) => s + t.pnl, 0) / wins.length : 0;
-  const avgLoss = losses.length ? losses.reduce((s, t) => s + t.pnl, 0) / losses.length : 0;
-  const profitFactor = losses.length && avgLoss !== 0
+  // Negative as stored, or null with no losing trades (the card shows —).
+  const avgLoss = averageLoss(trades);
+  const profitFactor = avgLoss
     ? Math.abs((avgWin * wins.length) / (avgLoss * losses.length))
     : wins.length > 0 ? Infinity : 0;
 
@@ -231,13 +235,14 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/', loca
   return (
     <div className="space-y-5">
       {/* KPI cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-7 gap-3">
         {[
           { id: 'totalPnl',     label: labels.totalPnl,     value: isEmpty ? '—' : fmtMoney(totalPnl),   color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
           { id: 'equity',       label: labels.equity,       value: '$' + balance.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }), color: balance >= STARTING_BALANCE ? '#22c55e' : '#ef4444' },
           { id: 'winRate',      label: labels.winRate,      value: isEmpty ? '—' : winRate.toFixed(1) + '%',  color: '#f59e0b' },
           { id: 'profitFactor', label: labels.profitFactor, value: isEmpty ? '—' : (isFinite(profitFactor) ? profitFactor.toFixed(2) + 'x' : '∞'), color: '#3b82f6' },
           { id: 'avgWin',       label: labels.avgWin,       value: isEmpty ? '—' : fmtMoney(avgWin),     color: '#22c55e' },
+          { id: 'avgLoss',      label: labels.avgLoss,      value: avgLoss === null ? '—' : fmtMoney(avgLoss), color: avgLoss === null ? 'var(--c-text-subtle)' : '#ef4444' },
           { id: 'maxDrawdown',  label: labels.maxDrawdown,  value: isEmpty ? '—' : maxDD.toFixed(1) + '%', color: '#ef4444' },
         ].map(k => (
           <div key={k.id} className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">

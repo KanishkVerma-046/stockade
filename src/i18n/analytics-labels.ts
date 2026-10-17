@@ -10,6 +10,7 @@ export function analyticsLabels(locale: Locale) {
     winRate: t(locale, 'analytics.winRate'),
     profitFactor: t(locale, 'analytics.profitFactor'),
     avgWin: t(locale, 'analytics.avgWin'),
+    avgLoss: t(locale, 'analytics.avgLoss'),
     maxDrawdown: t(locale, 'analytics.maxDrawdown'),
     equityCurve: t(locale, 'analytics.equityCurve'),
     tabEquity: t(locale, 'analytics.tab.equity'),

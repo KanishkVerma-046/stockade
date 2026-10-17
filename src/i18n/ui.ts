@@ -68,6 +68,7 @@ export type UiKey =
   | 'analytics.winRate'
   | 'analytics.profitFactor'
   | 'analytics.avgWin'
+  | 'analytics.avgLoss'
   | 'analytics.maxDrawdown'
   | 'analytics.equityCurve'
   | 'analytics.tab.equity'
@@ -181,6 +182,7 @@ const en: Dictionary = {
   'analytics.winRate': 'Win Rate',
   'analytics.profitFactor': 'Profit Factor',
   'analytics.avgWin': 'Avg Win',
+  'analytics.avgLoss': 'Avg Loss',
   'analytics.maxDrawdown': 'Max Drawdown',
   'analytics.equityCurve': 'Equity Curve',
   'analytics.tab.equity': 'Equity Curve',
@@ -294,6 +296,7 @@ const es: Dictionary = {
   'analytics.winRate': 'Tasa de Acierto',
   'analytics.profitFactor': 'Factor de Beneficio',
   'analytics.avgWin': 'Ganancia Promedio',
+  'analytics.avgLoss': 'Pérdida Promedio',
   'analytics.maxDrawdown': 'Drawdown Máximo',
   'analytics.equityCurve': 'Curva de capital',
   'analytics.tab.equity': 'Capital',
@@ -408,6 +411,7 @@ const pt: Dictionary = {
   'analytics.winRate': 'Taxa de Acerto',
   'analytics.profitFactor': 'Fator de Lucro',
   'analytics.avgWin': 'Ganho Médio',
+  'analytics.avgLoss': 'Perda Média',
   'analytics.maxDrawdown': 'Drawdown Máximo',
   'analytics.equityCurve': 'Curva de capital',
   'analytics.tab.equity': 'Capital',
@@ -522,6 +526,7 @@ const ja: Dictionary = {
   'analytics.winRate': '勝率',
   'analytics.profitFactor': 'プロフィットファクター',
   'analytics.avgWin': '平均利益',
+  'analytics.avgLoss': '平均損失',
   'analytics.maxDrawdown': '最大ドローダウン',
   'analytics.equityCurve': '資産曲線',
   'analytics.tab.equity': '資産曲線',
@@ -634,6 +639,7 @@ const fr: Dictionary = {
   'analytics.winRate': 'Taux de réussite',
   'analytics.profitFactor': 'Facteur de profit',
   'analytics.avgWin': 'Gain moyen',
+  'analytics.avgLoss': 'Perte moyenne',
   'analytics.maxDrawdown': 'Drawdown maximal',
   'analytics.equityCurve': "Courbe d'équité",
   'analytics.tab.equity': 'Équité',
@@ -748,6 +754,7 @@ const de: Dictionary = {
   'analytics.winRate': 'Trefferquote',
   'analytics.profitFactor': 'Profitfaktor',
   'analytics.avgWin': 'Durchschnittsgewinn',
+  'analytics.avgLoss': 'Durchschnitts­verlust', // soft hyphen: lets it break in the 2-column KPI grid at phone width
   'analytics.maxDrawdown': 'Maximaler Drawdown',
   'analytics.equityCurve': 'Equity-Kurve',
   'analytics.tab.equity': 'Equity-Kurve',
@@ -862,6 +869,7 @@ const ko: Dictionary = {
   'analytics.winRate': '승률',
   'analytics.profitFactor': '손익비',
   'analytics.avgWin': '평균 이익',
+  'analytics.avgLoss': '평균 손실',
   'analytics.maxDrawdown': '최대 낙폭',
   'analytics.equityCurve': '자본 곡선',
   'analytics.tab.equity': '자본 곡선',
@@ -975,6 +983,7 @@ const it: Dictionary = {
   'analytics.winRate': 'Tasso di successo',
   'analytics.profitFactor': 'Profit factor',
   'analytics.avgWin': 'Guadagno medio',
+  'analytics.avgLoss': 'Perdita media',
   'analytics.maxDrawdown': 'Drawdown massimo',
   'analytics.equityCurve': 'Curva del capitale',
   'analytics.tab.equity': 'Capitale',
