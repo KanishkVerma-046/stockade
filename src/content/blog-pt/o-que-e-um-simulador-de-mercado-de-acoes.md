@@ -169,13 +169,15 @@ meses num simulador muitas vezes desmorona na primeira semana de trading real. R
 eram regras ruins. Elas falham porque segui-las custa algo. Um simulador não consegue te cobrar esse custo,
 então não consegue testar se você vai pagá-lo.
 
-**Execuções num simulador carregam quase nenhum atrito.** Sua ordem é executada no preço que você vê,
-instantaneamente, por completo; só saídas de stop e alvo deslizam, pelo tick que cruzou seu nível. Ordens
-reais enfrentam slippage — a lacuna entre o preço que você esperava e o preço que você recebeu, que se
-alarga exatamente quando o mercado está se movendo rápido e você mais quer ser executado. Ordens reais
-também enfrentam execuções parciais, onde você pede 500 ações e recebe 300. Nenhuma das duas aparece em
-escala real aqui, então resultados simulados são sistematicamente um pouco melhores do que as mesmas
-decisões produziriam ao vivo.
+**Execuções num simulador carregam quase nenhum atrito.** Uma ordem a mercado é executada no preço que
+você vê, instantaneamente e por completo. Uma ordem limitada que já é executável é executada
+imediatamente no preço vigente; caso contrário, ela aguarda até que o preço alcance seu nível e então é
+executada por completo no seu preço limite. Só saídas de stop e alvo deslizam, pelo tick que cruzou seu
+nível. Ordens reais enfrentam slippage — a lacuna entre o preço que você esperava e o preço que você
+recebeu, que se alarga exatamente quando o mercado está se movendo rápido e você mais quer ser
+executado. Ordens reais também enfrentam execuções parciais, onde você pede 500 ações e recebe 300.
+Nenhuma das duas aparece em escala real aqui, então resultados simulados são sistematicamente um pouco
+melhores do que as mesmas decisões produziriam ao vivo.
 
 **Comissões, spreads, custos de empréstimo, e impostos não são modelados de forma alguma.** Uma
 estratégia que rende um lucro fino num simulador pode ser uma perdedora líquida uma vez que custos reais
