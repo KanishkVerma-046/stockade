@@ -107,9 +107,10 @@ function isActive(href: string) {
 
       <LanguageSwitcher alternates={alternates} />
 
+      <!-- Below sm the CTA moves into the mobile drawer: at 106-156px it pushed the hamburger off a 320-375px screen -->
       <a
         href={startTradingHref}
-        class="px-3 py-1.5 rounded-md bg-[#f59e0b] text-[#0a0a0a] text-[13px] font-semibold hover:bg-[#fbbf24] transition-colors whitespace-nowrap"
+        class="hidden sm:block px-3 py-1.5 rounded-md bg-[#f59e0b] text-[#0a0a0a] text-[13px] font-semibold hover:bg-[#fbbf24] transition-colors whitespace-nowrap"
       >
         {t(locale, 'nav.startTrading')}
       </a>
@@ -145,6 +146,12 @@ function isActive(href: string) {
         {link.label}
       </a>
     ))}
+    <a
+      href={startTradingHref}
+      class="sm:hidden mt-2 px-3 py-2 rounded-md bg-[#f59e0b] text-[#0a0a0a] text-[14px] font-semibold text-center hover:bg-[#fbbf24] transition-colors"
+    >
+      {t(locale, 'nav.startTrading')}
+    </a>
   </div>
 </nav>
 
