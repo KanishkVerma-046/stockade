@@ -4,7 +4,7 @@
 
 **Step 2 notes (2026-10-17):**
 - **Category casing.** The category buttons used CSS `capitalize`, which capitalizes every word, so fr "contrats à terme" would have rendered "Contrats À Terme". The class now applies only to the English defaults, and translated labels come already cased (`1c60937`, which also recased es's five labels; /es/markets/ looks the same).
-- **Asset counts.** The six new how-to sections reuse each locale's home-page breakdown ("8 tokens cripto", 暗号資産トークン8種類, "8 jetons crypto", "8 Krypto-Token", 암호화폐 토큰 8개, "8 token crypto"; futures as *symbols*). The en and es sections still say "8 crypto pairs" / "8 pares de cripto", which no other page does; the crypto assets are single tokens (realism-fixes facts table). Not changed here.
+- **Asset counts.** The six new how-to sections reuse each locale's home-page breakdown ("8 tokens cripto", 暗号資産トークン8種類, "8 jetons crypto", "8 Krypto-Token", 암호화폐 토큰 8개, "8 token crypto"; futures as *symbols*). The en and es sections still say "8 crypto pairs" / "8 pares de cripto", which no other page does; the crypto assets are single tokens (realism-fixes facts table). Not changed here; fixed in `423d187` ("8 crypto tokens", "8 tokens cripto", the es phrase from es/about).
 - **New names.** No locale had a name for the British pound before; the GBP/USD names ("Libra esterlina", "Livre sterling", "Britisches Pfund", "Sterlina britannica", 英ポンド, 영국 파운드) are new.
 
 ## Scope

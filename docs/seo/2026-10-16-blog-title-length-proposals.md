@@ -1,6 +1,22 @@
 # Proposal: shorten blog titles over 70 characters
 
-**Status: proposal. Six rows were applied on 2026-10-16 in `9d5361c` because those posts were edited in the realism pass:** es `que-es-un-simulador-de-mercado-de-valores`, fr `quest-ce-qu-un-simulateur-boursier`, `ordre-au-marche-vs-ordre-limite`, `ordres-stop-loss-explique`, de `was-ist-ein-boersensimulator`, it `cosa-e-un-simulatore-di-mercato-azionario`. The en explainer (exactly 70, so not listed here) became "What Is a Stock Market Simulator and Why Use One" (59). The candlestick post's row was applied in the audit row-15 translation pass, in each locale's own commit, because that post was edited there: es, pt, fr, de, it. (The en candlestick title, exactly 70, dropped "Complete" in `cc56250` and renders at 61.) Every other row is still unapplied. Generated 2026-10-16 from the built `dist/` after commit `1756060`.
+**Status: done (2026-10-17). Every row is applied, and every rendered `<title>` in `dist/` (250 HTML files) is 69 characters or fewer, `" | Stockade"` included.** The remaining 42 rows plus the three at-70 titles below were applied in one commit per locale: en `bc3ef9d`, de `71b7678`, es `0893ae8`, fr `7c19fd3`, it `2fc5720`, pt `70b544e`. Most went in as proposed. These differ from the tables:
+
+| Post | Applied title | Len | Why |
+|---|---|---:|---|
+| de `rsi-indikator-ueberkauft-ueberverkauft` | RSI-Indikator: Überkauft oder überverkauft? | 54 | chosen in review |
+| de `vwap-handelsstrategie` | VWAP-Handelsstrategie: Was er ist, wie Trader ihn nutzen | 67 | was at 70, no proposal; "und" becomes a comma |
+| es `ordenes-stop-loss-explicadas` | Órdenes Stop-Loss: Cómo Limitar Grandes Pérdidas | 59 | chosen in review |
+| es `soporte-y-resistencia` | Entendiendo los Niveles de Soporte y Resistencia | 59 | was at 70, no proposal; drops "en Trading", like the fr sibling |
+| fr `day-trading-contre-swing-trading` | Day Trading contre Swing Trading : Lequel Vous Convient | 66 | was at 70, no proposal; "Lequel" for "Quel Style" |
+| fr `gestion-du-risque-et-dimensionnement-de-position` | Gestion du Risque : Dimensionnement de Position | 58 | review kept "Dimensionnement de Position" and dropped "101" and articles, but that left 73, so "et la Règle du 1%" goes too |
+| fr `strategie-de-trading-vwap` | Stratégie de Trading VWAP : Comment l'Utiliser | 57 | chosen in review |
+| it `gestione-del-rischio-e-dimensionamento-della-posizione` | Gestione del Rischio: Dimensionamento della Posizione | 64 | review kept "Dimensionamento della Posizione" and dropped "101" and articles, but that left 81, so "e la Regola dell'1%" goes too |
+| it `ordini-stop-loss-spiegati` | Ordini Stop-Loss: Come Limitare le Grandi Perdite | 60 | chosen in review |
+| it `trading-di-criptovalute-per-principianti` | Trading di Criptovalute per Principianti | 51 | chosen in review |
+| pt `trading-de-cripto-para-iniciantes` | Trading de Cripto para Iniciantes: Mercados Digitais | 63 | chosen in review |
+
+The history below is kept for the record. **Earlier, six rows were applied on 2026-10-16 in `9d5361c` because those posts were edited in the realism pass:** es `que-es-un-simulador-de-mercado-de-valores`, fr `quest-ce-qu-un-simulateur-boursier`, `ordre-au-marche-vs-ordre-limite`, `ordres-stop-loss-explique`, de `was-ist-ein-boersensimulator`, it `cosa-e-un-simulatore-di-mercato-azionario`. The en explainer (exactly 70, so not listed here) became "What Is a Stock Market Simulator and Why Use One" (59). The candlestick post's row was applied in the audit row-15 translation pass, in each locale's own commit, because that post was edited there: es, pt, fr, de, it. (The en candlestick title, exactly 70, dropped "Complete" in `cc56250` and renders at 61.) Every other row is still unapplied. Generated 2026-10-16 from the built `dist/` after commit `1756060`.
 
 Bing Webmaster Tools flags a `<title>` over 70 characters. The rendered title is the post's frontmatter `title` plus the 11-character `" | Stockade"` suffix (`BlogPost.astro`), so the frontmatter title must be **58 characters or fewer** to land strictly under 70. 53 posts are over (en 4, es 9, pt 8, fr 15, de 8, it 9). Every proposal below renders at **69 or fewer** (longest: 69). The one post already fixed, `analyze-trading-performance-metrics` and its siblings, is not listed.
 
@@ -15,7 +31,7 @@ The frontmatter `title` is the only source for all of these, so they move togeth
 
 Slugs and URLs do **not** change, so there are no redirects to add.
 
-**Also at exactly 70, with no proposal yet (found by the 2026-10-17 pre-deploy title audit, which used a ≤69 limit):** de `/de/blog/vwap-handelsstrategie/` "VWAP-Handelsstrategie: Was er ist und wie Trader ihn nutzen", es `/es/blog/soporte-y-resistencia/` "Entendiendo los Niveles de Soporte y Resistencia en Trading", fr `/fr/blog/day-trading-contre-swing-trading/` "Day Trading contre Swing Trading : Quel Style Vous Convient". All three render at 70 with the suffix. The 2026-10-17 audit scoped titles to the pages in its brief, all ≤69, and left every row here unapplied.
+**Also at exactly 70, with no proposal yet (found by the 2026-10-17 pre-deploy title audit, which used a ≤69 limit):** de `/de/blog/vwap-handelsstrategie/` "VWAP-Handelsstrategie: Was er ist und wie Trader ihn nutzen", es `/es/blog/soporte-y-resistencia/` "Entendiendo los Niveles de Soporte y Resistencia en Trading", fr `/fr/blog/day-trading-contre-swing-trading/` "Day Trading contre Swing Trading : Quel Style Vous Convient". All three render at 70 with the suffix. The 2026-10-17 audit scoped titles to the pages in its brief, all ≤69, and left every row here unapplied. (All three were shortened later on 2026-10-17; see the status table at the top.)
 
 ## How the proposals were written
 
