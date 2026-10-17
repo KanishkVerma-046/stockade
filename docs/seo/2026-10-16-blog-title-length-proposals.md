@@ -15,6 +15,8 @@ The frontmatter `title` is the only source for all of these, so they move togeth
 
 Slugs and URLs do **not** change, so there are no redirects to add.
 
+**Also at exactly 70, with no proposal yet (found by the 2026-10-17 pre-deploy title audit, which used a ≤69 limit):** de `/de/blog/vwap-handelsstrategie/` "VWAP-Handelsstrategie: Was er ist und wie Trader ihn nutzen", es `/es/blog/soporte-y-resistencia/` "Entendiendo los Niveles de Soporte y Resistencia en Trading", fr `/fr/blog/day-trading-contre-swing-trading/` "Day Trading contre Swing Trading : Quel Style Vous Convient". All three render at 70 with the suffix. The 2026-10-17 audit scoped titles to the pages in its brief, all ≤69, and left every row here unapplied.
+
 ## How the proposals were written
 
 - **Keep the slug's head keyword.** For example `forex-trading-for-beginners` becomes "Forex Trading for Beginners: …", not a new phrasing.
