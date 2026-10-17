@@ -10,7 +10,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Terminas una semana de práctica, abres el panel de análisis, y ves una tasa de acierto del 68%. Se siente bien. Después miras el G/P total y es negativo. Nada está roto — acabas de descubrir que el número que la mayoría de los traders cita primero es el que menos te dice.
 
-El [panel de análisis](/es/analytics/) de Stockade calcula seis cifras principales a partir de tus operaciones cerradas: G/P total, capital, tasa de acierto, factor de beneficio, ganancia promedio y drawdown máximo. Debajo hay tres pestañas — una curva de capital, un diario de operaciones, y un mapa de calor por horario. Esto es lo que significa cada una y cuáles pueden mentirte.
+El [panel de análisis](/es/analytics/) de Stockade calcula siete cifras principales a partir de tus operaciones cerradas: G/P total, capital, tasa de acierto, factor de beneficio, ganancia promedio, pérdida promedio y drawdown máximo. Debajo hay tres pestañas — una curva de capital, un diario de operaciones, y un mapa de calor por horario. Esto es lo que significa cada una y cuáles pueden mentirte.
 
 ## Por qué una tasa de acierto del 70% puede perder dinero mientras una del 35% lo gana
 
@@ -48,7 +48,7 @@ $35 − $45 = **−$10 por operación.** Cada operación que A toma tiene un val
 
 **Trader B:** 0.35 × $300 = $105. 0.65 × $80 = $52. $105 − $52 = **+$53 por operación.**
 
-Stockade no imprime la expectativa, pero puedes calcularla en segundos a partir de la tasa de acierto, la ganancia promedio, y la pérdida promedio que derivas del diario. Haz esto antes de concluir cualquier otra cosa. Una estrategia con expectativa negativa no se arregla operándola más seguido o con mayor tamaño — el tamaño solo cambia qué tan rápido se desarrolla la aritmética.
+Stockade no imprime la expectativa, pero puedes calcularla en segundos a partir de las tarjetas de tasa de acierto, ganancia promedio y pérdida promedio. Haz esto antes de concluir cualquier otra cosa. Una estrategia con expectativa negativa no se arregla operándola más seguido o con mayor tamaño — el tamaño solo cambia qué tan rápido se desarrolla la aritmética.
 
 La cifra relacionada es la **tasa de acierto de equilibrio**, que es `1 ÷ (1 + ratio de pago)`. El ratio de pago del Trader B es 300 ÷ 80 = 3.75, así que B llega al equilibrio en 1 ÷ 4.75 = 21% y está ganando 35%. El ratio de pago del Trader A es 50 ÷ 150 = 0.33, así que A necesita 75% y solo llega a 70%. Esa brecha de cinco puntos es toda la diferencia entre las dos cuentas.
 
@@ -64,7 +64,7 @@ El factor de beneficio es la ganancia bruta dividida entre la pérdida bruta a l
 
 Lectura aproximada: por debajo de 1.0 es perder dinero, de 1.0 a 1.3 es marginal y fácilmente podría ser ruido, de 1.3 a 2.0 es una ventaja respetable sobre una muestra decente, y bastante por encima de 2.5 en una muestra pequeña generalmente significa suerte. Si la tarjeta muestra `∞`, todavía no has registrado una operación perdedora — una afirmación sobre el tamaño de muestra, no sobre habilidad.
 
-Un detalle curioso: la fila de KPIs muestra **Ganancia Promedio** pero no la pérdida promedio. Obtienes la pérdida promedio del diario sumando las entradas de G/P negativas y dividiendo entre el número de operaciones perdedoras, lo cual la pestaña Capital te da directamente. La necesitas tanto para la expectativa como para el ratio de pago, así que no te la saltes.
+La fila de KPIs muestra **Ganancia Promedio** y **Pérdida Promedio** una junto a la otra. La pérdida promedio es el G/P promedio de tus operaciones perdedoras y aparece como número negativo, así que quítale el signo antes de llevarla a la fórmula de la expectativa; una operación que cierra exactamente en cero cuenta como pérdida, la misma división que usa la tasa de acierto. Hasta que registres una operación perdedora, la tarjeta muestra un guion. La necesitas tanto para la expectativa como para el ratio de pago, así que no te la saltes.
 
 ## Drawdown máximo: la métrica que decide si puedes seguir con una estrategia
 
@@ -110,4 +110,4 @@ Dos límites. Los datos viven en el almacenamiento local de tu navegador, así q
 
 ## Practica esto en el simulador
 
-Toma 20 operaciones, luego abre el panel de análisis y calcula tu expectativa a mano a partir de la tasa de acierto y la ganancia promedio de las tarjetas más la pérdida promedio que derives del diario — anota la respuesta antes de mirar el G/P total. Después sigue hasta 100 operaciones y calcúlala de nuevo, y nota cuánto se movió el número. Ese movimiento es el error estándar de arriba, hecho concreto. [Abre el simulador](/es/simulator/) y empieza a registrar operaciones que valga la pena analizar.
+Toma 20 operaciones, luego abre el panel de análisis y calcula tu expectativa a mano a partir de las tarjetas de tasa de acierto, ganancia promedio y pérdida promedio — anota la respuesta antes de mirar el G/P total. Después sigue hasta 100 operaciones y calcúlala de nuevo, y nota cuánto se movió el número. Ese movimiento es el error estándar de arriba, hecho concreto. [Abre el simulador](/es/simulator/) y empieza a registrar operaciones que valga la pena analizar.
