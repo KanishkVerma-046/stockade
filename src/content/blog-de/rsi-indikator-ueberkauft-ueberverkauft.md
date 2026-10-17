@@ -1,5 +1,5 @@
 ---
-title: "RSI-Indikator: Überkaufte und überverkaufte Zustände erkennen"
+title: "RSI-Indikator: Überkauft oder überverkauft?"
 description: "RSI über 70 ist kein Verkaufssignal. Was RSI tatsächlich misst, warum überkauft stark bedeutet, und wie man Divergenz liest, ohne sich zu täuschen."
 date: 2026-04-20
 tags: ["Indikatoren"]

@@ -1,5 +1,5 @@
 ---
-title: "VWAP-Handelsstrategie: Was er ist und wie Trader ihn nutzen"
+title: "VWAP-Handelsstrategie: Was er ist, wie Trader ihn nutzen"
 description: "VWAP ist kumulierter typischer Preis mal Volumen, geteilt durch kumuliertes Volumen. Die Arithmetik, warum Institutionen ihn verfolgen, und wo er versagt."
 date: 2026-05-04
 tags: ["Indikatoren", "Strategie"]

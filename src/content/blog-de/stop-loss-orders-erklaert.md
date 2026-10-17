@@ -1,5 +1,5 @@
 ---
-title: "Stop-Loss-Orders: So schützen Sie Ihre Trades vor großen Verlusten"
+title: "Stop-Loss-Orders: Trades vor großen Verlusten schützen"
 description: "Ein Stop gehört dorthin, wo Ihre Trade-Idee bricht, nicht auf eine runde Zahl. Stop-Market vs. Stop-Limit, Platzierung jenseits der Struktur, passende Größe."
 date: 2026-05-18
 tags: ["Ordertypen", "Risikomanagement"]

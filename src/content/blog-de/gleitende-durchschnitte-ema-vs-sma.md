@@ -1,5 +1,5 @@
 ---
-title: "Gleitende Durchschnitte erklärt: EMA vs. SMA und ihre Nutzung"
+title: "Gleitende Durchschnitte: EMA vs. SMA und ihre Nutzung"
 description: "SMA und EMA unterscheiden sich durch einen Multiplikator. Die Arithmetik, warum 9/20/50 Standard sind, Nutzung als Unterstützung, und warum sie nachlaufen."
 date: 2026-04-13
 tags: ["Indikatoren", "Technische Analyse"]

@@ -1,5 +1,5 @@
 ---
-title: "Krypto-Trading für Einsteiger: Wie digitale Asset-Märkte funktionieren"
+title: "Krypto-Trading für Einsteiger: So funktionieren die Märkte"
 description: "Krypto handelt 24/7 ohne Handelsunterbrechungen, mit schwachem Schutz und aufgeblähtem Volumen. Was sich wirklich von Aktien unterscheidet."
 date: 2026-07-20
 tags: ["Krypto", "Grundlagen"]

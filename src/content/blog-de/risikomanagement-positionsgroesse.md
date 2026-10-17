@@ -1,5 +1,5 @@
 ---
-title: "Risikomanagement 101: Positionsgrößenbestimmung und die 1-%-Regel"
+title: "Risikomanagement 101: Positionsgröße und die 1-%-Regel"
 description: "Die Positionsgröße ist ein Ergebnis Ihres Stop-Abstands, keine gewählte Zahl. Die Formel, die 1-%-Regel, Drawdown-Erholung und R-Vielfache."
 date: 2026-06-29
 tags: ["Risikomanagement"]

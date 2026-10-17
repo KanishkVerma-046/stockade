@@ -1,5 +1,5 @@
 ---
-title: "Einführung ins Forex-Trading: Währungspaare und Pips erklärt"
+title: "Forex-Trading für Einsteiger: Währungspaare und Pips"
 description: "Ein Währungspaar heißt: long in einer Währung, short in der anderen. Was ein Pip ist, warum JPY-Paare abweichen, und warum Forex-Hebel gefährlich ist."
 date: 2026-07-13
 tags: ["Forex", "Grundlagen"]
