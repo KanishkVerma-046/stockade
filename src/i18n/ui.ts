@@ -107,7 +107,57 @@ export type UiKey =
   | 'analytics.day.sun'
   | 'analytics.duration.minutes'
   | 'analytics.duration.hours'
-  | 'analytics.duration.hoursMinutes';
+  | 'analytics.duration.hoursMinutes'
+  | 'sim.disclaimer.title'
+  | 'sim.disclaimer.body'
+  | 'sim.disclaimer.dismiss'
+  | 'sim.order'
+  | 'sim.orderType.market'
+  | 'sim.orderType.limit'
+  | 'sim.qty'
+  | 'sim.limitPrice'
+  | 'sim.limitHelp'
+  | 'sim.stopLoss'
+  | 'sim.takeProfit'
+  | 'sim.levelActive'
+  | 'sim.optional'
+  | 'sim.cash'
+  | 'sim.resetBalance'
+  | 'sim.workingOrders'
+  | 'sim.working.resting'
+  | 'sim.cancel'
+  | 'sim.cancelTitle'
+  | 'sim.position'
+  | 'sim.tradeHistory'
+  | 'sim.clear'
+  | 'sim.live.title'
+  | 'sim.replay.title'
+  | 'sim.replay.new'
+  | 'sim.replay.newTitle'
+  | 'sim.replay.play'
+  | 'sim.replay.pause'
+  | 'sim.replay.step'
+  | 'sim.replay.stepTitle'
+  | 'sim.replay.speed'
+  | 'sim.replay.complete'
+  | 'sim.replay.hint'
+  | 'sim.tab.chart'
+  | 'sim.tab.order'
+  | 'sim.tab.trades'
+  | 'sim.indicator.hide'
+  | 'sim.indicator.show'
+  | 'sim.toast.insufficientBalance'
+  | 'sim.toast.limitPriceMissing'
+  | 'sim.toast.limitBuyFilledNow'
+  | 'sim.toast.limitSellFilledNow'
+  | 'sim.toast.limitBuyResting.one'
+  | 'sim.toast.limitBuyResting.other'
+  | 'sim.toast.limitSellResting.one'
+  | 'sim.toast.limitSellResting.other'
+  | 'sim.toast.limitBuyFilled'
+  | 'sim.toast.limitSellFilled'
+  | 'sim.toast.limitBuyCancelled'
+  | 'sim.toast.limitSellCancelled';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -223,6 +273,56 @@ const en: Dictionary = {
   'analytics.duration.minutes': '{m}m',
   'analytics.duration.hours': '{h}h',
   'analytics.duration.hoursMinutes': '{h}h {m}m',
+  'sim.disclaimer.title': 'Simulation only.',
+  'sim.disclaimer.body': 'All trading uses virtual money. Not financial advice.',
+  'sim.disclaimer.dismiss': 'Got it',
+  'sim.order': 'Order',
+  'sim.orderType.market': 'market',
+  'sim.orderType.limit': 'limit',
+  'sim.qty': 'Qty (shares)',
+  'sim.limitPrice': 'Limit Price',
+  'sim.limitHelp': 'Buy below {price} or sell above it to rest the order until price reaches your level.',
+  'sim.stopLoss': 'Stop Loss',
+  'sim.takeProfit': 'Take Profit',
+  'sim.levelActive': '· Active',
+  'sim.optional': 'Optional',
+  'sim.cash': 'Cash',
+  'sim.resetBalance': 'Reset Balance to $100,000',
+  'sim.workingOrders': 'Working Orders',
+  'sim.working.resting': 'resting · fills {cmp} {price}',
+  'sim.cancel': 'Cancel',
+  'sim.cancelTitle': 'Cancel this resting order',
+  'sim.position': 'Position',
+  'sim.tradeHistory': 'Trade History',
+  'sim.clear': 'Clear',
+  'sim.live.title': 'Live simulation — prices tick in real time',
+  'sim.replay.title': 'Replay mode — step through a session candle by candle',
+  'sim.replay.new': 'New',
+  'sim.replay.newTitle': 'Generate a new random session',
+  'sim.replay.play': 'Play',
+  'sim.replay.pause': 'Pause',
+  'sim.replay.step': 'Step',
+  'sim.replay.stepTitle': 'Reveal next candle (Space / →)',
+  'sim.replay.speed': 'Speed',
+  'sim.replay.complete': 'Session complete',
+  'sim.replay.hint': 'Space / → to step · B buy · S sell · F flatten',
+  'sim.tab.chart': 'chart',
+  'sim.tab.order': 'order',
+  'sim.tab.trades': 'trades',
+  'sim.indicator.hide': 'Hide {label}',
+  'sim.indicator.show': 'Show {label}',
+  'sim.toast.insufficientBalance': 'Insufficient balance — need {cost} but have {balance}',
+  'sim.toast.limitPriceMissing': 'Enter a limit price, or switch to a market order.',
+  'sim.toast.limitBuyFilledNow': 'Limit buy filled immediately at {price}',
+  'sim.toast.limitSellFilledNow': 'Limit sell filled immediately at {price}',
+  'sim.toast.limitBuyResting.one': 'Limit buy for {n} resting at {price} — fills when price falls to that level.',
+  'sim.toast.limitBuyResting.other': 'Limit buy for {n} resting at {price} — fills when price falls to that level.',
+  'sim.toast.limitSellResting.one': 'Limit sell for {n} resting at {price} — fills when price rises to that level.',
+  'sim.toast.limitSellResting.other': 'Limit sell for {n} resting at {price} — fills when price rises to that level.',
+  'sim.toast.limitBuyFilled': 'Limit buy filled at {price}',
+  'sim.toast.limitSellFilled': 'Limit sell filled at {price}',
+  'sim.toast.limitBuyCancelled': 'Limit buy cancelled at {price} — not enough balance.',
+  'sim.toast.limitSellCancelled': 'Limit sell cancelled at {price} — not enough balance.',
 };
 
 const es: Dictionary = {
@@ -338,6 +438,56 @@ const es: Dictionary = {
   'analytics.duration.minutes': '{m} min',
   'analytics.duration.hours': '{h} h',
   'analytics.duration.hoursMinutes': '{h} h {m} min',
+  'sim.disclaimer.title': 'Solo simulación.',
+  'sim.disclaimer.body': 'Todas las operaciones usan dinero virtual. Esto no es asesoramiento financiero.',
+  'sim.disclaimer.dismiss': 'Entendido',
+  'sim.order': 'Orden',
+  'sim.orderType.market': 'Mercado',
+  'sim.orderType.limit': 'Límite',
+  'sim.qty': 'Cantidad (acciones)',
+  'sim.limitPrice': 'Precio límite',
+  'sim.limitHelp': 'Compra por debajo de {price} o vende por encima para dejar la orden en espera hasta que el precio alcance tu nivel.',
+  'sim.stopLoss': 'Stop Loss',
+  'sim.takeProfit': 'Take Profit',
+  'sim.levelActive': '· Activo',
+  'sim.optional': 'Opcional',
+  'sim.cash': 'Efectivo',
+  'sim.resetBalance': 'Restablecer saldo a $100,000',
+  'sim.workingOrders': 'Órdenes en espera',
+  'sim.working.resting': 'en espera · se ejecuta {cmp} {price}',
+  'sim.cancel': 'Cancelar',
+  'sim.cancelTitle': 'Cancelar esta orden en espera',
+  'sim.position': 'Posición',
+  'sim.tradeHistory': 'Historial de operaciones',
+  'sim.clear': 'Borrar',
+  'sim.live.title': 'Simulación en vivo — los precios se mueven en tiempo real',
+  'sim.replay.title': 'Modo repetición — avanza por una sesión vela a vela',
+  'sim.replay.new': 'Nueva',
+  'sim.replay.newTitle': 'Generar una nueva sesión aleatoria',
+  'sim.replay.play': 'Reproducir',
+  'sim.replay.pause': 'Pausa',
+  'sim.replay.step': 'Avanzar',
+  'sim.replay.stepTitle': 'Mostrar la siguiente vela (Espacio / →)',
+  'sim.replay.speed': 'Velocidad',
+  'sim.replay.complete': 'Sesión completa',
+  'sim.replay.hint': 'Espacio / → para avanzar · B buy · S sell · F flatten',
+  'sim.tab.chart': 'Gráfico',
+  'sim.tab.order': 'Orden',
+  'sim.tab.trades': 'Operaciones',
+  'sim.indicator.hide': 'Ocultar {label}',
+  'sim.indicator.show': 'Mostrar {label}',
+  'sim.toast.insufficientBalance': 'Saldo insuficiente — necesitas {cost} pero tienes {balance}',
+  'sim.toast.limitPriceMissing': 'Ingresa un precio límite o cambia a una orden de mercado.',
+  'sim.toast.limitBuyFilledNow': 'Compra límite ejecutada de inmediato a {price}',
+  'sim.toast.limitSellFilledNow': 'Venta límite ejecutada de inmediato a {price}',
+  'sim.toast.limitBuyResting.one': 'Compra límite de {n} en espera a {price} — se ejecuta cuando el precio caiga hasta ese nivel.',
+  'sim.toast.limitBuyResting.other': 'Compra límite de {n} en espera a {price} — se ejecuta cuando el precio caiga hasta ese nivel.',
+  'sim.toast.limitSellResting.one': 'Venta límite de {n} en espera a {price} — se ejecuta cuando el precio suba hasta ese nivel.',
+  'sim.toast.limitSellResting.other': 'Venta límite de {n} en espera a {price} — se ejecuta cuando el precio suba hasta ese nivel.',
+  'sim.toast.limitBuyFilled': 'Compra límite ejecutada a {price}',
+  'sim.toast.limitSellFilled': 'Venta límite ejecutada a {price}',
+  'sim.toast.limitBuyCancelled': 'Compra límite cancelada a {price} — saldo insuficiente.',
+  'sim.toast.limitSellCancelled': 'Venta límite cancelada a {price} — saldo insuficiente.',
 };
 
 const pt: Dictionary = {
@@ -1036,7 +1186,15 @@ const it: Dictionary = {
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
 // Phase A, AnalyticsDashboard batch: complete in all 7 locales (2026-10-17).
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
+// Phase A, TradingSimulator batch: es done (2026-10-17); the others pending.
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
+  pt: ['sim.'],
+  ja: ['sim.'],
+  fr: ['sim.'],
+  de: ['sim.'],
+  ko: ['sim.'],
+  it: ['sim.'],
+};
 
 export const translations: Record<Locale, Dictionary> = {
   en,

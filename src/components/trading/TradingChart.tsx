@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { format } from '../../lib/format';
 import {
   createChart,
   CandlestickSeries,
@@ -29,7 +30,12 @@ interface Props {
   stopLoss?: number | null;
   takeProfit?: number | null;
   resetKey?: number;
+  // Tooltips of the EMA toggles, templates with {label}. The page's island
+  // passes them in; the default is English.
+  indicatorTitles?: { hide: string; show: string };
 }
+
+const DEFAULT_INDICATOR_TITLES = { hide: 'Hide {label}', show: 'Show {label}' };
 
 const EMA_CONFIGS = [
   { period: 9,  color: '#f59e0b', label: 'EMA 9'  },
@@ -151,7 +157,7 @@ function chartColors(isDark: boolean) {
   };
 }
 
-export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey }: Props) {
+export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey, indicatorTitles = DEFAULT_INDICATOR_TITLES }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
@@ -486,7 +492,7 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
             const on = emaVisible[cfg.period];
             return (
               <button key={cfg.period} onClick={() => toggleEma(cfg.period)}
-                title={on ? `Hide ${cfg.label}` : `Show ${cfg.label}`}
+                title={format(on ? indicatorTitles.hide : indicatorTitles.show, { label: cfg.label })}
                 className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono border transition-all"
                 style={{ borderColor: cfg.color, color: on ? cfg.color : 'var(--c-text-faint)', backgroundColor: on ? `${cfg.color}14` : 'transparent' }}>
                 <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: on ? cfg.color : 'var(--c-text-faint)' }} />

@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
+
+const locale = 'es' as const;
+const simulatorLabels = buildSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -18,7 +22,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
       stop-loss y take-profit, velas en vivo. Sin registro, sin dinero real. <a href="#how-to-use" class="text-[#f59e0b] hover:underline">Cómo funciona ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load />
+      <TradingSimulator client:load locale={locale} labels={simulatorLabels} />
     </div>
   </div>
 
@@ -62,14 +66,14 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             EMA 50. Un histograma de volumen corre a lo largo de la parte inferior del gráfico. El
             panel derecho es tu cuenta: saldo actual, cualquier posición abierta con su G/P no
             realizado, y un registro continuo de cada ejecución. En pantallas angostas, esos
-            paneles se colapsan en las pestañas Chart, Order y Trades.
+            paneles se colapsan en las pestañas Gráfico, Orden y Operaciones.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             Colocando una orden
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Ingresa una cantidad y luego elige un tipo de orden. Una orden de mercado se ejecuta de inmediato al último precio negociado. Una orden límite espera hasta que el mercado alcance tu precio — una compra colocada por debajo del mercado se ejecuta cuando el precio cae hasta ese nivel, una venta colocada por encima del mercado se ejecuta cuando el precio sube hasta ese nivel — y las órdenes en espera aparecen en <strong class="text-[var(--c-text)] font-semibold">Working Orders</strong>, donde puedes cancelarlas. (<a href="/es/blog/ordenes-de-mercado-vs-ordenes-limite/" class="text-[#f59e0b] hover:underline">Órdenes de mercado vs. órdenes límite</a> profundiza en cuándo usar cada una.) Una orden límite colocada del lado equivocado del mercado ya es ejecutable, así que se llena de inmediato al mejor precio vigente. Los campos opcionales de <a href="/es/blog/ordenes-stop-loss-explicadas/" class="text-[#f59e0b] hover:underline">stop-loss</a> y take-profit funcionan como un <a href="/es/blog/ordenes-oco-y-bracket/" class="text-[#f59e0b] hover:underline">bracket OCO</a> — el nivel que el precio alcance primero cierra la posición y cancela el otro. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> abre una posición larga, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> abre una posición corta, y <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> cierra todo al precio actual. Una vez que la página tiene el foco, puedes operar desde el teclado: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> para comprar, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> para vender, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> para cerrar posición.
+            Ingresa una cantidad y luego elige un tipo de orden. Una orden de mercado se ejecuta de inmediato al último precio negociado. Una orden límite espera hasta que el mercado alcance tu precio — una compra colocada por debajo del mercado se ejecuta cuando el precio cae hasta ese nivel, una venta colocada por encima del mercado se ejecuta cuando el precio sube hasta ese nivel — y las órdenes en espera aparecen en el panel <strong class="text-[var(--c-text)] font-semibold">Órdenes en espera</strong>, donde puedes cancelarlas. (<a href="/es/blog/ordenes-de-mercado-vs-ordenes-limite/" class="text-[#f59e0b] hover:underline">Órdenes de mercado vs. órdenes límite</a> profundiza en cuándo usar cada una.) Una orden límite colocada del lado equivocado del mercado ya es ejecutable, así que se llena de inmediato al mejor precio vigente. Los campos opcionales de <a href="/es/blog/ordenes-stop-loss-explicadas/" class="text-[#f59e0b] hover:underline">stop-loss</a> y take-profit funcionan como un <a href="/es/blog/ordenes-oco-y-bracket/" class="text-[#f59e0b] hover:underline">bracket OCO</a> — el nivel que el precio alcance primero cierra la posición y cancela el otro. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> abre una posición larga, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> abre una posición corta, y <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> cierra todo al precio actual. Una vez que la página tiene el foco, puedes operar desde el teclado: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> para comprar, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> para vender, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> para cerrar posición.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">

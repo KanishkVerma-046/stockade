@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import TradingChart from './TradingChart';
 import { $activeTick } from '../../stores/priceStore';
 import { isMarketable, isTriggered, type PendingOrder } from '../../lib/limit-orders';
+import { format, plural, type PluralForms } from '../../lib/format';
 
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
@@ -56,11 +57,155 @@ interface OrderForm {
 
 
 const SYMBOL_GROUPS = [
-  { label: 'Stocks',  syms: ['APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON', 'GLPH', 'MXTA', 'STRX', 'AXMD', 'CNBX', 'RXBT', 'PLZM', 'QVNT', 'VORX'] },
-  { label: 'Crypto',  syms: ['BLTC', 'ETHX', 'SLAX', 'XBEN', 'AVXL', 'DRLN', 'FLOX', 'NXVR'] },
-  { label: 'Forex',   syms: ['EUR/USD', 'GBP/USD', 'USD/JPY'] },
-  { label: 'Futures', syms: ['/ES', '/NQ', '/CL', '/GC'] },
-];
+  { labelKey: 'groupStocks',  syms: ['APXL', 'TRXL', 'NVOX', 'MXFT', 'VXON', 'GLPH', 'MXTA', 'STRX', 'AXMD', 'CNBX', 'RXBT', 'PLZM', 'QVNT', 'VORX'] },
+  { labelKey: 'groupCrypto',  syms: ['BLTC', 'ETHX', 'SLAX', 'XBEN', 'AVXL', 'DRLN', 'FLOX', 'NXVR'] },
+  { labelKey: 'groupForex',   syms: ['EUR/USD', 'GBP/USD', 'USD/JPY'] },
+  { labelKey: 'groupFutures', syms: ['/ES', '/NQ', '/CL', '/GC'] },
+] as const;
+
+// Strings with numbers are templates for format()/plural() in src/lib/format.ts.
+// Placeholders: {price} a price with its $ prefix, {cost}/{balance} money,
+// {n} order quantity, {cmp} ≤ or ≥, {label} an indicator name.
+// BUY / SELL / FLATTEN, LIVE / REPLAY, LONG / SHORT and the B / S / F keys stay
+// English in every locale (Phase A decision a), so they are not labels.
+interface Labels {
+  disclaimerTitle: string;
+  disclaimerBody: string;
+  disclaimerDismiss: string;
+  groupStocks: string;
+  groupCrypto: string;
+  groupForex: string;
+  groupFutures: string;
+  order: string;
+  orderMarket: string;
+  orderLimit: string;
+  qty: string;
+  limitPrice: string;
+  limitHelp: string;
+  stopLoss: string;
+  takeProfit: string;
+  levelActive: string;
+  optional: string;
+  equity: string;
+  pnl: string;
+  winRate: string;
+  cash: string;
+  totalPnl: string;
+  resetBalance: string;
+  workingOrders: string;
+  workingResting: string;
+  cancel: string;
+  cancelTitle: string;
+  position: string;
+  tradeHistory: string;
+  clear: string;
+  noTrades: string;
+  liveTitle: string;
+  replayTitle: string;
+  newSession: string;
+  newSessionTitle: string;
+  play: string;
+  pause: string;
+  step: string;
+  stepTitle: string;
+  speed: string;
+  sessionComplete: string;
+  replayHint: string;
+  // Mobile tab buttons, kept short so the three fit one line at 360px.
+  tabChart: string;
+  tabOrder: string;
+  tabTrades: string;
+  indicatorHide: string;
+  indicatorShow: string;
+  // Limit-order toasts come in a buy and a sell version instead of splicing
+  // the action word into the sentence.
+  toastInsufficientBalance: string;
+  toastLimitPriceMissing: string;
+  toastLimitBuyFilledNow: string;
+  toastLimitSellFilledNow: string;
+  toastLimitBuyResting: PluralForms;
+  toastLimitSellResting: PluralForms;
+  toastLimitBuyFilled: string;
+  toastLimitSellFilled: string;
+  toastLimitBuyCancelled: string;
+  toastLimitSellCancelled: string;
+}
+
+const DEFAULT_LABELS: Labels = {
+  disclaimerTitle: 'Simulation only.',
+  disclaimerBody: 'All trading uses virtual money. Not financial advice.',
+  disclaimerDismiss: 'Got it',
+  groupStocks: 'Stocks',
+  groupCrypto: 'Crypto',
+  groupForex: 'Forex',
+  groupFutures: 'Futures',
+  order: 'Order',
+  // Lowercase like the OrderType and MobileTab values they replace; CSS
+  // capitalize stays on the English defaults only.
+  orderMarket: 'market',
+  orderLimit: 'limit',
+  qty: 'Qty (shares)',
+  limitPrice: 'Limit Price',
+  limitHelp: 'Buy below {price} or sell above it to rest the order until price reaches your level.',
+  stopLoss: 'Stop Loss',
+  takeProfit: 'Take Profit',
+  levelActive: '· Active',
+  optional: 'Optional',
+  equity: 'Equity',
+  pnl: 'P&L',
+  winRate: 'Win Rate',
+  cash: 'Cash',
+  totalPnl: 'Total P&L',
+  resetBalance: 'Reset Balance to $100,000',
+  workingOrders: 'Working Orders',
+  workingResting: 'resting · fills {cmp} {price}',
+  cancel: 'Cancel',
+  cancelTitle: 'Cancel this resting order',
+  position: 'Position',
+  tradeHistory: 'Trade History',
+  clear: 'Clear',
+  noTrades: 'No trades yet.',
+  liveTitle: 'Live simulation — prices tick in real time',
+  replayTitle: 'Replay mode — step through a session candle by candle',
+  newSession: 'New',
+  newSessionTitle: 'Generate a new random session',
+  play: 'Play',
+  pause: 'Pause',
+  step: 'Step',
+  stepTitle: 'Reveal next candle (Space / →)',
+  speed: 'Speed',
+  sessionComplete: 'Session complete',
+  replayHint: 'Space / → to step · B buy · S sell · F flatten',
+  tabChart: 'chart',
+  tabOrder: 'order',
+  tabTrades: 'trades',
+  indicatorHide: 'Hide {label}',
+  indicatorShow: 'Show {label}',
+  toastInsufficientBalance: 'Insufficient balance — need {cost} but have {balance}',
+  toastLimitPriceMissing: 'Enter a limit price, or switch to a market order.',
+  toastLimitBuyFilledNow: 'Limit buy filled immediately at {price}',
+  toastLimitSellFilledNow: 'Limit sell filled immediately at {price}',
+  toastLimitBuyResting: {
+    one: 'Limit buy for {n} resting at {price} — fills when price falls to that level.',
+    other: 'Limit buy for {n} resting at {price} — fills when price falls to that level.',
+  },
+  toastLimitSellResting: {
+    one: 'Limit sell for {n} resting at {price} — fills when price rises to that level.',
+    other: 'Limit sell for {n} resting at {price} — fills when price rises to that level.',
+  },
+  toastLimitBuyFilled: 'Limit buy filled at {price}',
+  toastLimitSellFilled: 'Limit sell filled at {price}',
+  toastLimitBuyCancelled: 'Limit buy cancelled at {price} — not enough balance.',
+  toastLimitSellCancelled: 'Limit sell cancelled at {price} — not enough balance.',
+};
+
+interface Props {
+  // Selects the plural forms in labels (Intl.PluralRules). Numbers and money
+  // stay en-US in every locale (Phase A decision b).
+  locale?: string;
+  // Merged over the English defaults, so English pages pass nothing.
+  labels?: Partial<Labels>;
+}
 
 const SYMBOL_PRICES: Record<string, number> = {
   APXL: 187.42, TRXL: 248.11, NVOX: 875.63, MXFT: 415.22, VXON: 192.77,
@@ -174,7 +319,7 @@ function appendStoredTrade(trade: StoredTrade) {
   } catch {}
 }
 
-function DisclaimerBanner({ onDismiss }: { onDismiss: () => void }) {
+function DisclaimerBanner({ onDismiss, labels }: { onDismiss: () => void; labels: Labels }) {
   return (
     <div className="absolute bottom-0 left-0 right-0 z-50 bg-[var(--c-amber-bg)] border-t border-[var(--c-amber-dim)] px-4 py-3 flex items-center gap-4">
       <svg className="shrink-0 text-[#f59e0b]" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -182,9 +327,9 @@ function DisclaimerBanner({ onDismiss }: { onDismiss: () => void }) {
         <path d="M8 6v3M8 11v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
       <p className="text-[12px] text-[#f59e0b] flex-1">
-        <strong>Simulation only.</strong> All trading uses virtual money. Not financial advice.
+        <strong>{labels.disclaimerTitle}</strong>{' ' + labels.disclaimerBody}
       </p>
-      <button onClick={onDismiss} className="text-[#f59e0b] text-[12px] underline shrink-0 hover:no-underline">Got it</button>
+      <button onClick={onDismiss} className="text-[#f59e0b] text-[12px] underline shrink-0 hover:no-underline">{labels.disclaimerDismiss}</button>
     </div>
   );
 }
@@ -199,7 +344,12 @@ function initSymbol(): string {
 
 const REPLAY_START_IDX = 60; // initial candles revealed in replay mode
 
-export default function TradingSimulator() {
+export default function TradingSimulator({ locale = 'en', labels: labelOverrides }: Props) {
+  // Memoised so the callbacks that read labels keep stable identities.
+  const labels: Labels = useMemo(() => ({ ...DEFAULT_LABELS, ...labelOverrides }), [labelOverrides]);
+  // CSS capitalize stays on the lowercase English defaults only; translated
+  // labels come cased as the locale writes them.
+  const labelCase = labelOverrides ? '' : ' capitalize';
   const [symbol, setSymbol]     = useState<string>(initSymbol);
   const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
   const [balance, setBalance]   = useState(() => typeof window !== 'undefined' ? loadStoredBalance() : 100_000);
@@ -458,7 +608,7 @@ export default function TradingSimulator() {
 
     const cost = price * qty;
     if (action === 'buy' && cost > balance) {
-      flash(`Insufficient balance — need ${fmtMoney(cost)} but have ${fmtMoney(balance)}`);
+      flash(format(labels.toastInsufficientBalance, { cost: fmtMoney(cost), balance: fmtMoney(balance) }));
       return false;
     }
 
@@ -492,7 +642,7 @@ export default function TradingSimulator() {
       }
     }
     return true;
-  }, [balance, position, symbol, flash]);
+  }, [balance, position, symbol, flash, labels]);
 
   // Placement. A market order fills at the last traded price. A limit order
   // fills immediately only if it is already marketable — otherwise it rests
@@ -507,7 +657,7 @@ export default function TradingSimulator() {
 
     const limitPrice = parseFloat(order.limitPrice);
     if (isNaN(limitPrice) || limitPrice <= 0) {
-      flash('Enter a limit price, or switch to a market order.');
+      flash(labels.toastLimitPriceMissing);
       return;
     }
 
@@ -515,7 +665,8 @@ export default function TradingSimulator() {
       // Marketable on arrival: fills at the prevailing price, which is at
       // least as good for the trader as the limit they asked for.
       if (fillOrder(action, currentPrice, qty)) {
-        flash(`Limit ${action} filled immediately at ${symPrefix(symbol)}${fmtSym(currentPrice, symbol)}`);
+        flash(format(action === 'buy' ? labels.toastLimitBuyFilledNow : labels.toastLimitSellFilledNow,
+          { price: symPrefix(symbol) + fmtSym(currentPrice, symbol) }));
       }
       return;
     }
@@ -524,11 +675,9 @@ export default function TradingSimulator() {
       ...p,
       { id: crypto.randomUUID(), action, qty, limitPrice, placedAt: Date.now() },
     ]);
-    flash(
-      `Limit ${action} for ${qty} resting at ${symPrefix(symbol)}${fmtSym(limitPrice, symbol)} — ` +
-      `fills when price ${action === 'buy' ? 'falls to' : 'rises to'} that level.`
-    );
-  }, [order, currentPrice, symbol, fillOrder, flash]);
+    flash(plural(locale, qty, action === 'buy' ? labels.toastLimitBuyResting : labels.toastLimitSellResting,
+      { price: symPrefix(symbol) + fmtSym(limitPrice, symbol) }));
+  }, [order, currentPrice, symbol, fillOrder, flash, labels, locale]);
 
   function cancelPending(id: string) {
     handledPendingRef.current.delete(id);
@@ -552,12 +701,14 @@ export default function TradingSimulator() {
     handledPendingRef.current.add(hit.id);
     const filled = fillOrder(hit.action, hit.limitPrice, hit.qty);
     setPending(p => p.filter(o => o.id !== hit.id));
-    flash(
+    const buy = hit.action === 'buy';
+    flash(format(
       filled
-        ? `Limit ${hit.action} filled at ${symPrefix(symbol)}${fmtSym(hit.limitPrice, symbol)}`
-        : `Limit ${hit.action} cancelled at ${symPrefix(symbol)}${fmtSym(hit.limitPrice, symbol)} — not enough balance.`
-    );
-  }, [currentPrice, pending, fillOrder, flash, symbol]);
+        ? (buy ? labels.toastLimitBuyFilled : labels.toastLimitSellFilled)
+        : (buy ? labels.toastLimitBuyCancelled : labels.toastLimitSellCancelled),
+      { price: symPrefix(symbol) + fmtSym(hit.limitPrice, symbol) },
+    ));
+  }, [currentPrice, pending, fillOrder, flash, symbol, labels]);
 
   useEffect(() => {
     function handler(e: KeyboardEvent) {
@@ -602,19 +753,19 @@ export default function TradingSimulator() {
 
   const orderFormJSX = (
     <div className="p-3 space-y-2">
-      <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-3">Order</div>
+      <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-3">{labels.order}</div>
 
       <div className="flex gap-1 mb-3">
         {(['market', 'limit'] as OrderType[]).map(t => (
           <button key={t} onClick={() => setOrder(o => ({ ...o, type: t }))}
-            className={`flex-1 py-1 text-[11px] font-mono rounded capitalize transition-colors ${
+            className={`flex-1 py-1 text-[11px] font-mono rounded${labelCase} transition-colors ${
               order.type === t ? 'bg-[var(--c-surface-2)] text-[var(--c-text)]' : 'text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
-            }`}>{t}</button>
+            }`}>{t === 'market' ? labels.orderMarket : labels.orderLimit}</button>
         ))}
       </div>
 
       <div>
-        <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">Qty (shares)</label>
+        <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">{labels.qty}</label>
         <input type="number" value={order.qty}
           onChange={e => setOrder(o => ({ ...o, qty: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
@@ -622,31 +773,30 @@ export default function TradingSimulator() {
 
       {order.type === 'limit' && (
         <div>
-          <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">Limit Price</label>
+          <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">{labels.limitPrice}</label>
           <input type="number" value={order.limitPrice} placeholder={fmtSym(currentPrice, symbol)}
             onChange={e => setOrder(o => ({ ...o, limitPrice: e.target.value }))}
             className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
           <p className="mt-1 text-[10px] font-mono text-[var(--c-text-faint)] leading-snug">
-            Buy below {symPrefix(symbol)}{fmtSym(currentPrice, symbol)} or sell above it to rest the
-            order until price reaches your level.
+            {format(labels.limitHelp, { price: symPrefix(symbol) + fmtSym(currentPrice, symbol) })}
           </p>
         </div>
       )}
 
       <div>
         <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">
-          Stop Loss{order.stopLoss && <span className="ml-1 text-[#ef4444]">· Active</span>}
+          {labels.stopLoss}{order.stopLoss && <span className="ml-1 text-[#ef4444]">{labels.levelActive}</span>}
         </label>
-        <input type="number" value={order.stopLoss} placeholder="Optional"
+        <input type="number" value={order.stopLoss} placeholder={labels.optional}
           onChange={e => setOrder(o => ({ ...o, stopLoss: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#ef4444] outline-none" />
       </div>
 
       <div className="mb-1">
         <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">
-          Take Profit{order.takeProfit && <span className="ml-1 text-[#22c55e]">· Active</span>}
+          {labels.takeProfit}{order.takeProfit && <span className="ml-1 text-[#22c55e]">{labels.levelActive}</span>}
         </label>
-        <input type="number" value={order.takeProfit} placeholder="Optional"
+        <input type="number" value={order.takeProfit} placeholder={labels.optional}
           onChange={e => setOrder(o => ({ ...o, takeProfit: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#22c55e] outline-none" />
       </div>
@@ -675,9 +825,9 @@ export default function TradingSimulator() {
       {/* Account summary */}
       <div className="border-t border-[var(--c-border)] pt-3 mt-3 space-y-1">
         {[
-          { label: 'Equity', value: fmtMoney(equity),  color: equity >= 100000 ? '#22c55e' : '#ef4444' },
-          { label: 'P&L',    value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
-          { label: 'Win Rate', value: winRate.toFixed(0) + '%', color: '#f59e0b' },
+          { label: labels.equity, value: fmtMoney(equity),  color: equity >= 100000 ? '#22c55e' : '#ef4444' },
+          { label: labels.pnl,    value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+          { label: labels.winRate, value: winRate.toFixed(0) + '%', color: '#f59e0b' },
         ].map(s => (
           <div key={s.label} className="flex justify-between items-center py-0.5">
             <span className="text-[11px] font-mono text-[var(--c-text-subtle)]">{s.label}</span>
@@ -686,14 +836,14 @@ export default function TradingSimulator() {
         ))}
         <button onClick={resetBalance}
           className="w-full mt-1 py-1 text-[11px] font-mono text-[var(--c-text-subtle)] border border-[var(--c-border)] rounded hover:border-[#f59e0b] hover:text-[#f59e0b] transition-colors">
-          Reset Balance to $100,000
+          {labels.resetBalance}
         </button>
       </div>
 
       {pending.length > 0 && (
         <div className="rounded p-2.5 border border-[var(--c-border)] bg-[var(--c-bg-muted)]">
           <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1.5">
-            Working Orders
+            {labels.workingOrders}
           </div>
           <div className="space-y-1.5">
             {pending.map(o => (
@@ -703,15 +853,15 @@ export default function TradingSimulator() {
                     {o.action.toUpperCase()} {o.qty} @ {symPrefix(symbol)}{fmtSym(o.limitPrice, symbol)}
                   </div>
                   <div className="text-[10px] font-mono text-[var(--c-text-faint)]">
-                    resting · fills {o.action === 'buy' ? '≤' : '≥'} {symPrefix(symbol)}{fmtSym(o.limitPrice, symbol)}
+                    {format(labels.workingResting, { cmp: o.action === 'buy' ? '≤' : '≥', price: symPrefix(symbol) + fmtSym(o.limitPrice, symbol) })}
                   </div>
                 </div>
                 <button
                   onClick={() => cancelPending(o.id)}
-                  title="Cancel this resting order"
+                  title={labels.cancelTitle}
                   className="shrink-0 text-[10px] font-mono text-[var(--c-text-subtle)] hover:text-[#ef4444] transition-colors"
                 >
-                  Cancel
+                  {labels.cancel}
                 </button>
               </div>
             ))}
@@ -721,7 +871,7 @@ export default function TradingSimulator() {
 
       {position.side && (
         <div className={`rounded p-2.5 border ${position.side === 'long' ? 'bg-[var(--c-green-bg)] border-[var(--c-green-dim)]' : 'bg-[var(--c-red-bg)] border-[var(--c-red-dim)]'}`}>
-          <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">Position</div>
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">{labels.position}</div>
           <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
             {position.side.toUpperCase()} {position.qty}
           </div>
@@ -737,16 +887,16 @@ export default function TradingSimulator() {
   const tradesListJSX = (
     <div className="p-3">
       <div className="flex items-center justify-between mb-2">
-        <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">Trade History</div>
+        <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">{labels.tradeHistory}</div>
         {trades.length > 0 && (
           <button onClick={clearHistory}
             className="text-[10px] font-mono text-[var(--c-text-subtle)] hover:text-[#ef4444] transition-colors">
-            Clear
+            {labels.clear}
           </button>
         )}
       </div>
       {trades.length === 0 ? (
-        <p className="text-[11px] text-[var(--c-text-faint)] font-mono">No trades yet.</p>
+        <p className="text-[11px] text-[var(--c-text-faint)] font-mono">{labels.noTrades}</p>
       ) : (
         <div className="space-y-1">
           {trades.slice(0, 30).map(t => (
@@ -771,7 +921,7 @@ export default function TradingSimulator() {
 
   return (
     <div ref={rootRef} className="relative flex flex-col h-full bg-[var(--c-bg)] text-[var(--c-text)]">
-      {disclaimer && <DisclaimerBanner onDismiss={() => setDisclaimer(false)} />}
+      {disclaimer && <DisclaimerBanner onDismiss={() => setDisclaimer(false)} labels={labels} />}
 
       {/* ── Top toolbar ── */}
       <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-x-auto shrink-0">
@@ -780,7 +930,7 @@ export default function TradingSimulator() {
         <div className="flex items-center gap-1 shrink-0 border-r border-[var(--c-border)] pr-2.5 mr-0.5">
           <button
             onClick={enterLive}
-            title="Live simulation — prices tick in real time"
+            title={labels.liveTitle}
             className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono transition-colors ${
               mode === 'live'
                 ? 'bg-[var(--c-green-bg)] text-[#22c55e] border border-[var(--c-green-dim)] font-semibold'
@@ -792,7 +942,7 @@ export default function TradingSimulator() {
           </button>
           <button
             onClick={enterReplay}
-            title="Replay mode — step through a session candle by candle"
+            title={labels.replayTitle}
             className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono transition-colors ${
               mode === 'replay'
                 ? 'bg-[#3b82f620] text-[#3b82f6] border border-[#3b82f640] font-semibold'
@@ -806,8 +956,8 @@ export default function TradingSimulator() {
         {/* Symbol groups */}
         <div className="flex items-center gap-3">
           {SYMBOL_GROUPS.map(group => (
-            <div key={group.label} className="flex items-center gap-1 shrink-0">
-              <span className="hidden sm:block text-[9px] font-mono text-[var(--c-text-faint)] uppercase tracking-wider pr-1.5 mr-0.5 border-r border-[var(--c-border)]">{group.label}</span>
+            <div key={group.labelKey} className="flex items-center gap-1 shrink-0">
+              <span className="hidden sm:block text-[9px] font-mono text-[var(--c-text-faint)] uppercase tracking-wider pr-1.5 mr-0.5 border-r border-[var(--c-border)]">{labels[group.labelKey]}</span>
               {group.syms.map(sym => (
                 <button key={sym} onClick={() => changeSymbol(sym)}
                   className={`px-2 py-1 rounded text-[11px] font-mono whitespace-nowrap transition-colors ${
@@ -828,10 +978,10 @@ export default function TradingSimulator() {
           {/* New session */}
           <button
             onClick={resetReplay}
-            title="Generate a new random session"
+            title={labels.newSessionTitle}
             className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-[var(--c-border)] transition-colors shrink-0"
           >
-            ↺ New
+            {'↺ ' + labels.newSession}
           </button>
 
           <div className="w-px h-4 bg-[var(--c-border)] shrink-0" />
@@ -846,24 +996,24 @@ export default function TradingSimulator() {
                 : 'bg-[#3b82f620] text-[#3b82f6] border border-[#3b82f640] hover:bg-[#3b82f630]'
             }`}
           >
-            {replayPlaying ? '⏸ Pause' : '▶ Play'}
+            {replayPlaying ? '⏸ ' + labels.pause : '▶ ' + labels.play}
           </button>
 
           {/* Step */}
           <button
             onClick={stepReplay}
             disabled={replayAtEnd}
-            title="Reveal next candle (Space / →)"
+            title={labels.stepTitle}
             className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)] border border-[var(--c-border)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
           >
-            ▶| Step
+            {'▶| ' + labels.step}
           </button>
 
           <div className="w-px h-4 bg-[var(--c-border)] shrink-0" />
 
           {/* Speed */}
           <div className="flex items-center gap-1 shrink-0">
-            <span className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase mr-0.5">Speed</span>
+            <span className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase mr-0.5">{labels.speed}</span>
             {([1, 2, 5, 10] as const).map(s => (
               <button
                 key={s}
@@ -882,7 +1032,7 @@ export default function TradingSimulator() {
           {/* Progress */}
           <div className="flex items-center gap-2 ml-auto shrink-0">
             {replayAtEnd && (
-              <span className="text-[10px] font-mono text-[#f59e0b]">Session complete</span>
+              <span className="text-[10px] font-mono text-[#f59e0b]">{labels.sessionComplete}</span>
             )}
             <span className="text-[10px] font-mono text-[var(--c-text-subtle)]">
               {replayIdx + 1} / {replayTotal}
@@ -904,9 +1054,9 @@ export default function TradingSimulator() {
         <div className="hidden lg:flex w-[180px] shrink-0 flex-col border-r border-[var(--c-border)] bg-[var(--c-bg-subtle)] overflow-y-auto">
           <div className="p-3 flex flex-col gap-3 shrink-0">
             {[
-              { label: 'Equity',    value: fmtMoney(equity),   color: equity >= 100000 ? '#22c55e' : '#ef4444' },
-              { label: 'Cash',      value: fmtMoney(balance),  color: 'var(--c-text)' },
-              { label: 'Total P&L', value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+              { label: labels.equity,   value: fmtMoney(equity),   color: equity >= 100000 ? '#22c55e' : '#ef4444' },
+              { label: labels.cash,     value: fmtMoney(balance),  color: 'var(--c-text)' },
+              { label: labels.totalPnl, value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
             ].map(s => (
               <div key={s.label} className="bg-[var(--c-bg-muted)] rounded p-2.5 border border-[var(--c-border)]">
                 <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-1">{s.label}</div>
@@ -915,7 +1065,7 @@ export default function TradingSimulator() {
             ))}
             {position.side && (
               <div className={`rounded p-2.5 border ${position.side === 'long' ? 'bg-[var(--c-green-bg)] border-[var(--c-green-dim)]' : 'bg-[var(--c-red-bg)] border-[var(--c-red-dim)]'}`}>
-                <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">Position</div>
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">{labels.position}</div>
                 <div className={`text-[13px] font-mono font-semibold ${position.side === 'long' ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
                   {position.side.toUpperCase()} {position.qty}
                 </div>
@@ -938,10 +1088,10 @@ export default function TradingSimulator() {
           <div className="lg:hidden flex shrink-0 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)]">
             {(['chart', 'order', 'trades'] as MobileTab[]).map(t => (
               <button key={t} onClick={() => setMobileTab(t)}
-                className={`flex-1 py-2.5 text-[12px] font-mono capitalize border-b-2 transition-colors ${
+                className={`flex-1 py-2.5 text-[12px] font-mono${labelCase} border-b-2 transition-colors ${
                   mobileTab === t ? 'border-[#f59e0b] text-[var(--c-text)]' : 'border-transparent text-[var(--c-text-subtle)]'
                 }`}>
-                {t}
+                {t === 'chart' ? labels.tabChart : t === 'order' ? labels.tabOrder : labels.tabTrades}
               </button>
             ))}
           </div>
@@ -957,6 +1107,7 @@ export default function TradingSimulator() {
                 stopLoss={!isNaN(slVal) && slVal > 0 ? slVal : null}
                 takeProfit={!isNaN(tpVal) && tpVal > 0 ? tpVal : null}
                 resetKey={chartResetKey}
+                indicatorTitles={{ hide: labels.indicatorHide, show: labels.indicatorShow }}
               />
             </div>
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
@@ -968,7 +1119,7 @@ export default function TradingSimulator() {
             {/* Replay hint */}
             {mode === 'replay' && (
               <div className="absolute bottom-3 left-3 text-[10px] font-mono text-[var(--c-text-faint)] pointer-events-none">
-                Space / → to step · B buy · S sell · F flatten
+                {labels.replayHint}
               </div>
             )}
           </div>
