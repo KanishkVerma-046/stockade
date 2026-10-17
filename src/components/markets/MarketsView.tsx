@@ -57,7 +57,9 @@ interface Labels {
   volumeUsd: string;
   volumeContracts: string;
   search: string;
-  // Display text only — the Category values themselves never change.
+  // Display text only — the Category values themselves never change. Passed
+  // already cased as the locale writes them: CSS capitalize would turn fr
+  // "contrats à terme" into "Contrats À Terme".
   categories: Record<Category, string>;
   colSymbol: string;
   colName: string;
@@ -72,7 +74,8 @@ interface Labels {
 }
 
 // English defaults; translated pages pass the ui.ts `markets.*` strings.
-// Category labels stay lowercase: the buttons capitalize them with CSS.
+// The English category labels stay lowercase and the buttons capitalize them
+// with CSS; translated labels skip that (see Labels.categories).
 const DEFAULT_LABELS: Labels = {
   trade: 'Trade',
   volumeAll: 'Volume units follow each asset class — shares for stocks, US dollars traded for crypto and forex, contracts for futures.',
@@ -127,6 +130,7 @@ function fmt(price: number) {
 export default function MarketsView({ simulatorHref = '/simulator/', labels: labelOverrides }: Props) {
   const labels: Labels = { ...DEFAULT_LABELS, ...labelOverrides };
   const nameOf = (a: Asset) => labels.assetNames[a.symbol] ?? a.name;
+  const categoryCase = labelOverrides?.categories ? '' : ' capitalize';
   const [assets, setAssets]     = useState<Asset[]>(INITIAL);
   const [category, setCategory] = useState<Category>('all');
   const [search, setSearch]     = useState('');
@@ -185,7 +189,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels: lab
             <button
               key={c}
               onClick={() => setCategory(c)}
-              className={`px-3 py-1.5 rounded-md text-[12px] font-mono capitalize transition-colors ${
+              className={`px-3 py-1.5 rounded-md text-[12px] font-mono${categoryCase} transition-colors ${
                 category === c
                   ? 'text-[#0a0a0a] font-semibold'
                   : 'bg-[var(--c-bg-muted)] text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
