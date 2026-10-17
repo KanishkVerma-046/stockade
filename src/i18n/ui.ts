@@ -527,6 +527,26 @@ const ko: Dictionary = {
   'markets.volume.shares': '거래량은 거래된 주식 수입니다.',
   'markets.volume.usd': '거래량은 거래된 미국 달러 금액입니다.',
   'markets.volume.contracts': '거래량은 거래된 계약 수입니다.',
+  'markets.search': '심볼 또는 이름 검색…',
+  'markets.category.all': '전체',
+  'markets.category.stock': '주식',
+  'markets.category.crypto': '암호화폐',
+  'markets.category.forex': '외환',
+  'markets.category.futures': '선물',
+  'markets.col.symbol': '심볼',
+  'markets.col.name': '이름',
+  'markets.col.price': '가격',
+  'markets.col.change': '변동률',
+  'markets.col.volume': '거래량',
+  'markets.col.mktCap': '시가총액',
+  'markets.col.action': '거래하기',
+  'markets.asset.EURUSD': '유로 / 미국 달러',
+  'markets.asset.GBPUSD': '영국 파운드 / USD',
+  'markets.asset.USDJPY': '미국 달러 / 엔',
+  'markets.asset.ES': 'S&P 500 선물',
+  'markets.asset.NQ': '나스닥 100 선물',
+  'markets.asset.CL': '원유 선물',
+  'markets.asset.GC': '금 선물',
 };
 
 const it: Dictionary = {
@@ -586,7 +606,6 @@ const it: Dictionary = {
 // Phase A, MarketsView batch: es landed as the checkpoint (2026-10-16).
 const MARKETS_PHASE_A = ['markets.search', 'markets.category.', 'markets.col.', 'markets.asset.'] as const;
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ko: MARKETS_PHASE_A,
   it: MARKETS_PHASE_A,
 };
 
