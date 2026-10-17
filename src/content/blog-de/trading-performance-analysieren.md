@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Sie beenden eine Woche Übungstrading, öffnen die Analyse-Seite und sehen eine Trefferquote von 68 %. Das fühlt sich gut an. Dann schauen Sie auf den Gesamt-P&L, und er ist negativ. Nichts ist kaputt — Sie haben nur entdeckt, dass die Zahl, die die meisten Trader zuerst nennen, die ist, die am wenigsten aussagt.
 
-Stockades [Analyse-Seite](/de/analytics/) berechnet sechs Kennzahlen aus Ihren geschlossenen Trades: Gesamt-P&L, Eigenkapital, Trefferquote, Profitfaktor, Durchschnittsgewinn und maximaler Drawdown. Darunter liegen drei Tabs — eine Equity-Kurve, ein Trade-Journal und eine Tageszeit-Heatmap. Hier ist, was jede bedeutet und welche Sie belügen können.
+Stockades [Analyse-Seite](/de/analytics/) berechnet sieben Kennzahlen aus Ihren geschlossenen Trades: Gesamt-P&L, Eigenkapital, Trefferquote, Profitfaktor, Durchschnittsgewinn, Durchschnittsverlust und maximaler Drawdown. Darunter liegen drei Tabs — eine Equity-Kurve, ein Trade-Journal und eine Tageszeit-Heatmap. Hier ist, was jede bedeutet und welche Sie belügen können.
 
 ## Warum eine Trefferquote von 70 % Geld verlieren kann, während 35 % welches machen
 
@@ -47,7 +47,7 @@ Der Durchschnittsverlust geht als positive Zahl ein. Rechnen Sie es für beide T
 
 **Trader B:** 0,35 × 300 $ = 105 $. 0,65 × 80 $ = 52 $. 105 $ − 52 $ = **+53 $ pro Trade.**
 
-Stockade zeigt den Erwartungswert nicht an, aber Sie können ihn in Sekunden aus Trefferquote, Durchschnittsgewinn und dem aus dem Journal abgeleiteten Durchschnittsverlust berechnen. Tun Sie das, bevor Sie irgendetwas anderes schließen. Eine Strategie mit negativem Erwartungswert lässt sich nicht durch häufigeres oder größeres Traden reparieren — Größe ändert nur, wie schnell sich die Arithmetik durchspielt.
+Stockade zeigt den Erwartungswert nicht an, aber Sie können ihn in Sekunden aus den Karten Trefferquote, Durchschnittsgewinn und Durchschnittsverlust berechnen. Tun Sie das, bevor Sie irgendetwas anderes schließen. Eine Strategie mit negativem Erwartungswert lässt sich nicht durch häufigeres oder größeres Traden reparieren — Größe ändert nur, wie schnell sich die Arithmetik durchspielt.
 
 Die verwandte Kennzahl ist die **Gewinnschwellen-Trefferquote**, `1 ÷ (1 + Payoff-Ratio)`. Trader Bs Payoff-Ratio ist 300 ÷ 80 = 3,75, also erreicht B die Gewinnschwelle bei 1 ÷ 4,75 = 21 % und gewinnt bei 35 %. Trader As Payoff-Ratio ist 50 ÷ 150 = 0,33, also braucht A 75 % und erreicht nur 70 %. Diese Fünf-Punkte-Lücke ist der gesamte Unterschied zwischen den beiden Konten.
 
@@ -63,7 +63,7 @@ Der Profitfaktor ist der Bruttogewinn geteilt durch den Bruttoverlust über alle
 
 Grobe Einordnung: Unter 1,0 ist Verlust, 1,0 bis 1,3 ist marginal und könnte leicht Rauschen sein, 1,3 bis 2,0 ist ein respektabler Edge bei einer ordentlichen Stichprobe, und deutlich über 2,5 bei kleiner Stichprobe bedeutet meist Glück. Zeigt die Karte `∞`, haben Sie noch keinen Verlust-Trade verbucht — eine Aussage über die Stichprobengröße, nicht über Können.
 
-Eine Eigenart: Die KPI-Zeile zeigt **Ø-Gewinn**, aber nicht den Durchschnittsverlust. Den Durchschnittsverlust bekommen Sie aus dem Journal, indem Sie die negativen P&L-Einträge summieren und durch die Anzahl der Verlust-Trades teilen, die Ihnen der Equity-Kurve-Tab direkt liefert. Sie brauchen ihn sowohl für den Erwartungswert als auch die Payoff-Ratio, überspringen Sie ihn also nicht.
+Die KPI-Zeile zeigt **Durchschnittsgewinn** und **Durchschnittsverlust** nebeneinander. Der Durchschnittsverlust ist der mittlere P&L Ihrer Verlust-Trades und erscheint als negative Zahl; lassen Sie das Vorzeichen weg, bevor er in die Formel für den Erwartungswert geht. Ein Trade, der exakt bei null schließt, zählt als Verlust, dieselbe Aufteilung wie bei der Trefferquote. Solange Sie keinen Verlust-Trade protokolliert haben, zeigt die Karte einen Strich. Sie brauchen ihn sowohl für den Erwartungswert als auch die Payoff-Ratio, überspringen Sie ihn also nicht.
 
 ## Maximaler Drawdown: die Kennzahl, die entscheidet, ob Sie bei einer Strategie bleiben können
 
@@ -109,4 +109,4 @@ Zwei Einschränkungen. Die Daten leben im lokalen Speicher Ihres Browsers, sodas
 
 ## Üben Sie das im Simulator
 
-Nehmen Sie 20 Trades, öffnen Sie dann die Analyse-Seite und berechnen Sie Ihren Erwartungswert von Hand aus den Karten für Trefferquote und Durchschnittsgewinn plus dem aus dem Journal abgeleiteten Durchschnittsverlust — schreiben Sie die Antwort auf, bevor Sie auf den Gesamt-P&L schauen. Machen Sie dann bis 100 Trades weiter und berechnen Sie es erneut, und beachten Sie, wie weit sich die Zahl bewegt hat. Diese Bewegung ist der oben genannte Standardfehler, konkret gemacht. [Öffnen Sie den Simulator](/de/simulator/) und beginnen Sie, auswertbare Trades zu protokollieren.
+Nehmen Sie 20 Trades, öffnen Sie dann die Analyse-Seite und berechnen Sie Ihren Erwartungswert von Hand aus den Karten für Trefferquote, Durchschnittsgewinn und Durchschnittsverlust — schreiben Sie die Antwort auf, bevor Sie auf den Gesamt-P&L schauen. Machen Sie dann bis 100 Trades weiter und berechnen Sie es erneut, und beachten Sie, wie weit sich die Zahl bewegt hat. Diese Bewegung ist der oben genannte Standardfehler, konkret gemacht. [Öffnen Sie den Simulator](/de/simulator/) und beginnen Sie, auswertbare Trades zu protokollieren.
