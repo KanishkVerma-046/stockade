@@ -62,7 +62,49 @@ export type UiKey =
   | 'markets.asset.ES'
   | 'markets.asset.NQ'
   | 'markets.asset.CL'
-  | 'markets.asset.GC';
+  | 'markets.asset.GC'
+  | 'analytics.totalPnl'
+  | 'analytics.equity'
+  | 'analytics.winRate'
+  | 'analytics.profitFactor'
+  | 'analytics.avgWin'
+  | 'analytics.maxDrawdown'
+  | 'analytics.equityCurve'
+  | 'analytics.tradeJournal'
+  | 'analytics.timeHeatmap'
+  | 'analytics.closedTrades.one'
+  | 'analytics.closedTrades.other'
+  | 'analytics.empty.equityCurve'
+  | 'analytics.empty.journal'
+  | 'analytics.openSimulator'
+  | 'analytics.totalTrades'
+  | 'analytics.winning'
+  | 'analytics.losing'
+  | 'analytics.avgDuration'
+  | 'analytics.col.symbol'
+  | 'analytics.col.side'
+  | 'analytics.col.entry'
+  | 'analytics.col.exit'
+  | 'analytics.col.qty'
+  | 'analytics.col.pnl'
+  | 'analytics.col.duration'
+  | 'analytics.col.date'
+  | 'analytics.heatmap.title'
+  | 'analytics.heatmap.legend'
+  | 'analytics.heatmap.empty'
+  | 'analytics.heatmap.cell.one'
+  | 'analytics.heatmap.cell.other'
+  | 'analytics.heatmap.cellEmpty'
+  | 'analytics.day.mon'
+  | 'analytics.day.tue'
+  | 'analytics.day.wed'
+  | 'analytics.day.thu'
+  | 'analytics.day.fri'
+  | 'analytics.day.sat'
+  | 'analytics.day.sun'
+  | 'analytics.duration.minutes'
+  | 'analytics.duration.hours'
+  | 'analytics.duration.hoursMinutes';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -133,6 +175,49 @@ const en: Dictionary = {
   'markets.asset.NQ': 'Nasdaq 100 Futures',
   'markets.asset.CL': 'Crude Oil Futures',
   'markets.asset.GC': 'Gold Futures',
+  'analytics.totalPnl': 'Total P&L',
+  'analytics.equity': 'Equity',
+  'analytics.winRate': 'Win Rate',
+  'analytics.profitFactor': 'Profit Factor',
+  'analytics.avgWin': 'Avg Win',
+  'analytics.maxDrawdown': 'Max Drawdown',
+  'analytics.equityCurve': 'Equity Curve',
+  'analytics.tradeJournal': 'Trade Journal',
+  'analytics.timeHeatmap': 'Time Heatmap',
+  'analytics.closedTrades.one': '{n} closed trade',
+  'analytics.closedTrades.other': '{n} closed trades',
+  'analytics.empty.equityCurve': 'No trades yet — start trading to see your equity curve',
+  'analytics.empty.journal': 'No trades yet',
+  'analytics.openSimulator': 'Open simulator →',
+  'analytics.totalTrades': 'Total Trades',
+  'analytics.winning': 'Winning',
+  'analytics.losing': 'Losing',
+  'analytics.avgDuration': 'Avg Duration',
+  'analytics.col.symbol': 'Symbol',
+  'analytics.col.side': 'Side',
+  'analytics.col.entry': 'Entry',
+  'analytics.col.exit': 'Exit',
+  'analytics.col.qty': 'Qty',
+  'analytics.col.pnl': 'P&L',
+  'analytics.col.duration': 'Duration',
+  'analytics.col.date': 'Date',
+  'analytics.heatmap.title': 'Performance by Time of Day',
+  'analytics.heatmap.legend':
+    'Colour = net P&L · Number = win rate · Hover a cell for net P&L · Hours are UTC · — = no trades in that slot',
+  'analytics.heatmap.empty': 'No trades to display',
+  'analytics.heatmap.cell.one': '{n} trade · {wr}% win · net {net}',
+  'analytics.heatmap.cell.other': '{n} trades · {wr}% win · net {net}',
+  'analytics.heatmap.cellEmpty': 'No trades',
+  'analytics.day.mon': 'Mon',
+  'analytics.day.tue': 'Tue',
+  'analytics.day.wed': 'Wed',
+  'analytics.day.thu': 'Thu',
+  'analytics.day.fri': 'Fri',
+  'analytics.day.sat': 'Sat',
+  'analytics.day.sun': 'Sun',
+  'analytics.duration.minutes': '{m}m',
+  'analytics.duration.hours': '{h}h',
+  'analytics.duration.hoursMinutes': '{h}h {m}m',
 };
 
 const es: Dictionary = {
@@ -202,6 +287,50 @@ const es: Dictionary = {
   'markets.asset.NQ': 'Futuros del Nasdaq 100',
   'markets.asset.CL': 'Futuros de Petróleo Crudo',
   'markets.asset.GC': 'Futuros de Oro',
+  'analytics.totalPnl': 'G/P Total',
+  'analytics.equity': 'Capital',
+  'analytics.winRate': 'Tasa de Acierto',
+  'analytics.profitFactor': 'Factor de Beneficio',
+  'analytics.avgWin': 'Ganancia Promedio',
+  'analytics.maxDrawdown': 'Drawdown Máximo',
+  'analytics.equityCurve': 'Curva de capital',
+  'analytics.tradeJournal': 'Diario de operaciones',
+  'analytics.timeHeatmap': 'Mapa de calor por horario',
+  'analytics.closedTrades.one': '{n} operación cerrada',
+  'analytics.closedTrades.other': '{n} operaciones cerradas',
+  'analytics.empty.equityCurve':
+    'Aún no hay operaciones — empieza a operar para ver tu curva de capital',
+  'analytics.empty.journal': 'Aún no hay operaciones',
+  'analytics.openSimulator': 'Abrir simulador →',
+  'analytics.totalTrades': 'Operaciones totales',
+  'analytics.winning': 'Ganadoras',
+  'analytics.losing': 'Perdedoras',
+  'analytics.avgDuration': 'Duración promedio',
+  'analytics.col.symbol': 'Símbolo',
+  'analytics.col.side': 'Dirección',
+  'analytics.col.entry': 'Entrada',
+  'analytics.col.exit': 'Salida',
+  'analytics.col.qty': 'Cant.',
+  'analytics.col.pnl': 'G/P',
+  'analytics.col.duration': 'Duración',
+  'analytics.col.date': 'Fecha',
+  'analytics.heatmap.title': 'Rendimiento por hora del día',
+  'analytics.heatmap.legend':
+    'Color = G/P neto · Número = tasa de acierto · Pasa el cursor sobre una celda para ver el G/P neto · Horas en UTC · — = sin operaciones en ese tramo',
+  'analytics.heatmap.empty': 'No hay operaciones para mostrar',
+  'analytics.heatmap.cell.one': '{n} operación · {wr}% de acierto · neto {net}',
+  'analytics.heatmap.cell.other': '{n} operaciones · {wr}% de acierto · neto {net}',
+  'analytics.heatmap.cellEmpty': 'Sin operaciones',
+  'analytics.day.mon': 'Lun',
+  'analytics.day.tue': 'Mar',
+  'analytics.day.wed': 'Mié',
+  'analytics.day.thu': 'Jue',
+  'analytics.day.fri': 'Vie',
+  'analytics.day.sat': 'Sáb',
+  'analytics.day.sun': 'Dom',
+  'analytics.duration.minutes': '{m} min',
+  'analytics.duration.hours': '{h} h',
+  'analytics.duration.hoursMinutes': '{h} h {m} min',
 };
 
 const pt: Dictionary = {
@@ -624,7 +753,15 @@ const it: Dictionary = {
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
+// Phase A, AnalyticsDashboard batch: es done (2026-10-17); the rest pending.
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
+  pt: ['analytics.'],
+  ja: ['analytics.'],
+  fr: ['analytics.'],
+  de: ['analytics.'],
+  ko: ['analytics.'],
+  it: ['analytics.'],
+};
 
 export const translations: Record<Locale, Dictionary> = {
   en,

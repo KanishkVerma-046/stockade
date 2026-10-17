@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { format, plural, type PluralForms } from '../../lib/format';
 
 interface StoredTrade {
   id: string;
@@ -26,12 +27,12 @@ function fmtMoney(n: number) {
   return (n >= 0 ? '+$' : '-$') + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function fmtDuration(ms: number): string {
+function fmtDuration(ms: number, labels: Labels): string {
   const mins = Math.round(ms / 60_000);
-  if (mins < 60) return `${Math.max(1, mins)}m`;
+  if (mins < 60) return format(labels.durationMinutes, { m: Math.max(1, mins) });
   const h = Math.floor(mins / 60);
   const m = mins % 60;
-  return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  return m > 0 ? format(labels.durationHoursMinutes, { h, m }) : format(labels.durationHours, { h });
 }
 
 // Cells are coloured by net P&L, not win rate. A high win rate with small
@@ -52,17 +53,104 @@ function heatText(net: number, hasData: boolean) {
 }
 
 const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+// Rows run Monday to Sunday; values are getUTCDay() numbers.
 const DAY_INDICES = [1, 2, 3, 4, 5, 6, 0];
+
+// Strings with numbers are templates for format()/plural() in src/lib/format.ts.
+// Placeholders: {n} count, {wr} win rate, {net} money, {h}/{m} hours/minutes.
+interface Labels {
+  totalPnl: string;
+  equity: string;
+  winRate: string;
+  profitFactor: string;
+  avgWin: string;
+  maxDrawdown: string;
+  equityCurve: string;
+  tradeJournal: string;
+  timeHeatmap: string;
+  closedTrades: PluralForms;
+  emptyEquityCurve: string;
+  emptyJournal: string;
+  openSimulator: string;
+  totalTrades: string;
+  winning: string;
+  losing: string;
+  avgDuration: string;
+  colSymbol: string;
+  colSide: string;
+  colEntry: string;
+  colExit: string;
+  colQty: string;
+  colPnl: string;
+  colDuration: string;
+  colDate: string;
+  heatmapTitle: string;
+  heatmapLegend: string;
+  heatmapEmpty: string;
+  heatmapCell: PluralForms;
+  heatmapCellEmpty: string;
+  // Monday to Sunday, matching DAY_INDICES.
+  days: readonly string[];
+  durationMinutes: string;
+  durationHours: string;
+  durationHoursMinutes: string;
+}
+
+const DEFAULT_LABELS: Labels = {
+  totalPnl: 'Total P&L',
+  equity: 'Equity',
+  winRate: 'Win Rate',
+  profitFactor: 'Profit Factor',
+  avgWin: 'Avg Win',
+  maxDrawdown: 'Max Drawdown',
+  equityCurve: 'Equity Curve',
+  tradeJournal: 'Trade Journal',
+  timeHeatmap: 'Time Heatmap',
+  closedTrades: { one: '{n} closed trade', other: '{n} closed trades' },
+  emptyEquityCurve: 'No trades yet — start trading to see your equity curve',
+  emptyJournal: 'No trades yet',
+  openSimulator: 'Open simulator →',
+  totalTrades: 'Total Trades',
+  winning: 'Winning',
+  losing: 'Losing',
+  avgDuration: 'Avg Duration',
+  colSymbol: 'Symbol',
+  colSide: 'Side',
+  colEntry: 'Entry',
+  colExit: 'Exit',
+  colQty: 'Qty',
+  colPnl: 'P&L',
+  colDuration: 'Duration',
+  colDate: 'Date',
+  heatmapTitle: 'Performance by Time of Day',
+  heatmapLegend: 'Colour = net P&L · Number = win rate · Hover a cell for net P&L · Hours are UTC · — = no trades in that slot',
+  heatmapEmpty: 'No trades to display',
+  heatmapCell: { one: '{n} trade · {wr}% win · net {net}', other: '{n} trades · {wr}% win · net {net}' },
+  heatmapCellEmpty: 'No trades',
+  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  durationMinutes: '{m}m',
+  durationHours: '{h}h',
+  durationHoursMinutes: '{h}h {m}m',
+};
 
 interface Props {
   // Target of the "Open simulator" links. Passed in by the page via
   // localizedHref('/simulator/', locale) for the same reason as MarketsView's
   // prop: a pre-rendered island has no locale-aware URL of its own.
   simulatorHref?: string;
+  // Selects the plural forms in labels (Intl.PluralRules). Numbers and money
+  // stay en-US in every locale (Phase A decision b).
+  locale?: string;
+  // Merged over the English defaults, so English pages pass nothing.
+  labels?: Partial<Labels>;
 }
 
-export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Props) {
+export default function AnalyticsDashboard({ simulatorHref = '/simulator/', locale = 'en', labels: labelOverrides }: Props) {
+  const labels: Labels = { ...DEFAULT_LABELS, ...labelOverrides };
+  // The English tab labels are already title-cased; CSS capitalize stays on
+  // them only so English markup is unchanged. It would mangle translations
+  // ("Curva De Capital"), which come cased as the locale writes them.
+  const tabCase = labelOverrides ? '' : ' capitalize';
   const [activeTab, setActiveTab] = useState<'overview' | 'trades' | 'heatmap'>('overview');
   const [trades, setTrades] = useState<StoredTrade[]>([]);
   const [balance, setBalance] = useState(STARTING_BALANCE);
@@ -119,9 +207,8 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
     : 0;
 
   // Heatmap
-  const heatmap = DAYS.flatMap((day, di) =>
+  const heatmap = DAY_INDICES.flatMap((dayIdx, di) =>
     HOURS.map(hour => {
-      const dayIdx = DAY_INDICES[di];
       const cell = trades.filter(t => {
         const d = new Date(t.closedAt);
         // UTC so a slot means the same thing regardless of the viewer's
@@ -131,7 +218,7 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
       // Only pnl > 0 is a win, so a trade closing exactly flat counts as a loss.
       const wr = cell.length ? (cell.filter(t => t.pnl > 0).length / cell.length) * 100 : 0;
       const net = cell.reduce((s, t) => s + t.pnl, 0);
-      return { day, hour, wr, net, hasData: cell.length > 0, count: cell.length };
+      return { di, hour, wr, net, hasData: cell.length > 0, count: cell.length };
     })
   );
 
@@ -142,17 +229,17 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
       {/* KPI cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {[
-          { label: 'Total P&L',     value: isEmpty ? '—' : fmtMoney(totalPnl),   color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
-          { label: 'Equity',        value: '$' + balance.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }), color: balance >= STARTING_BALANCE ? '#22c55e' : '#ef4444' },
-          { label: 'Win Rate',      value: isEmpty ? '—' : winRate.toFixed(1) + '%',  color: '#f59e0b' },
-          { label: 'Profit Factor', value: isEmpty ? '—' : (isFinite(profitFactor) ? profitFactor.toFixed(2) + 'x' : '∞'), color: '#3b82f6' },
-          { label: 'Avg Win',       value: isEmpty ? '—' : fmtMoney(avgWin),     color: '#22c55e' },
-          { label: 'Max Drawdown',  value: isEmpty ? '—' : maxDD.toFixed(1) + '%', color: '#ef4444' },
+          { id: 'totalPnl',     label: labels.totalPnl,     value: isEmpty ? '—' : fmtMoney(totalPnl),   color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+          { id: 'equity',       label: labels.equity,       value: '$' + balance.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }), color: balance >= STARTING_BALANCE ? '#22c55e' : '#ef4444' },
+          { id: 'winRate',      label: labels.winRate,      value: isEmpty ? '—' : winRate.toFixed(1) + '%',  color: '#f59e0b' },
+          { id: 'profitFactor', label: labels.profitFactor, value: isEmpty ? '—' : (isFinite(profitFactor) ? profitFactor.toFixed(2) + 'x' : '∞'), color: '#3b82f6' },
+          { id: 'avgWin',       label: labels.avgWin,       value: isEmpty ? '—' : fmtMoney(avgWin),     color: '#22c55e' },
+          { id: 'maxDrawdown',  label: labels.maxDrawdown,  value: isEmpty ? '—' : maxDD.toFixed(1) + '%', color: '#ef4444' },
         ].map(k => (
-          <div key={k.label} className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
+          <div key={k.id} className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
             <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">{k.label}</div>
             <div className="text-[18px] font-mono font-semibold"
-              style={{ color: isEmpty && k.label !== 'Equity' ? 'var(--c-text-subtle)' : k.color }}>
+              style={{ color: isEmpty && k.id !== 'equity' ? 'var(--c-text-subtle)' : k.color }}>
               {k.value}
             </div>
           </div>
@@ -163,12 +250,12 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
       <div className="flex gap-1 border-b border-[var(--c-border)]">
         {(['overview', 'trades', 'heatmap'] as const).map(t => (
           <button key={t} onClick={() => setActiveTab(t)}
-            className={`px-4 py-2 text-[13px] font-mono capitalize border-b-2 transition-colors ${
+            className={`px-4 py-2 text-[13px] font-mono${tabCase} border-b-2 transition-colors ${
               activeTab === t
                 ? 'border-[#f59e0b] text-[var(--c-text)]'
                 : 'border-transparent text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
             }`}>
-            {t === 'overview' ? 'Equity Curve' : t === 'trades' ? 'Trade Journal' : 'Time Heatmap'}
+            {t === 'overview' ? labels.equityCurve : t === 'trades' ? labels.tradeJournal : labels.timeHeatmap}
           </button>
         ))}
       </div>
@@ -177,14 +264,14 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
       {activeTab === 'overview' && (
         <div className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[14px] font-semibold text-[var(--c-text)]">Equity Curve</h2>
-            <span className="text-[12px] font-mono text-[var(--c-text-subtle)]">{trades.length} closed trade{trades.length !== 1 ? 's' : ''}</span>
+            <h2 className="text-[14px] font-semibold text-[var(--c-text)]">{labels.equityCurve}</h2>
+            <span className="text-[12px] font-mono text-[var(--c-text-subtle)]">{plural(locale, trades.length, labels.closedTrades)}</span>
           </div>
 
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center h-[140px] text-center">
-              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet — start trading to see your equity curve</p>
-              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">{labels.emptyEquityCurve}</p>
+              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">{labels.openSimulator}</a>
             </div>
           ) : (
             <>
@@ -207,12 +294,12 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
 
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: 'Total Trades', value: trades.length,  color: 'var(--c-text-muted)' },
-              { label: 'Winning',      value: wins.length,    color: '#22c55e' },
-              { label: 'Losing',       value: losses.length,  color: '#ef4444' },
-              { label: 'Avg Duration', value: trades.length ? fmtDuration(avgDurationMs) : '—', color: '#f59e0b' },
+              { id: 'totalTrades', label: labels.totalTrades, value: trades.length,  color: 'var(--c-text-muted)' },
+              { id: 'winning',     label: labels.winning,     value: wins.length,    color: '#22c55e' },
+              { id: 'losing',      label: labels.losing,      value: losses.length,  color: '#ef4444' },
+              { id: 'avgDuration', label: labels.avgDuration, value: trades.length ? fmtDuration(avgDurationMs, labels) : '—', color: '#f59e0b' },
             ].map(s => (
-              <div key={s.label} className="bg-[var(--c-bg-muted)] rounded-lg p-3">
+              <div key={s.id}className="bg-[var(--c-bg-muted)] rounded-lg p-3">
                 <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-1">{s.label}</div>
                 <div className="text-[20px] font-mono font-semibold" style={{ color: s.color }}>{s.value}</div>
               </div>
@@ -226,15 +313,15 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
         <div className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl overflow-hidden">
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center p-10 text-center">
-              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades yet</p>
-              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">Open simulator →</a>
+              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">{labels.emptyJournal}</p>
+              <a href={simulatorHref} className="mt-2 text-[12px] text-[#f59e0b] font-mono hover:underline">{labels.openSimulator}</a>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse min-w-[700px]">
                 <thead>
                   <tr className="border-b border-[var(--c-border)]">
-                    {['Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'P&L', 'Duration', 'Date'].map(h => (
+                    {[labels.colSymbol, labels.colSide, labels.colEntry, labels.colExit, labels.colQty, labels.colPnl, labels.colDuration, labels.colDate].map(h => (
                       <th key={h} className="py-3 px-4 text-left text-[11px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)]">{h}</th>
                     ))}
                   </tr>
@@ -254,7 +341,7 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
                       <td className="py-2.5 px-4 text-[13px] font-mono font-semibold" style={{ color: t.pnl >= 0 ? '#22c55e' : '#ef4444' }}>
                         {fmtMoney(t.pnl)}
                       </td>
-                      <td className="py-2.5 px-4 text-[13px] font-mono text-[var(--c-text-subtle)]">{fmtDuration(t.closedAt - t.openedAt)}</td>
+                      <td className="py-2.5 px-4 text-[13px] font-mono text-[var(--c-text-subtle)]">{fmtDuration(t.closedAt - t.openedAt, labels)}</td>
                       <td className="py-2.5 px-4 text-[12px] font-mono text-[var(--c-text-subtle)]">{new Date(t.closedAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
@@ -268,11 +355,11 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
       {/* Heatmap */}
       {activeTab === 'heatmap' && (
         <div className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-5">
-          <h2 className="text-[14px] font-semibold text-[var(--c-text)] mb-1">Performance by Time of Day</h2>
-          <p className="text-[12px] text-[var(--c-text-subtle)] mb-5">Colour = net P&L · Number = win rate · Hover a cell for net P&L · Hours are UTC · — = no trades in that slot</p>
+          <h2 className="text-[14px] font-semibold text-[var(--c-text)] mb-1">{labels.heatmapTitle}</h2>
+          <p className="text-[12px] text-[var(--c-text-subtle)] mb-5">{labels.heatmapLegend}</p>
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center h-[100px] text-center">
-              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">No trades to display</p>
+              <p className="text-[13px] text-[var(--c-text-subtle)] font-mono">{labels.heatmapEmpty}</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -281,17 +368,17 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/' }: Pr
                 {HOURS.map(h => (
                   <div key={h} className="text-center text-[11px] font-mono text-[var(--c-text-subtle)] pb-1">{h}:00</div>
                 ))}
-                {DAYS.map(day => (
+                {labels.days.map((day, di) => (
                   <>
                     <div key={day} className="text-[11px] font-mono text-[var(--c-text-subtle)] flex items-center">{day}</div>
                     {HOURS.map(hour => {
-                      const cell = heatmap.find(c => c.day === day && c.hour === hour);
+                      const cell = heatmap.find(c => c.di === di && c.hour === hour);
                       const wr = cell?.wr ?? 0;
                       const net = cell?.net ?? 0;
                       const hasData = cell?.hasData ?? false;
                       return (
                         <div key={hour} className="rounded p-2 text-center" style={{ backgroundColor: heatBg(net, hasData) }}
-                          title={hasData ? `${cell?.count} trade${cell?.count !== 1 ? 's' : ''} · ${wr.toFixed(0)}% win · net ${fmtMoney(net)}` : 'No trades'}>
+                          title={hasData ? plural(locale, cell?.count ?? 0, labels.heatmapCell, { wr: wr.toFixed(0), net: fmtMoney(net) }) : labels.heatmapCellEmpty}>
                           <span className="text-[11px] font-mono" style={{ color: heatText(net, hasData) }}>
                             {hasData ? `${wr.toFixed(0)}%` : '—'}
                           </span>

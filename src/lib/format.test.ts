@@ -1,0 +1,58 @@
+import { describe, expect, it } from 'vitest';
+import { format, plural } from './format';
+
+describe('format', () => {
+  it('replaces named placeholders', () => {
+    expect(format('{h}h {m}m', { h: 2, m: 5 })).toBe('2h 5m');
+  });
+
+  it('replaces a placeholder every time it appears', () => {
+    expect(format('{n} of {n}', { n: 3 })).toBe('3 of 3');
+  });
+
+  it('leaves unknown placeholders as written, so a missing var is visible', () => {
+    expect(format('{n} trades · {wr}% win', { n: 3 })).toBe('3 trades · {wr}% win');
+  });
+
+  it('does not depend on placeholder order (ja/ko/de word order)', () => {
+    expect(format('{net}・{n}件', { n: 4, net: '+$12.00' })).toBe('+$12.00・4件');
+  });
+
+  it('inserts values literally, even ones that look like regex replacement patterns', () => {
+    expect(format('net {net}', { net: '$&$1' })).toBe('net $&$1');
+  });
+});
+
+describe('plural', () => {
+  const trades = { one: '{n} closed trade', other: '{n} closed trades' };
+
+  it('picks the English one/other forms', () => {
+    expect(plural('en', 1, trades)).toBe('1 closed trade');
+    expect(plural('en', 0, trades)).toBe('0 closed trades');
+    expect(plural('en', 2, trades)).toBe('2 closed trades');
+  });
+
+  it('uses Spanish plural rules (0 is plural)', () => {
+    const es = { one: '{n} operación cerrada', other: '{n} operaciones cerradas' };
+    expect(plural('es', 0, es)).toBe('0 operaciones cerradas');
+    expect(plural('es', 1, es)).toBe('1 operación cerrada');
+    expect(plural('es', 5, es)).toBe('5 operaciones cerradas');
+  });
+
+  it('uses French plural rules (0 takes the singular)', () => {
+    const fr = { one: '{n} trade clôturé', other: '{n} trades clôturés' };
+    expect(plural('fr', 0, fr)).toBe('0 trade clôturé');
+  });
+
+  it('falls back to "other" when the locale picks a category the forms lack', () => {
+    // es selects "many" for 1,000,000 in current CLDR; ja only ever selects "other".
+    const es = { one: '{n} operación', other: '{n} operaciones' };
+    expect(plural('es', 1_000_000, es)).toBe('1000000 operaciones');
+    expect(plural('ja', 1, { other: '{n}件' })).toBe('1件');
+  });
+
+  it('passes extra vars through alongside {n}', () => {
+    const cell = { one: '{n} trade · {wr}% win', other: '{n} trades · {wr}% win' };
+    expect(plural('en', 3, cell, { wr: 67 })).toBe('3 trades · 67% win');
+  });
+});
