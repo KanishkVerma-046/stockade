@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Finisci una settimana di trading di pratica, apri la pagina di analisi e vedi un tasso di successo del 68%. Sembra un bel risultato. Poi guardi il P&L totale ed è negativo. Non è rotto niente — hai appena scoperto che il numero che la maggior parte dei trader cita per primo è quello che ti dice di meno.
 
-La [pagina di analisi](/it/analytics/) di Stockade calcola sei cifre principali dalle tue operazioni chiuse: P&L totale, capitale, tasso di successo, profit factor, guadagno medio e drawdown massimo. Sotto ci sono tre schede — una curva del capitale, un diario di trading, e una heatmap del tasso di successo per ora del giorno. Ecco cosa significa ciascuna e quali possono ingannarti.
+La [pagina di analisi](/it/analytics/) di Stockade calcola sei cifre principali dalle tue operazioni chiuse: P&L totale, capitale, tasso di successo, profit factor, guadagno medio e drawdown massimo. Sotto ci sono tre schede — una curva del capitale, un diario di trading, e una heatmap per ora del giorno. Ecco cosa significa ciascuna e quali possono ingannarti.
 
 ## Perché un tasso di successo del 70% può far perdere denaro mentre uno del 35% lo fa guadagnare
 
@@ -63,7 +63,7 @@ Il profit factor è il profitto lordo diviso la perdita lorda su tutte le operaz
 
 Lettura approssimativa: sotto 1,0 si perde, tra 1,0 e 1,3 è marginale e potrebbe facilmente essere rumore, tra 1,3 e 2,0 è un vantaggio rispettabile su un campione decente, e molto sopra 2,5 su un campione piccolo di solito significa fortuna. Se la scheda mostra `∞`, non hai ancora registrato un'operazione in perdita — un'affermazione sulla dimensione del campione, non sull'abilità.
 
-Una particolarità: la riga dei KPI mostra il **guadagno medio** ma non la perdita media. Ottieni la perdita media dal diario sommando i P&L negativi e dividendo per il numero di operazioni in perdita, che la scheda Overview ti fornisce direttamente. Ti serve sia per l'aspettativa sia per il rapporto guadagno/perdita, quindi non saltarla.
+Una particolarità: la riga dei KPI mostra il **guadagno medio** ma non la perdita media. Ottieni la perdita media dal diario sommando i P&L negativi e dividendo per il numero di operazioni in perdita, che la scheda Capitale ti fornisce direttamente. Ti serve sia per l'aspettativa sia per il rapporto guadagno/perdita, quindi non saltarla.
 
 ## Drawdown massimo: la metrica che decide se puoi restare fedele a una strategia
 
@@ -75,7 +75,7 @@ Questa è la metrica che decide se una strategia è utilizzabile *da te*. Un sis
 
 ## Cosa ti dice la forma della tua curva del capitale
 
-La scheda Curva del Capitale traccia il tuo saldo corrente dopo ogni operazione chiusa, partendo da 100.000$, con il minimo e il massimo indicati sotto. La maggior parte delle persone legge solo l'ultimo punto. La forma dice molto di più.
+La scheda Capitale traccia il tuo saldo corrente dopo ogni operazione chiusa, partendo da 100.000$, con il minimo e il massimo indicati sotto. La maggior parte delle persone legge solo l'ultimo punto. La forma dice molto di più.
 
 Una curva che sale in modo costante con cali brevi e poco profondi indica un'aspettativa coerente e una dimensione delle perdite controllata. Una che resta piatta per lunghi tratti e poi sale verticalmente significa che una manciata di operazioni ha prodotto quasi tutto il profitto — rimuovile e non ti resta niente. Una scala che sale e poi ripetutamente restituisce un blocco consistente è la firma di chi taglia i guadagni troppo presto e lascia correre le perdite. E una linea quasi verticale senza ritracciamenti, su poche operazioni, non è una scoperta; è un campione piccolo.
 
@@ -95,9 +95,9 @@ L'errore standard si riduce con la radice quadrata del numero di campioni, quind
 
 ## Trovare le tue ore migliori con la heatmap oraria
 
-La scheda Heatmap Oraria dispone i giorni della settimana rispetto alle ore dalle 9:00 alle 20:00 e colora ogni cella in base al tasso di successo in quella fascia: verde al 65% e oltre, rosso sotto il 50%, neutro nel mezzo, e un trattino dove non hai operazioni. Passa il mouse su una cella per vederne il numero di operazioni.
+La scheda Heatmap dispone i giorni della settimana rispetto alle ore dalle 9:00 alle 20:00 UTC e colora ogni cella in base al P&L netto in quella fascia: verde se la fascia ha guadagnato, rosso se ha perso, neutro se è in pareggio, e un trattino dove non hai operazioni. Il numero in ogni cella è il suo tasso di successo. Passa il mouse su una cella per vederne il numero di operazioni, il tasso di successo e il P&L netto.
 
-Questo risponde a una domanda genuinamente utile: le tue operazioni del pomeriggio stanno silenziosamente finanziando quelle del mattino? Due avvertenze. Le celle sono colorate solo in base al tasso di successo, quindi una cella verde può comunque essere un'ora in perdita se quei guadagni sono minuscoli — verifica incrociata con il P&L del diario per quella fascia. E i campioni per cella sono piccoli: quattro operazioni con tre vincenti mostra il 75% e non significa nulla. Aspetta 20 o 30 operazioni in una fascia prima di chiamarlo un pattern. Le ore sono nel fuso orario locale del tuo browser, non di una sessione di borsa.
+Questo risponde a una domanda genuinamente utile: le tue operazioni del pomeriggio stanno silenziosamente finanziando quelle del mattino? Due avvertenze. Leggi il colore e il numero insieme: una cella rossa che mostra il 75% è un'ora in cui tre piccoli guadagni sono stati superati da una sola grossa perdita, esattamente ciò che il tasso di successo da solo nasconderebbe. E i campioni per cella sono piccoli: quattro operazioni con tre vincenti mostra il 75% e non significa nulla. Aspetta 20 o 30 operazioni in una fascia prima di chiamarlo un pattern. Le ore sono in UTC, in base all'ora di chiusura di ogni operazione, non nel tuo fuso orario locale né in quello di una sessione di borsa.
 
 ## Cosa registra il diario di trading e cosa devi registrare tu stesso
 
