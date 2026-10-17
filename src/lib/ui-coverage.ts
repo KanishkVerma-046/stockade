@@ -35,7 +35,8 @@ export function uiCoverage(
         complete: !prefixes,
         pending: missing.filter(allowed),
         violations: missing.filter(k => !allowed(k)),
-        extra: Object.keys(dict).filter(k => !baseKeys.includes(k)),
+        // A `.zero` plural form is optional per locale (see plural() in format.ts)
+        extra: Object.keys(dict).filter(k => !baseKeys.includes(k) && !k.endsWith('.zero')),
       };
     });
 }

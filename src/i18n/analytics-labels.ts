@@ -1,9 +1,10 @@
-import { t } from './ui';
+import { t, tOptional } from './ui';
 import type { Locale } from './locales';
 
 // The AnalyticsDashboard `labels` prop for a translated /xx/analytics/ page,
 // built from ui.ts. English pages pass nothing and get the island's defaults.
 export function analyticsLabels(locale: Locale) {
+  const closedTradesZero = tOptional(locale, 'analytics.closedTrades.zero');
   return {
     totalPnl: t(locale, 'analytics.totalPnl'),
     equity: t(locale, 'analytics.equity'),
@@ -17,6 +18,7 @@ export function analyticsLabels(locale: Locale) {
     tabJournal: t(locale, 'analytics.tab.journal'),
     tabHeatmap: t(locale, 'analytics.tab.heatmap'),
     closedTrades: {
+      ...(closedTradesZero && { zero: closedTradesZero }),
       one: t(locale, 'analytics.closedTrades.one'),
       other: t(locale, 'analytics.closedTrades.other'),
     },

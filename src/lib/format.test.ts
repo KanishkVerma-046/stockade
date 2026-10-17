@@ -51,6 +51,23 @@ describe('plural', () => {
     expect(plural('ja', 1, { other: '{n}件' })).toBe('1件');
   });
 
+  it('uses the zero form for exactly 0 when one is given', () => {
+    // pt puts 0 in CLDR "one", which would read "0 operação fechada"
+    const pt = { zero: 'Nenhuma operação fechada', one: '{n} operação fechada', other: '{n} operações fechadas' };
+    expect(plural('pt', 0, pt)).toBe('Nenhuma operação fechada');
+    expect(plural('pt', 1, pt)).toBe('1 operação fechada');
+    expect(plural('pt', 2, pt)).toBe('2 operações fechadas');
+  });
+
+  it('keeps standard CLDR rules for 0 when there is no zero form', () => {
+    expect(plural('pt', 0, { one: '{n} operação fechada', other: '{n} operações fechadas' })).toBe('0 operação fechada');
+    expect(plural('en', 0, { one: '{n} closed trade', other: '{n} closed trades' })).toBe('0 closed trades');
+  });
+
+  it('does not use the zero form for values that only round to 0', () => {
+    expect(plural('en', 0.4, { zero: 'none', one: '{n} trade', other: '{n} trades' })).toBe('0.4 trades');
+  });
+
   it('passes extra vars through alongside {n}', () => {
     const cell = { one: '{n} trade · {wr}% win', other: '{n} trades · {wr}% win' };
     expect(plural('en', 3, cell, { wr: 67 })).toBe('3 trades · 67% win');

@@ -35,4 +35,9 @@ describe('uiCoverage', () => {
     expect(r.violations).toEqual(['nav.home']);
     expect(r.extra).toEqual(['nav.hmoe']);
   });
+
+  it('does not report an optional zero plural form as extra', () => {
+    const [r] = uiCoverage({ en, pt: { ...en, 'analytics.closedTrades.zero': 'Nenhuma' } }, 'en', {});
+    expect(r).toMatchObject({ complete: true, violations: [], extra: [] });
+  });
 });

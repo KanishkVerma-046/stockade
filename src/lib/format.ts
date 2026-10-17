@@ -18,8 +18,13 @@ export function format(template: string, vars: FormatVars): string {
 /**
  * Picks the template for `n` under `locale`'s plural rules (Intl.PluralRules),
  * falling back to `other`, and formats it with `{n}` plus any extra vars.
+ *
+ * `zero` is an explicit form for exactly 0, used whenever it is given: none of
+ * our locales has a CLDR zero category, so a locale opts in where its CLDR
+ * form reads oddly at 0 (pt puts 0 in "one": "0 operação fechada").
  */
 export function plural(locale: string, n: number, forms: PluralForms, vars: FormatVars = {}): string {
+  if (n === 0 && forms.zero) return format(forms.zero, { ...vars, n });
   const category = new Intl.PluralRules(locale).select(n);
   return format(forms[category] ?? forms.other, { ...vars, n });
 }

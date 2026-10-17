@@ -74,6 +74,7 @@ export type UiKey =
   | 'analytics.tab.equity'
   | 'analytics.tab.journal'
   | 'analytics.tab.heatmap'
+  | 'analytics.closedTrades.zero' // optional, no English: read with tOptional()
   | 'analytics.closedTrades.one'
   | 'analytics.closedTrades.other'
   | 'analytics.empty.equityCurve'
@@ -417,6 +418,8 @@ const pt: Dictionary = {
   'analytics.tab.equity': 'Capital',
   'analytics.tab.journal': 'Diário',
   'analytics.tab.heatmap': 'Mapa de calor',
+  // CLDR pt puts 0 in "one", which would read "0 operação fechada"
+  'analytics.closedTrades.zero': 'Nenhuma operação fechada',
   'analytics.closedTrades.one': '{n} operação fechada',
   'analytics.closedTrades.other': '{n} operações fechadas',
   'analytics.empty.equityCurve':
@@ -1048,4 +1051,9 @@ export const translations: Record<Locale, Dictionary> = {
 
 export function t(locale: Locale, key: UiKey): string {
   return translations[locale]?.[key] ?? translations.en[key]!;
+}
+
+/** For optional keys such as a `.zero` plural form: no English fallback. */
+export function tOptional(locale: Locale, key: UiKey): string | undefined {
+  return translations[locale]?.[key];
 }
