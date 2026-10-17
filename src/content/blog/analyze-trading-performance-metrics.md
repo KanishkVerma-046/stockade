@@ -11,8 +11,8 @@ You finish a week of practice trading, open the analytics page, and see a win ra
 good. Then you look at total P&L and it is negative. Nothing is broken — you have just discovered that
 the number most traders quote first is the one that tells you the least.
 
-Stockade's [analytics page](/analytics/) computes six headline figures from your closed trades: total P&L, equity,
-win rate, profit factor, average win, and max drawdown. Underneath sit three tabs — an equity curve, a
+Stockade's [analytics page](/analytics/) computes seven headline figures from your closed trades: total P&L, equity,
+win rate, profit factor, average win, average loss, and max drawdown. Underneath sit three tabs — an equity curve, a
 trade journal, and a time-of-day heatmap. Here is what each one means and which ones can lie to you.
 
 ## Why a 70% win rate can lose money while a 35% win rate makes it
@@ -58,8 +58,8 @@ worse, faster.
 
 **Trader B:** 0.35 × $300 = $105. 0.65 × $80 = $52. $105 − $52 = **+$53 per trade.**
 
-Stockade does not print expectancy, but you can compute it in seconds from win rate, average win, and the
-average loss you derive from the journal. Do this before you conclude anything else. A strategy with
+Stockade does not print expectancy, but you can compute it in seconds from the win rate, average win, and
+average loss cards. Do this before you conclude anything else. A strategy with
 negative expectancy cannot be fixed by trading it more often or sizing it larger — sizing only changes
 how fast the arithmetic plays out.
 
@@ -92,9 +92,10 @@ Rough reading: below 1.0 is losing, 1.0 to 1.3 is marginal and could easily be n
 respectable edge over a decent sample, and much above 2.5 on a small sample usually means luck. If the
 card shows `∞`, you have not logged a losing trade yet — a statement about sample size, not skill.
 
-One quirk: the KPI row shows **Avg Win** but not average loss. You get average loss from the journal by
-summing the negative P&L entries and dividing by the losing-trade count, which the Equity Curve tab gives you
-directly. You need it for both expectancy and the payoff ratio, so do not skip it.
+The KPI row shows **Avg Win** and **Avg Loss** side by side. Avg Loss is the mean P&L of your losing trades,
+printed as a negative number, so drop the sign before it goes into the expectancy formula; a trade that
+closes exactly flat counts as a loss, the same split the win rate uses. Until you have logged a losing
+trade the card shows a dash. You need it for both expectancy and the payoff ratio, so do not skip it.
 
 ## Max drawdown: the metric that decides whether you can stay with a strategy
 
@@ -181,8 +182,8 @@ cleanly here routinely collapses there.
 
 ## Practice this on the simulator
 
-Take 20 trades, then open the analytics page and compute your expectancy by hand from the win rate and
-average win cards plus the average loss you derive from the journal — write down the answer before you
+Take 20 trades, then open the analytics page and compute your expectancy by hand from the win rate,
+average win, and average loss cards — write down the answer before you
 look at total P&L. Then keep going to 100 trades and compute it again, and notice how far the number
 moved. That movement is the standard error above, made concrete.
 [Open the simulator](/simulator/) and start logging trades worth analysing.
