@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Finisci una settimana di trading di pratica, apri la pagina di analisi e vedi un tasso di successo del 68%. Sembra un bel risultato. Poi guardi il P&L totale ed è negativo. Non è rotto niente — hai appena scoperto che il numero che la maggior parte dei trader cita per primo è quello che ti dice di meno.
 
-La [pagina di analisi](/it/analytics/) di Stockade calcola sei cifre principali dalle tue operazioni chiuse: P&L totale, capitale, tasso di successo, profit factor, guadagno medio e drawdown massimo. Sotto ci sono tre schede — una curva del capitale, un diario di trading, e una heatmap per ora del giorno. Ecco cosa significa ciascuna e quali possono ingannarti.
+La [pagina di analisi](/it/analytics/) di Stockade calcola sette cifre principali dalle tue operazioni chiuse: P&L totale, capitale, tasso di successo, profit factor, guadagno medio, perdita media e drawdown massimo. Sotto ci sono tre schede — una curva del capitale, un diario di trading, e una heatmap per ora del giorno. Ecco cosa significa ciascuna e quali possono ingannarti.
 
 ## Perché un tasso di successo del 70% può far perdere denaro mentre uno del 35% lo fa guadagnare
 
@@ -47,7 +47,7 @@ La perdita media entra come numero positivo. Calcoliamola per entrambi i trader.
 
 **Trader B:** 0,35 × 300$ = 105$. 0,65 × 80$ = 52$. 105$ − 52$ = **+53$ per operazione.**
 
-Stockade non stampa l'aspettativa, ma puoi calcolarla in pochi secondi dal tasso di successo, dal guadagno medio e dalla perdita media che ricavi dal diario. Fallo prima di concludere qualsiasi altra cosa. Una strategia con aspettativa negativa non si sistema facendo trading più spesso o con dimensioni maggiori — la dimensione cambia solo quanto velocemente si dispiega l'aritmetica.
+Stockade non stampa l'aspettativa, ma puoi calcolarla in pochi secondi dalle schede tasso di successo, guadagno medio e perdita media. Fallo prima di concludere qualsiasi altra cosa. Una strategia con aspettativa negativa non si sistema facendo trading più spesso o con dimensioni maggiori — la dimensione cambia solo quanto velocemente si dispiega l'aritmetica.
 
 La cifra correlata è il **tasso di successo di pareggio**, che è `1 ÷ (1 + rapporto guadagno/perdita)`. Il rapporto guadagno/perdita del Trader B è 300 ÷ 80 = 3,75, quindi B va in pareggio a 1 ÷ 4,75 = 21% e sta vincendo il 35%. Il rapporto guadagno/perdita del Trader A è 50 ÷ 150 = 0,33, quindi A ha bisogno del 75% e sta arrivando solo al 70%. Quel divario di cinque punti è l'intera differenza tra i due conti.
 
@@ -63,7 +63,7 @@ Il profit factor è il profitto lordo diviso la perdita lorda su tutte le operaz
 
 Lettura approssimativa: sotto 1,0 si perde, tra 1,0 e 1,3 è marginale e potrebbe facilmente essere rumore, tra 1,3 e 2,0 è un vantaggio rispettabile su un campione decente, e molto sopra 2,5 su un campione piccolo di solito significa fortuna. Se la scheda mostra `∞`, non hai ancora registrato un'operazione in perdita — un'affermazione sulla dimensione del campione, non sull'abilità.
 
-Una particolarità: la riga dei KPI mostra il **guadagno medio** ma non la perdita media. Ottieni la perdita media dal diario sommando i P&L negativi e dividendo per il numero di operazioni in perdita, che la scheda Capitale ti fornisce direttamente. Ti serve sia per l'aspettativa sia per il rapporto guadagno/perdita, quindi non saltarla.
+La riga dei KPI mostra il **Guadagno medio** e la **Perdita media** affiancati. La perdita media è il P&L medio delle tue operazioni in perdita e compare come numero negativo, quindi togli il segno prima di inserirla nella formula dell'aspettativa; un'operazione che chiude esattamente a zero conta come perdita, la stessa divisione del tasso di successo. Finché non registri un'operazione in perdita, la scheda mostra un trattino. Ti serve sia per l'aspettativa sia per il rapporto guadagno/perdita, quindi non saltarla.
 
 ## Drawdown massimo: la metrica che decide se puoi restare fedele a una strategia
 
@@ -109,5 +109,5 @@ Due limiti. I dati vivono nella memoria locale del tuo browser, quindi cancellar
 
 ## Esercitati sul simulatore
 
-Fai 20 operazioni, poi apri la pagina di analisi e calcola a mano la tua aspettativa dal tasso di successo e dal guadagno medio più la perdita media che ricavi dal diario — scrivi la risposta prima di guardare il P&L totale. Poi continua fino a 100 operazioni e ricalcolala, e osserva quanto si è spostato il numero. Quello spostamento è l'errore standard di cui sopra, reso concreto.
+Fai 20 operazioni, poi apri la pagina di analisi e calcola a mano la tua aspettativa dalle schede tasso di successo, guadagno medio e perdita media — scrivi la risposta prima di guardare il P&L totale. Poi continua fino a 100 operazioni e ricalcolala, e osserva quanto si è spostato il numero. Quello spostamento è l'errore standard di cui sopra, reso concreto.
 [Apri il simulatore](/it/simulator/) e inizia a registrare operazioni degne di analisi.
