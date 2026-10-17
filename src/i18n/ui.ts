@@ -400,6 +400,50 @@ const pt: Dictionary = {
   'markets.asset.NQ': 'Futuros do Nasdaq 100',
   'markets.asset.CL': 'Futuros de Petróleo Bruto',
   'markets.asset.GC': 'Futuros de Ouro',
+  'analytics.totalPnl': 'L/P Total',
+  'analytics.equity': 'Capital',
+  'analytics.winRate': 'Taxa de Acerto',
+  'analytics.profitFactor': 'Fator de Lucro',
+  'analytics.avgWin': 'Ganho Médio',
+  'analytics.maxDrawdown': 'Drawdown Máximo',
+  'analytics.equityCurve': 'Curva de capital',
+  'analytics.tradeJournal': 'Diário de operações',
+  'analytics.timeHeatmap': 'Mapa de calor por horário',
+  'analytics.closedTrades.one': '{n} operação fechada',
+  'analytics.closedTrades.other': '{n} operações fechadas',
+  'analytics.empty.equityCurve':
+    'Ainda não há operações — comece a operar para ver sua curva de capital',
+  'analytics.empty.journal': 'Ainda não há operações',
+  'analytics.openSimulator': 'Abrir simulador →',
+  'analytics.totalTrades': 'Total de operações',
+  'analytics.winning': 'Vencedoras',
+  'analytics.losing': 'Perdedoras',
+  'analytics.avgDuration': 'Duração média',
+  'analytics.col.symbol': 'Símbolo',
+  'analytics.col.side': 'Direção',
+  'analytics.col.entry': 'Entrada',
+  'analytics.col.exit': 'Saída',
+  'analytics.col.qty': 'Tamanho',
+  'analytics.col.pnl': 'L/P',
+  'analytics.col.duration': 'Duração',
+  'analytics.col.date': 'Data',
+  'analytics.heatmap.title': 'Desempenho por horário do dia',
+  'analytics.heatmap.legend':
+    'Cor = L/P líquido · Número = taxa de acerto · Passe o cursor sobre uma célula para ver o L/P líquido · Horários em UTC · — = sem operações nesse intervalo',
+  'analytics.heatmap.empty': 'Não há operações para exibir',
+  'analytics.heatmap.cell.one': '{n} operação · {wr}% de acerto · líquido {net}',
+  'analytics.heatmap.cell.other': '{n} operações · {wr}% de acerto · líquido {net}',
+  'analytics.heatmap.cellEmpty': 'Sem operações',
+  'analytics.day.mon': 'Seg',
+  'analytics.day.tue': 'Ter',
+  'analytics.day.wed': 'Qua',
+  'analytics.day.thu': 'Qui',
+  'analytics.day.fri': 'Sex',
+  'analytics.day.sat': 'Sáb',
+  'analytics.day.sun': 'Dom',
+  'analytics.duration.minutes': '{m} min',
+  'analytics.duration.hours': '{h} h',
+  'analytics.duration.hoursMinutes': '{h} h {m} min',
 };
 
 const ja: Dictionary = {
@@ -753,9 +797,8 @@ const it: Dictionary = {
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
-// Phase A, AnalyticsDashboard batch: es done (2026-10-17); the rest pending.
+// Phase A, AnalyticsDashboard batch: es, pt done (2026-10-17); the rest pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  pt: ['analytics.'],
   ja: ['analytics.'],
   fr: ['analytics.'],
   de: ['analytics.'],
