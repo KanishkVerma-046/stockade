@@ -850,6 +850,49 @@ const ko: Dictionary = {
   'markets.asset.NQ': '나스닥 100 선물',
   'markets.asset.CL': '원유 선물',
   'markets.asset.GC': '금 선물',
+  'analytics.totalPnl': '총손익',
+  'analytics.equity': '자본',
+  'analytics.winRate': '승률',
+  'analytics.profitFactor': '손익비',
+  'analytics.avgWin': '평균 이익',
+  'analytics.maxDrawdown': '최대 낙폭',
+  'analytics.equityCurve': '자본 곡선',
+  'analytics.tradeJournal': '매매일지',
+  'analytics.timeHeatmap': '시간대별 히트맵',
+  'analytics.closedTrades.one': '종료된 거래 {n}건',
+  'analytics.closedTrades.other': '종료된 거래 {n}건',
+  'analytics.empty.equityCurve': '아직 거래가 없습니다 — 거래를 시작하면 자본 곡선이 표시됩니다',
+  'analytics.empty.journal': '아직 거래가 없습니다',
+  'analytics.openSimulator': '시뮬레이터 열기 →',
+  'analytics.totalTrades': '총 거래 수',
+  'analytics.winning': '수익 트레이드',
+  'analytics.losing': '손실 트레이드',
+  'analytics.avgDuration': '평균 보유 시간',
+  'analytics.col.symbol': '종목',
+  'analytics.col.side': '방향',
+  'analytics.col.entry': '진입가',
+  'analytics.col.exit': '청산가',
+  'analytics.col.qty': '수량',
+  'analytics.col.pnl': '손익',
+  'analytics.col.duration': '보유 시간',
+  'analytics.col.date': '날짜',
+  'analytics.heatmap.title': '시간대별 성과',
+  'analytics.heatmap.legend':
+    '색상 = 순손익 · 숫자 = 승률 · 칸에 마우스를 올리면 순손익 표시 · 시간은 UTC 기준 · — = 해당 시간대 거래 없음',
+  'analytics.heatmap.empty': '표시할 거래가 없습니다',
+  'analytics.heatmap.cell.one': '거래 {n}건 · 승률 {wr}% · 순손익 {net}',
+  'analytics.heatmap.cell.other': '거래 {n}건 · 승률 {wr}% · 순손익 {net}',
+  'analytics.heatmap.cellEmpty': '거래 없음',
+  'analytics.day.mon': '월',
+  'analytics.day.tue': '화',
+  'analytics.day.wed': '수',
+  'analytics.day.thu': '목',
+  'analytics.day.fri': '금',
+  'analytics.day.sat': '토',
+  'analytics.day.sun': '일',
+  'analytics.duration.minutes': '{m}분',
+  'analytics.duration.hours': '{h}시간',
+  'analytics.duration.hoursMinutes': '{h}시간 {m}분',
 };
 
 const it: Dictionary = {
@@ -927,9 +970,8 @@ const it: Dictionary = {
 // A locale absent from this map is complete and must have every English key.
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
-// Phase A, AnalyticsDashboard batch: es, pt, ja, fr, de done (2026-10-17); the rest pending.
+// Phase A, AnalyticsDashboard batch: es, pt, ja, fr, de, ko done (2026-10-17); the rest pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ko: ['analytics.'],
   it: ['analytics.'],
 };
 
