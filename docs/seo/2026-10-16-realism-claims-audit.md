@@ -243,6 +243,22 @@ The fix keeps the rest of the paragraph and replaces only that sentence: "A limi
 
 Checked and kept in the same post: the section heading (the post's problem is spread and slippage, which Stockade still doesn't model) and ":113" "Stockade's fills are perfect, so you cannot practice paying a spread there" (the claim is about the spread).
 
+### 17. Old limit-order behaviour sweep: the explainer says every order fills instantly (added 2026-10-17)
+
+A sweep of all 8 locales after row 16, for any other sentence describing the pre-resting behaviour (limit orders fill immediately, at the typed price, never wait or go unfilled). It covered pages (including FAQ, which is also the FAQPage JSON-LD), blog posts (body and frontmatter `title`/`description`, which feed the meta tags and Article JSON-LD), `ui.ts` and the islands, with each locale's immediacy words (en instantly/immediately/at once/never wait; es al instante/de inmediato; pt instantaneamente/imediatamente; fr instantanément/immédiatement; de sofort/unmittelbar; it istantaneamente/immediatamente/all'istante/subito; ja 即座/即時/すぐ; ko 즉시/바로) filtered to order and fill context.
+
+| # | English (file:line) | Claim | Code | Counterparts |
+|---|---|---|---|---|
+| L1 | `src/content/blog/what-is-a-stock-market-simulator.md:88` | "**Your order fills at the price you see, instantly, in full**; only stop and target exits slip, by the tick that crossed your level." | Only a market order, or a marketable limit, fills at once. Any other limit rests in Working Orders until price reaches it, then fills at the limit price (verified-facts table, "Limit order"). The paragraph dates from `92382d1` (2026-08-10), two days before resting limits landed in `4dfce19`. Same class as row 16 | es `que-es-un-simulador-de-mercado-de-valores.md:89`, pt `o-que-e-um-simulador-de-mercado-de-acoes.md:172-173` (wrapped), fr `quest-ce-qu-un-simulateur-boursier.md:88`, de `was-ist-ein-boersensimulator.md:88`, it `cosa-e-un-simulatore-di-mercato-azionario.md:88`, ja `kabushiki-shijou-simulator-toha.md:88`, ko `jusik-sijang-simyulleiteo-ran.md:88` |
+
+**Fix:** replace only that sentence, reusing row 16's wording: "A market order fills at the price you see, instantly and in full. A limit order that is already marketable fills at once at the prevailing price; otherwise it rests until price reaches your level and then fills in full at your limit price. Only stop and target exits slip, by the tick that crossed your level." Each locale reuses its own row-16 sentence (itself built from that locale's `/simulator/` how-to). One commit per locale.
+
+**Checked and kept:**
+- The home FAQ "How does a stock market simulator work?" ("limit orders wait until price reaches them"), the FAQ limitations answer ("at their limit price"), the home "Market & Limit Orders" card (row E10's fix) and the `/simulator/` how-to, in all 8 locales: they already describe resting limits.
+- The `/simulator/` limitations bullet "**No partial fills.** Orders fill in full and instantly, whatever the size" and its 7 counterparts. It was written in `4dfce19`, the commit that introduced resting limits, and the next bullet ("No queue position. A resting limit order fills the moment price reaches its level") covers resting; "instantly" there contrasts with a large order filling in pieces over time.
+- Generic definitions of a market order ("fills immediately at the best price available") and of a marketable limit in the market-vs-limit posts: they describe real markets.
+- The `TradingSimulator` toast "Limit … filled immediately at …": it only fires for a marketable limit.
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.
