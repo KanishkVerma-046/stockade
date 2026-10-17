@@ -454,7 +454,7 @@ const de: Dictionary = {
   'legal.viewEnglish': 'Englische Version ansehen',
   'markets.trade': 'Traden',
   'markets.volume.all':
-    'Die Volumeneinheit richtet sich nach der Anlageklasse — gehandelte Aktien bei Aktien, gehandelte US-Dollar bei Kryptowährungen und Forex, Kontrakte bei Futures.',
+    'Die Volumeneinheit richtet sich nach der Anlageklasse — bei Aktien die Anzahl gehandelter Aktien, bei Kryptowährungen und Forex der gehandelte Betrag in US-Dollar, bei Futures die Anzahl der Kontrakte.',
   'markets.volume.shares': 'Das Volumen ist die Anzahl gehandelter Aktien.',
   'markets.volume.usd': 'Das Volumen ist der gehandelte Betrag in US-Dollar.',
   'markets.volume.contracts': 'Das Volumen ist die Anzahl gehandelter Kontrakte.',
