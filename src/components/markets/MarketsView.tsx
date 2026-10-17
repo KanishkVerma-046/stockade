@@ -184,7 +184,9 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels: lab
           onChange={e => setSearch(e.target.value)}
           className="bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded-lg px-3 py-2 text-[13px] font-mono text-[var(--c-text)] placeholder-[var(--c-text-faint)] outline-none focus:border-[#f59e0b] w-64"
         />
-        <div className="flex gap-1">
+        {/* Wraps rather than scrolls: es/fr/de/it labels overflow a 320-375px screen,
+            and a scrolling row would hide the last categories off-screen */}
+        <div className="flex flex-wrap gap-1">
           {CATEGORIES.map(c => (
             <button
               key={c}
