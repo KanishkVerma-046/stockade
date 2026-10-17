@@ -1,5 +1,5 @@
 ---
-title: "Introdução ao Trading de Forex: Pares de Moedas e Pips Explicados"
+title: "Trading de Forex: Pares de Moedas e Pips Explicados"
 description: "Um par de moedas significa estar comprado em uma moeda e vendido em outra. Como ler uma cotação, o que é um pip, por que pares de JPY diferem, e a alavancagem."
 date: 2026-07-13
 author: "Stockade Team"

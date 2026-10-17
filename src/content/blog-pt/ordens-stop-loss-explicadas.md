@@ -1,5 +1,5 @@
 ---
-title: "Ordens Stop-Loss: Como Proteger Suas Operações de Grandes Perdas"
+title: "Ordens Stop-Loss: Proteja Suas Operações de Grandes Perdas"
 description: "Um stop pertence a onde sua ideia de operação se quebra, não a um valor redondo. Stop-market vs stop-limit, posicionamento além da estrutura, e tamanho."
 date: 2026-05-18
 author: "Stockade Team"

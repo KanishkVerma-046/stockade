@@ -1,5 +1,5 @@
 ---
-title: "Gestão de Risco 101: Dimensionamento de Posição e a Regra de 1%"
+title: "Gestão de Risco: Dimensionamento de Posição e Regra de 1%"
 description: "Tamanho de posição é resultado da distância do seu stop, não um número que você escolhe. A fórmula, a regra de 1%, a matemática de recuperação, e R."
 date: 2026-06-29
 author: "Stockade Team"

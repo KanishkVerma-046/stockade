@@ -1,5 +1,5 @@
 ---
-title: "Trading de Cripto para Iniciantes: Como Funcionam os Mercados de Ativos Digitais"
+title: "Trading de Cripto para Iniciantes: Mercados Digitais"
 description: "Cripto opera 24/7 sem circuit breakers, com proteções fracas e volume inflado. O que realmente difere das ações, e como dimensionar posições para isso."
 date: 2026-07-20
 author: "Stockade Team"

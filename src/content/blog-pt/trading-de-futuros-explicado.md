@@ -1,5 +1,5 @@
 ---
-title: "Trading de Futuros Explicado: Contratos, Margem e Alavancagem"
+title: "Trading de Futuros: Contratos, Margem e Alavancagem"
 description: "O que um contrato futuro realmente é, como funcionam tick size e multiplicadores, por que margem é uma caução, e como a alavancagem corta dos dois lados."
 date: 2026-07-27
 author: "Stockade Team"

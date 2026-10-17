@@ -1,5 +1,5 @@
 ---
-title: "Como Criar um Plano de Trading: Passo a Passo para Iniciantes"
+title: "Como Criar um Plano de Trading: Passo a Passo"
 description: "Um plano de trading é um documento, não uma intenção. Cada seção necessária, um exemplo de setup completo, e a regra para quando você pode alterá-lo."
 date: 2026-06-15
 author: "Stockade Team"
