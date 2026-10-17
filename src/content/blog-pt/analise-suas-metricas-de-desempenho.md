@@ -12,8 +12,8 @@ Você termina uma semana de prática, abre o painel de análises, e vê uma taxa
 bom. Depois você olha o L/P total e ele é negativo. Nada está quebrado — você acabou de descobrir que o
 número que a maioria dos traders cita primeiro é o que menos diz.
 
-O [painel de análises](/pt/analytics/) da Stockade calcula seis números principais a partir das suas operações
-fechadas: L/P total, capital, taxa de acerto, fator de lucro, ganho médio e drawdown máximo. Abaixo ficam
+O [painel de análises](/pt/analytics/) da Stockade calcula sete números principais a partir das suas operações
+fechadas: L/P total, capital, taxa de acerto, fator de lucro, ganho médio, perda média e drawdown máximo. Abaixo ficam
 três abas — uma curva de capital, um diário de operações, e um mapa de calor por horário.
 Aqui está o que cada um significa e quais podem te enganar.
 
@@ -60,8 +60,8 @@ piora, mais rápido.
 
 **Trader B:** 0,35 × $300 = $105. 0,65 × $80 = $52. $105 − $52 = **+$53 por operação.**
 
-A Stockade não exibe a expectativa, mas você pode calculá-la em segundos a partir da taxa de acerto, do
-ganho médio e da perda média que você deriva do diário. Faça isso antes de concluir qualquer outra coisa.
+A Stockade não exibe a expectativa, mas você pode calculá-la em segundos a partir dos cartões de taxa de
+acerto, ganho médio e perda média. Faça isso antes de concluir qualquer outra coisa.
 Uma estratégia com expectativa negativa não se conserta operando com mais frequência ou com tamanho maior
 — o dimensionamento só muda a velocidade com que a aritmética se manifesta.
 
@@ -96,10 +96,11 @@ Leitura aproximada: abaixo de 1,0 é prejuízo, de 1,0 a 1,3 é marginal e pode 
 geralmente significa sorte. Se o cartão mostrar `∞`, você ainda não registrou uma operação perdedora — uma
 afirmação sobre tamanho de amostra, não sobre habilidade.
 
-Uma peculiaridade: a linha de KPIs mostra **Ganho Médio** mas não a perda média. Você obtém a perda média
-a partir do diário, somando as entradas de L/P negativo e dividindo pelo número de operações perdedoras,
-que a aba Capital te dá diretamente. Você precisa dela tanto para a expectativa quanto para a relação
-risco-retorno, então não pule essa parte.
+A linha de KPIs mostra **Ganho Médio** e **Perda Média** lado a lado. A perda média é o L/P médio das suas
+operações perdedoras e aparece como número negativo, então tire o sinal antes de levá-la para a fórmula da
+expectativa; uma operação que fecha exatamente no zero conta como perda, a mesma divisão da taxa de acerto.
+Até você registrar uma operação perdedora, o cartão mostra um traço. Você precisa dela tanto para a
+expectativa quanto para a relação risco-retorno, então não pule essa parte.
 
 ## Drawdown máximo: a métrica que decide se você consegue continuar com uma estratégia
 
@@ -189,7 +190,7 @@ uma experiência física, e a disciplina que se mantém limpa aqui costuma desmo
 ## Pratique isso no simulador
 
 Faça 20 operações, depois abra o painel de análises e calcule sua expectativa manualmente a partir dos
-cartões de taxa de acerto e ganho médio, mais a perda média que você deriva do diário — anote a resposta
+cartões de taxa de acerto, ganho médio e perda média — anote a resposta
 antes de olhar o L/P total. Depois continue até 100 operações e calcule de novo, e note o quanto o número
 se moveu. Esse movimento é o erro padrão acima, tornado concreto.
 [Abra o simulador](/pt/simulator/) e comece a registrar operações que valham a pena analisar.
