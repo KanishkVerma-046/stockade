@@ -9,7 +9,7 @@ translationOf: "analyze-trading-performance-metrics"
 
 Vous terminez une semaine de trading d'entraînement, ouvrez la page Analytics, et voyez un taux de réussite de 68%. C'est plutôt satisfaisant. Puis vous regardez le P&L total, et il est négatif. Rien n'est cassé — vous venez simplement de découvrir que le chiffre que la plupart des traders citent en premier est celui qui vous renseigne le moins.
 
-La [page Analytics](/fr/analytics/) de Stockade calcule six chiffres clés à partir de vos trades clôturés : P&L total, capitaux propres, taux de réussite, facteur de profit, gain moyen et drawdown maximum. En dessous se trouvent trois onglets — une courbe d'équité, un journal de trading et une heatmap du taux de réussite par heure. Voici ce que signifie chacun d'eux, et lesquels peuvent vous mentir.
+La [page Analytics](/fr/analytics/) de Stockade calcule six chiffres clés à partir de vos trades clôturés : P&L total, capitaux propres, taux de réussite, facteur de profit, gain moyen et drawdown maximum. En dessous se trouvent trois onglets — une courbe d'équité, un journal de trading et une heatmap horaire. Voici ce que signifie chacun d'eux, et lesquels peuvent vous mentir.
 
 ## Pourquoi un taux de réussite de 70% peut perdre de l'argent, alors qu'un taux de 35% en gagne
 
@@ -62,7 +62,7 @@ Le facteur de profit est le profit brut divisé par la perte brute sur l'ensembl
 
 Lecture rapide : en dessous de 1.0, vous perdez ; entre 1.0 et 1.3, c'est marginal et pourrait facilement n'être que du bruit ; entre 1.3 et 2.0, c'est un edge respectable sur un échantillon correct ; et bien au-dessus de 2.5 sur un petit échantillon, c'est généralement de la chance. Si la carte affiche `∞`, c'est que vous n'avez pas encore enregistré de trade perdant — un constat sur la taille de l'échantillon, pas sur votre compétence.
 
-Une particularité : la ligne de KPI affiche le **Gain Moyen**, mais pas la perte moyenne. Vous obtenez la perte moyenne à partir du journal en additionnant les entrées de P&L négatives et en divisant par le nombre de trades perdants, que l'onglet Aperçu vous donne directement. Vous en avez besoin à la fois pour l'espérance et pour le ratio gain/perte, alors ne sautez pas cette étape.
+Une particularité : la ligne de KPI affiche le **Gain Moyen**, mais pas la perte moyenne. Vous obtenez la perte moyenne à partir du journal en additionnant les entrées de P&L négatives et en divisant par le nombre de trades perdants, que l'onglet Équité vous donne directement. Vous en avez besoin à la fois pour l'espérance et pour le ratio gain/perte, alors ne sautez pas cette étape.
 
 ## Le drawdown maximum : l'indicateur qui décide si vous pouvez tenir une stratégie
 
@@ -74,7 +74,7 @@ C'est l'indicateur qui décide si une stratégie est utilisable *par vous*. Un s
 
 ## Ce que la forme de votre courbe d'équité vous apprend
 
-L'onglet Courbe d'Équité trace votre solde cumulé après chaque trade clôturé, en partant de $100,000, avec le minimum et le maximum indiqués en dessous. La plupart des gens ne lisent que le dernier point. La forme en dit bien plus.
+L'onglet Équité trace votre solde cumulé après chaque trade clôturé, en partant de $100,000, avec le minimum et le maximum indiqués en dessous. La plupart des gens ne lisent que le dernier point. La forme en dit bien plus.
 
 Une courbe qui progresse lentement avec des creux courts et peu profonds traduit une espérance constante et une taille de perte maîtrisée. Une courbe plate pendant de longues périodes puis qui bondit verticalement signifie qu'une poignée de trades a produit presque tout le profit — retirez-les, et il ne reste rien. Un escalier qui monte puis rend systématiquement un gros bloc de gains est la signature d'un trader qui coupe ses gagnants trop tôt et laisse courir ses perdants. Et une ligne quasi verticale sans repli, sur peu de trades, n'est pas une découverte ; c'est un petit échantillon.
 
@@ -94,9 +94,9 @@ L'erreur type diminue avec la racine carrée du nombre de trades, donc diviser c
 
 ## Trouver ses meilleures heures avec la heatmap horaire
 
-L'onglet Heatmap Horaire croise les jours de la semaine avec les heures de 9h00 à 20h00 et colore chaque case selon le taux de réussite sur ce créneau : vert à partir de 65%, rouge en dessous de 50%, neutre entre les deux, et un tiret là où vous n'avez aucun trade. Survolez une case pour voir le nombre de trades.
+L'onglet Carte de chaleur croise les jours de la semaine avec les heures de 9h00 à 20h00 UTC et colore chaque case selon le P&L net sur ce créneau : vert si le créneau a rapporté de l'argent, rouge s'il en a perdu, neutre s'il est à l'équilibre, et un tiret là où vous n'avez aucun trade. Le nombre affiché dans chaque case est son taux de réussite. Survolez une case pour voir le nombre de trades, le taux de réussite et le P&L net.
 
-Cela répond à une question réellement utile : vos trades de l'après-midi financent-ils discrètement ceux du matin ? Deux mises en garde. Les cases se colorent uniquement selon le taux de réussite, donc une case verte peut encore correspondre à une heure perdante si ces gains sont minuscules — vérifiez le P&L du journal pour ce créneau. Et les échantillons par case sont minuscules : quatre trades avec trois gagnants affiche 75% et ne veut rien dire. Attendez 20 ou 30 trades sur un créneau avant d'y voir un schéma. Les heures affichées sont l'heure locale de votre navigateur, pas une session de bourse.
+Cela répond à une question réellement utile : vos trades de l'après-midi financent-ils discrètement ceux du matin ? Deux mises en garde. Lisez la couleur et le nombre ensemble : une case rouge affichant 75% est une heure où trois petits gains ont été effacés par une seule grosse perte, exactement ce qu'un taux de réussite seul masquerait. Et les échantillons par case sont minuscules : quatre trades avec trois gagnants affiche 75% et ne veut rien dire. Attendez 20 ou 30 trades sur un créneau avant d'y voir un schéma. Les heures sont en UTC, selon l'heure de clôture de chaque trade, et non votre heure locale ni une session de bourse.
 
 ## Ce que le journal de trading enregistre, et ce que vous devez noter vous-même
 
