@@ -14,7 +14,7 @@ número que a maioria dos traders cita primeiro é o que menos diz.
 
 O [painel de análises](/pt/analytics/) da Stockade calcula seis números principais a partir das suas operações
 fechadas: L/P total, capital, taxa de acerto, fator de lucro, ganho médio e drawdown máximo. Abaixo ficam
-três abas — uma curva de capital, um diário de operações, e um mapa de calor de taxa de acerto por horário.
+três abas — uma curva de capital, um diário de operações, e um mapa de calor por horário.
 Aqui está o que cada um significa e quais podem te enganar.
 
 ## Por que uma taxa de acerto de 70% pode perder dinheiro enquanto uma de 35% ganha
@@ -98,7 +98,7 @@ afirmação sobre tamanho de amostra, não sobre habilidade.
 
 Uma peculiaridade: a linha de KPIs mostra **Ganho Médio** mas não a perda média. Você obtém a perda média
 a partir do diário, somando as entradas de L/P negativo e dividindo pelo número de operações perdedoras,
-que a aba Visão Geral te dá diretamente. Você precisa dela tanto para a expectativa quanto para a relação
+que a aba Capital te dá diretamente. Você precisa dela tanto para a expectativa quanto para a relação
 risco-retorno, então não pule essa parte.
 
 ## Drawdown máximo: a métrica que decide se você consegue continuar com uma estratégia
@@ -119,7 +119,7 @@ posição aberta profundamente no vermelho não aparece até que você a feche.
 
 ## O que a forma da sua curva de capital revela
 
-A aba Curva de Capital plota seu saldo em curso após cada operação fechada, começando em $100.000, com o
+A aba Capital plota seu saldo em curso após cada operação fechada, começando em $100.000, com o
 mínimo e o máximo indicados abaixo. A maioria das pessoas lê só o último ponto. A forma diz mais.
 
 Uma curva que sobe de forma constante, com quedas rasas e curtas, indica expectativa consistente e perdas
@@ -153,21 +153,22 @@ no [seu plano de trading](/pt/blog/como-criar-um-plano-de-trading/).
 
 ## Encontrando seus melhores horários com o mapa de calor por horário do dia
 
-A aba Mapa de Calor por Horário organiza dias da semana contra horas das 9:00 às 20:00 e colore cada
-célula pela taxa de acerto naquele intervalo: verde a partir de 65%, vermelho abaixo de 50%, neutro entre
-os dois, e um traço onde você não tem operações. Passe o mouse sobre uma célula para ver a contagem de
-operações.
+A aba Mapa de calor organiza dias da semana contra horas das 9:00 às 20:00 UTC e colore cada célula
+pelo L/P líquido naquele intervalo: verde quando o intervalo deu lucro, vermelho quando deu prejuízo,
+neutro quando empatou, e um traço onde você não tem operações. O número em cada célula é a sua taxa de
+acerto. Passe o mouse sobre uma célula para ver a contagem de operações, a taxa de acerto e o L/P líquido.
 
 Isso responde a uma pergunta genuinamente útil: suas operações da tarde estão silenciosamente financiando
-as da manhã? Duas ressalvas. As células coloram apenas pela taxa de acerto, então uma célula verde ainda
-pode ser um horário que perde dinheiro se esses ganhos forem pequenos — cruze com o L/P do diário para
-aquele intervalo. E as amostras por célula são pequenas: quatro operações com três vencedoras mostra 75% e
+as da manhã? Duas ressalvas. Leia a cor e o número juntos: uma célula vermelha
+mostrando 75% é um horário em que três ganhos pequenos foram superados por uma única perda grande,
+exatamente o que a taxa de acerto sozinha esconderia. E as amostras por célula são pequenas: quatro operações com três vencedoras mostra 75% e
 não significa nada. Espere por 20 ou 30 operações em um intervalo antes de chamá-lo de padrão. Os horários
-são o horário local do seu navegador, não o de uma sessão de bolsa.
+estão em UTC, pela hora em que cada operação foi fechada, não no seu horário local nem no de uma sessão
+de bolsa.
 
 ## O que o diário de operações registra e o que você precisa registrar sozinho
 
-O diário mostra oito colunas por operação fechada: Símbolo, Lado, Entrada, Saída, Qtd, L/P, Duração e
+O diário mostra oito colunas por operação fechada: Símbolo, Direção, Entrada, Saída, Qtd, L/P, Duração e
 Data, mais recentes primeiro. Isso é um registro completo do *que* você fez.
 
 Ele não tem campo de anotações ou raciocínio. Nada capta por que você entrou, qual setup você achou que
