@@ -70,6 +70,12 @@ const analyticsLabels = buildAnalyticsLabels(locale);
           </dd>
         </div>
         <div>
+          <dt class="text-[14px] font-semibold text-[var(--c-text)]">平均損失</dt>
+          <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+            負けトレードの損益の平均で、マイナスの数値として表示されます。損益がちょうどゼロで決済した取引は、勝率と同じく負けとして数えられ、負けトレードを記録するまでカードには「—」が表示されます。勝率・平均利益と合わせれば、1回の取引で平均いくら得るか失うかを示す期待値を計算できます — 式に入れる前に符号を外してください。
+          </dd>
+        </div>
+        <div>
           <dt class="text-[14px] font-semibold text-[var(--c-text)]">最大ドローダウン</dt>
           <dd class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
             資産のピークから底までの最大の下落幅を、パーセンテージで表したものです。これは「痛み」を測る指標です。実際のトレーディングでは、これが数学的な限界よりずっと前に戦略をやめさせる原因になることがよくあります。<a href="/ja/blog/risuku-kanri-to-pojishon-saijingu/" class="text-[#f59e0b] hover:underline">ポジションサイジングと1%ルール</a>では、ドローダウンがこれほど重要な理由の背後にある回復の数学を解説しています。
