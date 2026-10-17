@@ -235,6 +235,14 @@ Found by re-reading every English page and post for Stockade-specific behaviour 
 
 Checked and kept: "realistic-looking price action" (`common-day-trading-mistakes.md:108`, hedged), "Fills here carry almost no friction" and similar limitation statements in the posts (accurate), and the home "realism" paragraph (tooling).
 
+### 16. The market-vs-limit post says limit orders never rest (added 2026-10-17, found by the pre-deploy stale-copy sweep)
+
+`src/content/blog/market-orders-vs-limit-orders.md:20`: "A limit order **fills immediately at whatever price you type into the box** — it does not wait for the market to reach your level, it does not queue, and it never goes unfilled." This predates resting limits. Now a marketable limit fills at once at the prevailing price, and any other limit rests in Working Orders until price reaches it, then fills at the limit price (verified-facts table, "Limit order"). Same class as E10. It wasn't caught earlier because the row-15 sweep looked for real-market claims, not order-handling claims.
+
+The fix keeps the rest of the paragraph and replaces only that sentence: "A limit order that is already marketable fills at once at the prevailing price; otherwise it rests until price reaches your level and then fills in full at your limit price. It never queues behind other orders and never fills partially." One commit per locale. Counterparts: es `ordenes-de-mercado-vs-ordenes-limite.md:21`, pt `ordens-a-mercado-vs-ordens-limitadas.md` (wrapped, same paragraph), fr `ordre-au-marche-vs-ordre-limite.md:20`, it `ordini-a-mercato-vs-ordini-a-limite.md:20`, de `market-order-vs-limit-order.md:20`, ja `nariyuki-vs-sashine.md:20`, ko `sijangga-jumun-dae-jijeongga-jumun.md:20`.
+
+Checked and kept in the same post: the section heading (the post's problem is spread and slippage, which Stockade still doesn't model) and ":113" "Stockade's fills are perfect, so you cannot practice paying a spread there" (the claim is about the spread).
+
 ## Related inconsistency (understates rather than overstates)
 
 `src/pages/simulator.astro:115-116` says "All 29 tickers are fictional … **No symbol represents a real security.**" It's mirrored in all 7: es `:110`, pt `:114`, fr `:90`, it `:121`, de `:85`, ja `:90`, ko `:85`.
