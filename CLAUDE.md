@@ -148,6 +148,8 @@ Stop preview: `Get-Job | Stop-Job`
 
 A **brand-new asset path can 404 on the custom domain right after deploy** (stale edge negative-cache) while returning 200 on the `*.pages.dev` alias — re-request with a `?v=…` cache-buster before concluding the upload failed.
 
+**Production never byte-matches `dist/` on pages with a `mailto:` link** (contact, privacy, terms and disclaimer in every locale). Cloudflare's email obfuscation rewrites them at the edge: the `href` becomes `/cdn-cgi/l/email-protection#<hex>`, the link text becomes `<span class="__cf_email__" data-cfemail="<hex>">[email&#160;protected]</span>`, and a `<script data-cfasync="false" src="/cdn-cgi/scripts/…/email-decode.min.js">` is injected. Any check that production matches `dist/` must undo that first: decode the hex (first byte is the XOR key for the rest) back to the `mailto:` address and drop the injected script, or diff with those three patterns normalised on both sides. Otherwise these pages report a false mismatch.
+
 **IndexNow:** `npm run indexnow` — builds, then submits every URL in `dist/sitemap.xml` to Bing. The list is derived from the sitemap, not hand-maintained; `node submit-indexnow.mjs --dry-run` prints it without submitting.
 
 **`public/_redirects` targets must carry the trailing slash** (`/simulator/`, not `/simulator`) — `trailingSlash: 'always'` makes the slashless form 308, turning one redirect into a two-hop chain.
