@@ -13,6 +13,30 @@ const marketsLabels = {
   volumeShares: t(locale, 'markets.volume.shares'),
   volumeUsd: t(locale, 'markets.volume.usd'),
   volumeContracts: t(locale, 'markets.volume.contracts'),
+  search: t(locale, 'markets.search'),
+  categories: {
+    all: t(locale, 'markets.category.all'),
+    stock: t(locale, 'markets.category.stock'),
+    crypto: t(locale, 'markets.category.crypto'),
+    forex: t(locale, 'markets.category.forex'),
+    futures: t(locale, 'markets.category.futures'),
+  },
+  colSymbol: t(locale, 'markets.col.symbol'),
+  colName: t(locale, 'markets.col.name'),
+  colPrice: t(locale, 'markets.col.price'),
+  colChange: t(locale, 'markets.col.change'),
+  colVolume: t(locale, 'markets.col.volume'),
+  colMktCap: t(locale, 'markets.col.mktCap'),
+  colAction: t(locale, 'markets.col.action'),
+  assetNames: {
+    'EUR/USD': t(locale, 'markets.asset.EURUSD'),
+    'GBP/USD': t(locale, 'markets.asset.GBPUSD'),
+    'USD/JPY': t(locale, 'markets.asset.USDJPY'),
+    '/ES': t(locale, 'markets.asset.ES'),
+    '/NQ': t(locale, 'markets.asset.NQ'),
+    '/CL': t(locale, 'markets.asset.CL'),
+    '/GC': t(locale, 'markets.asset.GC'),
+  },
 };
 ---
 
@@ -33,6 +57,30 @@ const marketsLabels = {
       simulatorHref={localizedHref('/simulator/', locale)}
       labels={marketsLabels}
     />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        So nutzen Sie die Marktübersicht
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Die Tabelle umfasst alle 29 simulierten Assets, die Stockade anbietet — 14 Aktien, 8 Krypto-Token, 3 Devisenpaare und 4 Futures-Symbole — mit Kursen, die sich alle 2 Sekunden aktualisieren, sodass Sie beobachten können, wie sich jede Anlageklasse bewegt, ohne einen Trade zu eröffnen.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Filtern und sortieren</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Mit den Kategorie-Tabs grenzen Sie die Tabelle auf eine Anlageklasse ein, mit dem Suchfeld springen Sie direkt zu einem Symbol oder Namen. Klicken Sie auf eine der Spaltenüberschriften Symbol, Kurs oder Veränderung, um nach diesem Feld zu sortieren — ein weiterer Klick kehrt die Reihenfolge um. Die Standardansicht sortiert nach Veränderung, sodass die größten Bewegungen zuerst erscheinen.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Die Spalten lesen</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Kurs und Veränderung erklären sich von selbst, aber Volumen hat je nach Anlageklasse eine andere Einheit — bei Aktien die Anzahl gehandelter Aktien, bei Kryptowährungen und Forex der gehandelte Betrag in US-Dollar und bei Futures die Anzahl der Kontrakte —, weil das die Konvention ist, die der jeweilige Markt tatsächlich verwendet. Marktkapitalisierung gilt nur für Aktien und Kryptowährungen; Devisenpaare und Futures zeigen <span class="font-mono">—</span>, weil sich das Konzept auf keines von beiden übertragen lässt.
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">Direkt aus der Tabelle traden</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        Die Schaltfläche Traden in jeder Zeile öffnet den <a href={localizedHref('/simulator/', locale)} class="text-[#f59e0b] hover:underline">Trading-Simulator</a> mit diesem Symbol bereits ausgewählt, sodass Sie von einer Bewegung, die Ihnen hier auffällt, direkt zur Order übergehen, ohne erneut danach zu suchen. Wenn Sie die Kursbewegung lieber Kerze für Kerze verfolgen möchten, bevor Sie sich auf eine Einschätzung festlegen, spielt der <a href={localizedHref('/chart-simulator/', locale)} class="text-[#f59e0b] hover:underline">Chart-Simulator</a> dieselben Anlageklassen Balken für Balken ab.
+      </p>
+    </section>
   </main>
   <Footer />
 </Layout>

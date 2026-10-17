@@ -458,6 +458,26 @@ const de: Dictionary = {
   'markets.volume.shares': 'Das Volumen ist die Anzahl gehandelter Aktien.',
   'markets.volume.usd': 'Das Volumen ist der gehandelte Betrag in US-Dollar.',
   'markets.volume.contracts': 'Das Volumen ist die Anzahl gehandelter Kontrakte.',
+  'markets.search': 'Symbol oder Name suchen…',
+  'markets.category.all': 'Alle',
+  'markets.category.stock': 'Aktien',
+  'markets.category.crypto': 'Kryptowährungen',
+  'markets.category.forex': 'Forex',
+  'markets.category.futures': 'Futures',
+  'markets.col.symbol': 'Symbol',
+  'markets.col.name': 'Name',
+  'markets.col.price': 'Kurs',
+  'markets.col.change': 'Veränderung',
+  'markets.col.volume': 'Volumen',
+  'markets.col.mktCap': 'Marktkapitalisierung',
+  'markets.col.action': 'Traden',
+  'markets.asset.EURUSD': 'Euro / US-Dollar',
+  'markets.asset.GBPUSD': 'Britisches Pfund / USD',
+  'markets.asset.USDJPY': 'US-Dollar / Yen',
+  'markets.asset.ES': 'S&P-500-Futures',
+  'markets.asset.NQ': 'Nasdaq-100-Futures',
+  'markets.asset.CL': 'Rohöl-Futures',
+  'markets.asset.GC': 'Gold-Futures',
 };
 
 const ko: Dictionary = {
@@ -566,7 +586,6 @@ const it: Dictionary = {
 // Phase A, MarketsView batch: es landed as the checkpoint (2026-10-16).
 const MARKETS_PHASE_A = ['markets.search', 'markets.category.', 'markets.col.', 'markets.asset.'] as const;
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  de: MARKETS_PHASE_A,
   ko: MARKETS_PHASE_A,
   it: MARKETS_PHASE_A,
 };
