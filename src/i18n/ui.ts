@@ -320,6 +320,26 @@ const ja: Dictionary = {
   'markets.volume.shares': '出来高は売買された株数です。',
   'markets.volume.usd': '出来高は取引された米ドル金額です。',
   'markets.volume.contracts': '出来高は取引された契約数です。',
+  'markets.search': '銘柄または名称で検索…',
+  'markets.category.all': 'すべて',
+  'markets.category.stock': '株式',
+  'markets.category.crypto': '暗号資産',
+  'markets.category.forex': 'FX',
+  'markets.category.futures': '先物',
+  'markets.col.symbol': '銘柄',
+  'markets.col.name': '名称',
+  'markets.col.price': '価格',
+  'markets.col.change': '変動率',
+  'markets.col.volume': '出来高',
+  'markets.col.mktCap': '時価総額',
+  'markets.col.action': '取引',
+  'markets.asset.EURUSD': 'ユーロ / 米ドル',
+  'markets.asset.GBPUSD': '英ポンド / USD',
+  'markets.asset.USDJPY': '米ドル / 円',
+  'markets.asset.ES': 'S&P 500先物',
+  'markets.asset.NQ': 'Nasdaq 100先物',
+  'markets.asset.CL': '原油先物',
+  'markets.asset.GC': '金先物',
 };
 
 const fr: Dictionary = {
@@ -526,7 +546,6 @@ const it: Dictionary = {
 // Phase A, MarketsView batch: es landed as the checkpoint (2026-10-16).
 const MARKETS_PHASE_A = ['markets.search', 'markets.category.', 'markets.col.', 'markets.asset.'] as const;
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ja: MARKETS_PHASE_A,
   fr: MARKETS_PHASE_A,
   de: MARKETS_PHASE_A,
   ko: MARKETS_PHASE_A,

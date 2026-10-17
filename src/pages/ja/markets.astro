@@ -13,6 +13,30 @@ const marketsLabels = {
   volumeShares: t(locale, 'markets.volume.shares'),
   volumeUsd: t(locale, 'markets.volume.usd'),
   volumeContracts: t(locale, 'markets.volume.contracts'),
+  search: t(locale, 'markets.search'),
+  categories: {
+    all: t(locale, 'markets.category.all'),
+    stock: t(locale, 'markets.category.stock'),
+    crypto: t(locale, 'markets.category.crypto'),
+    forex: t(locale, 'markets.category.forex'),
+    futures: t(locale, 'markets.category.futures'),
+  },
+  colSymbol: t(locale, 'markets.col.symbol'),
+  colName: t(locale, 'markets.col.name'),
+  colPrice: t(locale, 'markets.col.price'),
+  colChange: t(locale, 'markets.col.change'),
+  colVolume: t(locale, 'markets.col.volume'),
+  colMktCap: t(locale, 'markets.col.mktCap'),
+  colAction: t(locale, 'markets.col.action'),
+  assetNames: {
+    'EUR/USD': t(locale, 'markets.asset.EURUSD'),
+    'GBP/USD': t(locale, 'markets.asset.GBPUSD'),
+    'USD/JPY': t(locale, 'markets.asset.USDJPY'),
+    '/ES': t(locale, 'markets.asset.ES'),
+    '/NQ': t(locale, 'markets.asset.NQ'),
+    '/CL': t(locale, 'markets.asset.CL'),
+    '/GC': t(locale, 'markets.asset.GC'),
+  },
 };
 ---
 
@@ -33,6 +57,30 @@ const marketsLabels = {
       simulatorHref={localizedHref('/simulator/', locale)}
       labels={marketsLabels}
     />
+
+    <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">
+        マーケット概況の使い方
+      </h2>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        このテーブルは、Stockadeが提供する29種類のシミュレーション資産すべて（株式14銘柄、暗号資産トークン8種類、FXペア3つ、先物4銘柄）を網羅しています。価格は2秒ごとに更新されるため、取引を始めなくても各資産クラスの値動きを観察できます。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">絞り込みと並び替え</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        カテゴリーのタブでテーブルを1つの資産クラスに絞り込むか、検索ボックスで銘柄や名称に直接ジャンプできます。「銘柄」「価格」「変動率」のいずれかの列見出しをクリックするとその項目で並び替えられ、もう一度クリックすると順序が逆になります。初期表示は「変動率」順なので、最も大きく動いている資産が最初に表示されます。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">各列の見方</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        「価格」と「変動率」は見たとおりですが、「出来高」は資産クラスによって単位が異なります — 株式は売買された株数、暗号資産とFXは取引された米ドル金額、先物は契約数です。これは各市場で実際に使われている慣習に合わせたものです。「時価総額」は株式と暗号資産にのみ当てはまり、FXペアと先物には<span class="font-mono">—</span>が表示されます。どちらにもこの概念が当てはまらないためです。
+      </p>
+
+      <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">テーブルから取引する</h3>
+      <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
+        各行の「取引」ボタンを押すと、その銘柄が選択された状態で<a href={localizedHref('/simulator/', locale)} class="text-[#f59e0b] hover:underline">トレーディングシミュレーター</a>が開きます。ここで動いている銘柄を見つけたら、探し直すことなくそのまま注文を出せます。判断を下す前に値動きがローソク足1本ずつ展開していく様子を見たい場合は、<a href={localizedHref('/chart-simulator/', locale)} class="text-[#f59e0b] hover:underline">チャートシミュレーター</a>で同じ資産クラスを1本ずつ再生できます。
+      </p>
+    </section>
   </main>
   <Footer />
 </Layout>
