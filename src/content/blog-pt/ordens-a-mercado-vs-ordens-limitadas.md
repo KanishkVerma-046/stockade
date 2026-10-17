@@ -24,13 +24,14 @@ Aquele único clique é a diferença entre os dois tipos de ordem que toda plata
 Isso vai logo no início, não numa nota de rodapé.
 
 As execuções da Stockade carregam quase nenhum atrito. Não há spread entre compra e venda, nenhuma
-execução parcial, e nenhum livro de ordens no simulador de paper trading da Stockade. Uma ordem a mercado é
-executada exatamente no preço da tela. Uma ordem limitada é executada imediatamente no preço que você
-digitar na caixa — ela não espera o mercado alcançar seu nível, não entra em fila, e nunca fica sem
-execução. A única exceção é uma saída de stop-loss ou take-profit: essas são checadas contra um novo preço
-a cada 800 milissegundos e registradas no tick que cruzou seu nível, então elas são executadas um pouco
-além dele em vez de exatamente nele. Todos os preços na Stockade são gerados no seu navegador, então não há
-ambiente nem contraparte com quem negociar.
+execução parcial, e nenhum livro de ordens no simulador de paper trading da Stockade. Uma ordem a
+mercado é executada exatamente no preço da tela. Uma ordem limitada que já é executável é executada
+imediatamente no preço vigente; caso contrário, ela aguarda até que o preço alcance seu nível e então é
+executada por completo no seu preço limite. Ela nunca entra em fila atrás de outras ordens e nunca é
+executada parcialmente. A única exceção é uma saída de stop-loss ou take-profit: essas são checadas
+contra um novo preço a cada 800 milissegundos e registradas no tick que cruzou seu nível, então elas são
+executadas um pouco além dele em vez de exatamente nele. Todos os preços na Stockade são gerados no seu
+navegador, então não há ambiente nem contraparte com quem negociar.
 
 Você ainda pode praticar a **mecânica**: escolher um tipo de ordem antes de clicar, decidir um preço
 limitado com antecedência em vez de improvisar, anexar um stop-loss e um take-profit a uma entrada. Esses
