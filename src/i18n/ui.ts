@@ -1512,7 +1512,34 @@ const ko: Dictionary = {
   'sim.toast.limitSellFilled': '지정가 매도가 {price}에 체결되었습니다',
   'sim.toast.limitBuyCancelled': '지정가 매수가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
   'sim.toast.limitSellCancelled': '지정가 매도가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
+  'chart.library.title': '패턴 라이브러리',
+  'chart.library.short': '라이브러리',
+  'chart.library.toggle': '패턴 라이브러리 표시 전환',
+  'chart.library.count.one': '패턴 {total}개 · {n}개 감지',
+  'chart.library.count.other': '패턴 {total}개 · {n}개 감지',
+  'chart.group.bullishReversal': '강세 반전',
+  'chart.group.bearishReversal': '약세 반전',
+  'chart.group.neutral': '중립 / 망설임',
+  'chart.group.continuation': '지속',
+  'chart.candles.one': '캔들 {n}개',
+  'chart.candles.other': '캔들 {n}개',
+  'chart.found': '차트에서 {n}회 발견',
+  'chart.info.formation': '형성',
+  'chart.info.psychology': '시장 심리',
+  'chart.info.keyRules': '핵심 규칙',
   'chart.info.notGenerated': '이 시뮬레이터의 가격 모델에서는 생성되지 않으므로 차트에 나타나지 않습니다.',
+  'chart.empty.title': '선택된 패턴 없음',
+  'chart.empty.body': '라이브러리에서 패턴을 클릭하거나 차트를 한 캔들씩 진행하세요 — 패턴이 나타나면 자동으로 강조됩니다.',
+  'chart.control.start': '처음으로',
+  'chart.control.stepBack': '뒤로',
+  'chart.control.end': '끝으로',
+  'chart.key.space': '스페이스',
+  'chart.tab.patterns': '패턴',
+  'chart.tab.info': '설명',
+  'chart.detected': '감지됨',
+  'chart.hoverOhlcv': '마우스를 올리면 OHLCV 표시',
+  'chart.footer.patterns.one': '패턴 {n}개',
+  'chart.footer.patterns.other': '패턴 {n}개',
 };
 
 const it: Dictionary = {
@@ -1691,7 +1718,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ko: ['chart.'],
   it: ['chart.'],
 };
 
