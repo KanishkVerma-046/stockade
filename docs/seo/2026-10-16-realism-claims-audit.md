@@ -1,6 +1,6 @@
 # Audit: claims that the product models real markets
 
-**Status: fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`).** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass; row #18 (heatmap colouring) added and fixed 2026-10-17.
+**Status: rows 1–19 fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`); row 20 (chart simulator, added 2026-10-18) is open.** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass; row #18 (heatmap colouring) added and fixed 2026-10-17.
 
 **Trigger:** `025da5e` removed a claim that Stockade's futures were "modeled on CME Group's real contract specifications". The engine has no multipliers, tick sizes or margin. This audit looks for other claims that the product models, replicates or follows real market data, contract specs, exchange behaviour or fills.
 
@@ -283,6 +283,32 @@ Not realism claims, but inaccurate, and found in the same pass. Line numbers are
 | T1 | "Qty (shares)" (`TradingSimulator.tsx:617`) | The unit is "shares" for all 29 symbols, including the 8 crypto tokens, 3 forex pairs and 4 futures | Quantity is a bare multiplier: P&L = price change × qty, no contract multiplier (facts table) | **Fixed (2026-10-18):** en "Quantity", es "Cantidad". The other six locales get the unit-free label in their own Phase A step 4 commits. No page copy quoted the old label |
 | T2 | "{symbol} · 1M" in the price panel and chart overlay (`:592`, `:964`) | Says 1-minute candles. True for the loaded history and for replay, but in live mode a new candle starts every **10 s** | `generateCandles` spaces history 60 s apart; the live loop opens a candle every 10 000 ms (`:291`) | **Fixed (2026-10-18):** "· 1M" shows in replay only; live shows no interval, since its chart mixes 1-minute history with 10-second candles. The home-page hero mockup, which copies the live overlay, drops "· 1M" in all 8 locales. Interval facts are in the realism-fixes facts table |
 | T3 | `/simulator/` "Reading the interface" paragraph, all 8 locales (en `simulator.astro:58-63`) | Mentions "timeframe buttons", which do not exist, and puts the EMA toggles in the top bar (they sit on the chart). Calls the right-hand panel a "running log of every fill", but on desktop the trade log is in the left column, and it lists closing fills only: opening a position adds no row | No timeframe control in either component; `setTrades` is called only when a position closes or shrinks | **Fixed (2026-10-18)** in all 8 locales (`966e7e9` en, then one commit per locale): EMA toggles on the chart, Live / Replay and the symbol selector in the top bar, account and trade history (a row per closed or reduced position) in the left column, price, order ticket and account summary on the right. pt, ja, fr, de, ko and it keep the English tab names their UI still shows; their Phase A step 4 commits rename them |
+
+### 20. ChartSimulator UI strings and chart-simulator copy, checked before the Phase A step 5 translation (added 2026-10-18)
+
+Every English chrome string in `ChartSimulator.tsx` (inventoried for the step 5 es checkpoint) was compared with the code. **No label implies real or historical market data**, and none is false: "{n} patterns" in the library header is the library's size (24 entries), "{n} detected" and the footer's "{n} patterns" count the distinct patterns found in the candles revealed so far, "Found {n}× on chart" counts that pattern's occurrences, and the "detected" toast fires when a newly revealed candle completes one. The pattern-library prose (Phase B) was not checked here.
+
+The chart-simulator facts the strings were checked against (line numbers as of `b1774d0`), which the facts table in `2026-10-16-realism-claims-fixes.md` does not cover (its "1-minute replay" row is the trading simulator's):
+
+| Topic | Verified fact | Source |
+|---|---|---|
+| Price model | A random walk with a slowly drifting trend bias from a hard-coded price per symbol (11 symbols). A new series is generated on load, on every symbol or timeframe change, and by the ↺ button. Nothing is stored. | `generateCandles` :305-326, regeneration effect :798-808, `newChart` :879 |
+| Timeframes | 15m / 1H / 4H / 1D / 1W change only the **candle count** (300 / 200 / 150 / 100 / 80) and the **timestamp spacing**. Per-candle volatility, wicks and volume are the same on every timeframe: a weekly candle moves like a 15-minute one. Nothing is aggregated. | `TIMEFRAMES` :46-52; `generateCandles` uses `deltaMs` only for `time` |
+| Volatility | 0.08% / 0.7% / 0.9% of price per candle for prices under 5 / under 100 / above, by price level only. | :310 |
+| Gaps | **None.** Every candle opens exactly at the previous close. | :315, :323 |
+| Wicks | Each wick is a random fraction of the body: up to 0.8× the body, or up to 2.2× on about 12% of wicks. So the body is always at least ~18.5% of the candle's range (body + 2 × 2.2 × body at most). | :319-321 |
+| Volume | A uniform random draw (50,000–550,000) unrelated to the candle or the timeframe. | :322 |
+| Pattern detection | `detectPatterns` has rules for all 24 library entries, but **9 can never fire** on this generator. Measured over 20,000 generated sessions (3.34 million candles, all 5 timeframes, 5 price levels): Doji, Dragonfly Doji, Gravestone Doji, Piercing Line, Dark Cloud Cover, Bullish Harami, Bearish Harami, Three Inside Up and Three Inside Down were detected **0 times**. A full session shows 5–15 distinct patterns (median 10). | `detectPatterns` :335-430 |
+
+**Why the 9 never fire:** the three dojis need a body ≤ 10% of the range, but the wick model keeps it above ~18.5%. Piercing Line and Dark Cloud Cover need the second candle to open beyond the first's low / high, and the two Haramis (and Three Inside Up/Down, which require a harami) need the second body strictly inside the first; with every open equal to the previous close, neither can happen. The same no-gap rule makes Bullish/Bearish Engulfing and Three White Soldiers / Three Black Crows fire about 20 times per session each, since "opens within the prior body" is always met.
+
+| # | Where | Claim | Code | Status |
+|---|---|---|---|---|
+| C1 | `/chart-simulator/` "What to look for", all 8 locales (en `chart-simulator.astro:69`) | "lists every formation the simulator **recognises** — **Doji**, Hammer, Bullish and Bearish Engulfing, **Harami**, …" — **Partly** | The library lists them, but Doji and Harami are among the 9 patterns the chart can never mark | **Open.** Either fix the generator/detector (behaviour change: gaps or doji-sized bodies) or reword to "lists the formations the simulator looks for". Needs a decision |
+| C2 | ko meta description only (`ko/chart-simulator.astro:9`) | "Doji, Hammer, Engulfing, Morning Star 등 **20개 이상의 패턴을 감지해 표시**하며" ("detects and displays 20+ patterns") — **No** | At most 15 distinct patterns appear in a session, and Doji is never detected. The other 7 descriptions say "Explore 20+ patterns", which the 24-entry library supports | **Open**, with C1 |
+| C3 | "Choosing what to plot", all 8 locales (en `:60-61`) | "the timeframe buttons **re-aggregate the same series** into longer or shorter bars" — **No** | Each timeframe click generates a new random series; nothing is aggregated, and bar size doesn't change volatility | **Open.** Suggested: "the timeframe buttons generate a new series spaced as 15-minute to weekly bars" |
+| C4 | "What to look for", all 8 locales (en `:76-77`) | "volume behind the signal candle separates a genuine turn from noise" — **Partly** | Sound general advice, but here volume is random and unrelated to the candle (same fact as E4/E9), so the habit can't be practised on this chart | **Open.** Suggested: prefix "on a real chart," |
+| C5 | "Running a replay", all 8 locales (en `:52`) | "The refresh button generates a new chart" — minor | The ↺ button is `hidden sm:block`: below 640px there is none, and a new series comes only from switching symbol or timeframe | **Open**, low priority |
 
 ## Related inconsistency (understates rather than overstates)
 
