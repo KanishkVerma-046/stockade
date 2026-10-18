@@ -888,7 +888,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
   const [symOpen,    setSymOpen]    = useState(false);
 
   const playRef       = useRef(false);
-  const prevRevRef    = useRef(0);
+  const prevRevRef    = useRef<{ session: Candle[]; revealed: number }>({ session: [], revealed: 0 });
   const notifTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef   = useRef<ReturnType<typeof setInterval> | null>(null);
   const symRef        = useRef<HTMLDivElement>(null);
@@ -901,7 +901,6 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
     const newSession = generateCandles(tf.candles, sym.basePrice, tf.deltaMs);
     setSession(newSession);
     setRevealed(tf.initial);
-    prevRevRef.current = tf.initial;
     setActiveId(null);
     setNotif(null);
     setResetKey(k => k + 1);
@@ -923,10 +922,13 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
   const activeDef = activeId ? PATTERNS.find(d => d.id === activeId) ?? null : null;
   const maxRevealed = session.length - 1;
 
-  // Detect pattern on new candle reveal
+  // Detect pattern on new candle reveal. A new session (mount, symbol or
+  // timeframe change, ↺) only records its starting point, so nothing is
+  // auto-selected until a candle is revealed after it.
   useEffect(() => {
-    if (revealed <= prevRevRef.current) { prevRevRef.current = revealed; return; }
-    prevRevRef.current = revealed;
+    const prev = prevRevRef.current;
+    prevRevRef.current = { session, revealed };
+    if (session !== prev.session || revealed <= prev.revealed) return;
     const fresh = allPatterns.filter(p => p.endIdx === revealed);
     if (!fresh.length) return;
     const best = fresh.reduce((a, b) => catScore(b.patternId) > catScore(a.patternId) ? b : a, fresh[0]);
@@ -936,7 +938,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
     setNotif({ name: def.name, type: def.type });
     notifTimerRef.current = setTimeout(() => setNotif(null), 2800);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [revealed]);
+  }, [session, revealed]);
 
   // Auto-play
   useEffect(() => {
@@ -980,7 +982,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
   const goToEnd     = useCallback(() => { setPlaying(false); setRevealed(maxRevealed); }, [maxRevealed]);
   const newChart    = useCallback(() => {
     const ns = generateCandles(tf.candles, sym.basePrice, tf.deltaMs);
-    setSession(ns); setRevealed(tf.initial); prevRevRef.current = tf.initial;
+    setSession(ns); setRevealed(tf.initial);
     setActiveId(null); setNotif(null); setResetKey(k => k + 1); setPlaying(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tfId, symbolId]);
