@@ -349,9 +349,10 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
   const labelCase = labelOverrides ? '' : ' capitalize';
   // The first render must match the static HTML, which was rendered at build
   // time with no URL, no localStorage and its own random prices; anything else
-  // is React error #418. So it shows APXL at its base price with no history,
-  // the starting balance and no trades, and the mount effect below loads the
-  // real symbol, history, balance and trades.
+  // is React error #418. So it renders APXL with no history, the starting
+  // balance and no trades, and the mount effect below loads the real symbol,
+  // history, balance and trades. Until then the symbol, price and change show
+  // "—" and no picker button is selected, so a ?symbol= link never flashes APXL.
   const [symbol, setSymbol]     = useState<string>('APXL');
   const [candles, setCandles]   = useState<Candle[]>([]);
   const [balance, setBalance]   = useState(100_000);
@@ -757,18 +758,24 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
   // Replay candles are one minute apart. A live chart has no single interval:
   // one-minute history, then a new candle every 10 s, so it shows none.
   const intervalSuffix = mode === 'replay' ? ' · 1M' : '';
+  // Neutral placeholders until the mount effect has loaded the real symbol.
+  const symbolText = hydrated ? symbol + intervalSuffix : '—';
+  const priceText  = hydrated ? symPrefix(symbol) + fmtSym(currentPrice, symbol) : '—';
+  const changeColor = !hydrated ? 'text-[var(--c-text-subtle)]' : priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]';
 
   // ── Shared sub-renders ─────────────────────────────────────────────────────
 
   const pricePanelJSX = (
     <div className="px-4 pt-4 pb-3 border-b border-[var(--c-border)] shrink-0">
-      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{symbol}{intervalSuffix}</div>
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{symbolText}</div>
       <div className="text-[26px] font-mono font-bold text-[var(--c-text)] leading-none">
-        {symPrefix(symbol)}{fmtSym(currentPrice, symbol)}
+        {priceText}
       </div>
-      <div className={`mt-1.5 text-[13px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-        {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)}
-        <span className="ml-1 text-[12px]">({fmtPct(pricePct)})</span>
+      <div className={`mt-1.5 text-[13px] font-mono ${changeColor}`}>
+        {hydrated ? <>
+          {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)}
+          <span className="ml-1 text-[12px]">({fmtPct(pricePct)})</span>
+        </> : '—'}
       </div>
     </div>
   );
@@ -983,7 +990,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
               {group.syms.map(sym => (
                 <button key={sym} onClick={() => changeSymbol(sym)}
                   className={`px-2 py-1 rounded text-[11px] font-mono whitespace-nowrap transition-colors ${
-                    sym === symbol
+                    hydrated && sym === symbol
                       ? 'bg-[#f59e0b] text-[#0a0a0a] font-semibold'
                       : 'text-[var(--c-text-muted)] hover:text-[var(--c-text)] hover:bg-[var(--c-bg-muted)]'
                   }`}>{sym}</button>
@@ -1134,9 +1141,9 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
             </div>
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
               style={{ backgroundColor: 'var(--c-overlay)' }}>
-              <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbol}{intervalSuffix}</div>
-              <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</div>
-              <div className={`text-[12px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>{fmtPct(pricePct)}</div>
+              <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbolText}</div>
+              <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{priceText}</div>
+              <div className={`text-[12px] font-mono ${changeColor}`}>{hydrated ? fmtPct(pricePct) : '—'}</div>
             </div>
             {/* Replay hint */}
             {mode === 'replay' && (

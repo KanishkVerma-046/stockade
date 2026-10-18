@@ -126,7 +126,7 @@ font-mono:   JetBrains Mono  ← all prices, tickers, numbers
 - Non-marketable limits rest in `pending` and fill via an effect on `currentPrice`, at the **limit price**, not the tick price. Marketable limits fill at once at the prevailing price
 - `handledPendingRef` ids stay marked after filling — clearing them reopens a double-fill window under StrictMode's double-invoked effects
 - Resting orders are cleared on symbol change and any live/replay switch, and are never persisted: the price series is regenerated on mount
-- The first render must match the build-time HTML (else React #418): APXL at its base price, no candles, starting balance, no trades. A mount effect loads `?symbol=`, the random history and the stored balance/trades; keep anything random or read from the URL/localStorage out of `useState` initialisers
+- The first render must match the build-time HTML (else React #418): APXL with no candles, starting balance, no trades, and "—" for the symbol, price and change with no picker button selected (gated on `hydrated`), so a `?symbol=` link never flashes APXL. A mount effect loads `?symbol=`, the random history and the stored balance/trades; keep anything random or read from the URL/localStorage out of `useState` initialisers
 - Fill predicates live in `src/lib/limit-orders.ts` so they are testable without a JSX transform
 
 ## Development
