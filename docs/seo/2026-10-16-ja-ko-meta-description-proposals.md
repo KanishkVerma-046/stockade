@@ -157,8 +157,8 @@
 
 - **Source:** `src/pages/ja/chart-simulator.astro`
 - **Current (89):** 無料のインタラクティブなチャートシミュレーターでローソク足パターンを学ぼう。Doji、Hammer、Engulfing、Morning Starなど20種類以上のパターンを解説。
-- **Proposed (153):** 無料のローソク足リプレイツールで、パターンがローソク足1本ずつ形成される過程を見てみよう。Doji、Hammer、Engulfing、Morning Starな｜ど20種類以上のパターンを検出してチャート上にマーク。1倍〜10倍の再生速度、EMA・VWAPオーバーレイ、出来高・RSI・MACDパネルに対応。
-- **Note:** Mirrors the live /ko/chart-simulator/ description.
+- **Proposed (152):** 無料のローソク足リプレイツールで、パターンがローソク足1本ずつ形成される過程を見てみよう。Doji、Hammer、Engulfing、Morning Starな｜ど24種類のパターンを、解説付きでじっくり学べます。1倍〜10倍の再生速度、EMA・VWAPオーバーレイ、出来高・RSI・MACDパネルに対応。
+- **Note:** Mirrors the live /ko/chart-simulator/ description. **Revised 2026-10-18** (realism audit row 20, C2): the earlier proposal (153) said 「20種類以上のパターンを検出してチャート上にマーク」, copying the ko claim that the chart detects 20+ patterns. At most 15 distinct patterns appear in a session and 9 of the 24 can never be detected, so it now says the library has 24 patterns to learn, as ko does since the same date.
 
 ### `/ja/contact/`
 

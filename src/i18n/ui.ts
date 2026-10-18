@@ -1400,6 +1400,7 @@ const ko: Dictionary = {
   'sim.toast.limitSellFilled': '지정가 매도가 {price}에 체결되었습니다',
   'sim.toast.limitBuyCancelled': '지정가 매수가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
   'sim.toast.limitSellCancelled': '지정가 매도가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
+  'chart.info.notGenerated': '이 시뮬레이터의 가격 모델에서는 생성되지 않으므로 차트에 나타나지 않습니다.',
 };
 
 const it: Dictionary = {
