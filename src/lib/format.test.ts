@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { format, plural } from './format';
+import { format, formatMoney, formatSignedMoney, plural } from './format';
 
 describe('format', () => {
   it('replaces named placeholders', () => {
@@ -71,5 +71,30 @@ describe('plural', () => {
   it('passes extra vars through alongside {n}', () => {
     const cell = { one: '{n} trade · {wr}% win', other: '{n} trades · {wr}% win' };
     expect(plural('en', 3, cell, { wr: 67 })).toBe('3 trades · 67% win');
+  });
+});
+
+describe('formatSignedMoney', () => {
+  it('prefixes a gain with + and a loss with -, as AnalyticsDashboard shows P&L', () => {
+    expect(formatSignedMoney(1250)).toBe('+$1,250.00');
+    expect(formatSignedMoney(-730.4)).toBe('-$730.40');
+  });
+
+  it('treats zero as a gain', () => {
+    expect(formatSignedMoney(0)).toBe('+$0.00');
+  });
+
+  it('keeps en-US grouping and two decimals in every locale', () => {
+    expect(formatSignedMoney(-1234567.891)).toBe('-$1,234,567.89');
+  });
+});
+
+describe('formatMoney', () => {
+  it('has no sign for a positive amount', () => {
+    expect(formatMoney(100000)).toBe('$100,000.00');
+  });
+
+  it('keeps the minus on a negative amount instead of dropping it', () => {
+    expect(formatMoney(-512.5)).toBe('-$512.50');
   });
 });

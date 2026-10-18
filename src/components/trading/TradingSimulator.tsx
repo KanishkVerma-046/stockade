@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import TradingChart from './TradingChart';
 import { $activeTick } from '../../stores/priceStore';
 import { isMarketable, isTriggered, type PendingOrder } from '../../lib/limit-orders';
-import { format, plural, type PluralForms } from '../../lib/format';
+import { format, formatMoney as fmtMoney, formatSignedMoney, plural, type PluralForms } from '../../lib/format';
 
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
@@ -283,9 +283,6 @@ function getBasePrice(sym: string): number {
 
 function fmt2(n: number) { return n.toFixed(2); }
 function fmtPct(n: number) { return (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
-function fmtMoney(n: number) {
-  return '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
 function fmtSym(price: number, sym: string): string {
   if (price < 1 || sym === 'NXVR') return price.toFixed(4);
   if (sym === 'EUR/USD' || sym === 'GBP/USD') return price.toFixed(4);
@@ -829,7 +826,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
       <div className="border-t border-[var(--c-border)] pt-3 mt-3 space-y-1">
         {[
           { label: labels.equity, value: fmtMoney(equity),  color: equity >= 100000 ? '#22c55e' : '#ef4444' },
-          { label: labels.pnl,    value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+          { label: labels.pnl,    value: formatSignedMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
           { label: labels.winRate, value: winRate.toFixed(0) + '%', color: '#f59e0b' },
         ].map(s => (
           <div key={s.label} className="flex justify-between items-center py-0.5">
@@ -880,7 +877,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
           </div>
           <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
           <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-            {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
+            {formatSignedMoney(position.unrealizedPnl)}
           </div>
         </div>
       )}
@@ -910,7 +907,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
               </div>
               {t.pnl !== null && (
                 <div className={`mt-0.5 ${t.pnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-                  {t.pnl >= 0 ? '+' : ''}{fmtMoney(t.pnl)}
+                  {formatSignedMoney(t.pnl)}
                 </div>
               )}
             </div>
@@ -1059,7 +1056,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
             {[
               { label: labels.equity,   value: fmtMoney(equity),   color: equity >= 100000 ? '#22c55e' : '#ef4444' },
               { label: labels.cash,     value: fmtMoney(balance),  color: 'var(--c-text)' },
-              { label: labels.totalPnl, value: (totalPnl >= 0 ? '+' : '') + fmtMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
+              { label: labels.totalPnl, value: formatSignedMoney(totalPnl), color: totalPnl >= 0 ? '#22c55e' : '#ef4444' },
             ].map(s => (
               <div key={s.label} className="bg-[var(--c-bg-muted)] rounded p-2.5 border border-[var(--c-border)]">
                 <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider mb-1">{s.label}</div>
@@ -1074,7 +1071,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
                 </div>
                 <div className="text-[11px] font-mono text-[var(--c-text-muted)]">@ {symPrefix(symbol)}{fmtSym(position.avgPrice, symbol)}</div>
                 <div className={`text-[13px] font-mono mt-1 ${position.unrealizedPnl >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>
-                  {position.unrealizedPnl >= 0 ? '+' : ''}{fmtMoney(position.unrealizedPnl)}
+                  {formatSignedMoney(position.unrealizedPnl)}
                 </div>
               </div>
             )}

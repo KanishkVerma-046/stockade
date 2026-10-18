@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { format, plural, type PluralForms } from '../../lib/format';
+import { format, formatSignedMoney as fmtMoney, plural, type PluralForms } from '../../lib/format';
 import { averageLoss } from '../../lib/trade-stats';
 
 interface StoredTrade {
@@ -24,9 +24,6 @@ function loadBalance(): number {
   try { const raw = localStorage.getItem('stockade_balance'); return raw ? parseFloat(raw) : STARTING_BALANCE; } catch { return STARTING_BALANCE; }
 }
 
-function fmtMoney(n: number) {
-  return (n >= 0 ? '+$' : '-$') + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
 
 function fmtDuration(ms: number, labels: Labels): string {
   const mins = Math.round(ms / 60_000);

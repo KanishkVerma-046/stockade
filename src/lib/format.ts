@@ -28,3 +28,16 @@ export function plural(locale: string, n: number, forms: PluralForms, vars: Form
   const category = new Intl.PluralRules(locale).select(n);
   return format(forms[category] ?? forms.other, { ...vars, n });
 }
+
+// Money stays en-US ($1,234.56) in every locale (Phase A decision b).
+const usd = (n: number) => '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+/** A balance: no sign when positive, a leading minus when negative. */
+export function formatMoney(n: number): string {
+  return (n < 0 ? '-' : '') + usd(n);
+}
+
+/** A P&L: always signed, so a loss reads as one without its colour. */
+export function formatSignedMoney(n: number): string {
+  return (n >= 0 ? '+' : '-') + usd(n);
+}
