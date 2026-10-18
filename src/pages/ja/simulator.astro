@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
+
+const locale = 'ja' as const;
+const simulatorLabels = buildSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -17,7 +21,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
       <span class="font-mono text-[var(--c-text)]">$100,000</span>の仮想資金で、29種類のシミュレーション株式・暗号資産トークン・FX・先物を取引しよう — 成行・指値注文、逆指値・利益確定、ライブローソク足。登録不要、実際のお金は使いません。<a href="#how-to-use" class="text-[#f59e0b] hover:underline">使い方はこちら ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load />
+      <TradingSimulator client:load locale={locale} labels={simulatorLabels} />
     </div>
   </div>
 
@@ -52,14 +56,14 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             画面の見方
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            チャートは画面の中央に表示され、右上の角にEMA 9・EMA 20・EMA 50オーバーレイの切り替え、下部に出来高ヒストグラムがあります。上部のバーには「Live / Replay」の切り替えと銘柄セレクター — 株式・暗号資産・FX・先物にグループ分けされた29種類のシミュレーション銘柄 — があります。左側の列はあなたの口座です: 資産、現金残高、総損益、含み損益付きの保有ポジション、そして取引履歴が表示されます。取引履歴にはポジションを決済または縮小するたびに1行追加され、新規に建てただけでは追加されません。右側の列には現在価格と注文パネルがあり、その下に資産・損益・勝率と待機中の注文が表示されます。画面幅が狭い場合、これらの列は「Chart」「Order」「Trades」タブに折りたたまれます。
+            チャートは画面の中央に表示され、右上の角にEMA 9・EMA 20・EMA 50オーバーレイの切り替え、下部に出来高ヒストグラムがあります。上部のバーには「Live / Replay」の切り替えと銘柄セレクター — 株式・暗号資産・FX・先物にグループ分けされた29種類のシミュレーション銘柄 — があります。左側の列はあなたの口座です: 資産、現金残高、総損益、含み損益付きの保有ポジション、そして取引履歴が表示されます。取引履歴にはポジションを決済または縮小するたびに1行追加され、新規に建てただけでは追加されません。右側の列には現在価格と注文パネルがあり、その下に資産・損益・勝率と待機中の注文が表示されます。画面幅が狭い場合、これらの列は「チャート」「注文」「取引」タブに折りたたまれます。
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             注文を出す
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            数量を入力し、注文タイプを選びます。成行注文は最終取引価格で即座に約定します。指値注文は市場がその価格に到達するまで待機します — 現在価格より下に置いた買い指値は価格が下落してきたときに、現在価格より上に置いた売り指値は価格が上昇してきたときに約定します — 待機中の注文は<strong class="text-[var(--c-text)] font-semibold">Working Orders</strong>に表示され、そこでキャンセルできます。（<a href="/ja/blog/nariyuki-vs-sashine/" class="text-[#f59e0b] hover:underline">成行注文 vs. 指値注文</a>で、それぞれの使い分けを詳しく解説しています。）市場の反対側にすでに約定可能な状態で置かれた指値注文は、現在の最良価格で即座に約定します。任意で設定できる<a href="/ja/blog/gyaku-sashine-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">逆指値</a>と利益確定は<a href="/ja/blog/oco-bracket-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">OCOブラケット</a>として機能します — 価格が先に到達した方でポジションが決済され、もう一方はキャンセルされます。<strong class="text-[var(--c-text)] font-semibold">Buy</strong>で買いポジションを、<strong class="text-[var(--c-text)] font-semibold">Sell</strong>で売りポジションを開き、<strong class="text-[var(--c-text)] font-semibold">Flatten</strong>で現在価格ですべて決済します。ページにフォーカスがある状態なら、キーボードでも操作できます: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd>で買い、<kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd>で売り、<kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd>でポジションを決済します。
+            数量を入力し、注文タイプを選びます。成行注文は最終取引価格で即座に約定します。指値注文は市場がその価格に到達するまで待機します — 現在価格より下に置いた買い指値は価格が下落してきたときに、現在価格より上に置いた売り指値は価格が上昇してきたときに約定します — こうした注文は<strong class="text-[var(--c-text)] font-semibold">待機中の注文</strong>パネルに表示され、そこでキャンセルできます。（<a href="/ja/blog/nariyuki-vs-sashine/" class="text-[#f59e0b] hover:underline">成行注文 vs. 指値注文</a>で、それぞれの使い分けを詳しく解説しています。）市場の反対側にすでに約定可能な状態で置かれた指値注文は、現在の最良価格で即座に約定します。任意で設定できる<a href="/ja/blog/gyaku-sashine-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">逆指値</a>と利益確定は<a href="/ja/blog/oco-bracket-chuumon-no-kaisetsu/" class="text-[#f59e0b] hover:underline">OCOブラケット</a>として機能します — 価格が先に到達した方でポジションが決済され、もう一方はキャンセルされます。<strong class="text-[var(--c-text)] font-semibold">Buy</strong>で買いポジションを、<strong class="text-[var(--c-text)] font-semibold">Sell</strong>で売りポジションを開き、<strong class="text-[var(--c-text)] font-semibold">Flatten</strong>で現在価格ですべて決済します。ページにフォーカスがある状態なら、キーボードでも操作できます: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd>で買い、<kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd>で売り、<kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd>でポジションを決済します。
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
