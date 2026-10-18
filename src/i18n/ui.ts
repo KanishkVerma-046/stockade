@@ -1127,7 +1127,34 @@ const fr: Dictionary = {
   'sim.toast.limitSellFilled': 'Vente à cours limité exécutée à {price}',
   'sim.toast.limitBuyCancelled': 'Achat à cours limité annulé à {price} — solde insuffisant.',
   'sim.toast.limitSellCancelled': 'Vente à cours limité annulée à {price} — solde insuffisant.',
+  'chart.library.title': 'Bibliothèque de figures',
+  'chart.library.short': 'Bibliothèque',
+  'chart.library.toggle': 'Afficher ou masquer la bibliothèque de figures',
+  'chart.library.count.one': '{total} figures · {n} détectée',
+  'chart.library.count.other': '{total} figures · {n} détectées',
+  'chart.group.bullishReversal': 'Retournement haussier',
+  'chart.group.bearishReversal': 'Retournement baissier',
+  'chart.group.neutral': 'Neutre / Indécision',
+  'chart.group.continuation': 'Continuation',
+  'chart.candles.one': '{n} chandelier',
+  'chart.candles.other': '{n} chandeliers',
+  'chart.found': 'Apparaît {n}× sur le graphique',
+  'chart.info.formation': 'Formation',
+  'chart.info.psychology': 'Psychologie de marché',
+  'chart.info.keyRules': 'Règles clés',
   'chart.info.notGenerated': "Le modèle de prix de ce simulateur ne génère pas cette figure, qui n'apparaît donc jamais sur le graphique.",
+  'chart.empty.title': 'Aucune figure sélectionnée',
+  'chart.empty.body': "Cliquez sur une figure de la bibliothèque ou avancez dans le graphique — les figures sont mises en évidence automatiquement dès qu'elles apparaissent.",
+  'chart.control.start': 'Aller au début',
+  'chart.control.stepBack': 'Reculer',
+  'chart.control.end': 'Aller à la fin',
+  'chart.key.space': 'Espace',
+  'chart.tab.patterns': 'Figures',
+  'chart.tab.info': 'Info',
+  'chart.detected': 'détectée',
+  'chart.hoverOhlcv': 'Survolez pour voir OHLCV',
+  'chart.footer.patterns.one': '{n} figure',
+  'chart.footer.patterns.other': '{n} figures',
 };
 
 const de: Dictionary = {
@@ -1637,7 +1664,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  fr: ['chart.'],
   de: ['chart.'],
   ko: ['chart.'],
   it: ['chart.'],

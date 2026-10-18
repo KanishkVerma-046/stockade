@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { chartSimulatorLabels as buildChartSimulatorLabels } from '../../i18n/chart-simulator-labels';
+
+const locale = 'fr' as const;
+const chartSimulatorLabels = buildChartSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -10,7 +14,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
   alternates={CHART_SIMULATOR_ALTERNATES}
 >
   <h1 class="sr-only">Simulateur de figures en chandeliers</h1>
-  <ChartSimulator client:load />
+  <ChartSimulator client:load locale={locale} labels={chartSimulatorLabels} />
 
   <section
     slot="below"
@@ -57,7 +61,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             Ce qu'il faut observer
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Le panneau <strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong> à gauche (l'onglet <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> sur les écrans étroits) réunit 24 figures à étudier — Doji, Hammer, Engulfing haussier et baissier, Harami, Morning et Evening Star, Three White Soldiers, sommets et creux en Tweezer, et bien d'autres (<a href="/fr/blog/comment-lire-les-graphiques-en-chandeliers/" class="text-[#f59e0b] hover:underline">comment lire un graphique en chandeliers</a> détaille l'anatomie de chacune). Certaines ne peuvent pas se former dans le modèle de prix de ce simulateur, car chaque chandelier ouvre là où le précédent a clôturé et les corps ne sont jamais minuscules: les trois figures Doji, Piercing Line, Dark Cloud Cover, les deux Harami et Three Inside Up et Down n'apparaissent jamais sur le graphique, et leur explication le signale. Cliquez sur une figure pour ne mettre en évidence que ses occurrences, ou cliquez sur un marqueur du graphique pour ouvrir son explication, incluant la psychologie de marché derrière la configuration et ce qui la confirme ou l'invalide. L'habitude la plus utile: mettre en pause sur un marqueur, prédire le prochain chandelier, puis avancer et vérifier. Le contexte compte plus que la forme — une figure de retournement n'a de sens qu'après une véritable tendance. Sur un vrai graphique, le volume derrière le chandelier signal aide aussi à distinguer un retournement réel du bruit. Ici, le volume est un nombre aléatoire par chandelier, donc cette vérification se fait sur les marchés réels, pas sur ce graphique.
+            Le panneau <strong class="text-[var(--c-text)] font-semibold">Bibliothèque de figures</strong> à gauche (l'onglet <strong class="text-[var(--c-text)] font-semibold">Figures</strong> sur les écrans étroits) réunit 24 figures à étudier — Doji, Hammer, Engulfing haussier et baissier, Harami, Morning et Evening Star, Three White Soldiers, sommets et creux en Tweezer, et bien d'autres (<a href="/fr/blog/comment-lire-les-graphiques-en-chandeliers/" class="text-[#f59e0b] hover:underline">comment lire un graphique en chandeliers</a> détaille l'anatomie de chacune). Certaines ne peuvent pas se former dans le modèle de prix de ce simulateur, car chaque chandelier ouvre là où le précédent a clôturé et les corps ne sont jamais minuscules: les trois figures Doji, Piercing Line, Dark Cloud Cover, les deux Harami et Three Inside Up et Down n'apparaissent jamais sur le graphique, et leur explication le signale. Cliquez sur une figure pour ne mettre en évidence que ses occurrences, ou cliquez sur un marqueur du graphique pour ouvrir son explication, incluant la psychologie de marché derrière la configuration et ce qui la confirme ou l'invalide. L'habitude la plus utile: mettre en pause sur un marqueur, prédire le prochain chandelier, puis avancer et vérifier. Le contexte compte plus que la forme — une figure de retournement n'a de sens qu'après une véritable tendance. Sur un vrai graphique, le volume derrière le chandelier signal aide aussi à distinguer un retournement réel du bruit. Ici, le volume est un nombre aléatoire par chandelier, donc cette vérification se fait sur les marchés réels, pas sur ce graphique.
           </p>
         </div>
       </details>
