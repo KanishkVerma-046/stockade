@@ -810,7 +810,13 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     if (!candleRef.current || !volRef.current || candles.length === 0) return;
     const norm = normalize(candles);
     const forceReset = resetKey !== undefined && resetKey !== prevKeyRef.current;
-    if (forceReset) {
+    const last = norm[norm.length - 1];
+    // Stepping back (←, ◀, ⏮) leaves fewer candles. update() can only append or
+    // replace the newest bar and throws on an older time, so the shorter series
+    // is set in full instead, keeping the current view.
+    const shown = candleRef.current.data();
+    const steppedBack = shown.length > 0 && toSecs(last.time) < (shown[shown.length - 1].time as number);
+    if (forceReset || steppedBack) {
       prevKeyRef.current = resetKey;
       candleRef.current.setData(norm.map(c => ({ time: toSecs(c.time), open: c.open, high: c.high, low: c.low, close: c.close })));
       volRef.current.setData(norm.map(c => ({ time: toSecs(c.time), value: c.volume, color: c.close >= c.open ? '#22c55e28' : '#ef444428' })));
@@ -819,9 +825,8 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       rsiRef.current?.setData(calcRSI(norm));
       const { macd, signal, hist } = calcMACD(norm);
       macdLineRef.current?.setData(macd); macdSigRef.current?.setData(signal); macdHistRef.current?.setData(hist);
-      chartRef.current?.timeScale().fitContent();
+      if (forceReset) chartRef.current?.timeScale().fitContent();
     } else {
-      const last = norm[norm.length - 1];
       candleRef.current.update({ time: toSecs(last.time), open: last.open, high: last.high, low: last.low, close: last.close });
       volRef.current.update({ time: toSecs(last.time), value: last.volume, color: last.close >= last.open ? '#22c55e28' : '#ef444428' });
       vwapRef.current?.setData(calcVWAP(norm));
