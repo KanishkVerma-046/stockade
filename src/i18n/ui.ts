@@ -161,6 +161,7 @@ export type UiKey =
   | 'chart.library.title'
   | 'chart.library.short'
   | 'chart.library.toggle'
+  | 'chart.library.count.zero' // optional, no English: read with tOptional()
   | 'chart.library.count.one'
   | 'chart.library.count.other'
   | 'chart.group.bullishReversal'
@@ -184,6 +185,7 @@ export type UiKey =
   | 'chart.tab.info'
   | 'chart.detected'
   | 'chart.hoverOhlcv'
+  | 'chart.footer.patterns.zero' // optional, no English: read with tOptional()
   | 'chart.footer.patterns.one'
   | 'chart.footer.patterns.other';
 
@@ -739,7 +741,36 @@ const pt: Dictionary = {
   'sim.toast.limitSellFilled': 'Venda limitada executada a {price}',
   'sim.toast.limitBuyCancelled': 'Compra limitada cancelada a {price} — saldo insuficiente.',
   'sim.toast.limitSellCancelled': 'Venda limitada cancelada a {price} — saldo insuficiente.',
+  'chart.library.title': 'Biblioteca de padrões',
+  'chart.library.short': 'Biblioteca',
+  'chart.library.toggle': 'Mostrar ou ocultar a biblioteca de padrões',
+  'chart.library.count.zero': '{total} padrões · {n} detectados',
+  'chart.library.count.one': '{total} padrões · {n} detectado',
+  'chart.library.count.other': '{total} padrões · {n} detectados',
+  'chart.group.bullishReversal': 'Reversão de alta',
+  'chart.group.bearishReversal': 'Reversão de baixa',
+  'chart.group.neutral': 'Neutro / Indecisão',
+  'chart.group.continuation': 'Continuação',
+  'chart.candles.one': '{n} vela',
+  'chart.candles.other': '{n} velas',
+  'chart.found': 'Aparece {n}× no gráfico',
+  'chart.info.formation': 'Formação',
+  'chart.info.psychology': 'Psicologia de mercado',
+  'chart.info.keyRules': 'Regras-chave',
   'chart.info.notGenerated': 'O modelo de preços deste simulador não o gera, então ele nunca aparece no gráfico.',
+  'chart.empty.title': 'Nenhum padrão selecionado',
+  'chart.empty.body': 'Clique em um padrão da biblioteca ou avance pelo gráfico — os padrões são destacados automaticamente conforme aparecem.',
+  'chart.control.start': 'Ir para o início',
+  'chart.control.stepBack': 'Voltar',
+  'chart.control.end': 'Ir para o fim',
+  'chart.key.space': 'Espaço',
+  'chart.tab.patterns': 'Padrões',
+  'chart.tab.info': 'Info',
+  'chart.detected': 'detectado',
+  'chart.hoverOhlcv': 'Passe o cursor para ver OHLCV',
+  'chart.footer.patterns.zero': '{n} padrões',
+  'chart.footer.patterns.one': '{n} padrão',
+  'chart.footer.patterns.other': '{n} padrões',
 };
 
 const ja: Dictionary = {
@@ -1579,7 +1610,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  pt: ['chart.'],
   ja: ['chart.'],
   fr: ['chart.'],
   de: ['chart.'],

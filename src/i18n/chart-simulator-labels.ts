@@ -1,4 +1,4 @@
-import { t } from './ui';
+import { t, tOptional } from './ui';
 import type { Locale } from './locales';
 
 // The ChartSimulator `labels` prop for a translated /xx/chart-simulator/ page,
@@ -9,11 +9,15 @@ import type { Locale } from './locales';
 // keys, so each locale says them one way across both simulators.
 export function chartSimulatorLabels(locale: Locale) {
   const space = t(locale, 'chart.key.space');
+  // Optional exact-0 forms, for locales whose CLDR "one" covers 0 (pt).
+  const libraryCountZero = tOptional(locale, 'chart.library.count.zero');
+  const footerPatternsZero = tOptional(locale, 'chart.footer.patterns.zero');
   return {
     libraryTitle: t(locale, 'chart.library.title'),
     libraryShort: t(locale, 'chart.library.short'),
     libraryToggleTitle: t(locale, 'chart.library.toggle'),
     libraryCount: {
+      ...(libraryCountZero && { zero: libraryCountZero }),
       one: t(locale, 'chart.library.count.one'),
       other: t(locale, 'chart.library.count.other'),
     },
@@ -49,6 +53,7 @@ export function chartSimulatorLabels(locale: Locale) {
     keyHint: `${space} · ← →`,
     hoverOhlcv: t(locale, 'chart.hoverOhlcv'),
     footerPatterns: {
+      ...(footerPatternsZero && { zero: footerPatternsZero }),
       one: t(locale, 'chart.footer.patterns.one'),
       other: t(locale, 'chart.footer.patterns.other'),
     },
