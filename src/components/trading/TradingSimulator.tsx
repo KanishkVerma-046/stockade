@@ -735,12 +735,15 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
   const winRate   = trades.length ? (winTrades.length / trades.length) * 100 : 0;
   const slVal     = parseFloat(order.stopLoss);
   const tpVal     = parseFloat(order.takeProfit);
+  // Replay candles are one minute apart. A live chart has no single interval:
+  // one-minute history, then a new candle every 10 s, so it shows none.
+  const intervalSuffix = mode === 'replay' ? ' · 1M' : '';
 
   // ── Shared sub-renders ─────────────────────────────────────────────────────
 
   const pricePanelJSX = (
     <div className="px-4 pt-4 pb-3 border-b border-[var(--c-border)] shrink-0">
-      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{symbol} · 1M</div>
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{symbol}{intervalSuffix}</div>
       <div className="text-[26px] font-mono font-bold text-[var(--c-text)] leading-none">
         {symPrefix(symbol)}{fmtSym(currentPrice, symbol)}
       </div>
@@ -1112,7 +1115,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
             </div>
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
               style={{ backgroundColor: 'var(--c-overlay)' }}>
-              <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbol} · 1M</div>
+              <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbol}{intervalSuffix}</div>
               <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{symPrefix(symbol)}{fmtSym(currentPrice, symbol)}</div>
               <div className={`text-[12px] font-mono ${priceChange >= 0 ? 'text-[#22c55e]' : 'text-[#ef4444]'}`}>{fmtPct(pricePct)}</div>
             </div>
