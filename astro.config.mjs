@@ -10,7 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, toSitemapLocaleMap } from './src/i18n/locales.ts';
 import { buildSiblingMap, findStaleLinks } from './src/lib/localized-links.ts';
 import { findLiteralBold } from './src/lib/literal-markdown.ts';
-import { uiCoverage } from './src/lib/ui-coverage.ts';
+import { coverageStatus, uiCoverage } from './src/lib/ui-coverage.ts';
 import { translations, UI_PENDING } from './src/i18n/ui.ts';
 
 // Non-default locale codes, for stripping the locale prefix off a sitemap
@@ -156,7 +156,7 @@ function uiCoverageCheck() {
       'astro:build:start': ({ logger }) => {
         const reports = uiCoverage(translations, DEFAULT_LOCALE, UI_PENDING);
         for (const r of reports) {
-          const parts = [r.complete ? 'complete' : `partial (${r.pending.length} pending)`];
+          const parts = [coverageStatus(r)];
           if (r.extra.length) parts.push(`${r.extra.length} key(s) not in en: ${r.extra.join(', ')}`);
           logger.info(`${r.locale}: ${parts.join('; ')}${r.pending.length ? ' — ' + r.pending.join(', ') : ''}`);
         }

@@ -40,3 +40,16 @@ export function uiCoverage(
       };
     });
 }
+
+/**
+ * The one-word status the build log prints for a locale. A locale with
+ * violations is "incomplete" whether or not it is pending, so the log never
+ * calls complete the locale that is failing the build.
+ */
+export function coverageStatus(r: CoverageReport): string {
+  if (r.violations.length) {
+    const pending = r.pending.length ? `, ${r.pending.length} pending` : '';
+    return `incomplete (${r.violations.length} missing${pending})`;
+  }
+  return r.complete ? 'complete' : `partial (${r.pending.length} pending)`;
+}

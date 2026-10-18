@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { uiCoverage } from './ui-coverage';
+import { coverageStatus, uiCoverage } from './ui-coverage';
 
 const en = { 'nav.home': 'Home', 'markets.search': 'Search', 'markets.col.price': 'Price' };
 
@@ -39,5 +39,27 @@ describe('uiCoverage', () => {
   it('does not report an optional zero plural form as extra', () => {
     const [r] = uiCoverage({ en, pt: { ...en, 'analytics.closedTrades.zero': 'Nenhuma' } }, 'en', {});
     expect(r).toMatchObject({ complete: true, violations: [], extra: [] });
+  });
+});
+
+describe('coverageStatus', () => {
+  it('calls a locale with every key complete', () => {
+    const [r] = uiCoverage({ en, es: { ...en } }, 'en', {});
+    expect(coverageStatus(r)).toBe('complete');
+  });
+
+  it('calls a locale that fails the build incomplete, not complete, even when it is not pending', () => {
+    const [r] = uiCoverage({ en, es: { 'nav.home': 'Inicio' } }, 'en', {});
+    expect(coverageStatus(r)).toBe('incomplete (2 missing)');
+  });
+
+  it('counts the allowed keys of a failing pending locale separately', () => {
+    const [r] = uiCoverage({ en, pt: { 'markets.search': 'Buscar' } }, 'en', { pt: ['markets.col.'] });
+    expect(coverageStatus(r)).toBe('incomplete (1 missing, 1 pending)');
+  });
+
+  it('calls a pending locale with no violations partial', () => {
+    const [r] = uiCoverage({ en, pt: { 'nav.home': 'Início' } }, 'en', { pt: ['markets.'] });
+    expect(coverageStatus(r)).toBe('partial (2 pending)');
   });
 });
