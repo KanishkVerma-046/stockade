@@ -903,6 +903,7 @@ const ja: Dictionary = {
   'sim.toast.limitSellFilled': '売り指値が{price}で約定しました',
   'sim.toast.limitBuyCancelled': '買い指値を{price}でキャンセルしました — 残高不足です。',
   'sim.toast.limitSellCancelled': '売り指値を{price}でキャンセルしました — 残高不足です。',
+  'chart.info.notGenerated': 'このシミュレーターの価格モデルでは生成されないため、チャートには現れません。',
 };
 
 const fr: Dictionary = {

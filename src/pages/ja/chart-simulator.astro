@@ -43,21 +43,21 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             リプレイを実行する
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            再生ボタン（またはスペースバー）を押すと、ローソク足が1本ずつ表示されます。ツールバー下部のアンバー色のプログレスバーで、系列内のどこまで進んだかがわかります。速度ボタンでリプレイを1倍・2倍・5倍・10倍で再生できます。手動で移動するには、前後の矢印ボタンまたは<kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd>・<kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>キーを使い、ジャンプボタンで最初や最後に直接移動できます。更新ボタンを押すと、異なるパターンの組み合わせで新しいチャートが生成されます。
+            再生ボタン（またはスペースバー）を押すと、ローソク足が1本ずつ表示されます。ツールバー下部のアンバー色のプログレスバーで、系列内のどこまで進んだかがわかります。速度ボタンでリプレイを1倍・2倍・5倍・10倍で再生できます。手動で移動するには、前後の矢印ボタンまたは<kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd>・<kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>キーを使い、ジャンプボタンで最初や最後に直接移動できます。↺ボタンを押すと、異なるパターンの組み合わせで新しいチャートが生成されます。画面幅が狭くこのボタンが表示されない場合は、銘柄か時間足を切り替えると同じように新しいチャートになります。
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             表示する内容を選ぶ
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            銘柄のドロップダウンメニューは株式・暗号資産・FX・先物をカバーしており、時間足ボタンで同じ系列をより長い、あるいはより短いローソク足に再集計できます。ツールバーからEMA 9、EMA 20、EMA 50、VWAPをオーバーレイでき、下部パネルは出来高・RSI・MACDを切り替えられます。
+            銘柄のドロップダウンメニューは株式・暗号資産・FX・先物をカバーしています。15mから1Wまでの各時間足ボタンは、今の系列を再集計するのではなく、その間隔で並ぶ新しい系列を生成します。ローソク足1本の値動きの大きさは、どの時間足でもほぼ同じです。ツールバーからEMA 9、EMA 20、EMA 50、VWAPをオーバーレイでき、下部パネルは出来高・RSI・MACDを切り替えられます。
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             注目すべきポイント
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            左側の<strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong>パネル（画面幅が狭い場合は<strong class="text-[var(--c-text)] font-semibold">Patterns</strong>タブ）には、シミュレーターが認識するすべてのフォーメーション — Doji、Hammer、Bullish・Bearish Engulfing、Harami、Morning・Evening Star、Three White Soldiers、Tweezerのtop・bottomなど — が一覧表示されます（それぞれの構造については<a href="/ja/blog/rousokuashi-no-yomikata/" class="text-[#f59e0b] hover:underline">ローソク足チャートの読み方</a>で解説しています）。パターンをクリックするとその出現箇所だけをハイライトでき、チャート上のマーカーをクリックすると、そのパターンの背後にある市場心理や、何がそれを裏付け・無効化するのかを含む解説が開きます。最も役立つ習慣は、マーカーで一時停止して次のローソク足を予測し、それから進めて答え合わせをすることです。形よりも文脈が重要です — 反転パターンは実際のトレンドの後にしか意味を持たず、シグナルとなるローソク足の背後にある出来高が、本物の転換をノイズと区別してくれます。
+            左側の<strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong>パネル（画面幅が狭い場合は<strong class="text-[var(--c-text)] font-semibold">Patterns</strong>タブ）には、学べるパターンが24種類あります — Doji、Hammer、Bullish・Bearish Engulfing、Harami、Morning・Evening Star、Three White Soldiers、Tweezerのtop・bottomなど（それぞれの構造については<a href="/ja/blog/rousokuashi-no-yomikata/" class="text-[#f59e0b] hover:underline">ローソク足チャートの読み方</a>で解説しています）。ただし、このシミュレーターの価格モデルでは形成されないものもあります。各ローソク足は前の足の終値で始まり、実体が極端に小さくなることもないため、3種類のDojiパターン、Piercing Line、Dark Cloud Cover、2種類のHarami、Three Inside Up・Downはチャートに現れず、それぞれの解説にもその旨を記載しています。パターンをクリックするとその出現箇所だけをハイライトでき、チャート上のマーカーをクリックすると、そのパターンの背後にある市場心理や、何がそれを裏付け・無効化するのかを含む解説が開きます。最も役立つ習慣は、マーカーで一時停止して次のローソク足を予測し、それから進めて答え合わせをすることです。形よりも文脈が重要です — 反転パターンは実際のトレンドの後にしか意味を持ちません。実際のチャートでは、シグナルとなるローソク足の背後にある出来高も、本物の転換をノイズと区別する手がかりになります。ただし、ここでの出来高はローソク足ごとのランダムな数字なので、この確認は実際の市場で行うもので、このチャートで練習できるものではありません。
           </p>
         </div>
       </details>
