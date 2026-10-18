@@ -1566,6 +1566,7 @@ const it: Dictionary = {
   'sim.toast.limitSellFilled': 'Vendita a limite eseguita a {price}',
   'sim.toast.limitBuyCancelled': 'Acquisto a limite annullato a {price} — saldo insufficiente.',
   'sim.toast.limitSellCancelled': 'Vendita a limite annullata a {price} — saldo insufficiente.',
+  'chart.info.notGenerated': 'Il modello di prezzo di questo simulatore non genera questo pattern, quindi non compare mai sul grafico.',
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes

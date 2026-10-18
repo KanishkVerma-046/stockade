@@ -50,16 +50,19 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             avanzamento color ambra sotto la barra degli strumenti mostra a che punto sei della serie. I
             pulsanti di velocità eseguono il replay a 1×, 2×, 5× o 10×. Per spostarti manualmente, usa
             le frecce indietro e avanti oppure i tasti <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> e <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, e i pulsanti di salto per andare
-            direttamente all'inizio o alla fine. Il pulsante di aggiornamento genera un nuovo grafico
-            con una diversa combinazione di pattern.
+            direttamente all'inizio o alla fine. Il pulsante ↺ genera un nuovo grafico con una diversa
+            combinazione di pattern; su schermi stretti, dove è nascosto, cambiare simbolo o timeframe
+            ha lo stesso effetto.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             Scegliere cosa visualizzare
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Il menu a discesa dei simboli copre azioni, crypto, forex e futures, e i pulsanti dei
-            timeframe riaggregano la stessa serie in candele più lunghe o più corte. Sovrapponi EMA 9,
+            Il menu a discesa dei simboli copre azioni, crypto, forex e futures. Ogni pulsante dei
+            timeframe, da 15m a 1W, genera una nuova serie con le candele distanziate di
+            quell'intervallo invece di riaggregare quella attuale, e l'ampiezza di una candela è più o
+            meno la stessa su ogni timeframe. Sovrapponi EMA 9,
             EMA 20, EMA 50 o VWAP dalla barra degli strumenti, e passa nel pannello inferiore tra
             volume, RSI e MACD.
           </p>
@@ -68,15 +71,20 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             Cosa osservare
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Il pannello Pattern Library a sinistra (la scheda Patterns su schermi stretti) elenca ogni formazione riconosciuta dal simulatore — Doji,
+            Il pannello Pattern Library a sinistra (la scheda Patterns su schermi stretti) contiene 24 pattern da studiare — Doji,
             Hammer, Engulfing rialzista e ribassista, Harami, Morning e Evening Star, Three White
             Soldiers, Tweezer top e bottom, e altri ancora (<a href="/it/blog/come-leggere-i-grafici-a-candele/" class="text-[#f59e0b] hover:underline">come leggere i grafici a candele</a> copre l'anatomia dietro ciascuno di essi).
-            Clicca su un pattern per evidenziare solo le sue occorrenze, oppure clicca su un marcatore
+            Alcuni non possono formarsi nel modello di prezzo di questo simulatore, perché ogni candela
+            apre dove ha chiuso la precedente e i corpi non sono mai minuscoli: i tre pattern Doji,
+            Piercing Line, Dark Cloud Cover, i due Harami e Three Inside Up e Down non compaiono mai sul
+            grafico, e la loro spiegazione lo segnala. Clicca su un pattern per evidenziare solo le sue occorrenze, oppure clicca su un marcatore
             sul grafico per aprirne la spiegazione, inclusa la psicologia di mercato dietro il setup e
             cosa lo conferma o lo invalida. L'abitudine più utile: fermati su un marcatore, prevedi la
             candela successiva, poi avanza e verifica. Il contesto conta più della forma — un pattern di
-            inversione ha senso solo dopo un vero trend, e il volume dietro la candela di segnale
-            distingue un'inversione autentica dal rumore.
+            inversione ha senso solo dopo un vero trend. Su un grafico reale, anche il volume dietro la
+            candela di segnale aiuta a distinguere un'inversione autentica dal rumore; qui il volume è
+            un numero casuale per candela, quindi questa verifica va fatta sui mercati reali, non su
+            questo grafico.
           </p>
         </div>
       </details>
