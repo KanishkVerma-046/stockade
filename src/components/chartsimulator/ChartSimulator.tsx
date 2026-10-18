@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
   createChart, CandlestickSeries, HistogramSeries, LineSeries, createSeriesMarkers,
-  type IChartApi, type ISeriesApi, type UTCTimestamp, type LineData, type HistogramData,
+  type IChartApi, type ISeriesApi, type ISeriesMarkersPluginApi, type UTCTimestamp, type LineData, type HistogramData,
 } from 'lightweight-charts';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -603,7 +603,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
   const macdLineRef   = useRef<ISeriesApi<'Line'> | null>(null);
   const macdSigRef    = useRef<ISeriesApi<'Line'> | null>(null);
   const macdHistRef   = useRef<ISeriesApi<'Histogram'> | null>(null);
-  const markersRef    = useRef<ReturnType<typeof createSeriesMarkers> | null>(null);
+  const markersRef    = useRef<ISeriesMarkersPluginApi<UTCTimestamp> | null>(null);
   const prevKeyRef    = useRef(resetKey);
   const allMarkersRef = useRef<MarkerSpec[]>([]);
   const onHoverRef    = useRef(onHover);

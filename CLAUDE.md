@@ -85,7 +85,7 @@ Translated blog posts live in mirrored `blogEs`/`blogPt`/`blogJa`/`blogFr`/`blog
 
 `npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`).
 
-`npx astro check` reports 1 pre-existing error at `ChartSimulator.tsx:670` (lightweight-charts marker generics). Exit 1 is expected; treat anything beyond that one as new.
+`npx astro check` reports 0 errors (the long-standing `ChartSimulator.tsx` marker-generics error was fixed on 2026-10-18 by typing `markersRef` as `ISeriesMarkersPluginApi<UTCTimestamp>`). Any error is new; the 8 `is:inline` hints on the JSON-LD scripts are expected.
 
 Verify content/SEO claims against **built HTML in `dist/`** (or production), never source alone — reported "bugs" here have repeatedly turned out to be already correct in source, and the whitespace gotcha above does not exist until built.
 
