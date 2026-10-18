@@ -559,6 +559,7 @@ const es: Dictionary = {
   'chart.info.formation': 'Formación',
   'chart.info.psychology': 'Psicología de mercado',
   'chart.info.keyRules': 'Reglas clave',
+  'chart.info.notGenerated': 'El modelo de precios de este simulador no lo genera, así que nunca aparece en el gráfico.',
   'chart.empty.title': 'Ningún patrón seleccionado',
   'chart.empty.body': 'Haz clic en un patrón de la biblioteca o avanza por el gráfico — los patrones se resaltan automáticamente a medida que aparecen.',
   'chart.control.start': 'Ir al inicio',
@@ -1572,7 +1573,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  es: ['chart.info.notGenerated'],
   pt: ['chart.'],
   ja: ['chart.'],
   fr: ['chart.'],
