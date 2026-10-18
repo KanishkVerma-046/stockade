@@ -33,6 +33,7 @@ export function chartSimulatorLabels(locale: Locale) {
     formation: t(locale, 'chart.info.formation'),
     psychology: t(locale, 'chart.info.psychology'),
     keyRules: t(locale, 'chart.info.keyRules'),
+    notGenerated: t(locale, 'chart.info.notGenerated'),
     emptyTitle: t(locale, 'chart.empty.title'),
     emptyBody: t(locale, 'chart.empty.body'),
     goToStartTitle: t(locale, 'chart.control.start'),

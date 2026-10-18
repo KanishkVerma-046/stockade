@@ -49,32 +49,39 @@ import { CHART_SIMULATOR_ALTERNATES } from '../i18n/alternates';
             Press play — or hit the spacebar — to reveal candles one at a time. The amber progress bar
             under the toolbar shows how far through the series you are. The speed buttons run the replay
             at 1×, 2×, 5× or 10×. To move manually, use the step-back and step-forward arrows or the <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> and <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd> keys, and the skip buttons to jump
-            straight to the start or the end. The refresh button generates a new chart with a different
-            set of patterns.
+            straight to the start or the end. The ↺ button generates a new chart with a different set of
+            patterns; on narrow screens, where it is hidden, switching the symbol or timeframe does the
+            same.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             Choosing what to plot
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            The symbol dropdown covers stocks, crypto, forex and futures, and the timeframe buttons
-            re-aggregate the same series into longer or shorter bars. Overlay EMA 9, EMA 20, EMA 50 or
-            VWAP from the toolbar, and switch the lower pane between volume, RSI and MACD.
+            The symbol dropdown covers stocks, crypto, forex and futures. Each timeframe button, from 15m
+            to 1W, generates a new series with its bars spaced that far apart rather than re-aggregating
+            the current one, and a candle moves about as much on one timeframe as on another. Overlay
+            EMA 9, EMA 20, EMA 50 or VWAP from the toolbar, and switch the lower pane between volume, RSI
+            and MACD.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             What to look for
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            The Pattern Library panel on the left (the Patterns tab on narrow screens) lists every formation the simulator recognises — Doji, Hammer,
+            The Pattern Library panel on the left (the Patterns tab on narrow screens) has 24 patterns to study — Doji, Hammer,
             Bullish and Bearish Engulfing, Harami, Morning and Evening Star, Three White Soldiers, Tweezer
             tops and bottoms, and more (<a href="/blog/how-to-read-candlestick-charts/" class="text-[#f59e0b] hover:underline">how to read candlestick charts</a> covers the anatomy behind each one).
-            Click a pattern to highlight only its occurrences, or click a marker
+            Some of them can't form in this simulator's price model, because each candle opens at the
+            previous close and bodies are never tiny: the three Doji patterns, Piercing Line, Dark Cloud
+            Cover, both Haramis and Three Inside Up and Down never appear on the chart, and their entries
+            say so. Click a pattern to highlight only its occurrences, or click a marker
             on the chart to open its explanation, including the market psychology behind the setup and what
             confirms or invalidates it. The most useful habit: pause on a marker, predict the next candle,
             then step forward and check. Context matters more than the shape — a reversal pattern only
-            means something after a real trend, and volume behind the signal candle separates a genuine
-            turn from noise.
+            means something after a real trend. On a real chart, volume behind the signal candle also helps
+            separate a genuine turn from noise; the volume here is random, so that check is one for real
+            markets rather than this chart.
           </p>
         </div>
       </details>

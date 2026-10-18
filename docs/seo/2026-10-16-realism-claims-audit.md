@@ -1,6 +1,6 @@
 # Audit: claims that the product models real markets
 
-**Status: rows 1–19 fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`); row 20 (chart simulator, added 2026-10-18) is open.** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass; row #18 (heatmap colouring) added and fixed 2026-10-17.
+**Status: rows 1–19 fixed in all 8 locales (see `2026-10-16-realism-claims-fixes.md`); row 20 (chart simulator, added 2026-10-18) is being fixed, English first and then one commit per locale (see "Row 20" in the fixes doc).** Written 2026-10-16 at `87e0b57`; rows #10 and #11 added during the fix pass; row #18 (heatmap colouring) added and fixed 2026-10-17.
 
 **Trigger:** `025da5e` removed a claim that Stockade's futures were "modeled on CME Group's real contract specifications". The engine has no multipliers, tick sizes or margin. This audit looks for other claims that the product models, replicates or follows real market data, contract specs, exchange behaviour or fills.
 
