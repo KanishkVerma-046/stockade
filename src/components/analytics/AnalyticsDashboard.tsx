@@ -245,7 +245,7 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/', loca
           { id: 'avgLoss',      label: labels.avgLoss,      value: avgLoss === null ? '—' : fmtMoney(avgLoss), color: avgLoss === null ? 'var(--c-text-subtle)' : '#ef4444' },
           { id: 'maxDrawdown',  label: labels.maxDrawdown,  value: isEmpty ? '—' : maxDD.toFixed(1) + '%', color: '#ef4444' },
         ].map(k => (
-          <div key={k.id} className="bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
+          <div key={k.id} className="flex flex-col justify-between bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
             <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">{k.label}</div>
             <div className="text-[18px] font-mono font-semibold"
               style={{ color: isEmpty && k.id !== 'equity' ? 'var(--c-text-subtle)' : k.color }}>
