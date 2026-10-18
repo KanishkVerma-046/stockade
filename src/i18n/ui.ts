@@ -1069,6 +1069,7 @@ const fr: Dictionary = {
   'sim.toast.limitSellFilled': 'Vente à cours limité exécutée à {price}',
   'sim.toast.limitBuyCancelled': 'Achat à cours limité annulé à {price} — solde insuffisant.',
   'sim.toast.limitSellCancelled': 'Vente à cours limité annulée à {price} — solde insuffisant.',
+  'chart.info.notGenerated': "Le modèle de prix de ce simulateur ne génère pas cette figure, qui n'apparaît donc jamais sur le graphique.",
 };
 
 const de: Dictionary = {
