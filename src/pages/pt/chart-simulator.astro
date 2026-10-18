@@ -51,15 +51,18 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             progresso âmbar abaixo da barra de ferramentas mostra o quanto você já avançou na série.
             Os botões de velocidade rodam a repetição a 1×, 2×, 5× ou 10×. Para se mover
             manualmente, use as setas de voltar e avançar ou as teclas <kbd class="font-mono text-[13px] text-[#f59e0b]">←</kbd> e <kbd class="font-mono text-[13px] text-[#f59e0b]">→</kbd>, e os botões de pular para ir direto ao início ou
-            ao fim. O botão de atualizar gera um novo gráfico com um conjunto diferente de padrões.
+            ao fim. O botão ↺ gera um novo gráfico com um conjunto diferente de padrões; em telas
+            estreitas, onde ele fica oculto, trocar o símbolo ou o período faz o mesmo.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
             Escolhendo o que plotar
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            O menu suspenso de símbolo cobre ações, cripto, forex e futuros, e os botões de período
-            reagregam a mesma série em velas mais longas ou mais curtas. Sobreponha EMA 9, EMA 20,
+            O menu suspenso de símbolo cobre ações, cripto, forex e futuros. Cada botão de período,
+            de 15m a 1W, gera uma nova série com as velas espaçadas por esse intervalo em vez de
+            reagregar a atual, e uma vela se move mais ou menos o mesmo em um período e em outro.
+            Sobreponha EMA 9, EMA 20,
             EMA 50 ou VWAP pela barra de ferramentas, e alterne o painel inferior entre volume, RSI
             e MACD.
           </p>
@@ -68,15 +71,20 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             O que observar
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            O painel <strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong>, à esquerda (a aba <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> em telas estreitas), lista cada formação que o simulador reconhece — Doji, Hammer, Bullish e
+            O painel <strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong>, à esquerda (a aba <strong class="text-[var(--c-text)] font-semibold">Patterns</strong> em telas estreitas), tem 24 padrões para estudar — Doji, Hammer, Bullish e
             Bearish Engulfing, Harami, Morning e Evening Star, Three White Soldiers, Tweezer tops e
             bottoms, e mais (<a href="/pt/blog/como-ler-graficos-de-candles/" class="text-[#f59e0b] hover:underline">como ler gráficos de candles</a> cobre a anatomia por trás de cada um).
-            Clique em um padrão para destacar apenas suas ocorrências, ou clique em um marcador no
+            Alguns não conseguem se formar no modelo de preços deste simulador, porque cada vela abre
+            onde a anterior fechou e os corpos nunca são minúsculos: os três padrões Doji, Piercing
+            Line, Dark Cloud Cover, os dois Harami e Three Inside Up e Down nunca aparecem no gráfico,
+            e a explicação de cada um avisa isso. Clique em um padrão para destacar apenas suas ocorrências, ou clique em um marcador no
             gráfico para abrir sua explicação, incluindo a psicologia de mercado por trás do padrão
             e o que o confirma ou invalida. O hábito mais útil: pause em um marcador, preveja a
             próxima vela, e então avance para conferir. O contexto importa mais do que o formato —
-            um padrão de reversão só significa algo depois de uma tendência real, e o volume por
-            trás da vela de sinal separa uma virada genuína do ruído.
+            um padrão de reversão só significa algo depois de uma tendência real. Em um gráfico real,
+            o volume por trás da vela de sinal também ajuda a separar uma virada genuína do ruído;
+            aqui o volume é um número aleatório por vela, então essa checagem é para os mercados
+            reais, não para este gráfico.
           </p>
         </div>
       </details>

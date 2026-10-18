@@ -739,6 +739,7 @@ const pt: Dictionary = {
   'sim.toast.limitSellFilled': 'Venda limitada executada a {price}',
   'sim.toast.limitBuyCancelled': 'Compra limitada cancelada a {price} — saldo insuficiente.',
   'sim.toast.limitSellCancelled': 'Venda limitada cancelada a {price} — saldo insuficiente.',
+  'chart.info.notGenerated': 'O modelo de preços deste simulador não o gera, então ele nunca aparece no gráfico.',
 };
 
 const ja: Dictionary = {
