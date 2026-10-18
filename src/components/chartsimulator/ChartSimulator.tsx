@@ -1299,7 +1299,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
         {/* Left: Pattern Library */}
         <div className={`
           ${mobileTab === 'patterns' ? 'flex' : 'hidden'} lg:flex
-          ${showLib ? 'lg:w-[230px]' : 'lg:w-0'}
+          w-full ${showLib ? 'lg:w-[230px]' : 'lg:w-0'}
           shrink-0 flex-col border-r border-[var(--c-border)] bg-[var(--c-bg-soft)] overflow-hidden
           transition-all duration-200
         `}>
