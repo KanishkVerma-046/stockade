@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
+
+const locale = 'it' as const;
+const simulatorLabels = buildSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -18,7 +22,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
       stop-loss e take-profit, candele in tempo reale. Nessuna registrazione, nessun denaro reale. <a href="#how-to-use" class="text-[#f59e0b] hover:underline">Come funziona ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load />
+      <TradingSimulator client:load locale={locale} labels={simulatorLabels} />
     </div>
   </div>
 
@@ -65,7 +69,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             una posizione viene chiusa o ridotta — aprirla non ne aggiunge nessuna. La colonna di destra
             mostra il prezzo corrente e il pannello ordini, con sotto il tuo capitale, il P&amp;L, il
             tasso di successo e gli eventuali ordini in attesa. Su schermi stretti queste colonne si
-            comprimono nelle schede Chart, Order e Trades.
+            comprimono nelle schede Grafico, Ordine e Operazioni.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
@@ -76,8 +80,8 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             immediatamente all'ultimo prezzo scambiato. Un ordine a limite resta in attesa finché il
             mercato non raggiunge il tuo prezzo — un acquisto piazzato sotto il mercato viene eseguito
             quando il prezzo scende fino a quel livello, una vendita piazzata sopra il mercato viene
-            eseguita quando il prezzo sale fino a quel livello — e gli ordini in attesa compaiono sotto
-            Working Orders, da dove puoi annullarli. (<a href="/it/blog/ordini-a-mercato-vs-ordini-a-limite/" class="text-[#f59e0b] hover:underline">Ordini a mercato contro ordini a limite</a> approfondisce quando usare l'uno o l'altro.) Un ordine a
+            eseguita quando il prezzo sale fino a quel livello — e gli ordini in attesa compaiono nel pannello
+            Ordini in attesa, da dove puoi annullarli. (<a href="/it/blog/ordini-a-mercato-vs-ordini-a-limite/" class="text-[#f59e0b] hover:underline">Ordini a mercato contro ordini a limite</a> approfondisce quando usare l'uno o l'altro.) Un ordine a
             limite piazzato sul lato sbagliato del mercato è già eseguibile, quindi viene eseguito
             subito al miglior prezzo corrente. I campi opzionali <a href="/it/blog/ordini-stop-loss-spiegati/" class="text-[#f59e0b] hover:underline">stop-loss</a> e take-profit funzionano come un <a href="/it/blog/ordini-oco-e-bracket/" class="text-[#f59e0b] hover:underline">bracket OCO</a> — qualunque livello venga raggiunto per primo chiude la posizione
             e annulla l'altro. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> apre

@@ -1427,6 +1427,56 @@ const it: Dictionary = {
   'analytics.duration.minutes': '{m} min',
   'analytics.duration.hours': '{h} h',
   'analytics.duration.hoursMinutes': '{h} h {m} min',
+  'sim.disclaimer.title': 'Solo simulazione.',
+  'sim.disclaimer.body': 'Tutte le operazioni vengono effettuate con denaro virtuale. Questo non è un consiglio finanziario.',
+  'sim.disclaimer.dismiss': 'Ho capito',
+  'sim.order': 'Ordine',
+  'sim.orderType.market': 'Mercato',
+  'sim.orderType.limit': 'Limite',
+  'sim.qty': 'Quantità',
+  'sim.limitPrice': 'Prezzo limite',
+  'sim.limitHelp': "Compra sotto {price} o vendi sopra per lasciare l'ordine in attesa finché il prezzo non raggiunge il tuo livello.",
+  'sim.stopLoss': 'Stop Loss',
+  'sim.takeProfit': 'Take Profit',
+  'sim.levelActive': '· Attivo',
+  'sim.optional': 'Opzionale',
+  'sim.cash': 'Saldo di cassa',
+  'sim.resetBalance': 'Ripristina saldo a $100,000',
+  'sim.workingOrders': 'Ordini in attesa',
+  'sim.working.resting': 'in attesa · eseguito {cmp} {price}',
+  'sim.cancel': 'Annulla',
+  'sim.cancelTitle': 'Annulla questo ordine in attesa',
+  'sim.position': 'Posizione',
+  'sim.tradeHistory': 'Storico operazioni',
+  'sim.clear': 'Cancella',
+  'sim.live.title': 'Simulazione dal vivo — i prezzi si muovono in tempo reale',
+  'sim.replay.title': 'Modalità replay — scorri una sessione candela per candela',
+  'sim.replay.new': 'Nuova',
+  'sim.replay.newTitle': 'Genera una nuova sessione casuale',
+  'sim.replay.play': 'Avvia',
+  'sim.replay.pause': 'Pausa',
+  'sim.replay.step': 'Avanti',
+  'sim.replay.stepTitle': 'Mostra la candela successiva (Spazio / →)',
+  'sim.replay.speed': 'Velocità',
+  'sim.replay.complete': 'Sessione completata',
+  'sim.replay.hint': 'Spazio / → per avanzare · B buy · S sell · F flatten',
+  'sim.tab.chart': 'Grafico',
+  'sim.tab.order': 'Ordine',
+  'sim.tab.trades': 'Operazioni',
+  'sim.indicator.hide': 'Nascondi {label}',
+  'sim.indicator.show': 'Mostra {label}',
+  'sim.toast.insufficientBalance': 'Saldo insufficiente — servono {cost} ma hai {balance}',
+  'sim.toast.limitPriceMissing': 'Inserisci un prezzo limite o passa a un ordine a mercato.',
+  'sim.toast.limitBuyFilledNow': 'Acquisto a limite eseguito subito a {price}',
+  'sim.toast.limitSellFilledNow': 'Vendita a limite eseguita subito a {price}',
+  'sim.toast.limitBuyResting.one': 'Acquisto a limite di {n} in attesa a {price} — eseguito quando il prezzo scende a quel livello.',
+  'sim.toast.limitBuyResting.other': 'Acquisto a limite di {n} in attesa a {price} — eseguito quando il prezzo scende a quel livello.',
+  'sim.toast.limitSellResting.one': 'Vendita a limite di {n} in attesa a {price} — eseguita quando il prezzo sale a quel livello.',
+  'sim.toast.limitSellResting.other': 'Vendita a limite di {n} in attesa a {price} — eseguita quando il prezzo sale a quel livello.',
+  'sim.toast.limitBuyFilled': 'Acquisto a limite eseguito a {price}',
+  'sim.toast.limitSellFilled': 'Vendita a limite eseguita a {price}',
+  'sim.toast.limitBuyCancelled': 'Acquisto a limite annullato a {price} — saldo insufficiente.',
+  'sim.toast.limitSellCancelled': 'Vendita a limite annullata a {price} — saldo insufficiente.',
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes
@@ -1436,10 +1486,8 @@ const it: Dictionary = {
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
 // Phase A, AnalyticsDashboard batch: complete in all 7 locales (2026-10-17).
-// Phase A, TradingSimulator batch: es (2026-10-17), pt, ja, fr, de, ko (2026-10-18) done; it pending.
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  it: ['sim.'],
-};
+// Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
 
 export const translations: Record<Locale, Dictionary> = {
   en,
