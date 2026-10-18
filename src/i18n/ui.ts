@@ -934,7 +934,34 @@ const ja: Dictionary = {
   'sim.toast.limitSellFilled': '売り指値が{price}で約定しました',
   'sim.toast.limitBuyCancelled': '買い指値を{price}でキャンセルしました — 残高不足です。',
   'sim.toast.limitSellCancelled': '売り指値を{price}でキャンセルしました — 残高不足です。',
+  'chart.library.title': 'パターンライブラリ',
+  'chart.library.short': 'ライブラリ',
+  'chart.library.toggle': 'パターンライブラリの表示を切り替え',
+  'chart.library.count.one': '{total}種類のパターン · {n}種類を検出',
+  'chart.library.count.other': '{total}種類のパターン · {n}種類を検出',
+  'chart.group.bullishReversal': '強気の反転',
+  'chart.group.bearishReversal': '弱気の反転',
+  'chart.group.neutral': '中立・迷い',
+  'chart.group.continuation': '継続',
+  'chart.candles.one': 'ローソク足{n}本',
+  'chart.candles.other': 'ローソク足{n}本',
+  'chart.found': 'チャート上で{n}回出現',
+  'chart.info.formation': '形成',
+  'chart.info.psychology': '市場心理',
+  'chart.info.keyRules': '主なルール',
   'chart.info.notGenerated': 'このシミュレーターの価格モデルでは生成されないため、チャートには現れません。',
+  'chart.empty.title': 'パターンが選択されていません',
+  'chart.empty.body': 'ライブラリのパターンをクリックするか、チャートを1本ずつ進めてください — パターンは現れたときに自動でハイライトされます。',
+  'chart.control.start': '最初へ',
+  'chart.control.stepBack': '戻る',
+  'chart.control.end': '最後へ',
+  'chart.key.space': 'スペース',
+  'chart.tab.patterns': 'パターン',
+  'chart.tab.info': '解説',
+  'chart.detected': '検出',
+  'chart.hoverOhlcv': 'カーソルを合わせるとOHLCVを表示',
+  'chart.footer.patterns.one': '{n}種類のパターン',
+  'chart.footer.patterns.other': '{n}種類のパターン',
 };
 
 const fr: Dictionary = {
@@ -1610,7 +1637,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ja: ['chart.'],
   fr: ['chart.'],
   de: ['chart.'],
   ko: ['chart.'],
