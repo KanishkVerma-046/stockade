@@ -811,12 +811,16 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     const norm = normalize(candles);
     const forceReset = resetKey !== undefined && resetKey !== prevKeyRef.current;
     const last = norm[norm.length - 1];
-    // Stepping back (←, ◀, ⏮) leaves fewer candles. update() can only append or
-    // replace the newest bar and throws on an older time, so the shorter series
-    // is set in full instead, keeping the current view.
+    // update() can only append one bar or replace the newest, so anything else
+    // sets the series in full. Stepping back (←, ◀, ⏮) leaves fewer candles, and
+    // update() throws on an older time; the view stays put. Jumping ahead (⏭)
+    // would leave every skipped candle out, so the view fits the whole series.
     const shown = candleRef.current.data();
-    const steppedBack = shown.length > 0 && toSecs(last.time) < (shown[shown.length - 1].time as number);
-    if (forceReset || steppedBack) {
+    const shownLast = shown.length > 0 ? (shown[shown.length - 1].time as number) : null;
+    const steppedBack = shownLast !== null && toSecs(last.time) < shownLast;
+    const jumpedAhead = shownLast !== null && norm.length > 1
+      && toSecs(last.time) > shownLast && toSecs(norm[norm.length - 2].time) !== shownLast;
+    if (forceReset || steppedBack || jumpedAhead) {
       prevKeyRef.current = resetKey;
       candleRef.current.setData(norm.map(c => ({ time: toSecs(c.time), open: c.open, high: c.high, low: c.low, close: c.close })));
       volRef.current.setData(norm.map(c => ({ time: toSecs(c.time), value: c.volume, color: c.close >= c.open ? '#22c55e28' : '#ef444428' })));
@@ -825,7 +829,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       rsiRef.current?.setData(calcRSI(norm));
       const { macd, signal, hist } = calcMACD(norm);
       macdLineRef.current?.setData(macd); macdSigRef.current?.setData(signal); macdHistRef.current?.setData(hist);
-      if (forceReset) chartRef.current?.timeScale().fitContent();
+      if (forceReset || jumpedAhead) chartRef.current?.timeScale().fitContent();
     } else {
       candleRef.current.update({ time: toSecs(last.time), open: last.open, high: last.high, low: last.low, close: last.close });
       volRef.current.update({ time: toSecs(last.time), value: last.volume, color: last.close >= last.open ? '#22c55e28' : '#ef444428' });
