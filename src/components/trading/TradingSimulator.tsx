@@ -144,7 +144,7 @@ const DEFAULT_LABELS: Labels = {
   // capitalize stays on the English defaults only.
   orderMarket: 'market',
   orderLimit: 'limit',
-  qty: 'Qty (shares)',
+  qty: 'Quantity',
   limitPrice: 'Limit Price',
   limitHelp: 'Buy below {price} or sell above it to rest the order until price reaches your level.',
   stopLoss: 'Stop Loss',
