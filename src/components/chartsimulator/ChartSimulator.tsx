@@ -833,6 +833,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     } else {
       candleRef.current.update({ time: toSecs(last.time), open: last.open, high: last.high, low: last.low, close: last.close });
       volRef.current.update({ time: toSecs(last.time), value: last.volume, color: last.close >= last.open ? '#22c55e28' : '#ef444428' });
+      for (const cfg of EMA_CFGS) emaRefs.current[cfg.period]?.setData(calcEMA(norm, cfg.period));
       vwapRef.current?.setData(calcVWAP(norm));
       rsiRef.current?.setData(calcRSI(norm));
       const { macd, signal, hist } = calcMACD(norm);
