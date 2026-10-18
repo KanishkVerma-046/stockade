@@ -24,9 +24,16 @@ export function format(template: string, vars: FormatVars): string {
  * form reads oddly at 0 (pt puts 0 in "one": "0 operação fechada").
  */
 export function plural(locale: string, n: number, forms: PluralForms, vars: FormatVars = {}): string {
-  if (n === 0 && forms.zero) return format(forms.zero, { ...vars, n });
-  const category = new Intl.PluralRules(locale).select(n);
-  return format(forms[category] ?? forms.other, { ...vars, n });
+  return format(pluralTemplate(locale, n, forms), { ...vars, n });
+}
+
+/**
+ * The unformatted template `plural()` would pick, for callers that style the
+ * number apart from the words around it (split on `{n}`).
+ */
+export function pluralTemplate(locale: string, n: number, forms: PluralForms): string {
+  if (n === 0 && forms.zero) return forms.zero;
+  return forms[new Intl.PluralRules(locale).select(n)] ?? forms.other;
 }
 
 // Money stays en-US ($1,234.56) in every locale (Phase A decision b).

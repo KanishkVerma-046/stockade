@@ -3,6 +3,7 @@ import {
   createChart, CandlestickSeries, HistogramSeries, LineSeries, createSeriesMarkers,
   type IChartApi, type ISeriesApi, type ISeriesMarkersPluginApi, type UTCTimestamp, type LineData, type HistogramData,
 } from 'lightweight-charts';
+import { format, plural, pluralTemplate, type PluralForms } from '../../lib/format';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -53,15 +54,103 @@ const TIMEFRAMES = [
 
 const SPEED_MAP: Record<number, number> = { 1: 1200, 2: 600, 5: 240, 10: 120 };
 
+// ── UI labels ─────────────────────────────────────────────────────────────────
+// The island's chrome only. The pattern library (PATTERNS below) is not part of
+// it: pattern names stay English in every locale, and the prose is Phase B.
+
+interface Labels {
+  libraryTitle: string;
+  libraryShort: string;
+  libraryToggleTitle: string;
+  libraryCount: PluralForms;   // {total} library entries, {n} distinct patterns detected
+  groupBullishReversal: string;
+  groupBearishReversal: string;
+  groupNeutral: string;
+  groupContinuation: string;
+  symGroupStocks: string;
+  symGroupCrypto: string;
+  symGroupForex: string;
+  symGroupFutures: string;
+  candleCount: PluralForms;
+  foundOnChart: string;        // {n}
+  formation: string;
+  psychology: string;
+  keyRules: string;
+  emptyTitle: string;
+  emptyBody: string;
+  goToStartTitle: string;
+  stepBackTitle: string;
+  playPauseTitle: string;
+  stepForwardTitle: string;
+  goToEndTitle: string;
+  newChartTitle: string;
+  tabPatterns: string;
+  tabChart: string;
+  tabInfo: string;
+  detected: string;
+  keyHint: string;
+  hoverOhlcv: string;
+  footerPatterns: PluralForms; // {n} distinct patterns detected
+}
+
+const DEFAULT_LABELS: Labels = {
+  libraryTitle: 'Pattern Library',
+  libraryShort: 'Library',
+  libraryToggleTitle: 'Toggle Pattern Library',
+  libraryCount: { other: '{total} patterns · {n} detected' },
+  groupBullishReversal: 'Bullish Reversal',
+  groupBearishReversal: 'Bearish Reversal',
+  groupNeutral: 'Neutral / Indecision',
+  groupContinuation: 'Continuation',
+  symGroupStocks: 'Stocks',
+  symGroupCrypto: 'Crypto',
+  symGroupForex: 'Forex',
+  symGroupFutures: 'Futures',
+  candleCount: { one: '{n} Candle', other: '{n} Candles' },
+  foundOnChart: 'Found {n}× on chart',
+  formation: 'Formation',
+  psychology: 'Market Psychology',
+  keyRules: 'Key Rules',
+  emptyTitle: 'No pattern selected',
+  emptyBody: 'Click a pattern in the library or step through the chart — patterns are auto-highlighted as they appear.',
+  goToStartTitle: 'Go to start',
+  stepBackTitle: 'Step back [←]',
+  playPauseTitle: 'Play/Pause [Space]',
+  stepForwardTitle: 'Step forward [→]',
+  goToEndTitle: 'Go to end',
+  newChartTitle: 'Generate new chart',
+  tabPatterns: 'Patterns',
+  tabChart: 'Chart',
+  tabInfo: 'Info',
+  detected: 'detected',
+  keyHint: 'Space · ← →',
+  hoverOhlcv: 'Hover to see OHLCV',
+  footerPatterns: { one: '{n} pattern', other: '{n} patterns' },
+};
+
+type StringLabel = { [K in keyof Labels]: Labels[K] extends string ? K : never }[keyof Labels];
+
+const SYMBOL_GROUP_LABEL: Record<(typeof SYMBOLS)[number]['group'], StringLabel> = {
+  Stocks: 'symGroupStocks', Crypto: 'symGroupCrypto', Forex: 'symGroupForex', Futures: 'symGroupFutures',
+};
+
+interface Props {
+  // Selects the plural forms in labels (Intl.PluralRules). Numbers stay en-US
+  // in every locale (Phase A decision b).
+  locale?: string;
+  // Merged over the English defaults, so English pages pass nothing.
+  labels?: Partial<Labels>;
+}
+
 // ── Patterns ──────────────────────────────────────────────────────────────────
 
 const TYPE_COLOR: Record<PatternType, string>  = { bullish: '#22c55e', bearish: '#ef4444', neutral: '#f59e0b' };
 const GROUP_ORDER: PatternGroup[] = ['bullish-reversal', 'bearish-reversal', 'neutral', 'continuation'];
-const GROUP_LABEL: Record<PatternGroup, string> = {
-  'bullish-reversal': 'Bullish Reversal',
-  'bearish-reversal': 'Bearish Reversal',
-  'neutral':          'Neutral / Indecision',
-  'continuation':     'Continuation',
+const GROUP_LABEL: Record<PatternGroup, StringLabel> = {
+  'bullish-reversal': 'groupBullishReversal',
+  'bearish-reversal': 'groupBearishReversal',
+  'neutral':          'groupNeutral',
+  'continuation':     'groupContinuation',
 };
 
 const PATTERNS: PatternDef[] = [
@@ -767,7 +856,11 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
 
 // ── ChartSimulator ────────────────────────────────────────────────────────────
 
-export default function ChartSimulator() {
+export default function ChartSimulator({ locale = 'en', labels: labelOverrides }: Props) {
+  const labels: Labels = useMemo(() => ({ ...DEFAULT_LABELS, ...labelOverrides }), [labelOverrides]);
+  // CSS capitalize stays on the English defaults only; translated labels come
+  // cased as the locale writes them.
+  const labelCase = labelOverrides ? '' : ' capitalize';
   const [symbolId,   setSymbolId]   = useState('APXL');
   const [tfId,       setTfId]       = useState('1D');
   const [session,    setSession]    = useState<Candle[]>([]);
@@ -890,14 +983,18 @@ export default function ChartSimulator() {
   const displayOhlcv = hoverOhlcv ?? (last ? { open: last.open, high: last.high, low: last.low, close: last.close, volume: last.volume } : null);
   const pctChange = last && visibleCandles.length > 1
     ? ((last.close - visibleCandles[0].open) / visibleCandles[0].open) * 100 : 0;
+  const detectedCount = Object.keys(patternCounts).length;
+  // The footer styles the count apart from its words, so split the template.
+  const [footerBefore, footerAfter = ''] = pluralTemplate(locale, detectedCount, labels.footerPatterns).split('{n}');
+  const footerSpace = footerAfter.startsWith(' ');
 
   // ── Pattern Library JSX ───────────────────────────────────────────────────────
 
   const libraryJSX = (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="px-3 pt-3 pb-2 border-b border-[var(--c-border)] shrink-0">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-0.5">Pattern Library</div>
-        <div className="text-[10px] font-mono text-[var(--c-text-faint)]">{PATTERNS.length} patterns · {Object.keys(patternCounts).length} detected</div>
+        <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-0.5">{labels.libraryTitle}</div>
+        <div className="text-[10px] font-mono text-[var(--c-text-faint)]">{plural(locale, detectedCount, labels.libraryCount, { total: PATTERNS.length })}</div>
       </div>
       <div className="flex-1 overflow-y-auto py-1">
         {GROUP_ORDER.map(grp => (
@@ -905,7 +1002,7 @@ export default function ChartSimulator() {
             <div className="px-3 py-1.5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full shrink-0"
                 style={{ backgroundColor: grp === 'bullish-reversal' ? '#22c55e' : grp === 'bearish-reversal' ? '#ef4444' : grp === 'neutral' ? '#f59e0b' : '#3b82f6' }} />
-              <span className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-faint)]">{GROUP_LABEL[grp]}</span>
+              <span className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-faint)]">{labels[GROUP_LABEL[grp]]}</span>
             </div>
             {PATTERNS.filter(p => p.group === grp).map(p => {
               const count  = patternCounts[p.id] ?? 0;
@@ -946,7 +1043,7 @@ export default function ChartSimulator() {
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: TYPE_COLOR[activeDef.type] }} />
             <span className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">
-              {GROUP_LABEL[activeDef.group]}
+              {labels[GROUP_LABEL[activeDef.group]]}
             </span>
           </div>
           <button onClick={() => setActiveId(null)} className="text-[var(--c-text-faint)] hover:text-[var(--c-text)] text-[14px] leading-none transition-colors">×</button>
@@ -955,11 +1052,11 @@ export default function ChartSimulator() {
         <div className="flex items-center gap-2 mt-1.5">
           <span className="text-[9px] font-mono px-1.5 py-0.5 rounded border"
             style={{ color: TYPE_COLOR[activeDef.type], borderColor: `${TYPE_COLOR[activeDef.type]}44`, backgroundColor: `${TYPE_COLOR[activeDef.type]}11` }}>
-            {activeDef.category === 'single' ? '1 Candle' : activeDef.category === 'double' ? '2 Candles' : '3 Candles'}
+            {plural(locale, activeDef.category === 'single' ? 1 : activeDef.category === 'double' ? 2 : 3, labels.candleCount)}
           </span>
           {patternCounts[activeDef.id] > 0 && (
             <span className="text-[9px] font-mono text-[var(--c-text-faint)]">
-              Found {patternCounts[activeDef.id]}× on chart
+              {format(labels.foundOnChart, { n: patternCounts[activeDef.id] })}
             </span>
           )}
         </div>
@@ -982,7 +1079,7 @@ export default function ChartSimulator() {
 
           {/* Formation */}
           <div>
-            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">Formation</div>
+            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{labels.formation}</div>
             <ol className="space-y-1.5">
               {activeDef.formation.map((step, i) => (
                 <li key={i} className="flex items-start gap-2">
@@ -995,13 +1092,13 @@ export default function ChartSimulator() {
 
           {/* Psychology */}
           <div>
-            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">Market Psychology</div>
+            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{labels.psychology}</div>
             <p className="text-[11px] font-mono text-[var(--c-text-muted)] leading-relaxed">{activeDef.psychology}</p>
           </div>
 
           {/* Characteristics */}
           <div>
-            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">Key Rules</div>
+            <div className="text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-2">{labels.keyRules}</div>
             <ul className="space-y-1.5">
               {activeDef.characteristics.map((c, i) => (
                 <li key={i} className="flex items-start gap-2">
@@ -1017,9 +1114,9 @@ export default function ChartSimulator() {
   ) : (
     <div className="flex flex-col items-center justify-center h-full p-6 text-center">
       <div className="w-10 h-10 rounded-full border border-[var(--c-border)] flex items-center justify-center mb-3 text-[var(--c-text-faint)] text-lg">?</div>
-      <div className="text-[11px] font-mono text-[var(--c-text-subtle)] mb-1">No pattern selected</div>
+      <div className="text-[11px] font-mono text-[var(--c-text-subtle)] mb-1">{labels.emptyTitle}</div>
       <div className="text-[10px] font-mono text-[var(--c-text-faint)] leading-relaxed">
-        Click a pattern in the library or step through the chart — patterns are auto-highlighted as they appear.
+        {labels.emptyBody}
       </div>
     </div>
   );
@@ -1039,12 +1136,12 @@ export default function ChartSimulator() {
         {/* Library toggle */}
         <button
           onClick={() => setShowLib(v => !v)}
-          title="Toggle Pattern Library"
+          title={labels.libraryToggleTitle}
           className={`${showLib ? btnActive : btnInactive} hidden lg:flex items-center gap-1.5 shrink-0`}>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
             <rect x="1" y="1" width="4" height="10" rx="1"/><rect x="7" y="1" width="4" height="10" rx="1"/>
           </svg>
-          <span className="hidden xl:inline">Library</span>
+          <span className="hidden xl:inline">{labels.libraryShort}</span>
         </button>
 
         <div className="hidden lg:block w-px h-5 bg-[var(--c-border)] shrink-0" />
@@ -1060,12 +1157,12 @@ export default function ChartSimulator() {
           </button>
           {symOpen && (
             <div className="absolute top-full left-0 mt-1 z-50 w-44 rounded border border-[var(--c-border)] bg-[var(--c-bg-soft)] shadow-xl overflow-hidden">
-              {['Stocks', 'Crypto', 'Forex', 'Futures'].map(grp => {
+              {(['Stocks', 'Crypto', 'Forex', 'Futures'] as const).map(grp => {
                 const items = SYMBOLS.filter(s => s.group === grp);
                 if (!items.length) return null;
                 return (
                   <div key={grp}>
-                    <div className="px-3 py-1 text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-faint)] bg-[var(--c-bg-muted)]">{grp}</div>
+                    <div className="px-3 py-1 text-[9px] font-mono uppercase tracking-widest text-[var(--c-text-faint)] bg-[var(--c-bg-muted)]">{labels[SYMBOL_GROUP_LABEL[grp]]}</div>
                     {items.map(s => (
                       <button key={s.id} onClick={() => { setSymbolId(s.id); setSymOpen(false); }}
                         className={`w-full flex items-center justify-between px-3 py-2 text-[11px] font-mono transition-colors ${
@@ -1098,14 +1195,14 @@ export default function ChartSimulator() {
 
         {/* Playback controls */}
         <div className="flex items-center gap-0.5 shrink-0">
-          <button onClick={goToStart}   title="Go to start"   className={`${btnInactive} px-1.5`}>⏮</button>
-          <button onClick={stepBack}    title="Step back [←]" className={`${btnInactive} px-1.5`}>◀</button>
-          <button onClick={togglePlay}  title="Play/Pause [Space]"
+          <button onClick={goToStart}   title={labels.goToStartTitle} className={`${btnInactive} px-1.5`}>⏮</button>
+          <button onClick={stepBack}    title={labels.stepBackTitle}  className={`${btnInactive} px-1.5`}>◀</button>
+          <button onClick={togglePlay}  title={labels.playPauseTitle}
             className={`${playing ? 'bg-[#f59e0b] text-[#0a0a0a]' : btnInactive} px-2.5 py-1 rounded text-[11px] font-mono transition-colors font-semibold`}>
             {playing ? '⏸' : '▶'}
           </button>
-          <button onClick={stepForward} title="Step forward [→]" className={`${btnInactive} px-1.5`}>▷</button>
-          <button onClick={goToEnd}     title="Go to end"     className={`${btnInactive} px-1.5`}>⏭</button>
+          <button onClick={stepForward} title={labels.stepForwardTitle} className={`${btnInactive} px-1.5`}>▷</button>
+          <button onClick={goToEnd}     title={labels.goToEndTitle}     className={`${btnInactive} px-1.5`}>⏭</button>
         </div>
 
         {/* Speed */}
@@ -1120,7 +1217,7 @@ export default function ChartSimulator() {
           ))}
         </div>
 
-        <button onClick={newChart} title="Generate new chart"
+        <button onClick={newChart} title={labels.newChartTitle}
           className={`${btnInactive} shrink-0 hidden sm:block`}>
           ↺
         </button>
@@ -1177,10 +1274,10 @@ export default function ChartSimulator() {
       <div className="lg:hidden flex shrink-0 border-b border-[var(--c-border)] bg-[var(--c-bg-soft)]">
         {(['patterns', 'chart', 'info'] as const).map(t => (
           <button key={t} onClick={() => setMobileTab(t)}
-            className={`flex-1 py-2.5 text-[11px] font-mono capitalize border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 text-[11px] font-mono${labelCase} border-b-2 transition-colors ${
               mobileTab === t ? 'border-[#f59e0b] text-[var(--c-text)]' : 'border-transparent text-[var(--c-text-subtle)]'
             }`}>
-            {t === 'patterns' ? 'Patterns' : t === 'chart' ? 'Chart' : 'Info'}
+            {t === 'patterns' ? labels.tabPatterns : t === 'chart' ? labels.tabChart : labels.tabInfo}
           </button>
         ))}
       </div>
@@ -1242,14 +1339,14 @@ export default function ChartSimulator() {
                 }}>
                 <span>{notif.type === 'bullish' ? '▲' : notif.type === 'bearish' ? '▼' : '●'}</span>
                 <span className="font-semibold">{notif.name}</span>
-                <span className="text-[9px] opacity-70 uppercase tracking-wider">detected</span>
+                <span className="text-[9px] opacity-70 uppercase tracking-wider">{labels.detected}</span>
               </div>
             </div>
           )}
 
           {/* Keyboard hint */}
           <div className="absolute bottom-3 right-3 pointer-events-none text-[10px] font-mono text-[var(--c-text-faint)]">
-            Space · ← →
+            {labels.keyHint}
           </div>
         </div>
 
@@ -1281,12 +1378,15 @@ export default function ChartSimulator() {
             </span>
           </div>
         ) : (
-          <span className="text-[10px] font-mono text-[var(--c-text-faint)]">Hover to see OHLCV</span>
+          <span className="text-[10px] font-mono text-[var(--c-text-faint)]">{labels.hoverOhlcv}</span>
         )}
         <div className="flex items-center gap-3 ml-auto shrink-0 text-[10px] font-mono text-[var(--c-text-subtle)]">
           <span>{revealed + 1} <span className="text-[var(--c-text-faint)]">/ {session.length}</span></span>
           <span className="text-[var(--c-text-faint)]">·</span>
-          <span>{Object.keys(patternCounts).length} <span className="text-[var(--c-text-faint)]">patterns</span></span>
+          <span>
+            {footerBefore ? <span className="text-[var(--c-text-faint)]">{footerBefore}</span> : null}
+            {detectedCount}{footerSpace ? ' ' : null}<span className="text-[var(--c-text-faint)]">{footerSpace ? footerAfter.slice(1) : footerAfter}</span>
+          </span>
           <span className="text-[var(--c-text-faint)]">·</span>
           <span className="hidden sm:inline text-[var(--c-text-faint)]">{sym.label} · {tf.label}</span>
         </div>

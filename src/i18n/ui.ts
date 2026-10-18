@@ -157,7 +157,34 @@ export type UiKey =
   | 'sim.toast.limitBuyFilled'
   | 'sim.toast.limitSellFilled'
   | 'sim.toast.limitBuyCancelled'
-  | 'sim.toast.limitSellCancelled';
+  | 'sim.toast.limitSellCancelled'
+  | 'chart.library.title'
+  | 'chart.library.short'
+  | 'chart.library.toggle'
+  | 'chart.library.count.one'
+  | 'chart.library.count.other'
+  | 'chart.group.bullishReversal'
+  | 'chart.group.bearishReversal'
+  | 'chart.group.neutral'
+  | 'chart.group.continuation'
+  | 'chart.candles.one'
+  | 'chart.candles.other'
+  | 'chart.found'
+  | 'chart.info.formation'
+  | 'chart.info.psychology'
+  | 'chart.info.keyRules'
+  | 'chart.empty.title'
+  | 'chart.empty.body'
+  | 'chart.control.start'
+  | 'chart.control.stepBack'
+  | 'chart.control.end'
+  | 'chart.key.space'
+  | 'chart.tab.patterns'
+  | 'chart.tab.info'
+  | 'chart.detected'
+  | 'chart.hoverOhlcv'
+  | 'chart.footer.patterns.one'
+  | 'chart.footer.patterns.other';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -323,6 +350,33 @@ const en: Dictionary = {
   'sim.toast.limitSellFilled': 'Limit sell filled at {price}',
   'sim.toast.limitBuyCancelled': 'Limit buy cancelled at {price} — not enough balance.',
   'sim.toast.limitSellCancelled': 'Limit sell cancelled at {price} — not enough balance.',
+  'chart.library.title': 'Pattern Library',
+  'chart.library.short': 'Library',
+  'chart.library.toggle': 'Toggle Pattern Library',
+  'chart.library.count.one': '{total} patterns · {n} detected',
+  'chart.library.count.other': '{total} patterns · {n} detected',
+  'chart.group.bullishReversal': 'Bullish Reversal',
+  'chart.group.bearishReversal': 'Bearish Reversal',
+  'chart.group.neutral': 'Neutral / Indecision',
+  'chart.group.continuation': 'Continuation',
+  'chart.candles.one': '{n} Candle',
+  'chart.candles.other': '{n} Candles',
+  'chart.found': 'Found {n}× on chart',
+  'chart.info.formation': 'Formation',
+  'chart.info.psychology': 'Market Psychology',
+  'chart.info.keyRules': 'Key Rules',
+  'chart.empty.title': 'No pattern selected',
+  'chart.empty.body': 'Click a pattern in the library or step through the chart — patterns are auto-highlighted as they appear.',
+  'chart.control.start': 'Go to start',
+  'chart.control.stepBack': 'Step back',
+  'chart.control.end': 'Go to end',
+  'chart.key.space': 'Space',
+  'chart.tab.patterns': 'Patterns',
+  'chart.tab.info': 'Info',
+  'chart.detected': 'detected',
+  'chart.hoverOhlcv': 'Hover to see OHLCV',
+  'chart.footer.patterns.one': '{n} pattern',
+  'chart.footer.patterns.other': '{n} patterns',
 };
 
 const es: Dictionary = {
@@ -488,6 +542,33 @@ const es: Dictionary = {
   'sim.toast.limitSellFilled': 'Venta límite ejecutada a {price}',
   'sim.toast.limitBuyCancelled': 'Compra límite cancelada a {price} — saldo insuficiente.',
   'sim.toast.limitSellCancelled': 'Venta límite cancelada a {price} — saldo insuficiente.',
+  'chart.library.title': 'Biblioteca de patrones',
+  'chart.library.short': 'Biblioteca',
+  'chart.library.toggle': 'Mostrar u ocultar la biblioteca de patrones',
+  'chart.library.count.one': '{total} patrones · {n} detectado',
+  'chart.library.count.other': '{total} patrones · {n} detectados',
+  'chart.group.bullishReversal': 'Reversión alcista',
+  'chart.group.bearishReversal': 'Reversión bajista',
+  'chart.group.neutral': 'Neutral / Indecisión',
+  'chart.group.continuation': 'Continuación',
+  'chart.candles.one': '{n} vela',
+  'chart.candles.other': '{n} velas',
+  'chart.found': 'Aparece {n}× en el gráfico',
+  'chart.info.formation': 'Formación',
+  'chart.info.psychology': 'Psicología de mercado',
+  'chart.info.keyRules': 'Reglas clave',
+  'chart.empty.title': 'Ningún patrón seleccionado',
+  'chart.empty.body': 'Haz clic en un patrón de la biblioteca o avanza por el gráfico — los patrones se resaltan automáticamente a medida que aparecen.',
+  'chart.control.start': 'Ir al inicio',
+  'chart.control.stepBack': 'Retroceder',
+  'chart.control.end': 'Ir al final',
+  'chart.key.space': 'Espacio',
+  'chart.tab.patterns': 'Patrones',
+  'chart.tab.info': 'Info',
+  'chart.detected': 'detectado',
+  'chart.hoverOhlcv': 'Pasa el cursor para ver OHLCV',
+  'chart.footer.patterns.one': '{n} patrón',
+  'chart.footer.patterns.other': '{n} patrones',
 };
 
 const pt: Dictionary = {
@@ -1487,7 +1568,15 @@ const it: Dictionary = {
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
 // Phase A, AnalyticsDashboard batch: complete in all 7 locales (2026-10-17).
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
-export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {};
+// Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
+export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
+  pt: ['chart.'],
+  ja: ['chart.'],
+  fr: ['chart.'],
+  de: ['chart.'],
+  ko: ['chart.'],
+  it: ['chart.'],
+};
 
 export const translations: Record<Locale, Dictionary> = {
   en,

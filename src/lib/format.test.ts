@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { format, formatMoney, formatSignedMoney, plural } from './format';
+import { format, formatMoney, formatSignedMoney, plural, pluralTemplate } from './format';
 
 describe('format', () => {
   it('replaces named placeholders', () => {
@@ -71,6 +71,16 @@ describe('plural', () => {
   it('passes extra vars through alongside {n}', () => {
     const cell = { one: '{n} trade · {wr}% win', other: '{n} trades · {wr}% win' };
     expect(plural('en', 3, cell, { wr: 67 })).toBe('3 trades · 67% win');
+  });
+});
+
+describe('pluralTemplate', () => {
+  it('returns the template plural() would format, unformatted', () => {
+    const es = { one: '{n} patrón', other: '{n} patrones' };
+    expect(pluralTemplate('es', 1, es)).toBe('{n} patrón');
+    expect(pluralTemplate('es', 0, es)).toBe('{n} patrones');
+    expect(pluralTemplate('pt', 0, { zero: 'nenhum', one: '{n} padrão', other: '{n} padrões' })).toBe('nenhum');
+    expect(pluralTemplate('ja', 1, { other: '{n}件' })).toBe('{n}件');
   });
 });
 
