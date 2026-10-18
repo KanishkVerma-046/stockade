@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
+
+const locale = 'de' as const;
+const simulatorLabels = buildSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -17,7 +21,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
       Handeln Sie 29 simulierte Aktien, Krypto-Token, Forex-Devisen und Futures mit einem virtuellen Guthaben von <span class="font-mono text-[var(--c-text)]">100.000 $</span> — Market- und Limit-Orders, Stop-Loss und Take-Profit, Live-Candlesticks. Keine Anmeldung, kein echtes Geld. <a href="#how-to-use" class="text-[#f59e0b] hover:underline">So funktioniert's ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load />
+      <TradingSimulator client:load locale={locale} labels={simulatorLabels} />
     </div>
   </div>
 
@@ -59,7 +63,7 @@ import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             Eine Order aufgeben
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Geben Sie eine Menge ein und wählen Sie dann einen Ordertyp. Eine Market-Order wird sofort zum letzten gehandelten Preis ausgeführt. Eine Limit-Order bleibt offen, bis der Markt Ihren Preis erreicht — eine Kauforder unter dem Markt wird ausgeführt, wenn der Preis auf dieses Niveau fällt, eine Verkaufsorder über dem Markt wird ausgeführt, wenn der Preis auf dieses Niveau steigt — und offene Orders erscheinen unter <strong class="text-[var(--c-text)] font-semibold">Working Orders</strong>, wo Sie sie stornieren können. (<a href="/de/blog/market-order-vs-limit-order/" class="text-[#f59e0b] hover:underline">Market-Order vs. Limit-Order</a> erklärt, wann welche genutzt wird.) Eine Limit-Order, die auf der falschen Marktseite platziert wird, ist bereits ausführbar und wird deshalb sofort zum besten verfügbaren Preis ausgeführt. Optionale <a href="/de/blog/stop-loss-orders-erklaert/" class="text-[#f59e0b] hover:underline">Stop-Loss</a>- und Take-Profit-Stände funktionieren wie eine <a href="/de/blog/oco-und-bracket-orders/" class="text-[#f59e0b] hover:underline">Bracket-Order (OCO)</a> — welcher Stand zuerst erreicht wird, schließt die Position und storniert den anderen. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> eröffnet eine Long-Position, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> eröffnet eine Short-Position, und <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> schließt alles zum aktuellen Preis. Sobald die Seite fokussiert ist, können Sie per Tastatur traden: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> zum Kaufen, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> zum Verkaufen, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> zum Glattstellen.
+            Geben Sie eine Menge ein und wählen Sie dann einen Ordertyp. Eine Market-Order wird sofort zum letzten gehandelten Preis ausgeführt. Eine Limit-Order bleibt offen, bis der Markt Ihren Preis erreicht — eine Kauforder unter dem Markt wird ausgeführt, wenn der Preis auf dieses Niveau fällt, eine Verkaufsorder über dem Markt wird ausgeführt, wenn der Preis auf dieses Niveau steigt — und offene Orders erscheinen im Panel <strong class="text-[var(--c-text)] font-semibold">Offene Orders</strong>, wo Sie sie stornieren können. (<a href="/de/blog/market-order-vs-limit-order/" class="text-[#f59e0b] hover:underline">Market-Order vs. Limit-Order</a> erklärt, wann welche genutzt wird.) Eine Limit-Order, die auf der falschen Marktseite platziert wird, ist bereits ausführbar und wird deshalb sofort zum besten verfügbaren Preis ausgeführt. Optionale <a href="/de/blog/stop-loss-orders-erklaert/" class="text-[#f59e0b] hover:underline">Stop-Loss</a>- und Take-Profit-Stände funktionieren wie eine <a href="/de/blog/oco-und-bracket-orders/" class="text-[#f59e0b] hover:underline">Bracket-Order (OCO)</a> — welcher Stand zuerst erreicht wird, schließt die Position und storniert den anderen. <strong class="text-[var(--c-text)] font-semibold">Buy</strong> eröffnet eine Long-Position, <strong class="text-[var(--c-text)] font-semibold">Sell</strong> eröffnet eine Short-Position, und <strong class="text-[var(--c-text)] font-semibold">Flatten</strong> schließt alles zum aktuellen Preis. Sobald die Seite fokussiert ist, können Sie per Tastatur traden: <kbd class="font-mono text-[13px] text-[#f59e0b]">B</kbd> zum Kaufen, <kbd class="font-mono text-[13px] text-[#f59e0b]">S</kbd> zum Verkaufen, <kbd class="font-mono text-[13px] text-[#f59e0b]">F</kbd> zum Glattstellen.
           </p>
 
           <h3 class="text-[15px] font-semibold text-[var(--c-text)] mt-8 mb-3">
