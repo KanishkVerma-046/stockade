@@ -347,11 +347,17 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
   // CSS capitalize stays on the lowercase English defaults only; translated
   // labels come cased as the locale writes them.
   const labelCase = labelOverrides ? '' : ' capitalize';
-  const [symbol, setSymbol]     = useState<string>(initSymbol);
-  const [candles, setCandles]   = useState<Candle[]>(() => generateCandles(getBasePrice(initSymbol())));
-  const [balance, setBalance]   = useState(() => typeof window !== 'undefined' ? loadStoredBalance() : 100_000);
+  // The first render must match the static HTML, which was rendered at build
+  // time with no URL, no localStorage and its own random prices; anything else
+  // is React error #418. So it shows APXL at its base price with no history,
+  // the starting balance and no trades, and the mount effect below loads the
+  // real symbol, history, balance and trades.
+  const [symbol, setSymbol]     = useState<string>('APXL');
+  const [candles, setCandles]   = useState<Candle[]>([]);
+  const [balance, setBalance]   = useState(100_000);
   const [position, setPosition] = useState<Position>({ side: null, qty: 0, avgPrice: 0, unrealizedPnl: 0, openedAt: 0 });
-  const [trades, setTrades]     = useState<Trade[]>(() => typeof window !== 'undefined' ? loadStoredTrades() : []);
+  const [trades, setTrades]     = useState<Trade[]>([]);
+  const [hydrated, setHydrated] = useState(false);
   const [disclaimer, setDisclaimer] = useState(true);
   const [order, setOrder]       = useState<OrderForm>({ type: 'market', qty: '100', limitPrice: '', stopLoss: '', takeProfit: '' });
   const [mobileTab, setMobileTab] = useState<MobileTab>('chart');
@@ -399,18 +405,33 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
     setPending([]);
   }, []);
 
+  useEffect(() => {
+    const sym = initSymbol();
+    setSymbol(sym);
+    setCandles(generateCandles(getBasePrice(sym)));
+    setChartResetKey(k => k + 1);
+    setBalance(loadStoredBalance());
+    setTrades(loadStoredTrades());
+    setHydrated(true);
+  }, []);
+
   useEffect(() => { positionRef.current = position; }, [position]);
   useEffect(() => { orderRef.current = order; }, [order]);
-  useEffect(() => { try { localStorage.setItem('stockade_balance', String(balance)); } catch {} }, [balance]);
+  // Not before the stored balance has been loaded, or it would be overwritten.
+  useEffect(() => {
+    if (!hydrated) return;
+    try { localStorage.setItem('stockade_balance', String(balance)); } catch {}
+  }, [balance, hydrated]);
 
-  const currentPrice = candles[candles.length - 1]?.close ?? 100;
+  const currentPrice = candles[candles.length - 1]?.close ?? SYMBOL_PRICES[symbol] ?? 100;
   const prevPrice    = candles[candles.length - 2]?.close ?? currentPrice;
   const priceChange  = currentPrice - prevPrice;
   const pricePct     = (priceChange / prevPrice) * 100;
 
   useEffect(() => {
+    if (!hydrated) return;
     $activeTick.set({ symbol, price: currentPrice });
-  }, [symbol, currentPrice]);
+  }, [symbol, currentPrice, hydrated]);
 
   // Live tick interval — skipped in replay mode
   useEffect(() => {
@@ -421,6 +442,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
     intervalRef.current = setInterval(() => {
       setCandles(prev => {
         const last = prev[prev.length - 1];
+        if (!last) return prev;
         trendBiasRef.current = trendBiasRef.current * 0.96 + (Math.random() - 0.5) * 0.07;
         trendBiasRef.current = Math.max(-0.55, Math.min(0.55, trendBiasRef.current));
         const vol   = last.close * 0.005;
