@@ -1262,6 +1262,56 @@ const ko: Dictionary = {
   'analytics.duration.minutes': '{m}분',
   'analytics.duration.hours': '{h}시간',
   'analytics.duration.hoursMinutes': '{h}시간 {m}분',
+  'sim.disclaimer.title': '시뮬레이션 전용입니다.',
+  'sim.disclaimer.body': '모든 거래는 가상 자금으로 이루어집니다. 이는 투자 자문이 아닙니다.',
+  'sim.disclaimer.dismiss': '확인',
+  'sim.order': '주문',
+  'sim.orderType.market': '시장가',
+  'sim.orderType.limit': '지정가',
+  'sim.qty': '수량',
+  'sim.limitPrice': '지정 가격',
+  'sim.limitHelp': '{price}보다 낮게 매수하거나 높게 매도하면 가격이 그 수준에 도달할 때까지 주문이 대기합니다.',
+  'sim.stopLoss': 'Stop Loss',
+  'sim.takeProfit': 'Take Profit',
+  'sim.levelActive': '· 활성',
+  'sim.optional': '선택 사항',
+  'sim.cash': '현금 잔고',
+  'sim.resetBalance': '잔고를 $100,000으로 초기화',
+  'sim.workingOrders': '대기 중인 주문',
+  'sim.working.resting': '대기 중 · {cmp} {price}에 체결',
+  'sim.cancel': '취소',
+  'sim.cancelTitle': '이 대기 주문 취소',
+  'sim.position': '포지션',
+  'sim.tradeHistory': '거래 기록',
+  'sim.clear': '지우기',
+  'sim.live.title': '실시간 시뮬레이션 — 가격이 실시간으로 움직입니다',
+  'sim.replay.title': '리플레이 모드 — 세션을 캔들 단위로 진행합니다',
+  'sim.replay.new': '새 세션',
+  'sim.replay.newTitle': '새 무작위 세션 생성',
+  'sim.replay.play': '재생',
+  'sim.replay.pause': '일시정지',
+  'sim.replay.step': '다음',
+  'sim.replay.stepTitle': '다음 캔들 표시 (스페이스 / →)',
+  'sim.replay.speed': '속도',
+  'sim.replay.complete': '세션 종료',
+  'sim.replay.hint': '스페이스 / → 로 진행 · B buy · S sell · F flatten',
+  'sim.tab.chart': '차트',
+  'sim.tab.order': '주문',
+  'sim.tab.trades': '거래',
+  'sim.indicator.hide': '{label} 숨기기',
+  'sim.indicator.show': '{label} 표시',
+  'sim.toast.insufficientBalance': '잔고 부족 — 필요 금액 {cost}, 보유 잔고 {balance}',
+  'sim.toast.limitPriceMissing': '지정 가격을 입력하거나 시장가 주문으로 전환하세요.',
+  'sim.toast.limitBuyFilledNow': '지정가 매수가 {price}에 즉시 체결되었습니다',
+  'sim.toast.limitSellFilledNow': '지정가 매도가 {price}에 즉시 체결되었습니다',
+  'sim.toast.limitBuyResting.one': '지정가 매수(수량 {n})가 {price}에 대기 중 — 가격이 그 수준까지 떨어지면 체결됩니다.',
+  'sim.toast.limitBuyResting.other': '지정가 매수(수량 {n})가 {price}에 대기 중 — 가격이 그 수준까지 떨어지면 체결됩니다.',
+  'sim.toast.limitSellResting.one': '지정가 매도(수량 {n})가 {price}에 대기 중 — 가격이 그 수준까지 오르면 체결됩니다.',
+  'sim.toast.limitSellResting.other': '지정가 매도(수량 {n})가 {price}에 대기 중 — 가격이 그 수준까지 오르면 체결됩니다.',
+  'sim.toast.limitBuyFilled': '지정가 매수가 {price}에 체결되었습니다',
+  'sim.toast.limitSellFilled': '지정가 매도가 {price}에 체결되었습니다',
+  'sim.toast.limitBuyCancelled': '지정가 매수가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
+  'sim.toast.limitSellCancelled': '지정가 매도가 {price}에서 취소되었습니다 — 잔고가 부족합니다.',
 };
 
 const it: Dictionary = {
@@ -1386,9 +1436,8 @@ const it: Dictionary = {
 // Delete a locale's entry when its batch lands.
 // Phase A, MarketsView batch: complete in all 7 locales (2026-10-17).
 // Phase A, AnalyticsDashboard batch: complete in all 7 locales (2026-10-17).
-// Phase A, TradingSimulator batch: es (2026-10-17), pt, ja, fr, de (2026-10-18) done; the others pending.
+// Phase A, TradingSimulator batch: es (2026-10-17), pt, ja, fr, de, ko (2026-10-18) done; it pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  ko: ['sim.'],
   it: ['sim.'],
 };
 
