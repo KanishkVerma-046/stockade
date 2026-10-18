@@ -1235,6 +1235,7 @@ const de: Dictionary = {
   'sim.toast.limitSellFilled': 'Limit-Verkauf zu {price} ausgeführt',
   'sim.toast.limitBuyCancelled': 'Limit-Kauf bei {price} storniert — Guthaben reicht nicht.',
   'sim.toast.limitSellCancelled': 'Limit-Verkauf bei {price} storniert — Guthaben reicht nicht.',
+  'chart.info.notGenerated': 'Das Kursmodell dieses Simulators erzeugt dieses Muster nicht, daher erscheint es nie im Chart.',
 };
 
 const ko: Dictionary = {
