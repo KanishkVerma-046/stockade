@@ -1320,7 +1320,34 @@ const de: Dictionary = {
   'sim.toast.limitSellFilled': 'Limit-Verkauf zu {price} ausgeführt',
   'sim.toast.limitBuyCancelled': 'Limit-Kauf bei {price} storniert — Guthaben reicht nicht.',
   'sim.toast.limitSellCancelled': 'Limit-Verkauf bei {price} storniert — Guthaben reicht nicht.',
+  'chart.library.title': 'Musterbibliothek',
+  'chart.library.short': 'Bibliothek',
+  'chart.library.toggle': 'Musterbibliothek ein- oder ausblenden',
+  'chart.library.count.one': '{total} Muster · {n} erkannt',
+  'chart.library.count.other': '{total} Muster · {n} erkannt',
+  'chart.group.bullishReversal': 'Bullische Umkehr',
+  'chart.group.bearishReversal': 'Bärische Umkehr',
+  'chart.group.neutral': 'Neutral / Unentschlossenheit',
+  'chart.group.continuation': 'Fortsetzung',
+  'chart.candles.one': '{n} Kerze',
+  'chart.candles.other': '{n} Kerzen',
+  'chart.found': '{n}× im Chart gefunden',
+  'chart.info.formation': 'Formation',
+  'chart.info.psychology': 'Marktpsychologie',
+  'chart.info.keyRules': 'Wichtige Regeln',
   'chart.info.notGenerated': 'Das Kursmodell dieses Simulators erzeugt dieses Muster nicht, daher erscheint es nie im Chart.',
+  'chart.empty.title': 'Kein Muster ausgewählt',
+  'chart.empty.body': 'Klicken Sie auf ein Muster in der Bibliothek oder gehen Sie den Chart Kerze für Kerze durch — Muster werden automatisch hervorgehoben, sobald sie auftreten.',
+  'chart.control.start': 'Zum Anfang',
+  'chart.control.stepBack': 'Zurück',
+  'chart.control.end': 'Zum Ende',
+  'chart.key.space': 'Leertaste',
+  'chart.tab.patterns': 'Muster',
+  'chart.tab.info': 'Info',
+  'chart.detected': 'erkannt',
+  'chart.hoverOhlcv': 'Mauszeiger darüber für OHLCV',
+  'chart.footer.patterns.one': '{n} Muster',
+  'chart.footer.patterns.other': '{n} Muster',
 };
 
 const ko: Dictionary = {
@@ -1664,7 +1691,6 @@ const it: Dictionary = {
 // Phase A, TradingSimulator batch: complete in all 7 locales (2026-10-18).
 // Phase A, ChartSimulator batch: es checkpoint (2026-10-18); the other six pending.
 export const UI_PENDING: Partial<Record<Locale, readonly string[]>> = {
-  de: ['chart.'],
   ko: ['chart.'],
   it: ['chart.'],
 };

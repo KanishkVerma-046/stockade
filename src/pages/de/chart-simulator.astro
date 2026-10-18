@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { chartSimulatorLabels as buildChartSimulatorLabels } from '../../i18n/chart-simulator-labels';
+
+const locale = 'de' as const;
+const chartSimulatorLabels = buildChartSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -10,7 +14,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
   alternates={CHART_SIMULATOR_ALTERNATES}
 >
   <h1 class="sr-only">Candlestick-Muster-Simulator</h1>
-  <ChartSimulator client:load />
+  <ChartSimulator client:load locale={locale} labels={chartSimulatorLabels} />
 
   <section
     slot="below"
@@ -57,7 +61,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             Worauf zu achten ist
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Das Panel <strong class="text-[var(--c-text)] font-semibold">Pattern Library</strong> links (auf schmalen Bildschirmen der Tab <strong class="text-[var(--c-text)] font-semibold">Patterns</strong>) enthält 24 Muster zum Lernen — Doji, Hammer, bullisches und bärisches Engulfing, Harami, Morning und Evening Star, Three White Soldiers, Tweezer-Hochs und -Tiefs und viele mehr (<a href="/de/blog/candlestick-charts-lesen/" class="text-[#f59e0b] hover:underline">Candlestick-Charts lesen</a> erklärt die Anatomie jedes einzelnen). Einige davon können sich im Kursmodell dieses Simulators nicht bilden, weil jede Kerze dort eröffnet, wo die vorherige geschlossen hat, und Kerzenkörper nie winzig sind: Die drei Doji-Muster, Piercing Line, Dark Cloud Cover, beide Harami sowie Three Inside Up und Down erscheinen nie im Chart, und ihre Erklärung weist darauf hin. Klicken Sie auf ein Muster, um nur dessen Vorkommen hervorzuheben, oder klicken Sie auf einen Marker im Chart, um dessen Erklärung zu öffnen — einschließlich der Marktpsychologie hinter der Formation und was sie bestätigt oder entkräftet. Die nützlichste Gewohnheit: bei einem Marker pausieren, die nächste Kerze vorhersagen, dann vorspulen und prüfen. Kontext zählt mehr als Form — ein Umkehrmuster ist nur nach einem echten Trend aussagekräftig. In einem echten Chart hilft außerdem das Volumen hinter der Signalkerze, eine echte Umkehr von Rauschen zu unterscheiden; hier ist das Volumen eine Zufallszahl pro Kerze, diese Prüfung gehört also in echte Märkte, nicht in diesen Chart.
+            Das Panel <strong class="text-[var(--c-text)] font-semibold">Musterbibliothek</strong> links (auf schmalen Bildschirmen der Tab <strong class="text-[var(--c-text)] font-semibold">Muster</strong>) enthält 24 Muster zum Lernen — Doji, Hammer, bullisches und bärisches Engulfing, Harami, Morning und Evening Star, Three White Soldiers, Tweezer-Hochs und -Tiefs und viele mehr (<a href="/de/blog/candlestick-charts-lesen/" class="text-[#f59e0b] hover:underline">Candlestick-Charts lesen</a> erklärt die Anatomie jedes einzelnen). Einige davon können sich im Kursmodell dieses Simulators nicht bilden, weil jede Kerze dort eröffnet, wo die vorherige geschlossen hat, und Kerzenkörper nie winzig sind: Die drei Doji-Muster, Piercing Line, Dark Cloud Cover, beide Harami sowie Three Inside Up und Down erscheinen nie im Chart, und ihre Erklärung weist darauf hin. Klicken Sie auf ein Muster, um nur dessen Vorkommen hervorzuheben, oder klicken Sie auf einen Marker im Chart, um dessen Erklärung zu öffnen — einschließlich der Marktpsychologie hinter der Formation und was sie bestätigt oder entkräftet. Die nützlichste Gewohnheit: bei einem Marker pausieren, die nächste Kerze vorhersagen, dann vorspulen und prüfen. Kontext zählt mehr als Form — ein Umkehrmuster ist nur nach einem echten Trend aussagekräftig. In einem echten Chart hilft außerdem das Volumen hinter der Signalkerze, eine echte Umkehr von Rauschen zu unterscheiden; hier ist das Volumen eine Zufallszahl pro Kerze, diese Prüfung gehört also in echte Märkte, nicht in diesen Chart.
           </p>
         </div>
       </details>
