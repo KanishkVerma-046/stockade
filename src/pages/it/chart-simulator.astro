@@ -2,6 +2,10 @@
 import AppLayout from '../../layouts/AppLayout.astro';
 import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
+import { chartSimulatorLabels as buildChartSimulatorLabels } from '../../i18n/chart-simulator-labels';
+
+const locale = 'it' as const;
+const chartSimulatorLabels = buildChartSimulatorLabels(locale);
 ---
 
 <AppLayout
@@ -10,7 +14,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
   alternates={CHART_SIMULATOR_ALTERNATES}
 >
   <h1 class="sr-only">Simulatore di Pattern a Candele</h1>
-  <ChartSimulator client:load />
+  <ChartSimulator client:load locale={locale} labels={chartSimulatorLabels} />
 
   <section
     slot="below"
@@ -71,7 +75,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
             Cosa osservare
           </h3>
           <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
-            Il pannello Pattern Library a sinistra (la scheda Patterns su schermi stretti) contiene 24 pattern da studiare — Doji,
+            Il pannello <strong class="text-[var(--c-text)] font-semibold">Libreria dei pattern</strong> a sinistra (la scheda <strong class="text-[var(--c-text)] font-semibold">Pattern</strong> su schermi stretti) contiene 24 pattern da studiare — Doji,
             Hammer, Engulfing rialzista e ribassista, Harami, Morning e Evening Star, Three White
             Soldiers, Tweezer top e bottom, e altri ancora (<a href="/it/blog/come-leggere-i-grafici-a-candele/" class="text-[#f59e0b] hover:underline">come leggere i grafici a candele</a> copre l'anatomia dietro ciascuno di essi).
             Alcuni non possono formarsi nel modello di prezzo di questo simulatore, perché ogni candela
