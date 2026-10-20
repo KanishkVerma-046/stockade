@@ -78,7 +78,7 @@ Lisez-le en deux passages. Repérez les valeurs aberrantes qui dominent visiblem
 
 ## Où les données de volume vous induisent en erreur
 
-**Il est fragmenté entre plateformes.** Une action américaine se trade sur plus d'une douzaine de bourses, plus des plateformes hors marché, et une part significative n'apparaît jamais sur une bourse ouverte. Le chiffre de votre plateforme dépend des flux qu'elle consolide, si bien que deux outils graphiques peuvent afficher un volume différent pour la même action le même jour.
+**Il est fragmenté entre plateformes.** Une action américaine se trade sur [plus d'une douzaine de bourses enregistrées](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges), plus des plateformes hors marché, et une part significative n'apparaît jamais sur une bourse ouverte. Le chiffre de votre plateforme dépend des flux qu'elle consolide, si bien que deux outils graphiques peuvent afficher un volume différent pour la même action le même jour.
 
 **Le volume crypto est fréquemment fictif.** Le wash trading — une même entité qui achète et vend avec elle-même pour fabriquer une activité apparente — a été documenté à grande échelle sur de multiples plateformes, et aucun flux consolidé ni régulateur n'impose une norme unique. Les plateformes décentralisées rendent la pratique encore moins coûteuse. Accorder à un chiffre de volume crypto la confiance que vous accorderiez à une donnée du NYSE est une erreur.
 

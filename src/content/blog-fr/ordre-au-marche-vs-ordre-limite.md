@@ -44,7 +44,7 @@ Un **ordre à cours limité** dit : *exécute ceci uniquement à mon prix ou mie
 
 ## Le compromis dont tout le reste découle
 
-Voici la phrase à mémoriser : **un ordre au marché garantit l'exécution mais pas le prix ; un ordre à cours limité garantit le prix mais pas l'exécution.**
+Voici la phrase à mémoriser, et elle correspond à la façon dont les régulateurs eux-mêmes décrivent [un ordre au marché](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders) et [un ordre à cours limité](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14) : **un ordre au marché garantit l'exécution mais pas le prix ; un ordre à cours limité garantit le prix mais pas l'exécution.**
 
 Toute autre considération ci-dessous est une conséquence de cette seule ligne. Un ordre au marché pour sortir d'un perdant ? Oui — vous vous souciez davantage de sortir que des derniers centimes, et l'exécution est exactement ce que garantit un ordre au marché. Un ordre à cours limité pour entrer sur un instrument à large spread ? Oui — c'est le prix qui est en jeu ici.
 

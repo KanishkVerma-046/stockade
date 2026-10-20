@@ -21,7 +21,7 @@ C'est la « standardisation » qui fait fonctionner ce marché. Chaque contrat /
 
 ## Spécifications du contrat : multiplicateur, taille de tick et valeur du tick
 
-Un prix de contrat à terme n'est pas un montant en dollars. C'est un nombre que vous convertissez en dollars via le multiplicateur du contrat. Stockade propose quatre symboles de contrats à terme sur [`/simulator`](/fr/simulator/) et [`/markets`](/fr/markets/), et chacun se convertit différemment.
+Un prix de contrat à terme n'est pas un montant en dollars. C'est un nombre que vous convertissez en dollars via le multiplicateur du contrat. Stockade propose quatre symboles de contrats à terme sur [`/simulator`](/fr/simulator/) et [`/markets`](/fr/markets/), qui portent le nom des contrats réels du tableau ci-dessous, et chacun de ces contrats se convertit différemment.
 
 <div class="table-wrap">
 

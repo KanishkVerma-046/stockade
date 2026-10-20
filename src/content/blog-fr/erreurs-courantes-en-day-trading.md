@@ -53,7 +53,7 @@ Voici ce que cela cache. À $57, vous êtes en baisse de $600 dans les deux cas.
 
 ### Couper court les gains tout en laissant courir les pertes
 
-Vous prenez un profit à +0.5R parce qu'un petit gain en main semble solide, puis vous conservez une perte jusqu'à −2R parce qu'elle pourrait revenir. C'est l'effet de disposition : réaliser un gain produit une décharge de récompense, réaliser une perte produit l'inverse. Votre système nerveux optimise la fréquence à laquelle vous vous sentez bien, pas la quantité d'argent que vous possédez.
+Vous prenez un profit à +0.5R parce qu'un petit gain en main semble solide, puis vous conservez une perte jusqu'à −2R parce qu'elle pourrait revenir. C'est [l'effet de disposition](https://en.wikipedia.org/wiki/Disposition_effect) : réaliser un gain produit une décharge de récompense, réaliser une perte produit l'inverse. Votre système nerveux optimise la fréquence à laquelle vous vous sentez bien, pas la quantité d'argent que vous possédez.
 
 Avec le même taux de réussite de 55%, des sorties disciplinées rapportent 0.55 × 1.5 − 0.45 × 1 = **+0.375R par trade**, soit +7.5R sur 20 trades. Des gains coupés à +0.5R et des pertes autorisées à atteindre −2R rapportent 0.55 × 0.5 − 0.45 × 2 = **−0.625R par trade**, soit −12.5R sur les mêmes 20. Entrées identiques, taux de réussite identique, un écart de 20R produit entièrement par le comportement de sortie.
 

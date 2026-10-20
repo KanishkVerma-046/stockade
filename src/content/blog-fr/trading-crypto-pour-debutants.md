@@ -21,7 +21,7 @@ Les cryptomonnaies suppriment tout cela. Il n'existe aucun moment où votre posi
 
 - **Votre stop est votre seule protection de nuit.** Pas un niveau mental, pas une intention de vérifier le graphique — un ordre en attente réel. Un stop mental ne fonctionne que si vous êtes éveillé.
 - **La taille de la position doit survivre à un mouvement non surveillé.** Demandez-vous ce qui se passe si l'actif évolue de 15% contre vous pendant votre sommeil, car cela peut arriver — et cela arrive.
-- **Il n'existe aucun coupe-circuit.** Sur les actions américaines, une baisse de 7% du S&P 500 suspend les échanges pendant 15 minutes. Les cryptomonnaies n'ont pas d'équivalent. Une cascade de liquidations se poursuit jusqu'à son épuisement.
+- **Il n'existe aucun coupe-circuit.** Sur les actions américaines, une [baisse de 7% du S&P 500 avant 15h25 suspend les échanges sur l'ensemble du marché pendant 15 minutes](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Les cryptomonnaies n'ont pas d'équivalent. Une cascade de liquidations se poursuit jusqu'à son épuisement.
 
 Si vous n'avez pas encore construit de cadre de dimensionnement, faites-le avant de toucher à cette classe d'actifs — [le dimensionnement de position et la règle du 1%](/fr/blog/gestion-du-risque-et-dimensionnement-de-position/) couvre l'arithmétique.
 
@@ -104,7 +104,7 @@ Ainsi, un jeton affichant « $2 milliards de volume quotidien » peut ne cacher 
 
 ## Ce que les marchés crypto ne vous offrent pas
 
-Soyez lucide sur l'infrastructure manquante. Il n'existe aucun équivalent d'une couverture type SIPC en cas de faillite d'une plateforme crypto — les créanciers de plateformes en faillite ont passé des années devant les tribunaux pour des recouvrements partiels. Des manipulations qui déclencheraient des sanctions sur les actions sont courantes et largement impunies dans les cryptomonnaies. Les listings ne sont soumis à aucune norme de divulgation comparable à un dépôt public.
+Soyez lucide sur l'infrastructure manquante. Il n'existe aucun équivalent d'une [couverture type SIPC](https://www.sipc.org/for-investors/what-sipc-protects) en cas de faillite d'une plateforme crypto — les créanciers de plateformes en faillite ont passé des années devant les tribunaux pour des recouvrements partiels. Des manipulations qui déclencheraient des sanctions sur les actions sont courantes et largement impunies dans les cryptomonnaies. Les listings ne sont soumis à aucune norme de divulgation comparable à un dépôt public.
 
 Et l'horloge 24/7 est un piège psychologique autant qu'une contrainte structurelle. Les actions imposent une pause ; les cryptomonnaies, jamais. Chaque heure est une heure où vous *pourriez* trader, ce qui est exactement la condition qui produit le surtrading, le trading de vengeance, et des décisions prises à 3 heures du matin — les [erreurs de day trading les plus courantes](/fr/blog/erreurs-courantes-en-day-trading/), avec le seul garde-fou externe retiré. La discipline doit être entièrement auto-imposée : des heures de session définies, une heure d'arrêt stricte, et des ordres en attente qui fonctionnent quand vous ne l'êtes pas.
 

@@ -13,7 +13,7 @@ La règle n'était pas exactement fausse — c'est vous qui aviez une mauvaise i
 
 ## Ce que le RSI mesure réellement
 
-L'indice de force relative (RSI), publié par J. Welles Wilder en 1978, répond à une seule question précise : sur les N dernières barres, comment les hausses moyennes se comparent-elles aux baisses moyennes ? C'est réellement tout ce qu'il fait. Il prend la variation de clôture à clôture de chaque barre sur une fenêtre de calcul — 14 barres par défaut — les sépare en gains et en pertes, fait la moyenne de chaque groupe, et les compare sous forme d'un ratio appelé RS, pour relative strength (force relative) :
+L'indice de force relative (RSI), [publié par J. Welles Wilder en 1978](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi), répond à une seule question précise : sur les N dernières barres, comment les hausses moyennes se comparent-elles aux baisses moyennes ? C'est réellement tout ce qu'il fait. Il prend la variation de clôture à clôture de chaque barre sur une fenêtre de calcul — 14 barres par défaut — les sépare en gains et en pertes, fait la moyenne de chaque groupe, et les compare sous forme d'un ratio appelé RS, pour relative strength (force relative) :
 
 ```
 RS = average gain / average loss

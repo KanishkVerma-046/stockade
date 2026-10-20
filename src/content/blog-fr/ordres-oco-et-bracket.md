@@ -13,7 +13,7 @@ Les ordres OCO et bracket existent pour vous retirer cette décision. Pas pour l
 
 ## Ce qu'est un ordre OCO : deux ordres en attente où l'exécution de l'un tue l'autre
 
-OCO signifie **one-cancels-other** (l'un annule l'autre). Ce n'est pas un nouveau type d'ordre. C'est un *lien* placé entre deux ordres ordinaires que vous comprenez déjà.
+OCO signifie **one-cancels-other** (l'un annule l'autre), [un type d'ordre conditionnel standard](https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types). Ce n'est pas un nouveau type d'ordre. C'est un *lien* placé entre deux ordres ordinaires que vous comprenez déjà.
 
 Vous soumettez deux ordres en même temps. Les deux se trouvent chez le courtier, non exécutés, en attente. Dès que l'un des deux s'exécute, le courtier annule automatiquement l'autre. Vous ne vous retrouvez jamais avec les deux.
 
