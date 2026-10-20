@@ -78,7 +78,7 @@ Lesen Sie es in zwei Durchgängen. Scannen Sie nach Ausreißern, die die umgeben
 
 ## Wo Volumendaten Sie in die Irre führen
 
-**Es ist über Handelsplätze fragmentiert.** Eine US-Aktie handelt an mehr als einem Dutzend Börsen plus außerbörslichen Plätzen, und ein bedeutender Anteil erscheint nie auf einer beleuchteten Börse. Die Zahl Ihrer Plattform hängt davon ab, welche Feeds sie konsolidiert, sodass zwei Chart-Tools unterschiedliches Volumen für dieselbe Aktie am selben Tag zeigen können.
+**Es ist über Handelsplätze fragmentiert.** Eine US-Aktie handelt an [mehr als einem Dutzend registrierter Börsen](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges) plus außerbörslichen Plätzen, und ein bedeutender Anteil erscheint nie auf einer beleuchteten Börse. Die Zahl Ihrer Plattform hängt davon ab, welche Feeds sie konsolidiert, sodass zwei Chart-Tools unterschiedliches Volumen für dieselbe Aktie am selben Tag zeigen können.
 
 **Krypto-Volumen ist häufig fiktiv.** Wash Trading — dieselbe Entität kauft und verkauft mit sich selbst, um scheinbare Aktivität zu erzeugen — wurde in großem Maßstab auf mehreren Börsen dokumentiert, und keine konsolidierte Tape oder Regulierungsbehörde erzwingt einen einheitlichen Standard. Dezentrale Plätze machen es noch billiger. Eine Krypto-Volumenzahl mit dem Vertrauen zu behandeln, das Sie einem NYSE-Print geben würden, ist ein Fehler.
 

@@ -44,7 +44,7 @@ Eine **Limit-Order** sagt: *führe das nur zu meinem Preis oder besser aus, und 
 
 ## Der Kompromiss, aus dem alles andere folgt
 
-Hier ist der Satz zum Auswendiglernen: **eine Market-Order garantiert die Ausführung, nicht den Preis; eine Limit-Order garantiert den Preis, nicht die Ausführung.**
+Hier ist der Satz zum Auswendiglernen, und er entspricht der Art, wie die Aufsichtsbehörden selbst [eine Market-Order](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders) und [eine Limit-Order](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14) beschreiben: **eine Market-Order garantiert die Ausführung, nicht den Preis; eine Limit-Order garantiert den Preis, nicht die Ausführung.**
 
 Jede weitere Überlegung unten ist eine Konsequenz dieser einen Zeile. Market-Order, um einen Verlierer zu verlassen? Ja — Ihnen liegt mehr daran, draußen zu sein, als an den letzten paar Cent, und Ausführung ist, was eine Market-Order garantiert. Limit-Order, um in ein Instrument mit weitem Spread einzusteigen? Ja — dort steht der Preis auf dem Spiel.
 

@@ -53,7 +53,7 @@ Hier ist, was es verbirgt. Bei 57 $ sind Sie in jedem Fall 600 $ im Minus. Aber 
 
 ### Gewinner zu früh beenden, während Sie Verlierer laufen lassen
 
-Sie nehmen Gewinn bei +0,5R, weil sich ein kleiner Gewinn in der Hand solide anfühlt, halten dann einen Verlierer bis −2R, weil er vielleicht zurückkommt. Das ist der Dispositionseffekt: Einen Gewinn zu realisieren erzeugt einen Belohnungsschub, einen Verlust zu realisieren das Gegenteil. Ihr Nervensystem optimiert dafür, wie oft Sie sich gut fühlen, nicht dafür, wie viel Geld Sie haben.
+Sie nehmen Gewinn bei +0,5R, weil sich ein kleiner Gewinn in der Hand solide anfühlt, halten dann einen Verlierer bis −2R, weil er vielleicht zurückkommt. Das ist [der Dispositionseffekt](https://en.wikipedia.org/wiki/Disposition_effect): Einen Gewinn zu realisieren erzeugt einen Belohnungsschub, einen Verlust zu realisieren das Gegenteil. Ihr Nervensystem optimiert dafür, wie oft Sie sich gut fühlen, nicht dafür, wie viel Geld Sie haben.
 
 Bei derselben Trefferquote von 55 % liefern disziplinierte Ausstiege 0,55 × 1,5 − 0,45 × 1 = **+0,375R pro Trade**, oder +7,5R über 20 Trades. Gewinner, die bei +0,5R beendet werden, und Verlierer, die bis −2R laufen dürfen, liefern 0,55 × 0,5 − 0,45 × 2 = **−0,625R pro Trade**, oder −12,5R über dieselben 20. Identische Einstiege, identische Trefferquote, ein Ausschlag von 20R, vollständig durch Ausstiegsverhalten erzeugt.
 

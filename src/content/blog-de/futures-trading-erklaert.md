@@ -21,7 +21,7 @@ Ein Futures-Kontrakt ist ein völlig anderes Objekt: eine standardisierte, börs
 
 ## Kontraktspezifikationen: Multiplikator, Tick-Größe und Tick-Wert
 
-Ein Futures-Preis ist kein Dollarbetrag. Es ist eine Zahl, die Sie über den Multiplikator des Kontrakts in Dollar übersetzen. Stockade führt vier Futures-Symbole unter `/simulator` und `/markets`, und jedes übersetzt sich anders.
+Ein Futures-Preis ist kein Dollarbetrag. Es ist eine Zahl, die Sie über den Multiplikator des Kontrakts in Dollar übersetzen. Stockade führt vier Futures-Symbole unter `/simulator` und `/markets`, benannt nach den echten Kontrakten in der Tabelle unten, und jeder dieser Kontrakte übersetzt sich anders.
 
 <div class="table-wrap">
 

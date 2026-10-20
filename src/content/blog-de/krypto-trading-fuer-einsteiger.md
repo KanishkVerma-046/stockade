@@ -21,7 +21,7 @@ Krypto löscht das alles. Es gibt keinen Moment, in dem Ihre Position standardm�
 
 - **Ihr Stop ist Ihr einziger Overnight-Schutz.** Kein mentales Niveau, keine Absicht, den Chart zu prüfen — eine ruhende Order. Ein mentaler Stop funktioniert nur, wenn Sie wach sind.
 - **Die Positionsgröße muss eine unbeaufsichtigte Bewegung überstehen.** Fragen Sie sich, was passiert, wenn sich das Asset 15 % gegen Sie bewegt, während Sie schlafen, denn es kann und es tut.
-- **Es gibt keine Handelsunterbrechungen.** Bei US-Aktien stoppt ein Rückgang des S&P 500 um 7 % den Handel für 15 Minuten. Krypto hat kein Äquivalent. Eine Kaskade von Liquidationen läuft, bis sie ausläuft.
+- **Es gibt keine Handelsunterbrechungen.** Bei US-Aktien [stoppt ein Rückgang des S&P 500 um 7 % vor 15:25 Uhr den marktweiten Handel für 15 Minuten](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Krypto hat kein Äquivalent. Eine Kaskade von Liquidationen läuft, bis sie ausläuft.
 
 Haben Sie noch kein Größenrahmenwerk aufgebaut, tun Sie das, bevor Sie diese Anlageklasse anfassen — [Positionsgrößenbestimmung und die 1-%-Regel](/de/blog/risikomanagement-positionsgroesse/) behandelt die Arithmetik.
 
@@ -104,7 +104,7 @@ Ein Token mit „2 Milliarden $ Tagesvolumen" kann also 100 Millionen $ echten H
 
 ## Was Krypto-Märkte Ihnen nicht geben
 
-Seien Sie sich der fehlenden Infrastruktur klar bewusst. Es gibt kein Äquivalent zum SIPC-Schutz für eine gescheiterte Krypto-Börse — Gläubiger bankrotter Handelsplätze haben Jahre vor Gericht für Teilrückzahlungen verbracht. Manipulation, die bei Aktien Durchsetzungsmaßnahmen nach sich ziehen würde, ist üblich und weitgehend unbeaufsichtigt. Listings tragen keinen Offenlegungsstandard vergleichbar mit einer öffentlichen Einreichung.
+Seien Sie sich der fehlenden Infrastruktur klar bewusst. Es gibt kein Äquivalent zum [SIPC-Schutz](https://www.sipc.org/for-investors/what-sipc-protects) für eine gescheiterte Krypto-Börse — Gläubiger bankrotter Handelsplätze haben Jahre vor Gericht für Teilrückzahlungen verbracht. Manipulation, die bei Aktien Durchsetzungsmaßnahmen nach sich ziehen würde, ist üblich und weitgehend unbeaufsichtigt. Listings tragen keinen Offenlegungsstandard vergleichbar mit einer öffentlichen Einreichung.
 
 Und die 24/7-Uhr ist ebenso eine psychologische Falle wie eine strukturelle. Aktien erzwingen eine Pause; Krypto nie. Jede Stunde ist eine, in der Sie handeln *könnten*, was genau die Bedingung ist, die Overtrading, Revenge-Trading und um 3 Uhr morgens getroffene Entscheidungen erzeugt — die [häufigsten Day-Trading-Fehler](/de/blog/haeufige-day-trading-fehler/), nur ohne die eine externe Leitplanke. Die Disziplin muss vollständig selbst auferlegt werden: definierte Sessionstunden, eine harte Schlusszeit, und ruhende Orders, die arbeiten, während Sie es nicht tun.
 

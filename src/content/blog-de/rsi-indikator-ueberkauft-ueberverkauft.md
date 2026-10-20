@@ -13,7 +13,7 @@ Die Regel war nicht falsch, genau genommen — Sie hatten die falsche Vorstellun
 
 ## Was RSI tatsächlich misst
 
-Der Relative Strength Index, veröffentlicht von J. Welles Wilder 1978, beantwortet eine enge Frage: Wie verhalten sich über die letzten N Balken die durchschnittlichen Aufwärtsbewegungen zu den durchschnittlichen Abwärtsbewegungen? Das ist wirklich alles, was er tut. Er nimmt die Schluss-zu-Schluss-Veränderung jedes Balkens über ein Rückblickfenster — standardmäßig 14 Balken —, trennt sie in Gewinne und Verluste, mittelt jede Gruppe und vergleicht sie als Verhältnis namens RS, für relative Stärke:
+Der Relative Strength Index, [veröffentlicht von J. Welles Wilder 1978](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi), beantwortet eine enge Frage: Wie verhalten sich über die letzten N Balken die durchschnittlichen Aufwärtsbewegungen zu den durchschnittlichen Abwärtsbewegungen? Das ist wirklich alles, was er tut. Er nimmt die Schluss-zu-Schluss-Veränderung jedes Balkens über ein Rückblickfenster — standardmäßig 14 Balken —, trennt sie in Gewinne und Verluste, mittelt jede Gruppe und vergleicht sie als Verhältnis namens RS, für relative Stärke:
 
 ```
 RS = durchschnittlicher Gewinn / durchschnittlicher Verlust

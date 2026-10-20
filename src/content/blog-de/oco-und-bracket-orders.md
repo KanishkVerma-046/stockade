@@ -13,7 +13,7 @@ OCO- und Bracket-Orders existieren, um Ihnen genau diese Entscheidung abzunehmen
 
 ## Was eine OCO-Order ist: zwei ruhende Orders, bei denen die Ausführung der einen die andere tötet
 
-OCO steht für **one-cancels-other** (die eine storniert die andere). Es ist kein neuer Ordertyp. Es ist eine *Verknüpfung*, die zwischen zwei gewöhnlichen Orders gesetzt wird, die Sie bereits kennen.
+OCO steht für **one-cancels-other** (die eine storniert die andere), [ein standardmäßiger bedingter Ordertyp](https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types). Es ist kein neuer Ordertyp. Es ist eine *Verknüpfung*, die zwischen zwei gewöhnlichen Orders gesetzt wird, die Sie bereits kennen.
 
 Sie geben zwei Orders gleichzeitig auf. Beide liegen beim Broker, unausgeführt, wartend. In dem Moment, in dem eine davon ausgeführt wird, storniert der Broker automatisch die andere. Sie enden nie mit beiden.
 

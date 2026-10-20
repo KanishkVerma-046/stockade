@@ -19,7 +19,7 @@ Eine Sache an dieser Definition zählt mehr, als es scheint: Der Stop ist eine O
 
 ## Stop-Market- und Stop-Limit-Orders, und die Falle in der zweiten
 
-Sobald ein Stop auslöst, muss tatsächlich etwas Ihre Aktien verkaufen. Es gibt zwei Wege, das festzulegen, und der Unterschied ist bedeutend genug, dass Aufsichtsbehörden eigens Anlegerhinweise dazu veröffentlichen.
+Sobald ein Stop auslöst, muss tatsächlich etwas Ihre Aktien verkaufen. Es gibt zwei Wege, das festzulegen, und der Unterschied ist bedeutend genug, dass [Aufsichtsbehörden eigens Anlegerhinweise dazu veröffentlichen](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15).
 
 Eine **Stop-Market**-Order sagt: Wenn der Preis 185,90 berührt, verkaufe zu dem, was der Markt gerade zahlt. Sie steigen garantiert aus. Der Preis ist nicht garantiert. Fällt der Markt schnell, kann Ihre Ausführung bei 185,40 oder schlechter landen.
 
