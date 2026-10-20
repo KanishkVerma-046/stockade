@@ -1,16 +1,16 @@
 # Plan: carry the external citations into the remaining translations
 
-**Status: batches 1–5 (es, pt, fr, it, de) done. Batches 6–7 (ja, ko) not started; each waits for review of the one before.** Since 2026-10-20 the #2 halt time uses each locale's own 24-hour form (see "Time format per locale"). First written 2026-10-16 at `537db0b`. Revised the same day after `b57901e`, `025da5e` and `add28c9` changed the English sentences the batches must translate.
+**Status: all 7 batches (es, pt, fr, it, de, ja, ko) done. Every locale now carries the 16 links.** Since 2026-10-20 the #2 halt time uses each locale's own 24-hour form (see "Time format per locale"). First written 2026-10-16 at `537db0b`. Revised the same day after `b57901e`, `025da5e` and `add28c9` changed the English sentences the batches must translate.
 
 ## What changed since the first version
 
 The first version asked each locale to wrap 15 links around text it already had. After batch 1 (es, `e5971f8`), each cited sentence was re-read against its source. Seven of them said more than the source did and were reworded (`b57901e`). The CME claim was false and was removed (`025da5e`). Two links moved to a source that can be read directly (`add28c9`). en and es now match each other.
 
-**Batches 2–7 translate the final English sentences below, not the `cdd53c4` originals.** On 2026-10-16 the 6 locales after es were all still on the *pre*-`b57901e` wording, with no links. pt, fr, it and de have since been done (2026-10-20); ja and ko still are. The only exception is "at least 300 days", which `b57901e` already applied in all 8 locales.
+**Batches 2–7 translate the final English sentences below, not the `cdd53c4` originals.** On 2026-10-16 the 6 locales after es were all still on the *pre*-`b57901e` wording, with no links. pt, fr, it, de, ja and ko have since been done (2026-10-20). The only exception is "at least 300 days", which `b57901e` already applied in all 8 locales.
 
 ## Counts (verified in source and `dist/`)
 
-- **16 links**, in **11 posts**, in each of en, es, pt, fr, it and de. Each matches en link for link. ja and ko each still have **0**.
+- **16 links**, in **11 posts**, in each of all 8 locales. Each matches en link for link.
 - **15 distinct URLs.** The ESMA URL appears twice in the forex post.
 - **14 cited claims.** That's the original 15, minus CME (#9, now no link). Two claims now carry more than one link: the leverage claim #6/#7 has three (EU, UK, US) and the order-types claim #11 has two.
 - The futures post still changes text (#9), so batches touch **11 post files** per locale.
@@ -64,15 +64,15 @@ Every translated locale already writes clock times in 24-hour form in its other 
 | fr | `15h25` ("avant 15h25") | Done |
 | it | `15:25` ("prima delle 15:25") | Done |
 | de | `15:25 Uhr` ("vor 15:25 Uhr") | Done |
-| ja | `15時25分` | To do |
-| ko | `15시 25분` | To do |
+| ja | `15時25分` ("15時25分より前に") | Done |
+| ko | `15시 25분` ("15시 25분 이전에") | Done |
 - **Anchors cover the same span of meaning as the English anchor**, applied to the translation's own phrase. Rewritten sentences (#2, #6, #8, #10, #11, #12) are translated afresh. Every other sentence stays as it is.
 - **Reuse established terms.** Before writing, read that locale's sentence in the **es** batch for meaning, and take vocabulary from the same post and the locale's related posts: "regulators" from #14, order-type names from the market-vs-limit post, "retail" from the forex table row ("varejo", "retail", "Retail", 「リテール」, "리테일").
 - **Untouched:** everything else. A batch's diff should show only the lines in the table.
 
 ## Batching
 
-One locale per batch, one subagent at a time (or inline), each verified in `dist/` before the next starts. Batch 1 (es) is done.
+One locale per batch, one subagent at a time (or inline), each verified in `dist/` before the next starts. All seven batches are done.
 
 | Batch | Locale | Notes |
 |---|---|---|
@@ -81,8 +81,8 @@ One locale per batch, one subagent at a time (or inline), each verified in `dist
 | ~~3~~ | ~~fr~~ | **Done:** `d005c93` |
 | ~~4~~ | ~~it~~ | **Done:** `6e7ea88` |
 | ~~5~~ | ~~de~~ | **Done:** `0f4dc00` |
-| 6 | ja | CJK. Put the link on the existing phrase with no added spaces. Use `<strong>` rather than `**` next to punctuation (see CLAUDE.md). |
-| 7 | ko | CJK; same caveats as ja. |
+| ~~6~~ | ~~ja~~ | **Done:** `ad28c83`, `2785362` (「SIPC保険」 → 「SIPCの補償」: SIPC is not insurance). Verb-final, so the #2, #5, #8, #10 and #14 links span the whole clause. Range written 「74〜89%」. |
+| ~~7~~ | ~~ko~~ | **Done:** `7fb5dd7`. Same clause-spanning links as ja. Range written "74~89%". |
 
 ## Per-batch verification (scripted, against `dist/`)
 
