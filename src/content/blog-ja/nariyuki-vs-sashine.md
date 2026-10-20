@@ -44,7 +44,7 @@ Stockadeの約定は、ほとんど摩擦を伴いません。Stockadeのペー�
 
 ## 他のすべてが導かれる、そのトレードオフ
 
-覚えておくべき一文はこれです: **成行注文は約定を保証しますが価格は保証しません。指値注文は価格を保証しますが約定は保証しません。**
+覚えておくべき一文はこれで、規制当局自身による[成行注文](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders)と[指値注文](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14)の説明とも一致しています: **成行注文は約定を保証しますが価格は保証しません。指値注文は価格を保証しますが約定は保証しません。**
 
 以下のその他すべての考慮事項は、この一文からの帰結です。負けポジションを手仕舞うのに成行注文？ その通りです — あなたは数セントよりも、抜け出すことの方を気にかけており、成行注文が保証するのはまさに約定です。スプレッドの広い銘柄にエントリーするのに指値注文？ その通りです — そこでリスクにさらされているのは価格だからです。
 

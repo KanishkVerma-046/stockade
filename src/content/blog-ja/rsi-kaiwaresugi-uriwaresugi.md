@@ -13,7 +13,7 @@ translationOf: "rsi-indicator-overbought-oversold"
 
 ## RSIが実際に測っているもの
 
-相対力指数（RSI）は、J・ウェルズ・ワイルダーが1978年に発表した指標で、1つの狭い問いに答えます: 過去N本のバーにおいて、平均的な上昇幅は平均的な下落幅と比べてどうか？ 実際、それがすべてです。ルックバック期間（デフォルトでは14本）における各バーの終値の変化を上昇と下落に分け、それぞれを平均し、RS（relative strength、相対力）と呼ばれる比率として比較します:
+相対力指数（RSI）は、[J・ウェルズ・ワイルダーが1978年に発表した](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi)指標で、1つの狭い問いに答えます: 過去N本のバーにおいて、平均的な上昇幅は平均的な下落幅と比べてどうか？ 実際、それがすべてです。ルックバック期間（デフォルトでは14本）における各バーの終値の変化を上昇と下落に分け、それぞれを平均し、RS（relative strength、相対力）と呼ばれる比率として比較します:
 
 ```
 RS = average gain / average loss
