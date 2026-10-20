@@ -21,7 +21,7 @@ translationOf: "futures-trading-explained"
 
 ## 계약 명세: 승수, 틱 사이즈, 틱 가치
 
-선물 가격은 달러 금액이 아닙니다. 계약의 승수를 통해 달러로 환산하는 숫자입니다. Stockade는 `/simulator`와 `/markets`에 네 개의 선물 종목을 담고 있으며, 각각 다르게 환산됩니다.
+선물 가격은 달러 금액이 아닙니다. 계약의 승수를 통해 달러로 환산하는 숫자입니다. Stockade는 `/simulator`와 `/markets`에 아래 표의 실제 계약에서 이름을 딴 네 개의 선물 종목을 담고 있으며, 그 계약들은 각각 다르게 환산됩니다.
 
 <div class="table-wrap">
 

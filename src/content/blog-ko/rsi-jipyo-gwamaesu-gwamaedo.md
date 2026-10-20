@@ -13,7 +13,7 @@ translationOf: "rsi-indicator-overbought-oversold"
 
 ## RSI가 실제로 측정하는 것
 
-J. 웰스 와일더가 1978년에 발표한 상대강도지수(RSI)는 좁은 질문 하나에 답합니다: 지난 N개 봉 동안, 평균 상승폭이 평균 하락폭에 비해 어느 정도인가? 이것이 정말로 전부입니다. 기본값인 14개 봉의 관찰 기간 동안 각 봉의 종가 대비 변화를 상승과 하락으로 나누고, 각각을 평균 낸 뒤, 그 둘을 RS(상대강도)라는 비율로 비교합니다:
+[J. 웰스 와일더가 1978년에 발표한](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi) 상대강도지수(RSI)는 좁은 질문 하나에 답합니다: 지난 N개 봉 동안, 평균 상승폭이 평균 하락폭에 비해 어느 정도인가? 이것이 정말로 전부입니다. 기본값인 14개 봉의 관찰 기간 동안 각 봉의 종가 대비 변화를 상승과 하락으로 나누고, 각각을 평균 낸 뒤, 그 둘을 RS(상대강도)라는 비율로 비교합니다:
 
 ```
 RS = 평균 상승폭 / 평균 하락폭

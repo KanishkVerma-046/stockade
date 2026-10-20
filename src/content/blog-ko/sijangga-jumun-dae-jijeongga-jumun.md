@@ -44,7 +44,7 @@ Stockade의 체결은 거의 마찰이 없습니다. Stockade의 모의투자 �
 
 ## 나머지 모든 것이 흘러나오는 트레이드오프
 
-외워둘 문장은 이것입니다: **시장가 주문은 체결을 보장하지만 가격은 보장하지 않습니다. 지정가 주문은 가격을 보장하지만 체결은 보장하지 않습니다.**
+외워둘 문장은 이것이며, 규제 당국 스스로 [시장가 주문](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders)과 [지정가 주문](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14)을 설명하는 방식과도 일치합니다: **시장가 주문은 체결을 보장하지만 가격은 보장하지 않습니다. 지정가 주문은 가격을 보장하지만 체결은 보장하지 않습니다.**
 
 아래의 다른 모든 고려사항은 이 한 줄의 결과입니다. 손실 포지션에서 나가기 위한 시장가 주문인가요? 네 — 마지막 몇 센트보다 빠져나오는 것이 더 중요하고, 시장가 주문이 보장하는 것이 바로 체결입니다. 스프레드가 넓은 종목에 진입하는 지정가 주문인가요? 네 — 그곳에서는 가격이 위태롭습니다.
 
