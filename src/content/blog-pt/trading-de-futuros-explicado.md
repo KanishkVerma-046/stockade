@@ -36,8 +36,8 @@ ao mercado subjacente, e é por isso que a bolsa exige um depósito antes de dei
 ## Especificações do contrato: multiplicador, tick size e valor do tick
 
 Um preço futuro não é um valor em dólares. É um número que você traduz em dólares através do multiplicador
-do contrato. A Stockade carrega quatro símbolos de futuros em `/simulator` e `/markets`, e cada um traduz
-de forma diferente.
+do contrato. A Stockade carrega quatro símbolos de futuros em `/simulator` e `/markets`, com os nomes
+dos contratos reais da tabela abaixo, e cada um desses contratos traduz de forma diferente.
 
 <div class="table-wrap">
 

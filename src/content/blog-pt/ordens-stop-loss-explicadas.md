@@ -30,8 +30,8 @@ fita parecer que pode saltar. Um stop funcional executa sem te perguntar.
 ## Ordens stop-market e stop-limit, e a armadilha na segunda
 
 Uma vez que um stop dispara, alguma coisa precisa realmente vender suas ações. Há duas formas de
-especificar isso, e a diferença é importante o bastante para que os reguladores publiquem
-orientações para investidores especificamente sobre ela.
+especificar isso, e a diferença é importante o bastante para que os
+[reguladores publiquem orientações para investidores especificamente sobre ela](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15).
 
 Uma ordem **stop-market** diz: quando o preço tocar 185,90, venda pelo que o mercado pagar. Você tem
 garantia de sair. Você não tem garantia do preço. Se o mercado está caindo rápido, sua execução pode vir a

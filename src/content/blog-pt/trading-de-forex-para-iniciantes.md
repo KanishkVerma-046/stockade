@@ -114,8 +114,8 @@ de Nova York.
 
 Um lote padrão de EUR/USD a 1,0872 são $108.720 em moeda. Ninguém deposita isso; corretoras exigem um
 depósito de margem em vez disso, e as exigências de forex são extremas para os padrões de ações. Uma conta
-de ações dos EUA te dá 2:1 overnight, enquanto a alavancagem regulada de forex roda em 30:1 na UE e no
-Reino Unido e 50:1 nos EUA em pares majors — e corretoras offshore anunciam 500:1 e mais.
+de ações dos EUA te dá 2:1 overnight, enquanto a alavancagem regulada de forex de varejo em pares majors
+é limitada a [30:1 na UE](https://www.esma.europa.eu/press-news/esma-news/esma-agrees-prohibit-binary-options-and-restrict-cfds-protect-retail-investors), [30:1 no Reino Unido](https://www.fca.org.uk/publication/policy/ps19-18.pdf) e [50:1 nos EUA](https://www.cftc.gov/sites/default/files/idc/groups/public/@newsroom/documents/file/forexfinalrulefactsheet.pdf) — e corretoras offshore anunciam 500:1 e mais.
 
 <div class="table-wrap">
 
@@ -138,10 +138,9 @@ O discurso de marketing é que alavancagem permite que uma conta pequena acesse 
 discurso honesto é que alavancagem multiplica um resultado cujo sinal você não controla: ela escala ganhos
 e perdas pelo mesmo fator e não muda em nada sua expectativa por operação, então se sua estratégia perde
 dinheiro em média, alavancagem não é uma rota mais rápida para o lucro, mas uma rota mais rápida para zero.
-Corretoras reguladas na UE e no Reino Unido são obrigadas a publicar a proporção de contas de varejo que
-perdem dinheiro, e, quando os reguladores analisaram essas divulgações nas jurisdições da UE, a proporção
-de contas com prejuízo ia de cerca de 75% a quase 90%; perdas causadas por alavancagem são o motivo
-dominante.
+Corretoras reguladas na UE e no Reino Unido são obrigadas a informar, num aviso de risco padronizado, qual
+percentual de suas contas de varejo perde dinheiro, e [as análises dos reguladores nacionais sobre o trading de CFDs nas jurisdições da UE constataram que entre 74% e 89% das contas de varejo costumam perder dinheiro](https://www.esma.europa.eu/press-news/esma-news/esma-agrees-prohibit-binary-options-and-restrict-cfds-protect-retail-investors);
+a ESMA atribui essas perdas à complexidade dos produtos, à falta de transparência e à alavancagem excessiva.
 
 Trate a alavancagem como uma capacidade que você majoritariamente recusa: dimensione a partir da distância
 do seu stop e do seu orçamento de risco, e deixe a exigência de margem cair onde cair.

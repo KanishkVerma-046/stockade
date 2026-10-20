@@ -20,7 +20,7 @@ de venda significa apostar sistematicamente contra a coisa mais forte da tela.
 
 ## O que o RSI realmente mede
 
-O Índice de Força Relativa, publicado por J. Welles Wilder em 1978, responde uma pergunta estreita: nas
+O Índice de Força Relativa, [publicado por J. Welles Wilder em 1978](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi), responde uma pergunta estreita: nas
 últimas N velas, como os movimentos médios de alta se comparam aos movimentos médios de baixa? Isso é
 genuinamente tudo o que ele faz. Ele pega a variação de fechamento a fechamento de cada vela numa janela de
 retrocesso — 14 velas por padrão — as separa em ganhos e perdas, tira a média de cada grupo, e as compara

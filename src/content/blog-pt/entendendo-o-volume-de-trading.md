@@ -136,7 +136,7 @@ impulso contra um nível. Volume sem a estrutura de
 
 ## Onde os dados de volume te enganam
 
-**É fragmentado entre ambientes.** Uma ação dos EUA é negociada em mais de uma dúzia de exchanges além de
+**É fragmentado entre ambientes.** Uma ação dos EUA é negociada em [mais de uma dúzia de exchanges registradas](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges) além de
 ambientes fora de exchange, e uma parcela significativa nunca aparece numa exchange iluminada de forma
 alguma. O número da sua plataforma depende de quais feeds ela consolida, então duas ferramentas de gráficos
 podem mostrar volumes diferentes para a mesma ação no mesmo dia.

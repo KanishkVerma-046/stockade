@@ -86,7 +86,7 @@ se o risco total aberto permanecer abaixo do seu limite por operação. Nunca ad
 ### Cortar ganhos cedo enquanto deixa perdas correrem
 
 Você realiza lucro a +0,5R porque um ganho pequeno na mão parece sólido, depois segura uma perda até −2R
-porque pode voltar. Isso é o efeito disposição: realizar um ganho produz uma sensação de recompensa,
+porque pode voltar. Isso é [o efeito disposição](https://en.wikipedia.org/wiki/Disposition_effect): realizar um ganho produz uma sensação de recompensa,
 realizar uma perda produz o oposto. Seu sistema nervoso otimiza para a frequência com que você se sente
 bem, não para quanto dinheiro você tem.
 

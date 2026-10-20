@@ -64,8 +64,8 @@ Aqui está uma restrição com a qual muitos iniciantes se deparam, e que mudou 
 regra do pattern day trader da FINRA se aplicou a **contas de margem em corretoras dos EUA**: se você
 enviasse quatro ou mais day trades em cinco dias úteis, e esses day trades fossem mais de 6% do total de
 suas operações naquela janela, sua conta era marcada como pattern day trader e você precisava manter **pelo
-menos $25.000 em capital** em qualquer dia em que fizesse day trading. A FINRA agora aposentou esse limite
-fixo em favor de novos padrões de margem intradiária, em vigor desde 4 de junho de 2026, com
+menos $25.000 em capital** em qualquer dia em que fizesse day trading. A FINRA agora [aposentou esse limite fixo](https://www.finra.org/rules-guidance/notices/26-10)
+em favor de novos padrões de margem intradiária, em vigor desde 4 de junho de 2026, com
 prazo até 20 de outubro de 2027 para as corretoras concluírem a transição — então confirme com a sua
 própria corretora qual regime rege a sua conta hoje, em vez de presumir que o antigo valor de $25.000 ainda
 vale em todo lugar.
@@ -150,8 +150,8 @@ estudar são, em sua maioria, falhas desse intervalo.
 ## As chances reais, e como escolher o estilo que combina
 
 A maioria dos day traders perde dinheiro. Um estudo que acompanhou, ao longo de vários anos, todas as
-pessoas que começaram a fazer day trading em futuros de ações brasileiros constatou que 97% das que
-persistiram por pelo menos 300 dias terminaram com prejuízo líquido, e a pequena minoria que lucra de forma
+pessoas que começaram a fazer day trading em futuros de ações brasileiros constatou que
+[97% das que persistiram por pelo menos 300 dias terminaram com prejuízo líquido](https://ideas.repec.org/p/spa/wpaper/2019wpecon47.html), e a pequena minoria que lucra de forma
 consistente geralmente passou anos no prejuízo primeiro. Day trading parece fácil porque as decisões
 individuais são simples; fazer várias centenas delas por mês sem se deteriorar é a parte difícil, e essa
 habilidade está mais perto de um esporte profissional do que de um hobby.

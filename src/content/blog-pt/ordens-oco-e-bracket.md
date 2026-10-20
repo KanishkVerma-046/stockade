@@ -18,7 +18,7 @@ as quantidades, e as formas específicas como o setup quebra.
 
 ## O que é uma ordem OCO: duas ordens em espera onde executar uma mata a outra
 
-OCO significa **one-cancels-other** (uma cancela a outra). Não é um novo tipo de ordem. É um *link*
+OCO significa **one-cancels-other** (uma cancela a outra), [um tipo padrão de ordem condicional](https://www.fidelity.com/learning-center/trading-investing/trading/conditional-order-types). Não é um novo tipo de ordem. É um *link*
 colocado entre duas ordens comuns que você já entende.
 
 Você envia duas ordens ao mesmo tempo. Ambas ficam na corretora, não executadas, esperando. No momento em

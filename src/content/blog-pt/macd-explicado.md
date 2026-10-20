@@ -69,8 +69,8 @@ do histograma *confirma* um cruzamento da linha de sinal está descrevendo a mes
 
 ## Por que as configurações são 12, 26 e 9
 
-Esses números são convenção, não matemática. Gerald Appel os escolheu quando construiu o MACD no final dos
-anos 1970, e eles têm sido o padrão desde então. Não há derivação para recuperar: nenhuma propriedade dos
+Esses números são convenção, não matemática. [Gerald Appel desenvolveu o MACD no final dos anos 1970](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/macd-moving-average-convergence-divergence-oscillator),
+e 12, 26 e 9 se tornaram suas configurações padrão convencionais. Não há derivação para recuperar: nenhuma propriedade dos
 mercados torna 12 e 26 especiais, e você não vai encontrar nenhum cálculo que chegue neles. Histórias de
 origem que soam elegantes circulam — que eles correspondem a alguma contagem organizada de semanas ou
 sessões — mas são folclore inventado depois do fato para explicar uma escolha que foi simplesmente uma

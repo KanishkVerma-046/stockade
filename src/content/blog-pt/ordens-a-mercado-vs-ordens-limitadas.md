@@ -68,7 +68,8 @@ vai acontecer de fato.
 
 ## O trade-off do qual tudo o mais decorre
 
-Aqui está a frase para memorizar: **uma ordem a mercado garante execução mas não preço; uma ordem limitada
+Aqui está a frase para memorizar, e ela coincide com a forma como os próprios reguladores descrevem
+[uma ordem a mercado](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders) e [uma ordem limitada](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14): **uma ordem a mercado garante execução mas não preço; uma ordem limitada
 garante preço mas não execução.**
 
 Toda outra consideração abaixo é consequência dessa única linha. Ordem a mercado para sair de uma perda?
