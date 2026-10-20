@@ -83,7 +83,7 @@ Translated blog posts live in mirrored `blogEs`/`blogPt`/`blogJa`/`blogFr`/`blog
 
 ## Testing
 
-`npm test` (vitest). There is **no vitest/vite config, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`).
+`npm test` (vitest). `vitest.config.ts` only adds `.claude/worktrees/**` to the default excludes, so a leftover worktree's copy of `src/` doesn't double the run (86 tests). It has **no plugins, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`).
 
 `npx astro check` reports 0 errors (the long-standing `ChartSimulator.tsx` marker-generics error was fixed on 2026-10-18 by typing `markersRef` as `ISeriesMarkersPluginApi<UTCTimestamp>`). Any error is new; the 8 `is:inline` hints on the JSON-LD scripts are expected.
 
