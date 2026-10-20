@@ -78,7 +78,7 @@ Leggilo in due passaggi. Cerca i valori anomali che sovrastano visibilmente le v
 
 ## Dove i dati di volume ti ingannano
 
-**È frammentato tra le sedi di negoziazione.** Un'azione statunitense viene scambiata su più di una dozzina di borse più sedi fuori borsa, e una quota significativa non appare mai su una borsa regolamentata. Il numero della tua piattaforma dipende da quali feed consolida, quindi due strumenti di grafici possono mostrare volumi diversi per lo stesso titolo nello stesso giorno.
+**È frammentato tra le sedi di negoziazione.** Un'azione statunitense viene scambiata su [più di una dozzina di borse registrate](https://www.sec.gov/about/divisions-offices/division-trading-markets/national-securities-exchanges) più sedi fuori borsa, e una quota significativa non appare mai su una borsa regolamentata. Il numero della tua piattaforma dipende da quali feed consolida, quindi due strumenti di grafici possono mostrare volumi diversi per lo stesso titolo nello stesso giorno.
 
 **Il volume crypto è spesso fittizio.** Il wash trading — la stessa entità che compra e vende a se stessa per creare attività apparente — è stato documentato su larga scala su più exchange, e nessun tape consolidato o regolatore impone uno standard unico. Le sedi decentralizzate lo rendono ancora più economico. Trattare una cifra di volume crypto con la fiducia che daresti a una stampa NYSE è un errore.
 

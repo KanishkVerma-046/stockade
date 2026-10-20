@@ -44,7 +44,7 @@ Un **ordine a limite** dice: *esegui questo solo al mio prezzo o meglio, e se no
 
 ## Il compromesso da cui deriva tutto il resto
 
-Ecco la frase da memorizzare: **un ordine a mercato garantisce l'esecuzione ma non il prezzo; un ordine a limite garantisce il prezzo ma non l'esecuzione.**
+Ecco la frase da memorizzare, e corrisponde a come le stesse autorità di vigilanza descrivono [un ordine a mercato](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders) e [un ordine a limite](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14): **un ordine a mercato garantisce l'esecuzione ma non il prezzo; un ordine a limite garantisce il prezzo ma non l'esecuzione.**
 
 Ogni altra considerazione qui sotto è una conseguenza di quella singola frase. Ordine a mercato per uscire da una posizione in perdita? Sì — ti importa di più di uscire che degli ultimi centesimi, ed è l'esecuzione ciò che un ordine a mercato garantisce. Ordine a limite per entrare su uno strumento con spread ampio? Sì — è il prezzo ciò che è a rischio lì.
 

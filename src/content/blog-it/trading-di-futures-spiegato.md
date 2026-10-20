@@ -21,7 +21,7 @@ Un contratto future è un oggetto completamente diverso: un accordo standardizza
 
 ## Specifiche del contratto: moltiplicatore, tick size e valore del tick
 
-Un prezzo future non è un importo in dollari. È un numero che traduci in dollari attraverso il moltiplicatore del contratto. Stockade porta quattro simboli futures su `/simulator` e `/markets`, e ognuno si traduce diversamente.
+Un prezzo future non è un importo in dollari. È un numero che traduci in dollari attraverso il moltiplicatore del contratto. Stockade porta quattro simboli futures su `/simulator` e `/markets`, che prendono il nome dai contratti reali della tabella qui sotto, e ognuno di quei contratti si traduce diversamente.
 
 <div class="table-wrap">
 

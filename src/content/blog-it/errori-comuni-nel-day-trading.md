@@ -53,7 +53,7 @@ Ecco cosa nasconde. A 57$ sei sotto di 600$ in entrambi i casi. Ma se il prezzo 
 
 ### Tagliare i guadagni troppo presto mentre si lasciano correre le perdite
 
-Prendi profitto a +0,5R perché un piccolo guadagno in mano sembra solido, poi tieni una posizione in perdita fino a −2R perché potrebbe tornare indietro. Questo è l'effetto disposizione: realizzare un guadagno produce una scarica di gratificazione, realizzare una perdita produce l'opposto. Il tuo sistema nervoso ottimizza per quanto spesso ti senti bene, non per quanto denaro possiedi.
+Prendi profitto a +0,5R perché un piccolo guadagno in mano sembra solido, poi tieni una posizione in perdita fino a −2R perché potrebbe tornare indietro. Questo è [l'effetto disposizione](https://en.wikipedia.org/wiki/Disposition_effect): realizzare un guadagno produce una scarica di gratificazione, realizzare una perdita produce l'opposto. Il tuo sistema nervoso ottimizza per quanto spesso ti senti bene, non per quanto denaro possiedi.
 
 Con lo stesso tasso di successo del 55%, uscite disciplinate rendono 0,55 × 1,5 − 0,45 × 1 = **+0,375R per operazione**, ovvero +7,5R su 20 operazioni. Guadagni tagliati a +0,5R e perdite lasciate arrivare a −2R rendono 0,55 × 0,5 − 0,45 × 2 = **−0,625R per operazione**, ovvero −12,5R sulle stesse 20 operazioni. Ingressi identici, tasso di successo identico, un'oscillazione di 20R prodotta interamente dal comportamento in uscita.
 

@@ -21,7 +21,7 @@ Il crypto elimina tutto questo. Non esiste un momento in cui la tua posizione è
 
 - **Il tuo stop è la tua unica protezione notturna.** Non un livello mentale, non l'intenzione di controllare il grafico — un ordine in attesa. Uno stop mentale funziona solo quando sei sveglio.
 - **La dimensione della posizione deve sopravvivere a un movimento non sorvegliato.** Chiediti cosa succede se l'asset si muove del 15% contro di te mentre dormi, perché può succedere e succede.
-- **Non ci sono circuit breaker.** Nelle azioni statunitensi, un calo del 7% dell'S&P 500 sospende le contrattazioni per 15 minuti. Il crypto non ha un equivalente. Una cascata di liquidazioni corre finché non si esaurisce da sola.
+- **Non ci sono circuit breaker.** Nelle azioni statunitensi, un [calo del 7% dell'S&P 500 prima delle 15:25 sospende le contrattazioni sull'intero mercato per 15 minuti](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers). Il crypto non ha un equivalente. Una cascata di liquidazioni corre finché non si esaurisce da sola.
 
 Se non hai ancora costruito un framework di dimensionamento, fallo prima di toccare questa classe di asset — [dimensionamento della posizione e la regola dell'1%](/it/blog/gestione-del-rischio-e-dimensionamento-della-posizione/) copre l'aritmetica.
 
@@ -104,7 +104,7 @@ Quindi un token che mostra "2 miliardi di dollari di volume giornaliero" può av
 
 ## Cosa non ti danno i mercati crypto
 
-Sii lucido riguardo all'infrastruttura mancante. Non esiste un equivalente della copertura SIPC per una borsa crypto fallita — i creditori di piattaforme fallite hanno passato anni in tribunale per recuperi parziali. La manipolazione che attirerebbe azioni legali nelle azioni è comune e in gran parte non controllata. Le quotazioni non portano uno standard di trasparenza paragonabile a un deposito pubblico.
+Sii lucido riguardo all'infrastruttura mancante. Non esiste un equivalente della [copertura SIPC](https://www.sipc.org/for-investors/what-sipc-protects) per una borsa crypto fallita — i creditori di piattaforme fallite hanno passato anni in tribunale per recuperi parziali. La manipolazione che attirerebbe azioni legali nelle azioni è comune e in gran parte non controllata. Le quotazioni non portano uno standard di trasparenza paragonabile a un deposito pubblico.
 
 E l'orologio 24/7 è una trappola psicologica tanto quanto strutturale. Le azioni impongono una pausa; il crypto non lo fa mai. Ogni ora è un'ora in cui *potresti* tradare, il che è esattamente la condizione che produce overtrading, trading di vendetta, e decisioni prese alle 3 del mattino — gli [errori più comuni del day trading](/it/blog/errori-comuni-nel-day-trading/), con l'unico guardrail esterno rimosso. La disciplina deve essere interamente autoimposta: ore di sessione definite, un orario di stop rigido, e ordini in attesa che lavorano mentre tu non lo fai.
 

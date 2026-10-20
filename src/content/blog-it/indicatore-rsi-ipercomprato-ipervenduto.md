@@ -13,7 +13,7 @@ La regola non era sbagliata, esattamente — avevi l'idea sbagliata su cosa dice
 
 ## Cosa misura davvero l'RSI
 
-Il Relative Strength Index, pubblicato da J. Welles Wilder nel 1978, risponde a una domanda ristretta: nelle ultime N barre, come si confrontano i movimenti al rialzo medi con quelli al ribasso medi? Questo è genuinamente tutto ciò che fa. Prende la variazione da chiusura a chiusura di ogni barra su una finestra di lookback — 14 barre di default — le separa in guadagni e perdite, fa la media di ciascun gruppo, e le confronta come rapporto chiamato RS, per relative strength (forza relativa):
+Il Relative Strength Index, [pubblicato da J. Welles Wilder nel 1978](https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi), risponde a una domanda ristretta: nelle ultime N barre, come si confrontano i movimenti al rialzo medi con quelli al ribasso medi? Questo è genuinamente tutto ciò che fa. Prende la variazione da chiusura a chiusura di ogni barra su una finestra di lookback — 14 barre di default — le separa in guadagni e perdite, fa la media di ciascun gruppo, e le confronta come rapporto chiamato RS, per relative strength (forza relativa):
 
 ```
 RS = guadagno medio / perdita media
