@@ -36,7 +36,7 @@ reavaliação. As consequências práticas:
   gráfico — uma ordem em espera. Um stop mental só funciona quando você está acordado.
 - **O tamanho da posição precisa sobreviver a um movimento sem supervisão.** Pergunte o que acontece se o
   ativo se mover 15% contra você enquanto você dorme, porque isso pode acontecer e acontece.
-- **Não há circuit breakers.** Nas ações dos EUA, uma [queda de 7% no S&P 500 antes das 3:25 p.m. para o pregão em todo o mercado por 15 minutos](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers).
+- **Não há circuit breakers.** Nas ações dos EUA, uma [queda de 7% no S&P 500 antes das 15h25 interrompe o pregão em todo o mercado por 15 minutos](https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers).
   Cripto não tem equivalente. Uma cascata de liquidações roda até se esgotar.
 
 Se você ainda não construiu uma estrutura de dimensionamento, faça isso antes de tocar nessa classe de
