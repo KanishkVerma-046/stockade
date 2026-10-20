@@ -23,7 +23,7 @@ URLs are reused **byte-for-byte**. "es reference" quotes the finished Spanish as
 | # | Post | Final English (link span in `[ ]`) | URL | Work per locale |
 |---|---|---|---|---|
 | 1 | common-day-trading-mistakes | This is [the disposition effect]: | `https://en.wikipedia.org/wiki/Disposition_effect` | **Link only** |
-| 2 | crypto-trading-for-beginners | In US equities, a [7% S&P 500 decline before 3:25 p.m. halts market-wide trading for 15 minutes]. | `https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers` | **Text + link.** Add "before 3:25 p.m." and "market-wide". **No time zone**: investor.gov gives none, so don't add "ET", "hora del Este", "米国東部時間" or similar. Write the time in the locale's 24-hour form from "Time format per locale" below, not "3:25 p.m.". es reference (12-hour, predates the rule): "antes de las 3:25 p. m. detiene el trading de todo el mercado por 15 minutos" |
+| 2 | crypto-trading-for-beginners | In US equities, a [7% S&P 500 decline before 3:25 p.m. halts market-wide trading for 15 minutes]. | `https://www.investor.gov/introduction-investing/investing-basics/glossary/stock-market-circuit-breakers` | **Text + link.** Add "before 3:25 p.m." and "market-wide". **No time zone**: investor.gov gives none, so don't add "ET", "hora del Este", "米国東部時間" or similar. Write the time in the locale's 24-hour form from "Time format per locale" below, not "3:25 p.m.". es reference: "antes de las 15:25 detiene el trading de todo el mercado por 15 minutos" |
 | 3 | crypto-trading-for-beginners | There is no equivalent of [SIPC coverage] for … | `https://www.sipc.org/for-investors/what-sipc-protects` | **Link only** |
 | 4 | day-trading-vs-swing-trading | FINRA has now [retired that fixed threshold] in favor of … | `https://www.finra.org/rules-guidance/notices/26-10` | **Wrap only.** The wording is already final in all locales (`3118716`). |
 | 5 | day-trading-vs-swing-trading | … found that [97% of those who kept at it for at least 300 days ended up net losers], … | `https://ideas.repec.org/p/spa/wpaper/2019wpecon47.html` | **Wrap only.** "At least" is already in all 8 (`b57901e`): pt "pelo menos", fr "au moins", it "almeno", de "mindestens", ja "300日以上", ko "300일 이상". |
@@ -54,12 +54,12 @@ That's 16 links across 11 files. The first version estimated 3 new clauses per l
 
 ## Time format per locale (#2)
 
-Every translated locale already writes clock times in 24-hour form in its other posts (e.g. "10:30", "15:00"), so the #2 halt time uses that form, with **no time zone**. Decided 2026-10-20; pt was corrected in `3acc7ab`.
+Every translated locale already writes clock times in 24-hour form in its other posts (e.g. "10:30", "15:00"), so the #2 halt time uses that form, with **no time zone**. Decided 2026-10-20; pt (`3acc7ab`) and es were converted to it afterwards.
 
 | Locale | Form in the crypto post | Status |
 |---|---|---|
 | en | `3:25 p.m.` | Source wording |
-| es | `3:25 p. m.` | **Still 12-hour.** es predates the rule, although es posts use "15:00" elsewhere. Unchanged until a decision to convert it. |
+| es | `15:25` ("antes de las 15:25") | Done (converted from "3:25 p. m.") |
 | pt | `15h25` ("antes das 15h25 interrompe o pregão") | Done |
 | fr | `15h25` ("avant 15h25") | Done |
 | it | `15:25` ("prima delle 15:25") | Done |
@@ -88,7 +88,7 @@ One locale per batch, one subagent at a time (or inline), each verified in `dist
 
 1. **Link parity:** each of the 11 cited posts in the locale has exactly the same multiset of external URLs as its English sibling. Forex has 4 links (ESMA ×2, FCA, CFTC), market-vs-limit has 2, and the futures post has **0**. Total: 16.
 2. **URL integrity:** every URL is byte-identical to English. No `britannica.com` or `cmegroup.com` URL appears anywhere.
-3. **Figures:** the forex post contains "74" and "89" and no "75%"/"90%"-style range. The crypto post contains the locale's own time form from "Time format per locale" (pt/fr `15h25`, it `15:25`, de `15:25 Uhr`, ja `15時25分`, ko `15시 25분`; es `3:25 p. m.`), no `3:25` or `p.m.` outside en and es, and no time-zone word.
+3. **Figures:** the forex post contains "74" and "89" and no "75%"/"90%"-style range. The crypto post contains the locale's own time form from "Time format per locale" (es/it `15:25`, pt/fr `15h25`, de `15:25 Uhr`, ja `15時25分`, ko `15시 25분`), no `3:25` or `p.m.` outside en, and no time-zone word.
 4. **Rendering:** no literal `](` or `[` link syntax in the rendered article text, every link renders as `<a>`, and no unrendered `**`. The build's literal-markdown check enforces the last one.
 5. **Scope:** `git diff` touches only the 11 posts, and only the sentences in the table.
 6. **Build:** `npm run build` passes all three checks, and `npm test` passes.
