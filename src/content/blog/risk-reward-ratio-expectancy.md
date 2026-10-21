@@ -1,6 +1,6 @@
 ---
 title: "Risk-Reward Ratio and Expectancy: How They Fit Together"
-description: "A risk-reward ratio only tells you the win rate you need to break even. The breakeven table, how stops and targets shift it, and why 1:3 isn't a law."
+description: "A risk-reward ratio only tells you the win rate you need to break even. The breakeven table, how stops and targets shift it, and why 1:3 is a rule of thumb."
 date: 2026-10-26
 author: "Stockade Team"
 tags: ["Risk Management", "Strategy"]
@@ -49,7 +49,7 @@ The distance between your real win rate and the breakeven one is your edge. In R
 
 This is where the 1:3 habit misleads people. When you push a target further away, you don't just raise the reward. You lower the chance of reaching it. Those two effects pull against each other, and it's easy to watch only the first.
 
-Take the extreme case. Suppose a price had no tendency in either direction, so each small move was as likely to go up as down, like a fair coin. This is the classic gambler's ruin problem from probability, and its answer for a fair game is simple: no exit rule can make money on average, because a fair game stays fair however you choose when to stop. If the expected result is zero, then the chance of hitting the target first, P, has to satisfy P × target distance = (1 − P) × stop distance. That gives:
+Take the extreme case. Suppose a price had no tendency in either direction, so each small move was as likely to go up as down, like a fair coin. This is the classic gambler's ruin problem from probability, and for a walk like that, [the chance of rising by one amount before falling by another is the fall divided by the sum of the two](https://www.columbia.edu/~ks20/stochastic-I/stochastic-I-GRP.pdf). In trading terms:
 
 ```
 P(target before stop) = stop distance ÷ (stop distance + target distance)
@@ -99,7 +99,7 @@ The ratio you write down before entry is a plan. The one in your results is what
 
 Costs hit tight stops hardest. Say round-trip costs on our $40 stock come to a hypothetical $0.05 a share. With the $1 stop, a winner nets $2.95 and a loser costs $1.05, so breakeven becomes 1.05 ÷ (1.05 + 2.95) = 26.25% instead of 25%. With the $0.50 stop, a loser costs $0.55 and breakeven becomes 0.55 ÷ 3.50 = 15.7% instead of 14.3%. Same five cents, but it's a bigger share of a small risk.
 
-The fix is to measure your realised ratio rather than trust your planned one. Average win divided by average loss (sign dropped) is your actual payoff ratio. If you planned 1:3 on $200 of risk but your average winner is $420 and your average loser is $210, you're really trading 1:2. Your breakeven is 33.3%, not 25%, and a 28% win rate that looked healthy is losing money.
+The fix is to measure your realized ratio rather than trust your planned one. Average win divided by average loss (sign dropped) is your actual payoff ratio. If you planned 1:3 on $200 of risk but your average winner is $420 and your average loser is $210, you're really trading 1:2. Your breakeven is 33.3%, not 25%, and a 28% win rate that looked healthy is losing money.
 
 ## How to pick a target with the win rate in mind
 
@@ -115,4 +115,4 @@ Once a trade passes, a [bracket order](/blog/oco-and-bracket-orders/) holds both
 
 ## Practice this on the simulator
 
-On Stockade's [simulator](/simulator/), the Stop Loss and Take Profit fields take prices, and together they work as an OCO bracket on your open position: when one triggers, the whole position closes at that tick's price and both levels clear. There's no spread or commission, so the gap between planned and realised ratio there comes from your own exits and from ticks that cross a level. Before each trade, write down the ratio and its breakeven. After 30 trades, open [Analytics](/analytics/), divide Avg Win by Avg Loss without the minus sign, and compare that with what you planned, and your Win Rate with the breakeven you needed. Stockade's prices are generated in your browser, a random walk with a slowly drifting trend bias, so a hit rate there says nothing about how a setup does in a real market. What it does train is the habit: stop, target, ratio, breakeven, every time.
+On Stockade's [simulator](/simulator/), the Stop Loss and Take Profit fields take prices, and together they work as an OCO bracket on your open position: when one triggers, the whole position closes at that tick's price and both levels clear. There's no spread or commission, so the gap between planned and realized ratio there comes from your own exits and from ticks that cross a level. Before each trade, write down the ratio and its breakeven. After 30 trades, open [Analytics](/analytics/), divide Avg Win by Avg Loss without the minus sign, and compare that with what you planned, and your Win Rate with the breakeven you needed. Stockade's prices are generated in your browser, a random walk with a slowly drifting trend bias, so a hit rate there says nothing about how a setup does in a real market. What it does train is the habit: stop, target, ratio, breakeven, every time.

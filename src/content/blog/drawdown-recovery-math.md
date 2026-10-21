@@ -1,6 +1,6 @@
 ---
 title: "Drawdown Recovery Math: Why a 50% Loss Needs a 100% Gain"
-description: "A 50% loss needs a 100% gain, but how many trades does recovery take? Losing-streak odds, volatility drag, and setting a drawdown limit in advance."
+description: "A 50% loss needs a 100% gain, but how many trades does the recovery take? Losing-streak odds, volatility drag, and how to set a drawdown limit in advance."
 date: 2026-11-02
 author: "Stockade Team"
 tags: ["Risk Management", "Analytics"]
@@ -80,7 +80,7 @@ Longer samples produce longer streaks. That sounds obvious, but it catches peopl
 
 Here's the strangest part of drawdown math. Gain 50% and then lose 50%, and your average return is zero. Your account is down 25%, because 1.50 × 0.50 = 0.75. Gain 10% and lose 10% and you're down 1% (1.10 × 0.90 = 0.99). Gain 20% and lose 20% and you're down 4%.
 
-That gap between the average return and the compounded one is called volatility drag. A handy approximation is:
+That gap between the average return and the compounded one is [often called volatility drag, and it can be approximated by subtracting half the variance from the average](https://www.kitces.com/blog/volatility-drag-variance-drain-mean-arithmetic-vs-geometric-average-investment-returns/):
 
 ```
 Compounded return per period ≈ average return − (variance ÷ 2)
@@ -104,7 +104,7 @@ Apply it to our strategy. Its average gain per trade is 0.2R, so if you only loo
 
 </div>
 
-At 25% risk per trade, a strategy with positive expectancy loses money over time. The average still says +5% per trade, but what you actually keep shrinks every trade. Growth peaks at 10% risk for this strategy, the point known as the Kelly fraction. We wouldn't go near it: at 10% risk, a ten-loss streak takes 65% of the account, and the recovery formula says that needs a 187% gain.
+At 25% risk per trade, a strategy with positive expectancy loses money over time. The average still says +5% per trade, but what you actually keep shrinks every trade. Growth peaks at 10% risk for this strategy. That peak is known as the Kelly fraction, after [a 1956 paper by J. L. Kelly Jr.](https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf) showing that a gambler who bets the growth-maximizing fraction every time will eventually get ahead of one betting any other fixed fraction, and stay ahead. Full Kelly assumes you know your true win rate and payoff exactly, which you never do in practice. We wouldn't go near it: at 10% risk, a ten-loss streak takes 65% of the account, and the recovery formula says that needs a 187% gain.
 
 This is also why the "trades to climb back" figures rise at 5%. Drag eats into the recovery speed while the losses stay just as deep.
 
