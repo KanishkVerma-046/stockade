@@ -1,0 +1,87 @@
+# Publishes scheduled blog posts. Each run rebuilds master and deploys it, so
+# any post whose date has arrived (src/lib/publish-schedule.ts) goes live in
+# all 8 locales, then submits only the sitemap's new and removed URLs to
+# IndexNow. Posts are dated Mondays; the run is daily so a missed or failed
+# run is caught the next day. A build check fails the run, before anything is
+# deployed, if a due post is missing a translation.
+#
+# Needs repository secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID.
+# Without them the publish job is skipped with a notice instead of failing.
+
+name: Scheduled publish
+
+on:
+  schedule:
+    - cron: '45 0 * * *' # 00:45 UTC = 06:15 IST, daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never two deploys at once; a run queued behind another waits rather than
+# cancelling it mid-deploy.
+concurrency:
+  group: scheduled-publish
+  cancel-in-progress: false
+
+jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - id: check
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice title=Scheduled publish skipped::Repository secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are not both set (Settings > Secrets and variables > Actions), so nothing was built or deployed."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish:
+    needs: check-secrets
+    if: needs.check-secrets.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22 # package.json engines: >=22.12.0
+          cache: npm
+
+      # SHOW_FUTURE or STOCKADE_BUILD_TIME would publish posts early.
+      - name: Refuse preview settings
+        run: node publish-env.mjs
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Must come before the deploy: afterwards production already matches
+      # the build and the diff would be empty.
+      - name: Save the live sitemap as the IndexNow baseline
+        id: baseline
+        continue-on-error: true
+        run: node submit-indexnow.mjs --save-live "$RUNNER_TEMP/live-sitemap.xml"
+
+      # Same project and command as `npm run deploy`, minus its build.
+      - name: Deploy to Cloudflare Pages
+        run: npm run deploy:dist
+
+      - name: Submit new and removed URLs to IndexNow
+        if: steps.baseline.outcome == 'success'
+        run: node submit-indexnow.mjs --changed-since "$RUNNER_TEMP/live-sitemap.xml"
+
+      - name: Report skipped IndexNow submission
+        if: steps.baseline.outcome != 'success'
+        run: echo "::warning::The live sitemap could not be fetched before the deploy, so no IndexNow diff was possible and nothing was submitted. Run 'npm run indexnow' locally to submit every URL."
