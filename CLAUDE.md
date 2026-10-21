@@ -48,10 +48,27 @@
 Blog posts live in `src/content/blog/*.md`; schema in `src/content.config.ts`.
 
 - `description` is capped at 160 chars — **exceeding it is a hard build failure**, on purpose
-- `draft: true` drops the post from the index, sitemap, related posts, and routing
+- `draft: true` drops the post from the index, sitemap, related posts, and routing. So does a `date` later than the build time (see "Scheduled publishing")
 - `author` (default `"Stockade Team"`) drives both the visible byline and the `article:author` meta tag; Article JSON-LD credits the shared Organization node by `@id` instead, so no individual is named
 
 The home page FAQ lives in **one `faqs` array** in `index.astro` frontmatter that renders both the visible section and the FAQPage JSON-LD. Google only grants FAQ rich results on a verbatim match, so never hand-write a second copy.
+
+## Scheduled publishing
+
+**master is deployed to production every day** by `.github/workflows/scheduled-publish.yml` (00:45 UTC = 06:15 IST, plus manual `workflow_dispatch`): build, `npm run deploy:dist`, then IndexNow for changed URLs only. Whatever is on master goes live within a day, so **push only finished work to master**; do unfinished work on a branch. The Action is skipped with a notice until the repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist. GitHub disables scheduled workflows on a public repo after 60 days with no commits, so a long quiet spell needs the workflow re-enabled in the Actions tab. A failed scheduled run notifies the account that last edited the workflow's `cron` line.
+
+**Publish dates gate posts.** A post whose frontmatter `date` is later than the build time is treated exactly like `draft: true`: no page, and absent from the blog indexes, `RelatedPosts`, hreflang alternates and the sitemap. Write `date` as unquoted `YYYY-MM-DD` (00:00 UTC that day; `YYYY-MM-DDTHH:MMZ` also works, other forms fail the build). New posts are dated Mondays and go live at the Action's 00:45 UTC run. Logic and tests: `src/lib/publish-schedule.ts`. `astro.config.mjs` fixes one build time in `STOCKADE_BUILD_TIME` before rendering, so the pages' `isLiveEntry` filter and the sitemap code agree. Every blog route filters with `isLiveEntry`; a new listing of posts must use it too.
+
+**Preview:** `SHOW_FUTURE=1` includes future posts (drafts stay out). Bash: `SHOW_FUTURE=1 npm run build && npm run preview`. PowerShell: `$env:SHOW_FUTURE='1'; npm run build`, then `Remove-Item Env:SHOW_FUTURE`. `npm run deploy`, `deploy:dist`, `indexnow` and the Action refuse to run while `SHOW_FUTURE` or `STOCKADE_BUILD_TIME` is set (`publish-env.mjs`). Setting `STOCKADE_BUILD_TIME=2026-10-26T00:45:00Z` simulates a build at that instant, which is how to test what a Monday run will do.
+
+**All 8 locales must exist before a post's date.** `publishScheduleCheck()` in `astro.config.mjs` fails the build if:
+- a due post (date ≤ build time, not draft) lacks a non-draft translation in any of the 7 locales;
+- a translation's `translationOf` names no English post, two translations in one locale share a `translationOf`, or a translation is live while its English post is a draft;
+- a translation's `date` differs from its English original's (checked for future posts too);
+- anything built (an `<a>`, an hreflang `<link>`, a sitemap `<loc>` or `xhtml:link`) points at a blog post page that wasn't built: a future post, a draft, or a typo. So a post can link only to posts already live on its date. A forward link is a separate edit made on or after the target's date;
+- the posts built differ from what the frontmatter says is live (the two runtimes disagree).
+
+Incomplete *future* posts are allowed and listed at build start ("Scheduled … missing …"). **If a post won't be fully translated in time, move its date in all 8 files** rather than letting the build fail: a failed build blocks every other change from deploying too. The 12-post plan, slugs and writers' voice guide: `docs/content/2026-10-new-posts-plan.md`.
 
 ## i18n
 
@@ -83,7 +100,7 @@ Translated blog posts live in mirrored `blogEs`/`blogPt`/`blogJa`/`blogFr`/`blog
 
 ## Testing
 
-`npm test` (vitest). `vitest.config.ts` only adds `.claude/worktrees/**` to the default excludes, so a leftover worktree's copy of `src/` doesn't double the run (86 tests). It has **no plugins, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`).
+`npm test` (vitest). `vitest.config.ts` only adds `.claude/worktrees/**` to the default excludes, so a leftover worktree's copy of `src/` doesn't double the run (112 tests). It has **no plugins, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`, `publish-schedule.ts`).
 
 `npx astro check` reports 0 errors (the long-standing `ChartSimulator.tsx` marker-generics error was fixed on 2026-10-18 by typing `markersRef` as `ISeriesMarkersPluginApi<UTCTimestamp>`). Any error is new; the 8 `is:inline` hints on the JSON-LD scripts are expected.
 
@@ -145,7 +162,7 @@ Stop preview: `Get-Job | Stop-Job`
 
 **`Start-Job` does not survive between PowerShell tool calls** — each call gets a fresh shell, so the job is gone by the next command. For a server that must stay up across turns, use the Bash tool with `run_in_background` instead.
 
-**Deploy:** `npm run deploy` — builds, then `wrangler pages deploy ./dist` to Cloudflare Pages (project `stockade`, branch `main`). Verify against `https://stockademarketsim.com` after; the printed `*.pages.dev` URL is a per-deploy alias.
+**Deploy:** `npm run deploy` — builds, then `npm run deploy:dist` (`wrangler pages deploy ./dist` to Cloudflare Pages, project `stockade`, branch `main`). The scheduled Action runs the same `deploy:dist` daily (see "Scheduled publishing"), so a manual deploy is only needed for a same-day change. Verify against `https://stockademarketsim.com` after; the printed `*.pages.dev` URL is a per-deploy alias.
 
 A **brand-new asset path can 404 on the custom domain right after deploy** (stale edge negative-cache) while returning 200 on the `*.pages.dev` alias — re-request with a `?v=…` cache-buster before concluding the upload failed.
 
@@ -153,9 +170,9 @@ A **brand-new asset path can 404 on the custom domain right after deploy** (stal
 
 **Cloudflare Web Analytics also injects a beacon into HTML pages** (including the 404 response for an unknown path), but only when the request sends `Accept: text/html` — browsers always do, bare `curl`/`urllib` don't, so the same URL can differ between tools. It is one tag appended immediately before `</body>`: `<script … src="https://static.cloudflareinsights.com/beacon.min.js/v…" integrity="sha512-…" data-cf-beacon='{"version":"…","token":"…","r":1,"spa":2}' crossorigin="anonymous"></script>`. Strip it before comparing with `dist/` by matching on the src host, not the attribute order: `s.replace(/<script[^>]*static\.cloudflareinsights\.com\/beacon\.min\.js[^>]*><\/script>\n?/g, '')`. Unlike the email rewrite, it is not tied to page content, so it can appear on any page.
 
-**Some built pages contain carriage returns, and production serves them unchanged.** A few blog sources are hard-wrapped with CRLF line endings, and markdown keeps the `\r` at each wrap inside the paragraph text of `dist/`. As of 2026-10-20 there are three: `/blog/analyze-trading-performance-metrics/`, `/pt/blog/como-ler-graficos-de-candles/` and `/pt/blog/o-que-e-um-simulador-de-mercado-de-acoes/`. Any production-vs-`dist/` comparison must read **both sides as raw bytes**, with no CRLF→LF conversion. In Python that means `f.read_bytes().decode()`, not `read_text()`, whose universal newlines turn `\r\n` into `\n` on the local side only. Otherwise those pages report a false mismatch.
+**Windows builds contain carriage returns; Linux builds don't.** The repo stores every file as LF, and `core.autocrlf` checks them out as CRLF on Windows. A few blog sources are hard-wrapped, so a Windows build keeps a `\r` at each wrap inside their paragraph text in `dist/`, and production serves whatever the last deploy uploaded. The scheduled Action builds on Linux from LF sources, so after one of its deploys production has no `\r` on these pages, while a local `npm run deploy` puts them back. A clean LF clone built on 2026-10-21 matched the Windows `dist/` except for those `\r` (and CRLF in `_headers`) and the `astro-island` `uid`s, which differ between checkouts. As of 2026-10-20 the pages are these three: `/blog/analyze-trading-performance-metrics/`, `/pt/blog/como-ler-graficos-de-candles/` and `/pt/blog/o-que-e-um-simulador-de-mercado-de-acoes/`. Any production-vs-`dist/` comparison must read **both sides as raw bytes**, with no CRLF→LF conversion. In Python that means `f.read_bytes().decode()`, not `read_text()`, whose universal newlines turn `\r\n` into `\n` on the local side only. Otherwise those pages report a false mismatch. Once the Action has deployed, compare production with a Linux/LF build, or strip `\r` on both sides for these three pages, since a Windows `dist/` will have `\r` that production lacks.
 
-**IndexNow:** `npm run indexnow` — builds, then submits every URL in `dist/sitemap.xml` to Bing. The list is derived from the sitemap, not hand-maintained; `node submit-indexnow.mjs --dry-run` prints it without submitting.
+**IndexNow:** `npm run indexnow` — builds, then submits every URL in `dist/sitemap.xml` to Bing. The list is derived from the sitemap, not hand-maintained; `node submit-indexnow.mjs --dry-run` prints it without submitting. The Action uses the changed-URLs mode instead: `--save-live <file>` saves the production sitemap **before** the deploy, then `--changed-since <file>` after it submits only added and removed URLs (nothing if none). It first logs whether production already serves each added URL, retrying for about two minutes, then submits either way.
 
 **`public/_redirects` targets must carry the trailing slash** (`/simulator/`, not `/simulator`) — `trailingSlash: 'always'` makes the slashless form 308, turning one redirect into a two-hop chain.
 
