@@ -10,8 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy ./dist --project-name stockade --branch main",
-    "indexnow": "astro build && node submit-indexnow.mjs",
+    "deploy": "node publish-env.mjs && astro build && npm run deploy:dist",
+    "deploy:dist": "node publish-env.mjs && wrangler pages deploy ./dist --project-name stockade --branch main",
+    "indexnow": "node publish-env.mjs && astro build && node submit-indexnow.mjs",
     "test": "vitest run"
   },
   "dependencies": {
