@@ -25,6 +25,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # GitHub disables a public repo's scheduled workflows after 60 days without
+  # repository activity, which would silently stop publishing. A commit to
+  # the default branch counts as activity; re-enabling the workflow through
+  # the API has been reported not to reset the clock. So when master has had
+  # no commit for 45 days, push an empty one, leaving 15 daily runs of margin.
+  # Pushes made with GITHUB_TOKEN start no other workflow runs.
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Push an empty commit if master has been quiet for 45 days
+        run: |
+          last=$(git log -1 --format=%ct)
+          age_days=$(( ($(date +%s) - last) / 86400 ))
+          echo "Last commit on master was $age_days days ago."
+          if [ "$age_days" -ge 45 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "chore: keepalive for scheduled publishing ($age_days days without a commit)"
+            git push
+          fi
+
   check-secrets:
     runs-on: ubuntu-latest
     outputs:
