@@ -12,6 +12,16 @@ import { buildSiblingMap, findStaleLinks } from './src/lib/localized-links.ts';
 import { findLiteralBold } from './src/lib/literal-markdown.ts';
 import { coverageStatus, uiCoverage } from './src/lib/ui-coverage.ts';
 import { translations, UI_PENDING } from './src/i18n/ui.ts';
+import {
+  buildTime,
+  findUnbuiltPostLinks,
+  isLive,
+  parsePostMeta,
+  postPath,
+  scheduleProblems,
+  showFuture,
+  upcomingPosts,
+} from './src/lib/publish-schedule.ts';
 
 // Non-default locale codes, for stripping the locale prefix off a sitemap
 // item's path before matching it against the branches below — /es/simulator
@@ -40,20 +50,28 @@ const localePrefixPattern = new RegExp(`^/(${localeCodes.join('|')})(?=/|$)`);
 // just a performance nicety.
 const translatedBlogLocales = ['es', 'pt', 'ja', 'fr', 'de', 'ko', 'it'];
 const sitemapLocaleMap = toSitemapLocaleMap();
+
+// Scheduled publishing (src/lib/publish-schedule.ts). Fixing the build time
+// here, before any page renders, is what makes the pages' `isLiveEntry` filter
+// and everything below agree on which posts are live.
+const BUILD_TIME = buildTime();
+const SHOW_FUTURE = showFuture();
+
+// Every post in every locale, drafts and future posts included, for the
+// schedule checks. Only `livePosts` feed the sitemap alternates.
+const blogPosts = ['en', ...translatedBlogLocales].flatMap(locale => {
+  const dirName = locale === DEFAULT_LOCALE ? 'blog' : `blog-${locale}`;
+  const dir = fileURLToPath(new URL(`./src/content/${dirName}`, import.meta.url));
+  return readdirSync(dir)
+    .filter(f => f.endsWith('.md'))
+    .map(file => parsePostMeta(readFileSync(join(dir, file), 'utf-8'), locale, `src/content/${dirName}/${file}`));
+});
+const livePosts = blogPosts.filter(p => isLive(p, BUILD_TIME, SHOW_FUTURE));
 const blogSlugMaps = Object.fromEntries(
-  translatedBlogLocales.map(locale => {
-    const dir = fileURLToPath(new URL(`./src/content/blog-${locale}`, import.meta.url));
-    const map = new Map();
-    for (const file of readdirSync(dir).filter(f => f.endsWith('.md'))) {
-      const raw = readFileSync(join(dir, file), 'utf-8');
-      const slugMatch = raw.match(/^slug:\s*"([^"]+)"/m);
-      const translationOfMatch = raw.match(/^translationOf:\s*"([^"]+)"/m);
-      if (slugMatch && translationOfMatch) {
-        map.set(translationOfMatch[1], slugMatch[1]);
-      }
-    }
-    return [locale, map];
-  })
+  translatedBlogLocales.map(locale => [
+    locale,
+    new Map(livePosts.filter(p => p.locale === locale && p.translationOf).map(p => [p.translationOf, p.id])),
+  ])
 );
 
 // Builds the full xhtml:link set for a blog post given its English slug —
@@ -238,6 +256,69 @@ function localizedLinkCheck() {
   };
 }
 
+/**
+ * Scheduled publishing checks (src/lib/publish-schedule.ts). Before rendering,
+ * fails the build if a due post is missing a live translation in any locale,
+ * or a translation's date or `translationOf` disagrees with its English post,
+ * so a post can never go live half-translated. After rendering, fails it if
+ * anything built (an <a>, an hreflang <link>, the sitemap) points at a blog
+ * post that was not built, which is how a future or draft post would leak,
+ * and if the built posts differ from what the frontmatter says is live.
+ *
+ * Must be registered after singleFileSitemap(), which writes sitemap.xml.
+ *
+ * @returns {import('astro').AstroIntegration}
+ */
+function publishScheduleCheck() {
+  const origin = 'https://stockademarketsim.com';
+  return {
+    name: 'publish-schedule-check',
+    hooks: {
+      'astro:build:start': ({ logger }) => {
+        logger.info(`Build time ${BUILD_TIME.toISOString()}: ${livePosts.length} of ${blogPosts.length} posts live`);
+        if (SHOW_FUTURE) logger.warn('SHOW_FUTURE=1: future posts are included. Preview only; do not deploy this build.');
+        for (const p of upcomingPosts(blogPosts, translatedBlogLocales, BUILD_TIME)) {
+          logger.info(`Scheduled ${p.date} ${p.id}: ${p.missing.length ? `missing ${p.missing.join(', ')}` : 'all 8 locales ready'}`);
+        }
+        const problems = scheduleProblems(blogPosts, translatedBlogLocales, BUILD_TIME);
+        if (problems.length > 0) {
+          throw new Error(
+            `publish-schedule-check: ${problems.length} problem(s). A post goes live in all 8 locales at once; ` +
+              `if one can't be finished in time, move its date in every locale:\n  ${problems.join('\n  ')}`
+          );
+        }
+      },
+      'astro:build:done': async ({ dir, logger }) => {
+        const pages = await readBuiltPages(dir);
+        const sitemap = await readFile(join(fileURLToPath(dir), 'sitemap.xml'), 'utf-8');
+        const builtPaths = new Set(pages.map(p => p.path));
+
+        const expected = new Set(livePosts.map(p => postPath(p)));
+        const builtPosts = pages.map(p => p.path).filter(p => /^(\/[a-z]{2})?\/blog\/[^/]+\/$/.test(p));
+        const disagree = [
+          ...[...expected].filter(p => !builtPaths.has(p)).map(p => `live but not built: ${p}`),
+          ...builtPosts.filter(p => !expected.has(p)).map(p => `built but not live: ${p}`),
+        ];
+        if (disagree.length > 0) {
+          throw new Error(`publish-schedule-check: frontmatter and content layer disagree:\n  ${disagree.join('\n  ')}`);
+        }
+
+        /** @type {Map<string, 'future' | 'draft'>} */
+        const unbuilt = new Map(
+          blogPosts.filter(p => !expected.has(postPath(p))).map(p => [postPath(p), p.draft ? 'draft' : 'future'])
+        );
+        const bad = findUnbuiltPostLinks([...pages, { path: 'sitemap.xml', html: sitemap }], builtPaths, unbuilt, origin);
+        if (bad.length > 0) {
+          const shown = bad.slice(0, 25).map(b => `  ${b.page}: ${b.href} (${b.reason})`);
+          if (bad.length > 25) shown.push(`  … and ${bad.length - 25} more`);
+          throw new Error(`publish-schedule-check: ${bad.length} link(s) to a blog post that is not live:\n${shown.join('\n')}`);
+        }
+        logger.info(`${builtPosts.length} posts built; no page or sitemap entry links to an unbuilt post`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: 'https://stockademarketsim.com',
   trailingSlash: 'always',
@@ -311,6 +392,7 @@ export default defineConfig({
       },
     }),
     singleFileSitemap(),
+    publishScheduleCheck(),
     localizedLinkCheck(),
     literalMarkdownCheck(),
     uiCoverageCheck(),

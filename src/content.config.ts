@@ -8,6 +8,9 @@ const blogSchema = z.object({
   // This is a hard build failure on purpose — a silently clipped
   // meta description is invisible until it is already live.
   description: z.string().max(160),
+  // Publish date. A post stays unbuilt, like a draft, until the first build at
+  // or after it (a bare YYYY-MM-DD is 00:00 UTC). Every translation must carry
+  // its English original's date. See src/lib/publish-schedule.ts.
   date: z.coerce.date(),
   // Names the site as publisher rather than an individual. Drives the
   // visible byline and the article:author meta tag.

@@ -1,12 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
+import { isLiveEntry } from '../../../lib/publish-schedule';
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/layout/Navbar.astro';
 import Footer from '../../../components/layout/Footer.astro';
 import { readingTime } from '../../../lib/reading-time';
 import { BLOG_ALTERNATES } from '../../../i18n/alternates';
 
-const posts = (await getCollection('blogIt', ({ data }) => !data.draft)).sort(
+const posts = (await getCollection('blogIt', isLiveEntry)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 

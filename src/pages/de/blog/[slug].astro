@@ -1,16 +1,17 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { isLiveEntry } from '../../../lib/publish-schedule';
 import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blogDe', ({ data }) => !data.draft);
-  const enPosts = await getCollection('blog', ({ data }) => !data.draft);
-  const esPosts = await getCollection('blogEs', ({ data }) => !data.draft);
-  const ptPosts = await getCollection('blogPt', ({ data }) => !data.draft);
-  const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
-  const frPosts = await getCollection('blogFr', ({ data }) => !data.draft);
-  const koPosts = await getCollection('blogKo', ({ data }) => !data.draft);
-  const itPosts = await getCollection('blogIt', ({ data }) => !data.draft);
+  const posts = await getCollection('blogDe', isLiveEntry);
+  const enPosts = await getCollection('blog', isLiveEntry);
+  const esPosts = await getCollection('blogEs', isLiveEntry);
+  const ptPosts = await getCollection('blogPt', isLiveEntry);
+  const jaPosts = await getCollection('blogJa', isLiveEntry);
+  const frPosts = await getCollection('blogFr', isLiveEntry);
+  const koPosts = await getCollection('blogKo', isLiveEntry);
+  const itPosts = await getCollection('blogIt', isLiveEntry);
   const enIds = new Set(enPosts.map(p => p.id));
   // A translated post's `translationOf` names the id of the English post it
   // translates — its own id/slug is independently localized, so the two are
@@ -50,7 +51,7 @@ export async function getStaticPaths() {
 }
 
 const { post, alternates } = Astro.props;
-const posts = await getCollection('blogDe', ({ data }) => !data.draft);
+const posts = await getCollection('blogDe', isLiveEntry);
 const { Content, headings } = await render(post);
 ---
 

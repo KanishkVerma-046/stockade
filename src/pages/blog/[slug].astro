@@ -1,19 +1,20 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { isLiveEntry } from '../../lib/publish-schedule';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  // Drafts are filtered here rather than only on the index, so no page is
-  // generated for them at all. That also keeps them out of the sitemap,
-  // which lists built routes.
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const esPosts = await getCollection('blogEs', ({ data }) => !data.draft);
-  const ptPosts = await getCollection('blogPt', ({ data }) => !data.draft);
-  const jaPosts = await getCollection('blogJa', ({ data }) => !data.draft);
-  const frPosts = await getCollection('blogFr', ({ data }) => !data.draft);
-  const dePosts = await getCollection('blogDe', ({ data }) => !data.draft);
-  const koPosts = await getCollection('blogKo', ({ data }) => !data.draft);
-  const itPosts = await getCollection('blogIt', ({ data }) => !data.draft);
+  // Drafts and not-yet-due posts are filtered here rather than only on the
+  // index, so no page is generated for them at all. That also keeps them out
+  // of the sitemap, which lists built routes. See src/lib/publish-schedule.ts.
+  const posts = await getCollection('blog', isLiveEntry);
+  const esPosts = await getCollection('blogEs', isLiveEntry);
+  const ptPosts = await getCollection('blogPt', isLiveEntry);
+  const jaPosts = await getCollection('blogJa', isLiveEntry);
+  const frPosts = await getCollection('blogFr', isLiveEntry);
+  const dePosts = await getCollection('blogDe', isLiveEntry);
+  const koPosts = await getCollection('blogKo', isLiveEntry);
+  const itPosts = await getCollection('blogIt', isLiveEntry);
   // Translated posts use localized slugs, so they're matched to the English
   // post they translate via `translationOf` (the English post's id) rather
   // than by sharing an id/filename.
@@ -56,8 +57,8 @@ export async function getStaticPaths() {
 }
 
 const { post, alternates } = Astro.props;
-// Also filtered, so a draft can never surface as a related-post link.
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+// Also filtered, so a draft or future post can never surface as a related-post link.
+const posts = await getCollection('blog', isLiveEntry);
 const { Content, headings } = await render(post);
 ---
 
