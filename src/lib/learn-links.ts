@@ -60,7 +60,7 @@ export type ToolPage = keyof typeof TOOL_LEARN_TOPICS;
 // a scheduled post listed early pushes the last one out on its publish date.
 export const RELATED_GUIDES: Record<ToolPage, readonly string[]> = {
   simulator: [
-    'paper-trading-guide', 'backtesting-vs-paper-trading', 'moving-averages-ema-vs-sma', 'vwap-trading-strategy',
+    'paper-trading-guide', 'backtesting-vs-paper-trading', 'risk-reward-ratio-expectancy', 'vwap-trading-strategy',
     'market-orders-vs-limit-orders', 'atr-volatility-stops', 'how-to-build-a-trading-plan',
   ],
   chartSimulator: [
