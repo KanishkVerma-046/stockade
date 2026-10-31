@@ -258,6 +258,56 @@ for (const l of LOCALES) {
   ok(`${l}: overlays checked at 320/360/375/1280`);
 }
 
+// The chart simulator's keyboard hint ("Space · ← →", localized): fully shown,
+// on top of the canvases, inside the pane (clear of the price and time axes)
+// on a normal and a wide-priced symbol; hidden on phones.
+console.log('Chart simulator keyboard hint');
+async function hintGeometry(page) {
+  return page.locator('[data-chart-hint]').evaluate(hint => {
+    const r = hint.getBoundingClientRect();
+    if (!r.width) return { shown: false };
+    const cs = [...hint.parentElement.querySelectorAll('canvas')].map(c => c.getBoundingClientRect()).filter(c => c.width);
+    const top = Math.min(...cs.map(c => c.top)), left = Math.min(...cs.map(c => c.left));
+    const priceAxis = cs.filter(c => c.top === top).reduce((a, c) => (c.left > a.left ? c : a));
+    const timeAxis = cs.filter(c => c.left === left).reduce((a, c) => (c.top > a.top ? c : a));
+    hint.style.pointerEvents = 'auto';
+    const y = r.top + r.height / 2;
+    const onTop = [r.left + 2, r.left + r.width / 2, r.right - 2].every(x => hint.contains(document.elementFromPoint(x, y)));
+    hint.style.pointerEvents = '';
+    return {
+      shown: true, onTop, text: hint.textContent,
+      clipped: hint.scrollWidth > hint.clientWidth,
+      overPriceAxis: r.right > priceAxis.left, overTimeAxis: r.bottom > timeAxis.top, outOfPane: r.left < left,
+    };
+  });
+}
+for (const l of LOCALES) {
+  for (const w of [375, 1024, 1280]) {
+    const s = await open(`${prefix(l)}/chart-simulator/`, w);
+    const label = `${l} /chart-simulator/ @${w}`;
+    await s.page.waitForFunction(() => /%$/.test(document.querySelector('[data-chart-overlay]')?.innerText.trim() ?? ''));
+    for (const sym of w === 375 ? ['APXL'] : ['APXL', 'BLTC']) {
+      if (sym !== 'APXL') {
+        await s.page.locator('div.relative.shrink-0 > button').first().click();
+        await s.page.locator('button', { hasText: new RegExp(`^${sym}`) }).first().click();
+      }
+      await s.page.waitForTimeout(400);
+      const g = await hintGeometry(s.page);
+      if (w === 375) { if (g.shown) fail(`${label}: keyboard hint shown on a phone`); continue; }
+      const at = `${label} ${sym}`;
+      if (!g.shown) { fail(`${at}: keyboard hint not shown`); continue; }
+      if (!/^\S.* · ← →$/.test(g.text)) fail(`${at}: keyboard hint reads "${g.text}"`);
+      if (!g.onTop) fail(`${at}: keyboard hint is partly covered`);
+      if (g.clipped) fail(`${at}: keyboard hint is clipped`);
+      if (g.overPriceAxis) fail(`${at}: keyboard hint overlaps the price axis`);
+      if (g.overTimeAxis) fail(`${at}: keyboard hint overlaps the time axis`);
+      if (g.outOfPane) fail(`${at}: keyboard hint leaves the pane`);
+    }
+    await close(s, label);
+  }
+  ok(`${l}: keyboard hint checked at 375/1024/1280`);
+}
+
 // Hovering a candle under the box still moves the crosshair readout.
 {
   const s = await open('/chart-simulator/', 1280);

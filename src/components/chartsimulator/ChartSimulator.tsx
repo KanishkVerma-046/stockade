@@ -698,11 +698,14 @@ interface SimChartProps {
   learn?: LearnLinks;
   // The symbol/timeframe/change box drawn over the chart's top-left corner.
   overlay?: ReactNode;
+  // The keyboard hint, kept in the pane's bottom-right corner, clear of both axes.
+  hint?: ReactNode;
 }
 
-function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick, learn, overlay }: SimChartProps) {
+function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick, learn, overlay, hint }: SimChartProps) {
   const containerRef  = useRef<HTMLDivElement>(null);
   const overlayRef    = useRef<HTMLDivElement>(null);
+  const hintRef       = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
   const volRef        = useRef<ISeriesApi<'Histogram'> | null>(null);
@@ -802,6 +805,17 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       if (best.patternId) onClickRef.current?.(best.patternId);
     });
 
+    // The hint sits inside the pane, left of the price axis and above the time
+    // axis; both are canvases that would paint over it. The price axis widens
+    // with longer prices, which resizes the time scale, so that re-places it.
+    const placeHint = () => {
+      const el = hintRef.current;
+      if (!el) return;
+      el.style.right = `${chart.priceScale('right').width() + 6}px`;
+      el.style.bottom = `${chart.timeScale().height() + 6}px`;
+    };
+    chart.timeScale().subscribeSizeChange(placeHint);
+
     // After the chart lays out: the lower pane's label follows the pane's top
     // edge, and the candles' top margin clears the overlay so it covers none.
     let raf = 0;
@@ -812,6 +826,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       raf = requestAnimationFrame(() => {
         const paneHeight = chart.paneSize().height;
         setPaneTop(paneHeight * BOTTOM_PANE_TOP);
+        placeHint();
         const box = overlayRef.current;
         if (box && paneHeight) {
           const top = Math.max(0.08, (box.offsetTop + box.offsetHeight + 6) / paneHeight);
@@ -823,6 +838,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     if (overlayRef.current) ro.observe(overlayRef.current);
     return () => {
       cancelAnimationFrame(raf);
+      chart.timeScale().unsubscribeSizeChange(placeHint);
       ro.disconnect(); chart.remove();
       chartRef.current = null; candleRef.current = null; volRef.current = null;
       emaRefs.current = {}; markersRef.current = null;
@@ -905,6 +921,15 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       {overlay && (
         <div ref={overlayRef} data-chart-overlay className="absolute top-3 left-3 z-10 pointer-events-none">
           {overlay}
+        </div>
+      )}
+      {/* Hidden on phones: a keyboard hint is no use on touch, and there the
+          centred pattern toast would run into it. right/bottom are set by placeHint. */}
+      {hint && (
+        <div ref={hintRef} data-chart-hint
+          className="absolute right-[74px] bottom-[34px] z-10 pointer-events-none hidden sm:block px-1.5 py-0.5 rounded border border-[var(--c-border)] text-[10px] font-mono text-[var(--c-text-subtle)] whitespace-nowrap"
+          style={{ backgroundColor: 'var(--c-overlay, rgba(13,13,13,0.85))' }}>
+          {hint}
         </div>
       )}
     </div>
@@ -1373,6 +1398,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides, 
               onHover={setHoverOhlcv}
               onMarkerClick={id => { setActiveId(prev => prev === id ? null : id); setMobileTab('info'); }}
               learn={learn}
+              hint={labels.keyHint}
               overlay={
                 <div className="px-2.5 py-1.5 rounded text-[11px] font-mono border border-[var(--c-border)] flex items-center gap-2"
                   style={{ backgroundColor: 'var(--c-overlay, rgba(13,13,13,0.85))' }}>
@@ -1408,10 +1434,6 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides, 
             </div>
           )}
 
-          {/* Keyboard hint */}
-          <div className="absolute bottom-3 right-3 pointer-events-none text-[10px] font-mono text-[var(--c-text-faint)]">
-            {labels.keyHint}
-          </div>
         </div>
 
         {/* Right: Pattern Info */}
