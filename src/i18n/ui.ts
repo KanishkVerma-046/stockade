@@ -187,7 +187,25 @@ export type UiKey =
   | 'chart.hoverOhlcv'
   | 'chart.footer.patterns.zero' // optional, no English: read with tOptional()
   | 'chart.footer.patterns.one'
-  | 'chart.footer.patterns.other';
+  | 'chart.footer.patterns.other'
+  | 'learn.aria'
+  | 'learn.marketVsLimit'
+  | 'learn.positionSizing'
+  | 'learn.stopLoss'
+  | 'learn.ocoBracket'
+  | 'learn.backtestingVsPaper'
+  | 'learn.paperTrading'
+  | 'learn.candlesticks'
+  | 'learn.volume'
+  | 'learn.rsi'
+  | 'learn.macd'
+  | 'learn.crypto'
+  | 'learn.forex'
+  | 'learn.futures'
+  | 'learn.performanceMetrics'
+  | 'learn.expectancy'
+  | 'learn.drawdown'
+  | 'learn.journal';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -381,6 +399,24 @@ const en: Dictionary = {
   'chart.hoverOhlcv': 'Hover to see OHLCV',
   'chart.footer.patterns.one': '{n} pattern',
   'chart.footer.patterns.other': '{n} patterns',
+  'learn.aria': '{label} (opens in a new tab)',
+  'learn.marketVsLimit': 'Learn when to use market and limit orders',
+  'learn.positionSizing': 'Learn how to size a position',
+  'learn.stopLoss': 'Learn how stop-loss orders work',
+  'learn.ocoBracket': 'Learn how OCO and bracket orders work',
+  'learn.backtestingVsPaper': 'Learn what backtesting and paper trading can prove',
+  'learn.paperTrading': 'Learn how to practice with paper trading',
+  'learn.candlesticks': 'Learn how to read candlestick charts',
+  'learn.volume': 'Learn what trading volume tells you',
+  'learn.rsi': 'Learn how to read the RSI',
+  'learn.macd': 'Learn how to read the MACD',
+  'learn.crypto': 'Learn how crypto markets work',
+  'learn.forex': 'Learn how currency pairs and pips work',
+  'learn.futures': 'Learn how futures contracts work',
+  'learn.performanceMetrics': 'Learn which performance metrics matter',
+  'learn.expectancy': 'Learn how risk-reward and expectancy fit together',
+  'learn.drawdown': 'Learn why drawdowns are hard to recover from',
+  'learn.journal': 'Learn how to keep a trading journal',
 };
 
 const es: Dictionary = {
@@ -574,6 +610,24 @@ const es: Dictionary = {
   'chart.hoverOhlcv': 'Pasa el cursor para ver OHLCV',
   'chart.footer.patterns.one': '{n} patrón',
   'chart.footer.patterns.other': '{n} patrones',
+  'learn.aria': '{label} (se abre en una pestaña nueva)',
+  'learn.marketVsLimit': 'Aprende cuándo usar órdenes de mercado y límite',
+  'learn.positionSizing': 'Aprende a calcular el tamaño de posición',
+  'learn.stopLoss': 'Aprende cómo funcionan las órdenes stop-loss',
+  'learn.ocoBracket': 'Aprende cómo funcionan las órdenes OCO y bracket',
+  'learn.backtestingVsPaper': 'Aprende qué pueden probar el backtesting y el paper trading',
+  'learn.paperTrading': 'Aprende a practicar con paper trading',
+  'learn.candlesticks': 'Aprende a leer gráficos de velas',
+  'learn.volume': 'Aprende qué te dice el volumen de trading',
+  'learn.rsi': 'Aprende a leer el RSI',
+  'learn.macd': 'Aprende a leer el MACD',
+  'learn.crypto': 'Aprende cómo funcionan los mercados cripto',
+  'learn.forex': 'Aprende cómo funcionan los pares de divisas y los pips',
+  'learn.futures': 'Aprende cómo funcionan los contratos de futuros',
+  'learn.performanceMetrics': 'Aprende qué métricas de rendimiento importan',
+  'learn.expectancy': 'Aprende cómo encajan la relación riesgo-recompensa y la expectativa',
+  'learn.drawdown': 'Aprende por qué cuesta tanto recuperarse de un drawdown',
+  'learn.journal': 'Aprende a llevar un diario de trading',
 };
 
 const pt: Dictionary = {
@@ -771,6 +825,24 @@ const pt: Dictionary = {
   'chart.footer.patterns.zero': '{n} padrões',
   'chart.footer.patterns.one': '{n} padrão',
   'chart.footer.patterns.other': '{n} padrões',
+  'learn.aria': '{label} (abre em uma nova aba)',
+  'learn.marketVsLimit': 'Saiba quando usar ordens a mercado e ordens limitadas',
+  'learn.positionSizing': 'Saiba como dimensionar uma posição',
+  'learn.stopLoss': 'Saiba como funcionam as ordens stop-loss',
+  'learn.ocoBracket': 'Saiba como funcionam as ordens OCO e bracket',
+  'learn.backtestingVsPaper': 'Saiba o que o backtesting e o paper trading podem provar',
+  'learn.paperTrading': 'Saiba como praticar com paper trading',
+  'learn.candlesticks': 'Saiba como ler gráficos de candles',
+  'learn.volume': 'Saiba o que o volume de trading revela',
+  'learn.rsi': 'Saiba como ler o RSI',
+  'learn.macd': 'Saiba como ler o MACD',
+  'learn.crypto': 'Saiba como funcionam os mercados de cripto',
+  'learn.forex': 'Saiba como funcionam os pares de moedas e os pips',
+  'learn.futures': 'Saiba como funcionam os contratos futuros',
+  'learn.performanceMetrics': 'Saiba quais métricas de desempenho importam',
+  'learn.expectancy': 'Saiba como a relação risco-retorno e a expectativa se encaixam',
+  'learn.drawdown': 'Saiba por que é tão difícil se recuperar de um drawdown',
+  'learn.journal': 'Saiba como manter um diário de trading',
 };
 
 const ja: Dictionary = {
@@ -962,6 +1034,24 @@ const ja: Dictionary = {
   'chart.hoverOhlcv': 'カーソルを合わせるとOHLCVを表示',
   'chart.footer.patterns.one': '{n}種類のパターン',
   'chart.footer.patterns.other': '{n}種類のパターン',
+  'learn.aria': '{label}（新しいタブで開きます）',
+  'learn.marketVsLimit': '成行注文と指値注文の使い分けを学ぶ',
+  'learn.positionSizing': 'ポジションサイジングを学ぶ',
+  'learn.stopLoss': '逆指値注文の仕組みを学ぶ',
+  'learn.ocoBracket': 'OCO・ブラケット注文の仕組みを学ぶ',
+  'learn.backtestingVsPaper': 'バックテストとペーパートレーディングで証明できることを学ぶ',
+  'learn.paperTrading': 'ペーパートレーディングでの練習方法を学ぶ',
+  'learn.candlesticks': 'ローソク足チャートの読み方を学ぶ',
+  'learn.volume': '出来高からわかることを学ぶ',
+  'learn.rsi': 'RSIの読み方を学ぶ',
+  'learn.macd': 'MACDの読み方を学ぶ',
+  'learn.crypto': '暗号資産市場の仕組みを学ぶ',
+  'learn.forex': '通貨ペアとpipsの仕組みを学ぶ',
+  'learn.futures': '先物契約の仕組みを学ぶ',
+  'learn.performanceMetrics': '重要なパフォーマンス指標を学ぶ',
+  'learn.expectancy': 'リスクリワード比と期待値の関係を学ぶ',
+  'learn.drawdown': 'ドローダウンからの回復が難しい理由を学ぶ',
+  'learn.journal': 'トレード日記のつけ方を学ぶ',
 };
 
 const fr: Dictionary = {
@@ -1155,6 +1245,24 @@ const fr: Dictionary = {
   'chart.hoverOhlcv': 'Survolez pour voir OHLCV',
   'chart.footer.patterns.one': '{n} figure',
   'chart.footer.patterns.other': '{n} figures',
+  'learn.aria': "{label} (s'ouvre dans un nouvel onglet)",
+  'learn.marketVsLimit': 'Découvrez quand utiliser un ordre au marché ou à cours limité',
+  'learn.positionSizing': 'Découvrez comment dimensionner une position',
+  'learn.stopLoss': 'Découvrez comment fonctionnent les ordres stop-loss',
+  'learn.ocoBracket': 'Découvrez comment fonctionnent les ordres OCO et bracket',
+  'learn.backtestingVsPaper': 'Découvrez ce que le backtesting et le paper trading peuvent prouver',
+  'learn.paperTrading': "Découvrez comment s'entraîner avec le paper trading",
+  'learn.candlesticks': 'Découvrez comment lire les graphiques en chandeliers',
+  'learn.volume': 'Découvrez ce que révèle le volume de trading',
+  'learn.rsi': 'Découvrez comment lire le RSI',
+  'learn.macd': 'Découvrez comment lire le MACD',
+  'learn.crypto': 'Découvrez comment fonctionnent les marchés crypto',
+  'learn.forex': 'Découvrez comment fonctionnent les paires de devises et les pips',
+  'learn.futures': 'Découvrez comment fonctionnent les contrats à terme',
+  'learn.performanceMetrics': 'Découvrez les indicateurs de performance qui comptent',
+  'learn.expectancy': "Découvrez comment s'articulent le ratio risque/rendement et l'espérance",
+  'learn.drawdown': "Découvrez pourquoi il est si difficile de se remettre d'un drawdown",
+  'learn.journal': 'Découvrez comment tenir un journal de trading',
 };
 
 const de: Dictionary = {
@@ -1348,6 +1456,24 @@ const de: Dictionary = {
   'chart.hoverOhlcv': 'Mauszeiger darüber für OHLCV',
   'chart.footer.patterns.one': '{n} Muster',
   'chart.footer.patterns.other': '{n} Muster',
+  'learn.aria': '{label} (öffnet in einem neuen Tab)',
+  'learn.marketVsLimit': 'Erfahren Sie, wann Sie Market- oder Limit-Orders nutzen',
+  'learn.positionSizing': 'Erfahren Sie, wie Sie die Positionsgröße bestimmen',
+  'learn.stopLoss': 'Erfahren Sie, wie Stop-Loss-Orders funktionieren',
+  'learn.ocoBracket': 'Erfahren Sie, wie OCO- und Bracket-Orders funktionieren',
+  'learn.backtestingVsPaper': 'Erfahren Sie, was Backtesting und Paper Trading beweisen können',
+  'learn.paperTrading': 'Erfahren Sie, wie Sie mit Paper Trading üben',
+  'learn.candlesticks': 'Erfahren Sie, wie Sie Candlestick-Charts lesen',
+  'learn.volume': 'Erfahren Sie, was Ihnen das Handelsvolumen sagt',
+  'learn.rsi': 'Erfahren Sie, wie Sie den RSI lesen',
+  'learn.macd': 'Erfahren Sie, wie Sie den MACD lesen',
+  'learn.crypto': 'Erfahren Sie, wie Kryptomärkte funktionieren',
+  'learn.forex': 'Erfahren Sie, wie Währungspaare und Pips funktionieren',
+  'learn.futures': 'Erfahren Sie, wie Futures-Kontrakte funktionieren',
+  'learn.performanceMetrics': 'Erfahren Sie, welche Performance-Kennzahlen zählen',
+  'learn.expectancy': 'Erfahren Sie, wie Chance-Risiko-Verhältnis und Erwartungswert zusammenhängen',
+  'learn.drawdown': 'Erfahren Sie, warum die Erholung von einem Drawdown so schwer ist',
+  'learn.journal': 'Erfahren Sie, wie Sie ein Trading-Journal führen',
 };
 
 const ko: Dictionary = {
@@ -1540,6 +1666,24 @@ const ko: Dictionary = {
   'chart.hoverOhlcv': '마우스를 올리면 OHLCV 표시',
   'chart.footer.patterns.one': '패턴 {n}개',
   'chart.footer.patterns.other': '패턴 {n}개',
+  'learn.aria': '{label} (새 탭에서 열림)',
+  'learn.marketVsLimit': '시장가 주문과 지정가 주문을 언제 쓰는지 알아보기',
+  'learn.positionSizing': '포지션 사이징 방법 알아보기',
+  'learn.stopLoss': '손절매 주문의 작동 방식 알아보기',
+  'learn.ocoBracket': 'OCO와 브라켓 주문의 작동 방식 알아보기',
+  'learn.backtestingVsPaper': '백테스팅과 모의투자가 증명할 수 있는 것 알아보기',
+  'learn.paperTrading': '모의투자로 연습하는 법 알아보기',
+  'learn.candlesticks': '캔들스틱 차트 읽는 법 알아보기',
+  'learn.volume': '거래량이 알려주는 것 알아보기',
+  'learn.rsi': 'RSI 읽는 법 알아보기',
+  'learn.macd': 'MACD 읽는 법 알아보기',
+  'learn.crypto': '암호화폐 시장의 작동 방식 알아보기',
+  'learn.forex': '통화쌍과 핍의 작동 방식 알아보기',
+  'learn.futures': '선물 계약의 작동 방식 알아보기',
+  'learn.performanceMetrics': '중요한 성과 지표 알아보기',
+  'learn.expectancy': '리스크-리워드 비율과 기댓값의 관계 알아보기',
+  'learn.drawdown': '낙폭에서 회복하기 어려운 이유 알아보기',
+  'learn.journal': '매매일지 쓰는 법 알아보기',
 };
 
 const it: Dictionary = {
@@ -1733,6 +1877,24 @@ const it: Dictionary = {
   'chart.hoverOhlcv': 'Passa il cursore per vedere OHLCV',
   'chart.footer.patterns.one': '{n} pattern',
   'chart.footer.patterns.other': '{n} pattern',
+  'learn.aria': '{label} (si apre in una nuova scheda)',
+  'learn.marketVsLimit': 'Scopri quando usare gli ordini a mercato e a limite',
+  'learn.positionSizing': 'Scopri come dimensionare una posizione',
+  'learn.stopLoss': 'Scopri come funzionano gli ordini stop-loss',
+  'learn.ocoBracket': 'Scopri come funzionano gli ordini OCO e bracket',
+  'learn.backtestingVsPaper': 'Scopri cosa possono dimostrare il backtesting e il paper trading',
+  'learn.paperTrading': 'Scopri come esercitarti con il paper trading',
+  'learn.candlesticks': 'Scopri come leggere i grafici a candele',
+  'learn.volume': 'Scopri cosa ti dice il volume di trading',
+  'learn.rsi': "Scopri come leggere l'RSI",
+  'learn.macd': 'Scopri come leggere il MACD',
+  'learn.crypto': 'Scopri come funzionano i mercati delle criptovalute',
+  'learn.forex': 'Scopri come funzionano le coppie di valute e i pip',
+  'learn.futures': 'Scopri come funzionano i contratti futures',
+  'learn.performanceMetrics': 'Scopri quali metriche di performance contano',
+  'learn.expectancy': "Scopri come si legano il rapporto rischio-rendimento e l'aspettativa",
+  'learn.drawdown': 'Scopri perché è così difficile recuperare da un drawdown',
+  'learn.journal': 'Scopri come tenere un diario di trading',
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes
