@@ -205,7 +205,9 @@ export type UiKey =
   | 'learn.performanceMetrics'
   | 'learn.expectancy'
   | 'learn.drawdown'
-  | 'learn.journal';
+  | 'learn.journal'
+  | 'learn.relatedGuides'
+  | 'learn.allGuides';
 
 type Dictionary = Partial<Record<UiKey, string>>;
 
@@ -417,6 +419,8 @@ const en: Dictionary = {
   'learn.expectancy': 'Learn how risk-reward and expectancy fit together',
   'learn.drawdown': 'Learn why drawdowns are hard to recover from',
   'learn.journal': 'Learn how to keep a trading journal',
+  'learn.relatedGuides': 'Related guides',
+  'learn.allGuides': 'Browse the Learning Center',
 };
 
 const es: Dictionary = {
@@ -628,6 +632,8 @@ const es: Dictionary = {
   'learn.expectancy': 'Aprende cómo encajan la relación riesgo-recompensa y la expectativa',
   'learn.drawdown': 'Aprende por qué cuesta tanto recuperarse de un drawdown',
   'learn.journal': 'Aprende a llevar un diario de trading',
+  'learn.relatedGuides': 'Guías relacionadas',
+  'learn.allGuides': 'Explora el Centro de Aprendizaje',
 };
 
 const pt: Dictionary = {
@@ -843,6 +849,8 @@ const pt: Dictionary = {
   'learn.expectancy': 'Saiba como a relação risco-retorno e a expectativa se encaixam',
   'learn.drawdown': 'Saiba por que é tão difícil se recuperar de um drawdown',
   'learn.journal': 'Saiba como manter um diário de trading',
+  'learn.relatedGuides': 'Guias relacionados',
+  'learn.allGuides': 'Explore o Centro de Aprendizado',
 };
 
 const ja: Dictionary = {
@@ -1052,6 +1060,8 @@ const ja: Dictionary = {
   'learn.expectancy': 'リスクリワード比と期待値の関係を学ぶ',
   'learn.drawdown': 'ドローダウンからの回復が難しい理由を学ぶ',
   'learn.journal': 'トレード日記のつけ方を学ぶ',
+  'learn.relatedGuides': '関連ガイド',
+  'learn.allGuides': '学習センターを見る',
 };
 
 const fr: Dictionary = {
@@ -1263,6 +1273,8 @@ const fr: Dictionary = {
   'learn.expectancy': "Découvrez comment s'articulent le ratio risque/rendement et l'espérance",
   'learn.drawdown': "Découvrez pourquoi il est si difficile de se remettre d'un drawdown",
   'learn.journal': 'Découvrez comment tenir un journal de trading',
+  'learn.relatedGuides': 'Guides associés',
+  'learn.allGuides': "Parcourir le Centre d'Apprentissage",
 };
 
 const de: Dictionary = {
@@ -1474,6 +1486,8 @@ const de: Dictionary = {
   'learn.expectancy': 'Erfahren Sie, wie Chance-Risiko-Verhältnis und Erwartungswert zusammenhängen',
   'learn.drawdown': 'Erfahren Sie, warum die Erholung von einem Drawdown so schwer ist',
   'learn.journal': 'Erfahren Sie, wie Sie ein Trading-Journal führen',
+  'learn.relatedGuides': 'Passende Leitfäden',
+  'learn.allGuides': 'Zum Lernzentrum',
 };
 
 const ko: Dictionary = {
@@ -1684,6 +1698,8 @@ const ko: Dictionary = {
   'learn.expectancy': '리스크-리워드 비율과 기댓값의 관계 알아보기',
   'learn.drawdown': '낙폭에서 회복하기 어려운 이유 알아보기',
   'learn.journal': '매매일지 쓰는 법 알아보기',
+  'learn.relatedGuides': '관련 가이드',
+  'learn.allGuides': '학습 센터 둘러보기',
 };
 
 const it: Dictionary = {
@@ -1895,6 +1911,8 @@ const it: Dictionary = {
   'learn.expectancy': "Scopri come si legano il rapporto rischio-rendimento e l'aspettativa",
   'learn.drawdown': 'Scopri perché è così difficile recuperare da un drawdown',
   'learn.journal': 'Scopri come tenere un diario di trading',
+  'learn.relatedGuides': 'Guide correlate',
+  'learn.allGuides': 'Esplora il Centro di Apprendimento',
 };
 
 // Locales still mid-rollout for a batch of keys. Each entry lists key prefixes

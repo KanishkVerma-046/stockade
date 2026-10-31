@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { LEARN_TOPICS, TOOL_LEARN_TOPICS, resolveTopics, type LivePost } from './learn-links';
+import { LEARN_TOPICS, RELATED_GUIDES, TOOL_LEARN_TOPICS, pickLive, resolveTopics, type LivePost } from './learn-links';
 
 const post = (englishId: string, href = `/blog/${englishId}/`): LivePost => ({ englishId, href });
 
@@ -32,9 +32,31 @@ describe('resolveTopics', () => {
   });
 });
 
+describe('pickLive', () => {
+  const live = ['a', 'b', 'c', 'd', 'e', 'f'].map(id => post(id));
+
+  it('keeps list order and skips posts that are not live', () => {
+    expect(pickLive(['c', 'x', 'a'], live).map(p => p.englishId)).toEqual(['c', 'a']);
+  });
+
+  it('stops at the maximum, so an earlier post pushes the last one out', () => {
+    expect(pickLive(['a', 'b', 'c', 'd', 'e', 'f'], live).map(p => p.englishId)).toEqual(['a', 'b', 'c', 'd', 'e']);
+    expect(pickLive(['x', 'a', 'b'], live, 2).map(p => p.englishId)).toEqual(['a', 'b']);
+  });
+});
+
+describe('RELATED_GUIDES', () => {
+  it('lists at least three posts per page, none twice', () => {
+    for (const ids of Object.values(RELATED_GUIDES)) {
+      expect(ids.length).toBeGreaterThanOrEqual(3);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
+  });
+});
+
 describe('LEARN_TOPICS', () => {
   it('names only English posts that exist', () => {
-    const ids = new Set(Object.values(LEARN_TOPICS).flat());
+    const ids = new Set([...Object.values(LEARN_TOPICS).flat(), ...Object.values(RELATED_GUIDES).flat()]);
     for (const id of ids) expect(existsSync(`src/content/blog/${id}.md`), id).toBe(true);
   });
 

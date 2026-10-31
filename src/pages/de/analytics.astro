@@ -6,6 +6,7 @@ import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.ts
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'de' as const;
 const learn = await learnLinks(locale, 'analytics');
@@ -100,6 +101,8 @@ const analyticsLabels = buildAnalyticsLabels(locale);
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
         Die Heatmap gliedert Ihre Ergebnisse nach Wochentag und Tageszeit und färbt jede Zelle nach dem Netto-P&amp;L ein. Bei ausreichend vielen Trades kann sie aufdecken, dass eine bestimmte Session heimlich für den Großteil Ihrer Verluste verantwortlich ist. Vorsicht bei zu kleiner Stichprobe — eine einzelne Zelle braucht Dutzende von Trades dahinter, bevor ihre Farbe etwas bedeutet.
       </p>
+
+      <RelatedGuides page="analytics" />
     </section>
   </main>
   <Footer />

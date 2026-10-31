@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import MarketsView from '../components/markets/MarketsView.tsx';
 import { MARKETS_ALTERNATES } from '../i18n/alternates';
 import { learnLinks } from '../i18n/learn-links';
+import RelatedGuides from '../components/learn/RelatedGuides.astro';
 
 const learn = await learnLinks('en', 'markets');
 ---
@@ -57,6 +58,8 @@ const learn = await learnLinks('en', 'markets');
         to a read, the <a href="/chart-simulator/" class="text-[#f59e0b] hover:underline">Chart Simulator</a> replays
         the same asset classes bar by bar.
       </p>
+
+      <RelatedGuides page="markets" />
     </section>
   </main>
   <Footer />

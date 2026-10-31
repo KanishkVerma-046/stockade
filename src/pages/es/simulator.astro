@@ -4,6 +4,7 @@ import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
 import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'es' as const;
 const learn = await learnLinks(locale, 'simulator');
@@ -161,6 +162,7 @@ const simulatorLabels = buildSimulatorLabels(locale);
           </ul>
         </div>
       </details>
+      <RelatedGuides page="simulator" />
     </div>
   </section>
 </AppLayout>

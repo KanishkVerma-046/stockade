@@ -6,6 +6,7 @@ import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.ts
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'ja' as const;
 const learn = await learnLinks(locale, 'analytics');
@@ -100,6 +101,8 @@ const analyticsLabels = buildAnalyticsLabels(locale);
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
         このヒートマップは、曜日と時間帯ごとの結果を詳しく示し、各セルを純損益で色分けします。十分な数の取引があれば、特定のセッションが損失の大部分を静かに引き起こしていることが見えてくるかもしれません。サンプルが少ない場合は注意してください — 1つのセルの色が意味を持つには、その裏に数十件の取引が必要です。
       </p>
+
+      <RelatedGuides page="analytics" />
     </section>
   </main>
   <Footer />

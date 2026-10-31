@@ -4,6 +4,7 @@ import ChartSimulator from '../../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../../i18n/alternates';
 import { chartSimulatorLabels as buildChartSimulatorLabels } from '../../i18n/chart-simulator-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'fr' as const;
 const learn = await learnLinks(locale, 'chartSimulator');
@@ -67,6 +68,7 @@ const chartSimulatorLabels = buildChartSimulatorLabels(locale);
           </p>
         </div>
       </details>
+      <RelatedGuides page="chartSimulator" />
     </div>
   </section>
 </AppLayout>

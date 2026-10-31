@@ -3,6 +3,7 @@ import AppLayout from '../layouts/AppLayout.astro';
 import TradingSimulator from '../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../i18n/alternates';
 import { learnLinks } from '../i18n/learn-links';
+import RelatedGuides from '../components/learn/RelatedGuides.astro';
 
 const learn = await learnLinks('en', 'simulator');
 ---
@@ -163,6 +164,7 @@ const learn = await learnLinks('en', 'simulator');
           </ul>
         </div>
       </details>
+      <RelatedGuides page="simulator" />
     </div>
   </section>
 </AppLayout>

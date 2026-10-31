@@ -1,0 +1,38 @@
+---
+import { liveGuides } from '../../i18n/learn-links';
+import { localizedHref } from '../../i18n/alternates';
+import { getLocaleMeta } from '../../i18n/locales';
+import { t } from '../../i18n/ui';
+import { pickLive, RELATED_GUIDES, type ToolPage } from '../../lib/learn-links';
+
+// Server-rendered list of Learning Center posts under a tool page, so the
+// links are crawlable without the island. Posts come from the same gated data
+// as the blog index (isLiveEntry) in the page's own locale, so a scheduled
+// post appears on its publish date and a translated page never links English.
+interface Props {
+  page: ToolPage;
+}
+
+const { page } = Astro.props;
+const locale = getLocaleMeta(Astro.currentLocale).code;
+const guides = pickLive(RELATED_GUIDES[page], await liveGuides(locale));
+---
+
+{guides.length > 0 && (
+  <section aria-labelledby={`related-guides-${page}`} class="mt-12 pt-10 border-t border-[var(--c-border)]">
+    <h2 id={`related-guides-${page}`} class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-5">{t(locale, 'learn.relatedGuides')}</h2>
+    <ul class="grid sm:grid-cols-2 gap-3">
+      {guides.map(guide => (
+        <li>
+          <a href={guide.href} class="block h-full bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4 hover:border-[var(--c-border-strong)] transition-colors">
+            <span class="block text-[14px] font-semibold text-[var(--c-text)] leading-snug">{guide.title}</span>
+            <span class="block mt-1.5 text-[13px] text-[var(--c-text-muted)] leading-relaxed">{guide.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-5 text-[14px]">
+      <a href={localizedHref('/blog/', locale)} class="text-[#f59e0b] hover:underline">{t(locale, 'learn.allGuides')} →</a>
+    </p>
+  </section>
+)}

@@ -6,6 +6,7 @@ import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.ts
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'fr' as const;
 const learn = await learnLinks(locale, 'analytics');
@@ -100,6 +101,8 @@ const analyticsLabels = buildAnalyticsLabels(locale);
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
         La carte de chaleur répartit vos résultats par jour de la semaine et par heure de la journée, en colorant chaque cellule selon le P&amp;L net. Avec suffisamment de trades, elle peut révéler qu'une session en particulier est discrètement responsable de la majorité de vos pertes. Méfiez-vous d'un échantillon trop faible — une seule cellule a besoin de dizaines de trades derrière elle avant que sa couleur ne signifie quelque chose.
       </p>
+
+      <RelatedGuides page="analytics" />
     </section>
   </main>
   <Footer />

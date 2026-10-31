@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard.tsx';
 import { ANALYTICS_ALTERNATES } from '../i18n/alternates';
 import { learnLinks } from '../i18n/learn-links';
+import RelatedGuides from '../components/learn/RelatedGuides.astro';
 
 const learn = await learnLinks('en', 'analytics');
 ---
@@ -115,6 +116,8 @@ const learn = await learnLinks('en', 'analytics');
         responsible for most of your losses. Treat a thin sample with suspicion — a single cell needs
         dozens of trades behind it before the colour means anything.
       </p>
+
+      <RelatedGuides page="analytics" />
     </section>
   </main>
   <Footer />

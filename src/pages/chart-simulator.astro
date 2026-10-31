@@ -3,6 +3,7 @@ import AppLayout from '../layouts/AppLayout.astro';
 import ChartSimulator from '../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../i18n/alternates';
 import { learnLinks } from '../i18n/learn-links';
+import RelatedGuides from '../components/learn/RelatedGuides.astro';
 
 const learn = await learnLinks('en', 'chartSimulator');
 ---
@@ -88,6 +89,7 @@ const learn = await learnLinks('en', 'chartSimulator');
           </p>
         </div>
       </details>
+      <RelatedGuides page="chartSimulator" />
     </div>
   </section>
 </AppLayout>

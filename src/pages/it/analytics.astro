@@ -6,6 +6,7 @@ import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.ts
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'it' as const;
 const learn = await learnLinks(locale, 'analytics');
@@ -130,6 +131,8 @@ const analyticsLabels = buildAnalyticsLabels(locale);
         Diffida di un campione ridotto — una singola cella ha bisogno di decine di operazioni alle
         spalle prima che il colore abbia un vero significato.
       </p>
+
+      <RelatedGuides page="analytics" />
     </section>
   </main>
   <Footer />

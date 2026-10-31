@@ -6,6 +6,7 @@ import MarketsView from '../../components/markets/MarketsView.tsx';
 import { MARKETS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { t } from '../../i18n/ui';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'ja' as const;
 const learn = await learnLinks(locale, 'markets');
@@ -83,6 +84,8 @@ const marketsLabels = {
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
         各行の「取引」ボタンを押すと、その銘柄が選択された状態で<a href={localizedHref('/simulator/', locale)} class="text-[#f59e0b] hover:underline">トレーディングシミュレーター</a>が開きます。ここで動いている銘柄を見つけたら、探し直すことなくそのまま注文を出せます。判断を下す前に値動きがローソク足1本ずつ展開していく様子を見たい場合は、<a href={localizedHref('/chart-simulator/', locale)} class="text-[#f59e0b] hover:underline">チャートシミュレーター</a>で同じ資産クラスを1本ずつ再生できます。
       </p>
+
+      <RelatedGuides page="markets" />
     </section>
   </main>
   <Footer />

@@ -55,6 +55,36 @@ export const TOOL_LEARN_TOPICS = {
 
 export type ToolPage = keyof typeof TOOL_LEARN_TOPICS;
 
+// The "Related guides" section under each tool page: English post ids in order
+// of preference. The page shows the first RELATED_GUIDES_MAX that are live, so
+// a scheduled post listed early pushes the last one out on its publish date.
+export const RELATED_GUIDES: Record<ToolPage, readonly string[]> = {
+  simulator: [
+    'paper-trading-guide', 'backtesting-vs-paper-trading', 'moving-averages-ema-vs-sma', 'vwap-trading-strategy',
+    'market-orders-vs-limit-orders', 'atr-volatility-stops', 'how-to-build-a-trading-plan',
+  ],
+  chartSimulator: [
+    'how-to-read-candlestick-charts', 'support-and-resistance-levels', 'moving-averages-ema-vs-sma',
+    'vwap-trading-strategy', 'rsi-indicator-overbought-oversold',
+  ],
+  markets: [
+    'crypto-trading-for-beginners', 'forex-trading-for-beginners', 'futures-trading-explained',
+    'understanding-trading-volume', 'day-trading-vs-swing-trading',
+  ],
+  analytics: [
+    'analyze-trading-performance-metrics', 'drawdown-recovery-math', 'trading-journal-guide',
+    'risk-reward-ratio-expectancy', 'risk-management-position-sizing', 'common-day-trading-mistakes',
+  ],
+};
+
+export const RELATED_GUIDES_MAX = 5;
+
+/** The first `max` posts of `ids` that are live, in `ids` order. */
+export function pickLive<T extends LivePost>(ids: readonly string[], livePosts: readonly T[], max = RELATED_GUIDES_MAX): T[] {
+  const byEnglishId = new Map(livePosts.map(p => [p.englishId, p]));
+  return ids.flatMap(id => byEnglishId.get(id) ?? []).slice(0, max);
+}
+
 export interface LearnLink {
   href: string;
   // Accessible name and tooltip; the visible text is a "?".

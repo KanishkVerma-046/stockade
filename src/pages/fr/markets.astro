@@ -6,6 +6,7 @@ import MarketsView from '../../components/markets/MarketsView.tsx';
 import { MARKETS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { t } from '../../i18n/ui';
 import { learnLinks } from '../../i18n/learn-links';
+import RelatedGuides from '../../components/learn/RelatedGuides.astro';
 
 const locale = 'fr' as const;
 const learn = await learnLinks(locale, 'markets');
@@ -83,6 +84,8 @@ const marketsLabels = {
       <p class="text-[15px] text-[var(--c-text-muted)] leading-relaxed">
         Le bouton Trader de chaque ligne ouvre le <a href={localizedHref('/simulator/', locale)} class="text-[#f59e0b] hover:underline">simulateur de trading</a> avec ce symbole déjà sélectionné, pour passer du repérage d'un mouvement ici au placement d'un ordre sans avoir à le rechercher. Si vous préférez voir les prix évoluer bougie par bougie avant de vous engager sur une lecture, le <a href={localizedHref('/chart-simulator/', locale)} class="text-[#f59e0b] hover:underline">simulateur de graphiques</a> rejoue les mêmes classes d'actifs barre par barre.
       </p>
+
+      <RelatedGuides page="markets" />
     </section>
   </main>
   <Footer />
