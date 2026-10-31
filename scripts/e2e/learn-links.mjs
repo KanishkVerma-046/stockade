@@ -6,7 +6,11 @@
 // Checks, in every locale: no horizontal overflow on the four tool pages at
 // 320/360/375px (the simulator's Order tab too); each lower-pane label (VOL,
 // RSI, MACD) carries its learn link on both charts; and every learn link opens
-// a new tab. On /simulator/ and /es/simulator/: B, S and F trade in live and
+// a new tab; no learn link is covered by another element. Both charts' symbol
+// overlays are drawn on top, cover no candle or marker, let the pointer through,
+// stay clear of the indicator toggles and agree with the price panel / toolbar
+// ("—" before mount, "· 1M" in replay only) at 320/360/375/1280px.
+// On /simulator/ and /es/simulator/: B, S and F trade in live and
 // replay mode with nothing focused, with a learn link focused, and right after
 // a learn link was clicked. Fails on any console error or uncaught exception
 // (hydration mismatches surface as React errors there). With --shots, saves
@@ -132,6 +136,137 @@ for (const l of LOCALES) {
   ok(`${l}: checked`);
 }
 
+// ── Chart overlays ──────────────────────────────────────────────────────────
+// The symbol box over each chart's top-left corner: drawn above the canvas,
+// clear of candles and markers and of the simulator's indicator toggles,
+// transparent to the crosshair except for its learn link, and accurate.
+const OVERLAY = '[data-chart-overlay]';
+
+// In-page: is the box on top, which candle-coloured canvas pixels lie under
+// it, does it pass the pointer through, and does it stay clear of the toggles?
+async function overlayGeometry(page) {
+  return page.locator(OVERLAY).evaluate(box => {
+    const r = box.getBoundingClientRect();
+    const root = box.parentElement;
+    const cx = r.x + r.width / 2, cy = r.y + r.height / 2;
+    box.style.pointerEvents = 'auto';
+    const onTop = box.contains(document.elementFromPoint(cx, cy));
+    box.style.pointerEvents = '';
+    const through = document.elementFromPoint(r.x + 4, r.y + r.height - 4);
+    const passes = !box.contains(through);
+    let candlePixels = 0;
+    for (const c of root.querySelectorAll('canvas')) {
+      const cr = c.getBoundingClientRect();
+      const x0 = Math.max(r.left, cr.left), x1 = Math.min(r.right, cr.right);
+      const y0 = Math.max(r.top, cr.top), y1 = Math.min(r.bottom, cr.bottom);
+      if (x1 <= x0 || y1 <= y0 || !cr.width) continue;
+      const k = c.width / cr.width;
+      const data = c.getContext('2d').getImageData((x0 - cr.left) * k, (y0 - cr.top) * k, (x1 - x0) * k, (y1 - y0) * k).data;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i + 3] < 128) continue;
+        const near = (r2, g2, b2) => Math.abs(data[i] - r2) + Math.abs(data[i + 1] - g2) + Math.abs(data[i + 2] - b2) < 60;
+        if (near(34, 197, 94) || near(239, 68, 68)) candlePixels++;
+      }
+    }
+    // The simulator's indicator toggles: each row, not their wider wrapper.
+    const rows = [...(root.querySelector('[class*="right-[68px]"]')?.children ?? [])].map(row => row.getBoundingClientRect());
+    const hitsToggles = rows.some(t => !(r.right <= t.left || r.left >= t.right || r.bottom <= t.top || r.top >= t.bottom));
+    const rootR = root.getBoundingClientRect();
+    const inside = r.left >= rootR.left && r.right <= rootR.right && r.bottom <= rootR.bottom;
+    return { onTop, passes, candlePixels, hitsToggles, inside, text: box.innerText.replace(/\s+/g, ' ').trim() };
+  });
+}
+
+function checkGeometry(g, label) {
+  if (!g.onTop) fail(`${label}: overlay is painted under the chart`);
+  if (!g.passes) fail(`${label}: overlay blocks the pointer`);
+  if (g.candlePixels) fail(`${label}: overlay covers ${g.candlePixels} candle/marker pixels`);
+  if (g.hitsToggles) fail(`${label}: overlay overlaps the indicator toggles`);
+  if (!g.inside) fail(`${label}: overlay spills out of the chart`);
+}
+
+// Before mount the simulator's box shows "—" for symbol, price and change.
+console.log('Chart overlays');
+for (const l of LOCALES) {
+  const html = await (await fetch(`${BASE}${prefix(l)}/simulator/`)).text();
+  const m = html.match(/data-chart-overlay[^>]*>([\s\S]*?)<\/div><\/div><\/div><\/div>/);
+  const text = m ? m[1].replace(/<a [\s\S]*?<\/a>/g, '').replace(/<[^>]+>/g, '|').split('|').map(s => s.trim()).filter(Boolean) : [];
+  if (text.join(' ') !== '— — —') fail(`${l}: static simulator overlay reads "${text.join(' ')}"`);
+}
+ok('static simulator overlays show — — — in every locale');
+
+for (const l of LOCALES) {
+  for (const w of [320, 360, 375, 1280]) {
+    // Simulator, live then replay; the box must agree with the price panel.
+    const s = await open(`${prefix(l)}/simulator/`, w);
+    const { page } = s;
+    const label = `${l} /simulator/ @${w}`;
+    await page.waitForFunction(() => !document.querySelector('[data-chart-overlay]')?.innerText.includes('—'));
+    await page.waitForTimeout(400);
+    for (const mode of ['live', 'replay']) {
+      if (mode === 'replay') {
+        await page.locator('button', { hasText: 'REPLAY' }).click();
+        await page.waitForTimeout(400);
+      }
+      checkGeometry(await overlayGeometry(page), `${label} ${mode}`);
+      // Read in one go so a tick can't land between the two. The panel's change
+      // line is "0.8575 (-0.46%)"; the box shows only the percentage.
+      const { box, panel } = await page.evaluate(() => {
+        const rows = document.querySelector('[data-chart-overlay]').firstElementChild.children;
+        const p = document.querySelector('.text-\\[26px\\]').parentElement.children;
+        return {
+          box: [rows[0].firstElementChild.textContent, rows[1].children[0].textContent, rows[1].children[1].textContent],
+          panel: [p[0].textContent, p[1].textContent, (p[2].textContent.match(/\(([^)]+)\)/) ?? [])[1]],
+        };
+      });
+      const wantSym = mode === 'replay' ? 'APXL · 1M' : 'APXL';
+      if (box[0] !== wantSym) fail(`${label} ${mode}: overlay symbol "${box[0]}"`);
+      if (!/^\$[\d.,]+$/.test(box[1]) || !/^[+-]\d+\.\d\d%$/.test(box[2])) fail(`${label} ${mode}: overlay reads "${box.join(' ')}"`);
+      if (box.join(' ') !== panel.join(' ')) fail(`${label} ${mode}: overlay "${box.join(' ')}" disagrees with panel "${panel.join(' ')}"`);
+    }
+    if (w < 1024) {
+      // Hiding the chart (Order tab) and showing it again must not throw or move the box.
+      await page.locator(MOBILE_TABS).nth(1).click();
+      await page.waitForTimeout(300);
+      await page.locator(MOBILE_TABS).nth(0).click();
+      await page.waitForTimeout(400);
+      checkGeometry(await overlayGeometry(page), `${label} after Order tab`);
+    }
+    await close(s, label);
+
+    // Chart simulator: symbol and timeframe follow the toolbar.
+    const c = await open(`${prefix(l)}/chart-simulator/`, w);
+    const clabel = `${l} /chart-simulator/ @${w}`;
+    await c.page.waitForFunction(() => /%$/.test(document.querySelector('[data-chart-overlay]')?.innerText.trim() ?? ''));
+    await c.page.waitForTimeout(400);
+    const g = await overlayGeometry(c.page);
+    checkGeometry(g, clabel);
+    const sym = (await c.page.locator('div.relative.shrink-0 > button').first().innerText()).trim();
+    if (!new RegExp(`^${sym.replace(/[/]/g, '\\/')} · 1D · [+-]?\\d+\\.\\d\\d%$`).test(g.text)) fail(`${clabel}: overlay reads "${g.text}" for ${sym} 1D`);
+    await c.page.locator('button', { hasText: /^1H$/ }).click();
+    await c.page.waitForTimeout(400);
+    const g1h = await overlayGeometry(c.page);
+    checkGeometry(g1h, `${clabel} 1H`);
+    if (!g1h.text.includes(' · 1H · ')) fail(`${clabel}: overlay reads "${g1h.text}" after 1H`);
+    await close(c, clabel);
+  }
+  ok(`${l}: overlays checked at 320/360/375/1280`);
+}
+
+// Hovering a candle under the box still moves the crosshair readout.
+{
+  const s = await open('/chart-simulator/', 1280);
+  await s.page.waitForFunction(() => /%$/.test(document.querySelector('[data-chart-overlay]')?.innerText.trim() ?? ''));
+  const status = () => s.page.locator('div.h-8.border-t').innerText();
+  const idle = await status();
+  const r = await s.page.locator(OVERLAY).boundingBox();
+  await s.page.mouse.move(r.x + 6, r.y + r.height - 4);
+  await s.page.waitForTimeout(200);
+  if ((await status()) === idle) fail('chart-simulator: hover under the overlay did not update the OHLCV readout');
+  else ok('chart-simulator: hover under the overlay updates the OHLCV readout');
+  await close(s, 'chart-simulator hover');
+}
+
 // ── Keyboard ────────────────────────────────────────────────────────────────
 // The position is read from the desktop left panel's card ("LONG 100").
 async function side(page) {
@@ -195,6 +330,11 @@ if (SHOTS) {
       const s = await open(`/${tool}/`, w, w === 375 ? 812 : 800);
       await s.page.waitForTimeout(500);
       await s.page.screenshot({ path: join(SHOTS, `${tool}-${w}.png`) });
+      if (tool === 'simulator') {
+        await s.page.locator('button', { hasText: 'REPLAY' }).click();
+        await s.page.waitForTimeout(500);
+        await s.page.screenshot({ path: join(SHOTS, `${tool}-${w}-replay.png`) });
+      }
       if (tool === 'simulator' && w === 375) {
         await s.page.locator(MOBILE_TABS).nth(1).click();
         await s.page.waitForTimeout(300); // the tab underline transitions

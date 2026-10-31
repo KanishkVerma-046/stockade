@@ -1154,13 +1154,20 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
                 resetKey={chartResetKey}
                 indicatorTitles={{ hide: labels.indicatorHide, show: labels.indicatorShow }}
                 learn={learn}
+                overlay={
+                  <div className="rounded px-2.5 py-1.5 backdrop-blur-sm border border-[var(--c-border)]"
+                    style={{ backgroundColor: 'var(--c-overlay)' }}>
+                    <div className="flex items-center gap-2">
+                      <div className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbolText}</div>
+                      {learn.candlesticks && <LearnLink {...learn.candlesticks} className="pointer-events-auto" />}
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <div className="text-[14px] font-mono font-semibold text-[var(--c-text)]">{priceText}</div>
+                      <div className={`text-[11px] font-mono ${changeColor}`}>{hydrated ? fmtPct(pricePct) : '—'}</div>
+                    </div>
+                  </div>
+                }
               />
-            </div>
-            <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
-              style={{ backgroundColor: 'var(--c-overlay)' }}>
-              <div className="text-[11px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{symbolText}</div>
-              <div className="text-[20px] font-mono font-semibold text-[var(--c-text)]">{priceText}</div>
-              <div className={`text-[12px] font-mono ${changeColor}`}>{hydrated ? fmtPct(pricePct) : '—'}</div>
             </div>
             {/* Replay hint */}
             {mode === 'replay' && (

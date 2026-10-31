@@ -46,10 +46,8 @@ export const LEARN_TOPICS: Record<LearnTopic, readonly string[]> = {
 
 // The topics each tool page's island links. EMA and VWAP have none: neither
 // chart has a legend to put them in, so the Related guides section covers them.
-// Nor does the simulator's candlestick chart: its symbol overlay, the natural
-// place, is painted under the chart canvas (z-index 2) and can't be seen.
 export const TOOL_LEARN_TOPICS = {
-  simulator:      ['orderTypes', 'quantity', 'stopLoss', 'takeProfit', 'mode', 'volume', 'rsi', 'macd'],
+  simulator:      ['orderTypes', 'quantity', 'stopLoss', 'takeProfit', 'mode', 'candlesticks', 'volume', 'rsi', 'macd'],
   chartSimulator: ['candlesticks', 'volume', 'rsi', 'macd'],
   markets:        ['crypto', 'forex', 'futures', 'volume'],
   analytics:      ['winRate', 'avgLoss', 'maxDrawdown', 'journal'],

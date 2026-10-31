@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { format } from '../../lib/format';
 import type { LearnLinks } from '../../lib/learn-links';
 import { BottomPaneLabel, BOTTOM_PANE_TOP, type BottomIndicator } from '../learn/LearnLink';
@@ -37,9 +37,15 @@ interface Props {
   indicatorTitles?: { hide: string; show: string };
   // Learn links for the lower pane (volume, RSI, MACD), built by the page.
   learn?: LearnLinks;
+  // The symbol/price box drawn over the chart's top-left corner, moved down
+  // below any indicator-toggle row it would overlap.
+  overlay?: ReactNode;
 }
 
 const DEFAULT_INDICATOR_TITLES = { hide: 'Hide {label}', show: 'Show {label}' };
+
+// The overlay's left offset and default top offset, in px (Tailwind left-3 / top-3).
+const OVERLAY_INSET = 12;
 
 const EMA_CONFIGS = [
   { period: 9,  color: '#f59e0b', label: 'EMA 9'  },
@@ -161,8 +167,10 @@ function chartColors(isDark: boolean) {
   };
 }
 
-export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey, indicatorTitles = DEFAULT_INDICATOR_TITLES, learn }: Props) {
+export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey, indicatorTitles = DEFAULT_INDICATOR_TITLES, learn, overlay }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null);
+  const overlayRef    = useRef<HTMLDivElement>(null);
+  const togglesRef    = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
   const volumeRef     = useRef<ISeriesApi<'Histogram'> | null>(null);
@@ -300,7 +308,10 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     macdHistSeries.setData(hist0);
     chart.timeScale().fitContent();
 
-    // The lower pane's label follows its top edge, read after the chart lays out.
+    // After the chart lays out: the lower pane's label follows the pane's top
+    // edge; the overlay drops below any indicator-toggle row it would hit (on
+    // narrow screens the rows reach the left edge); and the candles' top margin
+    // clears the overlay so it covers none.
     let raf = 0;
     const ro = new ResizeObserver(() => {
       if (containerRef.current) {
@@ -309,10 +320,27 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
           height: containerRef.current.clientHeight,
         });
         cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => setPaneTop(chart.paneSize().height * BOTTOM_PANE_TOP));
+        raf = requestAnimationFrame(() => {
+          const paneHeight = chart.paneSize().height;
+          setPaneTop(paneHeight * BOTTOM_PANE_TOP);
+          const box = overlayRef.current;
+          // No offsetParent while the chart is hidden (the mobile Order and Trades tabs).
+          const origin = box?.offsetParent?.getBoundingClientRect();
+          if (!box || !origin || !paneHeight) return;
+          let boxTop = OVERLAY_INSET;
+          for (const row of Array.from(togglesRef.current?.children ?? [])) {
+            const r = row.getBoundingClientRect();
+            if (r.left - origin.left < OVERLAY_INSET + box.offsetWidth + 4) boxTop = Math.max(boxTop, r.bottom - origin.top + 4);
+          }
+          box.style.top = `${boxTop}px`;
+          const top = Math.max(0.08, (boxTop + box.offsetHeight + 6) / paneHeight);
+          chart.priceScale('right').applyOptions({ scaleMargins: { top, bottom: 0.22 } });
+        });
       }
     });
     ro.observe(containerRef.current);
+    if (overlayRef.current) ro.observe(overlayRef.current);
+    if (togglesRef.current) ro.observe(togglesRef.current);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -495,10 +523,17 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     <div className="relative w-full h-full">
       <div ref={containerRef} className="w-full h-full" />
       <BottomPaneLabel indicator={bottomIndicator} top={paneTop} learn={learn} />
+      {overlay && (
+        <div ref={overlayRef} data-chart-overlay className="absolute top-3 left-3 z-10 pointer-events-none">
+          {overlay}
+        </div>
+      )}
 
       {/* Indicator toggles */}
-      <div className="absolute top-2 right-[68px] flex flex-col items-end gap-1 z-10 pointer-events-auto">
-        <div className="flex items-center gap-1">
+      {/* Only the rows take the pointer: the box around them is wider than row 2
+          and would block the crosshair and the overlay's learn link. */}
+      <div ref={togglesRef} className="absolute top-2 right-[68px] flex flex-col items-end gap-1 z-10 pointer-events-none">
+        <div className="flex items-center gap-1 pointer-events-auto">
           {EMA_CONFIGS.map(cfg => {
             const on = emaVisible[cfg.period];
             return (
@@ -518,7 +553,7 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
             VWAP
           </button>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 pointer-events-auto">
           {(['vol', 'rsi', 'macd'] as const).map(ind => (
             <button key={ind} onClick={() => setBottomIndicator(ind)}
               className={`px-1.5 py-0.5 rounded text-[10px] font-mono uppercase transition-all border ${

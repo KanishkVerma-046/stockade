@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback, type ReactNode } from 'react';
 import {
   createChart, CandlestickSeries, HistogramSeries, LineSeries, createSeriesMarkers,
   type IChartApi, type ISeriesApi, type ISeriesMarkersPluginApi, type UTCTimestamp, type LineData, type HistogramData,
@@ -696,10 +696,13 @@ interface SimChartProps {
   onHover?: (d: OhlcvData | null) => void;
   onMarkerClick?: (patternId: string) => void;
   learn?: LearnLinks;
+  // The symbol/timeframe/change box drawn over the chart's top-left corner.
+  overlay?: ReactNode;
 }
 
-function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick, learn }: SimChartProps) {
+function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick, learn, overlay }: SimChartProps) {
   const containerRef  = useRef<HTMLDivElement>(null);
+  const overlayRef    = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
   const volRef        = useRef<ISeriesApi<'Histogram'> | null>(null);
@@ -799,15 +802,25 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       if (best.patternId) onClickRef.current?.(best.patternId);
     });
 
-    // The lower pane's label follows its top edge, read after the chart lays out.
+    // After the chart lays out: the lower pane's label follows the pane's top
+    // edge, and the candles' top margin clears the overlay so it covers none.
     let raf = 0;
     const ro = new ResizeObserver(() => {
       if (!containerRef.current) return;
       chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => setPaneTop(chart.paneSize().height * BOTTOM_PANE_TOP));
+      raf = requestAnimationFrame(() => {
+        const paneHeight = chart.paneSize().height;
+        setPaneTop(paneHeight * BOTTOM_PANE_TOP);
+        const box = overlayRef.current;
+        if (box && paneHeight) {
+          const top = Math.max(0.08, (box.offsetTop + box.offsetHeight + 6) / paneHeight);
+          chart.priceScale('right').applyOptions({ scaleMargins: { top, bottom: 0.22 } });
+        }
+      });
     });
     ro.observe(containerRef.current);
+    if (overlayRef.current) ro.observe(overlayRef.current);
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect(); chart.remove();
@@ -889,6 +902,11 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     <div className="relative w-full h-full">
       <div ref={containerRef} className="w-full h-full" />
       <BottomPaneLabel indicator={bottomIndicator} top={paneTop} learn={learn} />
+      {overlay && (
+        <div ref={overlayRef} data-chart-overlay className="absolute top-3 left-3 z-10 pointer-events-none">
+          {overlay}
+        </div>
+      )}
     </div>
   );
 }
@@ -1355,25 +1373,23 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides, 
               onHover={setHoverOhlcv}
               onMarkerClick={id => { setActiveId(prev => prev === id ? null : id); setMobileTab('info'); }}
               learn={learn}
-            />
-          </div>
-
-          {/* Chart overlay: symbol + candle info */}
-          <div className="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
-            <div className="px-2.5 py-1.5 rounded text-[11px] font-mono border border-[var(--c-border)] flex items-center gap-2"
-              style={{ backgroundColor: 'var(--c-overlay, rgba(13,13,13,0.85))' }}>
-              <span className="text-[var(--c-text)] font-semibold">{sym.label}</span>
-              <span className="text-[var(--c-text-subtle)]">·</span>
-              <span className="text-[var(--c-text-subtle)]">{tf.label}</span>
-              {last && (
-                <>
+              overlay={
+                <div className="px-2.5 py-1.5 rounded text-[11px] font-mono border border-[var(--c-border)] flex items-center gap-2"
+                  style={{ backgroundColor: 'var(--c-overlay, rgba(13,13,13,0.85))' }}>
+                  <span className="text-[var(--c-text)] font-semibold">{sym.label}</span>
                   <span className="text-[var(--c-text-subtle)]">·</span>
-                  <span style={{ color: pctChange >= 0 ? '#22c55e' : '#ef4444' }}>
-                    {pctChange >= 0 ? '+' : ''}{pctChange.toFixed(2)}%
-                  </span>
-                </>
-              )}
-            </div>
+                  <span className="text-[var(--c-text-subtle)]">{tf.label}</span>
+                  {last && (
+                    <>
+                      <span className="text-[var(--c-text-subtle)]">·</span>
+                      <span style={{ color: pctChange >= 0 ? '#22c55e' : '#ef4444' }}>
+                        {pctChange >= 0 ? '+' : ''}{pctChange.toFixed(2)}%
+                      </span>
+                    </>
+                  )}
+                </div>
+              }
+            />
           </div>
 
           {/* Pattern detection notification */}
