@@ -89,6 +89,10 @@ for (const locale of LOCALES) {
       fail(`${label}: Related guides ${guideHrefs.join(', ')}; want ${[...wantGuides, blogIndex].join(', ')}`);
     }
     if (wantGuides.length < 3) fail(`${label}: only ${wantGuides.length} related guides live`);
+    // Title and description need a space between them in the markup, or
+    // extracted text runs them together ("…Real MoneyMost paper trading…").
+    const joined = section ? [...section.matchAll(/<\/span><span/g)].length : 0;
+    if (joined) fail(`${label}: ${joined} guide title(s) run into the description`);
 
     // Every new href is a built page in this locale.
     const all = new Set([...found, ...guideHrefs, ...Object.values(expected).map(p => p.href)]);

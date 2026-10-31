@@ -25,8 +25,8 @@ const guides = pickLive(RELATED_GUIDES[page], await liveGuides(locale));
       {guides.map(guide => (
         <li>
           <a href={guide.href} class="block h-full bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4 hover:border-[var(--c-border-strong)] transition-colors">
-            <span class="block text-[14px] font-semibold text-[var(--c-text)] leading-snug">{guide.title}</span>
-            <span class="block mt-1.5 text-[13px] text-[var(--c-text-muted)] leading-relaxed">{guide.description}</span>
+            {/* The space between the spans stays on one line, or compressHTML drops it and the title runs into the description in extracted text. */}
+            <span class="block text-[14px] font-semibold text-[var(--c-text)] leading-snug">{guide.title}</span> <span class="block mt-1.5 text-[13px] text-[var(--c-text-muted)] leading-relaxed">{guide.description}</span>
           </a>
         </li>
       ))}
