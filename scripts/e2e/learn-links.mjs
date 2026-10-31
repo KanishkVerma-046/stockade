@@ -9,7 +9,8 @@
 // a new tab; no learn link is covered by another element. Both charts' symbol
 // overlays are drawn on top, cover no candle or marker, let the pointer through,
 // stay clear of the indicator toggles and agree with the price panel / toolbar
-// ("—" before mount, "· 1M" in replay only) at 320/360/375/1280px.
+// ("—" before mount, "· 1M" in replay only) at 320/360/375/1280px, and the
+// price panel's absolute change carries the same sign as its percentage.
 // On /simulator/ and /es/simulator/: B, S and F trade in live and
 // replay mode with nothing focused, with a learn link focused, and right after
 // a learn link was clicked. Fails on any console error or uncaught exception
@@ -211,14 +212,18 @@ for (const l of LOCALES) {
       checkGeometry(await overlayGeometry(page), `${label} ${mode}`);
       // Read in one go so a tick can't land between the two. The panel's change
       // line is "0.8575 (-0.46%)"; the box shows only the percentage.
-      const { box, panel } = await page.evaluate(() => {
+      const { box, panel, change } = await page.evaluate(() => {
         const rows = document.querySelector('[data-chart-overlay]').firstElementChild.children;
         const p = document.querySelector('.text-\\[26px\\]').parentElement.children;
         return {
           box: [rows[0].firstElementChild.textContent, rows[1].children[0].textContent, rows[1].children[1].textContent],
           panel: [p[0].textContent, p[1].textContent, (p[2].textContent.match(/\(([^)]+)\)/) ?? [])[1]],
+          change: p[2].textContent,
         };
       });
+      // The panel's absolute change is signed like its percentage: "-0.2336(-0.12%)".
+      const signs = change.match(/^([+-])[\d.,]+\(([+-])\d+\.\d\d%\)$/);
+      if (!signs || signs[1] !== signs[2]) fail(`${label} ${mode}: price panel change reads "${change}"`);
       const wantSym = mode === 'replay' ? 'APXL · 1M' : 'APXL';
       if (box[0] !== wantSym) fail(`${label} ${mode}: overlay symbol "${box[0]}"`);
       if (!/^\$[\d.,]+$/.test(box[1]) || !/^[+-]\d+\.\d\d%$/.test(box[2])) fail(`${label} ${mode}: overlay reads "${box.join(' ')}"`);

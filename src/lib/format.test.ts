@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { format, formatMoney, formatSignedMoney, plural, pluralTemplate } from './format';
+import { format, formatMoney, formatSignedMoney, plural, pluralTemplate, signed } from './format';
 
 describe('format', () => {
   it('replaces named placeholders', () => {
@@ -81,6 +81,14 @@ describe('pluralTemplate', () => {
     expect(pluralTemplate('es', 0, es)).toBe('{n} patrones');
     expect(pluralTemplate('pt', 0, { zero: 'nenhum', one: '{n} padrão', other: '{n} padrões' })).toBe('nenhum');
     expect(pluralTemplate('ja', 1, { other: '{n}件' })).toBe('{n}件');
+  });
+});
+
+describe('signed', () => {
+  it('puts + before a rise and - before a fall, formatting only the magnitude', () => {
+    expect(signed(0.8575, n => n.toFixed(4))).toBe('+0.8575');
+    expect(signed(-0.2336, n => n.toFixed(4))).toBe('-0.2336');
+    expect(signed(0, n => n.toFixed(2))).toBe('+0.00');
   });
 });
 

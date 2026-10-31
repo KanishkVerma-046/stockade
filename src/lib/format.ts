@@ -44,7 +44,15 @@ export function formatMoney(n: number): string {
   return (n < 0 ? '-' : '') + usd(n);
 }
 
+/**
+ * Always signed, so a loss or a fall reads as one without its colour:
+ * `formatAbs` formats the magnitude and the sign goes in front.
+ */
+export function signed(n: number, formatAbs: (abs: number) => string): string {
+  return (n >= 0 ? '+' : '-') + formatAbs(Math.abs(n));
+}
+
 /** A P&L: always signed, so a loss reads as one without its colour. */
 export function formatSignedMoney(n: number): string {
-  return (n >= 0 ? '+' : '-') + usd(n);
+  return signed(n, usd);
 }

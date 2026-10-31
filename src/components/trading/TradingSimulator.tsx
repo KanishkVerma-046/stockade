@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import TradingChart from './TradingChart';
 import { $activeTick } from '../../stores/priceStore';
 import { isMarketable, isTriggered, type PendingOrder } from '../../lib/limit-orders';
-import { format, formatMoney as fmtMoney, formatSignedMoney, plural, type PluralForms } from '../../lib/format';
+import { format, formatMoney as fmtMoney, formatSignedMoney, plural, signed, type PluralForms } from '../../lib/format';
 import type { LearnLinks } from '../../lib/learn-links';
 import LearnLink from '../learn/LearnLink';
 
@@ -778,7 +778,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
       </div>
       <div className={`mt-1.5 text-[13px] font-mono ${changeColor}`}>
         {hydrated ? <>
-          {priceChange >= 0 ? '+' : ''}{fmtSym(Math.abs(priceChange), symbol)}
+          {signed(priceChange, abs => fmtSym(abs, symbol))}
           <span className="ml-1 text-[12px]">({fmtPct(pricePct)})</span>
         </> : '—'}
       </div>
