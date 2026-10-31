@@ -2,6 +2,9 @@
 import AppLayout from '../layouts/AppLayout.astro';
 import TradingSimulator from '../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../i18n/alternates';
+import { learnLinks } from '../i18n/learn-links';
+
+const learn = await learnLinks('en', 'simulator');
 ---
 
 <AppLayout
@@ -18,7 +21,7 @@ import { SIMULATOR_ALTERNATES } from '../i18n/alternates';
       stop-loss and take-profit, live candlesticks. No signup, no real money. <a href="#how-to-use" class="text-[#f59e0b] hover:underline">How it works ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load />
+      <TradingSimulator client:load learn={learn} />
     </div>
   </div>
 

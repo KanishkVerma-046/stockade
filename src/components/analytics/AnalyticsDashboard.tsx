@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import type { LearnLinks, LearnTopic } from '../../lib/learn-links';
+import LearnLink from '../learn/LearnLink';
 import { format, formatSignedMoney as fmtMoney, plural, type PluralForms } from '../../lib/format';
 import { averageLoss } from '../../lib/trade-stats';
 
@@ -147,9 +149,15 @@ interface Props {
   locale?: string;
   // Merged over the English defaults, so English pages pass nothing.
   labels?: Partial<Labels>;
+  // Learn links to Learning Center posts, built by every page (English too)
+  // with learnLinks(locale, 'analytics'). A topic with no live post is absent.
+  learn?: LearnLinks;
 }
 
-export default function AnalyticsDashboard({ simulatorHref = '/simulator/', locale = 'en', labels: labelOverrides }: Props) {
+// The KPI cards with a learn link in their label row.
+const CARD_TOPIC: Partial<Record<string, LearnTopic>> = { winRate: 'winRate', avgLoss: 'avgLoss', maxDrawdown: 'maxDrawdown' };
+
+export default function AnalyticsDashboard({ simulatorHref = '/simulator/', locale = 'en', labels: labelOverrides, learn = {} }: Props) {
   const labels: Labels = { ...DEFAULT_LABELS, ...labelOverrides };
   // The English tab labels are already title-cased; CSS capitalize stays on
   // them only so English markup is unchanged. It would mangle translations
@@ -241,28 +249,38 @@ export default function AnalyticsDashboard({ simulatorHref = '/simulator/', loca
           { id: 'avgWin',       label: labels.avgWin,       value: isEmpty ? '—' : fmtMoney(avgWin),     color: '#22c55e' },
           { id: 'avgLoss',      label: labels.avgLoss,      value: avgLoss === null ? '—' : fmtMoney(avgLoss), color: avgLoss === null ? 'var(--c-text-subtle)' : '#ef4444' },
           { id: 'maxDrawdown',  label: labels.maxDrawdown,  value: isEmpty ? '—' : maxDD.toFixed(1) + '%', color: '#ef4444' },
-        ].map(k => (
-          <div key={k.id} className="flex flex-col justify-between bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)] mb-1">{k.label}</div>
-            <div className="text-[18px] font-mono font-semibold"
-              style={{ color: isEmpty && k.id !== 'equity' ? 'var(--c-text-subtle)' : k.color }}>
-              {k.value}
+        ].map(k => {
+          const topic = CARD_TOPIC[k.id];
+          const link = topic && learn[topic];
+          return (
+            <div key={k.id} className="flex flex-col justify-between bg-[var(--c-bg-soft)] border border-[var(--c-border)] rounded-xl p-4">
+              <div className="flex items-start justify-between gap-1 mb-1">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--c-text-subtle)]">{k.label}</div>
+                {link && <LearnLink {...link} />}
+              </div>
+              <div className="text-[18px] font-mono font-semibold"
+                style={{ color: isEmpty && k.id !== 'equity' ? 'var(--c-text-subtle)' : k.color }}>
+                {k.value}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Tabs */}
       <div className="flex gap-1 border-b border-[var(--c-border)]">
         {(['overview', 'trades', 'heatmap'] as const).map(t => (
-          <button key={t} onClick={() => setActiveTab(t)}
-            className={`px-4 py-2 text-[13px] font-mono${tabCase} border-b-2 transition-colors ${
-              activeTab === t
-                ? 'border-[#f59e0b] text-[var(--c-text)]'
-                : 'border-transparent text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
-            }`}>
-            {t === 'overview' ? labels.tabEquity : t === 'trades' ? labels.tabJournal : labels.tabHeatmap}
-          </button>
+          <Fragment key={t}>
+            <button onClick={() => setActiveTab(t)}
+              className={`px-4 py-2 text-[13px] font-mono${tabCase} border-b-2 transition-colors ${
+                activeTab === t
+                  ? 'border-[#f59e0b] text-[var(--c-text)]'
+                  : 'border-transparent text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
+              }`}>
+              {t === 'overview' ? labels.tabEquity : t === 'trades' ? labels.tabJournal : labels.tabHeatmap}
+            </button>
+            {t === 'trades' && learn.journal && <LearnLink {...learn.journal} className="self-center mr-1" />}
+          </Fragment>
         ))}
       </div>
 

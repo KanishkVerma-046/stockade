@@ -2,6 +2,9 @@
 import AppLayout from '../layouts/AppLayout.astro';
 import ChartSimulator from '../components/chartsimulator/ChartSimulator.tsx';
 import { CHART_SIMULATOR_ALTERNATES } from '../i18n/alternates';
+import { learnLinks } from '../i18n/learn-links';
+
+const learn = await learnLinks('en', 'chartSimulator');
 ---
 
 <AppLayout
@@ -10,7 +13,7 @@ import { CHART_SIMULATOR_ALTERNATES } from '../i18n/alternates';
   alternates={CHART_SIMULATOR_ALTERNATES}
 >
   <h1 class="sr-only">Candlestick Pattern Simulator</h1>
-  <ChartSimulator client:load />
+  <ChartSimulator client:load learn={learn} />
 
   <section
     slot="below"

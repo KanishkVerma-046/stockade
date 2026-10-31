@@ -5,8 +5,10 @@ import Footer from '../../components/layout/Footer.astro';
 import MarketsView from '../../components/markets/MarketsView.tsx';
 import { MARKETS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { t } from '../../i18n/ui';
+import { learnLinks } from '../../i18n/learn-links';
 
 const locale = 'es' as const;
+const learn = await learnLinks(locale, 'markets');
 const marketsLabels = {
   trade: t(locale, 'markets.trade'),
   volumeAll: t(locale, 'markets.volume.all'),
@@ -54,6 +56,7 @@ const marketsLabels = {
     </div>
     <MarketsView
       client:load
+      learn={learn}
       simulatorHref={localizedHref('/simulator/', locale)}
       labels={marketsLabels}
     />

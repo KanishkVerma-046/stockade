@@ -4,6 +4,9 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import MarketsView from '../components/markets/MarketsView.tsx';
 import { MARKETS_ALTERNATES } from '../i18n/alternates';
+import { learnLinks } from '../i18n/learn-links';
+
+const learn = await learnLinks('en', 'markets');
 ---
 
 <Layout
@@ -18,7 +21,7 @@ import { MARKETS_ALTERNATES } from '../i18n/alternates';
       <h1 class="text-3xl font-bold tracking-tight text-[var(--c-text)]">Market Overview</h1>
       <p class="mt-2 text-[var(--c-text-subtle)] text-[14px]">Market overview refreshes every 2 seconds across 29 simulated assets — stocks, crypto, forex, and futures. Use it as a crypto trading simulator watchlist, a forex simulator scanner, or just a quick check on where prices stand before you trade. Sort by price change to see which assets are moving most, and check the volume column alongside it — see <a href="/blog/understanding-trading-volume/" class="text-[#f59e0b] hover:underline">understanding trading volume</a> for what that number actually tells you. For 800ms live ticks, use the <a href="/simulator/" class="text-[#f59e0b] hover:underline">Trading Simulator</a>.</p>
     </div>
-    <MarketsView client:load />
+    <MarketsView client:load learn={learn} />
 
     <section class="mt-16 pt-12 border-t border-[var(--c-border)] max-w-[820px]">
       <h2 class="text-xl font-bold tracking-tight text-[var(--c-text)] mb-4">

@@ -5,8 +5,10 @@ import Footer from '../../components/layout/Footer.astro';
 import AnalyticsDashboard from '../../components/analytics/AnalyticsDashboard.tsx';
 import { ANALYTICS_ALTERNATES, localizedHref } from '../../i18n/alternates';
 import { analyticsLabels as buildAnalyticsLabels } from '../../i18n/analytics-labels';
+import { learnLinks } from '../../i18n/learn-links';
 
 const locale = 'ko' as const;
+const learn = await learnLinks(locale, 'analytics');
 const analyticsLabels = buildAnalyticsLabels(locale);
 ---
 
@@ -24,6 +26,7 @@ const analyticsLabels = buildAnalyticsLabels(locale);
     </div>
     <AnalyticsDashboard
       client:load
+      learn={learn}
       simulatorHref={localizedHref('/simulator/', locale)}
       locale={locale}
       labels={analyticsLabels}

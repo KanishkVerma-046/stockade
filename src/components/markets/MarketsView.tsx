@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import type { LearnLinks, LearnTopic } from '../../lib/learn-links';
+import LearnLink from '../learn/LearnLink';
 
 interface Asset {
   symbol: string;
@@ -119,7 +121,13 @@ interface Props {
   // Merged over the English defaults, so a locale can be localized one batch
   // at a time: anything it doesn't pass yet renders in English.
   labels?: Partial<Labels>;
+  // Learn links to Learning Center posts, built by every page (English too)
+  // with learnLinks(locale, 'markets'). A topic with no live post is absent.
+  learn?: LearnLinks;
 }
+
+// The category buttons with a learn link beside them.
+const CATEGORY_TOPIC: Partial<Record<Category, LearnTopic>> = { crypto: 'crypto', forex: 'forex', futures: 'futures' };
 
 function fmt(price: number) {
   if (price >= 1000) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -127,7 +135,7 @@ function fmt(price: number) {
   return price.toFixed(4);
 }
 
-export default function MarketsView({ simulatorHref = '/simulator/', labels: labelOverrides }: Props) {
+export default function MarketsView({ simulatorHref = '/simulator/', labels: labelOverrides, learn = {} }: Props) {
   const labels: Labels = { ...DEFAULT_LABELS, ...labelOverrides };
   const nameOf = (a: Asset) => labels.assetNames[a.symbol] ?? a.name;
   const categoryCase = labelOverrides?.categories ? '' : ' capitalize';
@@ -187,20 +195,26 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels: lab
         {/* Wraps rather than scrolls: es/fr/de/it labels overflow a 320-375px screen,
             and a scrolling row would hide the last categories off-screen */}
         <div className="flex flex-wrap gap-1">
-          {CATEGORIES.map(c => (
-            <button
-              key={c}
-              onClick={() => setCategory(c)}
-              className={`px-3 py-1.5 rounded-md text-[12px] font-mono${categoryCase} transition-colors ${
-                category === c
-                  ? 'text-[#0a0a0a] font-semibold'
-                  : 'bg-[var(--c-bg-muted)] text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
-              }`}
-              style={category === c ? { backgroundColor: catColors[c] } : {}}
-            >
-              {labels.categories[c]}
-            </button>
-          ))}
+          {CATEGORIES.map(c => {
+            const topic = CATEGORY_TOPIC[c];
+            const link = topic && learn[topic];
+            return (
+              <Fragment key={c}>
+                <button
+                  onClick={() => setCategory(c)}
+                  className={`px-3 py-1.5 rounded-md text-[12px] font-mono${categoryCase} transition-colors ${
+                    category === c
+                      ? 'text-[#0a0a0a] font-semibold'
+                      : 'bg-[var(--c-bg-muted)] text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
+                  }`}
+                  style={category === c ? { backgroundColor: catColors[c] } : {}}
+                >
+                  {labels.categories[c]}
+                </button>
+                {link && <LearnLink {...link} className="self-center ml-0.5 mr-1" />}
+              </Fragment>
+            );
+          })}
         </div>
       </div>
 
@@ -209,6 +223,7 @@ export default function MarketsView({ simulatorHref = '/simulator/', labels: lab
           table, and is wired to the Volume header via aria-describedby. */}
       <p id="volume-units" className="mb-3 text-[12px] leading-relaxed text-[var(--c-text-subtle)]">
         {volumeUnits(labels)[category]}
+        {learn.volume && <LearnLink {...learn.volume} className="align-middle ml-1.5" />}
       </p>
 
       {/* Table */}

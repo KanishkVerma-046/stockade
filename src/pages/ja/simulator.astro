@@ -3,8 +3,10 @@ import AppLayout from '../../layouts/AppLayout.astro';
 import TradingSimulator from '../../components/trading/TradingSimulator.tsx';
 import { SIMULATOR_ALTERNATES } from '../../i18n/alternates';
 import { simulatorLabels as buildSimulatorLabels } from '../../i18n/simulator-labels';
+import { learnLinks } from '../../i18n/learn-links';
 
 const locale = 'ja' as const;
+const learn = await learnLinks(locale, 'simulator');
 const simulatorLabels = buildSimulatorLabels(locale);
 ---
 
@@ -21,7 +23,7 @@ const simulatorLabels = buildSimulatorLabels(locale);
       <span class="font-mono text-[var(--c-text)]">$100,000</span>の仮想資金で、29種類のシミュレーション株式・暗号資産トークン・FX・先物を取引しよう — 成行・指値注文、逆指値・利益確定、ライブローソク足。登録不要、実際のお金は使いません。<a href="#how-to-use" class="text-[#f59e0b] hover:underline">使い方はこちら ↓</a>
     </p>
     <div class="flex-1 min-h-0">
-      <TradingSimulator client:load locale={locale} labels={simulatorLabels} />
+      <TradingSimulator client:load learn={learn} locale={locale} labels={simulatorLabels} />
     </div>
   </div>
 

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { format } from '../../lib/format';
+import type { LearnLinks } from '../../lib/learn-links';
+import { BottomPaneLabel, BOTTOM_PANE_TOP, type BottomIndicator } from '../learn/LearnLink';
 import {
   createChart,
   CandlestickSeries,
@@ -33,6 +35,8 @@ interface Props {
   // Tooltips of the EMA toggles, templates with {label}. The page's island
   // passes them in; the default is English.
   indicatorTitles?: { hide: string; show: string };
+  // Learn links for the lower pane (volume, RSI, MACD), built by the page.
+  learn?: LearnLinks;
 }
 
 const DEFAULT_INDICATOR_TITLES = { hide: 'Hide {label}', show: 'Show {label}' };
@@ -157,7 +161,7 @@ function chartColors(isDark: boolean) {
   };
 }
 
-export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey, indicatorTitles = DEFAULT_INDICATOR_TITLES }: Props) {
+export default function TradingChart({ candles, symbol, entryPrice, positionSide, stopLoss, takeProfit, resetKey, indicatorTitles = DEFAULT_INDICATOR_TITLES, learn }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
@@ -172,7 +176,8 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
 
   const [emaVisible,       setEmaVisible]       = useState<Record<EmaPeriod, boolean>>({ 9: true, 20: true, 50: false });
   const [showVWAP,         setShowVWAP]         = useState(false);
-  const [bottomIndicator,  setBottomIndicator]  = useState<'vol' | 'rsi' | 'macd'>('vol');
+  const [bottomIndicator,  setBottomIndicator]  = useState<BottomIndicator>('vol');
+  const [paneTop,          setPaneTop]          = useState<number | null>(null);
 
   const vwapRef     = useRef<ISeriesApi<'Line'> | null>(null);
   const rsiRef      = useRef<ISeriesApi<'Line'> | null>(null);
@@ -295,17 +300,22 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
     macdHistSeries.setData(hist0);
     chart.timeScale().fitContent();
 
+    // The lower pane's label follows its top edge, read after the chart lays out.
+    let raf = 0;
     const ro = new ResizeObserver(() => {
       if (containerRef.current) {
         chart.applyOptions({
           width:  containerRef.current.clientWidth,
           height: containerRef.current.clientHeight,
         });
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => setPaneTop(chart.paneSize().height * BOTTOM_PANE_TOP));
       }
     });
     ro.observe(containerRef.current);
 
     return () => {
+      cancelAnimationFrame(raf);
       ro.disconnect();
       chart.remove();
       chartRef.current  = null;
@@ -484,6 +494,7 @@ export default function TradingChart({ candles, symbol, entryPrice, positionSide
   return (
     <div className="relative w-full h-full">
       <div ref={containerRef} className="w-full h-full" />
+      <BottomPaneLabel indicator={bottomIndicator} top={paneTop} learn={learn} />
 
       {/* Indicator toggles */}
       <div className="absolute top-2 right-[68px] flex flex-col items-end gap-1 z-10 pointer-events-auto">

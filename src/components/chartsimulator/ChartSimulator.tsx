@@ -4,6 +4,8 @@ import {
   type IChartApi, type ISeriesApi, type ISeriesMarkersPluginApi, type UTCTimestamp, type LineData, type HistogramData,
 } from 'lightweight-charts';
 import { format, plural, pluralTemplate, type PluralForms } from '../../lib/format';
+import type { LearnLinks } from '../../lib/learn-links';
+import LearnLink, { BottomPaneLabel, BOTTOM_PANE_TOP, type BottomIndicator } from '../learn/LearnLink';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -142,6 +144,9 @@ interface Props {
   locale?: string;
   // Merged over the English defaults, so English pages pass nothing.
   labels?: Partial<Labels>;
+  // Learn links to Learning Center posts, built by every page (English too)
+  // with learnLinks(locale, 'chartSimulator'). A topic with no live post is absent.
+  learn?: LearnLinks;
 }
 
 // ── Patterns ──────────────────────────────────────────────────────────────────
@@ -686,13 +691,14 @@ interface SimChartProps {
   markers: MarkerSpec[];
   showEma: Record<EmaPeriod, boolean>;
   showVwap: boolean;
-  bottomIndicator: 'vol' | 'rsi' | 'macd';
+  bottomIndicator: BottomIndicator;
   resetKey?: number;
   onHover?: (d: OhlcvData | null) => void;
   onMarkerClick?: (patternId: string) => void;
+  learn?: LearnLinks;
 }
 
-function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick }: SimChartProps) {
+function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetKey, onHover, onMarkerClick, learn }: SimChartProps) {
   const containerRef  = useRef<HTMLDivElement>(null);
   const chartRef      = useRef<IChartApi | null>(null);
   const candleRef     = useRef<ISeriesApi<'Candlestick'> | null>(null);
@@ -709,6 +715,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
   const onHoverRef    = useRef(onHover);
   const onClickRef    = useRef(onMarkerClick);
   const isDark        = useIsDark();
+  const [paneTop, setPaneTop] = useState<number | null>(null);
 
   onHoverRef.current  = onHover;
   onClickRef.current  = onMarkerClick;
@@ -792,11 +799,17 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       if (best.patternId) onClickRef.current?.(best.patternId);
     });
 
+    // The lower pane's label follows its top edge, read after the chart lays out.
+    let raf = 0;
     const ro = new ResizeObserver(() => {
-      if (containerRef.current) chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
+      if (!containerRef.current) return;
+      chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setPaneTop(chart.paneSize().height * BOTTOM_PANE_TOP));
     });
     ro.observe(containerRef.current);
     return () => {
+      cancelAnimationFrame(raf);
       ro.disconnect(); chart.remove();
       chartRef.current = null; candleRef.current = null; volRef.current = null;
       emaRefs.current = {}; markersRef.current = null;
@@ -872,12 +885,17 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     macdHistRef.current?.applyOptions({ visible: macdOn });
   }, [bottomIndicator]);
 
-  return <div ref={containerRef} className="w-full h-full" />;
+  return (
+    <div className="relative w-full h-full">
+      <div ref={containerRef} className="w-full h-full" />
+      <BottomPaneLabel indicator={bottomIndicator} top={paneTop} learn={learn} />
+    </div>
+  );
 }
 
 // ── ChartSimulator ────────────────────────────────────────────────────────────
 
-export default function ChartSimulator({ locale = 'en', labels: labelOverrides }: Props) {
+export default function ChartSimulator({ locale = 'en', labels: labelOverrides, learn = {} }: Props) {
   const labels: Labels = useMemo(() => ({ ...DEFAULT_LABELS, ...labelOverrides }), [labelOverrides]);
   // CSS capitalize stays on the English defaults only; translated labels come
   // cased as the locale writes them.
@@ -896,7 +914,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
   const [notif,      setNotif]      = useState<{ name: string; type: PatternType } | null>(null);
   const [showEma,    setShowEma]    = useState<Record<EmaPeriod, boolean>>({ 9: true, 20: true, 50: false });
   const [showVwap,   setShowVwap]   = useState(false);
-  const [bottomInd,  setBottomInd]  = useState<'vol' | 'rsi' | 'macd'>('vol');
+  const [bottomInd,  setBottomInd]  = useState<BottomIndicator>('vol');
   const [symOpen,    setSymOpen]    = useState(false);
 
   const playRef       = useRef(false);
@@ -1016,7 +1034,10 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
   const libraryJSX = (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="px-3 pt-3 pb-2 border-b border-[var(--c-border)] shrink-0">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)] mb-0.5">{labels.libraryTitle}</div>
+        <div className="flex items-center justify-between gap-2 mb-0.5">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--c-text-subtle)]">{labels.libraryTitle}</div>
+          {learn.candlesticks && <LearnLink {...learn.candlesticks} />}
+        </div>
         <div className="text-[10px] font-mono text-[var(--c-text-faint)]">{plural(locale, detectedCount, labels.libraryCount, { total: PATTERNS.length })}</div>
       </div>
       <div className="flex-1 overflow-y-auto py-1">
@@ -1333,6 +1354,7 @@ export default function ChartSimulator({ locale = 'en', labels: labelOverrides }
               resetKey={resetKey}
               onHover={setHoverOhlcv}
               onMarkerClick={id => { setActiveId(prev => prev === id ? null : id); setMobileTab('info'); }}
+              learn={learn}
             />
           </div>
 

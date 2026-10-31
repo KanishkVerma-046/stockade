@@ -3,6 +3,8 @@ import TradingChart from './TradingChart';
 import { $activeTick } from '../../stores/priceStore';
 import { isMarketable, isTriggered, type PendingOrder } from '../../lib/limit-orders';
 import { format, formatMoney as fmtMoney, formatSignedMoney, plural, type PluralForms } from '../../lib/format';
+import type { LearnLinks } from '../../lib/learn-links';
+import LearnLink from '../learn/LearnLink';
 
 type Side = 'long' | 'short' | null;
 type OrderType = 'market' | 'limit';
@@ -205,6 +207,9 @@ interface Props {
   locale?: string;
   // Merged over the English defaults, so English pages pass nothing.
   labels?: Partial<Labels>;
+  // Learn links to Learning Center posts, built by every page (English too)
+  // with learnLinks(locale, 'simulator'). A topic with no live post is absent.
+  learn?: LearnLinks;
 }
 
 const SYMBOL_PRICES: Record<string, number> = {
@@ -341,7 +346,7 @@ function initSymbol(): string {
 
 const REPLAY_START_IDX = 60; // initial candles revealed in replay mode
 
-export default function TradingSimulator({ locale = 'en', labels: labelOverrides }: Props) {
+export default function TradingSimulator({ locale = 'en', labels: labelOverrides, learn = {} }: Props) {
   // Memoised so the callbacks that read labels keep stable identities.
   const labels: Labels = useMemo(() => ({ ...DEFAULT_LABELS, ...labelOverrides }), [labelOverrides]);
   // CSS capitalize stays on the lowercase English defaults only; translated
@@ -791,10 +796,14 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
               order.type === t ? 'bg-[var(--c-surface-2)] text-[var(--c-text)]' : 'text-[var(--c-text-subtle)] hover:text-[var(--c-text-muted)]'
             }`}>{t === 'market' ? labels.orderMarket : labels.orderLimit}</button>
         ))}
+        {learn.orderTypes && <LearnLink {...learn.orderTypes} className="self-center ml-1" />}
       </div>
 
       <div>
-        <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">{labels.qty}</label>
+        <div className="flex items-center justify-between mb-1">
+          <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">{labels.qty}</label>
+          {learn.quantity && <LearnLink {...learn.quantity} />}
+        </div>
         <input type="number" value={order.qty}
           onChange={e => setOrder(o => ({ ...o, qty: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#f59e0b] outline-none" />
@@ -813,18 +822,24 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
       )}
 
       <div>
-        <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">
-          {labels.stopLoss}{order.stopLoss && <span className="ml-1 text-[#ef4444]">{labels.levelActive}</span>}
-        </label>
+        <div className="flex items-center justify-between mb-1">
+          <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">
+            {labels.stopLoss}{order.stopLoss && <span className="ml-1 text-[#ef4444]">{labels.levelActive}</span>}
+          </label>
+          {learn.stopLoss && <LearnLink {...learn.stopLoss} />}
+        </div>
         <input type="number" value={order.stopLoss} placeholder={labels.optional}
           onChange={e => setOrder(o => ({ ...o, stopLoss: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#ef4444] outline-none" />
       </div>
 
       <div className="mb-1">
-        <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider block mb-1">
-          {labels.takeProfit}{order.takeProfit && <span className="ml-1 text-[#22c55e]">{labels.levelActive}</span>}
-        </label>
+        <div className="flex items-center justify-between mb-1">
+          <label className="text-[10px] font-mono text-[var(--c-text-subtle)] uppercase tracking-wider">
+            {labels.takeProfit}{order.takeProfit && <span className="ml-1 text-[#22c55e]">{labels.levelActive}</span>}
+          </label>
+          {learn.takeProfit && <LearnLink {...learn.takeProfit} />}
+        </div>
         <input type="number" value={order.takeProfit} placeholder={labels.optional}
           onChange={e => setOrder(o => ({ ...o, takeProfit: e.target.value }))}
           className="w-full bg-[var(--c-bg-muted)] border border-[var(--c-border)] rounded px-2 py-1.5 text-[13px] font-mono text-[var(--c-text)] focus:border-[#22c55e] outline-none" />
@@ -980,6 +995,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
           >
             ⏪ REPLAY
           </button>
+          {learn.mode && <LearnLink {...learn.mode} className="ml-1" />}
         </div>
 
         {/* Symbol groups */}
@@ -1137,6 +1153,7 @@ export default function TradingSimulator({ locale = 'en', labels: labelOverrides
                 takeProfit={!isNaN(tpVal) && tpVal > 0 ? tpVal : null}
                 resetKey={chartResetKey}
                 indicatorTitles={{ hide: labels.indicatorHide, show: labels.indicatorShow }}
+                learn={learn}
               />
             </div>
             <div className="absolute top-3 left-3 rounded px-3 py-2 backdrop-blur-sm border border-[var(--c-border)] pointer-events-none"
