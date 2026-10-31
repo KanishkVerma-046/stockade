@@ -104,7 +104,7 @@ Translated blog posts live in mirrored `blogEs`/`blogPt`/`blogJa`/`blogFr`/`blog
 
 ## Testing
 
-`npm test` (vitest). `vitest.config.ts` only adds `.claude/worktrees/**` to the default excludes, so a leftover worktree's copy of `src/` doesn't double the run (122 tests). It has **no plugins, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`, `publish-schedule.ts`, `learn-links.ts`).
+`npm test` (vitest). `vitest.config.ts` only adds `.claude/worktrees/**` to the default excludes, so a leftover worktree's copy of `src/` doesn't double the run (123 tests). It has **no plugins, so no JSX transform — tests cannot import `.tsx`**. Put testable logic in `src/lib/*.ts` with a colocated `*.test.ts` (`limit-orders.ts`, `reading-time.ts`, `related-posts.ts`, `localized-links.ts`, `literal-markdown.ts`, `ui-coverage.ts`, `format.ts`, `publish-schedule.ts`, `learn-links.ts`).
 
 Browser checks live in `scripts/e2e/` and are not part of `npm test`: build, start `npx astro preview`, then `node scripts/e2e/learn-links.mjs --base http://localhost:4321` (add `--shots <dir>` for screenshots; it takes about 15 minutes). After any build, `node scripts/e2e/check-dist-links.mjs [--at <STOCKADE_BUILD_TIME>] [--counts]` checks the built learn links and Related guides against the posts live at that time.
 
