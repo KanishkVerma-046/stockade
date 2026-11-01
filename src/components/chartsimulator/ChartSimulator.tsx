@@ -26,6 +26,8 @@ interface MarkerSpec {
   time: UTCTimestamp; position: 'aboveBar' | 'belowBar' | 'inBar';
   color: string; shape: 'arrowUp' | 'arrowDown' | 'circle' | 'square';
   text?: string; size?: number; patternId?: string;
+  // The pattern the user (or the latest reveal) selected.
+  selected?: boolean;
 }
 interface OhlcvData { open: number; high: number; low: number; close: number; volume: number; }
 interface CandleSpec { o: number; h: number; l: number; c: number; col?: string; }
@@ -430,15 +432,44 @@ function generateCandles(count: number, basePrice: number, deltaMs: number): Can
   return candles;
 }
 
-function trendBefore(candles: Candle[], idx: number, lookback = 4): 'up' | 'down' {
-  if (idx < lookback) return 'down';
+// The trend into candle idx: its previous close against the close `lookback`
+// candles back. null without enough history, and every pattern that depends on
+// the trend is then skipped rather than guessed.
+function trendBefore(candles: Candle[], idx: number, lookback = 4): 'up' | 'down' | null {
+  if (idx < lookback) return null;
   const start = candles[idx - lookback].close;
   const end   = candles[idx - 1].close;
   return end >= start ? 'up' : 'down';
 }
 
+// The trend each reversal pattern must follow. A shape match after the other
+// trend (or with too little history) is not marked.
+const REVERSAL_CONTEXT: Record<string, 'up' | 'down'> = {
+  bullish_engulfing: 'down', bearish_engulfing: 'up',
+  piercing_line: 'down',     dark_cloud: 'up',
+  harami_bull: 'down',       harami_bear: 'up',
+  tweezer_bottom: 'down',    tweezer_top: 'up',
+  morning_star: 'down',      evening_star: 'up',
+  three_white_soldiers: 'down', three_black_crows: 'up',
+  three_inside_up: 'down',   three_inside_down: 'up',
+};
+
 function detectPatterns(candles: Candle[]): Detected[] {
   const res: Detected[] = [];
+  // One per run: a multi-candle match that starts inside the previous match of
+  // the same pattern (marked or not) continues that run instead of starting a
+  // new one, so a run of bearish candles is one Three Black Crows, not one per
+  // candle. The run is judged by the trend before its first candle. Only earlier
+  // candles decide this, so revealing a candle never removes an earlier marker.
+  const runEnd: Record<string, number> = {};
+  const multi = (patternId: string, startIdx: number, endIdx: number) => {
+    const continues = runEnd[patternId] !== undefined && startIdx <= runEnd[patternId];
+    runEnd[patternId] = endIdx;
+    if (continues) return;
+    const need = REVERSAL_CONTEXT[patternId];
+    if (need && trendBefore(candles, startIdx) !== need) return;
+    res.push({ patternId, startIdx, endIdx });
+  };
   for (let i = 0; i < candles.length; i++) {
     const c = candles[i];
     const range = c.high - c.low;
@@ -460,11 +491,13 @@ function detectPatterns(candles: Candle[]): Detected[] {
     else if (br <= 0.1)
       res.push({ patternId: 'doji', startIdx: i, endIdx: i });
     // Hammer (downtrend) / Hanging Man (uptrend): same shape, context differs
-    else if (br < 0.35 && dn >= 2 * body && up <= body * 0.3)
-      res.push({ patternId: trend === 'up' ? 'hanging_man' : 'hammer', startIdx: i, endIdx: i });
+    else if (br < 0.35 && dn >= 2 * body && up <= body * 0.3) {
+      if (trend) res.push({ patternId: trend === 'up' ? 'hanging_man' : 'hammer', startIdx: i, endIdx: i });
+    }
     // Inverted Hammer (downtrend) / Shooting Star (uptrend): same shape, context differs
-    else if (br < 0.35 && up >= 2 * body && dn <= body * 0.3)
-      res.push({ patternId: trend === 'up' ? 'shooting_star' : 'inverted_hammer', startIdx: i, endIdx: i });
+    else if (br < 0.35 && up >= 2 * body && dn <= body * 0.3) {
+      if (trend) res.push({ patternId: trend === 'up' ? 'shooting_star' : 'inverted_hammer', startIdx: i, endIdx: i });
+    }
     else if (br > 0.9 && up < body * 0.05 && dn < body * 0.05)
       res.push({ patternId: bull ? 'marubozu_bull' : 'marubozu_bear', startIdx: i, endIdx: i });
     else if (br < 0.25 && up > body * 0.6 && dn > body * 0.6)
@@ -478,24 +511,24 @@ function detectPatterns(candles: Candle[]): Detected[] {
       const pBull = p.close > p.open;
 
       if (!pBull && bull  && c.open <= p.close && c.close >= p.open)
-        res.push({ patternId: 'bullish_engulfing', startIdx: i - 1, endIdx: i });
+        multi('bullish_engulfing', i - 1, i);
       if (pBull  && !bull && c.open >= p.close && c.close <= p.open)
-        res.push({ patternId: 'bearish_engulfing', startIdx: i - 1, endIdx: i });
+        multi('bearish_engulfing', i - 1, i);
       if (!pBull && bull  && c.open < p.low  && c.close > pMid && c.close < p.open)
-        res.push({ patternId: 'piercing_line', startIdx: i - 1, endIdx: i });
+        multi('piercing_line', i - 1, i);
       if (pBull  && !bull && c.open > p.high && c.close < pMid && c.close > p.open)
-        res.push({ patternId: 'dark_cloud', startIdx: i - 1, endIdx: i });
+        multi('dark_cloud', i - 1, i);
       if (!pBull && bull  && cBH < pBH && cBL > pBL)
-        res.push({ patternId: 'harami_bull', startIdx: i - 1, endIdx: i });
+        multi('harami_bull', i - 1, i);
       if (pBull  && !bull && cBH < pBH && cBL > pBL)
-        res.push({ patternId: 'harami_bear', startIdx: i - 1, endIdx: i });
+        multi('harami_bear', i - 1, i);
       // Tweezer Bottom: bear then bull, nearly equal lows
       const avgRange2 = ((p.high - p.low) + (c.high - c.low)) / 2;
       if (avgRange2 > 0) {
         if (!pBull && bull  && Math.abs(c.low  - p.low)  <= avgRange2 * 0.03)
-          res.push({ patternId: 'tweezer_bottom', startIdx: i - 1, endIdx: i });
+          multi('tweezer_bottom', i - 1, i);
         if (pBull  && !bull && Math.abs(c.high - p.high) <= avgRange2 * 0.03)
-          res.push({ patternId: 'tweezer_top', startIdx: i - 1, endIdx: i });
+          multi('tweezer_top', i - 1, i);
       }
     }
 
@@ -510,25 +543,25 @@ function detectPatterns(candles: Candle[]): Detected[] {
       const c2InC1 = c2BH < c1BH && c2BL > c1BL;
 
       if (!c1Bull && c2b < c1b * 0.5 && c3Bull && c3.close > c1Mid)
-        res.push({ patternId: 'morning_star', startIdx: i - 2, endIdx: i });
+        multi('morning_star', i - 2, i);
       if (c1Bull && c2b < c1b * 0.5 && !c3Bull && c3.close < c1Mid)
-        res.push({ patternId: 'evening_star', startIdx: i - 2, endIdx: i });
+        multi('evening_star', i - 2, i);
       // Three White Soldiers: each opens within prior body, closes progressively higher
       if (c1Bull && c2Bull && c3Bull
         && c2.open >= c1.open && c2.open <= c1.close
         && c3.open >= c2.open && c3.open <= c2.close
         && c2.close > c1.close && c3.close > c2.close)
-        res.push({ patternId: 'three_white_soldiers', startIdx: i - 2, endIdx: i });
+        multi('three_white_soldiers', i - 2, i);
       // Three Black Crows: each opens within prior body, closes progressively lower
       if (!c1Bull && !c2Bull && !c3Bull
         && c2.open <= c1.open && c2.open >= c1.close
         && c3.open <= c2.open && c3.open >= c2.close
         && c2.close < c1.close && c3.close < c2.close)
-        res.push({ patternId: 'three_black_crows', startIdx: i - 2, endIdx: i });
+        multi('three_black_crows', i - 2, i);
       if (!c1Bull && c2Bull && c2InC1 && c3Bull && c3.close > c1.open)
-        res.push({ patternId: 'three_inside_up', startIdx: i - 2, endIdx: i });
+        multi('three_inside_up', i - 2, i);
       if (c1Bull && !c2Bull && c2InC1 && !c3Bull && c3.close < c1.open)
-        res.push({ patternId: 'three_inside_down', startIdx: i - 2, endIdx: i });
+        multi('three_inside_down', i - 2, i);
     }
   }
   return res;
@@ -558,8 +591,21 @@ function buildMarkers(patterns: Detected[], candles: Candle[], activeId: string 
       text:      isActive ? def.shortName : '',
       size:      isActive ? 1 : 0,
       patternId: p.patternId,
+      selected:  activeId === p.patternId,
     };
   });
+}
+
+// Below this chart width a label spans several candles and neighbouring labels
+// overlap, so only the selected pattern's latest marker keeps its text; every
+// other marker keeps its shape and colour. The toast still names each new
+// pattern, and tapping a marker still opens its explanation.
+const NARROW_CHART_PX = 640;
+
+function toSeriesMarkers(markers: MarkerSpec[], narrow: boolean) {
+  let keep = -1;
+  if (narrow) markers.forEach((m, i) => { if (m.selected && (keep < 0 || m.time > markers[keep].time)) keep = i; });
+  return markers.map(({ patternId: _p, selected: _s, ...m }, i) => (narrow && i !== keep ? { ...m, text: '' } : m));
 }
 
 function calcEMA(candles: Candle[], period: number): LineData[] {
@@ -720,8 +766,21 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
   const allMarkersRef = useRef<MarkerSpec[]>([]);
   const onHoverRef    = useRef(onHover);
   const onClickRef    = useRef(onMarkerClick);
+  const narrowRef     = useRef(false);
   const isDark        = useIsDark();
   const [paneTop, setPaneTop] = useState<number | null>(null);
+
+  // Sets the markers, labelled for the chart's width. The counts on the
+  // container are read by scripts/e2e/chart-markers.mjs (canvas text can't be).
+  const showMarkers = (sm: ISeriesMarkersPluginApi<UTCTimestamp>, list: MarkerSpec[]) => {
+    const out = toSeriesMarkers(list, narrowRef.current);
+    sm.setMarkers(out);
+    const el = containerRef.current;
+    if (el) {
+      el.dataset.markers = String(out.length);
+      el.dataset.markerLabels = String(out.filter(m => m.text).length);
+    }
+  };
 
   onHoverRef.current  = onHover;
   onClickRef.current  = onMarkerClick;
@@ -773,8 +832,9 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     const { macd: m0, signal: s0, hist: h0 } = calcMACD(norm);
     macdL.setData(m0); macdS.setData(s0); macdH.setData(h0);
 
-    const chartMarkers = markers.map(({ patternId: _, ...m }) => m);
-    const sm = createSeriesMarkers(cs as any, chartMarkers);
+    narrowRef.current = containerRef.current.clientWidth < NARROW_CHART_PX;
+    const sm = createSeriesMarkers(cs as any, [] as ReturnType<typeof toSeriesMarkers>);
+    showMarkers(sm, markers);
     chart.timeScale().fitContent();
 
     chartRef.current = chart; candleRef.current = cs; volRef.current = vs;
@@ -822,6 +882,8 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     const ro = new ResizeObserver(() => {
       if (!containerRef.current) return;
       chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
+      const narrow = containerRef.current.clientWidth < NARROW_CHART_PX;
+      if (narrow !== narrowRef.current) { narrowRef.current = narrow; showMarkers(sm, allMarkersRef.current); }
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const paneHeight = chart.paneSize().height;
@@ -892,8 +954,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
       const { macd, signal, hist } = calcMACD(norm);
       macdLineRef.current?.setData(macd); macdSigRef.current?.setData(signal); macdHistRef.current?.setData(hist);
     }
-    const chartMarkers = markers.map(({ patternId: _, ...m }) => m);
-    markersRef.current?.setMarkers(chartMarkers);
+    if (markersRef.current) showMarkers(markersRef.current, markers);
   }, [candles, markers, resetKey]);
 
   // EMA visibility
