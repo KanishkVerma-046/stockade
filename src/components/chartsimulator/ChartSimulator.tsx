@@ -596,11 +596,13 @@ function buildMarkers(patterns: Detected[], candles: Candle[], activeId: string 
   });
 }
 
-// Below this chart width a label spans several candles and neighbouring labels
-// overlap, so only the selected pattern's latest marker keeps its text; every
-// other marker keeps its shape and colour. The toast still names each new
-// pattern, and tapping a marker still opens its explanation.
-const NARROW_CHART_PX = 640;
+// On a phone-width viewport a label spans several candles and neighbouring
+// labels overlap, so only the selected pattern's latest marker keeps its text;
+// every other marker keeps its shape and colour. The toast still names each new
+// pattern, and tapping a marker still opens its explanation. This goes by the
+// viewport, not the chart: the desktop layout's side panels leave a 1024px
+// window with a 534px chart, and laptops keep their labels.
+const NARROW_VIEWPORT = '(max-width: 639.98px)';
 
 function toSeriesMarkers(markers: MarkerSpec[], narrow: boolean) {
   let keep = -1;
@@ -832,8 +834,11 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     const { macd: m0, signal: s0, hist: h0 } = calcMACD(norm);
     macdL.setData(m0); macdS.setData(s0); macdH.setData(h0);
 
-    narrowRef.current = containerRef.current.clientWidth < NARROW_CHART_PX;
+    const narrowMq = window.matchMedia(NARROW_VIEWPORT);
+    narrowRef.current = narrowMq.matches;
     const sm = createSeriesMarkers(cs as any, [] as ReturnType<typeof toSeriesMarkers>);
+    const onNarrowChange = () => { narrowRef.current = narrowMq.matches; showMarkers(sm, allMarkersRef.current); };
+    narrowMq.addEventListener('change', onNarrowChange);
     showMarkers(sm, markers);
     chart.timeScale().fitContent();
 
@@ -882,8 +887,6 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     const ro = new ResizeObserver(() => {
       if (!containerRef.current) return;
       chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
-      const narrow = containerRef.current.clientWidth < NARROW_CHART_PX;
-      if (narrow !== narrowRef.current) { narrowRef.current = narrow; showMarkers(sm, allMarkersRef.current); }
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const paneHeight = chart.paneSize().height;
@@ -900,6 +903,7 @@ function SimChart({ candles, markers, showEma, showVwap, bottomIndicator, resetK
     if (overlayRef.current) ro.observe(overlayRef.current);
     return () => {
       cancelAnimationFrame(raf);
+      narrowMq.removeEventListener('change', onNarrowChange);
       chart.timeScale().unsubscribeSizeChange(placeHint);
       ro.disconnect(); chart.remove();
       chartRef.current = null; candleRef.current = null; volRef.current = null;
